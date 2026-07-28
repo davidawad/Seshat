@@ -1,0 +1,20 @@
+/*
+ * Design tokens — colors, spacing, and the reading measure.
+ * Owned by the typography/legibility track (see research/legibility).
+ * Placeholder values below keep the app buildable until that track lands.
+ */
+:root {
+  --color-bg: #ffffff;
+  --color-fg: #111111;
+  --color-border: #dddddd;
+  --color-accent: #5b3df5;
+  --measure: 70ch;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --color-bg: #111111;
+    --color-fg: #f2f2f2;
+    --color-border: #333333;
+  }
+}

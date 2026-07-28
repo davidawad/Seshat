@@ -1,0 +1,16 @@
+/*
+ * Typeface stack and body text sizing.
+ * Owned by the typography/legibility track (see research/legibility).
+ * Placeholder values below keep the app buildable until that track lands.
+ */
+:root {
+  --font-body: system-ui, sans-serif;
+  --font-size-body: 12.5pt;
+  --line-height-body: 1.45;
+}
+
+body {
+  font-family: var(--font-body);
+  font-size: var(--font-size-body);
+  line-height: var(--line-height-body);
+}
