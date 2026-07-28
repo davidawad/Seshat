@@ -1,6 +1,10 @@
+import { Route, Routes } from 'react-router-dom'
+import { DeckDetailPage } from '../features/decks/DeckDetail'
+import { DeckListPage } from '../features/decks/DeckList'
+
 export const DecksPage = () => (
-  <section aria-labelledby="decks-heading">
-    <h1 id="decks-heading">Decks</h1>
-    <p>Deck browser, editor, and import/export go here.</p>
-  </section>
+  <Routes>
+    <Route index element={<DeckListPage />} />
+    <Route path=":deckId" element={<DeckDetailPage />} />
+  </Routes>
 )

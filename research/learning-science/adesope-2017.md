@@ -1,0 +1,11 @@
+# Rethinking the Use of Tests: A Meta-Analysis of Practice Testing (Adesope, Trevisan, & Sundararajan, 2017)
+
+**Citation:** Adesope, O. O., Trevisan, D. A., & Sundararajan, N. (2017). Rethinking the use of tests: A meta-analysis of practice testing. *Review of Educational Research*, 87(3), 659–701.
+
+**Link:** https://doi.org/10.3102/0034654316689306
+
+## Summary
+
+This meta-analysis pools 272 independent effect sizes from 118 studies (N = 15,472) comparing practice testing to non-testing conditions (restudying, filler activities, no activity), finding practice testing reliably outperforms restudying and is moderated by several design factors directly relevant to Seshat's card mechanics. Test format was a significant moderator: multiple-choice testing produced the largest mnemonic benefit (g = 0.70), followed by free recall (g = 0.62), cued recall (g = 0.58), and short-answer testing (g = 0.48) — the opposite ordering from some prior work (e.g., Rowland, 2014), suggesting Seshat's mixed MCQ/short-answer/cloze card types may each carry different retention payoffs rather than one dominant format. Feedback (presenting the correct answer after a response) reliably increased the testing effect, supporting Seshat's post-answer feedback/grading step; retention interval also moderated effects, with gaps of 1–6 days producing a larger benefit (g = 0.82) than same-day testing (g = 0.56), consistent with FSRS's use of spaced, delayed review rather than massed same-session repetition. A single practice test administration produced a larger effect (g = 0.70) than two-or-more administrations (g = 0.51), a nuance worth weighing against simple "more repetitions is better" scheduling assumptions.
+
+**Effect size:** Overall weighted mean effect sizes: g = +0.51 (practice testing vs. restudying) and g = +0.93 (practice testing vs. filler/no activity); mean of all 272 individual effect sizes M = 0.74 (SD = 0.74). Key moderator effect sizes: test format — multiple-choice g = 0.70, free recall g = 0.62, cued recall g = 0.58, short-answer g = 0.48; retention interval — same-day g = 0.56 vs. 1–6 days g = 0.82; number of practice tests — one administration g = 0.70 vs. two-or-more g = 0.51.

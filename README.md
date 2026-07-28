@@ -1,32 +1,57 @@
-# React + TypeScript + Vite
+# Seshat
 
-This template provides a minimal setup to get React working in Vite with HMR and some Oxlint rules.
+Seshat is a free, open-source flashcard and spaced-repetition app. It exists because Quizlet put flashcards I
+made myself behind a paywall — so instead of paying to study my own material, I built something better and gave
+it away.
 
-Currently, two official plugins are available:
+## Why it's different
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+Most flashcard apps optimize for engagement: streaks, hearts, leaderboards. Seshat optimizes for learning.
+Every non-trivial product decision — recall-first card design, the spacing algorithm, the confidence prompt,
+even the typography — is backed by a citation from the cognitive-science and legibility literature, not a growth
+metric. See the in-app `/docs` and `/attributions` pages, or the [`research/`](./research) folder, for the
+receipts.
 
-## React Compiler
+## Core features
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+- **Recall-first study** — short-answer, cloze deletion, and multiple-choice card types, weighted toward
+  formats that require you to produce an answer rather than just recognize one.
+- **FSRS spaced scheduling** — per-card, per-learner difficulty/stability modeling (via [`ts-fsrs`](https://github.com/open-spaced-repetition/ts-fsrs)) instead of a fixed interval table, with selectable desired-retention
+  presets (85% / 90% / 93%).
+- **Confidence calibration** — rate your confidence on each answer and see, over time, whether that confidence
+  is actually justified.
+- **Local-first, zero-backend** — no account, no server, no tracking. Your decks, cards, review history, and
+  settings live entirely in your browser's `localStorage` and never leave your device.
+- **Research-grounded typography** — a typeface, sizing, line-height, and measure system built from the
+  legibility and accessibility literature, with presets for screen reading, UI text, long-form reading, and
+  print.
 
-## Expanding the Oxlint configuration
+## Tech stack
 
-If you are developing a production application, we recommend enabling type-aware lint rules by installing `oxlint-tsgolint` and editing `.oxlintrc.json`:
+Client-only, no backend:
 
-```json
-{
-  "$schema": "./node_modules/oxlint/configuration_schema.json",
-  "plugins": ["react", "typescript", "oxc"],
-  "options": {
-    "typeAware": true
-  },
-  "rules": {
-    "react/rules-of-hooks": "error",
-    "react/only-export-components": ["warn", { "allowConstantExport": true }]
-  }
-}
+- [Vite](https://vite.dev) + [React 19](https://react.dev) + TypeScript (strict mode)
+- [react-router-dom](https://reactrouter.com) for routing
+- [Zod](https://zod.dev) — every persisted or imported shape is validated at the storage/import boundary
+- [ts-fsrs](https://github.com/open-spaced-repetition/ts-fsrs) — the FSRS scheduling engine
+- [Vitest](https://vitest.dev) + Testing Library for tests
+
+## Running it
+
+```sh
+npm install
+npm run dev        # start the dev server
+npm run build       # type-check and build for production
+npm run test         # run the test suite
+npm run lint          # lint with oxlint
 ```
 
-See the [Oxlint rules documentation](https://oxc.rs/docs/guide/usage/linter/rules) for the full list of rules and categories.
+## License
+
+[MIT](./LICENSE) — Copyright (c) 2026 David Awad. Use it, fork it, self-host it.
+
+## Learn more
+
+- In-app: `/docs` (how Seshat works, how data is stored) and `/attributions` (full citation list)
+- [`research/`](./research) — the underlying learning-science and legibility research, one file per source, with
+  verified links and summaries

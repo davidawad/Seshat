@@ -1,16 +1,122 @@
 /*
- * Typeface stack and body text sizing.
+ * Typeface application, body sizing, motion, and focus visibility.
  * Owned by the typography/legibility track (see research/legibility).
- * Placeholder values below keep the app buildable until that track lands.
  */
-:root {
-  --font-body: system-ui, sans-serif;
-  --font-size-body: 12.5pt;
-  --line-height-body: 1.45;
-}
+@import './fonts.css';
 
+/* ---------------------------------------------------------------------
+ * Body copy: the active reading typeface (--font-body, resolved from
+ * [data-typeface] in tokens.css) applies everywhere by default. UI chrome
+ * (header, nav, form controls, buttons) opts back into --font-ui below —
+ * see the research spec: reading content varies by user, app chrome
+ * stays consistently modern (Inter).
+ * ------------------------------------------------------------------- */
 body {
   font-family: var(--font-body);
   font-size: var(--font-size-body);
   line-height: var(--line-height-body);
+  /* Support WCAG 1.4.4 (resize text) / 1.4.12 (text spacing) reflow —
+     never clip enlarged text with fixed heights on text containers. */
+  text-size-adjust: 100%;
+}
+
+.app-header,
+.app-nav,
+.app-brand,
+.skip-link,
+button,
+input,
+select,
+textarea,
+optgroup,
+label {
+  font-family: var(--font-ui);
+}
+
+/* ---------------------------------------------------------------------
+ * Reduced motion — respect the OS preference AND the explicit in-app
+ * opt-in (settings.reducedMotion), independent of each other. No
+ * decorative animation exists in this app; this rule also neutralizes
+ * any transition/animation another track's component may add.
+ * ------------------------------------------------------------------- */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+[data-reduced-motion='true'] *,
+[data-reduced-motion='true'] *::before,
+[data-reduced-motion='true'] *::after {
+  animation-duration: 0.01ms !important;
+  animation-iteration-count: 1 !important;
+  transition-duration: 0.01ms !important;
+  scroll-behavior: auto !important;
+}
+
+/* ---------------------------------------------------------------------
+ * Focus visibility (WCAG 2.4.7 / 2.4.11) — a strong, high-contrast
+ * indicator on every focusable element, app-wide. This is infrastructure:
+ * other tracks' interactive elements (study-loop keyboard shortcuts,
+ * deck forms, etc.) inherit it automatically as long as they use real
+ * semantic/focusable elements, with no per-component styling needed.
+ * ------------------------------------------------------------------- */
+:focus {
+  outline: none;
+}
+
+:focus-visible {
+  outline: 3px solid var(--color-focus-ring);
+  outline-offset: 2px;
+  border-radius: 2px;
+}
+
+/* ---------------------------------------------------------------------
+ * Form controls / interactive boundaries — meet the 3:1 non-text
+ * contrast bar (WCAG 1.4.11) via --color-border-strong (see tokens.css
+ * for the computed ratios).
+ * ------------------------------------------------------------------- */
+input,
+select,
+textarea,
+button {
+  accent-color: var(--color-accent);
+  border: 1px solid var(--color-border-strong);
+  border-radius: 4px;
+  color: var(--color-fg);
+  background: var(--color-bg);
+  font-size: 1rem;
+  padding: 0.5em 0.75em;
+}
+
+button {
+  cursor: pointer;
+  background: var(--color-bg-elevated);
+}
+
+button:disabled {
+  cursor: not-allowed;
+  opacity: 0.6;
+}
+
+a {
+  color: var(--color-accent);
+}
+
+/* ---------------------------------------------------------------------
+ * Reading surfaces — constrain long-form text to the configured measure
+ * (--measure, driven by settings.measureCh) so line length stays in the
+ * 55-75ch legibility band. `.app-main` (index.css) already applies this
+ * as a max-width; `.measure` is available for nested reading blocks
+ * (card prompts/explanations, docs body copy) that live inside a wider
+ * container.
+ * ------------------------------------------------------------------- */
+.measure {
+  max-width: var(--measure);
+  margin-inline: auto;
 }

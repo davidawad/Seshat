@@ -1,20 +1,111 @@
 /*
- * Design tokens — colors, spacing, and the reading measure.
+ * Design tokens — color, typeface stacks, and the reading measure.
  * Owned by the typography/legibility track (see research/legibility).
- * Placeholder values below keep the app buildable until that track lands.
+ *
+ * Theme resolution:
+ *   - `theme: 'system'`  → no `data-theme` attribute on <html>; the
+ *     `prefers-color-scheme` media query below decides.
+ *   - `theme: 'light'`/`'dark'` → `useApplyTheme` sets `data-theme` on
+ *     <html>, which wins over the media query (see the `[data-theme="dark"]`
+ *     rule and the `:not([data-theme="light"])` guard on the media query).
+ *
+ * Contrast ratios below are computed against the WCAG 2.2 relative-luminance
+ * formula, not eyeballed. Body-text pairs clear 4.5:1 (WCAG 1.4.3 AA);
+ * interactive-component borders and the focus ring clear 3:1 (WCAG 1.4.11).
+ * See useApplyTheme's doc comment / the code review notes for the worked
+ * numbers; summary:
+ *   Light: fg #111111 on bg #ffffff       → 18.9:1
+ *          fg-muted #4b4b4f on #ffffff    → 8.7:1
+ *          accent #5b3df5 on #ffffff      → 6.1:1
+ *          border-strong #757575 on #fff  → 4.6:1 (UI component boundaries)
+ *   Dark:  fg #f2f2f2 on bg #111111       → 16.9:1
+ *          fg-muted #b3b3b3 on #111111    → 9.0:1
+ *          accent #9a86ff on #111111      → 6.5:1
+ *          border-strong #8a8a8a on #111  → 5.5:1
  */
+
 :root {
+  /* ---- Light palette (default) -------------------------------------- */
   --color-bg: #ffffff;
+  --color-bg-elevated: #f5f5f7;
   --color-fg: #111111;
-  --color-border: #dddddd;
+  --color-fg-muted: #4b4b4f;
+  --color-border: #dddddd; /* decorative dividers only, not a UI boundary */
+  --color-border-strong: #757575; /* form controls / interactive boundaries, 3:1+ */
   --color-accent: #5b3df5;
-  --measure: 70ch;
+  --color-accent-contrast: #ffffff; /* text placed on top of --color-accent */
+  --color-focus-ring: #5b3df5;
+
+  /* ---- Reading measure ------------------------------------------------ */
+  --measure: 65ch;
+
+  /* ---- Typeface stacks (self-hosted where noted; see fonts.css) ------ */
+  --font-atkinson: 'Atkinson Hyperlegible', Arial, Helvetica, sans-serif; /* self-hosted, max character distinction */
+  --font-verdana: Verdana, Geneva, sans-serif; /* system font, general screen reading */
+  --font-inter: 'Inter', system-ui, -apple-system, sans-serif; /* self-hosted, UI chrome */
+  --font-source-serif: 'Source Serif 4', Georgia, 'Times New Roman', serif; /* self-hosted, long-form reading */
+  --font-georgia: Georgia, 'Times New Roman', serif; /* system font, long-form reading */
+
+  /* --font-ui is fixed to Inter regardless of the user's body typeface —
+     nav/buttons/chrome stay consistently modern; only reading content
+     varies (see research spec: "Modern UI/web apps: Inter"). */
+  --font-ui: var(--font-inter);
+
+  /* --font-body is the active reading typeface, selected below via
+     [data-typeface]. Defaults to Atkinson Hyperlegible, matching
+     DEFAULT_SETTINGS.typeface in src/types.ts, so unstyled first paint
+     (before useApplyTheme's effect runs) is still correct. */
+  --font-body: var(--font-atkinson);
+
+  /* ---- Sizing (driven by Settings; see useApplyTheme) ---------------- */
+  --font-size-body: 12.5pt;
+  --line-height-body: 1.45;
 }
 
+[data-typeface='atkinson-hyperlegible'] {
+  --font-body: var(--font-atkinson);
+}
+
+[data-typeface='verdana'] {
+  --font-body: var(--font-verdana);
+}
+
+[data-typeface='inter'] {
+  --font-body: var(--font-inter);
+}
+
+[data-typeface='source-serif-4'] {
+  --font-body: var(--font-source-serif);
+}
+
+[data-typeface='georgia'] {
+  --font-body: var(--font-georgia);
+}
+
+/* ---- Dark palette: system preference (only when not forced light) ---- */
 @media (prefers-color-scheme: dark) {
-  :root {
+  :root:not([data-theme='light']) {
     --color-bg: #111111;
+    --color-bg-elevated: #1c1c1e;
     --color-fg: #f2f2f2;
+    --color-fg-muted: #b3b3b3;
     --color-border: #333333;
+    --color-border-strong: #8a8a8a;
+    --color-accent: #9a86ff;
+    --color-accent-contrast: #111111;
+    --color-focus-ring: #9a86ff;
   }
+}
+
+/* ---- Dark palette: explicit user choice, overrides the media query --- */
+:root[data-theme='dark'] {
+  --color-bg: #111111;
+  --color-bg-elevated: #1c1c1e;
+  --color-fg: #f2f2f2;
+  --color-fg-muted: #b3b3b3;
+  --color-border: #333333;
+  --color-border-strong: #8a8a8a;
+  --color-accent: #9a86ff;
+  --color-accent-contrast: #111111;
+  --color-focus-ring: #9a86ff;
 }

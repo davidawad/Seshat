@@ -1,0 +1,22 @@
+/*
+ * Self-hosted @font-face declarations (OFL-licensed, bundled via
+ * @fontsource — no third-party network requests, consistent with the
+ * client-only/no-backend architecture).
+ *
+ * Only regular (400) + bold (700) weights are imported per family — the
+ * app never needs italics or the full 100-900 range, and pulling every
+ * weight (e.g. Inter ships 100-900 plus italics) would bloat the bundle
+ * for weights nothing references.
+ *
+ * Verdana and Georgia are system fonts (see --font-verdana/--font-georgia
+ * in tokens.css) and need no @font-face here.
+ */
+
+@import '@fontsource/atkinson-hyperlegible/400.css';
+@import '@fontsource/atkinson-hyperlegible/700.css';
+
+@import '@fontsource/inter/400.css';
+@import '@fontsource/inter/700.css';
+
+@import '@fontsource/source-serif-4/400.css';
+@import '@fontsource/source-serif-4/700.css';

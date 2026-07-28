@@ -1,0 +1,102 @@
+/*
+ * Layout for the Settings page. Global typography/theme tokens live in
+ * src/styles/{tokens,typography}.css — this file is page-scoped layout
+ * only, imported directly by Settings.tsx.
+ */
+
+.settings-form {
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+  margin-top: 1.5rem;
+}
+
+.settings-form fieldset {
+  border: 1px solid var(--color-border);
+  border-radius: 6px;
+  padding: 1rem 1.25rem 1.25rem;
+  margin: 0;
+}
+
+.settings-form legend {
+  font-weight: 700;
+  padding: 0 0.4em;
+}
+
+.settings-field {
+  display: flex;
+  flex-direction: column;
+  gap: 0.4rem;
+}
+
+.settings-field + .settings-field {
+  margin-top: 1rem;
+}
+
+.settings-field input[type='range'] {
+  width: 100%;
+  max-width: 28rem;
+}
+
+.settings-field input[type='number'] {
+  width: 8rem;
+}
+
+.field-hint {
+  color: var(--color-fg-muted);
+  font-size: 0.9rem;
+  /* Never clip enlarged/reflowed text (WCAG 1.4.4/1.4.12): no fixed
+     height on any text container in this file. */
+  margin: 0.25rem 0 0.75rem;
+}
+
+.settings-option-list {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+
+.settings-option {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.75rem;
+  padding: 0.75rem;
+  border: 1px solid var(--color-border);
+  border-radius: 6px;
+  cursor: pointer;
+}
+
+.settings-option:has(input:checked) {
+  border-color: var(--color-accent);
+}
+
+.settings-option input {
+  margin-top: 0.3em;
+  flex-shrink: 0;
+}
+
+.settings-option-inline {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  cursor: pointer;
+}
+
+.settings-option-body {
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+  min-width: 0;
+}
+
+.settings-option-title {
+  font-weight: 700;
+  font-family: var(--font-ui);
+}
+
+.settings-preview {
+  margin: 0.25rem 0 0;
+  font-size: 1.05rem;
+  line-height: 1.5;
+  overflow-wrap: break-word;
+}

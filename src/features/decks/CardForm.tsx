@@ -1,0 +1,268 @@
+import { type FormEvent, useId, useState } from 'react'
+import { useSeshatStore } from '../../lib/store'
+import { type CardContent, type DeckId, type StudyCard, cardContentSchema } from '../../types'
+import { parseTagsInput } from './tags'
+
+type ContentKind = CardContent['kind']
+
+interface CardFormProps {
+  readonly deckId: DeckId
+  /** null = create a new card; otherwise edit this existing card. */
+  readonly editingCard: StudyCard | null
+  readonly onDone: () => void
+}
+
+const splitLines = (raw: string): string[] =>
+  raw
+    .split('\n')
+    .map((line) => line.trim())
+    .filter((line) => line.length > 0)
+
+const draftFromContent = (content: CardContent | null) => ({
+  kind: (content?.kind ?? 'short-answer') as ContentKind,
+  answer: content?.kind === 'short-answer' ? content.answer : '',
+  acceptableAnswersText: content?.kind === 'short-answer' ? content.acceptableAnswers.join('\n') : '',
+  clozeText: content?.kind === 'cloze' ? content.text : '',
+  options: content?.kind === 'mcq' ? content.options : ['', ''],
+  correctIndex: content?.kind === 'mcq' ? content.correctIndex : 0,
+})
+
+export const CardForm = ({ deckId, editingCard, onDone }: CardFormProps) => {
+  const { addCard, updateCard } = useSeshatStore()
+  const [prompt, setPrompt] = useState(editingCard?.prompt ?? '')
+  const [explanation, setExplanation] = useState(editingCard?.explanation ?? '')
+  const [sourceRef, setSourceRef] = useState(editingCard?.sourceRef ?? '')
+  const [tagsText, setTagsText] = useState(editingCard?.tags.join(', ') ?? '')
+  const [draft, setDraft] = useState(() => draftFromContent(editingCard?.content ?? null))
+  const [errors, setErrors] = useState<Record<string, string>>({})
+
+  const promptId = useId()
+  const explanationId = useId()
+  const sourceRefId = useId()
+  const tagsId = useId()
+  const kindId = useId()
+  const answerId = useId()
+  const acceptableId = useId()
+  const clozeId = useId()
+  const promptErrorId = useId()
+  const contentErrorId = useId()
+
+  const setKind = (kind: ContentKind) => {
+    setDraft((prev) => ({ ...prev, kind }))
+  }
+
+  const setOption = (index: number, value: string) => {
+    setDraft((prev) => ({ ...prev, options: prev.options.map((option, i) => (i === index ? value : option)) }))
+  }
+
+  const addOption = () => {
+    setDraft((prev) => ({ ...prev, options: [...prev.options, ''] }))
+  }
+
+  const removeOption = (index: number) => {
+    setDraft((prev) => {
+      const options = prev.options.filter((_, i) => i !== index)
+      const correctIndex = prev.correctIndex >= options.length ? Math.max(0, options.length - 1) : prev.correctIndex
+      return { ...prev, options, correctIndex }
+    })
+  }
+
+  const buildContent = (): CardContent => {
+    switch (draft.kind) {
+      case 'short-answer':
+        return {
+          kind: 'short-answer',
+          answer: draft.answer.trim(),
+          acceptableAnswers: splitLines(draft.acceptableAnswersText),
+        }
+      case 'cloze':
+        return { kind: 'cloze', text: draft.clozeText.trim() }
+      case 'mcq':
+        return {
+          kind: 'mcq',
+          options: draft.options.map((option) => option.trim()),
+          correctIndex: draft.correctIndex,
+        }
+    }
+  }
+
+  const handleSubmit = (event: FormEvent<HTMLFormElement>) => {
+    event.preventDefault()
+    const nextErrors: Record<string, string> = {}
+
+    const trimmedPrompt = prompt.trim()
+    if (trimmedPrompt.length === 0) {
+      nextErrors['prompt'] = 'Prompt is required.'
+    }
+
+    const content = buildContent()
+    const parsedContent = cardContentSchema.safeParse(content)
+    if (!parsedContent.success) {
+      nextErrors['content'] = parsedContent.error.issues.map((issue) => issue.message).join(' ')
+    } else if (content.kind === 'mcq' && (content.correctIndex < 0 || content.correctIndex >= content.options.length)) {
+      nextErrors['content'] = 'Select which option is correct.'
+    }
+
+    setErrors(nextErrors)
+    if (Object.keys(nextErrors).length > 0) return
+
+    const input = {
+      prompt: trimmedPrompt,
+      content,
+      explanation: explanation.trim().length > 0 ? explanation.trim() : null,
+      sourceRef: sourceRef.trim().length > 0 ? sourceRef.trim() : null,
+      tags: parseTagsInput(tagsText),
+    }
+
+    if (editingCard === null) {
+      addCard(deckId, input)
+    } else {
+      updateCard(editingCard.id, input)
+    }
+    onDone()
+  }
+
+  return (
+    <form onSubmit={handleSubmit} aria-label={editingCard === null ? 'Add card' : 'Edit card'}>
+      <div>
+        <label htmlFor={promptId}>Prompt</label>
+        <input
+          id={promptId}
+          type="text"
+          value={prompt}
+          onChange={(event) => setPrompt(event.target.value)}
+          aria-invalid={errors['prompt'] !== undefined}
+          aria-describedby={errors['prompt'] !== undefined ? promptErrorId : undefined}
+          required
+        />
+        {errors['prompt'] !== undefined && (
+          <p id={promptErrorId} role="alert">
+            {errors['prompt']}
+          </p>
+        )}
+      </div>
+
+      <fieldset>
+        <legend>Card type</legend>
+        <label htmlFor={kindId}>Kind</label>
+        <select id={kindId} value={draft.kind} onChange={(event) => setKind(event.target.value as ContentKind)}>
+          <option value="short-answer">Short answer</option>
+          <option value="cloze">Cloze (fill in the blank)</option>
+          <option value="mcq">Multiple choice</option>
+        </select>
+      </fieldset>
+
+      {draft.kind === 'short-answer' && (
+        <div>
+          <div>
+            <label htmlFor={answerId}>Answer</label>
+            <input
+              id={answerId}
+              type="text"
+              value={draft.answer}
+              onChange={(event) => setDraft((prev) => ({ ...prev, answer: event.target.value }))}
+              required
+            />
+          </div>
+          <div>
+            <label htmlFor={acceptableId}>Other acceptable answers (one per line, optional)</label>
+            <textarea
+              id={acceptableId}
+              value={draft.acceptableAnswersText}
+              onChange={(event) => setDraft((prev) => ({ ...prev, acceptableAnswersText: event.target.value }))}
+              rows={3}
+            />
+          </div>
+        </div>
+      )}
+
+      {draft.kind === 'cloze' && (
+        <div>
+          <label htmlFor={clozeId}>Text, with the deletion wrapped in double curly braces</label>
+          <p id={`${clozeId}-hint`}>
+            Example: &quot;The mitochondria is the {'{{'}powerhouse of the cell{'}}'}.&quot;
+          </p>
+          <textarea
+            id={clozeId}
+            aria-describedby={`${clozeId}-hint`}
+            value={draft.clozeText}
+            onChange={(event) => setDraft((prev) => ({ ...prev, clozeText: event.target.value }))}
+            rows={3}
+            required
+          />
+        </div>
+      )}
+
+      {draft.kind === 'mcq' && (
+        <fieldset>
+          <legend>Options (select the correct one)</legend>
+          {draft.options.map((option, index) => {
+            const optionId = `${kindId}-option-${index}`
+            return (
+              <div key={optionId}>
+                <label htmlFor={optionId}>Option {index + 1}</label>
+                <input
+                  id={optionId}
+                  type="text"
+                  value={option}
+                  onChange={(event) => setOption(index, event.target.value)}
+                  required
+                />
+                <label>
+                  <input
+                    type="radio"
+                    name={`${kindId}-correct`}
+                    checked={draft.correctIndex === index}
+                    onChange={() => setDraft((prev) => ({ ...prev, correctIndex: index }))}
+                  />
+                  Correct
+                </label>
+                {draft.options.length > 2 && (
+                  <button type="button" onClick={() => removeOption(index)}>
+                    Remove option {index + 1}
+                  </button>
+                )}
+              </div>
+            )
+          })}
+          <button type="button" onClick={addOption}>
+            Add option
+          </button>
+        </fieldset>
+      )}
+
+      {errors['content'] !== undefined && (
+        <p id={contentErrorId} role="alert">
+          {errors['content']}
+        </p>
+      )}
+
+      <div>
+        <label htmlFor={explanationId}>Explanation (optional)</label>
+        <textarea
+          id={explanationId}
+          value={explanation}
+          onChange={(event) => setExplanation(event.target.value)}
+          rows={2}
+        />
+      </div>
+
+      <div>
+        <label htmlFor={sourceRefId}>Source reference (optional)</label>
+        <input id={sourceRefId} type="text" value={sourceRef} onChange={(event) => setSourceRef(event.target.value)} />
+      </div>
+
+      <div>
+        <label htmlFor={tagsId}>Tags (comma-separated, optional)</label>
+        <input id={tagsId} type="text" value={tagsText} onChange={(event) => setTagsText(event.target.value)} />
+      </div>
+
+      <div>
+        <button type="submit">{editingCard === null ? 'Add card' : 'Save changes'}</button>
+        <button type="button" onClick={onDone}>
+          Cancel
+        </button>
+      </div>
+    </form>
+  )
+}
