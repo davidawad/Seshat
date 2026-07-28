@@ -3,10 +3,16 @@ import { createRoot } from 'react-dom/client'
 import { BrowserRouter } from 'react-router-dom'
 import { App } from './App.tsx'
 import { SeshatProvider } from './lib/store.tsx'
+import { seshatWindowApi } from './lib/window-api.ts'
 import './index.css'
 
 const rootElement = document.getElementById('root')
 if (rootElement === null) throw new Error('#root element not found')
+
+window.seshat = seshatWindowApi
+console.info(
+  'Seshat exposes a scripting API at window.seshat — try window.seshat.listDecks(). No backend involved; it reads/writes the same localStorage the app does. See README.md.',
+)
 
 // Registered production-only: in dev, a cached service worker would fight
 // Vite's own HMR/module graph.

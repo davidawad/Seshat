@@ -1,6 +1,7 @@
 import { type ChangeEvent, type FormEvent, useId, useState } from 'react'
 import { useSeshatStore } from '../../lib/store'
 import { exportedDeckSchema } from '../../types'
+import { parseSimpleJson } from './simple-json'
 import { parseTermDefinitionText } from './text-import'
 
 const readFileAsText = (file: File): Promise<string> =>
@@ -61,6 +62,87 @@ const JsonImportForm = () => {
     <div>
       <h3>Import a Seshat JSON export</h3>
       <label htmlFor={fileId}>Choose a .seshat.json file</label>
+      <input
+        id={fileId}
+        type="file"
+        accept="application/json"
+        onChange={(event) => {
+          void handleChange(event)
+        }}
+        aria-invalid={error !== null}
+        aria-describedby={error !== null ? errorId : undefined}
+      />
+      {error !== null && (
+        <p id={errorId} role="alert">
+          {error}
+        </p>
+      )}
+      {successMessage !== null && <p role="status">{successMessage}</p>}
+    </div>
+  )
+}
+
+const SimpleJsonImportForm = () => {
+  const { importDeck } = useSeshatStore()
+  const [name, setName] = useState('')
+  const [error, setError] = useState<string | null>(null)
+  const [successMessage, setSuccessMessage] = useState<string | null>(null)
+  const nameId = useId()
+  const fileId = useId()
+  const errorId = useId()
+
+  const handleChange = async (event: ChangeEvent<HTMLInputElement>) => {
+    const file = event.target.files?.[0]
+    event.target.value = ''
+    if (file === undefined) return
+
+    setError(null)
+    setSuccessMessage(null)
+
+    let text: string
+    try {
+      text = await readFileAsText(file)
+    } catch {
+      setError('Could not read that file.')
+      return
+    }
+
+    const parsed = parseSimpleJson(text)
+    if (!parsed.ok) {
+      setError(parsed.error)
+      return
+    }
+
+    const trimmedName = name.trim()
+    const deckName = parsed.value.name ?? (trimmedName.length > 0 ? trimmedName : null)
+    if (deckName === null) {
+      setError('This file has no deck name — enter one above, or use a file with a "name"/"title" field.')
+      return
+    }
+
+    const deck = importDeck({
+      seshatExportVersion: 1,
+      name: deckName,
+      description: '',
+      tags: [],
+      cards: parsed.value.cards,
+    })
+    setSuccessMessage(`Imported "${deck.name}" (${parsed.value.cards.length} card(s)).`)
+    setName('')
+  }
+
+  return (
+    <div>
+      <h3>Import a term/definition JSON file</h3>
+      <p className="field-hint">
+        The portable format: an array of <code>{'{term, definition}'}</code> objects (or{' '}
+        <code>{'{name, terms: [...]}'}</code>). <code>question</code>/<code>answer</code> and <code>front</code>/
+        <code>back</code> are accepted in place of <code>term</code>/<code>definition</code> too. Every card imports as
+        short-answer.
+      </p>
+      <label htmlFor={nameId}>Deck name (only used if the file doesn&apos;t include one)</label>
+      <input id={nameId} type="text" value={name} onChange={(event) => setName(event.target.value)} />
+      <label htmlFor={fileId}>Choose a .json file</label>
       <input
         id={fileId}
         type="file"
@@ -155,6 +237,7 @@ export const ImportPanel = () => (
   <div>
     <h2>Import</h2>
     <JsonImportForm />
+    <SimpleJsonImportForm />
     <TextImportForm />
   </div>
 )

@@ -114,3 +114,12 @@ body {
 .illuminated-panel a {
   color: var(--color-accent);
 }
+
+.study-mode-list {
+  list-style: none;
+  margin: 0 0 1.5rem;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 0.4rem;
+}

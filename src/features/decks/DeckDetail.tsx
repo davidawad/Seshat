@@ -5,6 +5,7 @@ import { type Deck, deckIdSchema } from '../../types'
 import { CardForm } from './CardForm'
 import { CardListItem } from './CardListItem'
 import { downloadJson, slugify } from './download'
+import { toSimpleJson } from './simple-json'
 
 const MS_PER_DAY = 24 * 60 * 60 * 1000
 
@@ -91,6 +92,10 @@ export const DeckDetailPage = () => {
     downloadJson(`${slugify(deck.name)}.seshat.json`, exported)
   }
 
+  const handleExportSimpleJson = () => {
+    downloadJson(`${slugify(deck.name)}.json`, toSimpleJson(deck.name, cards))
+  }
+
   return (
     <section aria-labelledby="deck-detail-heading">
       <p>
@@ -106,14 +111,30 @@ export const DeckDetailPage = () => {
         </ul>
       )}
 
-      <p>
-        <Link to={`/?deck=${deckId}`}>Study this deck</Link>
-      </p>
+      <nav aria-label="Study modes">
+        <ul className="study-mode-list">
+          <li>
+            <Link to={`/?deck=${deckId}`}>Study (recommended)</Link> — recall-first, spaced by FSRS
+          </li>
+          <li>
+            <Link to={`/flashcards/${deckId}`}>Flashcards</Link> — flip through the whole deck
+          </li>
+          <li>
+            <Link to={`/test/${deckId}`}>Test</Link> — a generated practice test, scored at the end
+          </li>
+          <li>
+            <Link to={`/match/${deckId}`}>Match</Link> — a timed matching drill
+          </li>
+        </ul>
+      </nav>
 
       <GoalDateField deck={deck} />
 
       <button type="button" onClick={handleExport} disabled={cards.length === 0}>
         Export deck as JSON
+      </button>
+      <button type="button" onClick={handleExportSimpleJson} disabled={cards.length === 0}>
+        Export as term/definition JSON
       </button>
 
       <h2>Cards ({cards.length})</h2>
