@@ -8,6 +8,8 @@ const cardContentText = (content: CardContent): string => {
       return content.text
     case 'mcq':
       return content.options.join(' ')
+    case 'image-occlusion':
+      return content.occlusions.map((region) => region.label).join(' ')
   }
 }
 

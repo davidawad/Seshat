@@ -29,6 +29,7 @@ interface NewDeckInput {
   readonly name: string
   readonly description: string
   readonly tags: string[]
+  readonly goalDate?: string | null
 }
 
 type Action =
@@ -149,7 +150,7 @@ export const SeshatProvider = ({ children }: { readonly children: ReactNode }) =
 
   const addDeck = useCallback((input: NewDeckInput): Deck => {
     const now = new Date().toISOString()
-    const deck: Deck = { id: newDeckId(), createdAt: now, updatedAt: now, ...input }
+    const deck: Deck = { id: newDeckId(), createdAt: now, updatedAt: now, ...input, goalDate: input.goalDate ?? null }
     dispatch({ type: 'add-deck', deck })
     return deck
   }, [])
@@ -188,12 +189,15 @@ export const SeshatProvider = ({ children }: { readonly children: ReactNode }) =
     (cardId: CardId, grade: Grade, confidence: ConfidenceRating | null, correct: boolean, elapsedMs: number) => {
       const card = state.cards.find((candidate) => candidate.id === cardId)
       if (card === undefined) return
+      const deck = state.decks.find((candidate) => candidate.id === card.deckId)
+      const goalDate = deck?.goalDate == null ? null : new Date(deck.goalDate)
       const now = new Date()
       const { scheduling, retrievabilityAtReview } = scheduleReview(
         card.scheduling,
         grade,
         state.settings.desiredRetention,
         now,
+        goalDate,
       )
       dispatch({
         type: 'record-review',
@@ -211,7 +215,7 @@ export const SeshatProvider = ({ children }: { readonly children: ReactNode }) =
         },
       })
     },
-    [state.cards, state.settings.desiredRetention],
+    [state.cards, state.decks, state.settings.desiredRetention],
   )
 
   const importDeck = useCallback((exported: ExportedDeck): Deck => {
@@ -223,6 +227,7 @@ export const SeshatProvider = ({ children }: { readonly children: ReactNode }) =
       tags: exported.tags,
       createdAt: now,
       updatedAt: now,
+      goalDate: null,
     }
     const cards: StudyCard[] = exported.cards.map((exportedCard) => ({
       id: newCardId(),

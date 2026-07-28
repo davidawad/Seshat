@@ -1,5 +1,6 @@
 import type { Grade, StudyCard } from '../../types'
 import { type Attempt, GRADE_ORDER, attemptLabel, correctAnswerLabel } from './grading'
+import { ImageOcclusionReveal } from './ImageOcclusionReveal'
 
 const GRADE_LABELS: Record<Grade, string> = { again: 'Again', hard: 'Hard', good: 'Good', easy: 'Easy' }
 
@@ -21,7 +22,7 @@ interface RevealPanelProps {
  */
 export const RevealPanel = ({ card, attempt, correct, onGrade }: RevealPanelProps) => {
   const yourAnswer = attemptLabel(card.content, attempt)
-  const correctAnswer = correctAnswerLabel(card.content)
+  const correctAnswer = correctAnswerLabel(card.content, attempt)
   const suggestedGrade: Grade = correct ? 'good' : 'again'
 
   return (
@@ -33,6 +34,9 @@ export const RevealPanel = ({ card, attempt, correct, onGrade }: RevealPanelProp
       >
         {correct ? 'Correct' : 'Incorrect'}
       </p>
+      {card.content.kind === 'image-occlusion' && attempt.kind === 'image-occlusion' && (
+        <ImageOcclusionReveal prompt={card.prompt} content={card.content} targetRegionId={attempt.targetRegionId} />
+      )}
       {!correct && yourAnswer !== '' && <p className="review-your-answer">Your answer: {yourAnswer}</p>}
       <p className="review-correct-answer">Correct answer: {correctAnswer}</p>
       {card.explanation !== null && <p className="review-explanation">{card.explanation}</p>}

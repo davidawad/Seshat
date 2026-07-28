@@ -50,10 +50,36 @@ export const mcqContentSchema = z.object({
   correctIndex: z.number().int().min(0),
 })
 
+// A single labeled rectangle over the image, expressed as percentages of the
+// image's own width/height so it survives any display size. `label` is what
+// the learner must recall for that region.
+export const occlusionRegionSchema = z.object({
+  id: z.string().min(1),
+  xPct: z.number().min(0).max(100),
+  yPct: z.number().min(0).max(100),
+  widthPct: z.number().min(0).max(100),
+  heightPct: z.number().min(0).max(100),
+  label: z.string().min(1),
+})
+
+export type OcclusionRegion = z.infer<typeof occlusionRegionSchema>
+
+export const imageOcclusionContentSchema = z.object({
+  kind: z.literal('image-occlusion'),
+  // A data: URL. Kept small deliberately — localStorage has no separate
+  // blob store, so the image itself is downscaled/compressed client-side
+  // before it ever reaches this field. See lib/storage.ts size guidance.
+  imageDataUrl: z.string().min(1),
+  occlusions: z.array(occlusionRegionSchema).min(1),
+})
+
+export type ImageOcclusionContent = z.infer<typeof imageOcclusionContentSchema>
+
 export const cardContentSchema = z.discriminatedUnion('kind', [
   shortAnswerContentSchema,
   clozeContentSchema,
   mcqContentSchema,
+  imageOcclusionContentSchema,
 ])
 
 export type ShortAnswerContent = z.infer<typeof shortAnswerContentSchema>
@@ -113,6 +139,14 @@ export const deckSchema = z.object({
   tags: z.array(z.string().min(1)),
   createdAt: z.iso.datetime(),
   updatedAt: z.iso.datetime(),
+  // Optional exam/review date (YYYY-MM-DD). When set, scheduling tightens
+  // as the date approaches so nothing is left to first-review after it —
+  // see lib/fsrs.ts `capToGoalDate` and research/learning-science/cepeda-2008.md
+  // for why the spacing goal should shape retention target, not just interval.
+  goalDate: z
+    .string()
+    .regex(/^\d{4}-\d{2}-\d{2}$/)
+    .nullable(),
 })
 
 export type Deck = z.infer<typeof deckSchema>

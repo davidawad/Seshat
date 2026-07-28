@@ -1,4 +1,4 @@
-import type { CardContent, Grade } from '../../types'
+import type { CardContent, Grade, ImageOcclusionContent, OcclusionRegion } from '../../types'
 import { clozeAnswer } from './cloze'
 
 /** Canonical order of the FSRS self-rating grades, also used for the 1-4 keyboard shortcuts. */
@@ -16,6 +16,21 @@ export type Attempt =
   | { readonly kind: 'short-answer'; readonly response: string }
   | { readonly kind: 'cloze'; readonly response: string }
   | { readonly kind: 'mcq'; readonly selectedIndex: number | null }
+  | { readonly kind: 'image-occlusion'; readonly targetRegionId: string; readonly response: string }
+
+/**
+ * An image-occlusion card can have several regions; a single review only
+ * quizzes one of them, matching the "one clear question per card" pattern
+ * every other kind follows. Picked at random each time the card comes up,
+ * so a multi-region card exercises all of its regions across repeated
+ * reviews instead of always asking about the same one.
+ */
+export const pickOcclusionRegion = (content: ImageOcclusionContent): OcclusionRegion => {
+  const index = Math.floor(Math.random() * content.occlusions.length)
+  // `occlusions` is schema-guaranteed non-empty (`.min(1)`) and `index` is
+  // always in range, so this indexed access always resolves.
+  return content.occlusions[index]!
+}
 
 /** The empty attempt to seed a fresh review with, matching the card's content kind. */
 export const initialAttempt = (content: CardContent): Attempt => {
@@ -26,6 +41,8 @@ export const initialAttempt = (content: CardContent): Attempt => {
       return { kind: 'cloze', response: '' }
     case 'mcq':
       return { kind: 'mcq', selectedIndex: null }
+    case 'image-occlusion':
+      return { kind: 'image-occlusion', targetRegionId: pickOcclusionRegion(content).id, response: '' }
   }
 }
 
@@ -49,6 +66,8 @@ export const isAttemptComplete = (content: CardContent, attempt: Attempt): boole
       return attempt.kind === 'cloze' && attempt.response.trim() !== ''
     case 'mcq':
       return attempt.kind === 'mcq' && attempt.selectedIndex !== null
+    case 'image-occlusion':
+      return attempt.kind === 'image-occlusion' && attempt.response.trim() !== ''
   }
 }
 
@@ -71,11 +90,21 @@ export const isCorrect = (content: CardContent, attempt: Attempt): boolean => {
       if (attempt.kind !== 'mcq' || attempt.selectedIndex === null) return false
       return attempt.selectedIndex === content.correctIndex
     }
+    case 'image-occlusion': {
+      if (attempt.kind !== 'image-occlusion') return false
+      const target = content.occlusions.find((region) => region.id === attempt.targetRegionId)
+      if (target === undefined) return false
+      return normalizeAnswer(attempt.response) === normalizeAnswer(target.label)
+    }
   }
 }
 
-/** The canonical correct-answer text, for display during reveal. */
-export const correctAnswerLabel = (content: CardContent): string => {
+/**
+ * The canonical correct-answer text, for display during reveal. Every other
+ * kind has a single fixed answer; image-occlusion has one per region, so
+ * this also takes the `attempt` to know which region was actually tested.
+ */
+export const correctAnswerLabel = (content: CardContent, attempt: Attempt): string => {
   switch (content.kind) {
     case 'short-answer':
       return content.answer
@@ -83,6 +112,10 @@ export const correctAnswerLabel = (content: CardContent): string => {
       return clozeAnswer(content.text) ?? ''
     case 'mcq':
       return content.options[content.correctIndex] ?? ''
+    case 'image-occlusion': {
+      if (attempt.kind !== 'image-occlusion') return ''
+      return content.occlusions.find((region) => region.id === attempt.targetRegionId)?.label ?? ''
+    }
   }
 }
 
@@ -97,5 +130,7 @@ export const attemptLabel = (content: CardContent, attempt: Attempt): string => 
       return attempt.kind === 'mcq' && attempt.selectedIndex !== null
         ? (content.options[attempt.selectedIndex] ?? '')
         : ''
+    case 'image-occlusion':
+      return attempt.kind === 'image-occlusion' ? attempt.response : ''
   }
 }

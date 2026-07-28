@@ -1,6 +1,7 @@
 import type { StudyCard } from '../../types'
 import { ClozeCard } from './ClozeCard'
 import type { Attempt } from './grading'
+import { ImageOcclusionCard } from './ImageOcclusionCard'
 import { McqCard } from './McqCard'
 import { ShortAnswerCard } from './ShortAnswerCard'
 
@@ -43,5 +44,19 @@ export const CardInput = ({ card, attempt, onChange, disabled }: CardInputProps)
           disabled={disabled}
         />
       )
+    case 'image-occlusion': {
+      const targetRegionId =
+        attempt.kind === 'image-occlusion' ? attempt.targetRegionId : (card.content.occlusions[0]?.id ?? '')
+      return (
+        <ImageOcclusionCard
+          prompt={card.prompt}
+          content={card.content}
+          targetRegionId={targetRegionId}
+          value={attempt.kind === 'image-occlusion' ? attempt.response : ''}
+          onChange={(response) => onChange({ kind: 'image-occlusion', targetRegionId, response })}
+          disabled={disabled}
+        />
+      )
+    }
   }
 }

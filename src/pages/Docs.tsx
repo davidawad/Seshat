@@ -55,6 +55,11 @@ export const DocsPage = () => (
         Practically, this means: your data is yours, it never leaves your device, and it&rsquo;s only as durable as that
         browser profile — export your decks periodically if you care about them surviving a cleared cache.
       </p>
+      <p>
+        Image-occlusion cards store a downscaled, compressed copy of the image directly in that same{' '}
+        <code>localStorage</code> blob, so a deck with heavy image use will run into the browser&rsquo;s storage ceiling
+        faster than a text-only deck will.
+      </p>
     </section>
 
     <section aria-labelledby="docs-license-heading">

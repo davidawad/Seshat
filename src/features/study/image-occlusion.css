@@ -1,0 +1,55 @@
+/*
+ * Study-side visuals for image-occlusion cards: the image itself plus the
+ * absolutely-positioned occlusion boxes drawn over it. Page-scoped layout
+ * only (colors/borders use the shared tokens from src/styles/tokens.css),
+ * imported directly by ImageOcclusionCard.tsx and ImageOcclusionReveal.tsx.
+ */
+
+.occlusion-image-wrap {
+  position: relative;
+  display: inline-block;
+  max-width: 100%;
+}
+
+.occlusion-study-image {
+  display: block;
+  max-width: 100%;
+  height: auto;
+}
+
+.occlusion-box {
+  position: absolute;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  border: 2px solid var(--color-border-strong);
+  background: var(--color-bg-elevated);
+  color: var(--color-fg-muted);
+  font-weight: 700;
+  font-size: 0.9rem;
+  padding: 0.15em;
+  text-align: center;
+}
+
+/* The one region this review is actually asking about — visually distinct
+   from any other (non-tested) occluded regions on the same image. */
+.occlusion-box.is-target {
+  border-color: var(--color-accent);
+  background: var(--color-accent);
+  color: var(--color-accent-contrast);
+}
+
+/* Reveal state: the box becomes a translucent label caption instead of a
+   solid cover, so the underlying image stays visible under the label. */
+.occlusion-box.is-revealed {
+  background: var(--color-bg);
+  border-color: var(--color-border-strong);
+  color: var(--color-fg);
+  opacity: 0.92;
+}
+
+.occlusion-box.is-revealed.is-target {
+  border-color: var(--color-accent);
+  border-width: 3px;
+}

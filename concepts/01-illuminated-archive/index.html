@@ -1,0 +1,1157 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Seshat — Illuminated Archive (concept)</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,340;0,9..144,480;0,9..144,600;1,9..144,440;1,9..144,500&family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,500;1,6..72,400;1,6..72,500&family=IBM+Plex+Mono:wght@400;500;600&display=swap"
+      rel="stylesheet"
+    />
+    <style>
+      /* ============================================================
+     TOKENS
+     ============================================================ */
+      :root {
+        /* archive-dark surfaces — the "reading room" */
+        --ink-deep: #1b1712;
+        --ink-panel: #241b14;
+        --ink-panel-2: #2c2119;
+        --ink-rule: rgba(237, 227, 205, 0.16);
+        --ink-rule-soft: rgba(237, 227, 205, 0.09);
+
+        /* parchment surfaces — the "page" */
+        --parchment: #ece0c6;
+        --parchment-lt: #f8f0dd;
+        --parchment-rule: rgba(42, 30, 18, 0.18);
+        --parchment-rule-soft: rgba(42, 30, 18, 0.1);
+
+        /* text */
+        --ink-text: #2a1e12;
+        --ink-text-soft: #5a4b37;
+        --cream-text: #ece1c9;
+        --cream-text-soft: #b9aa8c;
+
+        /* accents — scribal ink, used sparingly */
+        --rubric: #a8402a; /* rubrication red */
+        --rubric-deep: #7a2c1c;
+        --gold: #b4903f; /* illumination gold */
+        --gold-soft: #d8be85;
+        --verdigris: #5d7a5c; /* correct / success */
+        --verdigris-deep: #3f5940;
+
+        --radius-page: 5px;
+        --radius-sm: 3px;
+
+        --font-display: 'Fraunces', 'Iowan Old Style', serif;
+        --font-body: 'Newsreader', 'Iowan Old Style', serif;
+        --font-mono: 'IBM Plex Mono', ui-monospace, monospace;
+      }
+
+      * {
+        box-sizing: border-box;
+      }
+      html {
+        scroll-behavior: smooth;
+      }
+      @media (prefers-reduced-motion: reduce) {
+        html {
+          scroll-behavior: auto;
+        }
+        * {
+          animation-duration: 0.01ms !important;
+          transition-duration: 0.01ms !important;
+        }
+      }
+
+      body {
+        margin: 0;
+        background: var(--ink-deep);
+        background-image:
+          radial-gradient(ellipse 900px 500px at 15% -10%, rgba(180, 144, 63, 0.07), transparent 60%),
+          radial-gradient(ellipse 700px 500px at 100% 20%, rgba(168, 64, 42, 0.05), transparent 55%);
+        color: var(--cream-text);
+        font-family: var(--font-body);
+        font-size: 17px;
+        line-height: 1.5;
+        -webkit-font-smoothing: antialiased;
+      }
+
+      a {
+        color: inherit;
+      }
+      ::selection {
+        background: var(--gold);
+        color: var(--ink-deep);
+      }
+
+      :focus-visible {
+        outline: 2px solid var(--gold-soft);
+        outline-offset: 3px;
+      }
+
+      .wrap {
+        max-width: 1180px;
+        margin: 0 auto;
+        padding: 0 clamp(20px, 5vw, 64px);
+      }
+
+      /* ============================================================
+     HEADER
+     ============================================================ */
+      header.site {
+        padding: 28px 0 22px;
+        border-bottom: 1px solid var(--ink-rule);
+      }
+      .site-bar {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 20px;
+        flex-wrap: wrap;
+      }
+      .brand {
+        display: flex;
+        align-items: center;
+        gap: 12px;
+      }
+      .brand svg {
+        width: 22px;
+        height: 34px;
+        flex-shrink: 0;
+      }
+      .brand .wordmark {
+        font-family: var(--font-display);
+        font-optical-sizing: auto;
+        font-weight: 600;
+        font-size: 1.35rem;
+        letter-spacing: 0.01em;
+        color: var(--cream-text);
+      }
+      .brand .tagline {
+        font-family: var(--font-mono);
+        font-size: 0.63rem;
+        letter-spacing: 0.14em;
+        text-transform: uppercase;
+        color: var(--cream-text-soft);
+        display: block;
+        margin-top: 2px;
+      }
+      nav.site-nav {
+        display: flex;
+        gap: clamp(16px, 3vw, 34px);
+        font-family: var(--font-mono);
+        font-size: 0.72rem;
+        letter-spacing: 0.1em;
+        text-transform: uppercase;
+      }
+      nav.site-nav a {
+        text-decoration: none;
+        color: var(--cream-text-soft);
+        padding-bottom: 3px;
+        border-bottom: 1px solid transparent;
+        transition:
+          color 0.15s ease,
+          border-color 0.15s ease;
+      }
+      nav.site-nav a:hover {
+        color: var(--gold-soft);
+        border-color: var(--gold-soft);
+      }
+
+      /* ============================================================
+     SECTION SCAFFOLD  (folio / marginalia device)
+     ============================================================ */
+      main {
+        padding-bottom: 40px;
+      }
+      section.folio {
+        padding: 64px 0 40px;
+        border-bottom: 1px solid var(--ink-rule-soft);
+        scroll-margin-top: 24px;
+      }
+      section.folio:last-of-type {
+        border-bottom: none;
+      }
+
+      .folio-head {
+        display: flex;
+        align-items: baseline;
+        justify-content: space-between;
+        gap: 20px;
+        margin-bottom: 34px;
+        flex-wrap: wrap;
+      }
+      .folio-head .numeral {
+        font-family: var(--font-mono);
+        color: var(--gold-soft);
+        font-size: 0.78rem;
+        letter-spacing: 0.08em;
+        margin-right: 14px;
+      }
+      .folio-head h2 {
+        font-family: var(--font-display);
+        font-style: italic;
+        font-weight: 480;
+        font-size: clamp(1.7rem, 3vw, 2.3rem);
+        margin: 0;
+        display: inline;
+        color: var(--cream-text);
+      }
+      .folio-head .screen-tag {
+        font-family: var(--font-mono);
+        font-size: 0.66rem;
+        letter-spacing: 0.14em;
+        text-transform: uppercase;
+        color: var(--cream-text-soft);
+        border: 1px solid var(--ink-rule);
+        border-radius: 20px;
+        padding: 5px 12px;
+        white-space: nowrap;
+      }
+      .folio-dek {
+        max-width: 58ch;
+        color: var(--cream-text-soft);
+        font-size: 0.98rem;
+        margin: -20px 0 30px;
+        font-style: italic;
+      }
+
+      /* ============================================================
+     STUDY SCREEN
+     ============================================================ */
+      .study-grid {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 28px;
+        align-items: start;
+      }
+      @media (max-width: 860px) {
+        .study-grid {
+          grid-template-columns: 1fr;
+        }
+      }
+
+      .page {
+        background: var(--parchment);
+        color: var(--ink-text);
+        border-radius: var(--radius-page);
+        box-shadow:
+          0 1px 0 rgba(255, 255, 255, 0.06) inset,
+          0 22px 40px -20px rgba(0, 0, 0, 0.55);
+        padding: clamp(24px, 4vw, 40px);
+        position: relative;
+      }
+      .page::before {
+        /* faint deckle/rule at top, evokes a ruled ledger page */
+        content: '';
+        position: absolute;
+        top: 14px;
+        left: clamp(24px, 4vw, 40px);
+        right: clamp(24px, 4vw, 40px);
+        height: 1px;
+        background: var(--parchment-rule-soft);
+      }
+
+      .deck-line {
+        display: flex;
+        justify-content: space-between;
+        align-items: baseline;
+        font-family: var(--font-mono);
+        font-size: 0.7rem;
+        letter-spacing: 0.08em;
+        text-transform: uppercase;
+        color: var(--ink-text-soft);
+        margin-bottom: 26px;
+      }
+      .deck-line .progress {
+        font-variant-numeric: tabular-nums;
+      }
+
+      .prompt-eyebrow {
+        font-family: var(--font-mono);
+        font-size: 0.68rem;
+        letter-spacing: 0.14em;
+        text-transform: uppercase;
+        color: var(--rubric-deep);
+        margin-bottom: 12px;
+      }
+      .prompt {
+        font-family: var(--font-display);
+        font-optical-sizing: auto;
+        font-weight: 480;
+        font-size: clamp(1.4rem, 2.6vw, 1.85rem);
+        line-height: 1.32;
+        margin: 0 0 30px;
+        max-width: 34ch;
+      }
+
+      .confidence-field {
+        margin-bottom: 22px;
+      }
+      .confidence-field > span {
+        display: block;
+        font-family: var(--font-mono);
+        font-size: 0.68rem;
+        letter-spacing: 0.1em;
+        text-transform: uppercase;
+        color: var(--ink-text-soft);
+        margin-bottom: 10px;
+      }
+      .confidence-options {
+        display: flex;
+        gap: 8px;
+      }
+      .confidence-options label {
+        flex: 1;
+        text-align: center;
+        font-family: var(--font-mono);
+        font-size: 0.72rem;
+        letter-spacing: 0.06em;
+        padding: 9px 6px;
+        border: 1px solid var(--parchment-rule);
+        border-radius: var(--radius-sm);
+        cursor: pointer;
+        color: var(--ink-text-soft);
+        transition:
+          border-color 0.15s ease,
+          color 0.15s ease,
+          background 0.15s ease;
+      }
+      .confidence-options input {
+        position: absolute;
+        opacity: 0;
+        pointer-events: none;
+      }
+      .confidence-options input:checked + label,
+      .confidence-options label.is-selected {
+        border-color: var(--gold);
+        color: var(--ink-text);
+        background: rgba(180, 144, 63, 0.14);
+      }
+      .confidence-options label:hover {
+        border-color: var(--ink-text-soft);
+      }
+
+      .answer-field label.field-label {
+        display: block;
+        font-family: var(--font-mono);
+        font-size: 0.68rem;
+        letter-spacing: 0.1em;
+        text-transform: uppercase;
+        color: var(--ink-text-soft);
+        margin-bottom: 10px;
+      }
+      .answer-input {
+        width: 100%;
+        background: var(--parchment-lt);
+        border: 1px solid var(--parchment-rule);
+        border-radius: var(--radius-sm);
+        padding: 13px 14px;
+        font-family: var(--font-body);
+        font-size: 1.02rem;
+        color: var(--ink-text);
+        margin-bottom: 20px;
+      }
+      .answer-input::placeholder {
+        color: rgba(42, 30, 18, 0.4);
+        font-style: italic;
+      }
+
+      .btn {
+        font-family: var(--font-mono);
+        font-size: 0.75rem;
+        letter-spacing: 0.08em;
+        text-transform: uppercase;
+        border: none;
+        cursor: pointer;
+        border-radius: var(--radius-sm);
+      }
+      .btn-primary {
+        background: var(--ink-deep);
+        color: var(--parchment-lt);
+        padding: 13px 26px;
+        display: inline-flex;
+        align-items: center;
+        gap: 10px;
+        transition:
+          background 0.15s ease,
+          transform 0.1s ease;
+      }
+      .btn-primary:hover {
+        background: #322619;
+      }
+      .btn-primary:active {
+        transform: translateY(1px);
+      }
+      .btn-primary svg {
+        width: 12px;
+        height: 12px;
+      }
+
+      /* revealed page */
+      .result-row {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        margin-bottom: 22px;
+      }
+      .result-badge {
+        font-family: var(--font-mono);
+        font-size: 0.72rem;
+        letter-spacing: 0.1em;
+        text-transform: uppercase;
+        color: var(--verdigris-deep);
+        background: rgba(93, 122, 92, 0.16);
+        border: 1px solid rgba(93, 122, 92, 0.4);
+        border-radius: 20px;
+        padding: 5px 13px;
+        display: inline-flex;
+        align-items: center;
+        gap: 7px;
+      }
+      .result-badge svg {
+        width: 11px;
+        height: 11px;
+      }
+      .your-answer {
+        font-family: var(--font-mono);
+        font-size: 0.75rem;
+        color: var(--ink-text-soft);
+      }
+      .your-answer b {
+        color: var(--ink-text);
+        font-weight: 500;
+      }
+
+      .answer-block {
+        margin-bottom: 22px;
+      }
+      .answer-block .label {
+        font-family: var(--font-mono);
+        font-size: 0.68rem;
+        letter-spacing: 0.1em;
+        text-transform: uppercase;
+        color: var(--ink-text-soft);
+        margin-bottom: 8px;
+      }
+      .answer-block .answer {
+        font-family: var(--font-display);
+        font-weight: 600;
+        font-size: 1.5rem;
+        color: var(--rubric-deep);
+      }
+
+      .explain-block {
+        border-top: 1px solid var(--parchment-rule-soft);
+        padding-top: 20px;
+        margin-bottom: 26px;
+      }
+      .explain-block p {
+        margin: 0 0 12px;
+        font-size: 0.99rem;
+        line-height: 1.6;
+        color: var(--ink-text);
+      }
+      .explain-block .cite {
+        font-family: var(--font-mono);
+        font-size: 0.74rem;
+        color: var(--ink-text-soft);
+        line-height: 1.65;
+      }
+      .explain-block .cite .mark {
+        color: var(--gold);
+        margin-right: 8px;
+      }
+
+      .grade-prompt {
+        font-family: var(--font-mono);
+        font-size: 0.68rem;
+        letter-spacing: 0.1em;
+        text-transform: uppercase;
+        color: var(--ink-text-soft);
+        margin: 0 0 12px;
+      }
+      .grade-row {
+        display: grid;
+        grid-template-columns: repeat(4, 1fr);
+        gap: 8px;
+      }
+      .grade-btn {
+        background: var(--parchment-lt);
+        border: 1px solid var(--parchment-rule);
+        border-top: 3px solid var(--tone, var(--ink-text-soft));
+        border-radius: var(--radius-sm);
+        padding: 12px 4px 10px;
+        text-align: center;
+        cursor: pointer;
+        transition:
+          background 0.15s ease,
+          transform 0.1s ease;
+      }
+      .grade-btn:hover {
+        background: #fff8e8;
+        transform: translateY(-1px);
+      }
+      .grade-btn .name {
+        display: block;
+        font-family: var(--font-display);
+        font-weight: 600;
+        font-size: 0.92rem;
+        color: var(--ink-text);
+      }
+      .grade-btn .hint {
+        display: block;
+        font-family: var(--font-mono);
+        font-size: 0.62rem;
+        letter-spacing: 0.06em;
+        color: var(--ink-text-soft);
+        margin-top: 3px;
+      }
+      .grade-btn.again {
+        --tone: var(--rubric);
+      }
+      .grade-btn.hard {
+        --tone: var(--gold);
+      }
+      .grade-btn.good {
+        --tone: var(--verdigris);
+      }
+      .grade-btn.easy {
+        --tone: var(--verdigris-deep);
+      }
+
+      /* ============================================================
+     DECKS SCREEN
+     ============================================================ */
+      .deck-grid {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        gap: 22px;
+      }
+      @media (max-width: 780px) {
+        .deck-grid {
+          grid-template-columns: 1fr;
+        }
+      }
+
+      .deck-card {
+        background: var(--parchment);
+        color: var(--ink-text);
+        border-radius: var(--radius-page);
+        padding: 26px 28px 24px;
+        box-shadow: 0 16px 30px -20px rgba(0, 0, 0, 0.5);
+        display: flex;
+        flex-direction: column;
+      }
+      .deck-card-top {
+        display: flex;
+        justify-content: space-between;
+        align-items: flex-start;
+        gap: 16px;
+        margin-bottom: 10px;
+      }
+      .deck-card h3 {
+        font-family: var(--font-display);
+        font-weight: 600;
+        font-size: 1.28rem;
+        margin: 0;
+        line-height: 1.25;
+      }
+      .due-badge {
+        font-family: var(--font-mono);
+        font-size: 0.68rem;
+        letter-spacing: 0.05em;
+        white-space: nowrap;
+        padding: 5px 10px;
+        border-radius: 20px;
+        flex-shrink: 0;
+      }
+      .due-badge.has-due {
+        background: rgba(168, 64, 42, 0.14);
+        color: var(--rubric-deep);
+        border: 1px solid rgba(168, 64, 42, 0.35);
+      }
+      .due-badge.none-due {
+        background: rgba(93, 122, 92, 0.12);
+        color: var(--verdigris-deep);
+        border: 1px solid rgba(93, 122, 92, 0.3);
+      }
+      .deck-card p.desc {
+        font-size: 0.92rem;
+        line-height: 1.55;
+        color: var(--ink-text-soft);
+        margin: 0 0 18px;
+        flex-grow: 1;
+      }
+      .deck-tags {
+        display: flex;
+        gap: 7px;
+        flex-wrap: wrap;
+        margin-bottom: 16px;
+      }
+      .chip {
+        font-family: var(--font-mono);
+        font-size: 0.63rem;
+        letter-spacing: 0.07em;
+        text-transform: uppercase;
+        border: 1px solid var(--parchment-rule);
+        border-radius: 3px;
+        padding: 4px 8px;
+        color: var(--ink-text-soft);
+      }
+      .deck-card-foot {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        border-top: 1px solid var(--parchment-rule-soft);
+        padding-top: 14px;
+        font-family: var(--font-mono);
+        font-size: 0.74rem;
+        color: var(--ink-text-soft);
+      }
+      .deck-card-foot .count b {
+        font-weight: 600;
+        color: var(--ink-text);
+        font-variant-numeric: tabular-nums;
+      }
+      .deck-card-foot a {
+        text-decoration: none;
+        color: var(--ink-text);
+        display: inline-flex;
+        align-items: center;
+        gap: 5px;
+        border-bottom: 1px solid var(--ink-text-soft);
+        padding-bottom: 1px;
+        transition:
+          border-color 0.15s ease,
+          color 0.15s ease;
+      }
+      .deck-card-foot a:hover {
+        color: var(--rubric-deep);
+        border-color: var(--rubric-deep);
+      }
+
+      /* ============================================================
+     CALIBRATION SCREEN
+     ============================================================ */
+      .calib-layout {
+        display: grid;
+        grid-template-columns: 1.1fr 1.4fr;
+        gap: 40px;
+        align-items: start;
+      }
+      @media (max-width: 900px) {
+        .calib-layout {
+          grid-template-columns: 1fr;
+        }
+      }
+      .calib-note {
+        font-size: 1.02rem;
+        line-height: 1.65;
+        color: var(--cream-text);
+      }
+      .calib-note .drop {
+        font-family: var(--font-display);
+        font-size: 3.2rem;
+        font-weight: 600;
+        float: left;
+        line-height: 0.78;
+        padding-right: 10px;
+        color: var(--gold-soft);
+      }
+      .calib-note small {
+        display: block;
+        margin-top: 18px;
+        font-family: var(--font-mono);
+        font-size: 0.72rem;
+        letter-spacing: 0.04em;
+        color: var(--cream-text-soft);
+        clear: both;
+      }
+
+      table.calib-table {
+        width: 100%;
+        border-collapse: collapse;
+        background: var(--parchment);
+        border-radius: var(--radius-page);
+        overflow: hidden;
+        box-shadow: 0 16px 30px -20px rgba(0, 0, 0, 0.5);
+      }
+      table.calib-table caption {
+        text-align: left;
+        font-family: var(--font-mono);
+        font-size: 0.66rem;
+        letter-spacing: 0.12em;
+        text-transform: uppercase;
+        color: var(--ink-text-soft);
+        background: var(--parchment-lt);
+        padding: 14px 22px;
+        border-bottom: 1px solid var(--parchment-rule);
+      }
+      table.calib-table th,
+      table.calib-table td {
+        text-align: left;
+        padding: 16px 22px;
+      }
+      table.calib-table thead th {
+        font-family: var(--font-mono);
+        font-size: 0.66rem;
+        letter-spacing: 0.1em;
+        text-transform: uppercase;
+        color: var(--ink-text-soft);
+        border-bottom: 1px solid var(--parchment-rule);
+        font-weight: 500;
+      }
+      table.calib-table tbody tr + tr td {
+        border-top: 1px solid var(--parchment-rule-soft);
+      }
+      table.calib-table td.level {
+        font-family: var(--font-display);
+        font-weight: 600;
+        font-size: 1.05rem;
+        color: var(--ink-text);
+      }
+      table.calib-table td.level .sub {
+        display: block;
+        font-family: var(--font-mono);
+        font-weight: 400;
+        font-size: 0.68rem;
+        color: var(--ink-text-soft);
+        text-transform: none;
+        letter-spacing: 0;
+        margin-top: 2px;
+      }
+      table.calib-table td.n {
+        font-family: var(--font-mono);
+        font-size: 0.85rem;
+        color: var(--ink-text-soft);
+        font-variant-numeric: tabular-nums;
+      }
+      td.rate-cell {
+        min-width: 200px;
+      }
+      .rate-line {
+        display: flex;
+        align-items: center;
+        gap: 12px;
+      }
+      .rate-num {
+        font-family: var(--font-mono);
+        font-size: 1rem;
+        font-weight: 600;
+        color: var(--ink-text);
+        width: 3.6ch;
+        font-variant-numeric: tabular-nums;
+      }
+      .rate-bar {
+        flex: 1;
+        height: 7px;
+        background: rgba(42, 30, 18, 0.1);
+        border-radius: 4px;
+        overflow: hidden;
+      }
+      .rate-bar span {
+        display: block;
+        height: 100%;
+        background: var(--ink-text-soft);
+        border-radius: 4px;
+      }
+      tr.row-guessed .rate-bar span {
+        background: var(--rubric);
+      }
+      tr.row-unsure .rate-bar span {
+        background: var(--gold);
+      }
+      tr.row-sure .rate-bar span {
+        background: var(--verdigris);
+      }
+
+      /* ============================================================
+     FOOTER / COLOPHON
+     ============================================================ */
+      footer.colophon {
+        padding: 46px 0 60px;
+        text-align: center;
+      }
+      footer.colophon svg {
+        width: 18px;
+        height: 28px;
+        opacity: 0.6;
+        margin-bottom: 14px;
+      }
+      footer.colophon p {
+        font-family: var(--font-body);
+        font-style: italic;
+        font-size: 0.98rem;
+        color: var(--cream-text-soft);
+        max-width: 46ch;
+        margin: 0 auto;
+        line-height: 1.6;
+      }
+      footer.colophon .fine {
+        margin-top: 14px;
+        font-family: var(--font-mono);
+        font-style: normal;
+        font-size: 0.64rem;
+        letter-spacing: 0.1em;
+        text-transform: uppercase;
+        color: var(--cream-text-soft);
+        opacity: 0.6;
+      }
+    </style>
+  </head>
+  <body>
+    <header class="site">
+      <div class="wrap site-bar">
+        <div class="brand">
+          <svg viewBox="0 0 40 60" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+            <path d="M20 54 L20 24" stroke="#D8BE85" stroke-width="2" stroke-linecap="round" />
+            <path d="M20 16 L20 8" stroke="#D8BE85" stroke-width="1.6" stroke-linecap="round" />
+            <path d="M20 16 L26.25 11" stroke="#D8BE85" stroke-width="1.6" stroke-linecap="round" />
+            <path d="M20 16 L27.8 17.78" stroke="#D8BE85" stroke-width="1.6" stroke-linecap="round" />
+            <path d="M20 16 L23.47 23.21" stroke="#D8BE85" stroke-width="1.6" stroke-linecap="round" />
+            <path d="M20 16 L16.53 23.21" stroke="#D8BE85" stroke-width="1.6" stroke-linecap="round" />
+            <path d="M20 16 L12.2 17.78" stroke="#D8BE85" stroke-width="1.6" stroke-linecap="round" />
+            <path d="M20 16 L13.75 11" stroke="#D8BE85" stroke-width="1.6" stroke-linecap="round" />
+            <path
+              d="M13.5 5 C16 8.5 24 8.5 26.5 5"
+              stroke="#D8BE85"
+              stroke-width="1.4"
+              stroke-linecap="round"
+              fill="none"
+            />
+          </svg>
+          <div>
+            <span class="wordmark">Seshat</span>
+            <span class="tagline">A record kept honestly</span>
+          </div>
+        </div>
+        <nav class="site-nav">
+          <a href="#study">Study</a>
+          <a href="#decks">Decks</a>
+          <a href="#calibration">Calibration</a>
+        </nav>
+      </div>
+    </header>
+
+    <main>
+      <!-- =========================================================
+       I. STUDY SCREEN
+       ========================================================= -->
+      <section class="folio" id="study">
+        <div class="wrap">
+          <div class="folio-head">
+            <div>
+              <span class="numeral">I.</span>
+              <h2>The review</h2>
+            </div>
+            <span class="screen-tag">Screen — Study</span>
+          </div>
+          <p class="folio-dek">
+            What a card looks like before you answer, and what it looks like after — the screen you'll see hundreds of
+            times.
+          </p>
+
+          <div class="study-grid">
+            <!-- prompt state -->
+            <div class="page">
+              <div class="deck-line">
+                <span>The History of Writing</span>
+                <span class="progress">Card 14 / 48</span>
+              </div>
+
+              <p class="prompt-eyebrow">Recall</p>
+              <h3 class="prompt">
+                Sumerian scribes at Uruk pressed a reed stylus into wet clay to produce which script, first attested
+                around 3200&nbsp;BCE?
+              </h3>
+
+              <div class="confidence-field">
+                <span>How confident are you, before you answer?</span>
+                <div class="confidence-options">
+                  <input type="radio" name="confidence" id="c1" /><label for="c1">Guessed</label>
+                  <input type="radio" name="confidence" id="c2" checked /><label for="c2" class="is-selected"
+                    >Unsure</label
+                  >
+                  <input type="radio" name="confidence" id="c3" /><label for="c3">Sure</label>
+                </div>
+              </div>
+
+              <div class="answer-field">
+                <label class="field-label" for="answer">Your answer</label>
+                <input
+                  class="answer-input"
+                  id="answer"
+                  type="text"
+                  placeholder="Type what you remember…"
+                  value="Cuneiform"
+                />
+              </div>
+
+              <button class="btn btn-primary" type="button">
+                Check answer
+                <svg viewBox="0 0 12 12" fill="none">
+                  <path
+                    d="M2 6h8M6 2l4 4-4 4"
+                    stroke="currentColor"
+                    stroke-width="1.4"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                  />
+                </svg>
+              </button>
+            </div>
+
+            <!-- revealed state -->
+            <div class="page">
+              <div class="deck-line">
+                <span>The History of Writing</span>
+                <span class="progress">Card 14 / 48</span>
+              </div>
+
+              <div class="result-row">
+                <span class="result-badge">
+                  <svg viewBox="0 0 12 12" fill="none">
+                    <path
+                      d="M2.5 6.2l2.3 2.3L9.5 3.5"
+                      stroke="currentColor"
+                      stroke-width="1.6"
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                    />
+                  </svg>
+                  Correct
+                </span>
+                <span class="your-answer">You wrote <b>"Cuneiform"</b> — marked Unsure</span>
+              </div>
+
+              <div class="answer-block">
+                <span class="label">Correct answer</span>
+                <span class="answer">Cuneiform</span>
+              </div>
+
+              <div class="explain-block">
+                <p>
+                  Cuneiform began as pictographic tallies for grain and livestock. Scribes gradually simplified the
+                  pictures into wedge-shaped strokes and started using them for sound as well as meaning — that shift,
+                  from pictures to phonetics, is what let clay tablets hold full sentences instead of just counts.
+                </p>
+                <p class="cite">
+                  <span class="mark">✎</span> Denise Schmandt-Besserat, <em>How Writing Came About</em>, University of
+                  Texas Press, 1996, ch. 6.
+                </p>
+              </div>
+
+              <p class="grade-prompt">How should this come back?</p>
+              <div class="grade-row">
+                <button class="grade-btn again" type="button">
+                  <span class="name">Again</span><span class="hint">&lt; 10 min</span>
+                </button>
+                <button class="grade-btn hard" type="button">
+                  <span class="name">Hard</span><span class="hint">2 days</span>
+                </button>
+                <button class="grade-btn good" type="button">
+                  <span class="name">Good</span><span class="hint">6 days</span>
+                </button>
+                <button class="grade-btn easy" type="button">
+                  <span class="name">Easy</span><span class="hint">14 days</span>
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- =========================================================
+       II. DECK LIST
+       ========================================================= -->
+      <section class="folio" id="decks">
+        <div class="wrap">
+          <div class="folio-head">
+            <div>
+              <span class="numeral">II.</span>
+              <h2>Your shelves</h2>
+            </div>
+            <span class="screen-tag">Screen — Decks</span>
+          </div>
+          <p class="folio-dek">
+            Everything you're keeping. Due counts tell you what's ready to review — nothing here is trying to be a
+            score.
+          </p>
+
+          <div class="deck-grid">
+            <div class="deck-card">
+              <div class="deck-card-top">
+                <h3>The History of Writing</h3>
+                <span class="due-badge has-due">6 due</span>
+              </div>
+              <p class="desc">
+                From clay tallies to movable type — how five writing systems emerged, and why most others never made it
+                past a few hundred users.
+              </p>
+              <div class="deck-tags"><span class="chip">History</span><span class="chip">Linguistics</span></div>
+              <div class="deck-card-foot">
+                <span class="count"><b>48</b> cards</span>
+                <a href="#study">Review →</a>
+              </div>
+            </div>
+
+            <div class="deck-card">
+              <div class="deck-card-top">
+                <h3>Roman Law: The Twelve Tables</h3>
+                <span class="due-badge has-due">12 due</span>
+              </div>
+              <p class="desc">
+                The earliest Roman legal code, engraved on bronze and posted in the Forum around 450&nbsp;BCE — the
+                source most later Roman law cites back to.
+              </p>
+              <div class="deck-tags"><span class="chip">Law</span><span class="chip">Latin</span></div>
+              <div class="deck-card-foot">
+                <span class="count"><b>62</b> cards</span>
+                <a href="#study">Review →</a>
+              </div>
+            </div>
+
+            <div class="deck-card">
+              <div class="deck-card-top">
+                <h3>Gross Anatomy: Cranial Nerves</h3>
+                <span class="due-badge none-due">0 due</span>
+              </div>
+              <p class="desc">
+                All twelve pairs — their foramina, their function, and what a lesion in each one actually looks like on
+                exam.
+              </p>
+              <div class="deck-tags"><span class="chip">Anatomy</span><span class="chip">Medicine</span></div>
+              <div class="deck-card-foot">
+                <span class="count"><b>24</b> cards</span>
+                <a href="#study">Review →</a>
+              </div>
+            </div>
+
+            <div class="deck-card">
+              <div class="deck-card-top">
+                <h3>Attic Greek Vocabulary</h3>
+                <span class="due-badge has-due">31 due</span>
+              </div>
+              <p class="desc">
+                Core vocabulary for reading Plato and the Attic orators, ranked by frequency across the extant corpus.
+              </p>
+              <div class="deck-tags"><span class="chip">Language</span><span class="chip">Greek</span></div>
+              <div class="deck-card-foot">
+                <span class="count"><b>210</b> cards</span>
+                <a href="#study">Review →</a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- =========================================================
+       III. CALIBRATION
+       ========================================================= -->
+      <section class="folio" id="calibration">
+        <div class="wrap">
+          <div class="folio-head">
+            <div>
+              <span class="numeral">III.</span>
+              <h2>How sure, how often right</h2>
+            </div>
+            <span class="screen-tag">Screen — Calibration</span>
+          </div>
+          <p class="folio-dek">
+            Every answer records the confidence you marked before you saw whether you were right. This is what that
+            record shows so far.
+          </p>
+
+          <div class="calib-layout">
+            <div class="calib-note">
+              <span class="drop">¶</span>
+              <p>
+                This table compares how sure you felt against how often you were actually right. A well-calibrated
+                learner's "Sure" row sits well above "Guessed" — if it doesn't, or if "Sure" cards are wrong almost as
+                often as "Unsure" ones, that gap matters more than any single score. It's where confidence and knowledge
+                have quietly come apart, and it's worth more attention than the cards you already know you're shaky on.
+              </p>
+              <small>Based on 831 graded answers, last 90 days</small>
+            </div>
+
+            <table class="calib-table">
+              <caption>
+                Confidence vs. actual correct rate
+              </caption>
+              <thead>
+                <tr>
+                  <th scope="col">Confidence</th>
+                  <th scope="col">Answers</th>
+                  <th scope="col">Correct rate</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr class="row-guessed">
+                  <td class="level">Guessed<span class="sub">no real basis for the answer</span></td>
+                  <td class="n">142</td>
+                  <td class="rate-cell">
+                    <div class="rate-line">
+                      <span class="rate-num">61%</span>
+                      <span class="rate-bar"><span style="width: 61%"></span></span>
+                    </div>
+                  </td>
+                </tr>
+                <tr class="row-unsure">
+                  <td class="level">Unsure<span class="sub">partial recall, some doubt</span></td>
+                  <td class="n">288</td>
+                  <td class="rate-cell">
+                    <div class="rate-line">
+                      <span class="rate-num">74%</span>
+                      <span class="rate-bar"><span style="width: 74%"></span></span>
+                    </div>
+                  </td>
+                </tr>
+                <tr class="row-sure">
+                  <td class="level">Sure<span class="sub">confident before checking</span></td>
+                  <td class="n">401</td>
+                  <td class="rate-cell">
+                    <div class="rate-line">
+                      <span class="rate-num">88%</span>
+                      <span class="rate-bar"><span style="width: 88%"></span></span>
+                    </div>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <footer class="colophon">
+      <div class="wrap">
+        <svg viewBox="0 0 40 60" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+          <path d="M20 54 L20 24" stroke="#ECE1C9" stroke-width="2" stroke-linecap="round" />
+          <path d="M20 16 L20 8" stroke="#ECE1C9" stroke-width="1.6" stroke-linecap="round" />
+          <path d="M20 16 L26.25 11" stroke="#ECE1C9" stroke-width="1.6" stroke-linecap="round" />
+          <path d="M20 16 L27.8 17.78" stroke="#ECE1C9" stroke-width="1.6" stroke-linecap="round" />
+          <path d="M20 16 L23.47 23.21" stroke="#ECE1C9" stroke-width="1.6" stroke-linecap="round" />
+          <path d="M20 16 L16.53 23.21" stroke="#ECE1C9" stroke-width="1.6" stroke-linecap="round" />
+          <path d="M20 16 L12.2 17.78" stroke="#ECE1C9" stroke-width="1.6" stroke-linecap="round" />
+          <path d="M20 16 L13.75 11" stroke="#ECE1C9" stroke-width="1.6" stroke-linecap="round" />
+          <path
+            d="M13.5 5 C16 8.5 24 8.5 26.5 5"
+            stroke="#ECE1C9"
+            stroke-width="1.4"
+            stroke-linecap="round"
+            fill="none"
+          />
+        </svg>
+        <p>
+          Seshat is an open-source, evidence-based flashcard app. No streaks, no leaderboards, no hearts to lose — just
+          an honest record of what you know and how sure you were when you knew it.
+        </p>
+        <p class="fine">Concept 01 — Illuminated Archive</p>
+      </div>
+    </footer>
+  </body>
+</html>

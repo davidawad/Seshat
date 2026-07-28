@@ -1,6 +1,7 @@
 import { type FormEvent, useId, useState } from 'react'
 import { useSeshatStore } from '../../lib/store'
-import { type CardContent, type DeckId, type StudyCard, cardContentSchema } from '../../types'
+import { type CardContent, type DeckId, type OcclusionRegion, type StudyCard, cardContentSchema } from '../../types'
+import { ImageOcclusionEditor } from './ImageOcclusionEditor'
 import { parseTagsInput } from './tags'
 
 type ContentKind = CardContent['kind']
@@ -25,6 +26,8 @@ const draftFromContent = (content: CardContent | null) => ({
   clozeText: content?.kind === 'cloze' ? content.text : '',
   options: content?.kind === 'mcq' ? content.options : ['', ''],
   correctIndex: content?.kind === 'mcq' ? content.correctIndex : 0,
+  imageDataUrl: content?.kind === 'image-occlusion' ? content.imageDataUrl : '',
+  occlusions: (content?.kind === 'image-occlusion' ? content.occlusions : []) as OcclusionRegion[],
 })
 
 export const CardForm = ({ deckId, editingCard, onDone }: CardFormProps) => {
@@ -82,6 +85,12 @@ export const CardForm = ({ deckId, editingCard, onDone }: CardFormProps) => {
           kind: 'mcq',
           options: draft.options.map((option) => option.trim()),
           correctIndex: draft.correctIndex,
+        }
+      case 'image-occlusion':
+        return {
+          kind: 'image-occlusion',
+          imageDataUrl: draft.imageDataUrl,
+          occlusions: draft.occlusions,
         }
     }
   }
@@ -149,6 +158,7 @@ export const CardForm = ({ deckId, editingCard, onDone }: CardFormProps) => {
           <option value="short-answer">Short answer</option>
           <option value="cloze">Cloze (fill in the blank)</option>
           <option value="mcq">Multiple choice</option>
+          <option value="image-occlusion">Image occlusion</option>
         </select>
       </fieldset>
 
@@ -228,6 +238,16 @@ export const CardForm = ({ deckId, editingCard, onDone }: CardFormProps) => {
           <button type="button" onClick={addOption}>
             Add option
           </button>
+        </fieldset>
+      )}
+
+      {draft.kind === 'image-occlusion' && (
+        <fieldset>
+          <legend>Image and regions</legend>
+          <ImageOcclusionEditor
+            value={{ imageDataUrl: draft.imageDataUrl, occlusions: draft.occlusions }}
+            onChange={({ imageDataUrl, occlusions }) => setDraft((prev) => ({ ...prev, imageDataUrl, occlusions }))}
+          />
         </fieldset>
       )}
 

@@ -1,7 +1,7 @@
 import { useEffect, useMemo, useState } from 'react'
 import { useSearchParams } from 'react-router-dom'
 import { ReviewSession } from '../features/study/ReviewSession'
-import { selectDueQueue } from '../features/study/dueQueue'
+import { countDueCategories, selectDueQueue } from '../features/study/dueQueue'
 import { useSeshatStore } from '../lib/store'
 import { type DeckId, deckIdSchema } from '../types'
 
@@ -57,8 +57,21 @@ const StudyQueue = ({ deckId }: StudyQueueProps) => {
     return <SkipRemovedCard onSkip={() => setPosition((p) => p + 1)} />
   }
 
+  // Only worth mentioning at session start, and only when there's actually
+  // more than one topic due — a single-category queue has nothing to
+  // interleave against (see interleaveByCategory).
+  const showInterleaveNote = position === 0 && countDueCategories(state.cards, dueIds) > 1
+
   return (
-    <ReviewSession card={card} position={position} total={dueIds.length} onAdvance={() => setPosition((p) => p + 1)} />
+    <>
+      {showInterleaveNote && <p>Cards are interleaved across topics to sharpen discrimination between them.</p>}
+      <ReviewSession
+        card={card}
+        position={position}
+        total={dueIds.length}
+        onAdvance={() => setPosition((p) => p + 1)}
+      />
+    </>
   )
 }
 

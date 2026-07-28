@@ -1,0 +1,429 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Seshat — study screen concept</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <header class="topbar">
+      <div class="topbar-inner">
+        <a class="wordmark" href="#top">
+          <span class="wordmark-bracket">[</span>seshat<span class="wordmark-bracket">]</span>
+        </a>
+        <nav class="topnav">
+          <a href="#study" class="topnav-link is-active">study</a>
+          <a href="#decks" class="topnav-link">decks</a>
+          <a href="#stats" class="topnav-link">stats</a>
+        </nav>
+        <div class="topbar-right">
+          <span class="meta-line">local-first · no account · cards on disk</span>
+          <button class="cmdk" type="button">
+            <span>search decks</span>
+            <kbd class="key key-combo">⌘ K</kbd>
+          </button>
+        </div>
+      </div>
+    </header>
+
+    <main id="top">
+      <!-- ============ INTRO ============ -->
+      <section class="intro">
+        <div class="intro-inner">
+          <p class="eyebrow">design concept 05 · terminal heritage, dark mode</p>
+          <h1 class="intro-title">Your flashcards are files.<br />Your review history is a log.</h1>
+          <p class="intro-sub">
+            Seshat is a client-only spaced-repetition app built on FSRS. No account, no server, no streak to protect —
+            the deck on disk is the deck in your hands. Three real screens follow: the study loop you'll run hundreds of
+            times, the deck list, and the calibration report that tells you when "sure" doesn't mean correct.
+          </p>
+        </div>
+      </section>
+
+      <!-- ============ SCREEN 1: STUDY ============ -->
+      <section class="screen" id="study">
+        <div class="screen-head">
+          <p class="route">/study/tcp-ip-fundamentals</p>
+          <h2 class="screen-title">Review screen</h2>
+          <p class="screen-desc">
+            One card at a time. Type an answer, reveal, grade with a single keystroke. The log on the right is every
+            review this session — nothing is hidden after the fact.
+          </p>
+        </div>
+
+        <div class="app-frame">
+          <div class="app-titlebar">
+            <span class="app-titlebar-path">seshat — study — tcp-ip-fundamentals</span>
+            <span class="app-titlebar-progress">card 14 / 38 due</span>
+          </div>
+
+          <div class="study-layout">
+            <div class="study-main">
+              <!-- state A: awaiting input -->
+              <div class="state-block">
+                <p class="state-label">state · awaiting input</p>
+                <div class="card-panel">
+                  <div class="card-meta">
+                    <span class="deck-tag">tcp-ip-fundamentals</span>
+                    <span class="card-id">q#0192</span>
+                    <span class="due-badge">due · interval 6d</span>
+                  </div>
+                  <p class="prompt-text">
+                    What does TCP's three-way handshake accomplish, and name its three segments in order?
+                  </p>
+
+                  <label class="answer-label" for="answer-input">your answer</label>
+                  <div class="answer-row">
+                    <input
+                      class="answer-input"
+                      id="answer-input"
+                      type="text"
+                      placeholder="Type your answer, or press Space to reveal"
+                    />
+                    <button class="btn-reveal" type="button">Reveal <kbd class="key">Space</kbd></button>
+                  </div>
+                </div>
+              </div>
+
+              <div class="state-connector">
+                <span class="state-connector-line"></span>
+                <span class="state-connector-label"
+                  >you press <kbd class="key key-inline">Space</kbd> — answer is graded against yours, revealed
+                  below</span
+                >
+                <span class="state-connector-line"></span>
+              </div>
+
+              <!-- state B: revealed -->
+              <div class="state-block">
+                <p class="state-label">state · revealed</p>
+                <div class="card-panel">
+                  <div class="card-meta">
+                    <span class="deck-tag">tcp-ip-fundamentals</span>
+                    <span class="card-id">q#0192</span>
+                    <span class="result-badge result-correct">correct</span>
+                  </div>
+                  <p class="prompt-text prompt-text--dim">
+                    What does TCP's three-way handshake accomplish, and name its three segments in order?
+                  </p>
+
+                  <div class="your-answer">
+                    <p class="field-label">you answered</p>
+                    <p class="your-answer-text">
+                      Sets up the connection — SYN, SYN-ACK, ACK, agrees on sequence numbers.
+                    </p>
+                  </div>
+
+                  <div class="correct-answer">
+                    <p class="field-label">correct answer</p>
+                    <p class="correct-answer-text">
+                      Synchronizes initial sequence numbers and establishes a full-duplex connection:
+                      <strong>SYN → SYN-ACK → ACK.</strong>
+                    </p>
+                  </div>
+
+                  <div class="explanation">
+                    <p class="field-label">why</p>
+                    <p class="explanation-text">
+                      Agreeing on sequence numbers before data flows stops stale duplicate segments from an earlier,
+                      closed connection from being misread as current traffic — the handshake is a synchronization step,
+                      not a permission check.
+                    </p>
+                    <p class="citation">RFC 9293 §3.10.1 — Transmission Control Protocol (TCP) Specification</p>
+                  </div>
+
+                  <div class="grade-row">
+                    <p class="field-label">grade your recall</p>
+                    <div class="grade-buttons">
+                      <button class="grade-btn grade-again" type="button">
+                        <kbd class="key">1</kbd>
+                        <span class="grade-name">Again</span>
+                        <span class="grade-sub">&lt;10m</span>
+                      </button>
+                      <button class="grade-btn grade-hard" type="button">
+                        <kbd class="key">2</kbd>
+                        <span class="grade-name">Hard</span>
+                        <span class="grade-sub">1d</span>
+                      </button>
+                      <button class="grade-btn grade-good is-selected" type="button">
+                        <kbd class="key">3</kbd>
+                        <span class="grade-name">Good</span>
+                        <span class="grade-sub">6d</span>
+                      </button>
+                      <button class="grade-btn grade-easy" type="button">
+                        <kbd class="key">4</kbd>
+                        <span class="grade-name">Easy</span>
+                        <span class="grade-sub">14d</span>
+                      </button>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- signature element: review log -->
+            <aside class="review-log" aria-label="Review history log">
+              <p class="review-log-title">review log — this session</p>
+              <ul class="log-list">
+                <li class="log-line">
+                  <span class="log-time">14:31:02</span><span class="log-level log-good">GOOD</span
+                  ><span class="log-deck">tcp-ip</span><span class="log-card">q#0188</span
+                  ><span class="log-latency">3.4s</span>
+                </li>
+                <li class="log-line">
+                  <span class="log-time">14:31:19</span><span class="log-level log-easy">EASY</span
+                  ><span class="log-deck">tcp-ip</span><span class="log-card">q#0189</span
+                  ><span class="log-latency">1.8s</span>
+                </li>
+                <li class="log-line">
+                  <span class="log-time">14:31:44</span><span class="log-level log-again">AGAIN</span
+                  ><span class="log-deck">tcp-ip</span><span class="log-card">q#0190</span
+                  ><span class="log-latency">6.9s</span>
+                </li>
+                <li class="log-line">
+                  <span class="log-time">14:32:08</span><span class="log-level log-hard">HARD</span
+                  ><span class="log-deck">tcp-ip</span><span class="log-card">q#0191</span
+                  ><span class="log-latency">9.2s</span>
+                </li>
+                <li class="log-line log-pending">
+                  <span class="log-time">14:32:31</span><span class="log-level log-good">GOOD</span
+                  ><span class="log-deck">tcp-ip</span><span class="log-card">q#0192</span
+                  ><span class="log-latency">4.1s</span>
+                </li>
+              </ul>
+              <p class="review-log-note">
+                Every grade you've ever given is stored as plain rows like these — <code>~/seshat/log/tcp-ip.tsv</code>.
+                Nothing summarized away.
+              </p>
+            </aside>
+          </div>
+        </div>
+      </section>
+
+      <!-- ============ SCREEN 2: DECKS ============ -->
+      <section class="screen" id="decks">
+        <div class="screen-head">
+          <p class="route">/decks</p>
+          <h2 class="screen-title">Deck list</h2>
+          <p class="screen-desc">
+            Every deck you've imported or written, with what's actually due today — not a count of cards seen, a count
+            of cards owed.
+          </p>
+        </div>
+
+        <div class="app-frame">
+          <div class="app-titlebar">
+            <span class="app-titlebar-path">seshat — decks</span>
+            <span class="app-titlebar-progress">5 decks · 970 cards</span>
+          </div>
+
+          <div class="deck-list">
+            <article class="deck-row">
+              <div class="deck-row-main">
+                <h3 class="deck-name">TCP/IP Fundamentals</h3>
+                <p class="deck-desc">
+                  Handshakes, headers, and the layers that actually move a packet from your laptop to a server.
+                </p>
+                <div class="tag-row">
+                  <span class="tag">networking</span>
+                  <span class="tag">core</span>
+                  <span class="tag">cs</span>
+                </div>
+              </div>
+              <div class="deck-row-stats">
+                <div class="stat-block">
+                  <span class="stat-value">212</span>
+                  <span class="stat-label">cards</span>
+                </div>
+                <div class="stat-block stat-due">
+                  <span class="stat-value">38</span>
+                  <span class="stat-label">due today</span>
+                </div>
+                <span class="last-studied">last · 2026-07-27 19:04</span>
+              </div>
+            </article>
+
+            <article class="deck-row">
+              <div class="deck-row-main">
+                <h3 class="deck-name">Applied Cryptography</h3>
+                <p class="deck-desc">
+                  Symmetric vs. asymmetric, hashing, and exactly where each one breaks under attack.
+                </p>
+                <div class="tag-row">
+                  <span class="tag">security</span>
+                  <span class="tag">crypto</span>
+                </div>
+              </div>
+              <div class="deck-row-stats">
+                <div class="stat-block">
+                  <span class="stat-value">168</span>
+                  <span class="stat-label">cards</span>
+                </div>
+                <div class="stat-block stat-due">
+                  <span class="stat-value">12</span>
+                  <span class="stat-label">due today</span>
+                </div>
+                <span class="last-studied">last · 2026-07-27 08:51</span>
+              </div>
+            </article>
+
+            <article class="deck-row">
+              <div class="deck-row-main">
+                <h3 class="deck-name">Linux Command Line</h3>
+                <p class="deck-desc">The commands you'll actually type at 2am, and the flags you always forget.</p>
+                <div class="tag-row">
+                  <span class="tag">sysadmin</span>
+                  <span class="tag">cli</span>
+                </div>
+              </div>
+              <div class="deck-row-stats">
+                <div class="stat-block">
+                  <span class="stat-value">94</span>
+                  <span class="stat-label">cards</span>
+                </div>
+                <div class="stat-block stat-due stat-due--zero">
+                  <span class="stat-value">0</span>
+                  <span class="stat-label">due today</span>
+                </div>
+                <span class="last-studied">last · 2026-07-25 21:17</span>
+              </div>
+            </article>
+
+            <article class="deck-row">
+              <div class="deck-row-main">
+                <h3 class="deck-name">Constitutional Law: Fourth Amendment</h3>
+                <p class="deck-desc">Search, seizure, and the exceptions courts carved out one case at a time.</p>
+                <div class="tag-row">
+                  <span class="tag">law</span>
+                  <span class="tag">bar-prep</span>
+                </div>
+              </div>
+              <div class="deck-row-stats">
+                <div class="stat-block">
+                  <span class="stat-value">156</span>
+                  <span class="stat-label">cards</span>
+                </div>
+                <div class="stat-block stat-due">
+                  <span class="stat-value">21</span>
+                  <span class="stat-label">due today</span>
+                </div>
+                <span class="last-studied">last · 2026-07-26 22:40</span>
+              </div>
+            </article>
+
+            <article class="deck-row">
+              <div class="deck-row-main">
+                <h3 class="deck-name">Mandarin Chinese: HSK3</h3>
+                <p class="deck-desc">
+                  Everyday vocabulary and the tone pairs that trip up every learner at this level.
+                </p>
+                <div class="tag-row">
+                  <span class="tag">language</span>
+                  <span class="tag">vocab</span>
+                </div>
+              </div>
+              <div class="deck-row-stats">
+                <div class="stat-block">
+                  <span class="stat-value">340</span>
+                  <span class="stat-label">cards</span>
+                </div>
+                <div class="stat-block stat-due">
+                  <span class="stat-value">65</span>
+                  <span class="stat-label">due today</span>
+                </div>
+                <span class="last-studied">last · 2026-07-28 06:12</span>
+              </div>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <!-- ============ SCREEN 3: CALIBRATION ============ -->
+      <section class="screen" id="stats">
+        <div class="screen-head">
+          <p class="route">/stats/calibration</p>
+          <h2 class="screen-title">Confidence calibration</h2>
+          <p class="screen-desc">
+            You rate your own confidence before every reveal. This report compares what you felt against what you got
+            right — the gap is the point.
+          </p>
+        </div>
+
+        <div class="app-frame">
+          <div class="app-titlebar">
+            <span class="app-titlebar-path">seshat — stats — calibration</span>
+            <span class="app-titlebar-progress">last 90 days</span>
+          </div>
+
+          <div class="report">
+            <p class="report-cmd">$ seshat stats --calibration --since=90d</p>
+
+            <table class="cal-table">
+              <thead>
+                <tr>
+                  <th>confidence</th>
+                  <th>reviews</th>
+                  <th>correct rate</th>
+                  <th>distribution</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td class="cal-conf">
+                    <span class="conf-dot conf-guessed"></span>
+                    Guessed
+                  </td>
+                  <td class="cal-n">142</td>
+                  <td class="cal-rate">61%</td>
+                  <td class="cal-bar-cell">
+                    <div class="cal-bar"><div class="cal-bar-fill cal-bar-guessed" style="width: 61%"></div></div>
+                  </td>
+                </tr>
+                <tr>
+                  <td class="cal-conf">
+                    <span class="conf-dot conf-unsure"></span>
+                    Unsure
+                  </td>
+                  <td class="cal-n">289</td>
+                  <td class="cal-rate">74%</td>
+                  <td class="cal-bar-cell">
+                    <div class="cal-bar"><div class="cal-bar-fill cal-bar-unsure" style="width: 74%"></div></div>
+                  </td>
+                </tr>
+                <tr>
+                  <td class="cal-conf">
+                    <span class="conf-dot conf-sure"></span>
+                    Sure
+                  </td>
+                  <td class="cal-n">1204</td>
+                  <td class="cal-rate">82%</td>
+                  <td class="cal-bar-cell">
+                    <div class="cal-bar"><div class="cal-bar-fill cal-bar-sure" style="width: 82%"></div></div>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+
+            <p class="report-note">
+              <span class="report-note-label">read:</span> when you mark a card "Sure" and get it wrong 18% of the time,
+              that's not noise — it's overconfidence the FSRS scheduler can't see, because it only knows your grade, not
+              how certain you felt giving it. Watch the "Sure" row: the closer it sits to 100%, the more your gut can be
+              trusted without double-checking.
+            </p>
+          </div>
+        </div>
+      </section>
+
+      <footer class="footer">
+        <p class="footer-text">Seshat is open-source and client-only. No accounts, no servers, no streaks to lose.</p>
+      </footer>
+    </main>
+  </body>
+</html>

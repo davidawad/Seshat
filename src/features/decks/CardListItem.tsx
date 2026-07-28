@@ -13,6 +13,10 @@ const contentSummary = (card: StudyCard): { readonly label: string; readonly det
       const correct = card.content.options[card.content.correctIndex] ?? '(unknown)'
       return { label: 'Multiple choice', detail: `Correct: ${correct} — ${card.content.options.length} options` }
     }
+    case 'image-occlusion': {
+      const count = card.content.occlusions.length
+      return { label: 'Image occlusion', detail: `${count} hidden region${count === 1 ? '' : 's'}` }
+    }
   }
 }
 

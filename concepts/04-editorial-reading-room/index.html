@@ -1,0 +1,983 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Seshat — Editorial Reading Room</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Source+Serif+4:ital,opsz,wght@0,8..60,400;0,8..60,500;0,8..60,600;0,8..60,700;1,8..60,400;1,8..60,500;1,8..60,600&family=Inter:wght@400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <style>
+      :root {
+        /* ---- token system: paper & ink, one rubricated accent ---- */
+        --paper: #f7f4ec;
+        --paper-alt: #f0ebdd;
+        --ink: #1c1a15;
+        --ink-soft: #4a4539;
+        --ink-faint: #8b8471;
+        --rule: #d9d0ba;
+        --rule-strong: #c4b99c;
+        --rubric: #8a4b2e;
+        --rubric-soft: #a8683f;
+        --correct: #3d6b4e;
+        --incorrect: #9b3a2e;
+
+        --serif: 'Source Serif 4', Georgia, 'Times New Roman', serif;
+        --sans: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+
+        --measure: 62ch;
+      }
+
+      * {
+        box-sizing: border-box;
+      }
+      html {
+        -webkit-text-size-adjust: 100%;
+      }
+      body {
+        margin: 0;
+        background: var(--paper);
+        color: var(--ink);
+        font-family: var(--serif);
+        font-size: 18px;
+        line-height: 1.55;
+        -webkit-font-smoothing: antialiased;
+      }
+      ::selection {
+        background: var(--rubric);
+        color: var(--paper);
+      }
+
+      a {
+        color: inherit;
+      }
+      :focus-visible {
+        outline: 2px solid var(--rubric);
+        outline-offset: 3px;
+      }
+
+      .eyebrow {
+        font-family: var(--sans);
+        font-weight: 600;
+        font-size: 12px;
+        letter-spacing: 0.11em;
+        text-transform: uppercase;
+        color: var(--rubric);
+      }
+      .label {
+        font-family: var(--sans);
+        font-weight: 500;
+        font-size: 12px;
+        letter-spacing: 0.08em;
+        text-transform: uppercase;
+        color: var(--ink-faint);
+      }
+
+      /* ---------------- page shell ---------------- */
+      .page {
+        max-width: 1160px;
+        margin: 0 auto;
+        padding: 0 48px;
+      }
+
+      /* ---------------- masthead ---------------- */
+      .masthead {
+        padding: 64px 0 28px;
+        text-align: center;
+        border-bottom: 3px double var(--rule-strong);
+      }
+      .masthead .wordmark {
+        font-family: var(--serif);
+        font-weight: 700;
+        font-size: 52px;
+        letter-spacing: 0.06em;
+        margin: 0;
+      }
+      .masthead .wordmark .tail {
+        color: var(--rubric);
+      }
+      .masthead .strapline {
+        margin: 10px 0 0;
+        font-style: italic;
+        color: var(--ink-soft);
+        font-size: 17px;
+      }
+      .masthead .issue-line {
+        margin-top: 18px;
+        font-family: var(--sans);
+        font-size: 12px;
+        letter-spacing: 0.1em;
+        text-transform: uppercase;
+        color: var(--ink-faint);
+      }
+
+      .contents {
+        display: flex;
+        justify-content: center;
+        gap: 36px;
+        flex-wrap: wrap;
+        padding: 20px 0 22px;
+        border-bottom: 1px solid var(--rule);
+        font-family: var(--sans);
+        font-size: 13px;
+        letter-spacing: 0.04em;
+        text-transform: uppercase;
+        font-weight: 600;
+      }
+      .contents a {
+        text-decoration: none;
+        color: var(--ink-soft);
+        border-bottom: 1px solid transparent;
+        padding-bottom: 2px;
+        transition:
+          color 0.15s,
+          border-color 0.15s;
+      }
+      .contents a:hover {
+        color: var(--rubric);
+        border-color: var(--rubric);
+      }
+
+      /* ---------------- article scaffolding ---------------- */
+      article {
+        padding: 76px 0 30px;
+        border-bottom: 1px solid var(--rule);
+      }
+      article:last-of-type {
+        border-bottom: none;
+      }
+
+      .article-head {
+        max-width: var(--measure);
+        margin: 0 auto 44px;
+      }
+      .article-number {
+        font-family: var(--serif);
+        font-style: italic;
+        font-size: 15px;
+        color: var(--rubric-soft);
+        display: block;
+        margin-bottom: 6px;
+      }
+      .article-title {
+        font-family: var(--serif);
+        font-weight: 600;
+        font-size: 38px;
+        line-height: 1.15;
+        margin: 0 0 14px;
+      }
+      .article-dek {
+        color: var(--ink-soft);
+        font-size: 19px;
+        margin: 0;
+      }
+
+      /* ---------------- two-column grid: main + margin rail ---------------- */
+      .layout {
+        display: grid;
+        grid-template-columns: minmax(0, var(--measure)) 280px;
+        column-gap: 56px;
+        align-items: start;
+        justify-content: center;
+      }
+      .layout.stacked-only {
+        grid-template-columns: minmax(0, var(--measure));
+      }
+
+      .main-col {
+        min-width: 0;
+      }
+      .margin-col {
+        padding-top: 6px;
+        border-left: 1px solid var(--rule);
+        padding-left: 28px;
+      }
+      .margin-col .marginalia {
+        font-size: 15px;
+        line-height: 1.5;
+        color: var(--ink-soft);
+      }
+      .margin-col .marginalia .num {
+        color: var(--rubric);
+        font-weight: 600;
+        margin-right: 6px;
+      }
+      .margin-col .marginalia cite {
+        display: block;
+        margin-top: 10px;
+        font-style: italic;
+        font-size: 13.5px;
+        color: var(--ink-faint);
+      }
+      .margin-col .marginalia-empty {
+        font-family: var(--sans);
+        font-size: 12px;
+        letter-spacing: 0.06em;
+        text-transform: uppercase;
+        color: var(--ink-faint);
+        opacity: 0.7;
+      }
+
+      /* ---------------- card: prompt state ---------------- */
+      .card {
+        background: var(--paper-alt);
+        border: 1px solid var(--rule);
+        border-radius: 2px;
+        padding: 40px 44px;
+      }
+      .card + .card {
+        margin-top: 34px;
+      }
+
+      .card-eyebrow-row {
+        display: flex;
+        justify-content: space-between;
+        align-items: baseline;
+        gap: 16px;
+        margin-bottom: 22px;
+        flex-wrap: wrap;
+      }
+
+      .prompt {
+        font-size: 26px;
+        line-height: 1.4;
+        font-weight: 400;
+        margin: 0 0 30px;
+      }
+
+      .answer-field {
+        margin-bottom: 28px;
+      }
+      .answer-field label {
+        display: block;
+        margin-bottom: 10px;
+      }
+      .answer-field .rule-input {
+        width: 100%;
+        border: none;
+        border-bottom: 1.5px solid var(--ink);
+        background: transparent;
+        font-family: var(--serif);
+        font-size: 19px;
+        color: var(--ink);
+        padding: 6px 2px 10px;
+      }
+      .answer-field .rule-input:focus {
+        outline: none;
+        border-bottom-color: var(--rubric);
+      }
+      .answer-field .rule-input::placeholder {
+        color: var(--ink-faint);
+        font-style: italic;
+      }
+
+      .confidence-row {
+        display: flex;
+        align-items: center;
+        gap: 14px;
+        margin-bottom: 32px;
+        flex-wrap: wrap;
+      }
+      .confidence-row .q {
+        font-family: var(--sans);
+        font-size: 13px;
+        color: var(--ink-soft);
+        margin-right: 4px;
+      }
+      .conf-option {
+        font-family: var(--sans);
+        font-size: 13px;
+        letter-spacing: 0.04em;
+        text-transform: uppercase;
+        font-weight: 600;
+        color: var(--ink-faint);
+        background: none;
+        border: none;
+        padding: 4px 2px;
+        cursor: pointer;
+        border-bottom: 2px solid transparent;
+      }
+      .conf-option.selected {
+        color: var(--ink);
+        border-bottom-color: var(--rubric);
+      }
+      .conf-sep {
+        color: var(--rule-strong);
+      }
+
+      .reveal-btn {
+        font-family: var(--sans);
+        font-size: 13px;
+        font-weight: 600;
+        letter-spacing: 0.08em;
+        text-transform: uppercase;
+        color: var(--rubric);
+        background: none;
+        border: none;
+        border-bottom: 1.5px solid var(--rubric);
+        padding: 2px 0 5px;
+        cursor: pointer;
+      }
+      .reveal-btn:hover {
+        color: var(--ink);
+        border-color: var(--ink);
+      }
+
+      /* ---------------- card: revealed state ---------------- */
+      .verdict-row {
+        display: flex;
+        align-items: center;
+        gap: 12px;
+        margin-bottom: 20px;
+        flex-wrap: wrap;
+      }
+      .verdict-stamp {
+        font-family: var(--sans);
+        font-size: 12px;
+        font-weight: 700;
+        letter-spacing: 0.1em;
+        text-transform: uppercase;
+        padding: 3px 9px;
+        border: 1.5px solid var(--incorrect);
+        color: var(--incorrect);
+        transform: rotate(-1.5deg);
+        border-radius: 1px;
+      }
+      .your-answer {
+        font-family: var(--sans);
+        font-size: 13px;
+        color: var(--ink-soft);
+      }
+      .your-answer strong {
+        font-family: var(--serif);
+        font-style: italic;
+        font-weight: 400;
+        color: var(--incorrect);
+        text-decoration: line-through;
+        text-decoration-color: var(--ink-faint);
+      }
+
+      .correct-answer {
+        font-size: 22px;
+        margin: 0 0 26px;
+        line-height: 1.45;
+      }
+      .correct-answer .sup {
+        font-size: 13px;
+        color: var(--rubric);
+        font-weight: 600;
+        vertical-align: super;
+        margin-left: 2px;
+      }
+      .correct-answer .term {
+        color: var(--correct);
+        font-weight: 600;
+        font-style: italic;
+      }
+
+      .grade-row {
+        display: grid;
+        grid-template-columns: repeat(4, 1fr);
+        gap: 1px;
+        background: var(--rule);
+        border: 1px solid var(--rule);
+      }
+      .grade-btn {
+        background: var(--paper);
+        border: none;
+        border-top: 3px solid var(--g-color, var(--ink-faint));
+        padding: 14px 8px 12px;
+        font-family: var(--sans);
+        font-size: 12.5px;
+        font-weight: 600;
+        letter-spacing: 0.06em;
+        text-transform: uppercase;
+        color: var(--ink);
+        cursor: pointer;
+        text-align: center;
+        transition: background 0.15s;
+      }
+      .grade-btn:hover {
+        background: var(--paper-alt);
+      }
+      .grade-btn .hint {
+        display: block;
+        font-family: var(--serif);
+        font-style: italic;
+        font-weight: 400;
+        text-transform: none;
+        letter-spacing: 0;
+        font-size: 12px;
+        color: var(--ink-faint);
+        margin-top: 3px;
+      }
+      .grade-btn.again {
+        --g-color: var(--incorrect);
+      }
+      .grade-btn.hard {
+        --g-color: var(--rubric-soft);
+      }
+      .grade-btn.good {
+        --g-color: var(--ink);
+      }
+      .grade-btn.easy {
+        --g-color: var(--correct);
+      }
+
+      /* ---------------- mobile footnote (shown only <900px) ---------------- */
+      .mobile-note {
+        display: none;
+      }
+
+      /* ---------------- Article II: deck index ---------------- */
+      .deck-intro {
+        max-width: var(--measure);
+        margin: 0 auto 40px;
+        font-size: 18px;
+        color: var(--ink-soft);
+      }
+      .deck-list {
+        max-width: var(--measure);
+        margin: 0 auto;
+        list-style: none;
+        padding: 0;
+      }
+      .deck-entry {
+        padding: 26px 0;
+        border-top: 1px solid var(--rule);
+      }
+      .deck-list li:last-child .deck-entry {
+        border-bottom: 1px solid var(--rule);
+      }
+
+      .deck-title-row {
+        display: flex;
+        align-items: baseline;
+        gap: 8px;
+        margin-bottom: 9px;
+      }
+      .deck-name {
+        font-size: 22px;
+        font-weight: 600;
+        white-space: nowrap;
+      }
+      .deck-leader {
+        flex: 1;
+        border-bottom: 1.5px dotted var(--rule-strong);
+        height: 1px;
+        transform: translateY(-6px);
+        min-width: 24px;
+      }
+      .deck-due {
+        font-family: var(--sans);
+        font-size: 14px;
+        font-weight: 700;
+        letter-spacing: 0.02em;
+        white-space: nowrap;
+      }
+      .deck-due.zero {
+        color: var(--ink-faint);
+        font-weight: 500;
+      }
+      .deck-due.has-due {
+        color: var(--rubric);
+      }
+
+      .deck-desc {
+        margin: 0 0 14px;
+        color: var(--ink-soft);
+        font-size: 16.5px;
+        max-width: 56ch;
+      }
+      .deck-meta {
+        display: flex;
+        align-items: center;
+        gap: 18px;
+        flex-wrap: wrap;
+      }
+      .tag-chip {
+        font-family: var(--sans);
+        font-size: 11px;
+        font-weight: 600;
+        letter-spacing: 0.07em;
+        text-transform: uppercase;
+        color: var(--ink-soft);
+        border: 1px solid var(--rule-strong);
+        border-radius: 20px;
+        padding: 3px 11px;
+      }
+      .card-count {
+        font-family: var(--sans);
+        font-size: 12.5px;
+        color: var(--ink-faint);
+      }
+
+      /* ---------------- Article III: calibration table ---------------- */
+      .cal-wrap {
+        max-width: var(--measure);
+        margin: 0 auto;
+      }
+      .cal-intro {
+        color: var(--ink-soft);
+        font-size: 18px;
+        margin: 0 0 44px;
+      }
+      .table-caption {
+        font-family: var(--sans);
+        font-size: 12px;
+        font-weight: 600;
+        letter-spacing: 0.08em;
+        text-transform: uppercase;
+        color: var(--ink-faint);
+        margin-bottom: 14px;
+      }
+      .table-caption b {
+        color: var(--ink);
+      }
+
+      table.cal-table {
+        width: 100%;
+        border-collapse: collapse;
+        font-family: var(--serif);
+      }
+      .cal-table thead th {
+        text-align: left;
+        font-family: var(--sans);
+        font-size: 11.5px;
+        font-weight: 700;
+        letter-spacing: 0.06em;
+        text-transform: uppercase;
+        color: var(--ink-soft);
+        padding: 0 14px 12px 0;
+        border-bottom: 2px solid var(--ink);
+      }
+      .cal-table td {
+        padding: 16px 14px 16px 0;
+        border-bottom: 1px solid var(--rule);
+        vertical-align: top;
+        font-size: 16.5px;
+      }
+      .cal-table td.num {
+        font-family: var(--sans);
+        font-variant-numeric: tabular-nums;
+      }
+      .cal-table td.conf-name {
+        font-weight: 600;
+      }
+      .cal-table td.rate {
+        font-family: var(--sans);
+        font-weight: 700;
+        font-variant-numeric: tabular-nums;
+      }
+      .cal-table tr.row-sure td.rate {
+        color: var(--rubric);
+      }
+      .cal-table td.read {
+        color: var(--ink-soft);
+        font-style: italic;
+        font-size: 15.5px;
+      }
+
+      .cal-note {
+        margin-top: 30px;
+        font-size: 17px;
+        color: var(--ink-soft);
+        max-width: 58ch;
+      }
+      .cal-note em {
+        color: var(--rubric);
+        font-style: italic;
+      }
+
+      /* ---------------- colophon ---------------- */
+      footer.colophon {
+        max-width: var(--measure);
+        margin: 0 auto;
+        padding: 44px 0 80px;
+        text-align: center;
+      }
+      footer.colophon p {
+        font-family: var(--sans);
+        font-size: 12.5px;
+        color: var(--ink-faint);
+        letter-spacing: 0.02em;
+        line-height: 1.7;
+        margin: 0;
+      }
+      footer.colophon .mark {
+        color: var(--rubric);
+      }
+
+      /* ---------------- responsive ---------------- */
+      @media (max-width: 900px) {
+        .page {
+          padding: 0 22px;
+        }
+        .masthead {
+          padding: 44px 0 22px;
+        }
+        .masthead .wordmark {
+          font-size: 38px;
+        }
+        .contents {
+          gap: 18px;
+          padding: 16px 0;
+        }
+        article {
+          padding: 52px 0 20px;
+        }
+        .article-title {
+          font-size: 29px;
+        }
+        .article-dek {
+          font-size: 17px;
+        }
+        .layout {
+          grid-template-columns: 1fr;
+        }
+        .margin-col {
+          display: none;
+        }
+        .mobile-note {
+          display: block;
+          margin-top: 0;
+          border-top: 1px solid var(--rule);
+          padding-top: 20px;
+        }
+        .card {
+          padding: 28px 24px;
+        }
+        .prompt {
+          font-size: 22px;
+        }
+        .grade-row {
+          grid-template-columns: repeat(2, 1fr);
+        }
+        .deck-name {
+          white-space: normal;
+        }
+        .deck-leader {
+          display: none;
+        }
+        .deck-title-row {
+          justify-content: space-between;
+        }
+        .cal-table td.read {
+          display: none;
+        }
+        .cal-table thead th:last-child {
+          display: none;
+        }
+        .cal-table-note-mobile {
+          display: block;
+        }
+      }
+      @media (min-width: 901px) {
+        .cal-table-note-mobile {
+          display: none;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <div class="page">
+      <header class="masthead">
+        <p class="wordmark">SESHAT<span class="tail">.</span></p>
+        <p class="strapline">A field journal of memory, kept honestly.</p>
+        <p class="issue-line">No. 1 &middot; Spaced review &middot; No accounts, no streaks, no leaderboard</p>
+      </header>
+
+      <nav class="contents">
+        <a href="#review">I. The Review</a>
+        <a href="#decks">II. The Decks</a>
+        <a href="#calibration">III. Calibration</a>
+      </nav>
+
+      <!-- ============================================================ -->
+      <!-- ARTICLE I — THE REVIEW                                        -->
+      <!-- ============================================================ -->
+      <article id="review">
+        <div class="article-head">
+          <span class="article-number">I.</span>
+          <h1 class="article-title">The Review</h1>
+          <p class="article-dek">One card, one honest guess, one graded answer — repeated for as long as it takes.</p>
+        </div>
+
+        <!-- prompt state -->
+        <div class="layout">
+          <div class="main-col">
+            <div class="card">
+              <div class="card-eyebrow-row">
+                <span class="eyebrow">Constitutional Law &middot; Standards of Review</span>
+                <span class="label">Card 12 of 84 due</span>
+              </div>
+
+              <p class="prompt">
+                What standard of review applies when a government classification draws a line on the basis of race?
+              </p>
+
+              <div class="answer-field">
+                <label class="label" for="ans">Your answer</label>
+                <input
+                  class="rule-input"
+                  id="ans"
+                  type="text"
+                  value="Rational basis"
+                  placeholder="Type what you remember&hellip;"
+                />
+              </div>
+
+              <div class="confidence-row">
+                <span class="q">How sure were you?</span>
+                <button class="conf-option" type="button">Guessed</button>
+                <span class="conf-sep">&middot;</span>
+                <button class="conf-option" type="button">Unsure</button>
+                <span class="conf-sep">&middot;</span>
+                <button class="conf-option selected" type="button">Sure</button>
+              </div>
+
+              <button class="reveal-btn" type="button">Reveal answer &rarr;</button>
+            </div>
+          </div>
+          <div class="margin-col">
+            <p class="marginalia-empty">Marginalia appear here once you reveal the answer.</p>
+          </div>
+        </div>
+
+        <!-- revealed state -->
+        <div class="layout" style="margin-top: 34px">
+          <div class="main-col">
+            <div class="card">
+              <div class="card-eyebrow-row">
+                <span class="eyebrow">Constitutional Law &middot; Standards of Review</span>
+                <span class="label">Card 12 of 84 due</span>
+              </div>
+
+              <p class="prompt">
+                What standard of review applies when a government classification draws a line on the basis of race?
+              </p>
+
+              <div class="verdict-row">
+                <span class="verdict-stamp">Incorrect</span>
+                <span class="your-answer"
+                  >You answered <strong>&ldquo;Rational basis&rdquo;</strong> &mdash; marked Sure</span
+                >
+              </div>
+
+              <p class="correct-answer">
+                Correct answer: <span class="term">Strict scrutiny</span><span class="sup">1</span>
+              </p>
+
+              <div class="mobile-note">
+                <p class="marginalia">
+                  <span class="num">1</span>Race-based classifications get the most exacting standard under the Equal
+                  Protection Clause: the government must prove the law is narrowly tailored to a compelling interest.
+                  &ldquo;Sure&rdquo; and &ldquo;right&rdquo; aren&rsquo;t the same thing &mdash; see the calibration
+                  table in &sect;III.
+                  <cite>Adarand Constructors, Inc. v. Pe&ntilde;a, 515 U.S. 200, 227 (1995)</cite>
+                </p>
+              </div>
+
+              <div class="grade-row" style="margin-top: 28px">
+                <button class="grade-btn again" type="button">Again<span class="hint">&lt;10 min</span></button>
+                <button class="grade-btn hard" type="button">Hard<span class="hint">1 day</span></button>
+                <button class="grade-btn good" type="button">Good<span class="hint">4 days</span></button>
+                <button class="grade-btn easy" type="button">Easy<span class="hint">9 days</span></button>
+              </div>
+            </div>
+          </div>
+          <div class="margin-col">
+            <p class="marginalia">
+              <span class="num">1</span>Race-based classifications get the most exacting standard under the Equal
+              Protection Clause: the government must prove the law is narrowly tailored to a compelling interest.
+              &ldquo;Sure&rdquo; and &ldquo;right&rdquo; aren&rsquo;t the same thing &mdash; see the calibration table
+              in &sect;III.
+              <cite>Adarand Constructors, Inc. v. Pe&ntilde;a, 515 U.S. 200, 227 (1995)</cite>
+            </p>
+          </div>
+        </div>
+      </article>
+
+      <!-- ============================================================ -->
+      <!-- ARTICLE II — THE DECKS                                        -->
+      <!-- ============================================================ -->
+      <article id="decks">
+        <div class="article-head">
+          <span class="article-number">II.</span>
+          <h1 class="article-title">The Decks</h1>
+          <p class="article-dek">
+            Five shelves, built the way the research says memory actually works: short recall prompts, spaced on a
+            schedule that adapts to you.
+          </p>
+        </div>
+
+        <ul class="deck-list">
+          <li>
+            <div class="deck-entry">
+              <div class="deck-title-row">
+                <span class="deck-name">Constitutional Law: Standards of Review</span>
+                <span class="deck-leader"></span>
+                <span class="deck-due has-due">12 due</span>
+              </div>
+              <p class="deck-desc">
+                Rational basis, intermediate, and strict scrutiny, tested the way bar examiners test them &mdash; as
+                facts, not vibes.
+              </p>
+              <div class="deck-meta">
+                <span class="tag-chip">Law</span>
+                <span class="tag-chip">Short answer</span>
+                <span class="card-count">84 cards</span>
+              </div>
+            </div>
+          </li>
+          <li>
+            <div class="deck-entry">
+              <div class="deck-title-row">
+                <span class="deck-name">Middle English Vocabulary (Chaucer)</span>
+                <span class="deck-leader"></span>
+                <span class="deck-due zero">0 due</span>
+              </div>
+              <p class="deck-desc">The words Chaucer used that don&rsquo;t mean what they look like they mean.</p>
+              <div class="deck-meta">
+                <span class="tag-chip">Literature</span>
+                <span class="tag-chip">Cloze</span>
+                <span class="card-count">156 cards</span>
+              </div>
+            </div>
+          </li>
+          <li>
+            <div class="deck-entry">
+              <div class="deck-title-row">
+                <span class="deck-name">Gross Anatomy: Cranial Nerves</span>
+                <span class="deck-leader"></span>
+                <span class="deck-due has-due">23 due</span>
+              </div>
+              <p class="deck-desc">All twelve, their foramina, and what actually goes wrong when each one fails.</p>
+              <div class="deck-meta">
+                <span class="tag-chip">Medicine</span>
+                <span class="tag-chip">Multiple choice</span>
+                <span class="card-count">47 cards</span>
+              </div>
+            </div>
+          </li>
+          <li>
+            <div class="deck-entry">
+              <div class="deck-title-row">
+                <span class="deck-name">Japanese: N4 Kanji</span>
+                <span class="deck-leader"></span>
+                <span class="deck-due has-due">8 due</span>
+              </div>
+              <p class="deck-desc">
+                220 characters, ordered by how often they actually show up &mdash; not by stroke count.
+              </p>
+              <div class="deck-meta">
+                <span class="tag-chip">Language</span>
+                <span class="tag-chip">Short answer</span>
+                <span class="card-count">220 cards</span>
+              </div>
+            </div>
+          </li>
+          <li>
+            <div class="deck-entry">
+              <div class="deck-title-row">
+                <span class="deck-name">Macroeconomics: Core Models</span>
+                <span class="deck-leader"></span>
+                <span class="deck-due zero">0 due</span>
+              </div>
+              <p class="deck-desc">IS&ndash;LM, AD&ndash;AS, and the assumptions each one quietly makes.</p>
+              <div class="deck-meta">
+                <span class="tag-chip">Economics</span>
+                <span class="tag-chip">Cloze</span>
+                <span class="card-count">63 cards</span>
+              </div>
+            </div>
+          </li>
+        </ul>
+      </article>
+
+      <!-- ============================================================ -->
+      <!-- ARTICLE III — CALIBRATION                                     -->
+      <!-- ============================================================ -->
+      <article id="calibration">
+        <div class="article-head">
+          <span class="article-number">III.</span>
+          <h1 class="article-title">Calibration</h1>
+          <p class="article-dek">Confidence is a prediction. This is the record of how often it&rsquo;s right.</p>
+        </div>
+
+        <div class="cal-wrap">
+          <p class="cal-intro">
+            Every time you answer, Seshat asks how sure you were, then quietly checks whether that certainty was earned.
+            The gap between the two is the whole point of the table below &mdash; most people are worse calibrated than
+            they think, especially in the row they&rsquo;d bet money on.
+          </p>
+
+          <p class="table-caption">
+            Table 1. <b>Confidence vs. actual correct rate</b> &mdash; last 90 days, 347 reviews
+          </p>
+
+          <table class="cal-table">
+            <thead>
+              <tr>
+                <th>Confidence</th>
+                <th>Reviews</th>
+                <th>Correct rate</th>
+                <th>Reading</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr class="row-guessed">
+                <td class="conf-name">Guessed</td>
+                <td class="num">41</td>
+                <td class="rate">52%</td>
+                <td class="read">About what guessing should look like.</td>
+              </tr>
+              <tr class="row-unsure">
+                <td class="conf-name">Unsure</td>
+                <td class="num">96</td>
+                <td class="rate">71%</td>
+                <td class="read">Reasonable &mdash; a hedge that mostly pays off.</td>
+              </tr>
+              <tr class="row-sure">
+                <td class="conf-name">Sure</td>
+                <td class="num">210</td>
+                <td class="rate">89%</td>
+                <td class="read">Sure isn&rsquo;t always right: 1 in 9 confident answers still misses.</td>
+              </tr>
+            </tbody>
+          </table>
+          <p
+            class="cal-table-note-mobile"
+            style="
+              font-family: var(--sans);
+              font-size: 13px;
+              color: var(--ink-soft);
+              margin-top: 14px;
+              font-style: italic;
+            "
+          >
+            Guessed: about what guessing should look like. Unsure: a hedge that mostly pays off. Sure: 1 in 9 confident
+            answers still misses.
+          </p>
+
+          <p class="cal-note">
+            Overconfidence hides in the <em>Sure</em> row, not the <em>Guessed</em> row &mdash; nobody is surprised by a
+            guess. The card on constitutional standards of review in &sect;I is one of those 1-in-9: marked Sure, graded
+            Incorrect.
+          </p>
+        </div>
+      </article>
+
+      <footer class="colophon">
+        <p>
+          <span class="mark">&#10087;</span> Seshat is free and open-source. Everything lives on your device &mdash; no
+          account, no streaks, no leaderboard.<br />Set in Source Serif 4, per the project&rsquo;s own legibility
+          research.
+        </p>
+      </footer>
+    </div>
+  </body>
+</html>

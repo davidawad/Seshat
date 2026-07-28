@@ -66,6 +66,34 @@ const scheduler = (desiredRetention: number) => fsrs(generatorParameters({ reque
 
 export const createInitialScheduling = (now: Date): SchedulingState => fromFsrsCard(createEmptyCard(now))
 
+const MS_PER_DAY = 24 * 60 * 60 * 1000
+// Ramp window: retention only gets boosted once the goal is within this many
+// days out. Matches Cepeda et al.'s finding that the useful spacing gap
+// shrinks as the retention horizon shrinks — see
+// research/learning-science/cepeda-2008.md.
+const GOAL_RAMP_DAYS = 14
+const GOAL_MAX_RETENTION = 0.95
+
+/**
+ * A goal date doesn't change *what* FSRS optimizes for on every review — it
+ * tightens the target as the date approaches, and puts a hard ceiling on the
+ * next due date so nothing sits unreviewed past it.
+ */
+export const goalAwareRetention = (desiredRetention: number, now: Date, goalDate: Date | null): number => {
+  if (goalDate === null) return desiredRetention
+  const daysUntilGoal = (goalDate.getTime() - now.getTime()) / MS_PER_DAY
+  if (daysUntilGoal <= 0) return desiredRetention
+  const ramp = Math.max(0, Math.min(1, (GOAL_RAMP_DAYS - daysUntilGoal) / GOAL_RAMP_DAYS))
+  return desiredRetention + (GOAL_MAX_RETENTION - desiredRetention) * ramp
+}
+
+const capDueToGoal = (scheduling: SchedulingState, goalDate: Date | null): SchedulingState => {
+  if (goalDate === null) return scheduling
+  const due = new Date(scheduling.due)
+  if (due.getTime() <= goalDate.getTime()) return scheduling
+  return { ...scheduling, due: goalDate.toISOString() }
+}
+
 export interface ScheduleReviewResult {
   readonly scheduling: SchedulingState
   readonly retrievabilityAtReview: number | null
@@ -76,12 +104,13 @@ export const scheduleReview = (
   grade: Grade,
   desiredRetention: number,
   now: Date,
+  goalDate: Date | null = null,
 ): ScheduleReviewResult => {
-  const engine = scheduler(desiredRetention)
+  const engine = scheduler(goalAwareRetention(desiredRetention, now, goalDate))
   const fsrsCard = toFsrsCard(scheduling)
   const retrievabilityAtReview = fsrsCard.reps > 0 ? engine.get_retrievability(fsrsCard, now, false) : null
   const { card } = engine.next(fsrsCard, now, gradeToFsrs[grade])
-  return { scheduling: fromFsrsCard(card), retrievabilityAtReview }
+  return { scheduling: capDueToGoal(fromFsrsCard(card), goalDate), retrievabilityAtReview }
 }
 
 export const isDue = (scheduling: SchedulingState, now: Date): boolean =>

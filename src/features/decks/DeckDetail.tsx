@@ -1,10 +1,54 @@
-import { useState } from 'react'
+import { useId, useState } from 'react'
 import { Link, useParams } from 'react-router-dom'
 import { useSeshatStore } from '../../lib/store'
-import { deckIdSchema } from '../../types'
+import { type Deck, deckIdSchema } from '../../types'
 import { CardForm } from './CardForm'
 import { CardListItem } from './CardListItem'
 import { downloadJson, slugify } from './download'
+
+const MS_PER_DAY = 24 * 60 * 60 * 1000
+
+const daysUntil = (isoDate: string): number => {
+  const today = new Date()
+  today.setHours(0, 0, 0, 0)
+  const goal = new Date(`${isoDate}T00:00:00`)
+  return Math.round((goal.getTime() - today.getTime()) / MS_PER_DAY)
+}
+
+const GoalDateField = ({ deck }: { readonly deck: Deck }) => {
+  const inputId = useId()
+  const { updateDeck } = useSeshatStore()
+  const days = deck.goalDate === null ? null : daysUntil(deck.goalDate)
+
+  return (
+    <div className="deck-goal-date">
+      <label htmlFor={inputId}>Goal date (exam, review deadline)</label>
+      <input
+        id={inputId}
+        type="date"
+        value={deck.goalDate ?? ''}
+        onChange={(event) =>
+          updateDeck(deck.id, { goalDate: event.target.value.length > 0 ? event.target.value : null })
+        }
+      />
+      {deck.goalDate !== null && (
+        <p role="status">
+          {days === null
+            ? null
+            : days > 0
+              ? `${days} day${days === 1 ? '' : 's'} to go — scheduling is tightening as this approaches.`
+              : days === 0
+                ? 'Goal date is today.'
+                : 'Goal date has passed — scheduling back to your normal retention target.'}
+        </p>
+      )}
+      <p className="field-hint">
+        Optional. When set, Seshat never schedules a card's next review past this date, and gradually raises the
+        retention target as it nears — see <code>research/learning-science/cepeda-2008.md</code>.
+      </p>
+    </div>
+  )
+}
 
 export const DeckDetailPage = () => {
   const { deckId: deckIdParam } = useParams<{ deckId: string }>()
@@ -65,6 +109,8 @@ export const DeckDetailPage = () => {
       <p>
         <Link to={`/?deck=${deckId}`}>Study this deck</Link>
       </p>
+
+      <GoalDateField deck={deck} />
 
       <button type="button" onClick={handleExport} disabled={cards.length === 0}>
         Export deck as JSON

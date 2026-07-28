@@ -1,0 +1,1052 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Seshat — Clinical Precision Concept</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Atkinson+Hyperlegible:ital,wght@0,400;0,700;1,400&family=IBM+Plex+Mono:wght@400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <style>
+      /* ---------------------------------------------------------
+     TOKENS
+  --------------------------------------------------------- */
+      :root {
+        --bg: #f5f5f2;
+        --surface: #ffffff;
+        --ink: #14171a;
+        --ink-2: #52565c;
+        --ink-3: #8b8e92;
+        --line: #dedfdb;
+        --line-strong: #b9bbb5;
+        --accent: #0e6e67;
+        --accent-dark: #0a5450;
+        --accent-on: #f4fbfa;
+        --tint: rgba(20, 23, 26, 0.045);
+
+        --mono: 'IBM Plex Mono', ui-monospace, 'SFMono-Regular', monospace;
+        --body: 'Atkinson Hyperlegible', -apple-system, BlinkMacSystemFont, sans-serif;
+      }
+
+      * {
+        box-sizing: border-box;
+      }
+      html {
+        -webkit-text-size-adjust: 100%;
+      }
+      body {
+        margin: 0;
+        background: var(--bg);
+        color: var(--ink);
+        font-family: var(--body);
+        font-size: 15px;
+        line-height: 1.55;
+        -webkit-font-smoothing: antialiased;
+      }
+      h1,
+      h2,
+      h3 {
+        margin: 0;
+        font-family: var(--mono);
+      }
+      p {
+        margin: 0;
+      }
+      a {
+        color: inherit;
+      }
+      ::selection {
+        background: var(--accent);
+        color: var(--accent-on);
+      }
+
+      .mono {
+        font-family: var(--mono);
+        font-variant-numeric: tabular-nums;
+      }
+
+      :focus-visible {
+        outline: 2px solid var(--accent);
+        outline-offset: 2px;
+      }
+
+      @media (prefers-reduced-motion: reduce) {
+        * {
+          transition: none !important;
+          animation: none !important;
+        }
+      }
+
+      /* ---------------------------------------------------------
+     META STRIP (deliverable framing — not app UI)
+  --------------------------------------------------------- */
+      .meta-strip {
+        background: var(--ink);
+        color: #c9cbc8;
+        font-family: var(--mono);
+        font-size: 11px;
+        letter-spacing: 0.08em;
+        text-transform: uppercase;
+        padding: 9px 24px;
+        text-align: center;
+      }
+      .meta-strip strong {
+        color: #fff;
+        font-weight: 600;
+      }
+
+      /* ---------------------------------------------------------
+     SCREEN WRAPPER + FIGURE CAPTIONS
+  --------------------------------------------------------- */
+      .screen {
+        padding: 56px 24px 24px;
+        max-width: 1280px;
+        margin: 0 auto;
+      }
+      .fig-caption {
+        font-family: var(--mono);
+        font-size: 11px;
+        letter-spacing: 0.1em;
+        text-transform: uppercase;
+        color: var(--ink-3);
+        margin: 0 0 10px 2px;
+      }
+      .app-frame {
+        background: var(--surface);
+        border: 1px solid var(--line-strong);
+      }
+      .screen + .screen {
+        border-top: 1px solid var(--line);
+        margin-top: 8px;
+      }
+
+      /* ---------------------------------------------------------
+     APP NAV
+  --------------------------------------------------------- */
+      .appnav {
+        display: flex;
+        align-items: center;
+        gap: 32px;
+        padding: 16px 28px;
+        border-bottom: 1px solid var(--line);
+        flex-wrap: wrap;
+      }
+      .wordmark {
+        font-family: var(--mono);
+        font-weight: 700;
+        font-size: 15px;
+        letter-spacing: 0.06em;
+        display: inline-flex;
+        align-items: center;
+        gap: 7px;
+        white-space: nowrap;
+      }
+      .wordmark::after {
+        content: '';
+        width: 6px;
+        height: 6px;
+        background: var(--accent);
+        display: inline-block;
+      }
+      .nav-links {
+        display: flex;
+        gap: 2px;
+        font-family: var(--mono);
+        font-size: 12.5px;
+        letter-spacing: 0.04em;
+        text-transform: uppercase;
+      }
+      .nav-link {
+        text-decoration: none;
+        color: var(--ink-3);
+        padding: 6px 12px;
+        border-bottom: 2px solid transparent;
+      }
+      .nav-link.is-active {
+        color: var(--ink);
+        border-bottom-color: var(--accent);
+        font-weight: 600;
+      }
+      .nav-right {
+        margin-left: auto;
+        display: flex;
+        align-items: center;
+        gap: 16px;
+        font-family: var(--mono);
+        font-size: 11.5px;
+        letter-spacing: 0.05em;
+        text-transform: uppercase;
+        color: var(--ink-3);
+        white-space: nowrap;
+      }
+      .nav-due {
+        color: var(--accent);
+        font-weight: 700;
+      }
+
+      /* ---------------------------------------------------------
+     SCREEN 1 — STUDY
+  --------------------------------------------------------- */
+      .study-main {
+        padding: 40px 28px 56px;
+        display: flex;
+        justify-content: center;
+      }
+      .study-col {
+        width: 100%;
+        max-width: 660px;
+        display: flex;
+        flex-direction: column;
+        gap: 22px;
+      }
+      .state-tag {
+        display: inline-flex;
+        align-self: flex-start;
+        font-family: var(--mono);
+        font-size: 10.5px;
+        letter-spacing: 0.08em;
+        text-transform: uppercase;
+        color: var(--ink-3);
+        border: 1px solid var(--line-strong);
+        padding: 3px 8px;
+      }
+      .card {
+        border: 1px solid var(--line-strong);
+        background: var(--surface);
+      }
+      .card-section {
+        padding: 22px 26px;
+      }
+      .card-section + .card-section {
+        border-top: 1px solid var(--line);
+      }
+      .label {
+        font-family: var(--mono);
+        font-size: 10.5px;
+        letter-spacing: 0.1em;
+        text-transform: uppercase;
+        color: var(--ink-3);
+        margin-bottom: 10px;
+        display: block;
+      }
+      .prompt-text {
+        font-size: 19px;
+        line-height: 1.5;
+        color: var(--ink);
+        max-width: 56ch;
+      }
+      .card-meta {
+        font-family: var(--mono);
+        font-size: 11px;
+        color: var(--ink-3);
+        letter-spacing: 0.02em;
+        margin-top: 16px;
+      }
+      .card-meta span + span::before {
+        content: '·';
+        margin: 0 8px;
+        color: var(--line-strong);
+      }
+
+      .answer-input {
+        width: 100%;
+        border: 1px solid var(--line-strong);
+        background: var(--bg);
+        padding: 12px 14px;
+        font-family: var(--body);
+        font-size: 14.5px;
+        color: var(--ink);
+        resize: none;
+      }
+      .answer-input::placeholder {
+        color: var(--ink-3);
+      }
+      .answer-input.is-filled {
+        background: var(--surface);
+        color: var(--ink-2);
+      }
+
+      .btn {
+        font-family: var(--mono);
+        font-size: 12px;
+        letter-spacing: 0.06em;
+        text-transform: uppercase;
+        border: 1px solid var(--ink);
+        background: var(--surface);
+        color: var(--ink);
+        padding: 10px 18px;
+        cursor: pointer;
+      }
+      .btn-primary {
+        background: var(--accent);
+        border-color: var(--accent);
+        color: var(--accent-on);
+        font-weight: 600;
+      }
+      .btn-primary:hover {
+        background: var(--accent-dark);
+        border-color: var(--accent-dark);
+      }
+      .btn-row {
+        margin-top: 16px;
+        display: flex;
+        justify-content: flex-end;
+      }
+
+      .result-row {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        margin-bottom: 18px;
+      }
+      .result-flag {
+        font-family: var(--mono);
+        font-size: 12px;
+        font-weight: 700;
+        letter-spacing: 0.08em;
+        text-transform: uppercase;
+        display: inline-flex;
+        align-items: center;
+        gap: 6px;
+        color: var(--accent);
+        border: 1px solid var(--accent);
+        padding: 4px 9px;
+      }
+      .result-flag::before {
+        content: '✓';
+      }
+      .result-sub {
+        font-family: var(--mono);
+        font-size: 11px;
+        color: var(--ink-3);
+      }
+
+      .answer-echo {
+        border: 1px solid var(--line);
+        background: var(--bg);
+        padding: 11px 14px;
+        font-family: var(--body);
+        font-size: 14.5px;
+        color: var(--ink-2);
+        font-style: italic;
+      }
+
+      .correct-answer {
+        font-size: 18px;
+        font-weight: 700;
+        color: var(--ink);
+      }
+
+      .explanation {
+        font-size: 15px;
+        line-height: 1.65;
+        color: var(--ink-2);
+        max-width: 60ch;
+      }
+
+      .source {
+        margin-top: 14px;
+        padding-top: 12px;
+        border-top: 1px dashed var(--line-strong);
+        font-family: var(--mono);
+        font-size: 11.5px;
+        color: var(--ink-3);
+        line-height: 1.6;
+      }
+      .source b {
+        color: var(--ink-2);
+        font-weight: 600;
+        letter-spacing: 0.06em;
+      }
+
+      .grade-row {
+        display: grid;
+        grid-template-columns: repeat(4, 1fr);
+        gap: 1px;
+        background: var(--line-strong);
+        border: 1px solid var(--line-strong);
+      }
+      .grade-btn {
+        background: var(--surface);
+        border: none;
+        padding: 14px 8px;
+        text-align: center;
+        cursor: pointer;
+        display: flex;
+        flex-direction: column;
+        gap: 5px;
+      }
+      .grade-btn:hover {
+        background: var(--bg);
+      }
+      .grade-name {
+        font-family: var(--mono);
+        font-size: 12.5px;
+        font-weight: 700;
+        letter-spacing: 0.04em;
+        text-transform: uppercase;
+        color: var(--ink);
+      }
+      .grade-interval {
+        font-family: var(--mono);
+        font-size: 11px;
+        color: var(--ink-3);
+      }
+      .grade-btn.is-good .grade-name {
+        color: var(--accent);
+      }
+
+      /* ---------------------------------------------------------
+     SCREEN 2 — DECKS
+  --------------------------------------------------------- */
+      .decks-main {
+        padding: 36px 28px 56px;
+      }
+      .page-head {
+        margin-bottom: 30px;
+      }
+      .page-eyebrow {
+        font-family: var(--mono);
+        font-size: 11px;
+        letter-spacing: 0.1em;
+        text-transform: uppercase;
+        color: var(--accent);
+        margin-bottom: 8px;
+      }
+      .page-title {
+        font-size: 26px;
+        font-weight: 700;
+        letter-spacing: -0.01em;
+      }
+      .page-sub {
+        font-family: var(--mono);
+        font-size: 12px;
+        color: var(--ink-3);
+        margin-top: 10px;
+      }
+
+      .deck-table {
+        width: 100%;
+        border-top: 1px solid var(--ink);
+      }
+      .deck-row-head,
+      .deck-row {
+        display: grid;
+        grid-template-columns: 1fr 120px 110px;
+        gap: 20px;
+        align-items: center;
+      }
+      .deck-row-head {
+        padding: 10px 4px;
+        border-bottom: 1px solid var(--line-strong);
+        font-family: var(--mono);
+        font-size: 10.5px;
+        letter-spacing: 0.1em;
+        text-transform: uppercase;
+        color: var(--ink-3);
+      }
+      .deck-row {
+        padding: 20px 4px;
+        border-bottom: 1px solid var(--line);
+      }
+      .deck-row:hover {
+        background: var(--tint);
+      }
+      .deck-name {
+        font-size: 16.5px;
+        font-weight: 700;
+        color: var(--ink);
+        margin-bottom: 5px;
+      }
+      .deck-desc {
+        font-size: 13.5px;
+        color: var(--ink-2);
+        max-width: 56ch;
+        margin-bottom: 10px;
+        line-height: 1.5;
+      }
+      .tag-row {
+        display: flex;
+        gap: 6px;
+        flex-wrap: wrap;
+      }
+      .tag {
+        font-family: var(--mono);
+        font-size: 10px;
+        letter-spacing: 0.05em;
+        text-transform: uppercase;
+        color: var(--ink-2);
+        border: 1px solid var(--line-strong);
+        padding: 2px 7px;
+      }
+      .num-col {
+        text-align: right;
+      }
+      .num-big {
+        font-family: var(--mono);
+        font-size: 20px;
+        font-weight: 600;
+        color: var(--ink);
+      }
+      .num-unit {
+        font-family: var(--mono);
+        font-size: 10px;
+        color: var(--ink-3);
+        letter-spacing: 0.06em;
+        text-transform: uppercase;
+        display: block;
+        margin-top: 2px;
+      }
+      .num-big.is-due {
+        color: var(--accent);
+      }
+      .num-big.is-zero {
+        color: var(--ink-3);
+        font-weight: 400;
+      }
+
+      /* ---------------------------------------------------------
+     SCREEN 3 — CALIBRATION
+  --------------------------------------------------------- */
+      .stats-main {
+        padding: 36px 28px 64px;
+      }
+      .stats-intro {
+        font-size: 15px;
+        line-height: 1.65;
+        color: var(--ink-2);
+        max-width: 66ch;
+        margin-top: 12px;
+      }
+      .stats-intro b {
+        color: var(--ink);
+        font-weight: 700;
+      }
+
+      .cal-table {
+        margin-top: 32px;
+        border-top: 1px solid var(--ink);
+      }
+      .cal-head {
+        display: grid;
+        grid-template-columns: 160px 120px 130px 1fr;
+        gap: 20px;
+        padding: 10px 4px;
+        border-bottom: 1px solid var(--line-strong);
+        font-family: var(--mono);
+        font-size: 10.5px;
+        letter-spacing: 0.1em;
+        text-transform: uppercase;
+        color: var(--ink-3);
+      }
+      .cal-row {
+        display: grid;
+        grid-template-columns: 160px 120px 130px 1fr;
+        gap: 20px;
+        padding: 22px 4px;
+        border-bottom: 1px solid var(--line);
+        align-items: center;
+      }
+      .cal-level {
+        font-size: 16px;
+        font-weight: 700;
+      }
+      .cal-level-sub {
+        font-family: var(--mono);
+        font-size: 10.5px;
+        color: var(--ink-3);
+        margin-top: 3px;
+        text-transform: uppercase;
+        letter-spacing: 0.04em;
+      }
+      .cal-n {
+        font-family: var(--mono);
+        font-size: 14px;
+        color: var(--ink-2);
+      }
+      .cal-rate {
+        font-family: var(--mono);
+        font-size: 22px;
+        font-weight: 700;
+      }
+      .cal-rate-flag {
+        font-family: var(--mono);
+        font-size: 10.5px;
+        color: var(--ink-3);
+        margin-top: 4px;
+        letter-spacing: 0.02em;
+      }
+
+      .ruler {
+        position: relative;
+        height: 40px;
+      }
+      .ruler-band {
+        position: absolute;
+        top: 14px;
+        height: 8px;
+        background: var(--tint);
+      }
+      .ruler-line {
+        position: absolute;
+        top: 17px;
+        left: 0;
+        right: 0;
+        height: 1px;
+        background: var(--line-strong);
+      }
+      .ruler-tick {
+        position: absolute;
+        top: 12px;
+        width: 1px;
+        height: 12px;
+        background: var(--line-strong);
+      }
+      .ruler-tick-label {
+        position: absolute;
+        top: 26px;
+        transform: translateX(-50%);
+        font-family: var(--mono);
+        font-size: 9.5px;
+        color: var(--ink-3);
+      }
+      .ruler-marker {
+        position: absolute;
+        top: 12px;
+        width: 10px;
+        height: 10px;
+        background: var(--accent);
+        transform: translateX(-50%);
+        border: 2px solid var(--surface);
+        box-shadow: 0 0 0 1px var(--accent);
+      }
+      .ruler-marker.is-low {
+        background: var(--ink);
+        box-shadow: 0 0 0 1px var(--ink);
+      }
+
+      .cal-foot {
+        font-family: var(--mono);
+        font-size: 11px;
+        color: var(--ink-3);
+        margin-top: 16px;
+      }
+
+      /* ---------------------------------------------------------
+     RESPONSIVE — MOBILE
+  --------------------------------------------------------- */
+      @media (max-width: 640px) {
+        .screen {
+          padding: 32px 14px 14px;
+        }
+        .appnav {
+          padding: 14px 16px;
+          gap: 14px;
+        }
+        .nav-right {
+          margin-left: 0;
+          width: 100%;
+          order: 3;
+        }
+        .study-main {
+          padding: 26px 16px 40px;
+        }
+        .card-section {
+          padding: 18px 16px;
+        }
+        .prompt-text {
+          font-size: 17px;
+        }
+        .grade-row {
+          grid-template-columns: repeat(2, 1fr);
+        }
+        .decks-main,
+        .stats-main {
+          padding: 26px 16px 48px;
+        }
+        .deck-row-head {
+          display: none;
+        }
+        .deck-row {
+          grid-template-columns: 1fr;
+          gap: 10px;
+          padding: 18px 4px;
+        }
+        .num-col {
+          text-align: left;
+          display: flex;
+          align-items: baseline;
+          gap: 8px;
+        }
+        .num-col::before {
+          content: attr(data-label);
+          font-family: var(--mono);
+          font-size: 10px;
+          color: var(--ink-3);
+          text-transform: uppercase;
+          letter-spacing: 0.06em;
+        }
+        .cal-head {
+          display: none;
+        }
+        .cal-row {
+          grid-template-columns: 1fr;
+          gap: 12px;
+          padding: 20px 4px;
+        }
+        .ruler {
+          height: 44px;
+          margin-top: 4px;
+        }
+        .page-title {
+          font-size: 22px;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <div class="meta-strip">Seshat — <strong>Clinical Precision</strong> concept · 3 screens</div>
+
+    <!-- =========================================================
+     SCREEN 1 — STUDY / REVIEW
+========================================================= -->
+    <section class="screen" id="screen-study">
+      <p class="fig-caption">Fig. 1 — Study session</p>
+      <div class="app-frame">
+        <nav class="appnav">
+          <span class="wordmark">SESHAT</span>
+          <div class="nav-links">
+            <a class="nav-link is-active" href="#">Study</a>
+            <a class="nav-link" href="#">Decks</a>
+            <a class="nav-link" href="#">Stats</a>
+          </div>
+          <div class="nav-right">
+            <span>Cranial Nerves I–XII</span>
+            <span class="nav-due">14 due</span>
+          </div>
+        </nav>
+
+        <main class="study-main">
+          <div class="study-col">
+            <span class="state-tag">State 1 — before revealing</span>
+            <div class="card">
+              <div class="card-section">
+                <span class="label">Prompt</span>
+                <p class="prompt-text">
+                  A patient can't raise their eyebrows or fully close their right eye, but reports normal facial
+                  sensation. Which cranial nerve is affected, and what's the most likely diagnosis?
+                </p>
+                <p class="card-meta">
+                  <span>Cranial Nerves I–XII</span>
+                  <span>Card 34 of 96</span>
+                  <span>Last seen 6 days ago</span>
+                  <span>Ease 2.3</span>
+                </p>
+              </div>
+              <div class="card-section">
+                <span class="label">Your answer</span>
+                <textarea
+                  class="answer-input"
+                  rows="2"
+                  placeholder="Type what you remember, then reveal."
+                  readonly
+                ></textarea>
+                <div class="btn-row">
+                  <button class="btn btn-primary">Reveal answer →</button>
+                </div>
+              </div>
+            </div>
+
+            <span class="state-tag">State 2 — after revealing</span>
+            <div class="card">
+              <div class="card-section">
+                <span class="label">Prompt</span>
+                <p class="prompt-text">
+                  A patient can't raise their eyebrows or fully close their right eye, but reports normal facial
+                  sensation. Which cranial nerve is affected, and what's the most likely diagnosis?
+                </p>
+                <p class="card-meta">
+                  <span>Cranial Nerves I–XII</span>
+                  <span>Card 34 of 96</span>
+                  <span>Last seen 6 days ago</span>
+                  <span>Ease 2.3</span>
+                </p>
+              </div>
+              <div class="card-section">
+                <span class="label">Your answer</span>
+                <div class="answer-echo">Facial nerve (CN VII) — Bell's palsy</div>
+              </div>
+              <div class="card-section">
+                <div class="result-row">
+                  <span class="result-flag">Correct</span>
+                  <span class="result-sub">Graded against exact match + synonym set</span>
+                </div>
+                <span class="label">Correct answer</span>
+                <p class="correct-answer">CN VII (Facial nerve) — Bell's palsy</p>
+              </div>
+              <div class="card-section">
+                <span class="label">Why</span>
+                <p class="explanation">
+                  Complete lower-motor-neuron facial weakness — forehead included — localizes to CN VII itself, not a
+                  central lesion. A UMN facial palsy spares the forehead, since the frontalis gets bilateral cortical
+                  input. Bell's palsy accounts for roughly 60–75% of acute unilateral facial palsy presentations.
+                </p>
+                <p class="source">
+                  <b>Source</b> — Baugh RF et al., <i>Otolaryngol Head Neck Surg.</i> 2013;149(3S):S1–S27 (AAO-HNS
+                  Clinical Practice Guideline: Bell's Palsy)
+                </p>
+              </div>
+              <div class="card-section" style="padding-top: 16px; padding-bottom: 16px">
+                <div class="grade-row">
+                  <button class="grade-btn">
+                    <span class="grade-name">Again</span>
+                    <span class="grade-interval">&lt; 10 min</span>
+                  </button>
+                  <button class="grade-btn">
+                    <span class="grade-name">Hard</span>
+                    <span class="grade-interval">1.8 d</span>
+                  </button>
+                  <button class="grade-btn is-good">
+                    <span class="grade-name">Good</span>
+                    <span class="grade-interval">4 d</span>
+                  </button>
+                  <button class="grade-btn">
+                    <span class="grade-name">Easy</span>
+                    <span class="grade-interval">8.5 d</span>
+                  </button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </main>
+      </div>
+    </section>
+
+    <!-- =========================================================
+     SCREEN 2 — DECK LIST
+========================================================= -->
+    <section class="screen" id="screen-decks">
+      <p class="fig-caption">Fig. 2 — Deck library</p>
+      <div class="app-frame">
+        <nav class="appnav">
+          <span class="wordmark">SESHAT</span>
+          <div class="nav-links">
+            <a class="nav-link" href="#">Study</a>
+            <a class="nav-link is-active" href="#">Decks</a>
+            <a class="nav-link" href="#">Stats</a>
+          </div>
+          <div class="nav-right">
+            <span>5 decks</span>
+            <span class="nav-due">98 due</span>
+          </div>
+        </nav>
+
+        <main class="decks-main">
+          <div class="page-head">
+            <p class="page-eyebrow">Deck library</p>
+            <h1 class="page-title">Your decks</h1>
+            <p class="page-sub">1,050 cards total · 98 due today across 5 decks</p>
+          </div>
+
+          <div class="deck-table">
+            <div class="deck-row-head">
+              <span>Deck</span>
+              <span class="num-col">Cards</span>
+              <span class="num-col">Due</span>
+            </div>
+
+            <div class="deck-row">
+              <div>
+                <div class="deck-name">Cranial Nerves I–XII</div>
+                <div class="deck-desc">
+                  Localization, motor and sensory function, and clinical correlates for all twelve cranial nerves.
+                </div>
+                <div class="tag-row">
+                  <span class="tag">Anatomy</span><span class="tag">Medicine</span><span class="tag">USMLE</span>
+                </div>
+              </div>
+              <div class="num-col" data-label="Cards"><span class="num-big">96</span></div>
+              <div class="num-col" data-label="Due"><span class="num-big is-due">14</span></div>
+            </div>
+
+            <div class="deck-row">
+              <div>
+                <div class="deck-name">Constitutional Law — Bar Exam</div>
+                <div class="deck-desc">
+                  Individual rights, federal power, and standards of review tested on the MBE.
+                </div>
+                <div class="tag-row"><span class="tag">Law</span><span class="tag">Bar Exam</span></div>
+              </div>
+              <div class="num-col" data-label="Cards"><span class="num-big">212</span></div>
+              <div class="num-col" data-label="Due"><span class="num-big is-due">31</span></div>
+            </div>
+
+            <div class="deck-row">
+              <div>
+                <div class="deck-name">Mandarin HSK 3 Vocabulary</div>
+                <div class="deck-desc">
+                  600 core vocabulary items for HSK Level 3, with pinyin and example sentences.
+                </div>
+                <div class="tag-row"><span class="tag">Language</span><span class="tag">Mandarin</span></div>
+              </div>
+              <div class="num-col" data-label="Cards"><span class="num-big">600</span></div>
+              <div class="num-col" data-label="Due"><span class="num-big is-due">47</span></div>
+            </div>
+
+            <div class="deck-row">
+              <div>
+                <div class="deck-name">Cardiac Pharmacology</div>
+                <div class="deck-desc">
+                  Mechanism, indication, and major adverse effects for antiarrhythmic and heart-failure drug classes.
+                </div>
+                <div class="tag-row"><span class="tag">Pharmacology</span><span class="tag">Medicine</span></div>
+              </div>
+              <div class="num-col" data-label="Cards"><span class="num-big">84</span></div>
+              <div class="num-col" data-label="Due"><span class="num-big is-due">6</span></div>
+            </div>
+
+            <div class="deck-row">
+              <div>
+                <div class="deck-name">Maritime Rules of the Road</div>
+                <div class="deck-desc">
+                  COLREGS steering, sailing, and light and shape identification for the navigation exam.
+                </div>
+                <div class="tag-row"><span class="tag">Maritime</span><span class="tag">Reference</span></div>
+              </div>
+              <div class="num-col" data-label="Cards"><span class="num-big">58</span></div>
+              <div class="num-col" data-label="Due"><span class="num-big is-zero">0</span></div>
+            </div>
+          </div>
+        </main>
+      </div>
+    </section>
+
+    <!-- =========================================================
+     SCREEN 3 — CALIBRATION
+========================================================= -->
+    <section class="screen" id="screen-stats">
+      <p class="fig-caption">Fig. 3 — Calibration report</p>
+      <div class="app-frame">
+        <nav class="appnav">
+          <span class="wordmark">SESHAT</span>
+          <div class="nav-links">
+            <a class="nav-link" href="#">Study</a>
+            <a class="nav-link" href="#">Decks</a>
+            <a class="nav-link is-active" href="#">Stats</a>
+          </div>
+          <div class="nav-right">
+            <span>1,343 responses logged</span>
+          </div>
+        </nav>
+
+        <main class="stats-main">
+          <div class="page-head">
+            <p class="page-eyebrow">Calibration report</p>
+            <h1 class="page-title">Confidence vs. accuracy</h1>
+            <p class="stats-intro">
+              Every review, you flag how sure you were before seeing the answer. This table compares that self-rating
+              against what actually happened. <b>Confidence should predict correctness</b> — when it doesn't, that's
+              overconfidence, and it's worth knowing before it costs you on an exam, not after.
+            </p>
+          </div>
+
+          <div class="cal-table">
+            <div class="cal-head">
+              <span>Confidence</span>
+              <span>Responses</span>
+              <span>Correct rate</span>
+              <span>Distribution — 0 to 100%</span>
+            </div>
+
+            <div class="cal-row">
+              <div>
+                <div class="cal-level">Guessed</div>
+                <div class="cal-level-sub">Target ≤ 50%</div>
+              </div>
+              <div class="cal-n">n = 142</div>
+              <div>
+                <div class="cal-rate">51%</div>
+              </div>
+              <div class="ruler">
+                <div class="ruler-band" style="left: 0%; width: 50%"></div>
+                <div class="ruler-line"></div>
+                <div class="ruler-tick" style="left: 0%"></div>
+                <div class="ruler-tick" style="left: 25%"></div>
+                <div class="ruler-tick" style="left: 50%"></div>
+                <div class="ruler-tick" style="left: 75%"></div>
+                <div class="ruler-tick" style="left: 100%"></div>
+                <div class="ruler-tick-label" style="left: 0%">0</div>
+                <div class="ruler-tick-label" style="left: 25%">25</div>
+                <div class="ruler-tick-label" style="left: 50%">50</div>
+                <div class="ruler-tick-label" style="left: 75%">75</div>
+                <div class="ruler-tick-label" style="left: 100%">100</div>
+                <div class="ruler-marker" style="left: 51%" title="51%"></div>
+              </div>
+            </div>
+
+            <div class="cal-row">
+              <div>
+                <div class="cal-level">Unsure</div>
+                <div class="cal-level-sub">Target 60–85%</div>
+              </div>
+              <div class="cal-n">n = 310</div>
+              <div>
+                <div class="cal-rate">79%</div>
+              </div>
+              <div class="ruler">
+                <div class="ruler-band" style="left: 60%; width: 25%"></div>
+                <div class="ruler-line"></div>
+                <div class="ruler-tick" style="left: 0%"></div>
+                <div class="ruler-tick" style="left: 25%"></div>
+                <div class="ruler-tick" style="left: 50%"></div>
+                <div class="ruler-tick" style="left: 75%"></div>
+                <div class="ruler-tick" style="left: 100%"></div>
+                <div class="ruler-tick-label" style="left: 0%">0</div>
+                <div class="ruler-tick-label" style="left: 25%">25</div>
+                <div class="ruler-tick-label" style="left: 50%">50</div>
+                <div class="ruler-tick-label" style="left: 75%">75</div>
+                <div class="ruler-tick-label" style="left: 100%">100</div>
+                <div class="ruler-marker" style="left: 79%" title="79%"></div>
+              </div>
+            </div>
+
+            <div class="cal-row">
+              <div>
+                <div class="cal-level">Sure</div>
+                <div class="cal-level-sub">Target ≥ 90%</div>
+              </div>
+              <div class="cal-n">n = 891</div>
+              <div>
+                <div class="cal-rate">84%</div>
+                <div class="cal-rate-flag">↓ below target range</div>
+              </div>
+              <div class="ruler">
+                <div class="ruler-band" style="left: 90%; width: 10%"></div>
+                <div class="ruler-line"></div>
+                <div class="ruler-tick" style="left: 0%"></div>
+                <div class="ruler-tick" style="left: 25%"></div>
+                <div class="ruler-tick" style="left: 50%"></div>
+                <div class="ruler-tick" style="left: 75%"></div>
+                <div class="ruler-tick" style="left: 100%"></div>
+                <div class="ruler-tick-label" style="left: 0%">0</div>
+                <div class="ruler-tick-label" style="left: 25%">25</div>
+                <div class="ruler-tick-label" style="left: 50%">50</div>
+                <div class="ruler-tick-label" style="left: 75%">75</div>
+                <div class="ruler-tick-label" style="left: 100%">100</div>
+                <div class="ruler-marker is-low" style="left: 84%" title="84%"></div>
+              </div>
+            </div>
+          </div>
+
+          <p class="cal-foot">
+            Shaded band marks the expected range for each confidence level. Sure responses land at 84% — six points
+            below the 90% floor true certainty should clear. That gap is where overconfidence hides.
+          </p>
+        </main>
+      </div>
+    </section>
+  </body>
+</html>

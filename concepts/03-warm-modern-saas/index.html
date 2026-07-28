@@ -1,0 +1,1303 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Seshat — Warm Modern SaaS Concept</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Sora:wght@400;500;600;700&family=Inter:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500;600&display=swap"
+      rel="stylesheet"
+    />
+    <style>
+      /* ============ TOKENS ============ */
+      :root {
+        --paper: #fbf7f1;
+        --surface: #ffffff;
+        --surface-sunken: #f3ece1;
+        --line: #e7ddcb;
+        --line-soft: #f0e8d9;
+
+        --ink: #241c16;
+        --ink-soft: #776a5b;
+        --ink-faint: #a69a87;
+
+        --plum: #6e3b4a;
+        --plum-deep: #52222f;
+        --plum-tint: #f3e7e8;
+
+        --gold: #bd8a2a;
+        --gold-deep: #96691b;
+        --gold-tint: #f5e8c8;
+
+        --correct: #3f7a5d;
+        --correct-tint: #e4efe6;
+        --incorrect: #b34c39;
+        --incorrect-tint: #f6e5df;
+
+        --radius-lg: 20px;
+        --radius-md: 14px;
+        --radius-sm: 9px;
+
+        --shadow-frame: 0 1px 2px rgba(36, 28, 22, 0.04), 0 20px 40px -20px rgba(36, 28, 22, 0.18);
+        --shadow-card: 0 1px 2px rgba(36, 28, 22, 0.05), 0 8px 20px -12px rgba(36, 28, 22, 0.12);
+
+        --font-display: 'Sora', 'Inter', sans-serif;
+        --font-body: 'Inter', sans-serif;
+        --font-mono: 'IBM Plex Mono', monospace;
+      }
+
+      * {
+        box-sizing: border-box;
+      }
+
+      @media (prefers-reduced-motion: reduce) {
+        * {
+          animation: none !important;
+          transition: none !important;
+        }
+      }
+
+      html {
+        scroll-behavior: smooth;
+      }
+
+      body {
+        margin: 0;
+        background: var(--paper);
+        color: var(--ink);
+        font-family: var(--font-body);
+        font-size: 16px;
+        line-height: 1.5;
+        -webkit-font-smoothing: antialiased;
+      }
+
+      img,
+      svg {
+        display: block;
+        max-width: 100%;
+      }
+
+      a {
+        color: inherit;
+      }
+
+      :focus-visible {
+        outline: 2.5px solid var(--gold-deep);
+        outline-offset: 2px;
+        border-radius: 4px;
+      }
+
+      /* ============ CONCEPT PAGE CHROME (not part of the app itself) ============ */
+
+      .concept-topbar {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        padding: 18px 40px;
+        background: rgba(251, 247, 241, 0.88);
+        backdrop-filter: blur(10px);
+        border-bottom: 1px solid var(--line);
+      }
+
+      .concept-mark {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        font-family: var(--font-display);
+        font-weight: 700;
+        font-size: 18px;
+        letter-spacing: -0.01em;
+      }
+
+      .concept-mark .glyph {
+        width: 26px;
+        height: 26px;
+        border-radius: 7px;
+        background: linear-gradient(145deg, var(--plum), var(--plum-deep));
+        position: relative;
+        flex-shrink: 0;
+      }
+      .concept-mark .glyph::after {
+        content: '';
+        position: absolute;
+        left: 6px;
+        top: 5px;
+        width: 9px;
+        height: 9px;
+        border-radius: 50%;
+        background: var(--gold);
+      }
+      .concept-mark .glyph::before {
+        content: '';
+        position: absolute;
+        left: 6px;
+        top: 5px;
+        width: 2px;
+        height: 15px;
+        background: var(--paper);
+        border-radius: 2px;
+        transform: rotate(28deg);
+        transform-origin: top left;
+      }
+
+      .concept-nav {
+        display: flex;
+        gap: 28px;
+        font-size: 14px;
+        font-weight: 500;
+        color: var(--ink-soft);
+      }
+      .concept-nav a {
+        text-decoration: none;
+        padding: 6px 2px;
+        border-bottom: 2px solid transparent;
+      }
+      .concept-nav a:hover {
+        color: var(--ink);
+        border-bottom-color: var(--gold);
+      }
+
+      .concept-hero {
+        max-width: 760px;
+        margin: 0 auto;
+        padding: 64px 32px 24px;
+        text-align: center;
+      }
+      .concept-hero .eyebrow {
+        font-family: var(--font-mono);
+        font-size: 12.5px;
+        letter-spacing: 0.06em;
+        text-transform: uppercase;
+        color: var(--gold-deep);
+        margin: 0 0 14px;
+      }
+      .concept-hero h1 {
+        font-family: var(--font-display);
+        font-size: clamp(32px, 4vw, 44px);
+        line-height: 1.12;
+        letter-spacing: -0.02em;
+        margin: 0 0 16px;
+      }
+      .concept-hero p {
+        font-size: 17px;
+        color: var(--ink-soft);
+        max-width: 560px;
+        margin: 0 auto;
+      }
+
+      main {
+        padding-bottom: 40px;
+      }
+
+      .screen-block {
+        max-width: 1040px;
+        margin: 0 auto;
+        padding: 72px 32px 8px;
+      }
+
+      .screen-block__head {
+        max-width: 640px;
+        margin: 0 auto 36px;
+        text-align: center;
+      }
+      .screen-block__head .eyebrow {
+        font-family: var(--font-mono);
+        font-size: 12.5px;
+        letter-spacing: 0.05em;
+        text-transform: uppercase;
+        color: var(--ink-faint);
+        margin: 0 0 10px;
+      }
+      .screen-block__head h2 {
+        font-family: var(--font-display);
+        font-size: clamp(24px, 3vw, 30px);
+        letter-spacing: -0.01em;
+        margin: 0 0 12px;
+      }
+      .screen-block__head p {
+        color: var(--ink-soft);
+        font-size: 15.5px;
+        margin: 0;
+      }
+
+      .frame-label {
+        font-family: var(--font-mono);
+        font-size: 12px;
+        color: var(--ink-faint);
+        text-align: center;
+        margin: 30px 0 12px;
+        display: flex;
+        align-items: center;
+        gap: 12px;
+      }
+      .frame-label::before,
+      .frame-label::after {
+        content: '';
+        flex: 1;
+        height: 1px;
+        background: var(--line);
+      }
+
+      /* ============ APP VIEWPORT FRAME (the actual mockup) ============ */
+
+      .app-frame {
+        background: var(--surface);
+        border: 1px solid var(--line);
+        border-radius: var(--radius-lg);
+        box-shadow: var(--shadow-frame);
+        overflow: hidden;
+      }
+
+      .app-chrome {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        padding: 14px 24px;
+        border-bottom: 1px solid var(--line-soft);
+      }
+
+      .app-chrome__brand {
+        display: flex;
+        align-items: center;
+        gap: 8px;
+        font-family: var(--font-display);
+        font-weight: 700;
+        font-size: 14.5px;
+      }
+      .app-chrome__brand .dot {
+        width: 8px;
+        height: 8px;
+        border-radius: 50%;
+        background: var(--gold);
+      }
+
+      .app-chrome__nav {
+        display: flex;
+        gap: 4px;
+        background: var(--surface-sunken);
+        border-radius: 999px;
+        padding: 3px;
+      }
+      .app-chrome__nav span {
+        font-size: 13px;
+        font-weight: 500;
+        padding: 6px 14px;
+        border-radius: 999px;
+        color: var(--ink-soft);
+      }
+      .app-chrome__nav span.active {
+        background: var(--surface);
+        color: var(--ink);
+        box-shadow: 0 1px 2px rgba(36, 28, 22, 0.08);
+      }
+
+      .app-chrome__avatar {
+        width: 30px;
+        height: 30px;
+        border-radius: 50%;
+        background: linear-gradient(150deg, var(--plum-tint), var(--gold-tint));
+        border: 1px solid var(--line);
+      }
+
+      @media (max-width: 620px) {
+        .app-chrome__nav {
+          display: none;
+        }
+      }
+
+      /* ============ SCREEN 1: STUDY ============ */
+
+      .study-body {
+        padding: 40px 48px 44px;
+      }
+
+      .study-meta {
+        display: flex;
+        align-items: baseline;
+        justify-content: space-between;
+        margin-bottom: 22px;
+        flex-wrap: wrap;
+        gap: 8px;
+      }
+      .study-meta__deck {
+        font-size: 13.5px;
+        font-weight: 600;
+        color: var(--ink-soft);
+      }
+      .study-meta__progress {
+        font-family: var(--font-mono);
+        font-size: 12.5px;
+        color: var(--ink-faint);
+      }
+
+      .prompt-card {
+        background: var(--paper);
+        border: 1px solid var(--line);
+        border-radius: var(--radius-md);
+        padding: 40px 36px;
+        text-align: center;
+        margin-bottom: 28px;
+      }
+      .prompt-card__label {
+        font-family: var(--font-mono);
+        font-size: 11.5px;
+        text-transform: uppercase;
+        letter-spacing: 0.06em;
+        color: var(--gold-deep);
+        margin: 0 0 16px;
+      }
+      .prompt-card h3 {
+        font-family: var(--font-display);
+        font-weight: 600;
+        font-size: clamp(19px, 2.4vw, 23px);
+        line-height: 1.4;
+        letter-spacing: -0.005em;
+        margin: 0;
+        max-width: 560px;
+        margin-inline: auto;
+      }
+
+      .field-label {
+        display: block;
+        font-size: 13px;
+        font-weight: 600;
+        color: var(--ink-soft);
+        margin-bottom: 8px;
+      }
+
+      .answer-input {
+        width: 100%;
+        min-height: 84px;
+        resize: none;
+        border: 1.5px solid var(--line);
+        border-radius: var(--radius-sm);
+        padding: 14px 16px;
+        font-family: var(--font-body);
+        font-size: 15px;
+        color: var(--ink);
+        background: var(--surface);
+        margin-bottom: 24px;
+      }
+      .answer-input::placeholder {
+        color: var(--ink-faint);
+      }
+      .answer-input:focus {
+        border-color: var(--gold-deep);
+      }
+
+      .confidence-row {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        flex-wrap: wrap;
+        gap: 16px;
+        margin-bottom: 28px;
+      }
+
+      .confidence-pills {
+        display: flex;
+        gap: 8px;
+      }
+      .confidence-pill {
+        font-family: var(--font-body);
+        font-size: 13.5px;
+        font-weight: 500;
+        padding: 9px 16px;
+        border-radius: 999px;
+        border: 1.5px solid var(--line);
+        background: var(--surface);
+        color: var(--ink-soft);
+        cursor: default;
+      }
+      .confidence-pill.selected {
+        border-color: var(--plum);
+        background: var(--plum-tint);
+        color: var(--plum-deep);
+        font-weight: 600;
+      }
+
+      .btn-primary {
+        font-family: var(--font-body);
+        font-weight: 600;
+        font-size: 14.5px;
+        color: #fff;
+        background: var(--plum);
+        border: none;
+        padding: 13px 26px;
+        border-radius: var(--radius-sm);
+        cursor: default;
+        display: inline-flex;
+        align-items: center;
+        gap: 8px;
+        transition: background 0.15s ease;
+      }
+      .btn-primary:hover {
+        background: var(--plum-deep);
+      }
+
+      .study-actions {
+        display: flex;
+        justify-content: flex-end;
+      }
+
+      /* revealed state */
+      .result-banner {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        font-family: var(--font-display);
+        font-weight: 600;
+        font-size: 16px;
+        margin-bottom: 6px;
+      }
+      .result-banner .icon {
+        width: 22px;
+        height: 22px;
+        border-radius: 50%;
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 13px;
+        color: #fff;
+        flex-shrink: 0;
+      }
+      .result-banner.is-correct {
+        color: var(--correct);
+      }
+      .result-banner.is-correct .icon {
+        background: var(--correct);
+      }
+
+      .your-answer {
+        font-size: 14px;
+        color: var(--ink-soft);
+        margin: 0 0 24px;
+      }
+      .your-answer span {
+        font-style: italic;
+        color: var(--ink);
+      }
+
+      .answer-block {
+        background: var(--correct-tint);
+        border: 1px solid #cfe1d5;
+        border-radius: var(--radius-md);
+        padding: 22px 26px;
+        margin-bottom: 22px;
+      }
+      .answer-block__label {
+        font-family: var(--font-mono);
+        font-size: 11.5px;
+        text-transform: uppercase;
+        letter-spacing: 0.06em;
+        color: var(--correct);
+        margin: 0 0 8px;
+      }
+      .answer-block p.answer-text {
+        font-family: var(--font-display);
+        font-weight: 600;
+        font-size: 16.5px;
+        line-height: 1.45;
+        margin: 0;
+        color: var(--ink);
+      }
+
+      .explanation {
+        font-size: 15px;
+        color: var(--ink-soft);
+        line-height: 1.65;
+        margin: 0 0 6px;
+      }
+      .explanation .cite-mark {
+        font-family: var(--font-mono);
+        font-size: 12px;
+        color: var(--gold-deep);
+        background: var(--gold-tint);
+        padding: 1px 5px;
+        border-radius: 4px;
+        margin-left: 2px;
+        white-space: nowrap;
+      }
+
+      .citation-line {
+        font-family: var(--font-mono);
+        font-size: 12.5px;
+        color: var(--ink-faint);
+        margin: 0 0 32px;
+        padding-left: 2px;
+      }
+      .citation-line .cite-mark {
+        color: var(--gold-deep);
+        margin-right: 6px;
+      }
+
+      .grade-heading {
+        font-size: 13px;
+        font-weight: 600;
+        color: var(--ink-soft);
+        margin: 0 0 12px;
+      }
+
+      .grade-row {
+        display: grid;
+        grid-template-columns: repeat(4, 1fr);
+        gap: 10px;
+        margin-bottom: 16px;
+      }
+      .grade-btn {
+        background: var(--surface);
+        border: 1.5px solid var(--line);
+        border-top: 3px solid var(--ink-faint);
+        border-radius: var(--radius-sm);
+        padding: 13px 8px 12px;
+        text-align: center;
+        cursor: default;
+        transition:
+          border-color 0.15s ease,
+          transform 0.1s ease;
+      }
+      .grade-btn:hover {
+        transform: translateY(-1px);
+      }
+      .grade-btn .name {
+        display: block;
+        font-size: 14px;
+        font-weight: 600;
+        color: var(--ink);
+        margin-bottom: 3px;
+      }
+      .grade-btn .interval {
+        display: block;
+        font-family: var(--font-mono);
+        font-size: 11.5px;
+        color: var(--ink-faint);
+      }
+      .grade-btn.again {
+        border-top-color: var(--incorrect);
+      }
+      .grade-btn.hard {
+        border-top-color: #9a8f80;
+      }
+      .grade-btn.good {
+        border-top-color: var(--gold);
+      }
+      .grade-btn.easy {
+        border-top-color: var(--correct);
+      }
+
+      .grade-note {
+        font-size: 13px;
+        color: var(--ink-faint);
+        margin: 0;
+        text-align: center;
+      }
+
+      @media (max-width: 620px) {
+        .study-body {
+          padding: 28px 20px 32px;
+        }
+        .prompt-card {
+          padding: 28px 20px;
+        }
+        .grade-row {
+          grid-template-columns: repeat(2, 1fr);
+        }
+        .confidence-row {
+          flex-direction: column;
+          align-items: stretch;
+        }
+        .confidence-pills {
+          justify-content: space-between;
+        }
+        .confidence-pill {
+          flex: 1;
+          text-align: center;
+          padding: 9px 6px;
+        }
+        .study-actions {
+          justify-content: stretch;
+        }
+        .btn-primary {
+          width: 100%;
+          justify-content: center;
+        }
+      }
+
+      /* ============ SCREEN 2: DECKS ============ */
+
+      .decks-body {
+        padding: 36px 44px 44px;
+      }
+
+      .decks-toolbar {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        margin-bottom: 24px;
+        flex-wrap: wrap;
+        gap: 14px;
+      }
+      .decks-toolbar h4 {
+        font-family: var(--font-display);
+        font-size: 19px;
+        margin: 0;
+      }
+      .decks-toolbar .total-due {
+        font-size: 13.5px;
+        color: var(--ink-soft);
+      }
+      .decks-toolbar .total-due strong {
+        color: var(--ink);
+      }
+
+      .deck-grid {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        gap: 18px;
+      }
+
+      .deck-card {
+        border: 1px solid var(--line);
+        border-radius: var(--radius-md);
+        padding: 22px 22px 20px;
+        background: var(--surface);
+        transition:
+          box-shadow 0.15s ease,
+          border-color 0.15s ease;
+      }
+      .deck-card:hover {
+        box-shadow: var(--shadow-card);
+        border-color: #dbcdb3;
+      }
+
+      .deck-card__top {
+        display: flex;
+        justify-content: space-between;
+        align-items: flex-start;
+        gap: 12px;
+        margin-bottom: 10px;
+      }
+      .deck-card h5 {
+        font-family: var(--font-display);
+        font-size: 16.5px;
+        font-weight: 600;
+        margin: 0;
+        letter-spacing: -0.005em;
+      }
+
+      .due-pill {
+        flex-shrink: 0;
+        font-family: var(--font-mono);
+        font-size: 11.5px;
+        font-weight: 500;
+        padding: 4px 10px;
+        border-radius: 999px;
+        background: var(--surface-sunken);
+        color: var(--ink-soft);
+        white-space: nowrap;
+      }
+      .due-pill.has-due {
+        background: var(--gold-tint);
+        color: var(--gold-deep);
+      }
+
+      .deck-card p.desc {
+        font-size: 14px;
+        color: var(--ink-soft);
+        line-height: 1.55;
+        margin: 0 0 16px;
+      }
+
+      .deck-card__tags {
+        display: flex;
+        gap: 6px;
+        flex-wrap: wrap;
+        margin-bottom: 18px;
+      }
+      .tag-chip {
+        font-size: 12px;
+        font-weight: 500;
+        padding: 4px 10px;
+        border-radius: 6px;
+        background: var(--surface-sunken);
+        border: 1px solid var(--line-soft);
+        color: var(--ink-soft);
+      }
+
+      .deck-card__foot {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        font-size: 12.5px;
+        color: var(--ink-faint);
+        padding-top: 14px;
+        border-top: 1px solid var(--line-soft);
+      }
+      .deck-card__foot .card-count strong {
+        color: var(--ink-soft);
+        font-weight: 600;
+      }
+
+      @media (max-width: 720px) {
+        .deck-grid {
+          grid-template-columns: 1fr;
+        }
+        .decks-body {
+          padding: 26px 20px 32px;
+        }
+      }
+
+      /* ============ SCREEN 3: CALIBRATION ============ */
+
+      .calib-body {
+        padding: 40px 44px 40px;
+      }
+
+      .calib-intro {
+        max-width: 560px;
+        margin-bottom: 28px;
+      }
+      .calib-intro p {
+        font-size: 14.5px;
+        color: var(--ink-soft);
+        margin: 0;
+        line-height: 1.6;
+      }
+      .calib-intro .no-score {
+        display: inline-flex;
+        align-items: center;
+        gap: 6px;
+        font-family: var(--font-mono);
+        font-size: 11.5px;
+        color: var(--ink-faint);
+        margin-top: 10px;
+      }
+      .calib-intro .no-score::before {
+        content: '';
+        width: 5px;
+        height: 5px;
+        border-radius: 50%;
+        background: var(--ink-faint);
+      }
+
+      .calib-table {
+        border: 1px solid var(--line);
+        border-radius: var(--radius-md);
+        overflow: hidden;
+      }
+
+      .calib-row {
+        display: grid;
+        grid-template-columns: 128px 100px 90px 1fr;
+        align-items: center;
+        gap: 20px;
+        padding: 18px 24px;
+        border-bottom: 1px solid var(--line-soft);
+      }
+      .calib-row:last-child {
+        border-bottom: none;
+      }
+      .calib-row.head {
+        background: var(--surface-sunken);
+        padding-top: 12px;
+        padding-bottom: 12px;
+      }
+      .calib-row.head span {
+        font-family: var(--font-mono);
+        font-size: 11px;
+        text-transform: uppercase;
+        letter-spacing: 0.05em;
+        color: var(--ink-faint);
+        font-weight: 500;
+      }
+
+      .calib-label {
+        font-weight: 600;
+        font-size: 14.5px;
+        color: var(--ink);
+      }
+      .calib-label .sub {
+        display: block;
+        font-weight: 400;
+        font-size: 12px;
+        color: var(--ink-faint);
+        margin-top: 2px;
+      }
+
+      .calib-count {
+        font-family: var(--font-mono);
+        font-size: 13px;
+        color: var(--ink-soft);
+      }
+
+      .calib-pct {
+        font-family: var(--font-mono);
+        font-size: 15px;
+        font-weight: 600;
+        color: var(--ink);
+      }
+
+      .calib-bar-track {
+        position: relative;
+        height: 10px;
+        background: var(--surface-sunken);
+        border-radius: 999px;
+        overflow: visible;
+      }
+      .calib-bar-track .grid-tick {
+        position: absolute;
+        top: -4px;
+        bottom: -4px;
+        width: 1px;
+        background: var(--line);
+      }
+      .calib-bar-fill {
+        height: 100%;
+        border-radius: 999px;
+        background: linear-gradient(90deg, var(--gold-tint), var(--gold));
+      }
+
+      .calib-callout {
+        display: flex;
+        gap: 12px;
+        align-items: flex-start;
+        margin-top: 22px;
+        padding: 18px 22px;
+        background: var(--plum-tint);
+        border: 1px solid #e6d3d6;
+        border-radius: var(--radius-md);
+      }
+      .calib-callout .mark {
+        font-family: var(--font-mono);
+        font-size: 12px;
+        font-weight: 600;
+        color: var(--plum);
+        background: var(--surface);
+        border: 1px solid #e6d3d6;
+        border-radius: 6px;
+        padding: 2px 7px;
+        flex-shrink: 0;
+        margin-top: 2px;
+      }
+      .calib-callout p {
+        margin: 0;
+        font-size: 14px;
+        line-height: 1.6;
+        color: var(--plum-deep);
+      }
+
+      @media (max-width: 620px) {
+        .calib-body {
+          padding: 28px 20px 32px;
+        }
+        .calib-row {
+          grid-template-columns: 1fr;
+          gap: 8px;
+          padding: 16px 18px;
+        }
+        .calib-row.head {
+          display: none;
+        }
+        .calib-count::before {
+          content: 'Answers checked: ';
+          color: var(--ink-faint);
+        }
+        .calib-pct::before {
+          content: 'Actual correct rate: ';
+          font-family: var(--font-body);
+          font-weight: 400;
+          font-size: 12.5px;
+          color: var(--ink-faint);
+        }
+      }
+
+      /* ============ FOOTER ============ */
+
+      .concept-footer {
+        max-width: 1040px;
+        margin: 60px auto 0;
+        padding: 28px 32px 48px;
+        border-top: 1px solid var(--line);
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        flex-wrap: wrap;
+        gap: 12px;
+        font-size: 13px;
+        color: var(--ink-faint);
+      }
+      .concept-footer strong {
+        color: var(--ink-soft);
+      }
+    </style>
+  </head>
+  <body>
+    <header class="concept-topbar">
+      <div class="concept-mark">Seshat</div>
+      <nav class="concept-nav">
+        <a href="#study">Study</a>
+        <a href="#decks">Decks</a>
+        <a href="#calibration">Calibration</a>
+      </nav>
+    </header>
+
+    <div class="concept-hero">
+      <p class="eyebrow">Concept 03 — Warm Modern SaaS</p>
+      <h1>Spaced repetition that shows its work.</h1>
+      <p>
+        Every answer, every interval, and every confidence check is grounded in something you can trace back to a source
+        — not a streak counter. Free, open source, and it never locks you out of your own cards.
+      </p>
+    </div>
+
+    <main>
+      <!-- ============ SCREEN 1: STUDY ============ -->
+      <section id="study" class="screen-block">
+        <div class="screen-block__head">
+          <p class="eyebrow">The study screen</p>
+          <h2>Answer first. See why after.</h2>
+          <p>
+            You write what you remember, say how sure you are, then check. The explanation always cites where the answer
+            comes from.
+          </p>
+        </div>
+
+        <div class="app-frame">
+          <div class="app-chrome">
+            <div class="app-chrome__brand"><span class="dot"></span>Seshat</div>
+            <div class="app-chrome__nav">
+              <span class="active">Study</span>
+              <span>Decks</span>
+              <span>Calibration</span>
+            </div>
+            <div class="app-chrome__avatar"></div>
+          </div>
+
+          <div class="study-body">
+            <div class="study-meta">
+              <span class="study-meta__deck">Constitutional Law: Individual Rights</span>
+              <span class="study-meta__progress">CARD 12 / 142</span>
+            </div>
+
+            <div class="prompt-card">
+              <p class="prompt-card__label">Prompt</p>
+              <h3>What test governs whether a nondiscriminatory state law violates the Dormant Commerce Clause?</h3>
+            </div>
+
+            <label class="field-label" for="answer">Your answer</label>
+            <textarea
+              id="answer"
+              class="answer-input"
+              placeholder="Type what you remember — full sentences aren't required."
+            >
+the Pike balancing test, weighing the burden against the benefit</textarea>
+
+            <div class="confidence-row">
+              <div>
+                <span class="field-label" style="margin-bottom: 10px; display: block">How sure are you?</span>
+                <div class="confidence-pills">
+                  <span class="confidence-pill">Guessed</span>
+                  <span class="confidence-pill selected">Unsure</span>
+                  <span class="confidence-pill">Sure</span>
+                </div>
+              </div>
+            </div>
+
+            <div class="study-actions">
+              <button class="btn-primary" type="button">Check answer</button>
+            </div>
+          </div>
+        </div>
+
+        <p class="frame-label">After you check</p>
+
+        <div class="app-frame">
+          <div class="app-chrome">
+            <div class="app-chrome__brand"><span class="dot"></span>Seshat</div>
+            <div class="app-chrome__nav">
+              <span class="active">Study</span>
+              <span>Decks</span>
+              <span>Calibration</span>
+            </div>
+            <div class="app-chrome__avatar"></div>
+          </div>
+
+          <div class="study-body">
+            <div class="study-meta">
+              <span class="study-meta__deck">Constitutional Law: Individual Rights</span>
+              <span class="study-meta__progress">CARD 12 / 142</span>
+            </div>
+
+            <div class="result-banner is-correct">
+              <span class="icon">✓</span>
+              Correct
+            </div>
+            <p class="your-answer">
+              You said: <span>"the Pike balancing test, weighing the burden against the benefit"</span>
+            </p>
+
+            <div class="answer-block">
+              <p class="answer-block__label">Correct answer</p>
+              <p class="answer-text">
+                The Pike balancing test — weigh the law's burden on interstate commerce against its local benefits.
+              </p>
+            </div>
+
+            <p class="explanation">
+              If the burden is "clearly excessive in relation to the putative local benefits," the law falls — even
+              without facial discrimination against out-of-staters.<span class="cite-mark">[1]</span> Courts apply this
+              same balancing test outside the discrimination context, which is what usually trips people up on the exam.
+            </p>
+            <p class="citation-line">
+              <span class="cite-mark">[1]</span>Pike v. Bruce Church, Inc., 397 U.S. 137, 142 (1970)
+            </p>
+
+            <p class="grade-heading">How well did you know this?</p>
+            <div class="grade-row">
+              <div class="grade-btn again">
+                <span class="name">Again</span>
+                <span class="interval">&lt; 10 min</span>
+              </div>
+              <div class="grade-btn hard">
+                <span class="name">Hard</span>
+                <span class="interval">1 day</span>
+              </div>
+              <div class="grade-btn good">
+                <span class="name">Good</span>
+                <span class="interval">3 days</span>
+              </div>
+              <div class="grade-btn easy">
+                <span class="name">Easy</span>
+                <span class="interval">6 days</span>
+              </div>
+            </div>
+            <p class="grade-note">
+              These intervals come from spaced-repetition research, not from how many days in a row you've shown up.
+            </p>
+          </div>
+        </div>
+      </section>
+
+      <!-- ============ SCREEN 2: DECKS ============ -->
+      <section id="decks" class="screen-block">
+        <div class="screen-block__head">
+          <p class="eyebrow">The deck list</p>
+          <h2>Your decks, plainly.</h2>
+          <p>
+            What's in each deck, what it's tagged, and what's actually due — no fire icons, no rankings, no daily goal
+            to hit.
+          </p>
+        </div>
+
+        <div class="app-frame">
+          <div class="app-chrome">
+            <div class="app-chrome__brand"><span class="dot"></span>Seshat</div>
+            <div class="app-chrome__nav">
+              <span>Study</span>
+              <span class="active">Decks</span>
+              <span>Calibration</span>
+            </div>
+            <div class="app-chrome__avatar"></div>
+          </div>
+
+          <div class="decks-body">
+            <div class="decks-toolbar">
+              <h4>5 decks</h4>
+              <p class="total-due"><strong>59</strong> cards due across all decks</p>
+            </div>
+
+            <div class="deck-grid">
+              <div class="deck-card">
+                <div class="deck-card__top">
+                  <h5>Constitutional Law: Individual Rights</h5>
+                  <span class="due-pill has-due">18 due</span>
+                </div>
+                <p class="desc">Due process, equal protection, and the tests courts actually apply.</p>
+                <div class="deck-card__tags">
+                  <span class="tag-chip">Law</span>
+                  <span class="tag-chip">Bar Prep</span>
+                </div>
+                <div class="deck-card__foot">
+                  <span class="card-count"><strong>142</strong> cards</span>
+                  <span>Studied yesterday</span>
+                </div>
+              </div>
+
+              <div class="deck-card">
+                <div class="deck-card__top">
+                  <h5>MCAT Biochemistry: Enzyme Kinetics</h5>
+                  <span class="due-pill has-due">6 due</span>
+                </div>
+                <p class="desc">Km, Vmax, and how competitive inhibitors bend the curve.</p>
+                <div class="deck-card__tags">
+                  <span class="tag-chip">Science</span>
+                  <span class="tag-chip">Pre-Med</span>
+                </div>
+                <div class="deck-card__foot">
+                  <span class="card-count"><strong>86</strong> cards</span>
+                  <span>Studied 3 days ago</span>
+                </div>
+              </div>
+
+              <div class="deck-card">
+                <div class="deck-card__top">
+                  <h5>Spanish: Subjunctive Mood</h5>
+                  <span class="due-pill has-due">31 due</span>
+                </div>
+                <p class="desc">When the indicative isn't enough — doubt, desire, and denial.</p>
+                <div class="deck-card__tags">
+                  <span class="tag-chip">Language</span>
+                </div>
+                <div class="deck-card__foot">
+                  <span class="card-count"><strong>64</strong> cards</span>
+                  <span>Studied 6 days ago</span>
+                </div>
+              </div>
+
+              <div class="deck-card">
+                <div class="deck-card__top">
+                  <h5>Cranial Nerves I–XII</h5>
+                  <span class="due-pill">Not due</span>
+                </div>
+                <p class="desc">Names, functions, and the bedside findings that localize a lesion.</p>
+                <div class="deck-card__tags">
+                  <span class="tag-chip">Medicine</span>
+                  <span class="tag-chip">Anatomy</span>
+                </div>
+                <div class="deck-card__foot">
+                  <span class="card-count"><strong>24</strong> cards</span>
+                  <span>Studied today</span>
+                </div>
+              </div>
+
+              <div class="deck-card">
+                <div class="deck-card__top">
+                  <h5>U.S. History: Reconstruction</h5>
+                  <span class="due-pill has-due">4 due</span>
+                </div>
+                <p class="desc">1865–1877, in the order the amendments and the backlash actually happened.</p>
+                <div class="deck-card__tags">
+                  <span class="tag-chip">History</span>
+                </div>
+                <div class="deck-card__foot">
+                  <span class="card-count"><strong>58</strong> cards</span>
+                  <span>Studied 2 weeks ago</span>
+                </div>
+              </div>
+
+              <div
+                class="deck-card"
+                style="
+                  display: flex;
+                  align-items: center;
+                  justify-content: center;
+                  border-style: dashed;
+                  color: var(--ink-faint);
+                "
+              >
+                <span style="font-size: 14px; font-weight: 500">+ New deck</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ============ SCREEN 3: CALIBRATION ============ -->
+      <section id="calibration" class="screen-block">
+        <div class="screen-block__head">
+          <p class="eyebrow">The calibration table</p>
+          <h2>Confidence, checked.</h2>
+          <p>
+            Every time you check an answer, you also said how sure you were. This is what actually happened when the two
+            were compared.
+          </p>
+        </div>
+
+        <div class="app-frame">
+          <div class="app-chrome">
+            <div class="app-chrome__brand"><span class="dot"></span>Seshat</div>
+            <div class="app-chrome__nav">
+              <span>Study</span>
+              <span>Decks</span>
+              <span class="active">Calibration</span>
+            </div>
+            <div class="app-chrome__avatar"></div>
+          </div>
+
+          <div class="calib-body">
+            <div class="calib-intro">
+              <p>
+                Across all decks, over the last 90 days. Ideally, "Sure" answers should be right far more often than
+                "Guessed" ones — if they're not, your confidence isn't tracking what you actually know.
+              </p>
+              <p class="no-score">Not a score — nobody sees this but you</p>
+            </div>
+
+            <div class="calib-table">
+              <div class="calib-row head">
+                <span>Confidence</span>
+                <span>Answers</span>
+                <span>Correct</span>
+                <span style="display: flex; justify-content: space-between"
+                  ><span>0%</span><span>Actual correct rate</span><span>100%</span></span
+                >
+              </div>
+
+              <div class="calib-row">
+                <div class="calib-label">Guessed<span class="sub">didn't know it</span></div>
+                <div class="calib-count">212 asked</div>
+                <div class="calib-pct">41%</div>
+                <div class="calib-bar-track">
+                  <span class="grid-tick" style="left: 25%"></span>
+                  <span class="grid-tick" style="left: 50%"></span>
+                  <span class="grid-tick" style="left: 75%"></span>
+                  <div class="calib-bar-fill" style="width: 41%"></div>
+                </div>
+              </div>
+
+              <div class="calib-row">
+                <div class="calib-label">Unsure<span class="sub">half-remembered</span></div>
+                <div class="calib-count">340 asked</div>
+                <div class="calib-pct">68%</div>
+                <div class="calib-bar-track">
+                  <span class="grid-tick" style="left: 25%"></span>
+                  <span class="grid-tick" style="left: 50%"></span>
+                  <span class="grid-tick" style="left: 75%"></span>
+                  <div class="calib-bar-fill" style="width: 68%"></div>
+                </div>
+              </div>
+
+              <div class="calib-row">
+                <div class="calib-label">Sure<span class="sub">knew it cold</span></div>
+                <div class="calib-count">501 asked</div>
+                <div class="calib-pct">74%</div>
+                <div class="calib-bar-track">
+                  <span class="grid-tick" style="left: 25%"></span>
+                  <span class="grid-tick" style="left: 50%"></span>
+                  <span class="grid-tick" style="left: 75%"></span>
+                  <div class="calib-bar-fill" style="width: 74%"></div>
+                </div>
+              </div>
+            </div>
+
+            <div class="calib-callout">
+              <span class="mark">[!]</span>
+              <p>
+                "Sure" is right only 6 points more often than "Unsure" — closer than it should be. When that gap keeps
+                shrinking, it's usually not bad luck. It means it's worth re-reading the source material, not just
+                drilling the cards harder.
+              </p>
+            </div>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <footer class="concept-footer">
+      <span><strong>Seshat</strong> — open source, client-only spaced repetition.</span>
+      <span>No account required. No paywall on your own cards.</span>
+    </footer>
+  </body>
+</html>
