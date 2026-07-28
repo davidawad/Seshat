@@ -1,11 +1,14 @@
+import { useId, useState } from 'react'
 import { Link, NavLink, Outlet } from 'react-router-dom'
+import { SettingsForm } from '../features/settings/SettingsForm'
 import { useApplyTheme } from '../features/settings/theme'
+import { Footer } from './Footer'
+import { Modal } from './Modal'
 
 const NAV_ITEMS = [
   { to: '/study', label: 'Study', end: false },
   { to: '/sets', label: 'Sets', end: false },
   { to: '/stats', label: 'Stats', end: false },
-  { to: '/settings', label: 'Settings', end: false },
   { to: '/docs', label: 'Docs', end: false },
   { to: '/attributions', label: 'Attributions', end: false },
 ] as const
@@ -29,6 +32,9 @@ const SeshatMark = () => (
 
 export const Layout = () => {
   useApplyTheme()
+  const [settingsOpen, setSettingsOpen] = useState(false)
+  const settingsTitleId = useId()
+
   return (
     <div className="app-shell">
       <a className="skip-link" href="#main-content">
@@ -54,6 +60,10 @@ export const Layout = () => {
       <main id="main-content" className="app-main">
         <Outlet />
       </main>
+      <Footer onOpenSettings={() => setSettingsOpen(true)} />
+      <Modal open={settingsOpen} onClose={() => setSettingsOpen(false)} titleId={settingsTitleId} title="Settings">
+        <SettingsForm />
+      </Modal>
     </div>
   )
 }

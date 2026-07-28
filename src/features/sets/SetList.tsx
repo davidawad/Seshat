@@ -31,7 +31,10 @@ export const SetListPage = () => {
     <section aria-labelledby="sets-heading">
       <header className="sets-header">
         <h1 id="sets-heading">Sets</h1>
-        <ImportButton />
+        <div className="sets-header-actions">
+          <CreateSetForm />
+          <ImportButton />
+        </div>
       </header>
 
       {state.sets.length === 0 ? (
@@ -52,7 +55,7 @@ export const SetListPage = () => {
             placeholder="Search by name, tag, or card content"
           />
 
-          <ul>
+          <ul className="set-list">
             {filteredSets.map((set) => (
               <SetListItem key={set.id} set={set} setCards={state.cards.filter((card) => card.setId === set.id)} />
             ))}
@@ -60,8 +63,6 @@ export const SetListPage = () => {
           {filteredSets.length === 0 && <p>No sets match &quot;{query}&quot;.</p>}
         </div>
       )}
-
-      <CreateSetForm onCreated={(setId) => navigate(`/sets/${setId}`)} />
     </section>
   )
 }

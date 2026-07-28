@@ -1,6 +1,6 @@
 import { useId } from 'react'
-import '../features/settings/settings.css'
-import { useSeshatStore } from '../lib/store'
+import './settings.css'
+import { useSeshatStore } from '../../lib/store'
 import {
   RETENTION_PRESETS,
   retentionPresetSchema,
@@ -10,7 +10,7 @@ import {
   type Settings,
   type Theme,
   type Typeface,
-} from '../types'
+} from '../../types'
 
 // ---------------------------------------------------------------------------
 // Static copy — kept out of JSX so the render function stays about layout.
@@ -261,14 +261,14 @@ const RetentionField = ({ settings, updateSettings }: FieldProps) => {
 
 // ---------------------------------------------------------------------------
 
-export const SettingsPage = () => {
+/** The Settings content itself — rendered inside the large modal opened from the footer (see components/Modal.tsx). */
+export const SettingsForm = () => {
   const { state, updateSettings } = useSeshatStore()
   const { settings } = state
   const fieldProps: FieldProps = { settings, updateSettings }
 
   return (
-    <section aria-labelledby="settings-heading">
-      <h1 id="settings-heading">Settings</h1>
+    <>
       <p>
         Typography and legibility research shows there's no universal winner — pick what's legible to you and adjust
         study workload to taste.
@@ -282,6 +282,6 @@ export const SettingsPage = () => {
         <ReducedMotionField {...fieldProps} />
         <RetentionField {...fieldProps} />
       </form>
-    </section>
+    </>
   )
 }

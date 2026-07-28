@@ -96,6 +96,65 @@ body {
   padding: 2rem 1.5rem 4rem;
 }
 
+.app-footer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  padding: 1rem 1.5rem;
+  border-top: 1px solid var(--color-border);
+  background: var(--color-bg-elevated);
+}
+
+.app-footer-brand {
+  font-size: 0.8rem;
+  color: var(--color-fg-muted);
+}
+
+.app-footer-settings {
+  background: transparent;
+}
+
+/*
+ * The Settings modal — large by design (it's the whole legibility control
+ * panel, not a quick toggle), built on the native <dialog> element.
+ */
+.modal {
+  width: min(90vw, 48rem);
+  max-height: min(85vh, 56rem);
+  padding: 0;
+  border: 1px solid var(--color-border-strong);
+  border-radius: var(--radius-page);
+  background: var(--color-bg-elevated);
+  color: var(--color-fg);
+}
+
+.modal::backdrop {
+  background: rgba(0, 0, 0, 0.6);
+}
+
+.modal-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  padding: 1.25rem 1.5rem;
+  border-bottom: 1px solid var(--color-border);
+  position: sticky;
+  top: 0;
+  background: var(--color-bg-elevated);
+}
+
+.modal-header h2 {
+  margin: 0;
+}
+
+.modal-body {
+  padding: 1.5rem;
+  overflow-y: auto;
+  max-height: calc(min(85vh, 56rem) - 4.5rem);
+}
+
 /*
  * The signature moment: a page glowing against the archive-room dark, as
  * if lit from within. Reserved for the one or two panels per screen that

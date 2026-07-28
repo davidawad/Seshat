@@ -1,22 +1,21 @@
 import { type FormEvent, useId, useState } from 'react'
+import { useNavigate } from 'react-router-dom'
 import { useSeshatStore } from '../../lib/store'
-import type { SetId } from '../../types'
-import { parseTagsInput } from './tags'
 
-interface CreateSetFormProps {
-  readonly onCreated: (setId: SetId) => void
-}
-
-export const CreateSetForm = ({ onCreated }: CreateSetFormProps) => {
+/**
+ * A clearly visible "+ New set" action, collapsed to a single button until
+ * clicked. Creation itself only asks for a name — description, tags, and
+ * everything else can be filled in on the set editor page, which is where
+ * this sends you immediately after creating (there's nothing to study yet,
+ * so the editor is more useful to land on than the empty hub page).
+ */
+export const CreateSetForm = () => {
   const { addSet } = useSeshatStore()
+  const navigate = useNavigate()
+  const [isOpen, setIsOpen] = useState(false)
   const [name, setName] = useState('')
-  const [description, setDescription] = useState('')
-  const [tagsText, setTagsText] = useState('')
   const [error, setError] = useState<string | null>(null)
-
   const nameId = useId()
-  const descriptionId = useId()
-  const tagsId = useId()
   const errorId = useId()
 
   const handleSubmit = (event: FormEvent<HTMLFormElement>) => {
@@ -26,48 +25,53 @@ export const CreateSetForm = ({ onCreated }: CreateSetFormProps) => {
       setError('Set name is required.')
       return
     }
-    setError(null)
-    const set = addSet({ name: trimmedName, description: description.trim(), tags: parseTagsInput(tagsText) })
+    const set = addSet({ name: trimmedName, description: '', tags: [] })
     setName('')
-    setDescription('')
-    setTagsText('')
-    onCreated(set.id)
+    setError(null)
+    setIsOpen(false)
+    navigate(`/sets/${set.id}/edit`)
+  }
+
+  if (!isOpen) {
+    return (
+      <button type="button" className="create-set-button" onClick={() => setIsOpen(true)}>
+        + New set
+      </button>
+    )
   }
 
   return (
-    <form onSubmit={handleSubmit} aria-labelledby="create-set-heading">
-      <h2 id="create-set-heading">Create a new set</h2>
-      <div>
-        <label htmlFor={nameId}>Name</label>
-        <input
-          id={nameId}
-          type="text"
-          value={name}
-          onChange={(event) => setName(event.target.value)}
-          aria-invalid={error !== null}
-          aria-describedby={error !== null ? errorId : undefined}
-          required
-        />
-      </div>
-      <div>
-        <label htmlFor={descriptionId}>Description (optional)</label>
-        <textarea
-          id={descriptionId}
-          value={description}
-          onChange={(event) => setDescription(event.target.value)}
-          rows={2}
-        />
-      </div>
-      <div>
-        <label htmlFor={tagsId}>Tags (comma-separated, optional)</label>
-        <input id={tagsId} type="text" value={tagsText} onChange={(event) => setTagsText(event.target.value)} />
-      </div>
+    <form onSubmit={handleSubmit} className="create-set-form" aria-label="Create a new set">
+      <label htmlFor={nameId} className="sr-only">
+        Set name
+      </label>
+      <input
+        id={nameId}
+        type="text"
+        value={name}
+        onChange={(event) => setName(event.target.value)}
+        placeholder="Name your set…"
+        aria-invalid={error !== null}
+        aria-describedby={error !== null ? errorId : undefined}
+        autoFocus
+        required
+      />
+      <button type="submit">Create</button>
+      <button
+        type="button"
+        onClick={() => {
+          setIsOpen(false)
+          setError(null)
+          setName('')
+        }}
+      >
+        Cancel
+      </button>
       {error !== null && (
         <p id={errorId} role="alert">
           {error}
         </p>
       )}
-      <button type="submit">Create set</button>
     </form>
   )
 }
