@@ -1,4 +1,5 @@
 import { useState } from 'react'
+import { Legible } from '../../components/Legible'
 import { useSeshatStore } from '../../lib/store'
 import type { StudyCard } from '../../types'
 import { CardForm } from './CardForm'
@@ -47,11 +48,17 @@ export const CardListItem = ({ card }: CardListItemProps) => {
 
   return (
     <li>
-      <p className="card-content">
+      <Legible as="p" measure={false}>
         <strong>{card.prompt}</strong> <span className="card-kind-badge">({summary.label})</span>
-      </p>
-      <p className="card-content">{summary.detail}</p>
-      {card.explanation !== null && <p className="card-content">{card.explanation}</p>}
+      </Legible>
+      <Legible as="p" measure={false}>
+        {summary.detail}
+      </Legible>
+      {card.explanation !== null && (
+        <Legible as="p" measure={false}>
+          {card.explanation}
+        </Legible>
+      )}
       {card.tags.length > 0 && (
         <ul aria-label="Tags">
           {card.tags.map((tag) => (

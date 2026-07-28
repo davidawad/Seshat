@@ -1,3 +1,4 @@
+import { Legible } from '../../components/Legible'
 import type { TestQuestion } from './generate-test'
 import { type TestAnswer, answerLabel, correctAnswerLabel, gradeAnswer } from './grade-test'
 
@@ -33,7 +34,7 @@ export const TestResults = ({ questions, answers }: TestResultsProps) => {
             <p className={correct ? 'review-result is-correct' : 'review-result is-incorrect'}>
               {correct ? 'Correct' : 'Incorrect'}
             </p>
-            <div className="card-content measure">
+            <Legible>
               <p className="test-question-prompt">
                 {index + 1}. {question.front}
               </p>
@@ -41,7 +42,7 @@ export const TestResults = ({ questions, answers }: TestResultsProps) => {
                 Your answer: {answer === undefined || answerLabel(answer) === '' ? '(blank)' : answerLabel(answer)}
               </p>
               <p className="review-correct-answer">Correct answer: {correctAnswerLabel(question)}</p>
-            </div>
+            </Legible>
           </li>
         ))}
       </ol>

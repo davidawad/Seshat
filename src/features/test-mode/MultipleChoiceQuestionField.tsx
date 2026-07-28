@@ -1,4 +1,5 @@
 import { useId } from 'react'
+import { Legible } from '../../components/Legible'
 import type { MultipleChoiceQuestion } from './generate-test'
 
 interface MultipleChoiceQuestionFieldProps {
@@ -12,7 +13,7 @@ interface MultipleChoiceQuestionFieldProps {
 export const MultipleChoiceQuestionField = ({ question, index, value, onChange }: MultipleChoiceQuestionFieldProps) => {
   const groupName = useId()
   return (
-    <fieldset className="card-content measure test-mc">
+    <Legible as="fieldset" className="test-mc">
       <legend className="test-question-prompt">
         {index + 1}. {question.front}
       </legend>
@@ -24,6 +25,6 @@ export const MultipleChoiceQuestionField = ({ question, index, value, onChange }
           </label>
         ))}
       </div>
-    </fieldset>
+    </Legible>
   )
 }

@@ -1,4 +1,5 @@
 import { useEffect, useRef, useState } from 'react'
+import { Legible } from '../../components/Legible'
 import type { CardId, DeckId } from '../../types'
 import { formatElapsed, getBestTimeMs, recordCompletionTime } from './bestTime'
 import './match.css'
@@ -42,7 +43,9 @@ const TileButton = ({ tile, isSelected, isMatched, isMiss, onSelect }: TileButto
       disabled={isMatched}
       onClick={() => onSelect(tile)}
     >
-      <span className="card-content match-tile-text">{tile.text}</span>
+      <Legible as="span" measure={false} className="match-tile-text">
+        {tile.text}
+      </Legible>
       {isMatched && <span className="visually-hidden"> (matched)</span>}
     </button>
   )

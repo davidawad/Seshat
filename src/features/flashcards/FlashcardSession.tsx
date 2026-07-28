@@ -1,4 +1,5 @@
 import { useCallback, useEffect, useRef, useState } from 'react'
+import { Legible } from '../../components/Legible'
 import { useSeshatStore } from '../../lib/store'
 import type { StudyCard } from '../../types'
 import { cardFrontBack } from '../study/card-summary'
@@ -72,10 +73,10 @@ export const FlashcardSession = ({ card, position, total, onAdvance }: Flashcard
         Card {position + 1} of {total}
       </p>
 
-      <div className="illuminated-panel card-content measure flashcard-face" aria-live="polite">
+      <Legible className="illuminated-panel flashcard-face" aria-live="polite">
         {imageDataUrl !== undefined && <img src={imageDataUrl} alt="" className="flashcard-image" />}
         <p>{flipped ? back : front}</p>
-      </div>
+      </Legible>
 
       {!flipped ? (
         <button type="button" onClick={flip} autoFocus>

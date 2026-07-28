@@ -1,4 +1,5 @@
 import { useCallback, useEffect, useRef, useState } from 'react'
+import { Legible } from '../../components/Legible'
 import { useSeshatStore } from '../../lib/store'
 import type { ConfidenceRating, Grade, StudyCard } from '../../types'
 import { CardInput } from './CardInput'
@@ -101,9 +102,9 @@ export const ReviewSession = ({ card, position, total, onAdvance }: ReviewSessio
             handleAnswerContinue()
           }}
         >
-          <div className="illuminated-panel card-content measure">
+          <Legible className="illuminated-panel">
             <CardInput card={card} attempt={attempt} onChange={setAttempt} disabled={false} />
-          </div>
+          </Legible>
           <button type="submit" disabled={!complete}>
             Continue
           </button>
@@ -112,9 +113,9 @@ export const ReviewSession = ({ card, position, total, onAdvance }: ReviewSessio
 
       {step === 'confidence' && (
         <div>
-          <div className="illuminated-panel card-content measure">
+          <Legible className="illuminated-panel">
             <CardInput card={card} attempt={attempt} onChange={setAttempt} disabled />
-          </div>
+          </Legible>
           <fieldset className="review-confidence">
             <legend>How confident are you in that answer?</legend>
             <div className="confidence-options">

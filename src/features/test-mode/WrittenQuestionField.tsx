@@ -1,4 +1,5 @@
 import { useId } from 'react'
+import { Legible } from '../../components/Legible'
 import type { WrittenQuestion } from './generate-test'
 
 interface WrittenQuestionFieldProps {
@@ -12,7 +13,7 @@ interface WrittenQuestionFieldProps {
 export const WrittenQuestionField = ({ question, index, value, onChange }: WrittenQuestionFieldProps) => {
   const inputId = useId()
   return (
-    <div className="card-content measure">
+    <Legible>
       <p className="test-question-prompt">
         {index + 1}. {question.front}
       </p>
@@ -24,6 +25,6 @@ export const WrittenQuestionField = ({ question, index, value, onChange }: Writt
         autoComplete="off"
         onChange={(event) => onChange(event.target.value)}
       />
-    </div>
+    </Legible>
   )
 }

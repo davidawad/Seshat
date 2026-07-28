@@ -1,3 +1,4 @@
+import { Legible } from '../../components/Legible'
 import type { Grade, StudyCard } from '../../types'
 import { type Attempt, GRADE_ORDER, attemptLabel, correctAnswerLabel } from './grading'
 import { ImageOcclusionReveal } from './ImageOcclusionReveal'
@@ -34,7 +35,7 @@ export const RevealPanel = ({ card, attempt, correct, onGrade }: RevealPanelProp
       >
         {correct ? 'Correct' : 'Incorrect'}
       </p>
-      <div className="card-content">
+      <Legible>
         {card.content.kind === 'image-occlusion' && attempt.kind === 'image-occlusion' && (
           <ImageOcclusionReveal prompt={card.prompt} content={card.content} targetRegionId={attempt.targetRegionId} />
         )}
@@ -42,7 +43,7 @@ export const RevealPanel = ({ card, attempt, correct, onGrade }: RevealPanelProp
         <p className="review-correct-answer">Correct answer: {correctAnswer}</p>
         {card.explanation !== null && <p className="review-explanation">{card.explanation}</p>}
         {card.sourceRef !== null && <p className="review-source">Source: {card.sourceRef}</p>}
-      </div>
+      </Legible>
       <fieldset className="review-grade">
         <legend>How well did you recall this?</legend>
         <div className="grade-options">

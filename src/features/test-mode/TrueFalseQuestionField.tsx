@@ -1,4 +1,5 @@
 import { useId } from 'react'
+import { Legible } from '../../components/Legible'
 import type { TrueFalseQuestion } from './generate-test'
 
 interface TrueFalseQuestionFieldProps {
@@ -12,7 +13,7 @@ interface TrueFalseQuestionFieldProps {
 export const TrueFalseQuestionField = ({ question, index, value, onChange }: TrueFalseQuestionFieldProps) => {
   const groupName = useId()
   return (
-    <fieldset className="card-content measure test-truefalse">
+    <Legible as="fieldset" className="test-truefalse">
       <legend className="test-question-prompt">
         {index + 1}. {question.front}
       </legend>
@@ -27,6 +28,6 @@ export const TrueFalseQuestionField = ({ question, index, value, onChange }: Tru
           False
         </label>
       </div>
-    </fieldset>
+    </Legible>
   )
 }

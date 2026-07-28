@@ -16,7 +16,7 @@
  *      driven by Settings via [data-typeface] and useApplyTheme). This
  *      applies ONLY to the actual material someone is studying: card
  *      prompts, answers, options, explanations, image-occlusion labels —
- *      via the `.card-content` class in typography.css. A user's own
+ *      via the `.legible` class / `<Legible>` component. A user's own
  *      study material should render in whatever's most legible to them,
  *      not in Seshat's branded chrome typeface.
  *
@@ -88,7 +88,7 @@
   --font-ui: var(--font-mono);
 
   /* ---- Content typeface stacks (Settings-selectable; see [data-typeface]
-     below and .card-content in typography.css) -------------------------- */
+     below and .legible in typography.css) -------------------------- */
   --font-atkinson: 'Atkinson Hyperlegible', Arial, Helvetica, sans-serif; /* self-hosted, max character distinction */
   --font-verdana: Verdana, Geneva, sans-serif; /* system font, general screen reading */
   --font-inter: 'Inter', system-ui, -apple-system, sans-serif; /* self-hosted, modern UI/reading */
@@ -99,7 +99,7 @@
      [data-typeface]. Defaults to Atkinson Hyperlegible, matching
      DEFAULT_SETTINGS.typeface in src/types.ts, so unstyled first paint
      (before useApplyTheme's effect runs) is still correct. Applied only
-     within `.card-content` — see typography.css. */
+     within `.legible` — see typography.css. */
   --font-body: var(--font-atkinson);
 
   /* ---- Content sizing (driven by Settings; see useApplyTheme) --------- */

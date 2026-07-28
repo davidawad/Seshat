@@ -5,7 +5,8 @@
  * Two systems, deliberately: CHROME (Seshat's own identity — Fraunces
  * headings, Newsreader prose, IBM Plex Mono UI/data) applies everywhere
  * by default; CONTENT (the Settings-driven, user-selectable typeface)
- * applies only inside `.card-content` — see tokens.css's top comment.
+ * applies only inside `.legible` / `<Legible>` — see tokens.css's top
+ * comment and src/components/Legible.tsx.
  */
 @import './fonts.css';
 
@@ -48,35 +49,50 @@ dd,
 }
 
 /* ---------------------------------------------------------------------
- * Content — the actual material someone is studying (card prompts,
- * answers, options, explanations, image-occlusion labels) and its
- * previews/editors in the deck manager. Settings' typeface/size/line-
- * height/measure apply only here, never to Seshat's own chrome.
+ * THE LEGIBILITY UTILITY — this is the point of the project. Every
+ * research-backed legibility decision (research/legibility/*.md) bundled
+ * into one named cluster, applied via the `<Legible>` component
+ * (src/components/Legible.tsx) rather than hand-typed class names:
+ *
+ *   .legible          — Settings-driven typeface + 11.5-13pt size +
+ *                        1.4-1.5 line height (the reading-comfort cluster)
+ *   .legible-measure   — 55-75 characters per line (composable separately;
+ *                        `<Legible>` applies both together by default)
+ *
+ * Applies to the actual material someone is studying (card prompts,
+ * answers, options, explanations, image-occlusion labels) and nowhere
+ * else — Seshat's own chrome intentionally uses a different, fixed
+ * typeface (see the CHROME section above and tokens.css's top comment).
  * ------------------------------------------------------------------- */
-.card-content {
+.legible {
   font-family: var(--font-body);
   font-size: var(--font-size-body);
   line-height: var(--line-height-body);
 }
 
+.legible-measure {
+  max-width: var(--measure);
+  margin-inline: auto;
+}
+
 /* A metadata label (e.g. "(Short answer)") that happens to sit inline
-   inside a `.card-content` block — stays chrome, since it's Seshat's own
-   UI label, not part of what the learner is studying. */
+   inside a `.legible` block — stays chrome, since it's Seshat's own UI
+   label, not part of what the learner is studying. */
 .card-kind-badge {
   font-family: var(--font-ui);
   font-size: 0.8em;
   color: var(--color-fg-muted);
 }
 
-/* Form controls INSIDE a `.card-content` block (the short-answer/cloze
-   input, MCQ option buttons, image-occlusion label field) are how the
-   learner reads and interacts with the actual material — they should
-   honor the chosen content typeface too, not fall back to chrome mono
-   the way `input`/`button` do everywhere else in the app. */
-.card-content input,
-.card-content textarea,
-.card-content select,
-.card-content button {
+/* Form controls INSIDE a `.legible` block (the short-answer/cloze input,
+   MCQ option buttons, image-occlusion label field) are how the learner
+   reads and interacts with the actual material — they should honor the
+   chosen content typeface too, not fall back to chrome mono the way
+   `input`/`button` do everywhere else in the app. */
+.legible input,
+.legible textarea,
+.legible select,
+.legible button {
   font-family: var(--font-body);
 }
 
@@ -160,19 +176,6 @@ button:disabled {
 
 a {
   color: var(--color-accent);
-}
-
-/* ---------------------------------------------------------------------
- * Reading surfaces — constrain long-form text to the configured measure
- * (--measure, driven by settings.measureCh) so line length stays in the
- * 55-75ch legibility band. `.app-main` (index.css) already applies this
- * as a max-width; `.measure` is available for nested reading blocks
- * (card prompts/explanations, docs body copy) that live inside a wider
- * container.
- * ------------------------------------------------------------------- */
-.measure {
-  max-width: var(--measure);
-  margin-inline: auto;
 }
 
 /* ---------------------------------------------------------------------
