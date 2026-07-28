@@ -34,13 +34,15 @@ export const RevealPanel = ({ card, attempt, correct, onGrade }: RevealPanelProp
       >
         {correct ? 'Correct' : 'Incorrect'}
       </p>
-      {card.content.kind === 'image-occlusion' && attempt.kind === 'image-occlusion' && (
-        <ImageOcclusionReveal prompt={card.prompt} content={card.content} targetRegionId={attempt.targetRegionId} />
-      )}
-      {!correct && yourAnswer !== '' && <p className="review-your-answer">Your answer: {yourAnswer}</p>}
-      <p className="review-correct-answer">Correct answer: {correctAnswer}</p>
-      {card.explanation !== null && <p className="review-explanation">{card.explanation}</p>}
-      {card.sourceRef !== null && <p className="review-source">Source: {card.sourceRef}</p>}
+      <div className="card-content">
+        {card.content.kind === 'image-occlusion' && attempt.kind === 'image-occlusion' && (
+          <ImageOcclusionReveal prompt={card.prompt} content={card.content} targetRegionId={attempt.targetRegionId} />
+        )}
+        {!correct && yourAnswer !== '' && <p className="review-your-answer">Your answer: {yourAnswer}</p>}
+        <p className="review-correct-answer">Correct answer: {correctAnswer}</p>
+        {card.explanation !== null && <p className="review-explanation">{card.explanation}</p>}
+        {card.sourceRef !== null && <p className="review-source">Source: {card.sourceRef}</p>}
+      </div>
       <fieldset className="review-grade">
         <legend>How well did you recall this?</legend>
         <div className="grade-options">

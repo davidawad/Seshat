@@ -1,36 +1,83 @@
 /*
- * Typeface application, body sizing, motion, and focus visibility.
+ * Typeface application, sizing, motion, and focus visibility.
  * Owned by the typography/legibility track (see research/legibility).
+ *
+ * Two systems, deliberately: CHROME (Seshat's own identity — Fraunces
+ * headings, Newsreader prose, IBM Plex Mono UI/data) applies everywhere
+ * by default; CONTENT (the Settings-driven, user-selectable typeface)
+ * applies only inside `.card-content` — see tokens.css's top comment.
  */
 @import './fonts.css';
 
 /* ---------------------------------------------------------------------
- * Body copy: the active reading typeface (--font-body, resolved from
- * [data-typeface] in tokens.css) applies everywhere by default. UI chrome
- * (header, nav, form controls, buttons) opts back into --font-ui below —
- * see the research spec: reading content varies by user, app chrome
- * stays consistently modern (Inter).
+ * Chrome defaults — everything Seshat itself wrote.
  * ------------------------------------------------------------------- */
 body {
-  font-family: var(--font-body);
-  font-size: var(--font-size-body);
-  line-height: var(--line-height-body);
+  font-family: var(--font-chrome);
+  font-size: 16px;
+  line-height: 1.55;
   /* Support WCAG 1.4.4 (resize text) / 1.4.12 (text spacing) reflow —
      never clip enlarged text with fixed heights on text containers. */
   text-size-adjust: 100%;
 }
 
-.app-header,
-.app-nav,
-.app-brand,
-.skip-link,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-family: var(--font-display);
+  font-weight: 600;
+  line-height: 1.2;
+}
+
+nav,
 button,
 input,
 select,
 textarea,
 optgroup,
-label {
+label,
+table,
+dt,
+dd,
+.app-brand,
+.skip-link {
   font-family: var(--font-ui);
+}
+
+/* ---------------------------------------------------------------------
+ * Content — the actual material someone is studying (card prompts,
+ * answers, options, explanations, image-occlusion labels) and its
+ * previews/editors in the deck manager. Settings' typeface/size/line-
+ * height/measure apply only here, never to Seshat's own chrome.
+ * ------------------------------------------------------------------- */
+.card-content {
+  font-family: var(--font-body);
+  font-size: var(--font-size-body);
+  line-height: var(--line-height-body);
+}
+
+/* A metadata label (e.g. "(Short answer)") that happens to sit inline
+   inside a `.card-content` block — stays chrome, since it's Seshat's own
+   UI label, not part of what the learner is studying. */
+.card-kind-badge {
+  font-family: var(--font-ui);
+  font-size: 0.8em;
+  color: var(--color-fg-muted);
+}
+
+/* Form controls INSIDE a `.card-content` block (the short-answer/cloze
+   input, MCQ option buttons, image-occlusion label field) are how the
+   learner reads and interacts with the actual material — they should
+   honor the chosen content typeface too, not fall back to chrome mono
+   the way `input`/`button` do everywhere else in the app. */
+.card-content input,
+.card-content textarea,
+.card-content select,
+.card-content button {
+  font-family: var(--font-body);
 }
 
 /* ---------------------------------------------------------------------
@@ -81,22 +128,29 @@ label {
  * contrast bar (WCAG 1.4.11) via --color-border-strong (see tokens.css
  * for the computed ratios).
  * ------------------------------------------------------------------- */
+label {
+  display: block;
+  margin-bottom: 0.35rem;
+}
+
 input,
 select,
 textarea,
 button {
   accent-color: var(--color-accent);
   border: 1px solid var(--color-border-strong);
-  border-radius: 4px;
+  border-radius: var(--radius-sm, 3px);
   color: var(--color-fg);
-  background: var(--color-bg);
+  background: var(--color-bg-elevated);
   font-size: 1rem;
   padding: 0.5em 0.75em;
+  margin-bottom: 0.75rem;
 }
 
 button {
   cursor: pointer;
-  background: var(--color-bg-elevated);
+  font-weight: 500;
+  letter-spacing: 0.01em;
 }
 
 button:disabled {

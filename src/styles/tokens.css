@@ -1,63 +1,108 @@
 /*
  * Design tokens — color, typeface stacks, and the reading measure.
- * Owned by the typography/legibility track (see research/legibility).
+ *
+ * Two typography systems live side by side, deliberately:
+ *
+ *   1. CHROME — Seshat's own visual identity ("Illuminated Archive": a
+ *      dark, warm archive-room shell with glowing parchment panels,
+ *      drawn from concepts/01-illuminated-archive). Fraunces for display
+ *      headings, Newsreader for chrome prose, IBM Plex Mono for nav/
+ *      buttons/labels/data. This applies to everything Seshat itself
+ *      wrote: navigation, buttons, page chrome, Docs/Attributions prose,
+ *      Stats/Settings UI.
+ *
+ *   2. CONTENT — the research-backed, user-selectable typeface system
+ *      (--font-body / --font-size-body / --line-height-body / --measure,
+ *      driven by Settings via [data-typeface] and useApplyTheme). This
+ *      applies ONLY to the actual material someone is studying: card
+ *      prompts, answers, options, explanations, image-occlusion labels —
+ *      via the `.card-content` class in typography.css. A user's own
+ *      study material should render in whatever's most legible to them,
+ *      not in Seshat's branded chrome typeface.
  *
  * Theme resolution:
  *   - `theme: 'system'`  → no `data-theme` attribute on <html>; the
  *     `prefers-color-scheme` media query below decides.
  *   - `theme: 'light'`/`'dark'` → `useApplyTheme` sets `data-theme` on
- *     <html>, which wins over the media query (see the `[data-theme="dark"]`
- *     rule and the `:not([data-theme="light"])` guard on the media query).
+ *     <html>, which wins over the media query.
  *
- * Contrast ratios below are computed against the WCAG 2.2 relative-luminance
- * formula, not eyeballed. Body-text pairs clear 4.5:1 (WCAG 1.4.3 AA);
- * interactive-component borders and the focus ring clear 3:1 (WCAG 1.4.11).
- * See useApplyTheme's doc comment / the code review notes for the worked
- * numbers; summary:
- *   Light: fg #111111 on bg #ffffff       → 18.9:1
- *          fg-muted #4b4b4f on #ffffff    → 8.7:1
- *          accent #5b3df5 on #ffffff      → 6.1:1
- *          border-strong #757575 on #fff  → 4.6:1 (UI component boundaries)
- *   Dark:  fg #f2f2f2 on bg #111111       → 16.9:1
- *          fg-muted #b3b3b3 on #111111    → 9.0:1
- *          accent #9a86ff on #111111      → 6.5:1
- *          border-strong #8a8a8a on #111  → 5.5:1
+ * Contrast ratios below are computed against the WCAG 2.2 relative-
+ * luminance formula, not eyeballed. Body-text pairs clear 4.5:1 (WCAG
+ * 1.4.3 AA); interactive-component borders and the focus ring clear 3:1
+ * (WCAG 1.4.11). Worked numbers:
+ *   Dark:  fg #ece1c9 on bg #1b1712        → 13.74:1
+ *          fg-muted #b9aa8c on #1b1712     → 7.80:1
+ *          accent (gold) #b4903f on #1b1712 → 5.94:1
+ *          focus-ring (gold-soft) #d8be85  → 9.87:1
+ *          success #8cb08a on #1b1712      → 7.38:1 (brightened from the
+ *            mockup's #5d7a5c, which was only 3.74:1 — too low for text)
+ *          error #e0664a on #1b1712        → 5.24:1 (brightened from the
+ *            mockup's #a8402a, which was only 2.91:1 — too low for text)
+ *          border-strong #8a7a63 on #1b1712 → 4.28:1
+ *   Light: fg #2a1e12 on bg #f8f0dd        → 14.31:1
+ *          fg-muted #5a4b37 on #f8f0dd     → 7.41:1
+ *          accent (gold-deep) #7a5a1a      → 5.60:1 (the mockup's plain
+ *            gold #b4903f was only 2.64:1 on a light parchment bg — fails
+ *            AA outright, needed a darker gold for light mode)
+ *          success #3f5940 on #f8f0dd      → 6.82:1
+ *          error #7a2c1c on #f8f0dd        → 8.39:1
+ *          border-strong #8a7a63 on #f8f0dd → 3.67:1
  */
 
 :root {
-  /* ---- Light palette (default) -------------------------------------- */
-  --color-bg: #ffffff;
-  --color-bg-elevated: #f5f5f7;
-  --color-fg: #111111;
-  --color-fg-muted: #4b4b4f;
-  --color-border: #dddddd; /* decorative dividers only, not a UI boundary */
-  --color-border-strong: #757575; /* form controls / interactive boundaries, 3:1+ */
-  --color-accent: #5b3df5;
-  --color-accent-contrast: #ffffff; /* text placed on top of --color-accent */
-  --color-focus-ring: #5b3df5;
+  /* ---- Dark palette (default) — "archive room" ------------------------ */
+  --color-bg: #1b1712;
+  --color-bg-elevated: #241b14;
+  --color-bg-elevated-2: #2c2119;
+  --color-fg: #ece1c9;
+  --color-fg-muted: #b9aa8c;
+  --color-border: rgba(237, 227, 205, 0.09); /* decorative dividers only */
+  --color-border-strong: #8a7a63; /* form controls / interactive boundaries, 3:1+ */
+  --color-accent: #b4903f;
+  --color-accent-contrast: #1b1712; /* text placed on top of --color-accent */
+  --color-focus-ring: #d8be85;
+  --color-success: #8cb08a;
+  --color-error: #e0664a;
+  /* The "illuminated page" surface: a glowing parchment panel against the
+     dark room. Used for the one or two panels per screen that deserve the
+     app's signature moment (see index.css `.illuminated-panel`). */
+  --color-surface-highlight: #f8f0dd;
+  --color-surface-highlight-fg: #2a1e12;
+  --color-surface-highlight-fg-muted: #5a4b37;
+  --color-surface-highlight-border: rgba(42, 30, 18, 0.16);
 
   /* ---- Reading measure ------------------------------------------------ */
   --measure: 65ch;
 
-  /* ---- Typeface stacks (self-hosted where noted; see fonts.css) ------ */
+  /* ---- Radii — deliberately subtle; this is a manuscript, not a bubble
+     UI ------------------------------------------------------------------ */
+  --radius-page: 5px;
+  --radius-sm: 3px;
+
+  /* ---- Chrome typeface stacks (self-hosted; see fonts.css) ------------ */
+  --font-display: 'Fraunces', 'Iowan Old Style', Georgia, serif;
+  --font-chrome: 'Newsreader', 'Iowan Old Style', Georgia, serif;
+  --font-mono: 'IBM Plex Mono', ui-monospace, 'SFMono-Regular', Consolas, monospace;
+  /* --font-ui is the fixed chrome face for nav/buttons/labels/data,
+     independent of the user's content typeface choice below. */
+  --font-ui: var(--font-mono);
+
+  /* ---- Content typeface stacks (Settings-selectable; see [data-typeface]
+     below and .card-content in typography.css) -------------------------- */
   --font-atkinson: 'Atkinson Hyperlegible', Arial, Helvetica, sans-serif; /* self-hosted, max character distinction */
   --font-verdana: Verdana, Geneva, sans-serif; /* system font, general screen reading */
-  --font-inter: 'Inter', system-ui, -apple-system, sans-serif; /* self-hosted, UI chrome */
+  --font-inter: 'Inter', system-ui, -apple-system, sans-serif; /* self-hosted, modern UI/reading */
   --font-source-serif: 'Source Serif 4', Georgia, 'Times New Roman', serif; /* self-hosted, long-form reading */
   --font-georgia: Georgia, 'Times New Roman', serif; /* system font, long-form reading */
 
-  /* --font-ui is fixed to Inter regardless of the user's body typeface —
-     nav/buttons/chrome stay consistently modern; only reading content
-     varies (see research spec: "Modern UI/web apps: Inter"). */
-  --font-ui: var(--font-inter);
-
-  /* --font-body is the active reading typeface, selected below via
+  /* --font-body is the active CONTENT typeface, selected below via
      [data-typeface]. Defaults to Atkinson Hyperlegible, matching
      DEFAULT_SETTINGS.typeface in src/types.ts, so unstyled first paint
-     (before useApplyTheme's effect runs) is still correct. */
+     (before useApplyTheme's effect runs) is still correct. Applied only
+     within `.card-content` — see typography.css. */
   --font-body: var(--font-atkinson);
 
-  /* ---- Sizing (driven by Settings; see useApplyTheme) ---------------- */
+  /* ---- Content sizing (driven by Settings; see useApplyTheme) --------- */
   --font-size-body: 12.5pt;
   --line-height-body: 1.45;
 }
@@ -82,30 +127,44 @@
   --font-body: var(--font-georgia);
 }
 
-/* ---- Dark palette: system preference (only when not forced light) ---- */
-@media (prefers-color-scheme: dark) {
-  :root:not([data-theme='light']) {
-    --color-bg: #111111;
-    --color-bg-elevated: #1c1c1e;
-    --color-fg: #f2f2f2;
-    --color-fg-muted: #b3b3b3;
-    --color-border: #333333;
-    --color-border-strong: #8a8a8a;
-    --color-accent: #9a86ff;
-    --color-accent-contrast: #111111;
-    --color-focus-ring: #9a86ff;
+/* ---- Light palette: system preference (only when not forced dark) ---- */
+@media (prefers-color-scheme: light) {
+  :root:not([data-theme='dark']) {
+    --color-bg: #f8f0dd;
+    --color-bg-elevated: #ece0c6;
+    --color-bg-elevated-2: #e3d5af;
+    --color-fg: #2a1e12;
+    --color-fg-muted: #5a4b37;
+    --color-border: rgba(42, 30, 18, 0.12);
+    --color-border-strong: #8a7a63;
+    --color-accent: #7a5a1a;
+    --color-accent-contrast: #f8f0dd;
+    --color-focus-ring: #7a5a1a;
+    --color-success: #3f5940;
+    --color-error: #7a2c1c;
+    --color-surface-highlight: #fffdf6;
+    --color-surface-highlight-fg: #2a1e12;
+    --color-surface-highlight-fg-muted: #5a4b37;
+    --color-surface-highlight-border: rgba(42, 30, 18, 0.12);
   }
 }
 
-/* ---- Dark palette: explicit user choice, overrides the media query --- */
-:root[data-theme='dark'] {
-  --color-bg: #111111;
-  --color-bg-elevated: #1c1c1e;
-  --color-fg: #f2f2f2;
-  --color-fg-muted: #b3b3b3;
-  --color-border: #333333;
-  --color-border-strong: #8a8a8a;
-  --color-accent: #9a86ff;
-  --color-accent-contrast: #111111;
-  --color-focus-ring: #9a86ff;
+/* ---- Light palette: explicit user choice, overrides the media query -- */
+:root[data-theme='light'] {
+  --color-bg: #f8f0dd;
+  --color-bg-elevated: #ece0c6;
+  --color-bg-elevated-2: #e3d5af;
+  --color-fg: #2a1e12;
+  --color-fg-muted: #5a4b37;
+  --color-border: rgba(42, 30, 18, 0.12);
+  --color-border-strong: #8a7a63;
+  --color-accent: #7a5a1a;
+  --color-accent-contrast: #f8f0dd;
+  --color-focus-ring: #7a5a1a;
+  --color-success: #3f5940;
+  --color-error: #7a2c1c;
+  --color-surface-highlight: #fffdf6;
+  --color-surface-highlight-fg: #2a1e12;
+  --color-surface-highlight-fg-muted: #5a4b37;
+  --color-surface-highlight-border: rgba(42, 30, 18, 0.12);
 }

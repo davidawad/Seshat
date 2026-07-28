@@ -47,11 +47,11 @@ export const CardListItem = ({ card }: CardListItemProps) => {
 
   return (
     <li>
-      <p>
-        <strong>{card.prompt}</strong> <span>({summary.label})</span>
+      <p className="card-content">
+        <strong>{card.prompt}</strong> <span className="card-kind-badge">({summary.label})</span>
       </p>
-      <p>{summary.detail}</p>
-      {card.explanation !== null && <p>{card.explanation}</p>}
+      <p className="card-content">{summary.detail}</p>
+      {card.explanation !== null && <p className="card-content">{card.explanation}</p>}
       {card.tags.length > 0 && (
         <ul aria-label="Tags">
           {card.tags.map((tag) => (

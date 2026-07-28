@@ -10,6 +10,10 @@
 body {
   margin: 0;
   background: var(--color-bg);
+  background-image:
+    radial-gradient(ellipse 900px 500px at 15% -10%, rgba(180, 144, 63, 0.06), transparent 60%),
+    radial-gradient(ellipse 700px 500px at 100% 20%, rgba(168, 64, 42, 0.04), transparent 55%);
+  background-attachment: fixed;
   color: var(--color-fg);
 }
 
@@ -19,7 +23,7 @@ body {
   top: 0;
   z-index: 100;
   padding: 0.5em 1em;
-  background: var(--color-bg);
+  background: var(--color-bg-elevated);
   color: var(--color-fg);
   border: 2px solid var(--color-accent);
 }
@@ -39,26 +43,74 @@ body {
   display: flex;
   align-items: center;
   gap: 2rem;
-  padding: 1rem 1.5rem;
+  padding: 1.1rem 1.5rem;
   border-bottom: 1px solid var(--color-border);
+  background: var(--color-bg-elevated);
 }
 
 .app-brand {
-  font-weight: 700;
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  font-family: var(--font-display);
+  font-weight: 600;
+  font-size: 1.25rem;
+  letter-spacing: 0.01em;
+  color: var(--color-fg);
+  text-decoration: none;
+}
+
+.app-brand-mark {
+  width: 20px;
+  height: 20px;
+  color: var(--color-accent);
+  flex-shrink: 0;
 }
 
 .app-nav {
   display: flex;
-  gap: 1.25rem;
+  gap: 1.5rem;
   list-style: none;
   margin: 0;
   padding: 0;
 }
 
+.app-nav a {
+  color: var(--color-fg-muted);
+  text-decoration: none;
+  font-size: 0.85rem;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+}
+
+.app-nav a:hover,
+.app-nav a[aria-current='page'] {
+  color: var(--color-accent);
+}
+
 .app-main {
   flex: 1;
   width: 100%;
-  max-width: var(--measure);
+  max-width: 72rem;
   margin-inline: auto;
-  padding: 1.5rem;
+  padding: 2rem 1.5rem 4rem;
+}
+
+/*
+ * The signature moment: a page glowing against the archive-room dark, as
+ * if lit from within. Reserved for the one or two panels per screen that
+ * deserve it (the active study card, primarily) — not applied wholesale,
+ * or it stops meaning anything.
+ */
+.illuminated-panel {
+  background: var(--color-surface-highlight);
+  color: var(--color-surface-highlight-fg);
+  border: 1px solid var(--color-surface-highlight-border);
+  border-radius: var(--radius-page);
+  padding: 1.75rem;
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.2);
+}
+
+.illuminated-panel a {
+  color: var(--color-accent);
 }

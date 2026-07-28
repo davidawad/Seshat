@@ -3,15 +3,16 @@
  * @fontsource — no third-party network requests, consistent with the
  * client-only/no-backend architecture).
  *
- * Only regular (400) + bold (700) weights are imported per family — the
- * app never needs italics or the full 100-900 range, and pulling every
- * weight (e.g. Inter ships 100-900 plus italics) would bloat the bundle
- * for weights nothing references.
+ * Only the weights each face is actually used at are imported — the app
+ * never needs the full 100-900 range, and pulling every weight (e.g.
+ * Inter ships 100-900 plus italics) would bloat the bundle for weights
+ * nothing references.
  *
  * Verdana and Georgia are system fonts (see --font-verdana/--font-georgia
  * in tokens.css) and need no @font-face here.
  */
 
+/* ---- Content typefaces (Settings-selectable) ------------------------- */
 @import '@fontsource/atkinson-hyperlegible/400.css';
 @import '@fontsource/atkinson-hyperlegible/700.css';
 
@@ -20,3 +21,17 @@
 
 @import '@fontsource/source-serif-4/400.css';
 @import '@fontsource/source-serif-4/700.css';
+
+/* ---- Chrome typefaces (Illuminated Archive) --------------------------- */
+@import '@fontsource/fraunces/400.css';
+@import '@fontsource/fraunces/500.css';
+@import '@fontsource/fraunces/600.css';
+@import '@fontsource/fraunces/400-italic.css';
+
+@import '@fontsource/newsreader/400.css';
+@import '@fontsource/newsreader/500.css';
+@import '@fontsource/newsreader/400-italic.css';
+
+@import '@fontsource/ibm-plex-mono/400.css';
+@import '@fontsource/ibm-plex-mono/500.css';
+@import '@fontsource/ibm-plex-mono/600.css';

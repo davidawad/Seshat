@@ -1,4 +1,4 @@
-import { NavLink, Outlet } from 'react-router-dom'
+import { Link, NavLink, Outlet } from 'react-router-dom'
 import { useApplyTheme } from '../features/settings/theme'
 
 const NAV_ITEMS = [
@@ -10,6 +10,23 @@ const NAV_ITEMS = [
   { to: '/attributions', label: 'Attributions', end: false },
 ] as const
 
+// Seshat's own hieroglyphic emblem — a seven-pointed star on a stem, the
+// same mark as public/favicon.svg — reused here as the header logomark.
+const SeshatMark = () => (
+  <svg className="app-brand-mark" viewBox="0 0 48 48" aria-hidden="true" focusable="false">
+    <g fill="currentColor">
+      <rect x="22.5" y="4" width="3" height="20" rx="1.5" transform="rotate(0 24 24)" />
+      <rect x="22.5" y="4" width="3" height="20" rx="1.5" transform="rotate(51.4286 24 24)" />
+      <rect x="22.5" y="4" width="3" height="20" rx="1.5" transform="rotate(102.8571 24 24)" />
+      <rect x="22.5" y="4" width="3" height="20" rx="1.5" transform="rotate(154.2857 24 24)" />
+      <rect x="22.5" y="4" width="3" height="20" rx="1.5" transform="rotate(205.7143 24 24)" />
+      <rect x="22.5" y="4" width="3" height="20" rx="1.5" transform="rotate(257.1429 24 24)" />
+      <rect x="22.5" y="4" width="3" height="20" rx="1.5" transform="rotate(308.5714 24 24)" />
+      <circle cx="24" cy="24" r="4.5" />
+    </g>
+  </svg>
+)
+
 export const Layout = () => {
   useApplyTheme()
   return (
@@ -18,7 +35,10 @@ export const Layout = () => {
         Skip to content
       </a>
       <header className="app-header">
-        <span className="app-brand">Seshat</span>
+        <Link to="/" className="app-brand">
+          <SeshatMark />
+          Seshat
+        </Link>
         <nav aria-label="Primary">
           <ul className="app-nav">
             {NAV_ITEMS.map((item) => (

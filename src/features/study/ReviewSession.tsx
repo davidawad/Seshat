@@ -4,6 +4,7 @@ import type { ConfidenceRating, Grade, StudyCard } from '../../types'
 import { CardInput } from './CardInput'
 import { type Attempt, GRADE_ORDER, initialAttempt, isAttemptComplete, isCorrect } from './grading'
 import { RevealPanel } from './RevealPanel'
+import './review-session.css'
 
 type Step = 'answer' | 'confidence' | 'reveal'
 
@@ -100,7 +101,9 @@ export const ReviewSession = ({ card, position, total, onAdvance }: ReviewSessio
             handleAnswerContinue()
           }}
         >
-          <CardInput card={card} attempt={attempt} onChange={setAttempt} disabled={false} />
+          <div className="illuminated-panel card-content measure">
+            <CardInput card={card} attempt={attempt} onChange={setAttempt} disabled={false} />
+          </div>
           <button type="submit" disabled={!complete}>
             Continue
           </button>
@@ -109,7 +112,9 @@ export const ReviewSession = ({ card, position, total, onAdvance }: ReviewSessio
 
       {step === 'confidence' && (
         <div>
-          <CardInput card={card} attempt={attempt} onChange={setAttempt} disabled />
+          <div className="illuminated-panel card-content measure">
+            <CardInput card={card} attempt={attempt} onChange={setAttempt} disabled />
+          </div>
           <fieldset className="review-confidence">
             <legend>How confident are you in that answer?</legend>
             <div className="confidence-options">
@@ -128,7 +133,11 @@ export const ReviewSession = ({ card, position, total, onAdvance }: ReviewSessio
         </div>
       )}
 
-      {step === 'reveal' && <RevealPanel card={card} attempt={attempt} correct={correct} onGrade={handleGrade} />}
+      {step === 'reveal' && (
+        <div className="illuminated-panel">
+          <RevealPanel card={card} attempt={attempt} correct={correct} onGrade={handleGrade} />
+        </div>
+      )}
     </div>
   )
 }

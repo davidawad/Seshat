@@ -1,0 +1,48 @@
+.review-progress {
+  font-size: 0.85rem;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: var(--color-fg-muted);
+}
+
+.review-result {
+  font-family: var(--font-display);
+  font-size: 1.5rem;
+  font-weight: 600;
+  margin: 0 0 0.75rem;
+}
+
+.review-result.is-correct {
+  color: var(--color-success);
+}
+
+.review-result.is-incorrect {
+  color: var(--color-error);
+}
+
+.review-correct-answer {
+  font-weight: 600;
+}
+
+.review-explanation,
+.review-source {
+  color: var(--color-surface-highlight-fg-muted);
+}
+
+.confidence-options,
+.grade-options {
+  display: flex;
+  gap: 0.75rem;
+  flex-wrap: wrap;
+  margin-top: 0.75rem;
+}
+
+.grade-button.is-suggested {
+  border-color: var(--color-accent);
+  box-shadow: 0 0 0 1px var(--color-accent);
+}
+
+.grade-key {
+  color: var(--color-fg-muted);
+  font-size: 0.85em;
+}
