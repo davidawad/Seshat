@@ -1,0 +1,56 @@
+.home-eyebrow {
+  font-family: var(--font-ui);
+  font-size: 0.85rem;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--color-accent);
+  margin: 0 0 0.5rem;
+}
+
+.home-lede {
+  max-width: 60ch;
+  font-size: 1.1rem;
+}
+
+.home-cta-row {
+  display: flex;
+  gap: 0.75rem;
+  margin: 1.5rem 0 2.5rem;
+}
+
+.home-cta-primary,
+.home-cta-secondary {
+  display: inline-block;
+  padding: 0.65rem 1.25rem;
+  border-radius: var(--radius-sm);
+  text-decoration: none;
+  font-weight: 500;
+}
+
+.home-cta-primary {
+  background: var(--color-accent);
+  color: var(--color-accent-contrast);
+}
+
+.home-cta-secondary {
+  border: 1px solid var(--color-border-strong);
+  color: var(--color-fg);
+}
+
+.home-citation-list {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  margin: 1rem 0 2rem;
+}
+
+.home-citation-list dt {
+  font-family: var(--font-display);
+  font-weight: 600;
+}
+
+.home-citation-list dd {
+  margin: 0.25rem 0 0;
+  color: var(--color-fg-muted);
+  max-width: 65ch;
+}

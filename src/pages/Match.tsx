@@ -3,45 +3,45 @@ import { MatchSession } from '../features/match/MatchSession'
 import type { MatchPair } from '../features/match/round'
 import { cardFrontBack } from '../features/study/card-summary'
 import { useSeshatStore } from '../lib/store'
-import { deckIdSchema } from '../types'
+import { setIdSchema } from '../types'
 
 /** Matching needs at least two pairs to be a game at all. */
 const MIN_PAIRS = 2
 
 export const MatchPage = () => {
-  const { deckId: deckIdParam } = useParams<{ deckId: string }>()
+  const { id } = useParams<{ id: string }>()
   const { state } = useSeshatStore()
 
-  const parsedDeckId = deckIdSchema.safeParse(deckIdParam ?? '')
+  const parsedId = setIdSchema.safeParse(id ?? '')
 
-  if (!parsedDeckId.success) {
+  if (!parsedId.success) {
     return (
       <section aria-labelledby="match-heading">
-        <h1 id="match-heading">Deck not found</h1>
+        <h1 id="match-heading">Set not found</h1>
         <p>
-          <Link to="/decks">Back to decks</Link>
+          <Link to="/sets">Back to sets</Link>
         </p>
       </section>
     )
   }
 
-  const deckId = parsedDeckId.data
-  const deck = state.decks.find((candidate) => candidate.id === deckId)
+  const setId = parsedId.data
+  const set = state.sets.find((candidate) => candidate.id === setId)
 
-  if (deck === undefined) {
+  if (set === undefined) {
     return (
       <section aria-labelledby="match-heading">
-        <h1 id="match-heading">Deck not found</h1>
-        <p>This deck may have been deleted.</p>
+        <h1 id="match-heading">Set not found</h1>
+        <p>This set may have been deleted.</p>
         <p>
-          <Link to="/decks">Back to decks</Link>
+          <Link to="/sets">Back to sets</Link>
         </p>
       </section>
     )
   }
 
   const pairs: MatchPair[] = state.cards
-    .filter((card) => card.deckId === deckId)
+    .filter((card) => card.setId === setId)
     .map((card) => {
       const { front, back } = cardFrontBack(card)
       return { cardId: card.id, front, back }
@@ -51,12 +51,12 @@ export const MatchPage = () => {
     return (
       <section aria-labelledby="match-heading">
         <p>
-          <Link to={`/decks/${deckId}`}>Back to {deck.name}</Link>
+          <Link to={`/sets/${setId}`}>Back to {set.name}</Link>
         </p>
-        <h1 id="match-heading">Match: {deck.name}</h1>
+        <h1 id="match-heading">Match: {set.name}</h1>
         <p>
-          Match needs at least {MIN_PAIRS} cards to build a round — this deck has {pairs.length}. Add a few more cards
-          to this deck, then come back.
+          Match needs at least {MIN_PAIRS} cards to build a round — this set has {pairs.length}. Add a few more cards to
+          this set, then come back.
         </p>
       </section>
     )
@@ -65,11 +65,11 @@ export const MatchPage = () => {
   return (
     <section aria-labelledby="match-heading">
       <p>
-        <Link to={`/decks/${deckId}`}>Back to {deck.name}</Link>
+        <Link to={`/sets/${setId}`}>Back to {set.name}</Link>
       </p>
-      <h1 id="match-heading">Match: {deck.name}</h1>
+      <h1 id="match-heading">Match: {set.name}</h1>
       <p>Pick a term and its matching definition. Timing starts on your first pick — no penalty for a miss.</p>
-      <MatchSession key={deckId} deckId={deckId} pairs={pairs} />
+      <MatchSession key={setId} setId={setId} pairs={pairs} />
     </section>
   )
 }

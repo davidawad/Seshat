@@ -1,5 +1,5 @@
 /**
- * Shared helper for the plain-text "tags" inputs used by the deck and card
+ * Shared helper for the plain-text "tags" inputs used by the set and card
  * forms: a comma-separated string in, a deduplicated, trimmed tag list out.
  */
 export const parseTagsInput = (raw: string): string[] => {

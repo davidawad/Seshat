@@ -10,7 +10,7 @@ describe('storage', () => {
   it('returns an empty state when nothing is persisted yet', () => {
     const result = loadState()
     expect(result.ok).toBe(true)
-    if (result.ok) expect(result.value.decks).toEqual([])
+    if (result.ok) expect(result.value.sets).toEqual([])
   })
 
   it('round-trips a saved state', () => {
@@ -29,7 +29,7 @@ describe('storage', () => {
   })
 
   it('reports corruption when the persisted shape fails schema validation', () => {
-    window.localStorage.setItem(STORAGE_KEY, JSON.stringify({ version: 1, decks: 'not-an-array' }))
+    window.localStorage.setItem(STORAGE_KEY, JSON.stringify({ version: 1, sets: 'not-an-array' }))
     const result = loadState()
     expect(result.ok).toBe(false)
     if (!result.ok) expect(result.error.kind).toBe('corrupt')

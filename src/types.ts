@@ -11,10 +11,11 @@ import { z } from 'zod'
 // Branded IDs
 // ---------------------------------------------------------------------------
 
-export const deckIdSchema = z.uuid().brand('DeckId')
+// Named SetId (not the type Set, which would shadow JS's built-in Set<T>).
+export const setIdSchema = z.uuid().brand('SetId')
 export const cardIdSchema = z.uuid().brand('CardId')
 
-export type DeckId = z.infer<typeof deckIdSchema>
+export type SetId = z.infer<typeof setIdSchema>
 export type CardId = z.infer<typeof cardIdSchema>
 
 // ---------------------------------------------------------------------------
@@ -115,7 +116,7 @@ export type SchedulingState = z.infer<typeof schedulingStateSchema>
 
 export const studyCardSchema = z.object({
   id: cardIdSchema,
-  deckId: deckIdSchema,
+  setId: setIdSchema,
   prompt: z.string().min(1),
   content: cardContentSchema,
   explanation: z.string().nullable(),
@@ -129,11 +130,13 @@ export const studyCardSchema = z.object({
 export type StudyCard = z.infer<typeof studyCardSchema>
 
 // ---------------------------------------------------------------------------
-// Deck
+// Study set — the core abstraction: a named collection of cards. (Called
+// "deck" in most spaced-repetition tools, "set" here to match the vocabulary
+// of the tool this app is a research-backed alternative to.)
 // ---------------------------------------------------------------------------
 
-export const deckSchema = z.object({
-  id: deckIdSchema,
+export const studySetSchema = z.object({
+  id: setIdSchema,
   name: z.string().min(1),
   description: z.string(),
   tags: z.array(z.string().min(1)),
@@ -149,7 +152,7 @@ export const deckSchema = z.object({
     .nullable(),
 })
 
-export type Deck = z.infer<typeof deckSchema>
+export type StudySet = z.infer<typeof studySetSchema>
 
 // ---------------------------------------------------------------------------
 // Review log — one entry per answered card, the raw material for the
@@ -164,7 +167,7 @@ export type ConfidenceRating = z.infer<typeof confidenceRatingSchema>
 
 export const reviewLogEntrySchema = z.object({
   cardId: cardIdSchema,
-  deckId: deckIdSchema,
+  setId: setIdSchema,
   reviewedAt: z.iso.datetime(),
   grade: gradeSchema,
   confidence: confidenceRatingSchema.nullable(),
@@ -227,7 +230,7 @@ export const APP_STATE_VERSION = 1
 
 export const appStateSchema = z.object({
   version: z.literal(APP_STATE_VERSION),
-  decks: z.array(deckSchema),
+  sets: z.array(studySetSchema),
   cards: z.array(studyCardSchema),
   reviewLog: z.array(reviewLogEntrySchema),
   settings: settingsSchema,
@@ -237,15 +240,15 @@ export type AppState = z.infer<typeof appStateSchema>
 
 export const createEmptyAppState = (): AppState => ({
   version: APP_STATE_VERSION,
-  decks: [],
+  sets: [],
   cards: [],
   reviewLog: [],
   settings: DEFAULT_SETTINGS,
 })
 
 // ---------------------------------------------------------------------------
-// Portable deck export format — what import/export and deck-sharing use.
-// Deliberately excludes scheduling state: importing a deck should not import
+// Portable set export format — what import/export and set-sharing use.
+// Deliberately excludes scheduling state: importing a set should not import
 // someone else's memory model.
 // ---------------------------------------------------------------------------
 
@@ -259,7 +262,7 @@ export const exportedCardSchema = z.object({
 
 export type ExportedCard = z.infer<typeof exportedCardSchema>
 
-export const exportedDeckSchema = z.object({
+export const exportedSetSchema = z.object({
   seshatExportVersion: z.literal(1),
   name: z.string().min(1),
   description: z.string(),
@@ -267,4 +270,4 @@ export const exportedDeckSchema = z.object({
   cards: z.array(exportedCardSchema),
 })
 
-export type ExportedDeck = z.infer<typeof exportedDeckSchema>
+export type ExportedSet = z.infer<typeof exportedSetSchema>

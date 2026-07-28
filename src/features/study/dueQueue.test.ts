@@ -1,13 +1,13 @@
 import { describe, expect, it } from 'vitest'
 import { createInitialScheduling } from '../../lib/fsrs'
-import type { CardId, DeckId, StudyCard } from '../../types'
+import type { CardId, SetId, StudyCard } from '../../types'
 import { countDueCategories, interleaveByCategory, selectDueQueue } from './dueQueue'
 
 const now = new Date('2026-01-10T00:00:00.000Z')
 
-const makeCard = (id: string, deckId: string, dueOffsetMs: number, tags: readonly string[] = []): StudyCard => ({
+const makeCard = (id: string, setId: string, dueOffsetMs: number, tags: readonly string[] = []): StudyCard => ({
   id: id as CardId,
-  deckId: deckId as DeckId,
+  setId: setId as SetId,
   prompt: 'prompt',
   content: { kind: 'short-answer', answer: 'answer', acceptableAnswers: [] },
   explanation: null,
@@ -24,9 +24,9 @@ describe('selectDueQueue', () => {
     expect(selectDueQueue(cards, null, now)).toEqual(['c2', 'c1'])
   })
 
-  it('filters to a single deck when deckId is given', () => {
+  it('filters to a single set when setId is given', () => {
     const cards: StudyCard[] = [makeCard('c1', 'd1', -1000), makeCard('c2', 'd2', -1000)]
-    expect(selectDueQueue(cards, 'd1' as DeckId, now)).toEqual(['c1'])
+    expect(selectDueQueue(cards, 'd1' as SetId, now)).toEqual(['c1'])
   })
 
   it('returns an empty queue when nothing is due', () => {
@@ -75,7 +75,7 @@ describe('interleaveByCategory', () => {
     expect(interleaveByCategory(cards, dueIds)).toEqual(dueIds)
   })
 
-  it('leaves an all-due-cards-share-a-tag input unchanged even across different decks', () => {
+  it('leaves an all-due-cards-share-a-tag input unchanged even across different sets', () => {
     const cards: StudyCard[] = [makeCard('a1', 'd1', 0, ['shared']), makeCard('a2', 'd2', 0, ['shared'])]
     const dueIds = cards.map((c) => c.id)
     expect(interleaveByCategory(cards, dueIds)).toEqual(dueIds)
@@ -112,18 +112,18 @@ describe('interleaveByCategory', () => {
     expect(new Set(result)).toEqual(new Set(dueIds))
   })
 
-  it('falls back to deckId as the category for cards with no tags', () => {
-    const cards: StudyCard[] = [makeCard('x1', 'deckX', 0), makeCard('x2', 'deckX', 0), makeCard('y1', 'deckY', 0)]
+  it('falls back to setId as the category for cards with no tags', () => {
+    const cards: StudyCard[] = [makeCard('x1', 'setX', 0), makeCard('x2', 'setX', 0), makeCard('y1', 'setY', 0)]
     const dueIds = cards.map((c) => c.id)
     expect(interleaveByCategory(cards, dueIds)).toEqual(['x1', 'y1', 'x2'])
   })
 
-  it('mixes tagged and untagged (deckId-fallback) categories together', () => {
+  it('mixes tagged and untagged (setId-fallback) categories together', () => {
     const cards: StudyCard[] = [
       makeCard('a1', 'd1', 0, ['tagA']),
       makeCard('a2', 'd1', 0, ['tagA']),
-      makeCard('u1', 'deckU', 0),
-      makeCard('u2', 'deckU', 0),
+      makeCard('u1', 'setU', 0),
+      makeCard('u2', 'setU', 0),
     ]
     const dueIds = cards.map((c) => c.id)
     expect(interleaveByCategory(cards, dueIds)).toEqual(['a1', 'u1', 'a2', 'u2'])
@@ -196,11 +196,11 @@ describe('countDueCategories', () => {
     ).toBe(1)
   })
 
-  it('counts distinct tag/deckId categories across the due set', () => {
+  it('counts distinct tag/setId categories across the due set', () => {
     const cards: StudyCard[] = [
       makeCard('a1', 'd1', 0, ['tagA']),
       makeCard('b1', 'd1', 0, ['tagB']),
-      makeCard('u1', 'deckU', 0),
+      makeCard('u1', 'setU', 0),
     ]
     expect(
       countDueCategories(

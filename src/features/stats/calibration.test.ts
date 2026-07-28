@@ -1,13 +1,13 @@
 import { describe, expect, it } from 'vitest'
 import { createInitialScheduling } from '../../lib/fsrs'
-import type { CardId, DeckId, ReviewLogEntry, StudyCard } from '../../types'
+import type { CardId, SetId, ReviewLogEntry, StudyCard } from '../../types'
 import { calibrationBuckets, dueBacklogCount, retentionEstimate, reviewedTodayCount } from './calibration'
 
 const now = new Date('2026-01-10T12:00:00.000Z')
 
 const makeEntry = (overrides: Partial<ReviewLogEntry> = {}): ReviewLogEntry => ({
   cardId: 'c1' as CardId,
-  deckId: 'd1' as DeckId,
+  setId: 'd1' as SetId,
   reviewedAt: now.toISOString(),
   grade: 'good',
   confidence: 'sure',
@@ -19,7 +19,7 @@ const makeEntry = (overrides: Partial<ReviewLogEntry> = {}): ReviewLogEntry => (
 
 const makeCard = (dueOffsetMs: number): StudyCard => ({
   id: 'c1' as CardId,
-  deckId: 'd1' as DeckId,
+  setId: 'd1' as SetId,
   prompt: 'p',
   content: { kind: 'short-answer', answer: 'a', acceptableAnswers: [] },
   explanation: null,

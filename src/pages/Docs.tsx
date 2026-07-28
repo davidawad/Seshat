@@ -40,7 +40,7 @@ export const DocsPage = () => (
     <section aria-labelledby="docs-storage-heading">
       <h2 id="docs-storage-heading">How your data is stored</h2>
       <p>
-        Seshat has no account, no backend, no database, no tracking. Everything — your decks, your cards, your review
+        Seshat has no account, no backend, no database, no tracking. Everything — your sets, your cards, your review
         history, your settings — lives in your browser&rsquo;s <code>localStorage</code>. Nothing is sent to a server,
         because there is no server.
       </p>
@@ -53,12 +53,12 @@ export const DocsPage = () => (
       </p>
       <p>
         Practically, this means: your data is yours, it never leaves your device, and it&rsquo;s only as durable as that
-        browser profile — export your decks periodically if you care about them surviving a cleared cache.
+        browser profile — export your sets periodically if you care about them surviving a cleared cache.
       </p>
       <p>
         Image-occlusion cards store a downscaled, compressed copy of the image directly in that same{' '}
-        <code>localStorage</code> blob, so a deck with heavy image use will run into the browser&rsquo;s storage ceiling
-        faster than a text-only deck will.
+        <code>localStorage</code> blob, so a set with heavy image use will run into the browser&rsquo;s storage ceiling
+        faster than a text-only set will.
       </p>
     </section>
 

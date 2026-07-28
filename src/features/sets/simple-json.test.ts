@@ -21,15 +21,15 @@ describe('parseSimpleJson', () => {
   })
 
   it('parses a {name, terms} wrapped object', () => {
-    const result = parseSimpleJson(JSON.stringify({ name: 'My Deck', terms: [{ term: 'A', definition: 'B' }] }))
+    const result = parseSimpleJson(JSON.stringify({ name: 'My Set', terms: [{ term: 'A', definition: 'B' }] }))
     expect(result.ok).toBe(true)
-    if (result.ok) expect(result.value.name).toBe('My Deck')
+    if (result.ok) expect(result.value.name).toBe('My Set')
   })
 
   it('accepts title as a name alias', () => {
-    const result = parseSimpleJson(JSON.stringify({ title: 'My Deck', terms: [{ term: 'A', definition: 'B' }] }))
+    const result = parseSimpleJson(JSON.stringify({ title: 'My Set', terms: [{ term: 'A', definition: 'B' }] }))
     expect(result.ok).toBe(true)
-    if (result.ok) expect(result.value.name).toBe('My Deck')
+    if (result.ok) expect(result.value.name).toBe('My Set')
   })
 
   it('accepts question/answer and front/back key aliases', () => {
@@ -71,7 +71,7 @@ describe('toSimpleJson', () => {
   it('serializes cards to term/definition pairs using cardFrontBack', () => {
     const card: StudyCard = {
       id: 'c1' as StudyCard['id'],
-      deckId: 'd1' as StudyCard['deckId'],
+      setId: 'd1' as StudyCard['setId'],
       prompt: 'Powerhouse of the cell?',
       content: { kind: 'short-answer', answer: 'Mitochondria', acceptableAnswers: [] },
       explanation: null,
@@ -92,8 +92,8 @@ describe('toSimpleJson', () => {
       },
     }
 
-    expect(toSimpleJson('My Deck', [card])).toEqual({
-      name: 'My Deck',
+    expect(toSimpleJson('My Set', [card])).toEqual({
+      name: 'My Set',
       terms: [{ term: 'Powerhouse of the cell?', definition: 'Mitochondria' }],
     })
   })

@@ -1,6 +1,6 @@
 import { useEffect, useRef, useState } from 'react'
 import { Legible } from '../../components/Legible'
-import type { CardId, DeckId } from '../../types'
+import type { CardId, SetId } from '../../types'
 import { formatElapsed, getBestTimeMs, recordCompletionTime } from './bestTime'
 import './match.css'
 import { type MatchPair, type MatchTile, DEFAULT_PAIR_CAP, createRound } from './round'
@@ -17,7 +17,7 @@ const MISS_DWELL_MS = 700
 const TICK_MS = 100
 
 interface MatchSessionProps {
-  readonly deckId: DeckId
+  readonly setId: SetId
   readonly pairs: readonly MatchPair[]
 }
 
@@ -51,7 +51,7 @@ const TileButton = ({ tile, isSelected, isMatched, isMiss, onSelect }: TileButto
   )
 }
 
-export const MatchSession = ({ deckId, pairs }: MatchSessionProps) => {
+export const MatchSession = ({ setId, pairs }: MatchSessionProps) => {
   const [round, setRound] = useState<readonly MatchTile[]>(() => createRound(pairs, DEFAULT_PAIR_CAP))
   const [selectedTileId, setSelectedTileId] = useState<string | null>(null)
   const [matchedCardIds, setMatchedCardIds] = useState<ReadonlySet<CardId>>(new Set())
@@ -60,7 +60,7 @@ export const MatchSession = ({ deckId, pairs }: MatchSessionProps) => {
   const [completedAt, setCompletedAt] = useState<number | null>(null)
   const [now, setNow] = useState<number>(() => Date.now())
   const [feedback, setFeedback] = useState<string>('')
-  const [bestAtStart, setBestAtStart] = useState<number | null>(() => getBestTimeMs(deckId))
+  const [bestAtStart, setBestAtStart] = useState<number | null>(() => getBestTimeMs(setId))
   const [isNewBest, setIsNewBest] = useState<boolean>(false)
 
   const missTimeoutRef = useRef<number | null>(null)
@@ -95,7 +95,7 @@ export const MatchSession = ({ deckId, pairs }: MatchSessionProps) => {
     setStartedAt(null)
     setCompletedAt(null)
     setFeedback('')
-    setBestAtStart(getBestTimeMs(deckId))
+    setBestAtStart(getBestTimeMs(setId))
     setIsNewBest(false)
   }
 
@@ -133,7 +133,7 @@ export const MatchSession = ({ deckId, pairs }: MatchSessionProps) => {
         const elapsed = finishedAt - (startedAt ?? finishedAt)
         setCompletedAt(finishedAt)
         const previousBest = bestAtStart
-        const updatedBest = recordCompletionTime(deckId, elapsed)
+        const updatedBest = recordCompletionTime(setId, elapsed)
         const wonBest = previousBest === null || elapsed < previousBest
         setIsNewBest(wonBest)
         setBestAtStart(updatedBest)

@@ -1,9 +1,9 @@
 import { useEffect, useMemo, useState } from 'react'
-import { useSearchParams } from 'react-router-dom'
+import { useParams } from 'react-router-dom'
 import { ReviewSession } from '../features/study/ReviewSession'
 import { countDueCategories, selectDueQueue } from '../features/study/dueQueue'
 import { useSeshatStore } from '../lib/store'
-import { type DeckId, deckIdSchema } from '../types'
+import { type SetId, setIdSchema } from '../types'
 
 /**
  * Advances past a card that vanished from the store mid-session (e.g.
@@ -15,23 +15,23 @@ const SkipRemovedCard = ({ onSkip }: { readonly onSkip: () => void }) => {
 }
 
 interface StudyQueueProps {
-  readonly deckId: DeckId | null
+  readonly setId: SetId | null
 }
 
-const StudyQueue = ({ deckId }: StudyQueueProps) => {
+const StudyQueue = ({ setId }: StudyQueueProps) => {
   const { state } = useSeshatStore()
 
-  // The due queue is snapshotted once per session (keyed by deckId in the
+  // The due queue is snapshotted once per session (keyed by setId in the
   // parent) rather than recomputed on every card update — recording a
   // review changes that card's scheduling, and we don't want the queue
   // reshuffling or a card vanishing mid-review just because its own answer
   // was just graded.
-  const dueIds = useMemo(() => selectDueQueue(state.cards, deckId, new Date()), [deckId]) // eslint-disable-line react-hooks/exhaustive-deps
+  const dueIds = useMemo(() => selectDueQueue(state.cards, setId, new Date()), [setId]) // eslint-disable-line react-hooks/exhaustive-deps
   const [position, setPosition] = useState(0)
 
   const cardsInScope = useMemo(
-    () => state.cards.filter((card) => deckId === null || card.deckId === deckId),
-    [state.cards, deckId],
+    () => state.cards.filter((card) => setId === null || card.setId === setId),
+    [state.cards, setId],
   )
 
   if (dueIds.length === 0) {
@@ -75,27 +75,31 @@ const StudyQueue = ({ deckId }: StudyQueueProps) => {
   )
 }
 
+/**
+ * Mounted at two routes: `/study` (global — every due card across every
+ * set) and `/sets/:id/study` (scoped to one set). `id` is simply absent
+ * on the first, so both are the same component.
+ */
 export const StudyPage = () => {
+  const { id } = useParams<{ id?: string }>()
   const { state } = useSeshatStore()
-  const [searchParams] = useSearchParams()
-  const deckParam = searchParams.get('deck')
 
-  const deckId = useMemo<DeckId | null>(() => {
-    if (deckParam === null) return null
-    const parsed = deckIdSchema.safeParse(deckParam)
+  const setId = useMemo<SetId | null>(() => {
+    if (id === undefined) return null
+    const parsed = setIdSchema.safeParse(id)
     return parsed.success ? parsed.data : null
-  }, [deckParam])
+  }, [id])
 
-  const deck = useMemo(
-    () => (deckId === null ? null : (state.decks.find((candidate) => candidate.id === deckId) ?? null)),
-    [deckId, state.decks],
+  const set = useMemo(
+    () => (setId === null ? null : (state.sets.find((candidate) => candidate.id === setId) ?? null)),
+    [setId, state.sets],
   )
 
   return (
     <section aria-labelledby="study-heading">
-      <h1 id="study-heading">{deck !== null ? `Study: ${deck.name}` : 'Study'}</h1>
-      {/* Remounts the queue whenever the deck filter changes, resetting session state cleanly. */}
-      <StudyQueue key={deckId ?? 'all'} deckId={deckId} />
+      <h1 id="study-heading">{set !== null ? `Study: ${set.name}` : 'Study'}</h1>
+      {/* Remounts the queue whenever the set filter changes, resetting session state cleanly. */}
+      <StudyQueue key={setId ?? 'all'} setId={setId} />
     </section>
   )
 }

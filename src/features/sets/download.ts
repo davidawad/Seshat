@@ -1,11 +1,11 @@
-/** Slugifies a deck name for use in a downloaded filename. */
+/** Slugifies a set name for use in a downloaded filename. */
 export const slugify = (name: string): string => {
   const slug = name
     .trim()
     .toLowerCase()
     .replace(/[^a-z0-9]+/g, '-')
     .replace(/(^-+|-+$)/g, '')
-  return slug.length > 0 ? slug : 'deck'
+  return slug.length > 0 ? slug : 'set'
 }
 
 /** Triggers a browser download of `data` (serialized as pretty JSON) as `filename`. */

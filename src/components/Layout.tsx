@@ -2,8 +2,8 @@ import { Link, NavLink, Outlet } from 'react-router-dom'
 import { useApplyTheme } from '../features/settings/theme'
 
 const NAV_ITEMS = [
-  { to: '/', label: 'Study', end: true },
-  { to: '/decks', label: 'Decks', end: false },
+  { to: '/study', label: 'Study', end: false },
+  { to: '/sets', label: 'Sets', end: false },
   { to: '/stats', label: 'Stats', end: false },
   { to: '/settings', label: 'Settings', end: false },
   { to: '/docs', label: 'Docs', end: false },

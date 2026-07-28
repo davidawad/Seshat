@@ -9,7 +9,7 @@ import { cardFrontBack } from '../study/card-summary'
  * card; richer kinds (cloze/mcq/image-occlusion) export via their
  * `cardFrontBack` front/back reduction and re-import as short-answer.
  *
- * Deliberately a looser, separate schema from `exportedDeckSchema` in
+ * Deliberately a looser, separate schema from `exportedSetSchema` in
  * types.ts — this format's whole point is interop with plain JSON files
  * from other tools/scripts, not fidelity to Seshat's own card model.
  */
@@ -48,7 +48,7 @@ const wrappedSchema = z.object({
 })
 
 export interface SimpleJsonImportResult {
-  /** `null` when the file was a bare array with no deck name to infer. */
+  /** `null` when the file was a bare array with no set name to infer. */
   readonly name: string | null
   readonly cards: ExportedCard[]
 }
@@ -86,12 +86,12 @@ export const parseSimpleJson = (raw: string): Result<SimpleJsonImportResult, str
   )
 }
 
-/** Serializes a deck's cards to the simple term/definition JSON format. */
+/** Serializes a set's cards to the simple term/definition JSON format. */
 export const toSimpleJson = (
-  deckName: string,
+  setName: string,
   cards: readonly StudyCard[],
 ): { name: string; terms: readonly z.infer<typeof termSchema>[] } => ({
-  name: deckName,
+  name: setName,
   terms: cards.map((card) => {
     const { front, back } = cardFrontBack(card)
     return { term: front, definition: back }

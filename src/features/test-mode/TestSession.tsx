@@ -55,7 +55,7 @@ export const TestSession = ({ cards }: TestSessionProps) => {
   }
 
   if (questions.length === 0) {
-    return <p>This deck doesn&rsquo;t have enough cards to generate a test.</p>
+    return <p>This set doesn&rsquo;t have enough cards to generate a test.</p>
   }
 
   if (submitted) {

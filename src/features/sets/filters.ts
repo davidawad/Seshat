@@ -1,4 +1,4 @@
-import type { CardContent, Deck, StudyCard } from '../../types'
+import type { CardContent, StudyCard, StudySet } from '../../types'
 
 const cardContentText = (content: CardContent): string => {
   switch (content.kind) {
@@ -14,18 +14,18 @@ const cardContentText = (content: CardContent): string => {
 }
 
 /**
- * Client-side search predicate used by the deck list: matches deck name,
+ * Client-side search predicate used by the set list: matches set name,
  * description, tags, or any of its cards' prompt/tags/content text.
  */
-export const deckMatchesQuery = (deck: Deck, deckCards: readonly StudyCard[], query: string): boolean => {
+export const setMatchesQuery = (set: StudySet, setCards: readonly StudyCard[], query: string): boolean => {
   const needle = query.trim().toLowerCase()
   if (needle.length === 0) return true
 
-  if (deck.name.toLowerCase().includes(needle)) return true
-  if (deck.description.toLowerCase().includes(needle)) return true
-  if (deck.tags.some((tag) => tag.toLowerCase().includes(needle))) return true
+  if (set.name.toLowerCase().includes(needle)) return true
+  if (set.description.toLowerCase().includes(needle)) return true
+  if (set.tags.some((tag) => tag.toLowerCase().includes(needle))) return true
 
-  return deckCards.some((card) => {
+  return setCards.some((card) => {
     if (card.prompt.toLowerCase().includes(needle)) return true
     if (card.tags.some((tag) => tag.toLowerCase().includes(needle))) return true
     return cardContentText(card.content).toLowerCase().includes(needle)

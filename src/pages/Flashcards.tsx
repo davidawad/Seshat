@@ -9,21 +9,21 @@ import {
   isSessionComplete,
 } from '../features/flashcards/session'
 import { useSeshatStore } from '../lib/store'
-import { type CardId, type DeckId, deckIdSchema } from '../types'
+import { type CardId, type SetId, setIdSchema } from '../types'
 
 const NotFound = ({ message }: { readonly message: string }) => (
   <section aria-labelledby="flashcards-heading">
     <h1 id="flashcards-heading">Flashcards</h1>
     <p>{message}</p>
     <p>
-      <Link to="/decks">Back to decks</Link>
+      <Link to="/sets">Back to sets</Link>
     </p>
   </section>
 )
 
 interface FlashcardRunnerProps {
-  readonly deckId: DeckId
-  readonly deckName: string
+  readonly setId: SetId
+  readonly setName: string
   readonly cardIds: readonly CardId[]
 }
 
@@ -33,7 +33,7 @@ interface FlashcardRunnerProps {
  * a review — which updates that card's FSRS scheduling in the store — never
  * reshuffles or resizes the running session.
  */
-const FlashcardRunner = ({ deckId, deckName, cardIds }: FlashcardRunnerProps) => {
+const FlashcardRunner = ({ setId, setName, cardIds }: FlashcardRunnerProps) => {
   const { state } = useSeshatStore()
   const [session, setSession] = useState<FlashcardSessionState>(() => createFlashcardSession(cardIds))
 
@@ -46,9 +46,9 @@ const FlashcardRunner = ({ deckId, deckName, cardIds }: FlashcardRunnerProps) =>
   return (
     <section aria-labelledby="flashcards-heading">
       <p>
-        <Link to={`/decks/${deckId}`}>Back to {deckName}</Link>
+        <Link to={`/sets/${setId}`}>Back to {setName}</Link>
       </p>
-      <h1 id="flashcards-heading">Flashcards: {deckName}</h1>
+      <h1 id="flashcards-heading">Flashcards: {setName}</h1>
 
       {complete ? (
         <p role="status">
@@ -70,28 +70,28 @@ const FlashcardRunner = ({ deckId, deckName, cardIds }: FlashcardRunnerProps) =>
 }
 
 export const FlashcardsPage = () => {
-  const { deckId: deckIdParam } = useParams<{ deckId: string }>()
+  const { id } = useParams<{ id: string }>()
   const { state } = useSeshatStore()
 
-  const parsedDeckId = deckIdSchema.safeParse(deckIdParam ?? '')
-  if (!parsedDeckId.success) return <NotFound message="This link doesn't point to a valid deck." />
+  const parsedId = setIdSchema.safeParse(id ?? '')
+  if (!parsedId.success) return <NotFound message="This link doesn't point to a valid set." />
 
-  const deckId = parsedDeckId.data
-  const deck = state.decks.find((candidate) => candidate.id === deckId)
-  if (deck === undefined) return <NotFound message="This deck may have been deleted." />
+  const setId = parsedId.data
+  const set = state.sets.find((candidate) => candidate.id === setId)
+  if (set === undefined) return <NotFound message="This set may have been deleted." />
 
-  const cards = state.cards.filter((candidate) => candidate.deckId === deckId)
+  const cards = state.cards.filter((candidate) => candidate.setId === setId)
   if (cards.length === 0) {
     return (
       <section aria-labelledby="flashcards-heading">
         <p>
-          <Link to={`/decks/${deckId}`}>Back to {deck.name}</Link>
+          <Link to={`/sets/${setId}`}>Back to {set.name}</Link>
         </p>
-        <h1 id="flashcards-heading">Flashcards: {deck.name}</h1>
-        <p>This deck has no cards yet. Add some from the deck page first.</p>
+        <h1 id="flashcards-heading">Flashcards: {set.name}</h1>
+        <p>This set has no cards yet. Add some from the set page first.</p>
       </section>
     )
   }
 
-  return <FlashcardRunner key={deckId} deckId={deckId} deckName={deck.name} cardIds={cards.map((card) => card.id)} />
+  return <FlashcardRunner key={setId} setId={setId} setName={set.name} cardIds={cards.map((card) => card.id)} />
 }

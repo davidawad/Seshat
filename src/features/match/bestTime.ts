@@ -1,7 +1,7 @@
-import type { DeckId } from '../../types'
+import type { SetId } from '../../types'
 
 /**
- * Per-deck personal-best time for Match mode, stored directly under its own
+ * Per-set personal-best time for Match mode, stored directly under its own
  * `localStorage` key — deliberately NOT part of `AppState`/`appStateSchema`
  * in ../../types. It's ephemeral, non-critical, local-only data (a timer
  * result, not study material or scheduling state), so it doesn't need to
@@ -9,13 +9,13 @@ import type { DeckId } from '../../types'
  * the one place in Match mode allowed to touch `localStorage` directly.
  */
 
-const bestTimeKey = (deckId: DeckId): string => `seshat:match-best:${deckId}`
+const bestTimeKey = (setId: SetId): string => `seshat:match-best:${setId}`
 
-/** Reads the stored personal-best time for a deck, in milliseconds. `null` if none yet, or if the stored value is missing/corrupt. */
-export const getBestTimeMs = (deckId: DeckId): number | null => {
+/** Reads the stored personal-best time for a set, in milliseconds. `null` if none yet, or if the stored value is missing/corrupt. */
+export const getBestTimeMs = (setId: SetId): number | null => {
   let raw: string | null
   try {
-    raw = window.localStorage.getItem(bestTimeKey(deckId))
+    raw = window.localStorage.getItem(bestTimeKey(setId))
   } catch {
     return null
   }
@@ -29,11 +29,11 @@ export const getBestTimeMs = (deckId: DeckId): number | null => {
  * Returns the resulting best time — the new one if it won, otherwise the
  * previous one unchanged.
  */
-export const recordCompletionTime = (deckId: DeckId, elapsedMs: number): number => {
-  const previousBest = getBestTimeMs(deckId)
+export const recordCompletionTime = (setId: SetId, elapsedMs: number): number => {
+  const previousBest = getBestTimeMs(setId)
   if (previousBest !== null && previousBest <= elapsedMs) return previousBest
   try {
-    window.localStorage.setItem(bestTimeKey(deckId), String(elapsedMs))
+    window.localStorage.setItem(bestTimeKey(setId), String(elapsedMs))
   } catch {
     // localStorage unavailable (private browsing, quota, etc.) — the round
     // still completed, we just can't persist a new best. Not worth

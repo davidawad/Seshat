@@ -1,19 +1,19 @@
 import { createContext, useCallback, useContext, useEffect, useMemo, useReducer } from 'react'
 import type { ReactNode } from 'react'
 import { createInitialScheduling, scheduleReview } from './fsrs'
-import { newCardId, newDeckId } from './id'
+import { newCardId, newSetId } from './id'
 import { type StorageError, loadState, saveState } from './storage'
 import {
   type AppState,
   type CardId,
   type ConfidenceRating,
-  type Deck,
-  type DeckId,
   type ExportedCard,
-  type ExportedDeck,
+  type ExportedSet,
   type Grade,
+  type SetId,
   type Settings,
   type StudyCard,
+  type StudySet,
   createEmptyAppState,
 } from '../types'
 
@@ -25,7 +25,7 @@ interface NewCardInput {
   readonly tags: string[]
 }
 
-interface NewDeckInput {
+interface NewSetInput {
   readonly name: string
   readonly description: string
   readonly tags: string[]
@@ -34,9 +34,9 @@ interface NewDeckInput {
 
 type Action =
   | { readonly type: 'hydrate'; readonly state: AppState }
-  | { readonly type: 'add-deck'; readonly deck: Deck }
-  | { readonly type: 'update-deck'; readonly id: DeckId; readonly patch: Partial<NewDeckInput>; readonly now: string }
-  | { readonly type: 'delete-deck'; readonly id: DeckId }
+  | { readonly type: 'add-set'; readonly set: StudySet }
+  | { readonly type: 'update-set'; readonly id: SetId; readonly patch: Partial<NewSetInput>; readonly now: string }
+  | { readonly type: 'delete-set'; readonly id: SetId }
   | { readonly type: 'add-card'; readonly card: StudyCard }
   | { readonly type: 'update-card'; readonly id: CardId; readonly patch: Partial<NewCardInput>; readonly now: string }
   | { readonly type: 'delete-card'; readonly id: CardId }
@@ -46,7 +46,7 @@ type Action =
       readonly scheduling: StudyCard['scheduling']
       readonly logEntry: AppState['reviewLog'][number]
     }
-  | { readonly type: 'import-deck'; readonly deck: Deck; readonly cards: readonly StudyCard[] }
+  | { readonly type: 'import-set'; readonly set: StudySet; readonly cards: readonly StudyCard[] }
   | { readonly type: 'update-settings'; readonly patch: Partial<Settings> }
   | { readonly type: 'reset' }
 
@@ -54,21 +54,21 @@ const reducer = (state: AppState, action: Action): AppState => {
   switch (action.type) {
     case 'hydrate':
       return action.state
-    case 'add-deck':
-      return { ...state, decks: [...state.decks, action.deck] }
-    case 'update-deck':
+    case 'add-set':
+      return { ...state, sets: [...state.sets, action.set] }
+    case 'update-set':
       return {
         ...state,
-        decks: state.decks.map((deck) =>
-          deck.id === action.id ? { ...deck, ...action.patch, updatedAt: action.now } : deck,
+        sets: state.sets.map((set) =>
+          set.id === action.id ? { ...set, ...action.patch, updatedAt: action.now } : set,
         ),
       }
-    case 'delete-deck':
+    case 'delete-set':
       return {
         ...state,
-        decks: state.decks.filter((deck) => deck.id !== action.id),
-        cards: state.cards.filter((card) => card.deckId !== action.id),
-        reviewLog: state.reviewLog.filter((entry) => entry.deckId !== action.id),
+        sets: state.sets.filter((set) => set.id !== action.id),
+        cards: state.cards.filter((card) => card.setId !== action.id),
+        reviewLog: state.reviewLog.filter((entry) => entry.setId !== action.id),
       }
     case 'add-card':
       return { ...state, cards: [...state.cards, action.card] }
@@ -93,8 +93,8 @@ const reducer = (state: AppState, action: Action): AppState => {
         ),
         reviewLog: [...state.reviewLog, action.logEntry],
       }
-    case 'import-deck':
-      return { ...state, decks: [...state.decks, action.deck], cards: [...state.cards, ...action.cards] }
+    case 'import-set':
+      return { ...state, sets: [...state.sets, action.set], cards: [...state.cards, ...action.cards] }
     case 'update-settings':
       return { ...state, settings: { ...state.settings, ...action.patch } }
     case 'reset':
@@ -105,10 +105,10 @@ const reducer = (state: AppState, action: Action): AppState => {
 interface SeshatStore {
   readonly state: AppState
   readonly storageError: StorageError | null
-  readonly addDeck: (input: NewDeckInput) => Deck
-  readonly updateDeck: (id: DeckId, patch: Partial<NewDeckInput>) => void
-  readonly deleteDeck: (id: DeckId) => void
-  readonly addCard: (deckId: DeckId, input: NewCardInput) => StudyCard
+  readonly addSet: (input: NewSetInput) => StudySet
+  readonly updateSet: (id: SetId, patch: Partial<NewSetInput>) => void
+  readonly deleteSet: (id: SetId) => void
+  readonly addCard: (setId: SetId, input: NewCardInput) => StudyCard
   readonly updateCard: (id: CardId, patch: Partial<NewCardInput>) => void
   readonly deleteCard: (id: CardId) => void
   readonly recordReview: (
@@ -118,8 +118,8 @@ interface SeshatStore {
     correct: boolean,
     elapsedMs: number,
   ) => void
-  readonly importDeck: (exported: ExportedDeck) => Deck
-  readonly exportDeck: (deckId: DeckId) => ExportedDeck | null
+  readonly importSet: (exported: ExportedSet) => StudySet
+  readonly exportSet: (setId: SetId) => ExportedSet | null
   readonly updateSettings: (patch: Partial<Settings>) => void
   readonly resetAll: () => void
 }
@@ -148,26 +148,26 @@ export const SeshatProvider = ({ children }: { readonly children: ReactNode }) =
     saveState(state)
   }, [state])
 
-  const addDeck = useCallback((input: NewDeckInput): Deck => {
+  const addSet = useCallback((input: NewSetInput): StudySet => {
     const now = new Date().toISOString()
-    const deck: Deck = { id: newDeckId(), createdAt: now, updatedAt: now, ...input, goalDate: input.goalDate ?? null }
-    dispatch({ type: 'add-deck', deck })
-    return deck
+    const set: StudySet = { id: newSetId(), createdAt: now, updatedAt: now, ...input, goalDate: input.goalDate ?? null }
+    dispatch({ type: 'add-set', set })
+    return set
   }, [])
 
-  const updateDeck = useCallback((id: DeckId, patch: Partial<NewDeckInput>) => {
-    dispatch({ type: 'update-deck', id, patch, now: new Date().toISOString() })
+  const updateSet = useCallback((id: SetId, patch: Partial<NewSetInput>) => {
+    dispatch({ type: 'update-set', id, patch, now: new Date().toISOString() })
   }, [])
 
-  const deleteDeck = useCallback((id: DeckId) => {
-    dispatch({ type: 'delete-deck', id })
+  const deleteSet = useCallback((id: SetId) => {
+    dispatch({ type: 'delete-set', id })
   }, [])
 
-  const addCard = useCallback((deckId: DeckId, input: NewCardInput): StudyCard => {
+  const addCard = useCallback((setId: SetId, input: NewCardInput): StudyCard => {
     const now = new Date().toISOString()
     const card: StudyCard = {
       id: newCardId(),
-      deckId,
+      setId,
       createdAt: now,
       updatedAt: now,
       scheduling: createInitialScheduling(new Date()),
@@ -189,8 +189,8 @@ export const SeshatProvider = ({ children }: { readonly children: ReactNode }) =
     (cardId: CardId, grade: Grade, confidence: ConfidenceRating | null, correct: boolean, elapsedMs: number) => {
       const card = state.cards.find((candidate) => candidate.id === cardId)
       if (card === undefined) return
-      const deck = state.decks.find((candidate) => candidate.id === card.deckId)
-      const goalDate = deck?.goalDate == null ? null : new Date(deck.goalDate)
+      const set = state.sets.find((candidate) => candidate.id === card.setId)
+      const goalDate = set?.goalDate == null ? null : new Date(set.goalDate)
       const now = new Date()
       const { scheduling, retrievabilityAtReview } = scheduleReview(
         card.scheduling,
@@ -205,7 +205,7 @@ export const SeshatProvider = ({ children }: { readonly children: ReactNode }) =
         scheduling,
         logEntry: {
           cardId,
-          deckId: card.deckId,
+          setId: card.setId,
           reviewedAt: now.toISOString(),
           grade,
           confidence,
@@ -215,13 +215,13 @@ export const SeshatProvider = ({ children }: { readonly children: ReactNode }) =
         },
       })
     },
-    [state.cards, state.decks, state.settings.desiredRetention],
+    [state.cards, state.sets, state.settings.desiredRetention],
   )
 
-  const importDeck = useCallback((exported: ExportedDeck): Deck => {
+  const importSet = useCallback((exported: ExportedSet): StudySet => {
     const now = new Date().toISOString()
-    const deck: Deck = {
-      id: newDeckId(),
+    const set: StudySet = {
+      id: newSetId(),
       name: exported.name,
       description: exported.description,
       tags: exported.tags,
@@ -231,29 +231,29 @@ export const SeshatProvider = ({ children }: { readonly children: ReactNode }) =
     }
     const cards: StudyCard[] = exported.cards.map((exportedCard) => ({
       id: newCardId(),
-      deckId: deck.id,
+      setId: set.id,
       createdAt: now,
       updatedAt: now,
       scheduling: createInitialScheduling(new Date()),
       ...exportedCard,
     }))
-    dispatch({ type: 'import-deck', deck, cards })
-    return deck
+    dispatch({ type: 'import-set', set, cards })
+    return set
   }, [])
 
-  const exportDeck = useCallback(
-    (deckId: DeckId): ExportedDeck | null => {
-      const deck = state.decks.find((candidate) => candidate.id === deckId)
-      if (deck === undefined) return null
+  const exportSet = useCallback(
+    (setId: SetId): ExportedSet | null => {
+      const set = state.sets.find((candidate) => candidate.id === setId)
+      if (set === undefined) return null
       return {
         seshatExportVersion: 1,
-        name: deck.name,
-        description: deck.description,
-        tags: deck.tags,
-        cards: state.cards.filter((card) => card.deckId === deckId).map(toExportedCard),
+        name: set.name,
+        description: set.description,
+        tags: set.tags,
+        cards: state.cards.filter((card) => card.setId === setId).map(toExportedCard),
       }
     },
-    [state.decks, state.cards],
+    [state.sets, state.cards],
   )
 
   const updateSettings = useCallback((patch: Partial<Settings>) => {
@@ -268,30 +268,30 @@ export const SeshatProvider = ({ children }: { readonly children: ReactNode }) =
     () => ({
       state,
       storageError,
-      addDeck,
-      updateDeck,
-      deleteDeck,
+      addSet,
+      updateSet,
+      deleteSet,
       addCard,
       updateCard,
       deleteCard,
       recordReview,
-      importDeck,
-      exportDeck,
+      importSet,
+      exportSet,
       updateSettings,
       resetAll,
     }),
     [
       state,
       storageError,
-      addDeck,
-      updateDeck,
-      deleteDeck,
+      addSet,
+      updateSet,
+      deleteSet,
       addCard,
       updateCard,
       deleteCard,
       recordReview,
-      importDeck,
-      exportDeck,
+      importSet,
+      exportSet,
       updateSettings,
       resetAll,
     ],

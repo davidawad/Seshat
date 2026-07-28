@@ -1,14 +1,14 @@
 import { isDue } from '../../lib/fsrs'
-import type { CardId, DeckId, StudyCard } from '../../types'
+import type { CardId, SetId, StudyCard } from '../../types'
 
 /**
  * A card's interleaving category: its first tag (the finer-grained "concept"
- * label) if it has any, otherwise its deck (the coarse fallback grouping).
+ * label) if it has any, otherwise its set (the coarse fallback grouping).
  * See research/learning-science/brunmair-richter-2019.md — deliberate
  * mixing of confusable/related categories aids discrimination and transfer;
  * this is what makes a category grouping meaningful rather than arbitrary.
  */
-const categoryOf = (card: StudyCard): string => card.tags[0] ?? card.deckId
+const categoryOf = (card: StudyCard): string => card.tags[0] ?? card.setId
 
 /**
  * Number of distinct interleaving categories represented in `cardIds`. Used
@@ -81,16 +81,16 @@ export const interleaveByCategory = (cards: readonly StudyCard[], dueIds: readon
 }
 
 /**
- * The default study queue: every due card across all decks (or a single
- * deck, when `deckId` is given), oldest-due-first and then interleaved by
+ * The default study queue: every due card across all sets (or a single
+ * set, when `setId` is given), oldest-due-first and then interleaved by
  * category so related-but-distinct material is mixed rather than blocked
  * (see `interleaveByCategory`). Pure and React-free so it can be
  * snapshotted once per study session — see `ReviewSession`'s caller for why
  * the queue is deliberately not recomputed on every card update.
  */
-export const selectDueQueue = (cards: readonly StudyCard[], deckId: DeckId | null, now: Date): CardId[] => {
+export const selectDueQueue = (cards: readonly StudyCard[], setId: SetId | null, now: Date): CardId[] => {
   const due = cards
-    .filter((card) => (deckId === null || card.deckId === deckId) && isDue(card.scheduling, now))
+    .filter((card) => (setId === null || card.setId === setId) && isDue(card.scheduling, now))
     .toSorted((a, b) => new Date(a.scheduling.due).getTime() - new Date(b.scheduling.due).getTime())
     .map((card) => card.id)
 

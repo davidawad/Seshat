@@ -7,7 +7,7 @@ import {
   fsrs,
   generatorParameters,
 } from 'ts-fsrs'
-import type { ConfidenceRating, Grade, ReviewLogEntry, SchedulingState } from '../types'
+import type { Grade, SchedulingState } from '../types'
 
 /**
  * The only module that talks to ts-fsrs directly. Everything else in the
@@ -115,23 +115,3 @@ export const scheduleReview = (
 
 export const isDue = (scheduling: SchedulingState, now: Date): boolean =>
   new Date(scheduling.due).getTime() <= now.getTime()
-
-export const buildReviewLogEntry = (
-  cardId: ReviewLogEntry['cardId'],
-  deckId: ReviewLogEntry['deckId'],
-  grade: Grade,
-  confidence: ConfidenceRating | null,
-  correct: boolean,
-  retrievabilityAtReview: number | null,
-  elapsedMs: number,
-  reviewedAt: Date,
-): ReviewLogEntry => ({
-  cardId,
-  deckId,
-  reviewedAt: reviewedAt.toISOString(),
-  grade,
-  confidence,
-  correct,
-  retrievabilityAtReview,
-  elapsedMs,
-})

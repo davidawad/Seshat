@@ -1,12 +1,12 @@
-import type { ExportedDeck } from '../../types'
+import type { ExportedSet } from '../../types'
 
 /**
- * The starter deck offered on the empty deck list. Meta and on-brand: it
+ * The starter set offered on the empty sets list. Meta and on-brand: it
  * teaches real, citable facts about spaced repetition and retrieval
  * practice using the app itself. Full citations live on the Attributions
  * page — the `sourceRef` fields here are short pointers, not full cites.
  */
-export const SAMPLE_DECK: ExportedDeck = {
+export const SAMPLE_SET: ExportedSet = {
   seshatExportVersion: 1,
   name: 'How Spaced Repetition Actually Works',
   description:

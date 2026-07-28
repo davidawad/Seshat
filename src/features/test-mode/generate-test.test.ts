@@ -1,11 +1,11 @@
 import { describe, expect, it } from 'vitest'
-import type { CardId, DeckId, ShortAnswerContent, StudyCard } from '../../types'
+import type { CardId, SetId, ShortAnswerContent, StudyCard } from '../../types'
 import { MAX_TEST_QUESTIONS, type TestQuestion, generateTest, shuffle } from './generate-test'
 
 // Branded IDs are just strings at runtime (the brand is a compile-time-only
 // phantom field), and generateTest never parses them through the zod schema
 // — so plain fixture strings cast to the branded type are fine here.
-const deckId = 'deck-fixture' as DeckId
+const setId = 'set-fixture' as SetId
 
 let counter = 0
 const cardId = (): CardId => {
@@ -17,7 +17,7 @@ const makeCard = (term: string, definition: string): StudyCard => {
   const content: ShortAnswerContent = { kind: 'short-answer', answer: definition, acceptableAnswers: [] }
   return {
     id: cardId(),
-    deckId,
+    setId,
     prompt: term,
     content,
     explanation: null,
@@ -82,18 +82,18 @@ describe('shuffle', () => {
 })
 
 describe('generateTest', () => {
-  it('returns an empty array for an empty deck', () => {
+  it('returns an empty array for an empty set', () => {
     expect(generateTest([])).toEqual([])
   })
 
-  it('falls back to written-only for a deck too small for true/false (< 2 cards)', () => {
+  it('falls back to written-only for a set too small for true/false (< 2 cards)', () => {
     const cards = makeCards(1)
     const questions = generateTest(cards)
     expect(questions).toHaveLength(1)
     expect(questions.every((q) => q.format === 'written')).toBe(true)
   })
 
-  it('falls back to written-only for a deck too small for multiple-choice but big enough for true/false', () => {
+  it('falls back to written-only for a set too small for multiple-choice but big enough for true/false', () => {
     const cards = makeCards(3)
     const questions = generateTest(cards, sequence(0.4))
     // canTrueFalse (>=2) is true, canMultipleChoice (>=4) is false, so the
@@ -102,14 +102,14 @@ describe('generateTest', () => {
     expect(questions.some((q) => q.format === 'multiple-choice')).toBe(false)
   })
 
-  it('one question per card, up to the cap, for decks at or under the cap', () => {
+  it('one question per card, up to the cap, for sets at or under the cap', () => {
     const cards = makeCards(7)
     const questions = generateTest(cards)
     expect(questions).toHaveLength(7)
     expect(new Set(questions.map((q) => q.cardId)).size).toBe(7)
   })
 
-  it('caps at MAX_TEST_QUESTIONS for a larger deck, still one question per selected card', () => {
+  it('caps at MAX_TEST_QUESTIONS for a larger set, still one question per selected card', () => {
     const cards = makeCards(MAX_TEST_QUESTIONS + 5)
     const questions = generateTest(cards)
     expect(questions).toHaveLength(MAX_TEST_QUESTIONS)
@@ -212,7 +212,7 @@ describe('generateTest', () => {
       }
     })
 
-    it('draws distractors from other cards in the deck, not from the same card', () => {
+    it('draws distractors from other cards in the set, not from the same card', () => {
       const cards = makeCards(4)
       const questions = generateTest(cards).filter(
         (q): q is Extract<TestQuestion, { format: 'multiple-choice' }> => q.format === 'multiple-choice',

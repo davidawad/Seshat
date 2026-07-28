@@ -1,14 +1,14 @@
 import { type FormEvent, useId, useState } from 'react'
 import { useSeshatStore } from '../../lib/store'
-import type { DeckId } from '../../types'
+import type { SetId } from '../../types'
 import { parseTagsInput } from './tags'
 
-interface CreateDeckFormProps {
-  readonly onCreated: (deckId: DeckId) => void
+interface CreateSetFormProps {
+  readonly onCreated: (setId: SetId) => void
 }
 
-export const CreateDeckForm = ({ onCreated }: CreateDeckFormProps) => {
-  const { addDeck } = useSeshatStore()
+export const CreateSetForm = ({ onCreated }: CreateSetFormProps) => {
+  const { addSet } = useSeshatStore()
   const [name, setName] = useState('')
   const [description, setDescription] = useState('')
   const [tagsText, setTagsText] = useState('')
@@ -23,20 +23,20 @@ export const CreateDeckForm = ({ onCreated }: CreateDeckFormProps) => {
     event.preventDefault()
     const trimmedName = name.trim()
     if (trimmedName.length === 0) {
-      setError('Deck name is required.')
+      setError('Set name is required.')
       return
     }
     setError(null)
-    const deck = addDeck({ name: trimmedName, description: description.trim(), tags: parseTagsInput(tagsText) })
+    const set = addSet({ name: trimmedName, description: description.trim(), tags: parseTagsInput(tagsText) })
     setName('')
     setDescription('')
     setTagsText('')
-    onCreated(deck.id)
+    onCreated(set.id)
   }
 
   return (
-    <form onSubmit={handleSubmit} aria-labelledby="create-deck-heading">
-      <h2 id="create-deck-heading">Create a new deck</h2>
+    <form onSubmit={handleSubmit} aria-labelledby="create-set-heading">
+      <h2 id="create-set-heading">Create a new set</h2>
       <div>
         <label htmlFor={nameId}>Name</label>
         <input
@@ -67,7 +67,7 @@ export const CreateDeckForm = ({ onCreated }: CreateDeckFormProps) => {
           {error}
         </p>
       )}
-      <button type="submit">Create deck</button>
+      <button type="submit">Create set</button>
     </form>
   )
 }

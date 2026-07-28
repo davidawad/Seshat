@@ -47,7 +47,7 @@ export const reviewedTodayCount = (reviewLog: readonly ReviewLogEntry[], now: Da
  * average FSRS `retrievabilityAtReview` (the model's own prediction of
  * recall probability, which is available once a card has been reviewed at
  * least once before); falls back to the raw recent correct-rate when no
- * retrievability data exists yet (e.g. a brand-new deck of first-time cards).
+ * retrievability data exists yet (e.g. a brand-new set of first-time cards).
  * Returns `null` when there is no review history at all.
  */
 export const retentionEstimate = (reviewLog: readonly ReviewLogEntry[], sampleSize = 50): number | null => {

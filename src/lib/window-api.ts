@@ -13,23 +13,23 @@
  * localStorage once, on mount). This API is for scripting Seshat's data
  * from outside the app, not for live two-way sync with an open tab.
  */
-import { newCardId, newDeckId } from './id'
+import { newCardId, newSetId } from './id'
 import { loadState, saveState } from './storage'
 import {
-  type Deck,
-  type ExportedDeck,
+  type ExportedSet,
   type Result,
   type StudyCard,
+  type StudySet,
   createEmptyAppState,
   err,
-  exportedDeckSchema,
+  exportedSetSchema,
   ok,
 } from '../types'
 import { createInitialScheduling } from './fsrs'
 import { cardFrontBack } from '../features/study/card-summary'
-import { parseSimpleJson, toSimpleJson } from '../features/decks/simple-json'
+import { parseSimpleJson, toSimpleJson } from '../features/sets/simple-json'
 
-export interface DeckSummary {
+export interface SetSummary {
   readonly id: string
   readonly name: string
   readonly cardCount: number
@@ -40,13 +40,13 @@ const currentState = () => {
   return result.ok ? result.value : createEmptyAppState()
 }
 
-/** Every deck currently stored, with its card count. */
-const listDecks = (): readonly DeckSummary[] => {
+/** Every set currently stored, with its card count. */
+const listSets = (): readonly SetSummary[] => {
   const state = currentState()
-  return state.decks.map((deck) => ({
-    id: deck.id,
-    name: deck.name,
-    cardCount: state.cards.filter((card) => card.deckId === deck.id).length,
+  return state.sets.map((set) => ({
+    id: set.id,
+    name: set.name,
+    cardCount: state.cards.filter((card) => card.setId === set.id).length,
   }))
 }
 
@@ -56,23 +56,23 @@ export interface CardSummary {
   readonly back: string
 }
 
-/** Every card in a deck, reduced to {id, front, back} regardless of content kind. */
-const listCards = (deckId: string): readonly CardSummary[] => {
+/** Every card in a set, reduced to {id, front, back} regardless of content kind. */
+const listCards = (setId: string): readonly CardSummary[] => {
   const state = currentState()
-  return state.cards.filter((card) => card.deckId === deckId).map((card) => ({ id: card.id, ...cardFrontBack(card) }))
+  return state.cards.filter((card) => card.setId === setId).map((card) => ({ id: card.id, ...cardFrontBack(card) }))
 }
 
-/** The full Seshat deck-export JSON for one deck, or `null` if it doesn't exist. */
-const exportDeck = (deckId: string): ExportedDeck | null => {
+/** The full Seshat set-export JSON for one set, or `null` if it doesn't exist. */
+const exportSet = (setId: string): ExportedSet | null => {
   const state = currentState()
-  const deck = state.decks.find((candidate) => candidate.id === deckId)
-  if (deck === undefined) return null
-  const cards = state.cards.filter((card) => card.deckId === deckId)
+  const set = state.sets.find((candidate) => candidate.id === setId)
+  if (set === undefined) return null
+  const cards = state.cards.filter((card) => card.setId === setId)
   return {
     seshatExportVersion: 1,
-    name: deck.name,
-    description: deck.description,
-    tags: deck.tags,
+    name: set.name,
+    description: set.description,
+    tags: set.tags,
     cards: cards.map((card) => ({
       prompt: card.prompt,
       content: card.content,
@@ -83,25 +83,25 @@ const exportDeck = (deckId: string): ExportedDeck | null => {
   }
 }
 
-/** The portable term/definition JSON for one deck, or `null` if it doesn't exist. */
-const exportDeckSimple = (
-  deckId: string,
+/** The portable term/definition JSON for one set, or `null` if it doesn't exist. */
+const exportSetSimple = (
+  setId: string,
 ): {
   readonly name: string
   readonly terms: readonly { readonly term: string; readonly definition: string }[]
 } | null => {
   const state = currentState()
-  const deck = state.decks.find((candidate) => candidate.id === deckId)
-  if (deck === undefined) return null
-  const cards = state.cards.filter((card) => card.deckId === deckId)
-  return toSimpleJson(deck.name, cards)
+  const set = state.sets.find((candidate) => candidate.id === setId)
+  if (set === undefined) return null
+  const cards = state.cards.filter((card) => card.setId === setId)
+  return toSimpleJson(set.name, cards)
 }
 
-const insertDeck = (exported: ExportedDeck): Deck => {
+const insertSet = (exported: ExportedSet): StudySet => {
   const state = currentState()
   const now = new Date().toISOString()
-  const deck: Deck = {
-    id: newDeckId(),
+  const set: StudySet = {
+    id: newSetId(),
     name: exported.name,
     description: exported.description,
     tags: exported.tags,
@@ -111,51 +111,51 @@ const insertDeck = (exported: ExportedDeck): Deck => {
   }
   const cards: StudyCard[] = exported.cards.map((exportedCard) => ({
     id: newCardId(),
-    deckId: deck.id,
+    setId: set.id,
     createdAt: now,
     updatedAt: now,
     scheduling: createInitialScheduling(new Date()),
     ...exportedCard,
   }))
-  saveState({ ...state, decks: [...state.decks, deck], cards: [...state.cards, ...cards] })
-  return deck
+  saveState({ ...state, sets: [...state.sets, set], cards: [...state.cards, ...cards] })
+  return set
 }
 
-/** Imports a full Seshat deck-export object (already parsed JSON, not a string). */
-const importDeck = (json: unknown): Result<DeckSummary, string> => {
-  const parsed = exportedDeckSchema.safeParse(json)
+/** Imports a full Seshat set-export object (already parsed JSON, not a string). */
+const importSet = (json: unknown): Result<SetSummary, string> => {
+  const parsed = exportedSetSchema.safeParse(json)
   if (!parsed.success) return err(parsed.error.issues.map((issue) => issue.message).join('; '))
-  const deck = insertDeck(parsed.data)
-  return ok({ id: deck.id, name: deck.name, cardCount: parsed.data.cards.length })
+  const set = insertSet(parsed.data)
+  return ok({ id: set.id, name: set.name, cardCount: parsed.data.cards.length })
 }
 
-/** Imports a term/definition JSON string (bare array or {name/title, terms}). `deckName` is used only if the file has none. */
-const importSimpleJson = (raw: string, deckName?: string): Result<DeckSummary, string> => {
+/** Imports a term/definition JSON string (bare array or {name/title, terms}). `setName` is used only if the file has none. */
+const importSimpleJson = (raw: string, setName?: string): Result<SetSummary, string> => {
   const parsed = parseSimpleJson(raw)
   if (!parsed.ok) return err(parsed.error)
-  const name = parsed.value.name ?? deckName
+  const name = parsed.value.name ?? setName
   if (name === undefined || name.trim() === '')
-    return err('This file has no deck name — pass one as the second argument.')
-  const deck = insertDeck({ seshatExportVersion: 1, name, description: '', tags: [], cards: parsed.value.cards })
-  return ok({ id: deck.id, name: deck.name, cardCount: parsed.value.cards.length })
+    return err('This file has no set name — pass one as the second argument.')
+  const set = insertSet({ seshatExportVersion: 1, name, description: '', tags: [], cards: parsed.value.cards })
+  return ok({ id: set.id, name: set.name, cardCount: parsed.value.cards.length })
 }
 
 export interface SeshatWindowApi {
-  readonly listDecks: typeof listDecks
+  readonly listSets: typeof listSets
   readonly listCards: typeof listCards
-  readonly exportDeck: typeof exportDeck
-  readonly exportDeckSimple: typeof exportDeckSimple
-  readonly importDeck: typeof importDeck
+  readonly exportSet: typeof exportSet
+  readonly exportSetSimple: typeof exportSetSimple
+  readonly importSet: typeof importSet
   readonly importSimpleJson: typeof importSimpleJson
   readonly cardFrontBack: typeof cardFrontBack
 }
 
 export const seshatWindowApi: SeshatWindowApi = {
-  listDecks,
+  listSets,
   listCards,
-  exportDeck,
-  exportDeckSimple,
-  importDeck,
+  exportSet,
+  exportSetSimple,
+  importSet,
   importSimpleJson,
   cardFrontBack,
 }

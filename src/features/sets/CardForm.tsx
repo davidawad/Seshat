@@ -1,13 +1,13 @@
 import { type FormEvent, useId, useState } from 'react'
 import { useSeshatStore } from '../../lib/store'
-import { type CardContent, type DeckId, type OcclusionRegion, type StudyCard, cardContentSchema } from '../../types'
+import { type CardContent, type OcclusionRegion, type SetId, type StudyCard, cardContentSchema } from '../../types'
 import { ImageOcclusionEditor } from './ImageOcclusionEditor'
 import { parseTagsInput } from './tags'
 
 type ContentKind = CardContent['kind']
 
 interface CardFormProps {
-  readonly deckId: DeckId
+  readonly setId: SetId
   /** null = create a new card; otherwise edit this existing card. */
   readonly editingCard: StudyCard | null
   readonly onDone: () => void
@@ -30,7 +30,7 @@ const draftFromContent = (content: CardContent | null) => ({
   occlusions: (content?.kind === 'image-occlusion' ? content.occlusions : []) as OcclusionRegion[],
 })
 
-export const CardForm = ({ deckId, editingCard, onDone }: CardFormProps) => {
+export const CardForm = ({ setId, editingCard, onDone }: CardFormProps) => {
   const { addCard, updateCard } = useSeshatStore()
   const [prompt, setPrompt] = useState(editingCard?.prompt ?? '')
   const [explanation, setExplanation] = useState(editingCard?.explanation ?? '')
@@ -124,7 +124,7 @@ export const CardForm = ({ deckId, editingCard, onDone }: CardFormProps) => {
     }
 
     if (editingCard === null) {
-      addCard(deckId, input)
+      addCard(setId, input)
     } else {
       updateCard(editingCard.id, input)
     }

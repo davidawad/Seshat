@@ -2,9 +2,9 @@ import type { CardId, StudyCard } from '../../types'
 import { cardFrontBack } from '../study/card-summary'
 
 /**
- * A deck larger than this only contributes a random subset to any one test —
+ * A set larger than this only contributes a random subset to any one test —
  * keeps a single-page "take it all in one sitting" test from becoming
- * unwieldy on a 200-card deck, while still exercising a representative
+ * unwieldy on a 200-card set, while still exercising a representative
  * sample (one question per card, up to the cap).
  */
 export const MAX_TEST_QUESTIONS = 20
@@ -66,7 +66,7 @@ interface FrontBackPair {
  * Picks up to `count` distractor answers from `pool`, excluding anything
  * equal to `exclude` (by normalized-ish plain string equality — good enough
  * here since these are display strings, not graded input) and de-duplicated
- * against each other. A deck with lots of duplicate/near-duplicate answers
+ * against each other. A set with lots of duplicate/near-duplicate answers
  * can legitimately yield fewer than `count` distractors; callers render
  * whatever comes back rather than assuming a fixed length.
  */
@@ -84,15 +84,15 @@ const pickDistinct = (pool: readonly string[], exclude: string, count: number, r
 
 /**
  * Generates a multi-format practice test covering (up to `MAX_TEST_QUESTIONS`
- * of) a deck's cards. Each card becomes one question in one of three formats
+ * of) a set's cards. Each card becomes one question in one of three formats
  * — written recall, true/false, or multiple-choice — distributed round-robin
  * over the (already-shuffled) question order so formats spread roughly
  * evenly rather than clustering.
  *
- * True/false and multiple-choice need other cards in the deck to source
- * fair, non-repeating decoys, so they're only offered when the deck is large
+ * True/false and multiple-choice need other cards in the set to source
+ * fair, non-repeating decoys, so they're only offered when the set is large
  * enough to supply them (>=2 total cards for true/false, >=4 for
- * multiple-choice); smaller decks fall back to written-only questions for
+ * multiple-choice); smaller sets fall back to written-only questions for
  * every card.
  */
 export const generateTest = (cards: readonly StudyCard[], random: () => number = Math.random): TestQuestion[] => {

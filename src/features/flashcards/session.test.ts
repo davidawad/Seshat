@@ -14,7 +14,7 @@ describe('createFlashcardSession', () => {
     expect(session.knownCount).toBe(0)
   })
 
-  it('handles an empty deck', () => {
+  it('handles an empty set', () => {
     const session = createFlashcardSession([])
     expect(session.order).toEqual([])
     expect(isSessionComplete(session)).toBe(true)

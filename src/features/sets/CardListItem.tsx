@@ -41,7 +41,7 @@ export const CardListItem = ({ card }: CardListItemProps) => {
   if (isEditing) {
     return (
       <li>
-        <CardForm deckId={card.deckId} editingCard={card} onDone={() => setIsEditing(false)} />
+        <CardForm setId={card.setId} editingCard={card} onDone={() => setIsEditing(false)} />
       </li>
     )
   }

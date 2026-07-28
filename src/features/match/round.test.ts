@@ -20,20 +20,20 @@ const fakeRandomSequence = (values: readonly number[]): (() => number) => {
 }
 
 describe('pickRoundPairs', () => {
-  it('uses every pair when the deck is at or under the cap', () => {
+  it('uses every pair when the set is at or under the cap', () => {
     const pairs = makePairs(5)
     const result = pickRoundPairs(pairs, 8)
     expect(result).toHaveLength(5)
     expect(new Set(result.map((p) => p.cardId))).toEqual(new Set(pairs.map((p) => p.cardId)))
   })
 
-  it('uses every pair when the deck exactly equals the cap', () => {
+  it('uses every pair when the set exactly equals the cap', () => {
     const pairs = makePairs(8)
     const result = pickRoundPairs(pairs, 8)
     expect(result).toHaveLength(8)
   })
 
-  it('caps at `cap` pairs when the deck is larger, choosing a subset', () => {
+  it('caps at `cap` pairs when the set is larger, choosing a subset', () => {
     const pairs = makePairs(20)
     const result = pickRoundPairs(pairs, 8, Math.random)
     expect(result).toHaveLength(8)
@@ -106,11 +106,11 @@ describe('layoutTiles', () => {
 
 describe('createRound', () => {
   it('composes picking and layout: 2 * min(cap, pairCount) tiles', () => {
-    const smallDeck = makePairs(3)
-    expect(createRound(smallDeck, 8)).toHaveLength(6)
+    const smallSet = makePairs(3)
+    expect(createRound(smallSet, 8)).toHaveLength(6)
 
-    const bigDeck = makePairs(20)
-    expect(createRound(bigDeck, 8)).toHaveLength(16)
+    const bigSet = makePairs(20)
+    expect(createRound(bigSet, 8)).toHaveLength(16)
   })
 
   it('every tile in the round belongs to one of the pairs actually selected', () => {

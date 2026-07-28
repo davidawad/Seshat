@@ -47,7 +47,7 @@ describe('fsrs scheduling', () => {
     expect(retentionTomorrow).toBeLessThanOrEqual(0.95)
   })
 
-  it('never schedules a card due after its deck goal date', () => {
+  it('never schedules a card due after its set goal date', () => {
     const now = new Date('2026-01-01T00:00:00.000Z')
     const goal = new Date('2026-01-01T12:00:00.000Z')
     const initial = createInitialScheduling(now)

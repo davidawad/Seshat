@@ -115,11 +115,44 @@ body {
   color: var(--color-accent);
 }
 
-.study-mode-list {
-  list-style: none;
-  margin: 0 0 1.5rem;
+/*
+ * Icon-only action button — deliberately just the glyph, no label text
+ * (paired with an aria-label or sr-only span for accessibility). This is
+ * the "two icons, not a form" alternative to a full labeled button, used
+ * for import/export/edit actions that don't need to dominate the page.
+ */
+.icon-button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 2.25rem;
+  height: 2.25rem;
   padding: 0;
+  background: transparent;
+  border: 1px solid var(--color-border-strong);
+  border-radius: var(--radius-sm);
+  color: var(--color-fg);
+  text-decoration: none;
+}
+
+.icon-button:hover {
+  background: var(--color-bg-elevated);
+  color: var(--color-accent);
+}
+
+.tag-chips {
+  list-style: none;
   display: flex;
-  flex-direction: column;
+  flex-wrap: wrap;
   gap: 0.4rem;
+  margin: 0.5rem 0;
+  padding: 0;
+}
+
+.tag-chips li {
+  border: 1px solid var(--color-border);
+  border-radius: 999px;
+  padding: 0.15rem 0.65rem;
+  font-size: 0.8rem;
+  color: var(--color-fg-muted);
 }

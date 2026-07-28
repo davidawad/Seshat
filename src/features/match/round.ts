@@ -42,7 +42,7 @@ const shuffle = <T>(items: readonly T[], random: () => number): T[] => {
 /**
  * Picks the pairs that will make up one round. If `pairs` fits within `cap`,
  * every pair is used (in a shuffled order, so which pairs appear near which
- * doesn't ossify from the deck's own ordering). Otherwise a random subset of
+ * doesn't ossify from the set's own ordering). Otherwise a random subset of
  * size `cap` is chosen.
  */
 export const pickRoundPairs = (

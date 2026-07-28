@@ -4,7 +4,7 @@ import { cardFrontBack } from './card-summary'
 
 const baseCard = {
   id: 'card-1' as StudyCard['id'],
-  deckId: 'deck-1' as StudyCard['deckId'],
+  setId: 'set-1' as StudyCard['setId'],
   explanation: null,
   sourceRef: null,
   tags: [] as string[],

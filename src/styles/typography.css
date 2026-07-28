@@ -126,7 +126,7 @@ dd,
  * Focus visibility (WCAG 2.4.7 / 2.4.11) — a strong, high-contrast
  * indicator on every focusable element, app-wide. This is infrastructure:
  * other tracks' interactive elements (study-loop keyboard shortcuts,
- * deck forms, etc.) inherit it automatically as long as they use real
+ * set forms, etc.) inherit it automatically as long as they use real
  * semantic/focusable elements, with no per-component styling needed.
  * ------------------------------------------------------------------- */
 :focus {

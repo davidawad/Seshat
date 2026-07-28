@@ -3,7 +3,7 @@ import { shuffle } from './shuffle'
 
 /**
  * Pure session state for the Flashcards mode: a shuffled order over a
- * deck's cards plus a cursor and a running "known" tally. Kept as a plain
+ * set's cards plus a cursor and a running "known" tally. Kept as a plain
  * value + pure transitions (rather than folded into component state) so
  * the advance/completion logic is unit-testable without React.
  */

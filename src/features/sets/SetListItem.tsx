@@ -2,20 +2,20 @@ import { type FormEvent, useId, useState } from 'react'
 import { Link } from 'react-router-dom'
 import { useSeshatStore } from '../../lib/store'
 import { isDue } from '../../lib/fsrs'
-import type { Deck, StudyCard } from '../../types'
+import type { StudyCard, StudySet } from '../../types'
 import { parseTagsInput } from './tags'
 
-interface DeckListItemProps {
-  readonly deck: Deck
-  readonly deckCards: readonly StudyCard[]
+interface SetListItemProps {
+  readonly set: StudySet
+  readonly setCards: readonly StudyCard[]
 }
 
-export const DeckListItem = ({ deck, deckCards }: DeckListItemProps) => {
-  const { updateDeck, deleteDeck } = useSeshatStore()
+export const SetListItem = ({ set, setCards }: SetListItemProps) => {
+  const { updateSet, deleteSet } = useSeshatStore()
   const [isEditing, setIsEditing] = useState(false)
-  const [name, setName] = useState(deck.name)
-  const [description, setDescription] = useState(deck.description)
-  const [tagsText, setTagsText] = useState(deck.tags.join(', '))
+  const [name, setName] = useState(set.name)
+  const [description, setDescription] = useState(set.description)
+  const [tagsText, setTagsText] = useState(set.tags.join(', '))
   const [error, setError] = useState<string | null>(null)
 
   const nameId = useId()
@@ -24,12 +24,12 @@ export const DeckListItem = ({ deck, deckCards }: DeckListItemProps) => {
   const errorId = useId()
 
   const now = new Date()
-  const dueCount = deckCards.filter((card) => isDue(card.scheduling, now)).length
+  const dueCount = setCards.filter((card) => isDue(card.scheduling, now)).length
 
   const startEditing = () => {
-    setName(deck.name)
-    setDescription(deck.description)
-    setTagsText(deck.tags.join(', '))
+    setName(set.name)
+    setDescription(set.description)
+    setTagsText(set.tags.join(', '))
     setError(null)
     setIsEditing(true)
   }
@@ -38,25 +38,25 @@ export const DeckListItem = ({ deck, deckCards }: DeckListItemProps) => {
     event.preventDefault()
     const trimmedName = name.trim()
     if (trimmedName.length === 0) {
-      setError('Deck name is required.')
+      setError('Set name is required.')
       return
     }
-    updateDeck(deck.id, { name: trimmedName, description: description.trim(), tags: parseTagsInput(tagsText) })
+    updateSet(set.id, { name: trimmedName, description: description.trim(), tags: parseTagsInput(tagsText) })
     setIsEditing(false)
   }
 
   const handleDelete = () => {
     const confirmed = window.confirm(
-      `Delete "${deck.name}"? This permanently removes its ${deckCards.length} card(s) and all review history. This cannot be undone.`,
+      `Delete "${set.name}"? This permanently removes its ${setCards.length} card(s) and all review history. This cannot be undone.`,
     )
     if (!confirmed) return
-    deleteDeck(deck.id)
+    deleteSet(set.id)
   }
 
   if (isEditing) {
     return (
       <li>
-        <form onSubmit={handleSubmit} aria-label={`Rename ${deck.name}`}>
+        <form onSubmit={handleSubmit} aria-label={`Rename ${set.name}`}>
           <div>
             <label htmlFor={nameId}>Name</label>
             <input
@@ -99,18 +99,18 @@ export const DeckListItem = ({ deck, deckCards }: DeckListItemProps) => {
   return (
     <li>
       <h2>
-        <Link to={`/decks/${deck.id}`}>{deck.name}</Link>
+        <Link to={`/sets/${set.id}`}>{set.name}</Link>
       </h2>
-      {deck.description.length > 0 && <p>{deck.description}</p>}
-      {deck.tags.length > 0 && (
+      {set.description.length > 0 && <p>{set.description}</p>}
+      {set.tags.length > 0 && (
         <ul aria-label="Tags">
-          {deck.tags.map((tag) => (
+          {set.tags.map((tag) => (
             <li key={tag}>{tag}</li>
           ))}
         </ul>
       )}
       <p>
-        {deckCards.length} card(s) · {dueCount} due now
+        {setCards.length} card(s) · {dueCount} due now
       </p>
       <button type="button" onClick={startEditing}>
         Rename
