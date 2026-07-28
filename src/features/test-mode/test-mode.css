@@ -1,0 +1,60 @@
+.test-question-list {
+  list-style: none;
+  margin: 0 0 1.5rem;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 1.25rem;
+}
+
+.test-question-item {
+  padding: 1.25rem;
+}
+
+.test-question-prompt {
+  font-weight: 600;
+  margin-top: 0;
+}
+
+.test-truefalse-claim {
+  font-style: italic;
+}
+
+.test-truefalse-options,
+.test-mc-options {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  margin-top: 0.5rem;
+}
+
+.test-truefalse-options label,
+.test-mc-options label {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.test-score {
+  font-family: var(--font-display);
+  font-size: 1.5rem;
+  font-weight: 600;
+  margin: 0 0 1.25rem;
+}
+
+.test-review-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 1.25rem;
+}
+
+.test-review-item {
+  padding: 1.25rem;
+}
+
+.test-your-answer {
+  color: var(--color-surface-highlight-fg-muted);
+}

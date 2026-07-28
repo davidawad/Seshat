@@ -14,17 +14,30 @@ receipts.
 
 ## Core features
 
-- **Recall-first study** — short-answer, cloze deletion, and multiple-choice card types, weighted toward
-  formats that require you to produce an answer rather than just recognize one.
-- **FSRS spaced scheduling** — per-card, per-learner difficulty/stability modeling (via [`ts-fsrs`](https://github.com/open-spaced-repetition/ts-fsrs)) instead of a fixed interval table, with selectable desired-retention
-  presets (85% / 90% / 93%).
+- **Recall-first study (the default, and the one we recommend)** — short-answer, cloze deletion,
+  multiple-choice, and image-occlusion card types, confidence captured before you see the answer, FSRS spaced
+  scheduling, and optional per-deck goal dates that tighten the schedule as an exam or deadline nears.
 - **Confidence calibration** — rate your confidence on each answer and see, over time, whether that confidence
   is actually justified.
+- **Every major Quizlet-style study mode, too** — jump into any of these for a deck on demand, independent of
+  what's due:
+  - **Flashcards** — classic flip-and-self-rate.
+  - **Test** — a generated, multi-format practice test (written, true/false, multiple-choice) across a whole
+    deck, scored at the end.
+  - **Match** — a timed term/definition matching drill. Purely a speed supplement — results aren't fed into the
+    spaced-repetition system, unlike the other modes.
+- **FSRS spaced scheduling** — per-card, per-learner difficulty/stability modeling (via [`ts-fsrs`](https://github.com/open-spaced-repetition/ts-fsrs)) instead of a fixed interval table, with selectable desired-retention
+  presets (85% / 90% / 93%).
 - **Local-first, zero-backend** — no account, no server, no tracking. Your decks, cards, review history, and
   settings live entirely in your browser's `localStorage` and never leave your device.
 - **Research-grounded typography** — a typeface, sizing, line-height, and measure system built from the
   legibility and accessibility literature, with presets for screen reading, UI text, long-form reading, and
   print.
+- **Portable JSON everywhere** — the full Seshat format round-trips every card kind; a simpler Quizlet-style
+  `[{term, definition}]` (or `{name, terms: [...]}`) format also imports and exports per deck, for interop with
+  plain files from other tools.
+- **A browser-only scripting API** — `window.seshat` (see below) lets any same-page script read or write your
+  decks with zero backend involved.
 
 ## Tech stack
 
@@ -45,6 +58,16 @@ npm run build       # type-check and build for production
 npm run test         # run the test suite
 npm run lint          # lint with oxlint
 ```
+
+## Scripting Seshat's data
+
+Open the browser console on the app and call `window.seshat` directly — `listDecks()`, `listCards(deckId)`,
+`exportDeck(deckId)`, `exportDeckSimple(deckId)`, `importDeck(json)`, `importSimpleJson(raw, deckName?)`. It reads
+and writes the same `localStorage` the app does, with no server involved (a browser tab can't run an MCP server
+or accept incoming connections at all — there's no listening-socket API in JS — so this is the real
+"browser-only, zero-backend" version of programmatic access). One caveat: if the app is open in the same tab
+while a script writes through this API, reload to see the change — React only reads `localStorage` once, on
+mount.
 
 ## License
 

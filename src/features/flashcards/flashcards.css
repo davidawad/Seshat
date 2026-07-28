@@ -1,0 +1,27 @@
+.flashcard-face {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  align-items: center;
+  text-align: center;
+  min-height: 8rem;
+  justify-content: center;
+}
+
+.flashcard-image {
+  max-width: 100%;
+  max-height: 20rem;
+  border-radius: var(--radius-page);
+}
+
+.flashcard-grade-options {
+  display: flex;
+  gap: 0.75rem;
+  flex-wrap: wrap;
+  margin-top: 0.75rem;
+}
+
+.flashcard-key {
+  color: var(--color-fg-muted);
+  font-size: 0.85em;
+}

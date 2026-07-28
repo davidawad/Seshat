@@ -1,0 +1,191 @@
+import { useEffect, useRef, useState } from 'react'
+import type { CardId, DeckId } from '../../types'
+import { formatElapsed, getBestTimeMs, recordCompletionTime } from './bestTime'
+import './match.css'
+import { type MatchPair, type MatchTile, DEFAULT_PAIR_CAP, createRound } from './round'
+
+/** How long a missed pair stays visually marked before it clears, in ms. Not
+ *  an animation — just how long the "not a match" state is held before the
+ *  board unlocks again. `[data-reduced-motion]` only neutralizes CSS
+ *  transition/animation durations, not this; a bit of dwell time on a miss
+ *  is the whole point (long enough to register which two tiles were wrong),
+ *  not a "distracting animation" the reduced-motion rule is meant to strip. */
+const MISS_DWELL_MS = 700
+
+/** How often the live elapsed-time display updates while a round is in progress. */
+const TICK_MS = 100
+
+interface MatchSessionProps {
+  readonly deckId: DeckId
+  readonly pairs: readonly MatchPair[]
+}
+
+interface TileButtonProps {
+  readonly tile: MatchTile
+  readonly isSelected: boolean
+  readonly isMatched: boolean
+  readonly isMiss: boolean
+  readonly onSelect: (tile: MatchTile) => void
+}
+
+const TileButton = ({ tile, isSelected, isMatched, isMiss, onSelect }: TileButtonProps) => {
+  const classNames = ['match-tile']
+  if (isSelected) classNames.push('is-selected')
+  if (isMatched) classNames.push('is-matched')
+  if (isMiss) classNames.push('is-miss')
+
+  return (
+    <button
+      type="button"
+      className={classNames.join(' ')}
+      aria-pressed={isSelected}
+      disabled={isMatched}
+      onClick={() => onSelect(tile)}
+    >
+      <span className="card-content match-tile-text">{tile.text}</span>
+      {isMatched && <span className="visually-hidden"> (matched)</span>}
+    </button>
+  )
+}
+
+export const MatchSession = ({ deckId, pairs }: MatchSessionProps) => {
+  const [round, setRound] = useState<readonly MatchTile[]>(() => createRound(pairs, DEFAULT_PAIR_CAP))
+  const [selectedTileId, setSelectedTileId] = useState<string | null>(null)
+  const [matchedCardIds, setMatchedCardIds] = useState<ReadonlySet<CardId>>(new Set())
+  const [missTileIds, setMissTileIds] = useState<readonly [string, string] | null>(null)
+  const [startedAt, setStartedAt] = useState<number | null>(null)
+  const [completedAt, setCompletedAt] = useState<number | null>(null)
+  const [now, setNow] = useState<number>(() => Date.now())
+  const [feedback, setFeedback] = useState<string>('')
+  const [bestAtStart, setBestAtStart] = useState<number | null>(() => getBestTimeMs(deckId))
+  const [isNewBest, setIsNewBest] = useState<boolean>(false)
+
+  const missTimeoutRef = useRef<number | null>(null)
+
+  // Tick the live elapsed display while a round is in progress.
+  useEffect(() => {
+    if (startedAt === null || completedAt !== null) return
+    const intervalId = window.setInterval(() => setNow(Date.now()), TICK_MS)
+    return () => window.clearInterval(intervalId)
+  }, [startedAt, completedAt])
+
+  // Clear any pending miss-dwell timeout on unmount (e.g. navigating away mid-miss-flash).
+  useEffect(
+    () => () => {
+      if (missTimeoutRef.current !== null) window.clearTimeout(missTimeoutRef.current)
+    },
+    [],
+  )
+
+  const pairCount = round.length / 2
+  const elapsedMs = startedAt === null ? 0 : (completedAt ?? now) - startedAt
+
+  const startNewRound = () => {
+    if (missTimeoutRef.current !== null) {
+      window.clearTimeout(missTimeoutRef.current)
+      missTimeoutRef.current = null
+    }
+    setRound(createRound(pairs, DEFAULT_PAIR_CAP))
+    setSelectedTileId(null)
+    setMatchedCardIds(new Set())
+    setMissTileIds(null)
+    setStartedAt(null)
+    setCompletedAt(null)
+    setFeedback('')
+    setBestAtStart(getBestTimeMs(deckId))
+    setIsNewBest(false)
+  }
+
+  const handleSelect = (tile: MatchTile) => {
+    if (completedAt !== null || missTileIds !== null || matchedCardIds.has(tile.cardId)) return
+
+    if (startedAt === null) setStartedAt(Date.now())
+
+    if (selectedTileId === null) {
+      setSelectedTileId(tile.tileId)
+      return
+    }
+
+    if (selectedTileId === tile.tileId) {
+      setSelectedTileId(null)
+      return
+    }
+
+    const firstTile = round.find((candidate) => candidate.tileId === selectedTileId)
+    if (firstTile === undefined) {
+      // Shouldn't happen, but fail safe rather than throw.
+      setSelectedTileId(tile.tileId)
+      return
+    }
+
+    if (firstTile.cardId === tile.cardId) {
+      const nextMatched = new Set(matchedCardIds)
+      nextMatched.add(tile.cardId)
+      setMatchedCardIds(nextMatched)
+      setSelectedTileId(null)
+      setFeedback(`Matched "${firstTile.text}" with "${tile.text}".`)
+
+      if (nextMatched.size === pairCount) {
+        const finishedAt = Date.now()
+        const elapsed = finishedAt - (startedAt ?? finishedAt)
+        setCompletedAt(finishedAt)
+        const previousBest = bestAtStart
+        const updatedBest = recordCompletionTime(deckId, elapsed)
+        const wonBest = previousBest === null || elapsed < previousBest
+        setIsNewBest(wonBest)
+        setBestAtStart(updatedBest)
+        setFeedback(
+          wonBest
+            ? `Round complete in ${formatElapsed(elapsed)} — new personal best.`
+            : `Round complete in ${formatElapsed(elapsed)}.`,
+        )
+      }
+      return
+    }
+
+    setMissTileIds([selectedTileId, tile.tileId])
+    setSelectedTileId(null)
+    setFeedback('Not a match — try again.')
+    missTimeoutRef.current = window.setTimeout(() => {
+      setMissTileIds(null)
+      missTimeoutRef.current = null
+    }, MISS_DWELL_MS)
+  }
+
+  const isComplete = completedAt !== null
+
+  return (
+    <div className="match-session">
+      <div className="match-status-bar">
+        <p className="match-timer">Time: {formatElapsed(elapsedMs)}</p>
+        <p className="match-best">
+          {bestAtStart === null ? 'No personal best yet' : `Best: ${formatElapsed(bestAtStart)}`}
+          {isComplete && isNewBest && ' (new)'}
+        </p>
+      </div>
+
+      <p role="status" aria-live="polite" className="match-feedback">
+        {feedback}
+      </p>
+
+      <div className="match-grid">
+        {round.map((tile) => (
+          <TileButton
+            key={tile.tileId}
+            tile={tile}
+            isSelected={tile.tileId === selectedTileId}
+            isMatched={matchedCardIds.has(tile.cardId)}
+            isMiss={missTileIds !== null && missTileIds.includes(tile.tileId)}
+            onSelect={handleSelect}
+          />
+        ))}
+      </div>
+
+      {isComplete && (
+        <button type="button" className="match-play-again" onClick={startNewRound} autoFocus>
+          Play again
+        </button>
+      )}
+    </div>
+  )
+}
