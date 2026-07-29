@@ -1,7 +1,8 @@
+import fc from 'fast-check'
 import { describe, expect, it } from 'vitest'
 import { createInitialScheduling } from '../../lib/fsrs'
 import type { CardId, SetId, StudyCard } from '../../types'
-import { countDueCategories, interleaveByCategory, selectDueQueue } from './dueQueue'
+import { countDueCategories, interleaveByCategory, reinsertForRelearning, selectDueQueue } from './dueQueue'
 
 const now = new Date('2026-01-10T00:00:00.000Z')
 
@@ -181,6 +182,26 @@ describe('interleaveByCategory', () => {
   })
 })
 
+describe('interleaveByCategory (property)', () => {
+  it('is always a permutation of dueIds, for any cards and any tag assignment', () => {
+    fc.assert(
+      fc.property(
+        fc.uniqueArray(fc.string({ minLength: 1, maxLength: 4 }), { minLength: 1, maxLength: 12 }),
+        fc.array(fc.string({ minLength: 1, maxLength: 3 }), { maxLength: 3 }),
+        (ids, possibleTags) => {
+          const cards = ids.map((id, index) =>
+            makeCard(id, 'set', 0, possibleTags.length === 0 ? [] : [possibleTags[index % possibleTags.length]!]),
+          )
+          const dueIds = cards.map((c) => c.id)
+          const result = interleaveByCategory(cards, dueIds)
+          expect(result).toHaveLength(dueIds.length)
+          expect([...result].sort()).toEqual([...dueIds].sort())
+        },
+      ),
+    )
+  })
+})
+
 describe('countDueCategories', () => {
   it('returns 0 for an empty queue', () => {
     expect(countDueCategories([], [])).toBe(0)
@@ -208,5 +229,68 @@ describe('countDueCategories', () => {
         cards.map((c) => c.id),
       ),
     ).toBe(3)
+  })
+})
+
+describe('reinsertForRelearning', () => {
+  const ids = ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j'].map((id) => id as CardId)
+
+  it('schedules a second appearance RELEARN_GAP (5) cards after its current position', () => {
+    // Failed at index 0 ('a'); 9 cards remain after it, more than the gap,
+    // so a second 'a' lands exactly 5 cards later — the original (already
+    // shown, already passed) slot at index 0 is untouched.
+    const result = reinsertForRelearning(ids, 0, ids[0]!)
+    expect(result).toEqual(['a', 'b', 'c', 'd', 'e', 'f', 'a', 'g', 'h', 'i', 'j'])
+  })
+
+  it('does not reinsert immediately after the current position (no massed restudy)', () => {
+    const result = reinsertForRelearning(ids, 0, ids[0]!)
+    expect(result[1]).not.toBe('a')
+  })
+
+  it('clamps the gap to whatever remains when failed near the end of the queue', () => {
+    // Only 2 cards remain after index 7 ('h'); gap clamps to 2, landing the
+    // second occurrence right at the tail.
+    const result = reinsertForRelearning(ids, 7, ids[7]!)
+    expect(result).toEqual(['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'h'])
+  })
+
+  it('appends at the end when failed on the very last card', () => {
+    const result = reinsertForRelearning(ids, 9, ids[9]!)
+    expect(result).toEqual([...ids, 'j'])
+  })
+
+  it('is pure: does not mutate the input queue', () => {
+    const snapshot = [...ids]
+    reinsertForRelearning(ids, 0, ids[0]!)
+    expect(ids).toEqual(snapshot)
+  })
+})
+
+describe('reinsertForRelearning (property)', () => {
+  it('always grows the queue by exactly one element, for any queue and any valid position', () => {
+    fc.assert(
+      fc.property(
+        fc
+          .uniqueArray(fc.string({ minLength: 1, maxLength: 4 }), { minLength: 1, maxLength: 15 })
+          .chain((queue) =>
+            fc.record({ queue: fc.constant(queue), position: fc.integer({ min: 0, max: queue.length - 1 }) }),
+          ),
+        ({ queue, position }) => {
+          const cardIds = queue.map((id) => id as CardId)
+          const failedId = cardIds[position]!
+          const result = reinsertForRelearning(cardIds, position, failedId)
+          expect(result).toHaveLength(cardIds.length + 1)
+          // Every original id is still present, plus exactly one extra
+          // occurrence of the failed id.
+          const counts = new Map<string, number>()
+          for (const id of result) counts.set(id, (counts.get(id) ?? 0) + 1)
+          for (const id of cardIds) {
+            const expected = id === failedId ? 2 : 1
+            expect(counts.get(id)).toBe(expected)
+          }
+        },
+      ),
+    )
   })
 })

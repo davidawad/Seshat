@@ -19,7 +19,7 @@ interface ReviewSessionProps {
   readonly card: StudyCard
   readonly position: number
   readonly total: number
-  readonly onAdvance: () => void
+  readonly onAdvance: (grade: Grade) => void
 }
 
 /**
@@ -30,11 +30,19 @@ interface ReviewSessionProps {
  * evidence-backed levers this app leans on).
  */
 export const ReviewSession = ({ card, position, total, onAdvance }: ReviewSessionProps) => {
-  const { recordReview } = useSeshatStore()
+  const {
+    recordReview,
+    state: {
+      settings: { selfExplanationEnabled },
+    },
+  } = useSeshatStore()
   const [step, setStep] = useState<Step>('answer')
   const [attempt, setAttempt] = useState<Attempt>(() => initialAttempt(card.content))
   const [confidence, setConfidence] = useState<ConfidenceRating | null>(null)
   const [correct, setCorrect] = useState(false)
+  // `null` means "prompt hidden" (setting off); '' vs non-empty distinguishes
+  // an untouched prompt from one the learner explicitly left blank.
+  const [selfExplanation, setSelfExplanation] = useState<string | null>(null)
   const promptShownAt = useRef(performance.now())
 
   // Reset all per-card state whenever a new card is shown.
@@ -43,8 +51,9 @@ export const ReviewSession = ({ card, position, total, onAdvance }: ReviewSessio
     setAttempt(initialAttempt(card.content))
     setConfidence(null)
     setCorrect(false)
+    setSelfExplanation(selfExplanationEnabled ? '' : null)
     promptShownAt.current = performance.now()
-  }, [card.id, card.content])
+  }, [card.id, card.content, selfExplanationEnabled])
 
   const complete = isAttemptComplete(card.content, attempt)
 
@@ -65,10 +74,12 @@ export const ReviewSession = ({ card, position, total, onAdvance }: ReviewSessio
   const handleGrade = useCallback(
     (grade: Grade) => {
       const elapsedMs = performance.now() - promptShownAt.current
-      recordReview(card.id, grade, confidence, correct, elapsedMs)
-      onAdvance()
+      const trimmedExplanation =
+        selfExplanation !== null && selfExplanation.trim() !== '' ? selfExplanation.trim() : null
+      recordReview(card.id, grade, confidence, correct, elapsedMs, trimmedExplanation)
+      onAdvance(grade)
     },
-    [card.id, confidence, correct, onAdvance, recordReview],
+    [card.id, confidence, correct, onAdvance, recordReview, selfExplanation],
   )
 
   // Number-key shortcuts (1-3 confidence, 1-4 grade) — skipped while a text
@@ -136,7 +147,14 @@ export const ReviewSession = ({ card, position, total, onAdvance }: ReviewSessio
 
       {step === 'reveal' && (
         <div className="illuminated-panel">
-          <RevealPanel card={card} attempt={attempt} correct={correct} onGrade={handleGrade} />
+          <RevealPanel
+            card={card}
+            attempt={attempt}
+            correct={correct}
+            onGrade={handleGrade}
+            selfExplanation={selfExplanation}
+            onSelfExplanationChange={setSelfExplanation}
+          />
         </div>
       )}
     </div>

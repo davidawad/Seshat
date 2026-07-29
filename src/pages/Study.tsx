@@ -1,9 +1,9 @@
 import { useEffect, useMemo, useState } from 'react'
 import { Link, useParams } from 'react-router-dom'
 import { ReviewSession } from '../features/study/ReviewSession'
-import { countDueCategories, selectDueQueue } from '../features/study/dueQueue'
+import { countDueCategories, reinsertForRelearning, selectDueQueue } from '../features/study/dueQueue'
 import { useSeshatStore } from '../lib/store'
-import { type SetId, setIdSchema } from '../types'
+import { type CardId, type Grade, type SetId, setIdSchema } from '../types'
 
 /**
  * Advances past a card that vanished from the store mid-session (e.g.
@@ -22,14 +22,23 @@ const StudyQueue = ({ setId }: StudyQueueProps) => {
   const { state } = useSeshatStore()
 
   // The due queue is snapshotted once per session (keyed by setId in the
-  // parent) rather than recomputed on every card update — recording a
-  // review changes that card's scheduling, and we don't want the queue
-  // reshuffling or a card vanishing mid-review just because its own answer
-  // was just graded.
-  const dueIds = useMemo(() => selectDueQueue(state.cards, setId, new Date()), [setId]) // eslint-disable-line react-hooks/exhaustive-deps
+  // parent) rather than recomputed from `state.cards` on every update —
+  // recording a review changes that card's scheduling, and we don't want
+  // the queue reshuffling or a card vanishing mid-review just because its
+  // own answer was just graded. It's still `useState`, not `useMemo`: an
+  // "again" grade mutates it (see handleAdvance below) to reinsert the
+  // lapsed card a few cards later in this same session.
+  const [dueIds, setDueIds] = useState<readonly CardId[]>(() => selectDueQueue(state.cards, setId, new Date()))
   const [position, setPosition] = useState(0)
 
   const cardsInScope = useMemo(() => state.cards.filter((card) => card.setId === setId), [state.cards, setId])
+
+  const handleAdvance = (grade: Grade, cardId: CardId) => {
+    if (grade === 'again') {
+      setDueIds((queue) => reinsertForRelearning(queue, position, cardId))
+    }
+    setPosition((p) => p + 1)
+  }
 
   if (dueIds.length === 0) {
     const later = cardsInScope.length
@@ -66,7 +75,7 @@ const StudyQueue = ({ setId }: StudyQueueProps) => {
         card={card}
         position={position}
         total={dueIds.length}
-        onAdvance={() => setPosition((p) => p + 1)}
+        onAdvance={(grade) => handleAdvance(grade, currentId)}
       />
     </>
   )

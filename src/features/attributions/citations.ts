@@ -162,6 +162,15 @@ export const CITATIONS: readonly Citation[] = [
   },
   {
     category: 'learning-science',
+    title: 'Inducing Self-Explanation: A Meta-Analysis',
+    authors: 'Bisra, K., Liu, Q., Nesbit, J. C., Salimi, F., & Winne, P. H.',
+    year: 2018,
+    summary:
+      'Meta-analysis of 69 effect sizes: prompting learners to generate their own explanation of why an answer or solution is correct improves learning (g=0.55), robust across task type and subject area — the basis for Seshat\'s optional "why is that correct?" self-explanation prompt, off by default since it lengthens every review.',
+    link: 'https://doi.org/10.1007/s10648-018-9434-x',
+  },
+  {
+    category: 'learning-science',
     title: 'A Trainable Spaced Repetition Model for Language Learning',
     authors: 'Settles, B., & Meeder, B.',
     year: 2016,

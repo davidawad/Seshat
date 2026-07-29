@@ -29,6 +29,17 @@
   color: var(--color-surface-highlight-fg-muted);
 }
 
+.review-self-explanation {
+  display: flex;
+  flex-direction: column;
+  gap: 0.35rem;
+  margin: 0.75rem 0;
+}
+
+.review-self-explanation textarea {
+  resize: vertical;
+}
+
 .confidence-options,
 .grade-options {
   display: flex;

@@ -14,6 +14,7 @@ const makeEntry = (overrides: Partial<ReviewLogEntry> = {}): ReviewLogEntry => (
   correct: true,
   retrievabilityAtReview: null,
   elapsedMs: 1000,
+  selfExplanation: null,
   ...overrides,
 })
 

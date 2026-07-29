@@ -81,6 +81,43 @@ export const interleaveByCategory = (cards: readonly StudyCard[], dueIds: readon
 }
 
 /**
+ * How many other cards a lapsed card is pushed past before it reappears in
+ * the same session — not immediately (that would be massed restudy), but
+ * before the session ends. See research/learning-science/latimier-2021.md:
+ * spaced retrieval beats massed retrieval even at this short a timescale.
+ */
+const RELEARN_GAP = 5
+
+/**
+ * Schedules a second, future appearance of a just-failed card ("again")
+ * `RELEARN_GAP` cards later in an in-progress session queue, instead of
+ * leaving its next appearance to whatever FSRS's next `due` date turns out
+ * to be (which could be days away — no good for a card the learner clearly
+ * hasn't learned yet).
+ *
+ * Pure and index-based: `position` is the index the card was just shown at.
+ * That slot is left alone — the session's position pointer has already
+ * moved past it, so it's never re-displayed — and a second occurrence of
+ * `cardId` is spliced in `RELEARN_GAP` cards further along, clamped to
+ * whatever remains so a lapse near the end of a session doesn't get lost
+ * past the array's end.
+ */
+export const reinsertForRelearning = (
+  queue: readonly CardId[],
+  position: number,
+  cardId: CardId,
+): readonly CardId[] => {
+  const remaining = queue.length - position - 1
+  if (remaining <= 0) return [...queue, cardId]
+
+  const gap = Math.min(RELEARN_GAP, remaining)
+  const insertAt = position + 1 + gap
+  const next = [...queue]
+  next.splice(insertAt, 0, cardId)
+  return next
+}
+
+/**
  * The default study queue: every due card across all sets (or a single
  * set, when `setId` is given), oldest-due-first and then interleaved by
  * category so related-but-distinct material is mixed rather than blocked

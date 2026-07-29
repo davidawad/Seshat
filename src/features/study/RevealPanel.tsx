@@ -1,3 +1,4 @@
+import { useId } from 'react'
 import { Legible } from '../../components/Legible'
 import type { Grade, StudyCard } from '../../types'
 import { type Attempt, GRADE_ORDER, attemptLabel, correctAnswerLabel } from './grading'
@@ -13,6 +14,9 @@ interface RevealPanelProps {
   readonly attempt: Attempt
   readonly correct: boolean
   readonly onGrade: (grade: Grade) => void
+  /** `null` when Settings.selfExplanationEnabled is off — hides the prompt entirely. */
+  readonly selfExplanation: string | null
+  readonly onSelfExplanationChange: (value: string) => void
 }
 
 /**
@@ -21,10 +25,18 @@ interface RevealPanelProps {
  * Good/Easy rating is what actually drives spacing — so it's always offered,
  * just biased toward "Again" when the auto-grade came back wrong.
  */
-export const RevealPanel = ({ card, attempt, correct, onGrade }: RevealPanelProps) => {
+export const RevealPanel = ({
+  card,
+  attempt,
+  correct,
+  onGrade,
+  selfExplanation,
+  onSelfExplanationChange,
+}: RevealPanelProps) => {
   const yourAnswer = attemptLabel(card.content, attempt)
   const correctAnswer = correctAnswerLabel(card.content, attempt)
   const suggestedGrade: Grade = correct ? 'good' : 'again'
+  const selfExplanationId = useId()
 
   return (
     <div className="review-reveal">
@@ -43,6 +55,17 @@ export const RevealPanel = ({ card, attempt, correct, onGrade }: RevealPanelProp
         <p className="review-correct-answer">Correct answer: {correctAnswer}</p>
         {card.explanation !== null && <p className="review-explanation">{card.explanation}</p>}
         {card.sourceRef !== null && <p className="review-source">Source: {card.sourceRef}</p>}
+        {selfExplanation !== null && (
+          <div className="review-self-explanation">
+            <label htmlFor={selfExplanationId}>Why is that the correct answer? (optional)</label>
+            <textarea
+              id={selfExplanationId}
+              value={selfExplanation}
+              onChange={(event) => onSelfExplanationChange(event.target.value)}
+              rows={2}
+            />
+          </div>
+        )}
       </Legible>
       <fieldset className="review-grade">
         <legend>How well did you recall this?</legend>

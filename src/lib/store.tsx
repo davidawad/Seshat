@@ -117,6 +117,7 @@ interface SeshatStore {
     confidence: ConfidenceRating | null,
     correct: boolean,
     elapsedMs: number,
+    selfExplanation?: string | null,
   ) => void
   readonly importSet: (exported: ExportedSet) => StudySet
   readonly exportSet: (setId: SetId) => ExportedSet | null
@@ -186,7 +187,14 @@ export const SeshatProvider = ({ children }: { readonly children: ReactNode }) =
   }, [])
 
   const recordReview = useCallback(
-    (cardId: CardId, grade: Grade, confidence: ConfidenceRating | null, correct: boolean, elapsedMs: number) => {
+    (
+      cardId: CardId,
+      grade: Grade,
+      confidence: ConfidenceRating | null,
+      correct: boolean,
+      elapsedMs: number,
+      selfExplanation: string | null = null,
+    ) => {
       const card = state.cards.find((candidate) => candidate.id === cardId)
       if (card === undefined) return
       const set = state.sets.find((candidate) => candidate.id === card.setId)
@@ -212,6 +220,7 @@ export const SeshatProvider = ({ children }: { readonly children: ReactNode }) =
           correct,
           retrievabilityAtReview,
           elapsedMs,
+          selfExplanation,
         },
       })
     },

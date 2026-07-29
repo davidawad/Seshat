@@ -174,6 +174,11 @@ export const reviewLogEntrySchema = z.object({
   correct: z.boolean(),
   retrievabilityAtReview: z.number().min(0).max(1).nullable(),
   elapsedMs: z.number().min(0),
+  // The learner's own free-text answer to "why is this correct?" — see
+  // research/learning-science/bisra-2018.md. Only ever populated when
+  // Settings.selfExplanationEnabled is on; `.default(null)` so existing
+  // localStorage from before this field existed still parses.
+  selfExplanation: z.string().nullable().default(null),
 })
 
 export type ReviewLogEntry = z.infer<typeof reviewLogEntrySchema>
@@ -200,6 +205,10 @@ export const settingsSchema = z.object({
   reducedMotion: z.boolean(),
   retentionPreset: retentionPresetSchema,
   desiredRetention: z.number().min(0.7).max(0.98),
+  // Opt-in "why is this correct?" prompt during reveal — see
+  // research/learning-science/bisra-2018.md. Defaults off: it lengthens
+  // every review, so it shouldn't be sprung on anyone who hasn't chosen it.
+  selfExplanationEnabled: z.boolean().default(false),
 })
 
 export type Settings = z.infer<typeof settingsSchema>
@@ -213,6 +222,7 @@ export const DEFAULT_SETTINGS: Settings = {
   reducedMotion: false,
   retentionPreset: 'balanced',
   desiredRetention: 0.9,
+  selfExplanationEnabled: false,
 }
 
 // Anki/FSRS-guidance-derived presets — see research/learning-science for citations.

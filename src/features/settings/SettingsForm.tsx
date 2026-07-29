@@ -43,7 +43,10 @@ const TYPEFACE_PREVIEW_STYLE: Record<Typeface, string> = {
   georgia: 'var(--font-georgia)',
 }
 
-const TYPEFACE_OPTIONS = typefaceSchema.options.map((typeface) => ({ value: typeface, label: TYPEFACE_LABELS[typeface] }))
+const TYPEFACE_OPTIONS = typefaceSchema.options.map((typeface) => ({
+  value: typeface,
+  label: TYPEFACE_LABELS[typeface],
+}))
 
 const PREVIEW_TEXT = 'The quick brown fox jumps over the lazy dog — 0123456789.'
 
@@ -165,7 +168,12 @@ const ThemeField = ({ settings, updateSettings }: FieldProps) => {
   return (
     <div className="settings-field">
       <label htmlFor={selectId}>Theme</label>
-      <Combobox id={selectId} value={settings.theme} onChange={(theme) => updateSettings({ theme })} options={THEME_OPTIONS} />
+      <Combobox
+        id={selectId}
+        value={settings.theme}
+        onChange={(theme) => updateSettings({ theme })}
+        options={THEME_OPTIONS}
+      />
     </div>
   )
 }
@@ -231,6 +239,36 @@ const RetentionField = ({ settings, updateSettings }: FieldProps) => {
   )
 }
 
+const SelfExplanationField = ({ settings, updateSettings }: FieldProps) => {
+  const inputId = useId()
+  const hintId = useId()
+  return (
+    <div className="settings-field">
+      <label className="settings-option-inline" htmlFor={inputId}>
+        <input
+          id={inputId}
+          type="checkbox"
+          checked={settings.selfExplanationEnabled}
+          onChange={(event) => updateSettings({ selfExplanationEnabled: event.target.checked })}
+          aria-describedby={hintId}
+        />
+        <span>Prompt "why is that correct?" after each answer</span>
+      </label>
+      <p
+        id={hintId}
+        className="field-hint"
+        title="Bisra et al. (2018), Educational Psychology Review — meta-analysis of 69 effect sizes, g = 0.55."
+      >
+        Off by default — it adds a step to every review. Typing your own explanation of why an answer is correct (not
+        just reading one) reliably improves learning: Bisra, Liu, Nesbit, Salimi &amp; Winne (2018),{' '}
+        <cite>Inducing Self-Explanation: A Meta-Analysis</cite>, <i>Educational Psychology Review</i> — g = 0.55 across
+        69 effect sizes. Nothing you type here is sent anywhere; it's saved locally alongside your review history so you
+        can look back on your own reasoning later. See <code>research/learning-science/bisra-2018.md</code>.
+      </p>
+    </div>
+  )
+}
+
 // ---------------------------------------------------------------------------
 
 /** The Settings content itself — rendered inside the large modal opened from the footer (see components/Modal.tsx). */
@@ -253,6 +291,7 @@ export const SettingsForm = () => {
         <ThemeField {...fieldProps} />
         <ReducedMotionField {...fieldProps} />
         <RetentionField {...fieldProps} />
+        <SelfExplanationField {...fieldProps} />
       </form>
     </>
   )
