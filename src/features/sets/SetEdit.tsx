@@ -74,25 +74,37 @@ const SetDetailsFields = ({ set }: { readonly set: StudySet }) => {
 
   return (
     <div className="set-details-fields">
-      <div>
-        <label htmlFor={nameId}>Name</label>
-        <input
-          id={nameId}
-          type="text"
-          value={name}
-          onChange={(event) => setName(event.target.value)}
-          onBlur={saveName}
-          aria-invalid={nameError !== null}
-          aria-describedby={nameError !== null ? errorId : undefined}
-          required
-        />
-        {nameError !== null && (
-          <p id={errorId} role="alert">
-            {nameError}
-          </p>
-        )}
+      <div className="set-details-row">
+        <div className="set-details-field set-details-field-name">
+          <label htmlFor={nameId}>Name</label>
+          <input
+            id={nameId}
+            type="text"
+            value={name}
+            onChange={(event) => setName(event.target.value)}
+            onBlur={saveName}
+            aria-invalid={nameError !== null}
+            aria-describedby={nameError !== null ? errorId : undefined}
+            required
+          />
+          {nameError !== null && (
+            <p id={errorId} className="field-error" role="alert">
+              {nameError}
+            </p>
+          )}
+        </div>
+        <div className="set-details-field">
+          <label htmlFor={tagsId}>Tags (comma-separated)</label>
+          <input
+            id={tagsId}
+            type="text"
+            value={tagsText}
+            onChange={(event) => setTagsText(event.target.value)}
+            onBlur={() => updateSet(set.id, { tags: parseTagsInput(tagsText) })}
+          />
+        </div>
       </div>
-      <div>
+      <div className="set-details-field">
         <label htmlFor={descriptionId}>Description</label>
         <textarea
           id={descriptionId}
@@ -100,16 +112,6 @@ const SetDetailsFields = ({ set }: { readonly set: StudySet }) => {
           onChange={(event) => setDescription(event.target.value)}
           onBlur={() => updateSet(set.id, { description: description.trim() })}
           rows={2}
-        />
-      </div>
-      <div>
-        <label htmlFor={tagsId}>Tags (comma-separated)</label>
-        <input
-          id={tagsId}
-          type="text"
-          value={tagsText}
-          onChange={(event) => setTagsText(event.target.value)}
-          onBlur={() => updateSet(set.id, { tags: parseTagsInput(tagsText) })}
         />
       </div>
     </div>
@@ -174,7 +176,7 @@ export const SetEditPage = () => {
 
       <h2>Cards ({cards.length})</h2>
       {cards.length === 0 && <p>No cards yet. Add the first one below.</p>}
-      <ul>
+      <ul className="card-list">
         {cards.map((card) => (
           <CardListItem key={card.id} card={card} />
         ))}

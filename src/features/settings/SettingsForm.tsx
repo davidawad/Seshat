@@ -1,4 +1,5 @@
 import { useId } from 'react'
+import { Combobox } from '../../components/Combobox'
 import './settings.css'
 import { useSeshatStore } from '../../lib/store'
 import {
@@ -42,6 +43,8 @@ const TYPEFACE_PREVIEW_STYLE: Record<Typeface, string> = {
   georgia: 'var(--font-georgia)',
 }
 
+const TYPEFACE_OPTIONS = typefaceSchema.options.map((typeface) => ({ value: typeface, label: TYPEFACE_LABELS[typeface] }))
+
 const PREVIEW_TEXT = 'The quick brown fox jumps over the lazy dog — 0123456789.'
 
 const THEME_LABELS: Record<Theme, string> = {
@@ -50,12 +53,19 @@ const THEME_LABELS: Record<Theme, string> = {
   system: 'Match system',
 }
 
+const THEME_OPTIONS = themeSchema.options.map((theme) => ({ value: theme, label: THEME_LABELS[theme] }))
+
 const RETENTION_PRESET_LABELS: Record<RetentionPreset, string> = {
   'low-workload': 'Low workload (85% retention)',
   balanced: 'Balanced (90% retention)',
   'exam-prep': 'Exam prep (93% retention)',
   custom: 'Custom',
 }
+
+const RETENTION_PRESET_OPTIONS = retentionPresetSchema.options.map((preset) => ({
+  value: preset,
+  label: RETENTION_PRESET_LABELS[preset],
+}))
 
 // ---------------------------------------------------------------------------
 // Small field components — one per Settings key, each a real labeled,
@@ -68,38 +78,25 @@ interface FieldProps {
 }
 
 const TypefaceField = ({ settings, updateSettings }: FieldProps) => {
-  const groupId = useId()
+  const selectId = useId()
+  const hintId = useId()
   return (
-    <fieldset>
-      <legend>Typeface</legend>
-      <p id={groupId} className="field-hint">
-        Font choice varies by reader — compare the preview text below and pick what's most legible to you.
+    <div className="settings-field">
+      <label htmlFor={selectId}>Typeface</label>
+      <p id={hintId} className="field-hint">
+        Font choice varies by reader — {TYPEFACE_DESCRIPTIONS[settings.typeface].toLowerCase()}
       </p>
-      <div className="settings-option-list" role="radiogroup" aria-describedby={groupId}>
-        {typefaceSchema.options.map((typeface) => {
-          const inputId = `typeface-${typeface}`
-          return (
-            <label key={typeface} className="settings-option" htmlFor={inputId}>
-              <input
-                type="radio"
-                id={inputId}
-                name="typeface"
-                value={typeface}
-                checked={settings.typeface === typeface}
-                onChange={() => updateSettings({ typeface })}
-              />
-              <span className="settings-option-body">
-                <span className="settings-option-title">{TYPEFACE_LABELS[typeface]}</span>
-                <span className="field-hint">{TYPEFACE_DESCRIPTIONS[typeface]}</span>
-                <span className="settings-preview" style={{ fontFamily: TYPEFACE_PREVIEW_STYLE[typeface] }}>
-                  {PREVIEW_TEXT}
-                </span>
-              </span>
-            </label>
-          )
-        })}
-      </div>
-    </fieldset>
+      <Combobox
+        id={selectId}
+        value={settings.typeface}
+        onChange={(typeface) => updateSettings({ typeface })}
+        options={TYPEFACE_OPTIONS}
+        aria-describedby={hintId}
+      />
+      <p className="settings-preview" style={{ fontFamily: TYPEFACE_PREVIEW_STYLE[settings.typeface] }}>
+        {PREVIEW_TEXT}
+      </p>
+    </div>
   )
 }
 
@@ -163,29 +160,15 @@ const MeasureField = ({ settings, updateSettings }: FieldProps) => {
   )
 }
 
-const ThemeField = ({ settings, updateSettings }: FieldProps) => (
-  <fieldset>
-    <legend>Theme</legend>
-    <div className="settings-option-list" role="radiogroup">
-      {themeSchema.options.map((theme) => {
-        const inputId = `theme-${theme}`
-        return (
-          <label key={theme} className="settings-option settings-option-inline" htmlFor={inputId}>
-            <input
-              type="radio"
-              id={inputId}
-              name="theme"
-              value={theme}
-              checked={settings.theme === theme}
-              onChange={() => updateSettings({ theme })}
-            />
-            <span>{THEME_LABELS[theme]}</span>
-          </label>
-        )
-      })}
+const ThemeField = ({ settings, updateSettings }: FieldProps) => {
+  const selectId = useId()
+  return (
+    <div className="settings-field">
+      <label htmlFor={selectId}>Theme</label>
+      <Combobox id={selectId} value={settings.theme} onChange={(theme) => updateSettings({ theme })} options={THEME_OPTIONS} />
     </div>
-  </fieldset>
-)
+  )
+}
 
 const ReducedMotionField = ({ settings, updateSettings }: FieldProps) => {
   const inputId = useId()
@@ -205,38 +188,27 @@ const ReducedMotionField = ({ settings, updateSettings }: FieldProps) => {
 }
 
 const RetentionField = ({ settings, updateSettings }: FieldProps) => {
+  const selectId = useId()
   const customInputId = useId()
   return (
-    <fieldset>
-      <legend>Retention target</legend>
+    <div className="settings-field">
+      <label htmlFor={selectId}>Retention target</label>
       <p className="field-hint">
         Higher retention means more, harder reviews. See <code>research/learning-science</code> for the
         Anki/FSRS-guidance sources behind these presets.
       </p>
-      <div className="settings-option-list" role="radiogroup">
-        {retentionPresetSchema.options.map((preset) => {
-          const inputId = `retention-${preset}`
-          return (
-            <label key={preset} className="settings-option-inline" htmlFor={inputId}>
-              <input
-                type="radio"
-                id={inputId}
-                name="retention-preset"
-                value={preset}
-                checked={settings.retentionPreset === preset}
-                onChange={() => {
-                  if (preset === 'custom') {
-                    updateSettings({ retentionPreset: preset })
-                  } else {
-                    updateSettings({ retentionPreset: preset, desiredRetention: RETENTION_PRESETS[preset] })
-                  }
-                }}
-              />
-              <span>{RETENTION_PRESET_LABELS[preset]}</span>
-            </label>
-          )
-        })}
-      </div>
+      <Combobox
+        id={selectId}
+        value={settings.retentionPreset}
+        onChange={(preset) => {
+          if (preset === 'custom') {
+            updateSettings({ retentionPreset: preset })
+          } else {
+            updateSettings({ retentionPreset: preset, desiredRetention: RETENTION_PRESETS[preset] })
+          }
+        }}
+        options={RETENTION_PRESET_OPTIONS}
+      />
       {settings.retentionPreset === 'custom' && (
         <div className="settings-field">
           <label htmlFor={customInputId}>Desired retention ({Math.round(settings.desiredRetention * 100)}%)</label>
@@ -255,7 +227,7 @@ const RetentionField = ({ settings, updateSettings }: FieldProps) => {
           />
         </div>
       )}
-    </fieldset>
+    </div>
   )
 }
 

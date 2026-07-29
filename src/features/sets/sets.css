@@ -29,14 +29,34 @@
 
 .create-set-form {
   display: flex;
-  align-items: center;
-  gap: 0.5rem;
+  align-items: flex-start;
+  gap: 0.6rem;
   flex-wrap: wrap;
 }
 
-.create-set-form input {
+.create-set-field {
+  display: flex;
+  flex-direction: column;
+}
+
+.create-set-field input {
   margin-bottom: 0;
-  min-width: 14rem;
+  min-width: 16rem;
+}
+
+.create-set-actions {
+  display: flex;
+  gap: 0.5rem;
+}
+
+.create-set-cancel {
+  background: transparent;
+}
+
+.field-error {
+  color: var(--color-error);
+  font-size: 0.85rem;
+  margin: 0.3rem 0 0;
 }
 
 .set-list {
@@ -91,8 +111,59 @@
 }
 
 .set-details-fields {
-  max-width: 32rem;
-  margin-bottom: 1rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.85rem;
+  max-width: 40rem;
+  margin-bottom: 1.5rem;
+}
+
+.set-details-row {
+  display: flex;
+  gap: 1rem;
+  flex-wrap: wrap;
+}
+
+.set-details-field {
+  flex: 1 1 14rem;
+  min-width: 0;
+}
+
+.set-details-field-name {
+  flex-grow: 1.5;
+}
+
+.set-details-field textarea {
+  width: 100%;
+}
+
+.card-list {
+  list-style: none;
+  margin: 1rem 0 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 0.4rem;
+}
+
+.card-list-item {
+  padding: 0.85rem 1rem;
+  border: 1px solid var(--color-border-strong);
+  border-radius: var(--radius-sm);
+}
+
+/* A short-answer card, term and definition side by side — the common case
+   reads and edits like a plain two-column list, not a form. */
+.card-row {
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+}
+
+.card-row-input {
+  flex: 1 1 50%;
+  min-width: 0;
+  margin-bottom: 0;
 }
 
 .set-danger-zone {

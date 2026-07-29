@@ -1,5 +1,5 @@
 import { useEffect, useMemo, useState } from 'react'
-import { useParams } from 'react-router-dom'
+import { Link, useParams } from 'react-router-dom'
 import { ReviewSession } from '../features/study/ReviewSession'
 import { countDueCategories, selectDueQueue } from '../features/study/dueQueue'
 import { useSeshatStore } from '../lib/store'
@@ -15,7 +15,7 @@ const SkipRemovedCard = ({ onSkip }: { readonly onSkip: () => void }) => {
 }
 
 interface StudyQueueProps {
-  readonly setId: SetId | null
+  readonly setId: SetId
 }
 
 const StudyQueue = ({ setId }: StudyQueueProps) => {
@@ -29,10 +29,7 @@ const StudyQueue = ({ setId }: StudyQueueProps) => {
   const dueIds = useMemo(() => selectDueQueue(state.cards, setId, new Date()), [setId]) // eslint-disable-line react-hooks/exhaustive-deps
   const [position, setPosition] = useState(0)
 
-  const cardsInScope = useMemo(
-    () => state.cards.filter((card) => setId === null || card.setId === setId),
-    [state.cards, setId],
-  )
+  const cardsInScope = useMemo(() => state.cards.filter((card) => card.setId === setId), [state.cards, setId])
 
   if (dueIds.length === 0) {
     const later = cardsInScope.length
@@ -75,31 +72,45 @@ const StudyQueue = ({ setId }: StudyQueueProps) => {
   )
 }
 
-/**
- * Mounted at two routes: `/study` (global — every due card across every
- * set) and `/sets/:id/study` (scoped to one set). `id` is simply absent
- * on the first, so both are the same component.
- */
+/** Mounted at `/sets/:id/study` — the recall-first, FSRS-scheduled default mode, scoped to one set. */
 export const StudyPage = () => {
-  const { id } = useParams<{ id?: string }>()
+  const { id } = useParams<{ id: string }>()
   const { state } = useSeshatStore()
 
-  const setId = useMemo<SetId | null>(() => {
-    if (id === undefined) return null
-    const parsed = setIdSchema.safeParse(id)
-    return parsed.success ? parsed.data : null
-  }, [id])
+  const parsedId = setIdSchema.safeParse(id ?? '')
+  if (!parsedId.success) {
+    return (
+      <section aria-labelledby="study-heading">
+        <h1 id="study-heading">Set not found</h1>
+        <p>
+          <Link to="/sets">Back to sets</Link>
+        </p>
+      </section>
+    )
+  }
 
-  const set = useMemo(
-    () => (setId === null ? null : (state.sets.find((candidate) => candidate.id === setId) ?? null)),
-    [setId, state.sets],
-  )
+  const setId = parsedId.data
+  const set = state.sets.find((candidate) => candidate.id === setId)
+  if (set === undefined) {
+    return (
+      <section aria-labelledby="study-heading">
+        <h1 id="study-heading">Set not found</h1>
+        <p>This set may have been deleted.</p>
+        <p>
+          <Link to="/sets">Back to sets</Link>
+        </p>
+      </section>
+    )
+  }
 
   return (
     <section aria-labelledby="study-heading">
-      <h1 id="study-heading">{set !== null ? `Study: ${set.name}` : 'Study'}</h1>
-      {/* Remounts the queue whenever the set filter changes, resetting session state cleanly. */}
-      <StudyQueue key={setId ?? 'all'} setId={setId} />
+      <p>
+        <Link to={`/sets/${setId}`}>Back to {set.name}</Link>
+      </p>
+      <h1 id="study-heading">Study: {set.name}</h1>
+      {/* Remounts the queue whenever the set changes, resetting session state cleanly. */}
+      <StudyQueue key={setId} setId={setId} />
     </section>
   )
 }

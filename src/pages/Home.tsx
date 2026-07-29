@@ -15,9 +15,6 @@ export const HomePage = () => (
       <Link to="/sets" className="home-cta-primary">
         Browse your sets
       </Link>
-      <Link to="/study" className="home-cta-secondary">
-        Study what&rsquo;s due
-      </Link>
     </div>
 
     <section aria-labelledby="home-why-heading">

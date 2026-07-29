@@ -18,23 +18,14 @@
   margin: 1.5rem 0 2.5rem;
 }
 
-.home-cta-primary,
-.home-cta-secondary {
+.home-cta-primary {
   display: inline-block;
   padding: 0.65rem 1.25rem;
   border-radius: var(--radius-sm);
   text-decoration: none;
   font-weight: 500;
-}
-
-.home-cta-primary {
   background: var(--color-accent);
   color: var(--color-accent-contrast);
-}
-
-.home-cta-secondary {
-  border: 1px solid var(--color-border-strong);
-  color: var(--color-fg);
 }
 
 .home-citation-list {

@@ -42,36 +42,43 @@ export const CreateSetForm = () => {
 
   return (
     <form onSubmit={handleSubmit} className="create-set-form" aria-label="Create a new set">
-      <label htmlFor={nameId} className="sr-only">
-        Set name
-      </label>
-      <input
-        id={nameId}
-        type="text"
-        value={name}
-        onChange={(event) => setName(event.target.value)}
-        placeholder="Name your set…"
-        aria-invalid={error !== null}
-        aria-describedby={error !== null ? errorId : undefined}
-        autoFocus
-        required
-      />
-      <button type="submit">Create</button>
-      <button
-        type="button"
-        onClick={() => {
-          setIsOpen(false)
-          setError(null)
-          setName('')
-        }}
-      >
-        Cancel
-      </button>
-      {error !== null && (
-        <p id={errorId} role="alert">
-          {error}
-        </p>
-      )}
+      <div className="create-set-field">
+        <label htmlFor={nameId} className="sr-only">
+          Set name
+        </label>
+        <input
+          id={nameId}
+          type="text"
+          value={name}
+          onChange={(event) => setName(event.target.value)}
+          placeholder="Name your set…"
+          aria-invalid={error !== null}
+          aria-describedby={error !== null ? errorId : undefined}
+          autoFocus
+          required
+        />
+        {error !== null && (
+          <p id={errorId} className="field-error" role="alert">
+            {error}
+          </p>
+        )}
+      </div>
+      <div className="create-set-actions">
+        <button type="submit" className="create-set-button">
+          Create
+        </button>
+        <button
+          type="button"
+          className="create-set-cancel"
+          onClick={() => {
+            setIsOpen(false)
+            setError(null)
+            setName('')
+          }}
+        >
+          Cancel
+        </button>
+      </div>
     </form>
   )
 }

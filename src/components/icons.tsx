@@ -34,3 +34,9 @@ export const EditIcon = () => (
     <path d="M12.5 3.5 16 7l-9 9H3.5v-3.5z" />
   </svg>
 )
+
+export const DeleteIcon = () => (
+  <svg {...commonProps}>
+    <path d="M4 6h12M8 6V4h4v2M6 6l.7 9.4a1 1 0 0 0 1 .9h4.6a1 1 0 0 0 1-.9L14 6" />
+  </svg>
+)

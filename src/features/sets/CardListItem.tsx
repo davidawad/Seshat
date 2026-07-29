@@ -1,4 +1,5 @@
-import { useState } from 'react'
+import { useId, useState } from 'react'
+import { DeleteIcon, EditIcon } from '../../components/icons'
 import { Legible } from '../../components/Legible'
 import { useSeshatStore } from '../../lib/store'
 import type { StudyCard } from '../../types'
@@ -25,9 +26,20 @@ interface CardListItemProps {
   readonly card: StudyCard
 }
 
+/**
+ * Short-answer cards are Seshat's default and by far the most common kind —
+ * so a set full of them should read (and edit) like a plain term/definition
+ * list, not a form. Other card kinds (cloze/mcq/image-occlusion) carry
+ * structure a text box can't represent, so they keep the summary + full
+ * editor pattern below.
+ */
 export const CardListItem = ({ card }: CardListItemProps) => {
-  const { deleteCard } = useSeshatStore()
+  const { updateCard, deleteCard } = useSeshatStore()
   const [isEditing, setIsEditing] = useState(false)
+  const [term, setTerm] = useState(card.prompt)
+  const [definition, setDefinition] = useState(card.content.kind === 'short-answer' ? card.content.answer : '')
+  const termId = useId()
+  const definitionId = useId()
   const summary = contentSummary(card)
 
   const handleDelete = () => {
@@ -46,8 +58,63 @@ export const CardListItem = ({ card }: CardListItemProps) => {
     )
   }
 
+  if (card.content.kind === 'short-answer') {
+    const content = card.content
+
+    const saveTerm = () => {
+      const trimmed = term.trim()
+      if (trimmed.length === 0) {
+        setTerm(card.prompt)
+        return
+      }
+      if (trimmed !== card.prompt) updateCard(card.id, { prompt: trimmed })
+    }
+
+    const saveDefinition = () => {
+      const trimmed = definition.trim()
+      if (trimmed.length === 0) {
+        setDefinition(content.answer)
+        return
+      }
+      if (trimmed !== content.answer) updateCard(card.id, { content: { ...content, answer: trimmed } })
+    }
+
+    return (
+      <li className="card-row">
+        <label htmlFor={termId} className="sr-only">
+          Term
+        </label>
+        <input
+          id={termId}
+          type="text"
+          className="card-row-input legible"
+          value={term}
+          onChange={(event) => setTerm(event.target.value)}
+          onBlur={saveTerm}
+        />
+        <label htmlFor={definitionId} className="sr-only">
+          Definition
+        </label>
+        <input
+          id={definitionId}
+          type="text"
+          className="card-row-input legible"
+          value={definition}
+          onChange={(event) => setDefinition(event.target.value)}
+          onBlur={saveDefinition}
+        />
+        <button type="button" className="icon-button" onClick={() => setIsEditing(true)} aria-label="More options">
+          <EditIcon />
+        </button>
+        <button type="button" className="icon-button" onClick={handleDelete} aria-label="Delete card">
+          <DeleteIcon />
+        </button>
+      </li>
+    )
+  }
+
   return (
-    <li>
+    <li className="card-list-item">
       <Legible as="p" measure={false}>
         <strong>{card.prompt}</strong> <span className="card-kind-badge">({summary.label})</span>
       </Legible>

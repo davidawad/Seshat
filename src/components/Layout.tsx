@@ -6,7 +6,6 @@ import { Footer } from './Footer'
 import { Modal } from './Modal'
 
 const NAV_ITEMS = [
-  { to: '/study', label: 'Study', end: false },
   { to: '/sets', label: 'Sets', end: false },
   { to: '/stats', label: 'Stats', end: false },
   { to: '/docs', label: 'Docs', end: false },

@@ -1,10 +1,18 @@
 import { type FormEvent, useId, useState } from 'react'
+import { Combobox } from '../../components/Combobox'
 import { useSeshatStore } from '../../lib/store'
 import { type CardContent, type OcclusionRegion, type SetId, type StudyCard, cardContentSchema } from '../../types'
 import { ImageOcclusionEditor } from './ImageOcclusionEditor'
 import { parseTagsInput } from './tags'
 
 type ContentKind = CardContent['kind']
+
+const KIND_OPTIONS: readonly { readonly value: ContentKind; readonly label: string }[] = [
+  { value: 'short-answer', label: 'Short answer' },
+  { value: 'cloze', label: 'Cloze (fill in the blank)' },
+  { value: 'mcq', label: 'Multiple choice' },
+  { value: 'image-occlusion', label: 'Image occlusion' },
+]
 
 interface CardFormProps {
   readonly setId: SetId
@@ -154,12 +162,7 @@ export const CardForm = ({ setId, editingCard, onDone }: CardFormProps) => {
       <fieldset>
         <legend>Card type</legend>
         <label htmlFor={kindId}>Kind</label>
-        <select id={kindId} value={draft.kind} onChange={(event) => setKind(event.target.value as ContentKind)}>
-          <option value="short-answer">Short answer</option>
-          <option value="cloze">Cloze (fill in the blank)</option>
-          <option value="mcq">Multiple choice</option>
-          <option value="image-occlusion">Image occlusion</option>
-        </select>
+        <Combobox id={kindId} value={draft.kind} onChange={setKind} options={KIND_OPTIONS} />
       </fieldset>
 
       {draft.kind === 'short-answer' && (

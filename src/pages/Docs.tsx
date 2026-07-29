@@ -62,6 +62,98 @@ export const DocsPage = () => (
       </p>
     </section>
 
+    <section aria-labelledby="docs-schema-heading">
+      <h2 id="docs-schema-heading">The set JSON format — and how to upload one that works</h2>
+      <p>
+        On the <Link to="/sets">Sets</Link> page, the upload icon in the header opens a file picker that accepts
+        either of two JSON shapes below. It tries Seshat&rsquo;s own format first, then falls back to the simple
+        term/definition format — you don&rsquo;t have to tell it which one you&rsquo;re giving it.
+      </p>
+
+      <h3>The simple format (Quizlet-style term/definition pairs)</h3>
+      <p>
+        The easiest thing that works: a JSON array of <code>{'{term, definition}'}</code> objects. Every entry
+        imports as a short-answer card (prompt = term, answer = definition).
+      </p>
+      <pre>
+        <code>{`[
+  { "term": "Mitochondria", "definition": "The powerhouse of the cell" },
+  { "term": "Ribosome", "definition": "Synthesizes proteins" }
+]`}</code>
+      </pre>
+      <p>
+        To give the set a name on import instead of being prompted for one, wrap it — <code>name</code> or{' '}
+        <code>title</code> both work:
+      </p>
+      <pre>
+        <code>{`{
+  "name": "Cell Biology",
+  "terms": [
+    { "term": "Mitochondria", "definition": "The powerhouse of the cell" }
+  ]
+}`}</code>
+      </pre>
+      <p>
+        Each entry also accepts <code>question</code>/<code>answer</code> or <code>front</code>/<code>back</code> in
+        place of <code>term</code>/<code>definition</code>, so files from other tools usually import unmodified.
+      </p>
+
+      <h3>The full Seshat format (round-trips every card kind)</h3>
+      <p>
+        The simple format only knows about term/definition pairs. Seshat&rsquo;s own export format additionally
+        preserves cloze deletions, multiple-choice options, explanations, source citations, and tags. Every card
+        has a <code>content</code> object discriminated by <code>kind</code>: <code>short-answer</code>,{' '}
+        <code>cloze</code>, <code>mcq</code>, or <code>image-occlusion</code>.
+      </p>
+      <pre>
+        <code>{`{
+  "seshatExportVersion": 1,
+  "name": "Cell Biology",
+  "description": "Intro cell biology vocabulary",
+  "tags": ["biology"],
+  "cards": [
+    {
+      "prompt": "What is the powerhouse of the cell?",
+      "content": { "kind": "short-answer", "answer": "Mitochondria", "acceptableAnswers": [] },
+      "explanation": null,
+      "sourceRef": null,
+      "tags": []
+    },
+    {
+      "prompt": "Fill in the blank",
+      "content": { "kind": "cloze", "text": "The {{mitochondria}} is the powerhouse of the cell." },
+      "explanation": null,
+      "sourceRef": null,
+      "tags": []
+    },
+    {
+      "prompt": "Which organelle synthesizes proteins?",
+      "content": {
+        "kind": "mcq",
+        "options": ["Ribosome", "Golgi apparatus", "Lysosome"],
+        "correctIndex": 0
+      },
+      "explanation": "Ribosomes translate mRNA into protein chains.",
+      "sourceRef": null,
+      "tags": []
+    }
+  ]
+}`}</code>
+      </pre>
+      <p>
+        <code>image-occlusion</code> cards additionally carry <code>imageDataUrl</code> (a <code>data:</code> URL —
+        keep it small, see the storage note above) and <code>occlusions</code>, an array of labeled regions
+        expressed as percentages of the image&rsquo;s own dimensions:{' '}
+        <code>{'{ id, xPct, yPct, widthPct, heightPct, label }'}</code>.
+      </p>
+      <p>
+        Every field is validated with <a href="https://zod.dev">Zod</a> at the import boundary — a file that
+        doesn&rsquo;t match either shape gets a specific error message telling you what&rsquo;s wrong, not a silent
+        failure or a corrupted set. The schemas themselves are the source of truth in the repository, at{' '}
+        <code>src/types.ts</code> (<code>exportedSetSchema</code>) and <code>src/features/sets/simple-json.ts</code>.
+      </p>
+    </section>
+
     <section aria-labelledby="docs-license-heading">
       <h2 id="docs-license-heading">Open source</h2>
       <p>
