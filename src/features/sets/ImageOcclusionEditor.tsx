@@ -1,4 +1,5 @@
 import { type ChangeEvent, type PointerEvent as ReactPointerEvent, useId, useRef, useState } from 'react'
+import { Legible } from '../../components/Legible'
 import type { OcclusionRegion } from '../../types'
 import { downscaleImageFile, isImageDataUrlOversized } from './image-processing'
 import './image-occlusion-editor.css'
@@ -196,13 +197,15 @@ export const ImageOcclusionEditor = ({ value, onChange }: ImageOcclusionEditorPr
                 <li key={region.id} className="occlusion-editor-region-item">
                   <div>
                     <label htmlFor={labelId}>Region {index + 1} label (what&rsquo;s hidden here)</label>
-                    <input
-                      id={labelId}
-                      type="text"
-                      value={region.label}
-                      onChange={(event) => updateRegion(region.id, { label: event.target.value })}
-                      required
-                    />
+                    <Legible as="span" measure={false}>
+                      <input
+                        id={labelId}
+                        type="text"
+                        value={region.label}
+                        onChange={(event) => updateRegion(region.id, { label: event.target.value })}
+                        required
+                      />
+                    </Legible>
                   </div>
                   <div className="occlusion-editor-region-coords">
                     <label htmlFor={xId}>

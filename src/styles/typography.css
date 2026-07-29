@@ -85,15 +85,19 @@ dd,
 }
 
 /* Form controls INSIDE a `.legible` block (the short-answer/cloze input,
-   MCQ option buttons, image-occlusion label field) are how the learner
-   reads and interacts with the actual material — they should honor the
-   chosen content typeface too, not fall back to chrome mono the way
-   `input`/`button` do everywhere else in the app. */
+   MCQ option buttons, image-occlusion label field, card editor fields)
+   are how the learner reads and interacts with the actual material —
+   they should honor the chosen content typeface, size, AND line height
+   too, not fall back to chrome mono at chrome's fixed size the way
+   `input`/`button` do everywhere else in the app. `font` (not just
+   `font-family`) is required here: form controls don't inherit font
+   properties from ancestors by default, even inheritable ones like
+   font-size and line-height — `font: inherit` is the standard fix. */
 .legible input,
 .legible textarea,
 .legible select,
 .legible button {
-  font-family: var(--font-body);
+  font: inherit;
 }
 
 /* ---------------------------------------------------------------------

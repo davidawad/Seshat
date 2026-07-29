@@ -1,5 +1,6 @@
 import { type FormEvent, useId, useState } from 'react'
 import { Combobox } from '../../components/Combobox'
+import { Legible } from '../../components/Legible'
 import { useSeshatStore } from '../../lib/store'
 import { type CardContent, type OcclusionRegion, type SetId, type StudyCard, cardContentSchema } from '../../types'
 import { ImageOcclusionEditor } from './ImageOcclusionEditor'
@@ -143,15 +144,17 @@ export const CardForm = ({ setId, editingCard, onDone }: CardFormProps) => {
     <form onSubmit={handleSubmit} aria-label={editingCard === null ? 'Add card' : 'Edit card'}>
       <div>
         <label htmlFor={promptId}>Prompt</label>
-        <input
-          id={promptId}
-          type="text"
-          value={prompt}
-          onChange={(event) => setPrompt(event.target.value)}
-          aria-invalid={errors['prompt'] !== undefined}
-          aria-describedby={errors['prompt'] !== undefined ? promptErrorId : undefined}
-          required
-        />
+        <Legible as="span" measure={false}>
+          <input
+            id={promptId}
+            type="text"
+            value={prompt}
+            onChange={(event) => setPrompt(event.target.value)}
+            aria-invalid={errors['prompt'] !== undefined}
+            aria-describedby={errors['prompt'] !== undefined ? promptErrorId : undefined}
+            required
+          />
+        </Legible>
         {errors['prompt'] !== undefined && (
           <p id={promptErrorId} role="alert">
             {errors['prompt']}
@@ -169,22 +172,26 @@ export const CardForm = ({ setId, editingCard, onDone }: CardFormProps) => {
         <div>
           <div>
             <label htmlFor={answerId}>Answer</label>
-            <input
-              id={answerId}
-              type="text"
-              value={draft.answer}
-              onChange={(event) => setDraft((prev) => ({ ...prev, answer: event.target.value }))}
-              required
-            />
+            <Legible as="span" measure={false}>
+              <input
+                id={answerId}
+                type="text"
+                value={draft.answer}
+                onChange={(event) => setDraft((prev) => ({ ...prev, answer: event.target.value }))}
+                required
+              />
+            </Legible>
           </div>
           <div>
             <label htmlFor={acceptableId}>Other acceptable answers (one per line, optional)</label>
-            <textarea
-              id={acceptableId}
-              value={draft.acceptableAnswersText}
-              onChange={(event) => setDraft((prev) => ({ ...prev, acceptableAnswersText: event.target.value }))}
-              rows={3}
-            />
+            <Legible as="div" measure={false}>
+              <textarea
+                id={acceptableId}
+                value={draft.acceptableAnswersText}
+                onChange={(event) => setDraft((prev) => ({ ...prev, acceptableAnswersText: event.target.value }))}
+                rows={3}
+              />
+            </Legible>
           </div>
         </div>
       )}
@@ -195,14 +202,16 @@ export const CardForm = ({ setId, editingCard, onDone }: CardFormProps) => {
           <p id={`${clozeId}-hint`}>
             Example: &quot;The mitochondria is the {'{{'}powerhouse of the cell{'}}'}.&quot;
           </p>
-          <textarea
-            id={clozeId}
-            aria-describedby={`${clozeId}-hint`}
-            value={draft.clozeText}
-            onChange={(event) => setDraft((prev) => ({ ...prev, clozeText: event.target.value }))}
-            rows={3}
-            required
-          />
+          <Legible as="div" measure={false}>
+            <textarea
+              id={clozeId}
+              aria-describedby={`${clozeId}-hint`}
+              value={draft.clozeText}
+              onChange={(event) => setDraft((prev) => ({ ...prev, clozeText: event.target.value }))}
+              rows={3}
+              required
+            />
+          </Legible>
         </div>
       )}
 
@@ -214,13 +223,15 @@ export const CardForm = ({ setId, editingCard, onDone }: CardFormProps) => {
             return (
               <div key={optionId}>
                 <label htmlFor={optionId}>Option {index + 1}</label>
-                <input
-                  id={optionId}
-                  type="text"
-                  value={option}
-                  onChange={(event) => setOption(index, event.target.value)}
-                  required
-                />
+                <Legible as="span" measure={false}>
+                  <input
+                    id={optionId}
+                    type="text"
+                    value={option}
+                    onChange={(event) => setOption(index, event.target.value)}
+                    required
+                  />
+                </Legible>
                 <label>
                   <input
                     type="radio"
@@ -262,12 +273,14 @@ export const CardForm = ({ setId, editingCard, onDone }: CardFormProps) => {
 
       <div>
         <label htmlFor={explanationId}>Explanation (optional)</label>
-        <textarea
-          id={explanationId}
-          value={explanation}
-          onChange={(event) => setExplanation(event.target.value)}
-          rows={2}
-        />
+        <Legible as="div" measure={false}>
+          <textarea
+            id={explanationId}
+            value={explanation}
+            onChange={(event) => setExplanation(event.target.value)}
+            rows={2}
+          />
+        </Legible>
       </div>
 
       <div>
