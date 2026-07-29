@@ -1,0 +1,121 @@
+{
+  "name": "MPEP Chapter Map",
+  "terms": [
+    {
+      "term": "100",
+      "definition": "Secrecy, Access, National Security, and Foreign Filing"
+    },
+    {
+      "term": "200",
+      "definition": "Types and Status of Application; Benefit and Priority Claims"
+    },
+    {
+      "term": "300",
+      "definition": "Ownership and Assignment"
+    },
+    {
+      "term": "400",
+      "definition": "Representative of Applicant or Owner"
+    },
+    {
+      "term": "500",
+      "definition": "Receipt and Handling of Mail and Papers"
+    },
+    {
+      "term": "600",
+      "definition": "Parts, Form, and Content of Application"
+    },
+    {
+      "term": "700",
+      "definition": "Examination of Applications"
+    },
+    {
+      "term": "800",
+      "definition": "Restriction in Applications Filed Under 35 U.S.C. 111; Double Patenting"
+    },
+    {
+      "term": "900",
+      "definition": "Prior Art, Classification, and Search"
+    },
+    {
+      "term": "1000",
+      "definition": "Matters Decided by Various U.S. Patent and Trademark Office Officials"
+    },
+    {
+      "term": "1100",
+      "definition": "Statutory Invention Registration (SIR); Pre-Grant Publication (PGPub) and Preissuance Submissions"
+    },
+    {
+      "term": "1200",
+      "definition": "Appeal"
+    },
+    {
+      "term": "1300",
+      "definition": "Allowance and Issue"
+    },
+    {
+      "term": "1400",
+      "definition": "Correction of Patents"
+    },
+    {
+      "term": "1500",
+      "definition": "Design Patents"
+    },
+    {
+      "term": "1600",
+      "definition": "Plant Patents"
+    },
+    {
+      "term": "1700",
+      "definition": "Miscellaneous"
+    },
+    {
+      "term": "1800",
+      "definition": "Patent Cooperation Treaty"
+    },
+    {
+      "term": "1900",
+      "definition": "Protest"
+    },
+    {
+      "term": "2000",
+      "definition": "Duty of Disclosure"
+    },
+    {
+      "term": "2100",
+      "definition": "Patentability"
+    },
+    {
+      "term": "2200",
+      "definition": "Citation of Prior Art and Ex Parte Reexamination of Patents"
+    },
+    {
+      "term": "2300",
+      "definition": "Interference and Derivation Proceedings"
+    },
+    {
+      "term": "2400",
+      "definition": "Biotechnology"
+    },
+    {
+      "term": "2500",
+      "definition": "Maintenance Fees"
+    },
+    {
+      "term": "2600",
+      "definition": "Optional Inter Partes Reexamination (procedure discontinued for requests filed after Sept. 16, 2012)"
+    },
+    {
+      "term": "2700",
+      "definition": "Patent Terms, Adjustments, and Extensions"
+    },
+    {
+      "term": "2800",
+      "definition": "Supplemental Examination"
+    },
+    {
+      "term": "2900",
+      "definition": "International Design Applications"
+    }
+  ]
+}

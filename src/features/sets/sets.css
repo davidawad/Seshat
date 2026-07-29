@@ -12,6 +12,21 @@
   gap: 0.6rem;
 }
 
+.starter-set-list {
+  list-style: none;
+  margin: 1rem 0 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  max-width: 24rem;
+}
+
+.starter-set-list button {
+  width: 100%;
+  text-align: left;
+}
+
 /*
  * The clear, prominent "create" call to action — a solid accent-filled
  * button, not just another outlined form button, so it reads as *the*

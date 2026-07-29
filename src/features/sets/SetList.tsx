@@ -4,9 +4,9 @@ import { useSeshatStore } from '../../lib/store'
 import { CreateSetForm } from './CreateSetForm'
 import { setMatchesQuery } from './filters'
 import { ImportButton } from './ImportPanel'
-import { SAMPLE_SET } from './sample-set'
 import './sets.css'
 import { SetListItem } from './SetListItem'
+import { type StarterSet, STARTER_SETS } from './starter-sets'
 
 export const SetListPage = () => {
   const { state, importSet } = useSeshatStore()
@@ -22,8 +22,8 @@ export const SetListPage = () => {
     ),
   )
 
-  const handleLoadSample = () => {
-    const set = importSet(SAMPLE_SET)
+  const handleLoadStarter = (starter: StarterSet) => {
+    const set = importSet(starter.set)
     navigate(`/sets/${set.id}`)
   }
 
@@ -39,10 +39,16 @@ export const SetListPage = () => {
 
       {state.sets.length === 0 ? (
         <div>
-          <p>You don&apos;t have any sets yet.</p>
-          <button type="button" onClick={handleLoadSample}>
-            Load sample set: &quot;How Spaced Repetition Actually Works&quot;
-          </button>
+          <p>You don&apos;t have any sets yet. Start from a test set, or create your own above.</p>
+          <ul className="starter-set-list">
+            {STARTER_SETS.map((starter) => (
+              <li key={starter.id}>
+                <button type="button" onClick={() => handleLoadStarter(starter)}>
+                  Load: {starter.label}
+                </button>
+              </li>
+            ))}
+          </ul>
         </div>
       ) : (
         <div>

@@ -1,0 +1,457 @@
+{
+  "name": "Patent Bar Key Terms",
+  "terms": [
+    {
+      "term": "35 U.S.C.",
+      "definition": "Title 35 of the United States Code, the federal statute that provides the substantive law governing patents, including patentability requirements, infringement, and USPTO procedure."
+    },
+    {
+      "term": "37 C.F.R.",
+      "definition": "Title 37 of the Code of Federal Regulations, containing the USPTO's implementing rules and regulations for patent (and trademark) practice."
+    },
+    {
+      "term": "Patentability",
+      "definition": "The quality of an invention meeting the statutory requirements for a patent to issue, principally novelty (35 U.S.C. 102), nonobviousness (35 U.S.C. 103), utility, and adequate disclosure under 35 U.S.C. 112."
+    },
+    {
+      "term": "Nonobviousness",
+      "definition": "The 35 U.S.C. 103 requirement that an invention not have been obvious, at the time of filing, to a person having ordinary skill in the art in view of the prior art as a whole."
+    },
+    {
+      "term": "Prior art",
+      "definition": "All public knowledge, disclosures, and prior inventions existing before the relevant date that may be used to assess whether a claimed invention is novel or obvious."
+    },
+    {
+      "term": "Continuation-in-part (CIP)",
+      "definition": "A subsequent application filed while a parent application is still pending that repeats a substantial portion of the parent's disclosure and adds new matter not found in the parent."
+    },
+    {
+      "term": "Continuation application",
+      "definition": "A subsequent nonprovisional application for the same invention disclosed in a prior copending nonprovisional application, filed before that parent is abandoned or issued, and adding no new matter."
+    },
+    {
+      "term": "Divisional application",
+      "definition": "An application carved out of a parent application to pursue a distinct invention that was restricted out of the parent, typically in response to a restriction requirement."
+    },
+    {
+      "term": "Specification",
+      "definition": "The written portion of a patent application that describes the invention in enough detail to satisfy the enablement and written description requirements of 35 U.S.C. 112."
+    },
+    {
+      "term": "Claims",
+      "definition": "The numbered statements at the end of a patent or application that define, in precise legal language, the metes and bounds of the protection sought or granted."
+    },
+    {
+      "term": "Examiner",
+      "definition": "A USPTO official within a Technology Center who reviews a patent application against the prior art and statutory requirements and decides whether to allow or reject its claims."
+    },
+    {
+      "term": "Utility",
+      "definition": "The 35 U.S.C. 101 requirement that a claimed invention have a specific, substantial, and credible real-world use."
+    },
+    {
+      "term": "Novelty",
+      "definition": "The 35 U.S.C. 102 requirement that the claimed invention not have been disclosed, in identical form, in the prior art before the relevant date."
+    },
+    {
+      "term": "Patent Cooperation Treaty (PCT)",
+      "definition": "An international treaty that establishes a unified procedure for filing a single international application that can later enter the national or regional phase in any of its member states."
+    },
+    {
+      "term": "Request for Continued Examination (RCE)",
+      "definition": "A procedural filing that reopens prosecution of an application after a final rejection, allowing the applicant to submit further arguments or amendments without filing a new application."
+    },
+    {
+      "term": "Information Disclosure Statement (IDS)",
+      "definition": "A filing by which an applicant submits to the examiner all prior art and other information known to be material to patentability, satisfying the duty of disclosure under 37 C.F.R. 1.56."
+    },
+    {
+      "term": "Office Action (OA)",
+      "definition": "A written communication from a patent examiner addressing the patentability of an application, typically including any rejections, objections, or requirements."
+    },
+    {
+      "term": "Filing date",
+      "definition": "The date on which the USPTO receives an application containing the elements required by statute or regulation to be accorded that date, used to fix priority and term calculations."
+    },
+    {
+      "term": "Issue date",
+      "definition": "The date on which the USPTO formally grants a patent, after which its claims become enforceable."
+    },
+    {
+      "term": "America Invents Act (AIA)",
+      "definition": "A 2011 statute that overhauled U.S. patent law, most notably converting the United States from a first-to-invent to a first-inventor-to-file priority system and creating post-grant proceedings such as IPR and PGR."
+    },
+    {
+      "term": "USPTO",
+      "definition": "The United States Patent and Trademark Office, the federal agency responsible for examining and granting patents and registering trademarks."
+    },
+    {
+      "term": "BPAI",
+      "definition": "The Board of Patent Appeals and Interferences, the USPTO tribunal that heard patent appeals and interferences before the AIA replaced it with the PTAB in 2012."
+    },
+    {
+      "term": "Patent Trial and Appeal Board (PTAB)",
+      "definition": "The USPTO tribunal, successor to the BPAI, that decides ex parte appeals from examiner rejections and conducts AIA trials such as IPR, PGR, and derivation proceedings."
+    },
+    {
+      "term": "Interference",
+      "definition": "A pre-AIA proceeding used to determine priority of invention between two or more parties independently claiming substantially the same invention."
+    },
+    {
+      "term": "Reexamination",
+      "definition": "A USPTO proceeding in which the patentability of claims in an already-issued patent is reconsidered in view of a new patents-or-printed-publications prior art question."
+    },
+    {
+      "term": "Post-Grant Review (PGR)",
+      "definition": "An AIA trial proceeding before the PTAB, available only within nine months of grant, in which a third party may challenge the validity of a patent's claims on nearly any ground."
+    },
+    {
+      "term": "Anticipation",
+      "definition": "A novelty rejection under 35 U.S.C. 102 in which a single prior art reference discloses every element of a claimed invention, arranged as claimed."
+    },
+    {
+      "term": "Prioritized examination",
+      "definition": "A program in which an applicant pays an additional fee to have an application examined out of turn, on an accelerated schedule."
+    },
+    {
+      "term": "Track One",
+      "definition": "The USPTO's prioritized examination program, which targets a final disposition (allowance, final rejection, notice of appeal, or abandonment) within twelve months of grant of the request."
+    },
+    {
+      "term": "Terminal disclaimer",
+      "definition": "A filing in which a patent owner disclaims the portion of a later patent's term that extends beyond an earlier commonly-owned patent, most often used to overcome an obviousness-type double patenting rejection."
+    },
+    {
+      "term": "Double patenting",
+      "definition": "A prohibition against an inventor or assignee obtaining two patents that claim the same invention, whether the claims are identical (statutory double patenting) or merely patentably indistinct."
+    },
+    {
+      "term": "Obviousness-type double patenting",
+      "definition": "A judicially created double patenting rejection applied when the claims of a later patent are not identical to, but are an obvious variation of, the claims of an earlier commonly-owned patent; it can be overcome with a terminal disclaimer."
+    },
+    {
+      "term": "Assignee",
+      "definition": "The individual or entity to whom ownership of a patent or patent application has been transferred by the inventor or a prior owner."
+    },
+    {
+      "term": "Patentee",
+      "definition": "The individual or entity holding legal title to an issued patent, whether the original inventor or a subsequent assignee."
+    },
+    {
+      "term": "Affidavit or declaration of prior art (Rule 131/1.130 declaration)",
+      "definition": "A sworn statement submitted during prosecution to establish an earlier date of invention or disclosure in order to remove a reference as prior art."
+    },
+    {
+      "term": "Subject matter eligibility",
+      "definition": "The 35 U.S.C. 101 threshold inquiry into whether a claim falls within a statutory category (process, machine, manufacture, or composition of matter) and is not directed to an unpatentable judicial exception such as an abstract idea, law of nature, or natural phenomenon."
+    },
+    {
+      "term": "Joint inventor",
+      "definition": "A person who contributes to the conception of at least one claim of a patent application, even if the contribution is to only part of the claimed invention."
+    },
+    {
+      "term": "Public use",
+      "definition": "A section 102 prior art category covering use of an invention, without restriction on confidentiality, by someone other than the inventor before the critical date."
+    },
+    {
+      "term": "On-sale bar",
+      "definition": "A section 102 prior art category that bars patentability where the claimed invention was the subject of a commercial sale or offer for sale before the critical date."
+    },
+    {
+      "term": "MPEP",
+      "definition": "The Manual of Patent Examining Procedure, the USPTO's official guide to examination practice and procedure that examiners and practitioners rely on and that the patent bar exam draws heavily upon."
+    },
+    {
+      "term": "Provisional application",
+      "definition": "An informal application that establishes an early effective filing date without requiring formal claims, an oath or declaration, or an information disclosure statement, but which never matures into a patent unless a nonprovisional application is filed claiming its benefit within twelve months."
+    },
+    {
+      "term": "Non-provisional application",
+      "definition": "A formal, complete patent application, including claims, that the USPTO will substantively examine and that can mature into an issued patent."
+    },
+    {
+      "term": "Design patent",
+      "definition": "A patent that protects the ornamental, non-functional appearance of an article of manufacture, as opposed to its structure or function."
+    },
+    {
+      "term": "Plant patent",
+      "definition": "A patent that protects a new and distinct variety of asexually reproduced plant, other than a tuber-propagated plant or one found in an uncultivated state."
+    },
+    {
+      "term": "Utility patent",
+      "definition": "A patent covering a new and useful process, machine, article of manufacture, or composition of matter, or an improvement thereof — the most common patent type."
+    },
+    {
+      "term": "Oath or declaration",
+      "definition": "A statement signed by each inventor identifying themselves as the original inventor of the claimed subject matter and acknowledging awareness of the duty of disclosure."
+    },
+    {
+      "term": "Petition to make special",
+      "definition": "A request that an application be advanced out of the normal examination queue based on a qualifying reason, such as the applicant's age or health, or the invention's environmental or safety benefit."
+    },
+    {
+      "term": "EFS-Web",
+      "definition": "The USPTO's legacy web-based electronic filing system for submitting patent applications and prosecution documents (since succeeded operationally by Patent Center)."
+    },
+    {
+      "term": "Patent Application Information Retrieval (PAIR)",
+      "definition": "A USPTO online system that allowed applicants and the public to view the prosecution history and status of patent applications."
+    },
+    {
+      "term": "Small entity",
+      "definition": "A fee-reduction status, cutting many USPTO fees by 60%, available to independent inventors, small businesses, and nonprofits that meet ownership and licensing limits."
+    },
+    {
+      "term": "Micro entity",
+      "definition": "A fee-reduction status, cutting many USPTO fees by 80%, available to applicants who meet small-entity criteria plus additional income, prior-application, and (for institution-based qualification) higher-education requirements."
+    },
+    {
+      "term": "Final Office Action",
+      "definition": "An office action, issued typically after a first rejection has been maintained, that closes further prosecution as of right and generally limits the applicant to appeal, an RCE, or abandonment."
+    },
+    {
+      "term": "Notice of Allowance (NOA)",
+      "definition": "A USPTO communication informing the applicant that the application has been found allowable and that a patent will issue upon payment of the issue fee."
+    },
+    {
+      "term": "Patent Term Adjustment (PTA)",
+      "definition": "An extension added to a patent's twenty-year term to compensate the patent owner for certain USPTO prosecution delays."
+    },
+    {
+      "term": "Patent Term Extension (PTE)",
+      "definition": "An extension of patent term, available mainly for drug, medical device, and certain other regulated products, to compensate for time lost to regulatory review before marketing approval."
+    },
+    {
+      "term": "Best mode",
+      "definition": "The 35 U.S.C. 112 requirement that the specification disclose the best way known to the inventor of practicing the invention as of the filing date; failure to disclose it is no longer a basis to invalidate an issued patent post-AIA."
+    },
+    {
+      "term": "Deposit of biological material",
+      "definition": "A requirement, where written description alone cannot adequately describe certain biological material, that a sample be deposited with an approved depository to satisfy the enablement requirement."
+    },
+    {
+      "term": "Inter Partes Review (IPR)",
+      "definition": "An AIA trial proceeding before the PTAB in which a third party challenges the validity of issued patent claims solely on novelty or obviousness grounds based on patents or printed publications."
+    },
+    {
+      "term": "Abstract idea",
+      "definition": "A judicial exception to patent eligibility under 35 U.S.C. 101 covering purely mental concepts, mathematical relationships, or methods of organizing human activity that lack a sufficiently specific practical application."
+    },
+    {
+      "term": "Doctrine of equivalents",
+      "definition": "An infringement theory allowing liability where an accused product or process falls outside the literal scope of a claim but performs substantially the same function, in substantially the same way, to achieve substantially the same result."
+    },
+    {
+      "term": "Reissue patent",
+      "definition": "A new patent issued to correct an error in a patent already granted (such as a defective claim or specification), without broadening the claims more than two years after the original grant."
+    },
+    {
+      "term": "Substitute specification",
+      "definition": "A complete replacement specification filed during prosecution that supersedes the original (or an earlier substitute) in its entirety, subject to USPTO approval that it adds no new matter."
+    },
+    {
+      "term": "Appeal brief",
+      "definition": "The document an applicant files with the PTAB to initiate an ex parte appeal, setting out the arguments against the examiner's rejections."
+    },
+    {
+      "term": "Restriction requirement",
+      "definition": "An examiner's requirement that an applicant elect a single claimed invention for examination when the application as filed claims more than one independent and distinct invention."
+    },
+    {
+      "term": "Election of species",
+      "definition": "An applicant's choice, made in response to a restriction requirement directed to a generic claim, of a single disclosed species to be examined first."
+    },
+    {
+      "term": "Unity of invention",
+      "definition": "The PCT standard requiring that all claims in an international application be linked by a single general inventive concept, functionally similar to but broader than the U.S. restriction practice."
+    },
+    {
+      "term": "Foreign priority",
+      "definition": "The right under the Paris Convention (codified at 35 U.S.C. 119) to claim the filing date of an earlier-filed foreign application when later filing in the United States, provided the U.S. application is filed within the treaty deadline."
+    },
+    {
+      "term": "Convention application",
+      "definition": "A U.S. application that claims the benefit of the filing date of a corresponding application filed in another Paris Convention member country."
+    },
+    {
+      "term": "Enablement",
+      "definition": "The 35 U.S.C. 112 requirement that the specification describe the invention with enough detail that a person of ordinary skill in the art could make and use it without undue experimentation."
+    },
+    {
+      "term": "Written description",
+      "definition": "The 35 U.S.C. 112 requirement that the specification demonstrate the inventor was in possession of the full scope of the claimed invention as of the filing date."
+    },
+    {
+      "term": "Patent prosecution",
+      "definition": "The process of interacting with the USPTO — filing, responding to office actions, amending claims — to secure the grant of a patent."
+    },
+    {
+      "term": "Non-Patent Literature (NPL)",
+      "definition": "Prior art references that are not patents or published patent applications, such as journal articles, textbooks, conference papers, and technical manuals."
+    },
+    {
+      "term": "Parent application",
+      "definition": "The original application from which a continuation, continuation-in-part, or divisional application claims priority or benefit."
+    },
+    {
+      "term": "Child application",
+      "definition": "Any later-filed application, such as a continuation, CIP, or divisional, that claims priority to or the benefit of an earlier parent application."
+    },
+    {
+      "term": "Maintenance fee",
+      "definition": "A periodic fee, due at 3.5, 7.5, and 11.5 years after grant for utility patents, that must be paid to keep the patent in force for its full term."
+    },
+    {
+      "term": "Abstract",
+      "definition": "A brief (typically 150-word) summary appearing at the start of a patent that gives a quick technical overview of the disclosure."
+    },
+    {
+      "term": "Duty of disclosure",
+      "definition": "The obligation, under 37 C.F.R. 1.56, of everyone substantively involved in prosecuting an application to disclose to the USPTO all information they know to be material to patentability."
+    },
+    {
+      "term": "Statutory Invention Registration (SIR)",
+      "definition": "A discontinued USPTO publication mechanism that published an applicant's disclosure as prior art without examining or granting patent rights on it."
+    },
+    {
+      "term": "Search report",
+      "definition": "A listing of prior art references found to be relevant to an application's patentability, prepared by an examiner (domestic) or, for PCT applications, by the International Searching Authority."
+    },
+    {
+      "term": "Representative claim",
+      "definition": "A single claim selected to stand for a group of claims that an examiner or the Board treats as rising or falling together during examination or appeal."
+    },
+    {
+      "term": "Bilski test",
+      "definition": "A pre-Alice framework asking whether a process claim is tied to a particular machine or apparatus, or transforms an article into a different state or thing, as one tool for gauging patent eligibility of process claims."
+    },
+    {
+      "term": "Alice/Mayo framework",
+      "definition": "The Supreme Court's two-step section 101 eligibility test: first, decide whether the claim is directed to a judicial exception (law of nature, natural phenomenon, or abstract idea); second, if so, decide whether the claim recites an inventive concept sufficient to transform it into patent-eligible subject matter."
+    },
+    {
+      "term": "Examiner interview",
+      "definition": "A conference, in person, by phone, or by video, between an applicant (or their representative) and the examiner to discuss and potentially resolve issues in a pending application."
+    },
+    {
+      "term": "First Office Action on the Merits (FOAM)",
+      "definition": "The first substantive office action in which an examiner addresses the patentability of the claims, as opposed to a purely formal or restriction-only communication."
+    },
+    {
+      "term": "Examiner's answer",
+      "definition": "The examiner's written response to an appeal brief, defending the rejections on appeal and addressing the applicant's arguments before the PTAB decides the appeal."
+    },
+    {
+      "term": "Drawings",
+      "definition": "The formal figures submitted with a patent application to illustrate the claimed invention, required whenever necessary to understand the subject matter."
+    },
+    {
+      "term": "Color drawings",
+      "definition": "Drawings that use color to depict an aspect of the invention, accepted only by petition and fee showing color is the only practical way to disclose the subject matter."
+    },
+    {
+      "term": "Sequence listing",
+      "definition": "A standardized, machine-readable description of nucleotide or amino acid sequences disclosed in an application, required whenever such sequences are part of the disclosure."
+    },
+    {
+      "term": "Third-party submission",
+      "definition": "A filing by someone other than the applicant that brings prior art patents or publications to the examiner's attention during prosecution of a pending application."
+    },
+    {
+      "term": "Office of Enrollment and Discipline (OED)",
+      "definition": "The USPTO office that administers the patent bar registration examination, registers patent attorneys and agents to practice before the Office, and investigates and prosecutes practitioner discipline."
+    },
+    {
+      "term": "American Inventors Protection Act (AIPA)",
+      "definition": "A 1999 statute that introduced provisional applications in their modern form and mandated publication of most pending applications eighteen months after their earliest filing date."
+    },
+    {
+      "term": "Claim differentiation",
+      "definition": "A claim construction presumption that each claim in a patent has a different scope, so that limitations recited in a dependent claim should not be read into a broader independent claim."
+    },
+    {
+      "term": "PHOSITA",
+      "definition": "Shorthand for a 'person having ordinary skill in the art,' the hypothetical benchmark practitioner whose perspective is used to judge obviousness under 35 U.S.C. 103."
+    },
+    {
+      "term": "Subject Matter Index (SMI)",
+      "definition": "An alphabetical index at the end of the MPEP that directs a researcher to the section or sections discussing a given topic, useful when the relevant chapter is not already known."
+    },
+    {
+      "term": "Definiteness",
+      "definition": "The 35 U.S.C. 112(b) requirement that the claims, read in light of the specification, particularly point out and distinctly claim the subject matter regarded as the invention."
+    },
+    {
+      "term": "Broadening reissue",
+      "definition": "A reissue application that seeks to enlarge the scope of a patent's claims, which is only permitted if the reissue application is filed within two years of the original patent's grant."
+    },
+    {
+      "term": "Markush claim",
+      "definition": "A claim that recites a closed group of alternative elements or compounds, typically phrased as 'selected from the group consisting of,' common in chemical and pharmaceutical practice."
+    },
+    {
+      "term": "Means-plus-function claim",
+      "definition": "A claim limitation drafted under 35 U.S.C. 112(f) using functional language such as 'means for,' which is construed to cover only the corresponding structure disclosed in the specification and its equivalents."
+    },
+    {
+      "term": "Genus-species claiming",
+      "definition": "A claiming strategy in which a broad genus claim covers a class of embodiments while narrower species claims cover specific members of that class; disclosure of a genus does not necessarily anticipate or enable every species."
+    },
+    {
+      "term": "Duty of candor and good faith",
+      "definition": "The overarching obligation of applicants, their representatives, and others substantively involved in prosecution to deal honestly with the USPTO, encompassing the duty of disclosure and prohibiting inequitable conduct."
+    },
+    {
+      "term": "Swear behind",
+      "definition": "The pre-AIA practice of submitting an affidavit or declaration under old Rule 131 to establish a date of invention earlier than a cited reference, thereby removing that reference as prior art."
+    },
+    {
+      "term": "Antedate a reference",
+      "definition": "To establish, through evidence of an earlier date of invention or disclosure, that a cited prior art reference does not qualify as prior art against the claims at issue."
+    },
+    {
+      "term": "Election without traverse",
+      "definition": "An applicant's response to a restriction requirement in which a single invention or species is elected for examination without contesting the propriety of the restriction, generally waiving the right to petition it later."
+    },
+    {
+      "term": "Traversal",
+      "definition": "An applicant's response to a restriction requirement in which the applicant elects an invention for examination while formally contesting the restriction's propriety, preserving the issue for petition."
+    },
+    {
+      "term": "Certificate of correction",
+      "definition": "A USPTO-issued correction to an already-granted patent that fixes a clerical, typographical, or minor error made by the Office or the applicant, without altering the scope of the claims."
+    },
+    {
+      "term": "Ex parte reexamination",
+      "definition": "A reexamination proceeding, requestable by anyone including the patent owner, conducted solely between the examiner and the patent owner even when a third party requested it."
+    },
+    {
+      "term": "Supplemental examination",
+      "definition": "An AIA proceeding allowing a patent owner to ask the USPTO to consider, reconsider, or correct information believed relevant to a patent, which can insulate the patent from a later inequitable conduct charge based on that information."
+    },
+    {
+      "term": "National stage entry",
+      "definition": "The point at which a PCT international application enters examination in an individual member country, such as the United States under 35 U.S.C. 371, typically due by 30 or 31 months from the earliest priority date."
+    },
+    {
+      "term": "International Searching Authority (ISA)",
+      "definition": "The patent office designated under the PCT to conduct the international search and issue the international search report and written opinion for a PCT application."
+    },
+    {
+      "term": "Grace period",
+      "definition": "The one-year window under 35 U.S.C. 102(b) during which an inventor's own prior disclosure of the claimed invention does not count as prior art against that inventor's later-filed application."
+    },
+    {
+      "term": "Prosecution history estoppel",
+      "definition": "A limitation on the doctrine of equivalents that prevents a patentee from recapturing, through equivalents, subject matter that was surrendered by a claim amendment or argument made during prosecution."
+    },
+    {
+      "term": "Independent claim",
+      "definition": "A claim that stands on its own, reciting all the limitations necessary to define the invention without reference to any other claim."
+    },
+    {
+      "term": "Dependent claim",
+      "definition": "A claim that incorporates by reference all the limitations of another claim (the base claim) and adds further limitations, necessarily narrower in scope than the claim it depends from."
+    }
+  ]
+}
