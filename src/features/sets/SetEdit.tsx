@@ -2,6 +2,7 @@ import { useId, useState } from 'react'
 import { Link, useNavigate, useParams } from 'react-router-dom'
 import { useSeshatStore } from '../../lib/store'
 import { type StudySet, setIdSchema } from '../../types'
+import { AddTermRow } from './AddTermRow'
 import { CardForm } from './CardForm'
 import { CardListItem } from './CardListItem'
 import { parseTagsInput } from './tags'
@@ -175,18 +176,18 @@ export const SetEditPage = () => {
       <GoalDateField set={set} />
 
       <h2>Cards ({cards.length})</h2>
-      {cards.length === 0 && <p>No cards yet. Add the first one below.</p>}
       <ul className="card-list">
         {cards.map((card) => (
           <CardListItem key={card.id} card={card} />
         ))}
+        <AddTermRow setId={setId} />
       </ul>
 
       {isAdding ? (
         <CardForm setId={setId} editingCard={null} onDone={() => setIsAdding(false)} />
       ) : (
-        <button type="button" onClick={() => setIsAdding(true)}>
-          Add card
+        <button type="button" className="card-add-other-kind" onClick={() => setIsAdding(true)}>
+          Add a cloze, multiple choice, or image-occlusion card
         </button>
       )}
 

@@ -1,5 +1,5 @@
 import { useId, useState } from 'react'
-import { DeleteIcon, EditIcon } from '../../components/icons'
+import { DeleteIcon } from '../../components/icons'
 import { Legible } from '../../components/Legible'
 import { useSeshatStore } from '../../lib/store'
 import type { StudyCard } from '../../types'
@@ -28,10 +28,9 @@ interface CardListItemProps {
 
 /**
  * Short-answer cards are Seshat's default and by far the most common kind —
- * so a set full of them should read (and edit) like a plain term/definition
- * list, not a form. Other card kinds (cloze/mcq/image-occlusion) carry
- * structure a text box can't represent, so they keep the summary + full
- * editor pattern below.
+ * so they're just a term box and a definition box, nothing else. Other card
+ * kinds (cloze/mcq/image-occlusion) carry structure a text box can't
+ * represent, so they keep the summary + full editor pattern below.
  */
 export const CardListItem = ({ card }: CardListItemProps) => {
   const { updateCard, deleteCard } = useSeshatStore()
@@ -103,9 +102,6 @@ export const CardListItem = ({ card }: CardListItemProps) => {
           onChange={(event) => setDefinition(event.target.value)}
           onBlur={saveDefinition}
         />
-        <button type="button" className="icon-button" onClick={() => setIsEditing(true)} aria-label="More options">
-          <EditIcon />
-        </button>
         <button type="button" className="icon-button" onClick={handleDelete} aria-label="Delete card">
           <DeleteIcon />
         </button>

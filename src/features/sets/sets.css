@@ -166,6 +166,16 @@
   margin-bottom: 0;
 }
 
+/* Deliberately quiet — everyone wants term/definition; this is the escape
+   hatch for the minority who need cloze/mcq/image-occlusion. */
+.card-add-other-kind {
+  margin-top: 0.75rem;
+  background: transparent;
+  border-color: var(--color-border);
+  color: var(--color-fg-muted);
+  font-size: 0.85rem;
+}
+
 .set-danger-zone {
   margin-top: 3rem;
 }
