@@ -65,15 +65,15 @@ export const DocsPage = () => (
     <section aria-labelledby="docs-schema-heading">
       <h2 id="docs-schema-heading">The set JSON format — and how to upload one that works</h2>
       <p>
-        On the <Link to="/sets">Sets</Link> page, the upload icon in the header opens a file picker that accepts
-        either of two JSON shapes below. It tries Seshat&rsquo;s own format first, then falls back to the simple
+        On the <Link to="/sets">Sets</Link> page, the upload icon in the header opens a file picker that accepts either
+        of two JSON shapes below. It tries Seshat&rsquo;s own format first, then falls back to the simple
         term/definition format — you don&rsquo;t have to tell it which one you&rsquo;re giving it.
       </p>
 
       <h3>The simple format (Quizlet-style term/definition pairs)</h3>
       <p>
-        The easiest thing that works: a JSON array of <code>{'{term, definition}'}</code> objects. Every entry
-        imports as a short-answer card (prompt = term, answer = definition).
+        The easiest thing that works: a JSON array of <code>{'{term, definition}'}</code> objects. Every entry imports
+        as a short-answer card (prompt = term, answer = definition).
       </p>
       <pre>
         <code>{`[
@@ -101,9 +101,9 @@ export const DocsPage = () => (
       <h3>The full Seshat format (round-trips every card kind)</h3>
       <p>
         The simple format only knows about term/definition pairs. Seshat&rsquo;s own export format additionally
-        preserves cloze deletions, multiple-choice options, explanations, source citations, and tags. Every card
-        has a <code>content</code> object discriminated by <code>kind</code>: <code>short-answer</code>,{' '}
-        <code>cloze</code>, <code>mcq</code>, or <code>image-occlusion</code>.
+        preserves cloze deletions, multiple-choice options, explanations, source citations, and tags. Every card has a{' '}
+        <code>content</code> object discriminated by <code>kind</code>: <code>short-answer</code>, <code>cloze</code>,{' '}
+        <code>mcq</code>, or <code>image-occlusion</code>.
       </p>
       <pre>
         <code>{`{
@@ -141,10 +141,10 @@ export const DocsPage = () => (
 }`}</code>
       </pre>
       <p>
-        <code>image-occlusion</code> cards additionally carry <code>imageDataUrl</code> (a <code>data:</code> URL —
-        keep it small, see the storage note above) and <code>occlusions</code>, an array of labeled regions
-        expressed as percentages of the image&rsquo;s own dimensions:{' '}
-        <code>{'{ id, xPct, yPct, widthPct, heightPct, label }'}</code>.
+        <code>image-occlusion</code> cards additionally carry <code>imageDataUrl</code> (a <code>data:</code> URL — keep
+        it small, see the storage note above) and <code>occlusions</code>, an array of labeled regions expressed as
+        percentages of the image&rsquo;s own dimensions: <code>{'{ id, xPct, yPct, widthPct, heightPct, label }'}</code>
+        .
       </p>
       <p>
         Every field is validated with <a href="https://zod.dev">Zod</a> at the import boundary — a file that

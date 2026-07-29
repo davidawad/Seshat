@@ -57,11 +57,11 @@ Client-only, no backend:
 ## Running it
 
 ```sh
-npm install
-npm run dev        # start the dev server
-npm run build       # type-check and build for production
-npm run test         # run the test suite
-npm run lint          # lint with oxlint
+pnpm install
+pnpm run dev        # start the dev server
+pnpm run build       # type-check and build for production
+pnpm run test         # run the test suite
+pnpm run lint          # lint with oxlint
 ```
 
 ## Scripting Seshat's data

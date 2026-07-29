@@ -1,3 +1,4 @@
+import fc from 'fast-check'
 import { describe, expect, it } from 'vitest'
 import { shuffle } from './shuffle'
 
@@ -34,5 +35,27 @@ describe('shuffle', () => {
     const constantAlmostOne = () => 0.999999
     const items = [1, 2, 3, 4, 5, 6, 7, 8]
     expect(shuffle(items, constantZero)).not.toEqual(shuffle(items, constantAlmostOne))
+  })
+})
+
+describe('shuffle (property)', () => {
+  it('always returns a permutation of the input, for any array and any [0,1) random source', () => {
+    fc.assert(
+      fc.property(fc.array(fc.integer()), fc.float({ min: 0, max: Math.fround(0.999), noNaN: true }), (items, r) => {
+        const result = shuffle(items, () => r)
+        expect(result).toHaveLength(items.length)
+        expect([...result].sort()).toEqual([...items].sort())
+      }),
+    )
+  })
+
+  it('never mutates its input, for any array', () => {
+    fc.assert(
+      fc.property(fc.array(fc.integer()), (items) => {
+        const copy = [...items]
+        shuffle(items)
+        expect(items).toEqual(copy)
+      }),
+    )
   })
 })

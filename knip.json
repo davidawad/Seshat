@@ -1,0 +1,14 @@
+{
+  "$schema": "https://unpkg.com/knip@6/schema.json",
+  "project": ["src/**/*.{ts,tsx}"],
+  "ignoreDependencies": [
+    // Consumed via CSS `@import` in src/styles/fonts.css, not a JS import —
+    // knip only sees the latter.
+    "@fontsource/atkinson-hyperlegible",
+    "@fontsource/fraunces",
+    "@fontsource/ibm-plex-mono",
+    "@fontsource/inter",
+    "@fontsource/newsreader",
+    "@fontsource/source-serif-4"
+  ]
+}

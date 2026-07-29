@@ -1,0 +1,12 @@
+[
+  {
+    "name": "JS bundle (brotli)",
+    "path": "dist/assets/index-*.js",
+    "limit": "170 KB"
+  },
+  {
+    "name": "CSS bundle (brotli)",
+    "path": "dist/assets/index-*.css",
+    "limit": "10 KB"
+  }
+]

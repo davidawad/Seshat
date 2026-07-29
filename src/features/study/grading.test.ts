@@ -1,3 +1,4 @@
+import fc from 'fast-check'
 import { describe, expect, it } from 'vitest'
 import type { ClozeContent, ImageOcclusionContent, McqContent, ShortAnswerContent } from '../../types'
 import {
@@ -56,6 +57,15 @@ describe('normalizeAnswer', () => {
     expect(normalizeAnswer('Powerhouse.')).toBe('powerhouse')
     expect(normalizeAnswer('Powerhouse!!')).toBe('powerhouse')
     expect(normalizeAnswer('"Powerhouse"')).toBe('"powerhouse')
+  })
+
+  it('is idempotent for any string — normalizing an already-normalized answer changes nothing', () => {
+    fc.assert(
+      fc.property(fc.string(), (input) => {
+        const once = normalizeAnswer(input)
+        expect(normalizeAnswer(once)).toBe(once)
+      }),
+    )
   })
 })
 

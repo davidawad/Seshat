@@ -9,10 +9,32 @@ jobs:
   ci:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v4
-      - uses: actions/setup-node@v4
+      - uses: actions/checkout@v5
+      - uses: pnpm/action-setup@v6
+      - uses: actions/setup-node@v7
         with:
           node-version: 22
-          cache: npm
-      - run: npm ci
-      - run: npm run ci
+          cache: pnpm
+      - run: pnpm install --frozen-lockfile
+      - run: pnpm run ci
+
+  # Lints this repo's own GitHub Actions workflows (not just target repos) —
+  # actionlint for syntax/deprecated-runtime, zizmor for template injection,
+  # unpinned refs, and missing permissions. Report-only (job can go red
+  # without blocking `ci` above): zizmor will very likely flag the mutable
+  # version tags on actions/checkout et al. above as unpinned refs on first
+  # run — that's the tool doing its job, not a config bug. SHA-pinning every
+  # action is the natural fast-follow once those findings are triaged.
+  lint-workflows:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      security-events: write
+    steps:
+      - uses: actions/checkout@v5
+      - uses: docker://rhysd/actionlint:latest
+        with:
+          args: -color
+      - uses: zizmorcore/zizmor-action@6fc4b006235f201fdab3722e17240ab420d580e5 # v0.6.1
+        with:
+          inputs: .github/workflows

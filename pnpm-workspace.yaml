@@ -1,2 +1,6 @@
+# Supply-chain hardening against npm-worm-style campaigns that self-propagate
+# within hours of publish (see swe-typescript-standards) — new dependency
+# versions must sit for 3 days before pnpm will install them.
+minimumReleaseAge: 4320
 minimumReleaseAgeExclude:
   - jsdom@30.0.0

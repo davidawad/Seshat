@@ -1,8 +1,76 @@
 {
   "$schema": "./node_modules/oxlint/configuration_schema.json",
-  "plugins": ["react", "typescript", "oxc"],
+  "plugins": ["react", "typescript", "oxc", "jsx-a11y", "vitest"],
   "rules": {
     "react/rules-of-hooks": "error",
-    "react/only-export-components": ["warn", { "allowConstantExport": true }]
-  }
+    "react/only-export-components": ["warn", { "allowConstantExport": true }],
+
+    // Size/complexity gates — a preset alone does NOT enable these (see
+    // swe-typescript-standards). 400/150 are the brownfield floor, not the
+    // 600/50 aspirational target; ratchet down over time.
+    "eslint/max-lines": ["error", { "max": 400, "skipBlankLines": true, "skipComments": true }],
+    "eslint/max-lines-per-function": ["error", { "max": 150, "skipBlankLines": true, "skipComments": true }],
+    "eslint/complexity": ["error", 10],
+    "eslint/max-params": ["error", 4],
+    "eslint/max-depth": ["error", 4],
+
+    // Unused/unguarded @ts-ignore/@ts-expect-error discipline.
+    "typescript/ban-ts-comment": "error",
+
+    // Test structural quality — unambiguous, zero-false-positive checks only.
+    // `vitest/expect-expect` and `vitest/no-conditional-expect` are left at
+    // plugin-default (warn): this codebase's `Result`-type tests legitimately
+    // assert inside a narrowing `if`, which both rules flag imperfectly —
+    // see generate-test.test.ts / url-import.test.ts. Revisit if that ever
+    // masks a genuinely assertion-free test.
+    "vitest/no-disabled-tests": "error",
+    "vitest/no-focused-tests": "error",
+
+    // This app's whole thesis is legibility/accessibility research, so a11y
+    // linting matters more here than in a typical app — kept at the plugin's
+    // recommended (mostly warn) severities, with one deliberate override:
+    "jsx-a11y/no-autofocus": "off"
+    // ^ Seshat is a keyboard-first study app by design — autoFocus drives
+    // the suggested-grade button, confidence options, and card inputs so
+    // Enter/number-key shortcuts work with no extra Tab. Not an
+    // accessibility bug here; see ReviewSession/RevealPanel/*Card.tsx.
+  },
+
+  // Brownfield ratchet (see swe-typescript-standards): grandfather existing
+  // violators so CI stays green, without weakening the rule for new code.
+  // Shrink and remove entries over time — some of these got worse THIS
+  // session (CardForm.tsx/ImageOcclusionEditor.tsx/RevealPanel.tsx grew from
+  // the <Legible>-wrapping and self-explanation-prompt changes) and are
+  // real refactor candidates, not just legacy debt.
+  "overrides": [
+    {
+      "files": ["src/lib/store.tsx"],
+      "rules": {
+        "eslint/complexity": "off",
+        "eslint/max-params": "off",
+        "eslint/max-lines-per-function": "off"
+      }
+    },
+    {
+      "files": ["src/features/sets/CardForm.tsx"],
+      "rules": { "eslint/complexity": "off", "eslint/max-lines-per-function": "off" }
+    },
+    {
+      "files": ["src/features/sets/ImageOcclusionEditor.tsx", "src/pages/Docs.tsx"],
+      "rules": { "eslint/max-lines-per-function": "off" }
+    },
+    {
+      "files": ["src/lib/fsrs.ts"],
+      "rules": { "eslint/max-params": "off" }
+    },
+    {
+      "files": [
+        "src/features/study/CardInput.tsx",
+        "src/features/match/MatchSession.tsx",
+        "src/features/study/grading.ts",
+        "src/features/study/RevealPanel.tsx"
+      ],
+      "rules": { "eslint/complexity": "off" }
+    }
+  ]
 }
