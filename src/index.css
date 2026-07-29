@@ -96,6 +96,18 @@ body {
   padding: 2rem 1.5rem 4rem;
 }
 
+/* Shown by ImportFromUrl.tsx only when a `?import=` link fails to parse —
+   spans the full width, above .app-main, on whatever page it would
+   otherwise render. */
+.url-import-error {
+  margin: 0;
+  padding: 0.75rem 1.5rem;
+  background: var(--color-bg-elevated-2);
+  border-bottom: 1px solid var(--color-error);
+  color: var(--color-error);
+  font-size: 0.9rem;
+}
+
 .app-footer {
   display: flex;
   align-items: center;

@@ -1,0 +1,46 @@
+SESHAT — AGENT NOTES
+=====================
+
+WHAT THIS IS
+------------
+Seshat: a free flashcard / spaced-repetition study app. Local-first, zero-backend — no account,
+nothing to authenticate, no server. All data (sets, cards, review history, settings) lives entirely
+in the visiting browser's localStorage and never leaves the device.
+
+CONSOLE API (window.seshat)
+----------------------------
+Open the browser devtools console on this page and call window.seshat directly:
+  listSets(), listCards(setId), exportSet(setId), exportSetSimple(setId),
+  importSet(json), importSimpleJson(raw, setName?)
+Reads/writes localStorage directly. Caveat: if this tab is already open while you call it, reload
+the page to see the change — React only reads localStorage once, on mount.
+
+QUICK IMPORT VIA URL (recommended for a browser-driving agent)
+----------------------------------------------------------------
+Append a set as JSON to the `import` query param on any URL on this site and the app imports it,
+navigates to the new set, and cleans the param from the URL. No login, no file upload, no console
+needed.
+
+  Param name:  import
+  Param value: encodeURIComponent(JSON.stringify(setJson)) — plain URL-encoded JSON, not base64.
+
+  Two accepted JSON shapes:
+
+  1) Simple (recommended for quick use):
+     {"name": "My Set", "terms": [{"term": "Q", "definition": "A"}, ...]}
+
+  2) Full Seshat export format (supports cloze/mcq card kinds too):
+     {"seshatExportVersion": 1, "name": "My Set", "description": "", "tags": [],
+      "cards": [{"prompt": "Q", "content": {"kind": "short-answer", "answer": "A",
+      "acceptableAnswers": []}, "explanation": null, "sourceRef": null, "tags": []}]}
+
+  Minimal example (append to any URL on this site, e.g. this site's root or /sets):
+    ?import=%7B%22name%22%3A%22My%20Set%22%2C%22terms%22%3A%5B%7B%22term%22%3A%22Q%22%2C%22definition%22%3A%22A%22%7D%5D%7D
+
+  Size note: keep the whole URL under roughly 8KB for reliability across browsers. Image-occlusion
+  cards embed a full data: URL image and are not realistic to build this way.
+
+MORE
+----
+Full agent-oriented docs (repo-level, for coding agents with source access): /AGENTS.md in the
+project source. Human-facing docs: /docs and /attributions in this app.

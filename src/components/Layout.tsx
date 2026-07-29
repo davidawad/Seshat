@@ -1,5 +1,6 @@
 import { useId, useState } from 'react'
 import { Link, NavLink, Outlet } from 'react-router-dom'
+import { ImportFromUrl } from '../features/sets/ImportFromUrl'
 import { SettingsForm } from '../features/settings/SettingsForm'
 import { useApplyTheme } from '../features/settings/theme'
 import { Footer } from './Footer'
@@ -56,6 +57,7 @@ export const Layout = () => {
           </ul>
         </nav>
       </header>
+      <ImportFromUrl />
       <main id="main-content" className="app-main">
         <Outlet />
       </main>
