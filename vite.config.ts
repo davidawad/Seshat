@@ -2,7 +2,15 @@ import react from '@vitejs/plugin-react'
 import { defineConfig } from 'vitest/config'
 
 // https://vite.dev/config/
-export default defineConfig({
+export default defineConfig(({ command, isPreview }) => ({
+  // GitLab Pages serves a project site (no custom domain) under
+  // /<project-name>/, not the domain root — every asset URL needs that
+  // prefix. Only plain `vite dev` stays at '/'; `command` alone can't tell
+  // `vite preview` apart from `vite dev` (both report 'serve'), hence the
+  // separate `isPreview` check — without it, `vite preview` serves the
+  // build's /seshsat/-prefixed HTML but resolves static assets at '/',
+  // 404s straight into the SPA fallback, and silently renders a blank page.
+  base: command === 'build' || isPreview ? '/seshsat/' : '/',
   plugins: [react()],
   test: {
     environment: 'jsdom',
@@ -34,4 +42,4 @@ export default defineConfig({
       },
     },
   },
-})
+}))

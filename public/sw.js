@@ -31,7 +31,10 @@ self.addEventListener('fetch', (event) => {
           caches.open(CACHE_NAME).then((cache) => cache.put(request, copy))
           return response
         })
-        .catch(() => caches.match(request).then((cached) => cached ?? caches.match('/'))),
+        // `self.registration.scope` (not a hardcoded '/') so this falls
+        // back to the app shell correctly under a subpath deploy like
+        // GitLab Pages' /seshsat/, not just when served from the domain root.
+        .catch(() => caches.match(request).then((cached) => cached ?? caches.match(self.registration.scope))),
     )
     return
   }

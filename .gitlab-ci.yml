@@ -1,0 +1,41 @@
+image: node:22
+
+stages:
+  - test
+  - deploy
+
+variables:
+  PNPM_HOME: .pnpm-home
+
+cache:
+  key:
+    files:
+      - pnpm-lock.yaml
+  paths:
+    - .pnpm-store
+
+before_script:
+  - corepack enable
+  - pnpm config set store-dir .pnpm-store
+  - pnpm install --frozen-lockfile
+
+test:
+  stage: test
+  script:
+    - pnpm run ci
+
+pages:
+  stage: deploy
+  needs: ['test']
+  script:
+    - pnpm run build
+    # GitLab Pages has no server-side SPA fallback — a direct hit or
+    # refresh on a client-side route (e.g. /sets/abc123) 404s unless the
+    # 404 page itself is the app shell, letting react-router take over.
+    - cp dist/index.html dist/404.html
+  publish: dist
+  artifacts:
+    paths:
+      - dist
+  rules:
+    - if: $CI_COMMIT_BRANCH == $CI_DEFAULT_BRANCH
