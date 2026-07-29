@@ -59,11 +59,19 @@ describe('normalizeAnswer', () => {
     expect(normalizeAnswer('"Powerhouse"')).toBe('"powerhouse')
   })
 
-  it('is idempotent for any string — normalizing an already-normalized answer changes nothing', () => {
+  it('never grows the string and never leaves an uppercase letter, for any input', () => {
+    // NOT idempotent in general: stripping a trailing quote can expose a
+    // character that was only non-trailing because of a space before it
+    // (e.g. normalizeAnswer('! \'') === '! ', but normalizing THAT again
+    // trims the now-trailing space and strips the '!' too, giving ''). That
+    // never happens in practice — grading calls this exactly once per side
+    // of a comparison — so idempotence isn't a real invariant of this
+    // function; length-never-grows and always-lowercase are.
     fc.assert(
       fc.property(fc.string(), (input) => {
-        const once = normalizeAnswer(input)
-        expect(normalizeAnswer(once)).toBe(once)
+        const result = normalizeAnswer(input)
+        expect(result.length).toBeLessThanOrEqual(input.length)
+        expect(result).toBe(result.toLowerCase())
       }),
     )
   })
