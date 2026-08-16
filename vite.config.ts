@@ -14,6 +14,11 @@ export default defineConfig(({ command, isPreview }) => ({
   plugins: [react()],
   test: {
     environment: 'jsdom',
+    // Vitest's default exclude list skips .git but not .claude — a stray
+    // git worktree under .claude/worktrees/ (e.g. from Claude Code's
+    // EnterWorktree) duplicates every *.test.ts file into the run and
+    // breaks tests that assume single-instance globals like localStorage.
+    exclude: ['**/node_modules/**', '**/dist/**', '**/.claude/**'],
     setupFiles: ['./src/test-setup.ts'],
     coverage: {
       provider: 'v8',
