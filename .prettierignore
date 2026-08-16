@@ -2,3 +2,5 @@ dist
 node_modules
 pnpm-lock.yaml
 research
+.pnpm-store
+.pnpm-home

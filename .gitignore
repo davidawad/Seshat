@@ -13,6 +13,11 @@ dist-ssr
 coverage
 *.local
 
+# CI configures pnpm's content-addressable store to live in-repo for
+# GitLab's cache: mechanism (.gitlab-ci.yml) — not source, not to be linted.
+.pnpm-store
+.pnpm-home
+
 # Editor directories and files
 .vscode/*
 !.vscode/extensions.json
