@@ -8,9 +8,9 @@ export default defineConfig(({ command, isPreview }) => ({
   // prefix. Only plain `vite dev` stays at '/'; `command` alone can't tell
   // `vite preview` apart from `vite dev` (both report 'serve'), hence the
   // separate `isPreview` check — without it, `vite preview` serves the
-  // build's /seshsat/-prefixed HTML but resolves static assets at '/',
+  // build's /seshat/-prefixed HTML but resolves static assets at '/',
   // 404s straight into the SPA fallback, and silently renders a blank page.
-  base: command === 'build' || isPreview ? '/seshsat/' : '/',
+  base: command === 'build' || isPreview ? '/seshat/' : '/',
   plugins: [react()],
   test: {
     environment: 'jsdom',
