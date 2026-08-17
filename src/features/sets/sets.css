@@ -181,6 +181,15 @@
   margin-bottom: 0;
 }
 
+/* Two 50%-flex text inputs plus a delete button don't fit a narrow phone
+   screen — stack them instead of cramming. */
+@media (max-width: 640px) {
+  .card-row {
+    flex-direction: column;
+    align-items: stretch;
+  }
+}
+
 /* Deliberately quiet — everyone wants term/definition; this is the escape
    hatch for the minority who need cloze/mcq/image-occlusion. */
 .card-add-other-kind {
