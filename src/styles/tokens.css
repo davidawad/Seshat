@@ -39,6 +39,8 @@
  *          error #e0664a on #1b1712        → 5.24:1 (brightened from the
  *            mockup's #a8402a, which was only 2.91:1 — too low for text)
  *          border-strong #8a7a63 on #1b1712 → 4.28:1
+ *          surface-highlight-fg #cfe0f5 on surface-highlight #1a2233 → 11.88:1
+ *          surface-highlight-fg-muted #9fb3ce on #1a2233 → 7.46:1
  *   Light: fg #2a1e12 on bg #f8f0dd        → 14.31:1
  *          fg-muted #5a4b37 on #f8f0dd     → 7.41:1
  *          accent (gold-deep) #7a5a1a      → 5.60:1 (the mockup's plain
@@ -63,13 +65,18 @@
   --color-focus-ring: #d8be85;
   --color-success: #8cb08a;
   --color-error: #e0664a;
-  /* The "illuminated page" surface: a glowing parchment panel against the
-     dark room. Used for the one or two panels per screen that deserve the
-     app's signature moment (see index.css `.illuminated-panel`). */
-  --color-surface-highlight: #f8f0dd;
-  --color-surface-highlight-fg: #2a1e12;
-  --color-surface-highlight-fg-muted: #5a4b37;
-  --color-surface-highlight-border: rgba(42, 30, 18, 0.16);
+  /* The "illuminated page" surface: the elevated panel used for the one or
+     two panels per screen that deserve the app's signature moment (see
+     index.css `.illuminated-panel`) — cards, the review reveal, test
+     results. In dark mode this is a cool navy panel with pale-blue text
+     (a Quizlet-style dark-mode card) rather than a bright parchment page —
+     a glowing cream rectangle read as "wrong theme" against the dark room,
+     not as the intended signature moment. Light mode keeps the literal
+     parchment-page look (see the light-palette blocks below). */
+  --color-surface-highlight: #1a2233;
+  --color-surface-highlight-fg: #cfe0f5; /* 11.9:1 on #1a2233 */
+  --color-surface-highlight-fg-muted: #9fb3ce; /* 7.5:1 on #1a2233 */
+  --color-surface-highlight-border: rgba(191, 213, 240, 0.14);
 
   /* ---- Reading measure ------------------------------------------------ */
   --measure: 65ch;

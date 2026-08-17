@@ -182,10 +182,12 @@ body {
 }
 
 /*
- * The signature moment: a page glowing against the archive-room dark, as
- * if lit from within. Reserved for the one or two panels per screen that
- * deserve it (the active study card, primarily) — not applied wholesale,
- * or it stops meaning anything.
+ * The signature moment: an elevated panel distinct from the page around
+ * it — a glowing parchment page in light mode, a cool navy card with
+ * pale-blue text in dark mode (see tokens.css's --color-surface-highlight*
+ * for the per-theme values). Reserved for the one or two panels per screen
+ * that deserve it (the active study card, primarily) — not applied
+ * wholesale, or it stops meaning anything.
  */
 .illuminated-panel {
   background: var(--color-surface-highlight);
