@@ -39,8 +39,8 @@
  *          error #e0664a on #1b1712        → 5.24:1 (brightened from the
  *            mockup's #a8402a, which was only 2.91:1 — too low for text)
  *          border-strong #8a7a63 on #1b1712 → 4.28:1
- *          surface-highlight-fg #cfe0f5 on surface-highlight #1a2233 → 11.88:1
- *          surface-highlight-fg-muted #9fb3ce on #1a2233 → 7.46:1
+ *          surface-highlight-fg (= fg) on surface-highlight (= bg-elevated) → 13.03:1
+ *          surface-highlight-fg-muted (= fg-muted) on bg-elevated → 7.40:1
  *   Light: fg #2a1e12 on bg #f8f0dd        → 14.31:1
  *          fg-muted #5a4b37 on #f8f0dd     → 7.41:1
  *          accent (gold-deep) #7a5a1a      → 5.60:1 (the mockup's plain
@@ -68,15 +68,16 @@
   /* The "illuminated page" surface: the elevated panel used for the one or
      two panels per screen that deserve the app's signature moment (see
      index.css `.illuminated-panel`) — cards, the review reveal, test
-     results. In dark mode this is a cool navy panel with pale-blue text
-     (a Quizlet-style dark-mode card) rather than a bright parchment page —
-     a glowing cream rectangle read as "wrong theme" against the dark room,
-     not as the intended signature moment. Light mode keeps the literal
+     results. In dark mode this reuses the app's own elevated-surface/
+     cream-text pair (same role Quizlet fills with its navy/pale-blue card,
+     but Seshat's own palette, not Quizlet's) rather than the bright
+     parchment page, which read as "wrong theme" against the dark room, not
+     as the intended signature moment. Light mode keeps the literal
      parchment-page look (see the light-palette blocks below). */
-  --color-surface-highlight: #1a2233;
-  --color-surface-highlight-fg: #cfe0f5; /* 11.9:1 on #1a2233 */
-  --color-surface-highlight-fg-muted: #9fb3ce; /* 7.5:1 on #1a2233 */
-  --color-surface-highlight-border: rgba(191, 213, 240, 0.14);
+  --color-surface-highlight: var(--color-bg-elevated);
+  --color-surface-highlight-fg: var(--color-fg); /* 13.0:1 on --color-bg-elevated */
+  --color-surface-highlight-fg-muted: var(--color-fg-muted); /* 7.4:1 on --color-bg-elevated */
+  --color-surface-highlight-border: var(--color-border);
 
   /* ---- Reading measure ------------------------------------------------ */
   --measure: 65ch;
