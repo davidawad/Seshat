@@ -39,7 +39,7 @@ export const RevealPanel = ({
   const selfExplanationId = useId()
 
   return (
-    <div className="review-reveal">
+    <div className={correct ? 'review-reveal is-correct' : 'review-reveal is-incorrect'}>
       <p
         role="status"
         aria-live="polite"
