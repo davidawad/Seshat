@@ -1,5 +1,11 @@
-import { useCallback, useEffect, useRef, useState } from 'react'
-import { Legible } from '../../components/Legible'
+import {
+  type KeyboardEvent as ReactKeyboardEvent,
+  type PointerEvent as ReactPointerEvent,
+  useCallback,
+  useEffect,
+  useRef,
+  useState,
+} from 'react'
 import { useSeshatStore } from '../../lib/store'
 import type { StudyCard } from '../../types'
 import { cardFrontBack } from '../study/card-summary'
@@ -7,6 +13,13 @@ import './flashcards.css'
 
 const UNKNOWN_KEY = '1'
 const KNOWN_KEY = '2'
+
+/** Minimum horizontal drag, in px, before a pointer gesture counts as a swipe rather than a tap. */
+const SWIPE_THRESHOLD_PX = 60
+/** Caps how far the card visually follows the finger, so a long drag doesn't fling it off-panel. */
+const DRAG_VISUAL_CAP_PX = 80
+
+const clamp = (value: number, min: number, max: number): number => Math.min(max, Math.max(min, value))
 
 interface FlashcardSessionProps {
   readonly card: StudyCard
@@ -26,11 +39,21 @@ interface FlashcardSessionProps {
 export const FlashcardSession = ({ card, position, total, onAdvance }: FlashcardSessionProps) => {
   const { recordReview } = useSeshatStore()
   const [flipped, setFlipped] = useState(false)
+  const [dragX, setDragX] = useState(0)
   const shownAt = useRef(performance.now())
+  // Pointer-swipe tracking: the client X the current gesture started at (null
+  // when no gesture is in progress), plus a flag so the synthetic click that
+  // follows a released drag doesn't also flip/re-trigger the card.
+  const swipeStartX = useRef<number | null>(null)
+  const swipeStartY = useRef<number | null>(null)
+  const justSwiped = useRef(false)
 
   // Reset per-card state whenever a new card is shown.
   useEffect(() => {
     setFlipped(false)
+    setDragX(0)
+    swipeStartX.current = null
+    swipeStartY.current = null
     shownAt.current = performance.now()
   }, [card.id])
 
@@ -67,16 +90,109 @@ export const FlashcardSession = ({ card, position, total, onAdvance }: Flashcard
     return () => window.removeEventListener('keydown', handler)
   }, [flipped, flip, handleGrade])
 
+  const handleFaceClick = () => {
+    // A swipe that just released fires a synthetic click right after —
+    // swallow exactly that one so a completed swipe doesn't also flip/grade
+    // a second time via the click path.
+    if (justSwiped.current) {
+      justSwiped.current = false
+      return
+    }
+    if (!flipped) flip()
+  }
+
+  const handleFaceKeyDown = (event: ReactKeyboardEvent<HTMLDivElement>) => {
+    if (event.key !== ' ' && event.key !== 'Enter') return
+    event.preventDefault()
+    if (!flipped) flip()
+  }
+
+  // Swipe navigation, additive to tap/Space/grade buttons/1-2 keys above.
+  // Follows the pointer-capture + threshold-on-release pattern used by the
+  // occlusion-region drag in ImageOcclusionEditor.tsx. Before the card is
+  // flipped, either direction just reveals the answer (there's nothing else
+  // to navigate to pre-reveal). Once flipped, a swipe commits a grade and
+  // advances — left mirrors the "Don't know" (1) action, right mirrors
+  // "Know" (2) — same as the existing grade buttons/keys, just gestural.
+  const handlePointerDown = (event: ReactPointerEvent<HTMLDivElement>) => {
+    swipeStartX.current = event.clientX
+    swipeStartY.current = event.clientY
+    event.currentTarget.setPointerCapture(event.pointerId)
+  }
+
+  const handlePointerMove = (event: ReactPointerEvent<HTMLDivElement>) => {
+    if (swipeStartX.current === null) return
+    setDragX(clamp(event.clientX - swipeStartX.current, -DRAG_VISUAL_CAP_PX, DRAG_VISUAL_CAP_PX))
+  }
+
+  const endSwipeGesture = (event: ReactPointerEvent<HTMLDivElement>) => {
+    if (event.currentTarget.hasPointerCapture(event.pointerId)) {
+      event.currentTarget.releasePointerCapture(event.pointerId)
+    }
+    setDragX(0)
+  }
+
+  const handlePointerUp = (event: ReactPointerEvent<HTMLDivElement>) => {
+    const startX = swipeStartX.current
+    const startY = swipeStartY.current
+    swipeStartX.current = null
+    swipeStartY.current = null
+    endSwipeGesture(event)
+    if (startX === null || startY === null) return
+
+    const deltaX = event.clientX - startX
+    const deltaY = event.clientY - startY
+    // Ignore small movements (a tap) and mostly-vertical drags (scrolling).
+    if (Math.abs(deltaX) < SWIPE_THRESHOLD_PX || Math.abs(deltaX) < Math.abs(deltaY)) return
+
+    justSwiped.current = true
+    if (!flipped) {
+      flip()
+      return
+    }
+    handleGrade(deltaX > 0)
+  }
+
+  const handlePointerCancel = (event: ReactPointerEvent<HTMLDivElement>) => {
+    swipeStartX.current = null
+    swipeStartY.current = null
+    endSwipeGesture(event)
+  }
+
   return (
     <div className="flashcard-session">
       <p className="review-progress">
         Card {position + 1} of {total}
       </p>
 
-      <Legible className="illuminated-panel flashcard-face" aria-live="polite">
-        {imageDataUrl !== undefined && <img src={imageDataUrl} alt="" className="flashcard-image" />}
-        <p>{flipped ? back : front}</p>
-      </Legible>
+      <div className="flashcard-flip-scene">
+        <div
+          className="legible legible-measure illuminated-panel flashcard-face"
+          role="button"
+          tabIndex={0}
+          aria-live="polite"
+          aria-pressed={flipped}
+          aria-label={flipped ? 'Answer revealed' : 'Question shown. Activate to reveal the answer.'}
+          onClick={handleFaceClick}
+          onKeyDown={handleFaceKeyDown}
+          onPointerDown={handlePointerDown}
+          onPointerMove={handlePointerMove}
+          onPointerUp={handlePointerUp}
+          onPointerCancel={handlePointerCancel}
+          style={dragX !== 0 ? { transform: `translateX(${dragX}px)` } : undefined}
+        >
+          <div className={flipped ? 'flashcard-flip-inner is-flipped' : 'flashcard-flip-inner'}>
+            <div className="flashcard-flip-face flashcard-flip-front">
+              {imageDataUrl !== undefined && <img src={imageDataUrl} alt="" className="flashcard-image" />}
+              <p>{front}</p>
+            </div>
+            <div className="flashcard-flip-face flashcard-flip-back">
+              {imageDataUrl !== undefined && <img src={imageDataUrl} alt="" className="flashcard-image" />}
+              <p>{back}</p>
+            </div>
+          </div>
+        </div>
+      </div>
 
       {!flipped ? (
         <button type="button" onClick={flip} autoFocus>
