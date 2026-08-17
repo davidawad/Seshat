@@ -1,11 +1,53 @@
+/* Establishes the 3D space the card rotates within — `perspective` has to
+   live on an ancestor of the rotated element, not the element itself. */
+.flashcard-flip-scene {
+  perspective: 1400px;
+}
+
 .flashcard-face {
+  min-height: 8rem;
+  cursor: pointer;
+  -webkit-user-select: none;
+  user-select: none;
+  /* Claim horizontal drags for the swipe gesture below but leave vertical
+     panning to the browser, unlike ImageOcclusionEditor's `touch-action:
+     none` — that gesture needs both axes, this one only needs the X axis. */
+  touch-action: pan-y;
+  /* Drag-follow (swipe) is a plain inline transform set/cleared in JS on
+     every pointer move, so it must not fight the reduced-motion transition
+     override below; only the flip itself is transitioned. */
+}
+
+.flashcard-face:focus-visible {
+  outline-offset: 3px;
+}
+
+/* The rotating layer. Front/back are stacked in the same CSS grid cell
+   (below) rather than absolutely positioned, so this sizes to whichever
+   face is taller instead of clipping longer answers. */
+.flashcard-flip-inner {
+  display: grid;
+  transform-style: preserve-3d;
+  transition: transform 0.4s cubic-bezier(0.45, 0.05, 0.55, 0.95);
+}
+
+.flashcard-flip-inner.is-flipped {
+  transform: rotateY(180deg);
+}
+
+.flashcard-flip-face {
+  grid-area: 1 / 1;
   display: flex;
   flex-direction: column;
   gap: 1rem;
   align-items: center;
-  text-align: center;
-  min-height: 8rem;
   justify-content: center;
+  text-align: center;
+  backface-visibility: hidden;
+}
+
+.flashcard-flip-back {
+  transform: rotateY(180deg);
 }
 
 .flashcard-image {
