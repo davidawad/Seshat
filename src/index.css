@@ -211,6 +211,15 @@ body {
   color: var(--color-accent);
 }
 
+/* Touch-target floor, coarse-pointer only — see typography.css for the
+   same reasoning applied to base form controls. */
+@media (pointer: coarse) {
+  .icon-button {
+    width: 2.75rem;
+    height: 2.75rem;
+  }
+}
+
 .tag-chips {
   list-style: none;
   display: flex;
