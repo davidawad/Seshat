@@ -1,3 +1,4 @@
+import { realpathSync } from 'node:fs'
 import react from '@vitejs/plugin-react'
 import { defineConfig } from 'vitest/config'
 import packageJson from './package.json' with { type: 'json' }
@@ -9,6 +10,25 @@ import packageJson from './package.json' with { type: 'json' }
 // already, seshsat -> seshat) only requires updating package.json.
 const GITLAB_PAGES_BASE = `/${packageJson.name}/`
 
+// Dev-only fix: Vite's server.fs.allow defaults to the directory containing
+// the nearest pnpm-workspace.yaml (see searchForWorkspaceRoot). This repo's
+// pnpm-workspace.yaml (the supply-chain minimumReleaseAge setting) is a
+// tracked file, so it's checked out into every git worktree — which means
+// the search stops at the worktree root and never climbs to wherever
+// node_modules is actually located. In worktrees set up with node_modules
+// symlinked back to the primary checkout (to skip a redundant `pnpm
+// install` per worktree), that leaves the *real*, symlink-resolved path to
+// node_modules outside the allow-list: Vite's /@fs/ handler resolves
+// symlinks to their realpath before checking fs.allow/fs.strict, so any
+// asset reached only through node_modules (e.g. the woff2 files @fontsource
+// CSS references via url(), which — unlike JS deps — never go through
+// optimizeDeps' explicitly-allowed cacheDir) 403s. Explicitly allowing the
+// realpath of node_modules fixes this regardless of whether it's a real
+// directory (a no-op, already inside the default allow-list) or a symlink
+// elsewhere. Production builds inline/copy font assets into dist/, so this
+// never affects `vite build` + `vite preview`.
+const NODE_MODULES_REAL_PATH = realpathSync(new URL('./node_modules', import.meta.url))
+
 // https://vite.dev/config/
 export default defineConfig(({ command, isPreview }) => ({
   // Only plain `vite dev` stays at '/'; `command` alone can't tell `vite
@@ -19,6 +39,11 @@ export default defineConfig(({ command, isPreview }) => ({
   // page.
   base: command === 'build' || isPreview ? GITLAB_PAGES_BASE : '/',
   plugins: [react()],
+  server: {
+    fs: {
+      allow: ['.', NODE_MODULES_REAL_PATH],
+    },
+  },
   test: {
     environment: 'jsdom',
     // Vitest's default exclude list skips .git but not .claude — a stray

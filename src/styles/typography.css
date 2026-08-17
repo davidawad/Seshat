@@ -178,6 +178,21 @@ button:disabled {
   opacity: 0.6;
 }
 
+/* ---------------------------------------------------------------------
+ * Touch-target floor (iOS HIG / Material ~48dp): bump interactive
+ * controls to >=44px only on coarse-pointer (touch) input, not desktop
+ * mouse pointers, which don't need the extra hit-area padding this
+ * would otherwise add everywhere.
+ * ------------------------------------------------------------------- */
+@media (pointer: coarse) {
+  input,
+  select,
+  textarea,
+  button {
+    min-height: 44px;
+  }
+}
+
 a {
   color: var(--color-accent);
 }

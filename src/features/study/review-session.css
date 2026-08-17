@@ -1,3 +1,50 @@
+/*
+ * The per-kind study card (ShortAnswerCard/ClozeCard/McqCard/
+ * ImageOcclusionCard all render this same `.study-card` > `.study-prompt`
+ * shape) sits inside the `.illuminated-panel` glow from index.css, so it
+ * only needs its own internal spacing, not a border/background of its own.
+ * Prompt text is CONTENT (see tokens.css typography-system split), so it's
+ * sized here but left in `.legible`'s user-selected typeface rather than
+ * a chrome font.
+ */
+.study-card {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.study-prompt {
+  font-size: 1.15rem;
+  font-weight: 600;
+  margin: 0;
+}
+
+.study-field {
+  display: flex;
+  flex-direction: column;
+  gap: 0.35rem;
+}
+
+/* One full-width, tappable row per option rather than default inline
+   button flow — options are meant to be scanned and picked one at a
+   time, not crammed edge to edge. Buttons already meet the >=44px
+   touch-target floor via typography.css's coarse-pointer rule. */
+.study-mcq-options {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.study-mcq-option {
+  text-align: left;
+}
+
+.study-mcq-option.is-selected {
+  border-color: var(--color-accent);
+  background: var(--color-bg-elevated);
+  color: var(--color-accent);
+}
+
 .review-progress {
   font-size: 0.85rem;
   letter-spacing: 0.04em;
