@@ -33,7 +33,8 @@ self.addEventListener('fetch', (event) => {
         })
         // `self.registration.scope` (not a hardcoded '/') so this falls
         // back to the app shell correctly under a subpath deploy like
-        // GitLab Pages' /seshat/, not just when served from the domain root.
+        // GitLab Pages' project-name subpath, not just when served from
+        // the domain root.
         .catch(() => caches.match(request).then((cached) => cached ?? caches.match(self.registration.scope))),
     )
     return

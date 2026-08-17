@@ -16,8 +16,8 @@ console.info(
 
 // Registered production-only: in dev, a cached service worker would fight
 // Vite's own HMR/module graph. Path is relative to BASE_URL (not a
-// hardcoded '/sw.js') because GitLab Pages serves this app under
-// /seshat/, not the domain root — see vite.config.ts's `base`.
+// hardcoded '/sw.js') because GitLab Pages serves this app under a
+// project-name subpath, not the domain root — see vite.config.ts's `base`.
 if (import.meta.env.PROD && 'serviceWorker' in navigator) {
   window.addEventListener('load', () => {
     navigator.serviceWorker

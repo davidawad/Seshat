@@ -1,16 +1,23 @@
 import react from '@vitejs/plugin-react'
 import { defineConfig } from 'vitest/config'
+import packageJson from './package.json' with { type: 'json' }
+
+// GitLab Pages serves this project (no custom domain) at
+// /<gitlab-project-name>/, so the base path must track the project's
+// actual slug rather than a second hardcoded copy of it — derived from
+// package.json's `name` so renaming the GitLab project (as happened once
+// already, seshsat -> seshat) only requires updating package.json.
+const GITLAB_PAGES_BASE = `/${packageJson.name}/`
 
 // https://vite.dev/config/
 export default defineConfig(({ command, isPreview }) => ({
-  // GitLab Pages serves a project site (no custom domain) under
-  // /<project-name>/, not the domain root — every asset URL needs that
-  // prefix. Only plain `vite dev` stays at '/'; `command` alone can't tell
-  // `vite preview` apart from `vite dev` (both report 'serve'), hence the
+  // Only plain `vite dev` stays at '/'; `command` alone can't tell `vite
+  // preview` apart from `vite dev` (both report 'serve'), hence the
   // separate `isPreview` check — without it, `vite preview` serves the
-  // build's /seshat/-prefixed HTML but resolves static assets at '/',
-  // 404s straight into the SPA fallback, and silently renders a blank page.
-  base: command === 'build' || isPreview ? '/seshat/' : '/',
+  // build's GITLAB_PAGES_BASE-prefixed HTML but resolves static assets at
+  // '/', 404s straight into the SPA fallback, and silently renders a blank
+  // page.
+  base: command === 'build' || isPreview ? GITLAB_PAGES_BASE : '/',
   plugins: [react()],
   test: {
     environment: 'jsdom',
