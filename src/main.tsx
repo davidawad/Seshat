@@ -2,6 +2,7 @@ import { StrictMode } from 'react'
 import { createRoot } from 'react-dom/client'
 import { BrowserRouter } from 'react-router-dom'
 import { App } from './App.tsx'
+import { InstallPrompt } from './components/InstallPrompt.tsx'
 import { SeshatProvider } from './lib/store.tsx'
 import { seshatWindowApi } from './lib/window-api.ts'
 import './index.css'
@@ -36,6 +37,9 @@ createRoot(rootElement).render(
       <BrowserRouter basename={import.meta.env.BASE_URL}>
         <App />
       </BrowserRouter>
+      {/* App-level chrome, deliberately outside <Layout> — it's a one-off
+          banner about the app itself, not per-page navigation/content. */}
+      <InstallPrompt />
     </SeshatProvider>
   </StrictMode>,
 )

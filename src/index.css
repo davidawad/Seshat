@@ -220,6 +220,41 @@ body {
   }
 }
 
+/*
+ * The custom `beforeinstallprompt` banner (see components/InstallPrompt.tsx)
+ * — a fixed corner card so it doesn't compete with page content, styled
+ * like `.illuminated-panel`'s subtle elevation rather than an intrusive
+ * modal, since installing is a nice-to-have, not something blocking the
+ * learner's task.
+ */
+.install-prompt {
+  position: fixed;
+  left: 1rem;
+  right: 1rem;
+  bottom: 1rem;
+  z-index: 40;
+  max-width: 24rem;
+  margin: 0 auto;
+  padding: 1rem 1.25rem;
+  background: var(--color-bg-elevated);
+  border: 1px solid var(--color-border-strong);
+  border-radius: var(--radius-page);
+  box-shadow: 0 2px 12px rgba(0, 0, 0, 0.3);
+}
+
+.install-prompt p {
+  margin: 0 0 0.75rem;
+}
+
+.install-prompt-actions {
+  display: flex;
+  gap: 0.5rem;
+}
+
+.install-prompt-dismiss {
+  background: transparent;
+}
+
 .tag-chips {
   list-style: none;
   display: flex;
