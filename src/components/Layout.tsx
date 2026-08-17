@@ -4,13 +4,14 @@ import { ImportFromUrl } from '../features/sets/ImportFromUrl'
 import { SettingsForm } from '../features/settings/SettingsForm'
 import { useApplyTheme } from '../features/settings/theme'
 import { Footer } from './Footer'
+import { AttributionsIcon, DocsIcon, SetsIcon, StatsIcon } from './icons'
 import { Modal } from './Modal'
 
 const NAV_ITEMS = [
-  { to: '/sets', label: 'Sets', end: false },
-  { to: '/stats', label: 'Stats', end: false },
-  { to: '/docs', label: 'Docs', end: false },
-  { to: '/attributions', label: 'Attributions', end: false },
+  { to: '/sets', label: 'Sets', end: false, icon: SetsIcon },
+  { to: '/stats', label: 'Stats', end: false, icon: StatsIcon },
+  { to: '/docs', label: 'Docs', end: false, icon: DocsIcon },
+  { to: '/attributions', label: 'Attributions', end: false, icon: AttributionsIcon },
 ] as const
 
 // Seshat's own hieroglyphic emblem — a seven-pointed star on a stem, the
@@ -45,7 +46,7 @@ export const Layout = () => {
           <SeshatMark />
           Seshat
         </Link>
-        <nav aria-label="Primary">
+        <nav aria-label="Primary" className="app-nav-desktop">
           <ul className="app-nav">
             {NAV_ITEMS.map((item) => (
               <li key={item.to}>
@@ -65,6 +66,22 @@ export const Layout = () => {
       <Modal open={settingsOpen} onClose={() => setSettingsOpen(false)} titleId={settingsTitleId} title="Settings">
         <SettingsForm />
       </Modal>
+      {/* Bottom tab bar — the mobile replacement for .app-nav-desktop below
+          the 640px breakpoint (see index.css). Same NAV_ITEMS/routes, just
+          a thumb-reachable fixed layout instead of a header row that has no
+          room to fit four labelled links on a phone width. */}
+      <nav aria-label="Primary" className="app-tabbar">
+        <ul>
+          {NAV_ITEMS.map((item) => (
+            <li key={item.to}>
+              <NavLink to={item.to} end={item.end}>
+                <item.icon />
+                <span>{item.label}</span>
+              </NavLink>
+            </li>
+          ))}
+        </ul>
+      </nav>
     </div>
   )
 }
