@@ -50,24 +50,26 @@ export const StatsPage = () => {
         &ldquo;Sure&rdquo; answers come back correct less often than &ldquo;Guessed&rdquo; ones, that&rsquo;s
         overconfidence — the fluency illusion at work, not a knowledge problem.
       </p>
-      <table aria-labelledby="calibration-heading">
-        <thead>
-          <tr>
-            <th scope="col">Confidence</th>
-            <th scope="col">Reviews</th>
-            <th scope="col">Actual correct rate</th>
-          </tr>
-        </thead>
-        <tbody>
-          {buckets.map((bucket) => (
-            <tr key={bucket.confidence}>
-              <th scope="row">{CONFIDENCE_LABELS[bucket.confidence]}</th>
-              <td>{bucket.total}</td>
-              <td>{bucket.correctRate === null ? '—' : formatPercent(bucket.correctRate)}</td>
+      <div className="table-scroll">
+        <table aria-labelledby="calibration-heading">
+          <thead>
+            <tr>
+              <th scope="col">Confidence</th>
+              <th scope="col">Reviews</th>
+              <th scope="col">Actual correct rate</th>
             </tr>
-          ))}
-        </tbody>
-      </table>
+          </thead>
+          <tbody>
+            {buckets.map((bucket) => (
+              <tr key={bucket.confidence}>
+                <th scope="row">{CONFIDENCE_LABELS[bucket.confidence]}</th>
+                <td>{bucket.total}</td>
+                <td>{bucket.correctRate === null ? '—' : formatPercent(bucket.correctRate)}</td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
+      </div>
     </section>
   )
 }

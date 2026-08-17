@@ -88,6 +88,13 @@ body {
   color: var(--color-accent);
 }
 
+/* Bottom tab bar — hidden by default (desktop uses .app-nav-desktop in the
+   header instead); swapped in below 640px, see the media query at the
+   bottom of this file. */
+.app-tabbar {
+  display: none;
+}
+
 .app-main {
   flex: 1;
   width: 100%;
@@ -167,6 +174,13 @@ body {
   max-height: calc(min(85vh, 56rem) - 4.5rem);
 }
 
+/* Reusable overflow wrapper for wide tables (e.g. Stats.tsx's calibration
+   table) — scrolls horizontally instead of blowing out the page width on
+   narrow viewports. */
+.table-scroll {
+  overflow-x: auto;
+}
+
 /*
  * The signature moment: a page glowing against the archive-room dark, as
  * if lit from within. Reserved for the one or two panels per screen that
@@ -226,4 +240,86 @@ body {
   padding: 0.15rem 0.65rem;
   font-size: 0.8rem;
   color: var(--color-fg-muted);
+}
+
+/*
+ * Mobile layout (<=640px) — the one breakpoint used across the app.
+ *
+ * The horizontal header nav (.app-nav-desktop) has no room for four
+ * labelled links at phone widths (measured minimum ~464px, wider than
+ * every common phone viewport), so it's swapped for a fixed bottom tab
+ * bar — the Quizlet-style mobile nav pattern this overhaul targets. The
+ * Settings modal becomes full-screen instead of a shrunken desktop
+ * dialog, matching native mobile sheet conventions.
+ */
+@media (max-width: 640px) {
+  .app-nav-desktop {
+    display: none;
+  }
+
+  .app-tabbar {
+    display: flex;
+    position: fixed;
+    inset-inline: 0;
+    bottom: 0;
+    z-index: 40;
+    border-top: 1px solid var(--color-border);
+    background: var(--color-bg-elevated);
+    /* Clears the iOS home-indicator gesture area so tab labels aren't
+       flush against it. */
+    padding-bottom: env(safe-area-inset-bottom, 0);
+  }
+
+  .app-tabbar ul {
+    display: flex;
+    width: 100%;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+  }
+
+  .app-tabbar li {
+    flex: 1;
+  }
+
+  .app-tabbar a {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.2rem;
+    padding: 0.5rem 0.25rem 0.4rem;
+    color: var(--color-fg-muted);
+    text-decoration: none;
+    font-size: 0.65rem;
+    letter-spacing: 0.03em;
+    text-transform: uppercase;
+  }
+
+  .app-tabbar a:hover,
+  .app-tabbar a[aria-current='page'] {
+    color: var(--color-accent);
+  }
+
+  /* Extra room after the footer so it — and the page content above it —
+     clear the fixed tab bar instead of being hidden behind it. */
+  .app-shell {
+    padding-bottom: calc(4.5rem + env(safe-area-inset-bottom, 0));
+  }
+
+  .modal {
+    /* The native <dialog> UA stylesheet applies its own default max-width
+       (Chrome: calc(100% - 6px - 2em)) alongside max-height — both must be
+       reset or the browser clamps our 100vw/100dvh back down, leaving gaps
+       around an almost-full-screen dialog instead of true edge-to-edge. */
+    width: 100vw;
+    max-width: none;
+    height: 100dvh;
+    max-height: none;
+    margin: 0;
+    border-radius: 0;
+  }
+
+  .modal-body {
+    max-height: calc(100dvh - 4.5rem);
+  }
 }
