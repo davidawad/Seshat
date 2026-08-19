@@ -1,8 +1,14 @@
-import { Link, useParams } from 'react-router-dom'
+import { Link, useNavigate, useParams } from 'react-router-dom'
+import { ShortcutHelp } from '../components/ShortcutHelp'
 import { GAMES } from '../features/games/registry'
 import { useSeshatStore } from '../lib/store'
+import { useKeybindings } from '../lib/useKeybindings'
+import { useNumberedShortcut } from '../lib/useNumberedShortcut'
 import { setIdSchema } from '../types'
 import '../features/sets/sets.css'
+
+/** How many leading games get a jump-to-game shortcut — see `games.select1-5` in lib/keybindings.ts. */
+const MAX_SHORTCUT_GAMES = 5
 
 const NotFound = ({ message }: { readonly message: string }) => (
   <section aria-labelledby="games-heading">
@@ -33,6 +39,19 @@ const useSetContext = () => {
 /** `/sets/:id/games` — picks among GAMES, disabling ones the set doesn't have enough cards for yet. */
 export const GamesListPage = () => {
   const context = useSetContext()
+  const navigate = useNavigate()
+  const { key: keyFor } = useKeybindings()
+
+  // Jump straight to a playable game by number. `useNumberedShortcut` is
+  // called unconditionally (before the `context === null` early return)
+  // since hooks can't be conditional — it just no-ops until `active` is true.
+  useNumberedShortcut('games.select', Math.min(GAMES.length, MAX_SHORTCUT_GAMES), context !== null, (index) => {
+    if (context === null) return
+    const game = GAMES[index]
+    if (game === undefined || context.cards.length < game.minCards) return
+    navigate(`/sets/${context.setId}/games/${game.id}`)
+  })
+
   if (context === null) return <NotFound message="This set may have been deleted." />
   const { setId, set, cards } = context
 
@@ -43,6 +62,12 @@ export const GamesListPage = () => {
       </p>
       <h1 id="games-heading">Games: {set.name}</h1>
       <p>Ungraded, arcade-style practice — these don't feed your Study schedule.</p>
+      <ShortcutHelp
+        shortcuts={GAMES.slice(0, MAX_SHORTCUT_GAMES).map((game, index) => ({
+          key: keyFor(`games.select${index + 1}`),
+          label: `Jump to ${game.label}`,
+        }))}
+      />
       <nav aria-label="Games" className="mode-grid">
         {GAMES.map((game) => {
           const playable = cards.length >= game.minCards

@@ -1,5 +1,8 @@
-import { type FormEvent, useRef, useState } from 'react'
+import { type FormEvent, useEffect, useRef, useState } from 'react'
+import { ShortcutHelp } from '../../components/ShortcutHelp'
+import { matchesBinding } from '../../lib/keybindings'
 import { useSeshatStore } from '../../lib/store'
+import { useKeybindings } from '../../lib/useKeybindings'
 import type { StudyCard } from '../../types'
 import { type TestQuestion, generateTest } from './generate-test'
 import { type TestAnswer, emptyAnswer, gradeAnswer } from './grade-test'
@@ -28,6 +31,7 @@ interface TestSessionProps {
  */
 export const TestSession = ({ cards }: TestSessionProps) => {
   const { recordReview } = useSeshatStore()
+  const { key: keyFor } = useKeybindings()
   const [questions, setQuestions] = useState<TestQuestion[]>(() => generateTest(cards))
   const [answers, setAnswers] = useState<TestAnswer[]>(() => questions.map(emptyAnswer))
   const [submitted, setSubmitted] = useState(false)
@@ -37,8 +41,7 @@ export const TestSession = ({ cards }: TestSessionProps) => {
     setAnswers((previous) => previous.map((existing, i) => (i === index ? answer : existing)))
   }
 
-  const handleSubmit = (event: FormEvent) => {
-    event.preventDefault()
+  const submitTest = () => {
     if (submitted || questions.length === 0) return
 
     const totalElapsedMs = performance.now() - startedAt.current
@@ -53,6 +56,25 @@ export const TestSession = ({ cards }: TestSessionProps) => {
 
     setSubmitted(true)
   }
+
+  const handleSubmit = (event: FormEvent) => {
+    event.preventDefault()
+    submitTest()
+  }
+
+  // Ctrl/Cmd+Enter submits from anywhere on the page — deliberately not
+  // plain Enter, which must keep doing whatever the browser default is
+  // inside a text/radio field rather than submitting the whole test early.
+  useEffect(() => {
+    const handler = (event: KeyboardEvent) => {
+      if (event.repeat) return
+      if (!matchesBinding(keyFor('test.submit'), event)) return
+      event.preventDefault()
+      submitTest()
+    }
+    window.addEventListener('keydown', handler)
+    return () => window.removeEventListener('keydown', handler)
+  }, [keyFor, submitTest])
 
   const handleRetryMissed = () => {
     const missedCardIds = new Set(
@@ -83,6 +105,7 @@ export const TestSession = ({ cards }: TestSessionProps) => {
 
   return (
     <form className="test-session" onSubmit={handleSubmit}>
+      <ShortcutHelp shortcuts={[{ key: keyFor('test.submit'), label: 'Submit test' }]} />
       <ol className="test-question-list">
         {questions.map((question, index) => (
           <li key={question.cardId} className="illuminated-panel test-question-item">

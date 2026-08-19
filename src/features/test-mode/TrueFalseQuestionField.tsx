@@ -12,11 +12,14 @@ interface TrueFalseQuestionFieldProps {
 /** True/false question: shows the card's front plus a claimed back (real or borrowed), learner judges it. */
 export const TrueFalseQuestionField = ({ question, index, value, onChange }: TrueFalseQuestionFieldProps) => {
   const groupName = useId()
+  const promptId = useId()
   return (
-    <Legible as="fieldset" className="test-truefalse">
-      <legend className="test-question-prompt">
+    // See MultipleChoiceQuestionField.tsx for why this is role="group" +
+    // aria-labelledby rather than a real <fieldset>/<legend>.
+    <Legible as="div" className="test-truefalse" role="group" aria-labelledby={promptId}>
+      <p id={promptId} className="test-question-prompt">
         {index + 1}. {question.front}
-      </legend>
+      </p>
       <p className="test-truefalse-claim">{question.claimedAnswer}</p>
       <div className="test-truefalse-options">
         <label>

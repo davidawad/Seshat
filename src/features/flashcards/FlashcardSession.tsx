@@ -3,23 +3,17 @@ import {
   type PointerEvent as ReactPointerEvent,
   useCallback,
   useEffect,
+  useMemo,
   useRef,
   useState,
 } from 'react'
 import { ShortcutHelp, type Shortcut } from '../../components/ShortcutHelp'
+import { matchesBinding } from '../../lib/keybindings'
 import { useSeshatStore } from '../../lib/store'
+import { useKeybindings } from '../../lib/useKeybindings'
 import type { StudyCard } from '../../types'
 import { cardFrontBack } from '../study/card-summary'
 import './flashcards.css'
-
-const UNKNOWN_KEY = '1'
-const KNOWN_KEY = '2'
-
-const FLASHCARD_SHORTCUTS: readonly Shortcut[] = [
-  { key: 'Space', label: 'Flip card' },
-  { key: UNKNOWN_KEY, label: "Don't know (once flipped)" },
-  { key: KNOWN_KEY, label: 'Know (once flipped)' },
-]
 
 /** Minimum horizontal drag, in px, before a pointer gesture counts as a swipe rather than a tap. */
 const SWIPE_THRESHOLD_PX = 60
@@ -36,6 +30,64 @@ interface FlashcardSessionProps {
   readonly onAdvance: (known: boolean) => void
 }
 
+interface FlashcardFaceProps {
+  readonly flipped: boolean
+  readonly front: string
+  readonly back: string
+  readonly imageDataUrl: string | undefined
+  readonly dragX: number
+  readonly onClick: () => void
+  readonly onKeyDown: (event: ReactKeyboardEvent<HTMLDivElement>) => void
+  readonly onPointerDown: (event: ReactPointerEvent<HTMLDivElement>) => void
+  readonly onPointerMove: (event: ReactPointerEvent<HTMLDivElement>) => void
+  readonly onPointerUp: (event: ReactPointerEvent<HTMLDivElement>) => void
+  readonly onPointerCancel: (event: ReactPointerEvent<HTMLDivElement>) => void
+}
+
+/** The flippable card face itself — split out of `FlashcardSession` to keep that component's size in check. */
+const FlashcardFace = ({
+  flipped,
+  front,
+  back,
+  imageDataUrl,
+  dragX,
+  onClick,
+  onKeyDown,
+  onPointerDown,
+  onPointerMove,
+  onPointerUp,
+  onPointerCancel,
+}: FlashcardFaceProps) => (
+  <div className="flashcard-flip-scene">
+    <div
+      className="legible legible-measure illuminated-panel flashcard-face"
+      role="button"
+      tabIndex={0}
+      aria-live="polite"
+      aria-pressed={flipped}
+      aria-label={flipped ? 'Answer revealed' : 'Question shown. Activate to reveal the answer.'}
+      onClick={onClick}
+      onKeyDown={onKeyDown}
+      onPointerDown={onPointerDown}
+      onPointerMove={onPointerMove}
+      onPointerUp={onPointerUp}
+      onPointerCancel={onPointerCancel}
+      style={dragX !== 0 ? { transform: `translateX(${dragX}px)` } : undefined}
+    >
+      <div className={flipped ? 'flashcard-flip-inner is-flipped' : 'flashcard-flip-inner'}>
+        <div className="flashcard-flip-face flashcard-flip-front">
+          {imageDataUrl !== undefined && <img src={imageDataUrl} alt="" className="flashcard-image" />}
+          <p>{front}</p>
+        </div>
+        <div className="flashcard-flip-face flashcard-flip-back">
+          {imageDataUrl !== undefined && <img src={imageDataUrl} alt="" className="flashcard-image" />}
+          <p>{back}</p>
+        </div>
+      </div>
+    </div>
+  </div>
+)
+
 /**
  * One card, one screen: classic flip flashcard. No confidence step, no
  * FSRS self-rating scale — just "did you know it," which is deliberately
@@ -45,6 +97,7 @@ interface FlashcardSessionProps {
  */
 export const FlashcardSession = ({ card, position, total, onAdvance }: FlashcardSessionProps) => {
   const { recordReview } = useSeshatStore()
+  const { key: keyFor } = useKeybindings()
   const [flipped, setFlipped] = useState(false)
   const [dragX, setDragX] = useState(0)
   const shownAt = useRef(performance.now())
@@ -77,25 +130,26 @@ export const FlashcardSession = ({ card, position, total, onAdvance }: Flashcard
     [card.id, onAdvance, recordReview],
   )
 
-  // Space/Enter flips the card; once flipped, 1/2 grade it. Skipped while a
-  // text input is focused, matching the default study mode's convention.
+  // Remappable flip/grade shortcuts (defaults: Space to flip, 1/2 to grade
+  // once flipped) — skipped while a text input is focused, matching the
+  // default study mode's convention.
   useEffect(() => {
     const handler = (event: KeyboardEvent) => {
       if (event.repeat) return
       if (event.target instanceof HTMLInputElement || event.target instanceof HTMLTextAreaElement) return
       if (!flipped) {
-        if (event.key === ' ' || event.key === 'Enter') {
+        if (matchesBinding(keyFor('flashcards.flip'), event)) {
           event.preventDefault()
           flip()
         }
         return
       }
-      if (event.key === UNKNOWN_KEY) handleGrade(false)
-      else if (event.key === KNOWN_KEY) handleGrade(true)
+      if (matchesBinding(keyFor('flashcards.dontKnow'), event)) handleGrade(false)
+      else if (matchesBinding(keyFor('flashcards.know'), event)) handleGrade(true)
     }
     window.addEventListener('keydown', handler)
     return () => window.removeEventListener('keydown', handler)
-  }, [flipped, flip, handleGrade])
+  }, [flipped, flip, handleGrade, keyFor])
 
   const handleFaceClick = () => {
     // A swipe that just released fires a synthetic click right after —
@@ -166,54 +220,48 @@ export const FlashcardSession = ({ card, position, total, onAdvance }: Flashcard
     endSwipeGesture(event)
   }
 
+  const flashcardShortcuts = useMemo<readonly Shortcut[]>(
+    () => [
+      { key: keyFor('flashcards.flip'), label: 'Flip card' },
+      { key: keyFor('flashcards.dontKnow'), label: "Don't know (once flipped)" },
+      { key: keyFor('flashcards.know'), label: 'Know (once flipped)' },
+    ],
+    [keyFor],
+  )
+
   return (
     <div className="flashcard-session">
       <p className="review-progress">
         Card {position + 1} of {total}
       </p>
 
-      <ShortcutHelp shortcuts={FLASHCARD_SHORTCUTS} />
+      <ShortcutHelp shortcuts={flashcardShortcuts} />
 
-      <div className="flashcard-flip-scene">
-        <div
-          className="legible legible-measure illuminated-panel flashcard-face"
-          role="button"
-          tabIndex={0}
-          aria-live="polite"
-          aria-pressed={flipped}
-          aria-label={flipped ? 'Answer revealed' : 'Question shown. Activate to reveal the answer.'}
-          onClick={handleFaceClick}
-          onKeyDown={handleFaceKeyDown}
-          onPointerDown={handlePointerDown}
-          onPointerMove={handlePointerMove}
-          onPointerUp={handlePointerUp}
-          onPointerCancel={handlePointerCancel}
-          style={dragX !== 0 ? { transform: `translateX(${dragX}px)` } : undefined}
-        >
-          <div className={flipped ? 'flashcard-flip-inner is-flipped' : 'flashcard-flip-inner'}>
-            <div className="flashcard-flip-face flashcard-flip-front">
-              {imageDataUrl !== undefined && <img src={imageDataUrl} alt="" className="flashcard-image" />}
-              <p>{front}</p>
-            </div>
-            <div className="flashcard-flip-face flashcard-flip-back">
-              {imageDataUrl !== undefined && <img src={imageDataUrl} alt="" className="flashcard-image" />}
-              <p>{back}</p>
-            </div>
-          </div>
-        </div>
-      </div>
+      <FlashcardFace
+        flipped={flipped}
+        front={front}
+        back={back}
+        imageDataUrl={imageDataUrl}
+        dragX={dragX}
+        onClick={handleFaceClick}
+        onKeyDown={handleFaceKeyDown}
+        onPointerDown={handlePointerDown}
+        onPointerMove={handlePointerMove}
+        onPointerUp={handlePointerUp}
+        onPointerCancel={handlePointerCancel}
+      />
 
       {!flipped ? (
         <button type="button" onClick={flip} autoFocus>
-          Flip card <span className="flashcard-key">(Space)</span>
+          Flip card <span className="flashcard-key">({keyFor('flashcards.flip')})</span>
         </button>
       ) : (
         <div className="flashcard-grade-options">
           <button type="button" onClick={() => handleGrade(false)}>
-            Don&rsquo;t know <span className="flashcard-key">({UNKNOWN_KEY})</span>
+            Don&rsquo;t know <span className="flashcard-key">({keyFor('flashcards.dontKnow')})</span>
           </button>
           <button type="button" onClick={() => handleGrade(true)} autoFocus>
-            Know <span className="flashcard-key">({KNOWN_KEY})</span>
+            Know <span className="flashcard-key">({keyFor('flashcards.know')})</span>
           </button>
         </div>
       )}

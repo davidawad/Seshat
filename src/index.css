@@ -103,6 +103,14 @@ body {
   padding: 2rem 1.5rem 4rem;
 }
 
+/* Reserves room for the fixed-position install banner (see InstallPrompt.tsx
+   and .install-prompt below) so it floats below the page's own content
+   instead of covering the tail end of it — only while the banner is
+   actually mounted, via a class InstallPrompt toggles on <body>. */
+body.has-install-prompt .app-main {
+  padding-bottom: 10rem;
+}
+
 /* Shown by ImportFromUrl.tsx only when a `?import=` link fails to parse —
    spans the full width, above .app-main, on whatever page it would
    otherwise render. */
@@ -117,17 +125,34 @@ body {
 
 .app-footer {
   display: flex;
+  flex-wrap: wrap;
   align-items: center;
   justify-content: space-between;
-  gap: 1rem;
+  gap: 0.75rem 1rem;
   padding: 1rem 1.5rem;
   border-top: 1px solid var(--color-border);
   background: var(--color-bg-elevated);
 }
 
-.app-footer-brand {
+.app-footer-copyright {
   font-size: 0.8rem;
   color: var(--color-fg-muted);
+}
+
+.app-footer-actions {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.75rem 1rem;
+}
+
+.app-footer-link {
+  font-size: 0.8rem;
+  color: var(--color-fg-muted);
+}
+
+.app-footer-link:hover {
+  color: var(--color-accent);
 }
 
 .app-footer-settings {
@@ -179,6 +204,30 @@ body {
    narrow viewports. */
 .table-scroll {
   overflow-x: auto;
+}
+
+.table-scroll table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.table-scroll th,
+.table-scroll td {
+  padding: 0.5rem 0.85rem;
+  text-align: left;
+  border-bottom: 1px solid var(--color-border);
+}
+
+.table-scroll thead th {
+  font-family: var(--font-ui);
+  font-size: 0.8rem;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: var(--color-fg-muted);
+}
+
+.table-scroll tbody th[scope='row'] {
+  font-weight: 600;
 }
 
 /*

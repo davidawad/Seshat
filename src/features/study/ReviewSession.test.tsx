@@ -1,11 +1,40 @@
-import { cleanup, render, screen } from '@testing-library/react'
+import { act, cleanup, render, screen } from '@testing-library/react'
 import userEvent from '@testing-library/user-event'
 import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest'
 import { createInitialScheduling } from '../../lib/fsrs'
 import { saveState } from '../../lib/storage'
 import { SeshatProvider } from '../../lib/store'
+import { useKeybindings } from '../../lib/useKeybindings'
 import { type StudyCard, cardIdSchema, createEmptyAppState, setIdSchema } from '../../types'
 import { ReviewSession } from './ReviewSession'
+
+/** Applies/reverts a keybinding override for real via the same module-level store the app uses (see lib/useKeybindings.ts) — not a mock. */
+const KeybindingSetter = ({ actionId, keyValue }: { readonly actionId: string; readonly keyValue: string }) => {
+  const { setBinding } = useKeybindings()
+  return (
+    <button type="button" onClick={() => setBinding(actionId, keyValue)}>
+      remap
+    </button>
+  )
+}
+const remapAction = (actionId: string, keyValue: string) => {
+  const { getByText, unmount } = render(<KeybindingSetter actionId={actionId} keyValue={keyValue} />)
+  act(() => getByText('remap').click())
+  unmount()
+}
+const resetAllKeybindings = () => {
+  const Reset = () => {
+    const { resetAll } = useKeybindings()
+    return (
+      <button type="button" onClick={() => resetAll()}>
+        reset
+      </button>
+    )
+  }
+  const { getByText, unmount } = render(<Reset />)
+  act(() => getByText('reset').click())
+  unmount()
+}
 
 // @testing-library/react's auto-cleanup needs a global `afterEach`, which
 // this project doesn't enable (no `test.globals: true` in vite.config.ts) —
@@ -208,6 +237,35 @@ describe('ReviewSession keyboard shortcuts', () => {
     await user.click(screen.getByRole('button', { name: 'Sure' }))
     await user.keyboard('3') // GRADE_ORDER[2] === 'good'
 
+    expect(onAdvance).toHaveBeenCalledWith('good', true)
+  })
+})
+
+describe('ReviewSession honors a remapped keybinding', () => {
+  beforeEach(() => {
+    window.localStorage.clear()
+    resetAllKeybindings()
+  })
+
+  afterEach(() => {
+    resetAllKeybindings()
+  })
+
+  it("stops responding to the old default key once 'studyReveal.good' is remapped, and responds to the new one", async () => {
+    const user = userEvent.setup()
+    const card = makeCard()
+    seedStore(card)
+    remapAction('studyReveal.good', 'G')
+    const onAdvance = renderSession(card)
+
+    await user.type(screen.getByLabelText(/your answer/i), 'Paris')
+    await user.click(screen.getByRole('button', { name: /continue/i }))
+    await user.click(screen.getByRole('button', { name: 'Sure' }))
+
+    await user.keyboard('3') // the old default — should no longer grade "good"
+    expect(onAdvance).not.toHaveBeenCalled()
+
+    await user.keyboard('g') // the remapped key
     expect(onAdvance).toHaveBeenCalledWith('good', true)
   })
 })

@@ -1,4 +1,4 @@
-import { useMemo, useState } from 'react'
+import { useEffect, useMemo, useState } from 'react'
 import { Link, useParams } from 'react-router-dom'
 import { z } from 'zod'
 import { FlashcardSession } from '../features/flashcards/FlashcardSession'
@@ -10,8 +10,10 @@ import {
   currentCardId,
   isSessionComplete,
 } from '../features/flashcards/session'
+import { matchesBinding } from '../lib/keybindings'
 import { clearResumeState, loadResumeState, saveResumeState } from '../lib/sessionResume'
 import { useSeshatStore } from '../lib/store'
+import { useKeybindings } from '../lib/useKeybindings'
 import { type CardId, type SetId, cardIdSchema, setIdSchema } from '../types'
 import './flashcards-page.css'
 
@@ -77,6 +79,7 @@ interface FlashcardRunnerProps {
  */
 const FlashcardRunner = ({ setId, setName, cardIds }: FlashcardRunnerProps) => {
   const { state } = useSeshatStore()
+  const { key: keyFor } = useKeybindings()
   const resumed = useMemo(() => loadResumeState(RESUME_MODE, setId, flashcardResumeSchema), [setId])
   const [orderMode, setOrderMode] = useState<FlashcardOrder>(resumed?.orderMode ?? 'shuffled')
   const [session, setSession] = useState<FlashcardSessionState>(
@@ -106,6 +109,21 @@ const FlashcardRunner = ({ setId, setName, cardIds }: FlashcardRunnerProps) => {
     setOrderMode(order)
     restart(cardIds, order)
   }
+
+  // Toggles shuffled/original order — restarting the session is a deliberate
+  // choice already made by the click-driven toggle above; the shortcut just
+  // reaches the same action. Skipped while a text input is focused, matching
+  // every other keyboard handler in the app.
+  useEffect(() => {
+    const handler = (event: KeyboardEvent) => {
+      if (event.repeat) return
+      if (event.target instanceof HTMLInputElement || event.target instanceof HTMLTextAreaElement) return
+      if (!matchesBinding(keyFor('flashcards.toggleOrder'), event)) return
+      setOrderAndRestart(orderMode === 'shuffled' ? 'original' : 'shuffled')
+    }
+    window.addEventListener('keydown', handler)
+    return () => window.removeEventListener('keydown', handler)
+  }, [keyFor, orderMode, cardIds])
 
   const currentId = currentCardId(session)
   const card = currentId === null ? undefined : state.cards.find((candidate) => candidate.id === currentId)

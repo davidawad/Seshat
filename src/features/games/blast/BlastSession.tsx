@@ -1,5 +1,8 @@
 import { useEffect, useState } from 'react'
 import { Legible } from '../../../components/Legible'
+import { ShortcutHelp } from '../../../components/ShortcutHelp'
+import { useKeybindings } from '../../../lib/useKeybindings'
+import { useNumberedShortcut } from '../../../lib/useNumberedShortcut'
 import type { SetId } from '../../../types'
 import { getBestScore, recordScore } from './bestScore'
 import './blast.css'
@@ -29,7 +32,103 @@ interface BlastSessionProps {
   readonly pairs: readonly BlastPair[]
 }
 
+interface BlastAsteroidFieldProps {
+  readonly question: BlastQuestion
+  readonly roundIndex: number
+  readonly status: AnswerStatus
+  readonly pickedOption: string | null
+  readonly feedback: string
+  readonly keyFor: (actionId: string) => string
+  readonly onSelect: (option: string) => void
+}
+
+/** The live-question view: timer, prompt, feedback, and the asteroid field — split out of `BlastSession` to keep that component's size/complexity in check. */
+const BlastAsteroidField = ({
+  question,
+  roundIndex,
+  status,
+  pickedOption,
+  feedback,
+  keyFor,
+  onSelect,
+}: BlastAsteroidFieldProps) => (
+  <>
+    <ShortcutHelp
+      shortcuts={question.options.map((_, index) => ({
+        key: keyFor(`blast.selectOption${index + 1}`),
+        label: `Select option ${index + 1}`,
+      }))}
+    />
+    <div className="blast-timer-track" aria-hidden="true">
+      <div
+        key={roundIndex}
+        className={status === 'playing' ? 'blast-timer-bar' : 'blast-timer-bar is-paused'}
+        style={{ animationDuration: `${ROUND_TIME_MS}ms` }}
+      />
+    </div>
+
+    <div className="blast-prompt">
+      <p className="blast-prompt-label">Blast the rock that matches:</p>
+      <Legible as="p" className="blast-prompt-text">
+        {question.prompt}
+      </Legible>
+    </div>
+
+    <p role="status" aria-live="polite" className="blast-feedback">
+      {feedback}
+    </p>
+
+    <div className="blast-field">
+      {question.options.map((option) => {
+        const isPicked = option === pickedOption
+        const revealCorrect = status !== 'playing' && option === question.correctOption
+        const revealWrongPick = status === 'wrong' && isPicked
+        const classNames = ['blast-asteroid']
+        if (isPicked) classNames.push('is-picked')
+        if (revealCorrect) classNames.push('is-correct')
+        if (revealWrongPick) classNames.push('is-wrong')
+        return (
+          <button
+            key={option}
+            type="button"
+            className={classNames.join(' ')}
+            disabled={status !== 'playing'}
+            onClick={() => onSelect(option)}
+          >
+            <Legible as="span" measure={false} className="blast-asteroid-text">
+              {option}
+            </Legible>
+          </button>
+        )
+      })}
+    </div>
+  </>
+)
+
+interface BlastCompleteProps {
+  readonly endReason: EndReason | null
+  readonly score: number
+  readonly attemptedCount: number
+  readonly totalQuestions: number
+  readonly onPlayAgain: () => void
+}
+
+/** The end-of-run summary — split out of `BlastSession` for the same reason as `BlastAsteroidField` above. */
+const BlastComplete = ({ endReason, score, attemptedCount, totalQuestions, onPlayAgain }: BlastCompleteProps) => (
+  <div className="illuminated-panel blast-complete" role="status">
+    <p className="blast-complete-heading">{endReason === 'lives' ? 'Out of lives.' : 'Cleared the whole set.'}</p>
+    <p>Score: {score}</p>
+    <p>
+      Cards cleared: {attemptedCount} of {totalQuestions}
+    </p>
+    <button type="button" className="blast-play-again" onClick={onPlayAgain} autoFocus>
+      Play again
+    </button>
+  </div>
+)
+
 export const BlastSession = ({ setId, pairs }: BlastSessionProps) => {
+  const { key: keyFor } = useKeybindings()
   const [questions, setQuestions] = useState<readonly BlastQuestion[]>(() => buildRound(pairs))
   const [index, setIndex] = useState(0)
   const [score, setScore] = useState(0)
@@ -62,6 +161,16 @@ export const BlastSession = ({ setId, pairs }: BlastSessionProps) => {
     return () => window.clearTimeout(timeoutId)
   }, [index, status, isComplete, question])
 
+  // Shared by both "the run just ended" branches below — records the score
+  // and flips to the completion screen either way, differing only in why.
+  const finishRound = (reason: EndReason) => {
+    setEndReason(reason)
+    const updatedBest = recordScore(setId, score)
+    setIsNewBest(bestAtStart === null || score > bestAtStart)
+    setBestAtStart(updatedBest)
+    setIsComplete(true)
+  }
+
   // Once an answer is in (correct/wrong/timeout), hold the feedback for a
   // beat, then either move to the next asteroid or end the run — whichever
   // the current lives/index call for.
@@ -69,19 +178,11 @@ export const BlastSession = ({ setId, pairs }: BlastSessionProps) => {
     if (status === 'playing' || isComplete) return
     const advanceId = window.setTimeout(() => {
       if (lives <= 0) {
-        setEndReason('lives')
-        const updatedBest = recordScore(setId, score)
-        setIsNewBest(bestAtStart === null || score > bestAtStart)
-        setBestAtStart(updatedBest)
-        setIsComplete(true)
+        finishRound('lives')
         return
       }
       if (index + 1 >= totalQuestions) {
-        setEndReason('cleared')
-        const updatedBest = recordScore(setId, score)
-        setIsNewBest(bestAtStart === null || score > bestAtStart)
-        setBestAtStart(updatedBest)
-        setIsComplete(true)
+        finishRound('cleared')
         return
       }
       setIndex((i) => i + 1)
@@ -90,6 +191,7 @@ export const BlastSession = ({ setId, pairs }: BlastSessionProps) => {
       setFeedback('')
     }, FEEDBACK_DWELL_MS)
     return () => window.clearTimeout(advanceId)
+    // eslint-disable-next-line react-hooks/exhaustive-deps -- `finishRound` closes over this render's state/props; re-running whenever any of them change is exactly what's wanted.
   }, [status, isComplete, lives, index, totalQuestions, score, setId, bestAtStart])
 
   const handleSelect = (option: string) => {
@@ -106,6 +208,17 @@ export const BlastSession = ({ setId, pairs }: BlastSessionProps) => {
       setFeedback(`Wrong rock — "${question.prompt}" doesn't match "${option}".`)
     }
   }
+
+  // Digit-key option select while a question is live.
+  useNumberedShortcut(
+    'blast.selectOption',
+    question?.options.length ?? 0,
+    status === 'playing' && question !== undefined,
+    (index) => {
+      const option = question?.options[index]
+      if (option !== undefined) handleSelect(option)
+    },
+  )
 
   const playAgain = () => {
     setQuestions(buildRound(pairs))
@@ -134,64 +247,25 @@ export const BlastSession = ({ setId, pairs }: BlastSessionProps) => {
       </div>
 
       {!isComplete && question !== undefined && (
-        <>
-          <div className="blast-timer-track" aria-hidden="true">
-            <div
-              key={index}
-              className={status === 'playing' ? 'blast-timer-bar' : 'blast-timer-bar is-paused'}
-              style={{ animationDuration: `${ROUND_TIME_MS}ms` }}
-            />
-          </div>
-
-          <div className="blast-prompt">
-            <p className="blast-prompt-label">Blast the rock that matches:</p>
-            <Legible as="p" className="blast-prompt-text">
-              {question.prompt}
-            </Legible>
-          </div>
-
-          <p role="status" aria-live="polite" className="blast-feedback">
-            {feedback}
-          </p>
-
-          <div className="blast-field">
-            {question.options.map((option) => {
-              const isPicked = option === pickedOption
-              const revealCorrect = status !== 'playing' && option === question.correctOption
-              const revealWrongPick = status === 'wrong' && isPicked
-              const classNames = ['blast-asteroid']
-              if (isPicked) classNames.push('is-picked')
-              if (revealCorrect) classNames.push('is-correct')
-              if (revealWrongPick) classNames.push('is-wrong')
-              return (
-                <button
-                  key={option}
-                  type="button"
-                  className={classNames.join(' ')}
-                  disabled={status !== 'playing'}
-                  onClick={() => handleSelect(option)}
-                >
-                  <Legible as="span" measure={false} className="blast-asteroid-text">
-                    {option}
-                  </Legible>
-                </button>
-              )
-            })}
-          </div>
-        </>
+        <BlastAsteroidField
+          question={question}
+          roundIndex={index}
+          status={status}
+          pickedOption={pickedOption}
+          feedback={feedback}
+          keyFor={keyFor}
+          onSelect={handleSelect}
+        />
       )}
 
       {isComplete && (
-        <div className="blast-complete">
-          <p className="blast-complete-heading">{endReason === 'lives' ? 'Out of lives.' : 'Cleared the whole set.'}</p>
-          <p>Score: {score}</p>
-          <p>
-            Cards cleared: {attemptedCount} of {totalQuestions}
-          </p>
-          <button type="button" className="blast-play-again" onClick={playAgain} autoFocus>
-            Play again
-          </button>
-        </div>
+        <BlastComplete
+          endReason={endReason}
+          score={score}
+          attemptedCount={attemptedCount}
+          totalQuestions={totalQuestions}
+          onPlayAgain={playAgain}
+        />
       )}
     </div>
   )

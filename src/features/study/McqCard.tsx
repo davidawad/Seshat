@@ -1,4 +1,5 @@
 import { useState } from 'react'
+import { useNumberedShortcut } from '../../lib/useNumberedShortcut'
 import type { McqContent } from '../../types'
 
 interface McqCardProps {
@@ -9,6 +10,9 @@ interface McqCardProps {
   readonly disabled: boolean
 }
 
+/** How many leading options get a digit-key shortcut — see `studyAnswer.mcqOption1-4` in lib/keybindings.ts. */
+const MAX_SHORTCUT_OPTIONS = 4
+
 /**
  * MCQ cards follow the "prompt first, options after a beat" pattern from the
  * research brief: the prompt renders alone, and options only appear once the
@@ -17,6 +21,13 @@ interface McqCardProps {
  */
 export const McqCard = ({ prompt, content, value, onChange, disabled }: McqCardProps) => {
   const [revealed, setRevealed] = useState(value !== null)
+
+  useNumberedShortcut(
+    'studyAnswer.mcqOption',
+    Math.min(content.options.length, MAX_SHORTCUT_OPTIONS),
+    revealed && !disabled,
+    onChange,
+  )
 
   return (
     <div className="study-card">

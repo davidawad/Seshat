@@ -1,6 +1,7 @@
 import { useId } from 'react'
 import { Combobox } from '../../components/Combobox'
 import './settings.css'
+import { KeybindingsField } from './KeybindingsField'
 import { useSeshatStore } from '../../lib/store'
 import {
   RETENTION_PRESETS,
@@ -292,6 +293,30 @@ const ExperimentalGamesField = ({ settings, updateSettings }: FieldProps) => {
   )
 }
 
+const InstallPromptField = ({ settings, updateSettings }: FieldProps) => {
+  const inputId = useId()
+  const hintId = useId()
+  return (
+    <div className="settings-field">
+      <label className="settings-option-inline" htmlFor={inputId}>
+        <input
+          id={inputId}
+          type="checkbox"
+          checked={settings.installPromptEnabled}
+          onChange={(event) => updateSettings({ installPromptEnabled: event.target.checked })}
+          aria-describedby={hintId}
+        />
+        <span>Show the &ldquo;Install Seshat&rdquo; banner</span>
+      </label>
+      <p id={hintId} className="field-hint">
+        Off by default. The banner is a fixed overlay that can sit on top of page content, so it&rsquo;s opt-in rather
+        than sprung on everyone. Browsers only offer the install prompt once per page load, so turning this on takes
+        effect on your next reload rather than immediately.
+      </p>
+    </div>
+  )
+}
+
 // ---------------------------------------------------------------------------
 
 /** The Settings content itself — rendered inside the large modal opened from the footer (see components/Modal.tsx). */
@@ -316,6 +341,8 @@ export const SettingsForm = () => {
         <RetentionField {...fieldProps} />
         <SelfExplanationField {...fieldProps} />
         <ExperimentalGamesField {...fieldProps} />
+        <InstallPromptField {...fieldProps} />
+        <KeybindingsField />
       </form>
     </>
   )

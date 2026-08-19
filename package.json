@@ -2,6 +2,7 @@
   "name": "seshat",
   "private": true,
   "version": "0.0.0",
+  "license": "GPL-3.0-or-later",
   "type": "module",
   "packageManager": "pnpm@11.13.1",
   "scripts": {
@@ -18,7 +19,7 @@
     "knip": "knip",
     "duplication": "jscpd --config .jscpd.json",
     "circular": "madge --circular --extensions ts,tsx src",
-    "license": "license-checker-rseidelsohn --failOn 'GPL;AGPL' --summary",
+    "license": "license-checker-rseidelsohn --failOn 'GPL;AGPL' --excludePackages 'seshat@0.0.0' --summary",
     "audit": "pnpm audit",
     "size": "size-limit",
     "ci": "pnpm run format:check && pnpm run lint && pnpm run typecheck && pnpm run circular && pnpm run duplication && pnpm run license && pnpm run test:coverage && pnpm run build && pnpm run size",

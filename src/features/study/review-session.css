@@ -17,6 +17,16 @@
   font-size: 1.15rem;
   font-weight: 600;
   margin: 0;
+  text-align: center;
+}
+
+/* The cloze fill-in-the-blank sentence (before-blank/input/after-blank,
+   all inline in one paragraph — see ClozeCard.tsx). Centered to match
+   `.study-prompt` and the rest of the app's card treatments (the
+   Flashcards flip faces, the set-preview index card) — a study card
+   reads as a physical card, not a left-margin-anchored form. */
+.study-cloze-text {
+  text-align: center;
 }
 
 .study-field {

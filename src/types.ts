@@ -214,6 +214,13 @@ export const settingsSchema = z.object({
   // Match users see no regression; the toggle exists for people who'd
   // rather keep the app to just the FSRS-graded modes.
   experimentalGamesEnabled: z.boolean().default(true),
+  // The "Install Seshat" PWA banner (components/InstallPrompt.tsx). Defaults
+  // off — it's a fixed-position overlay that can sit on top of page content
+  // (see index.css's `body.has-install-prompt` padding workaround), and not
+  // everyone wants to be nagged to install a PWA. Off means the browser's
+  // own native install affordance (if any) is left alone too — see
+  // InstallPrompt.tsx for why disabling this doesn't call preventDefault.
+  installPromptEnabled: z.boolean().default(false),
 })
 
 export type Settings = z.infer<typeof settingsSchema>
@@ -229,6 +236,7 @@ export const DEFAULT_SETTINGS: Settings = {
   desiredRetention: 0.9,
   selfExplanationEnabled: false,
   experimentalGamesEnabled: true,
+  installPromptEnabled: false,
 }
 
 // Anki/FSRS-guidance-derived presets — see research/learning-science for citations.

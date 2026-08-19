@@ -20,7 +20,17 @@ const contentFrontBack = (prompt: string, content: CardContent): CardFrontBack =
     case 'short-answer':
       return { front: prompt, back: content.answer }
     case 'cloze':
-      return { front: `${prompt}\n${blankedCloze(content.text)}`, back: clozeAnswer(content.text) ?? content.text }
+      // Unlike every other kind, `prompt` here is optional supplementary
+      // context (a category-style label, e.g. "Fill in the blank") rather
+      // than the actual question — the blanked sentence IS the question,
+      // same as `front` for every other kind is just the one thing you'd
+      // read to answer. Concatenating the two into one string used to
+      // produce an unreadable label+sentence run-on everywhere `front` is
+      // shown as a single atomic string (flashcards, Match/Blast/Blocks
+      // tiles, Test mode questions, the set term list) — the dedicated
+      // `ClozeCard.tsx` (default Study mode) already renders `prompt` as
+      // its own separate, optional line above the sentence.
+      return { front: blankedCloze(content.text), back: clozeAnswer(content.text) ?? content.text }
     case 'mcq':
       return { front: prompt, back: content.options[content.correctIndex] ?? '(unknown)' }
     case 'image-occlusion': {

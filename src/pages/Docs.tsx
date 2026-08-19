@@ -158,10 +158,9 @@ export const DocsPage = () => (
       <h2 id="docs-license-heading">Open source</h2>
       <p>
         Seshat is free and open source software, licensed under the{' '}
-        <a href="/LICENSE" target="_blank" rel="noopener noreferrer">
-          MIT License
-        </a>
-        . Use it, fork it, self-host it, read every line of it — there&rsquo;s nothing hidden and nothing to pay for.
+        <Link to="/licensing">GNU General Public License v3</Link>. Use it, fork it, self-host it, read every line of it
+        — there&rsquo;s nothing hidden and nothing to pay for, and any distributed modifications stay free software
+        under the same license.
       </p>
     </section>
   </section>

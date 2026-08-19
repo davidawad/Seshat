@@ -1,7 +1,9 @@
-import { useCallback, useEffect, useRef, useState } from 'react'
+import { useCallback, useEffect, useMemo, useRef, useState } from 'react'
 import { Legible } from '../../components/Legible'
 import { ShortcutHelp, type Shortcut } from '../../components/ShortcutHelp'
+import { matchesBinding } from '../../lib/keybindings'
 import { useSeshatStore } from '../../lib/store'
+import { useKeybindings } from '../../lib/useKeybindings'
 import type { ConfidenceRating, Grade, StudyCard } from '../../types'
 import { CardInput } from './CardInput'
 import { type Attempt, GRADE_ORDER, initialAttempt, isAttemptComplete, isCorrect } from './grading'
@@ -10,17 +12,21 @@ import './review-session.css'
 
 type Step = 'answer' | 'confidence' | 'reveal'
 
-const CONFIDENCE_OPTIONS: readonly { readonly value: ConfidenceRating; readonly label: string }[] = [
-  { value: 'guessed', label: 'Guessed' },
-  { value: 'unsure', label: 'Unsure' },
-  { value: 'sure', label: 'Sure' },
+const CONFIDENCE_OPTIONS: readonly {
+  readonly value: ConfidenceRating
+  readonly label: string
+  readonly actionId: string
+}[] = [
+  { value: 'guessed', label: 'Guessed', actionId: 'studyConfidence.guessed' },
+  { value: 'unsure', label: 'Unsure', actionId: 'studyConfidence.unsure' },
+  { value: 'sure', label: 'Sure', actionId: 'studyConfidence.sure' },
 ]
 
-const STUDY_SHORTCUTS: readonly Shortcut[] = [
-  { key: '1', label: 'Confidence: Guessed / Grade: Again' },
-  { key: '2', label: 'Confidence: Unsure / Grade: Hard' },
-  { key: '3', label: 'Confidence: Sure / Grade: Good' },
-  { key: '4', label: 'Grade: Easy' },
+const GRADE_ACTION_IDS: readonly string[] = [
+  'studyReveal.again',
+  'studyReveal.hard',
+  'studyReveal.good',
+  'studyReveal.easy',
 ]
 
 interface ReviewSessionProps {
@@ -44,6 +50,7 @@ export const ReviewSession = ({ card, position, total, onAdvance }: ReviewSessio
       settings: { selfExplanationEnabled },
     },
   } = useSeshatStore()
+  const { key: keyFor } = useKeybindings()
   const [step, setStep] = useState<Step>('answer')
   const [attempt, setAttempt] = useState<Attempt>(() => initialAttempt(card.content))
   const [confidence, setConfidence] = useState<ConfidenceRating | null>(null)
@@ -90,23 +97,49 @@ export const ReviewSession = ({ card, position, total, onAdvance }: ReviewSessio
     [card.id, confidence, correct, onAdvance, recordReview, selfExplanation],
   )
 
-  // Number-key shortcuts (1-3 confidence, 1-4 grade) — skipped while a text
-  // input is focused so digits keep typing into short-answer/cloze fields.
+  // Remappable keyboard shortcuts (confidence step, then reveal/grade step)
+  // — skipped while a text input is focused so digits keep typing into
+  // short-answer/cloze fields.
   useEffect(() => {
     const handler = (event: KeyboardEvent) => {
       if (event.repeat) return
       if (event.target instanceof HTMLInputElement || event.target instanceof HTMLTextAreaElement) return
       if (step === 'confidence') {
-        const option = CONFIDENCE_OPTIONS[Number(event.key) - 1]
+        const option = CONFIDENCE_OPTIONS.find((candidate) => matchesBinding(keyFor(candidate.actionId), event))
         if (option !== undefined) handleConfidence(option.value)
       } else if (step === 'reveal') {
-        const grade = GRADE_ORDER[Number(event.key) - 1]
+        const index = GRADE_ACTION_IDS.findIndex((actionId) => matchesBinding(keyFor(actionId), event))
+        const grade = index === -1 ? undefined : GRADE_ORDER[index]
         if (grade !== undefined) handleGrade(grade)
       }
     }
     window.addEventListener('keydown', handler)
     return () => window.removeEventListener('keydown', handler)
-  }, [step, handleConfidence, handleGrade])
+  }, [step, handleConfidence, handleGrade, keyFor])
+
+  const studyShortcuts = useMemo<readonly Shortcut[]>(() => {
+    if (step === 'answer' && card.content.kind === 'mcq') {
+      // The registry only covers the first 4 options (see keybindings.ts) —
+      // a card with more options than that just has no shortcut past #4.
+      return card.content.options.slice(0, 4).map((_, index) => ({
+        key: keyFor(`studyAnswer.mcqOption${index + 1}`),
+        label: `Select option ${index + 1}`,
+      }))
+    }
+    if (step === 'confidence') {
+      return CONFIDENCE_OPTIONS.map((option) => ({
+        key: keyFor(option.actionId),
+        label: `Confidence: ${option.label}`,
+      }))
+    }
+    if (step === 'reveal') {
+      return GRADE_ORDER.map((grade, index) => ({
+        key: keyFor(GRADE_ACTION_IDS[index]!),
+        label: `Grade: ${grade.charAt(0).toUpperCase()}${grade.slice(1)}`,
+      }))
+    }
+    return []
+  }, [step, card.content, keyFor])
 
   return (
     <div className="review-session">
@@ -122,7 +155,7 @@ export const ReviewSession = ({ card, position, total, onAdvance }: ReviewSessio
         />
       </div>
 
-      <ShortcutHelp shortcuts={STUDY_SHORTCUTS} />
+      <ShortcutHelp shortcuts={studyShortcuts} />
 
       {step === 'answer' && (
         <form

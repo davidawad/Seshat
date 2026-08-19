@@ -1,5 +1,8 @@
 import { useEffect, useRef, useState } from 'react'
 import { Legible } from '../../../components/Legible'
+import { ShortcutHelp } from '../../../components/ShortcutHelp'
+import { useKeybindings } from '../../../lib/useKeybindings'
+import { useNumberedShortcut } from '../../../lib/useNumberedShortcut'
 import type { SetId, StudyCard } from '../../../types'
 import { getBestScore, recordScore } from './bestScore'
 import './blocks.css'
@@ -20,6 +23,36 @@ interface BlocksGridProps {
   readonly columns: readonly number[]
 }
 
+interface BlocksStatusBarProps {
+  readonly score: number
+  readonly questionIndex: number
+  readonly totalQuestions: number
+  readonly bestScoreAtStart: number | null
+  readonly isComplete: boolean
+  readonly isNewBest: boolean
+}
+
+/** The score/progress/best-score header — split out of `BlocksSession` to keep that component's size/complexity in check. */
+const BlocksStatusBar = ({
+  score,
+  questionIndex,
+  totalQuestions,
+  bestScoreAtStart,
+  isComplete,
+  isNewBest,
+}: BlocksStatusBarProps) => (
+  <div className="blocks-status-bar">
+    <p className="blocks-score">Score: {score}</p>
+    <p className="blocks-progress">
+      Card {Math.min(questionIndex + 1, totalQuestions)} / {totalQuestions}
+    </p>
+    <p className="blocks-best">
+      {bestScoreAtStart === null ? 'No personal best yet' : `Best: ${bestScoreAtStart}`}
+      {isComplete && isNewBest && ' (new)'}
+    </p>
+  </div>
+)
+
 /** Renders the fixed grid as filled/empty cells, bottom-up per column. UI chrome, not card content — not wrapped in `Legible`. */
 const BlocksGrid = ({ columns }: BlocksGridProps) => {
   const rows = Array.from({ length: 8 }, (_, rowFromTop) => rowFromTop)
@@ -36,7 +69,68 @@ const BlocksGrid = ({ columns }: BlocksGridProps) => {
   )
 }
 
+interface BlocksQuestionViewProps {
+  readonly question: BlocksQuestion
+  readonly keyFor: (actionId: string) => string
+  readonly onAnswer: (option: string) => void
+}
+
+/** The "answer a question" phase view — split out of `BlocksSession` to keep that component's size/complexity in check. */
+const BlocksQuestionView = ({ question, keyFor, onAnswer }: BlocksQuestionViewProps) => (
+  <>
+    <ShortcutHelp
+      shortcuts={question.options.map((_, index) => ({
+        key: keyFor(`blocksQuestion.selectOption${index + 1}`),
+        label: `Select option ${index + 1}`,
+      }))}
+    />
+    <Legible as="fieldset" className="blocks-question">
+      <legend className="blocks-prompt">{question.prompt}</legend>
+      <div className="blocks-options">
+        {question.options.map((option) => (
+          <button key={option} type="button" className="blocks-option" onClick={() => onAnswer(option)}>
+            {option}
+          </button>
+        ))}
+      </div>
+    </Legible>
+  </>
+)
+
+interface BlocksPlacingViewProps {
+  readonly columns: readonly number[]
+  readonly keyFor: (actionId: string) => string
+  readonly onPlace: (column: number) => void
+}
+
+/** The "drop your earned block" phase view — split out for the same reason as `BlocksQuestionView` above. */
+const BlocksPlacingView = ({ columns, keyFor, onPlace }: BlocksPlacingViewProps) => (
+  <>
+    <ShortcutHelp
+      shortcuts={columns.map((_, index) => ({
+        key: keyFor(`blocksPlacing.column${index + 1}`),
+        label: `Drop in column ${index + 1}`,
+      }))}
+    />
+    <fieldset className="blocks-columns">
+      <legend className="visually-hidden">Choose a column for your block</legend>
+      {columns.map((_, col) => (
+        <button
+          key={col}
+          type="button"
+          className="blocks-column-button"
+          disabled={!canPlace(columns, col)}
+          onClick={() => onPlace(col)}
+        >
+          Column {col + 1}
+        </button>
+      ))}
+    </fieldset>
+  </>
+)
+
 export const BlocksSession = ({ setId, cards }: BlocksSessionProps) => {
+  const { key: keyFor } = useKeybindings()
   const [questions, setQuestions] = useState<readonly BlocksQuestion[]>(() => buildQuestions(cards))
   const [questionIndex, setQuestionIndex] = useState(0)
   const [phase, setPhase] = useState<Phase>('question')
@@ -118,6 +212,21 @@ export const BlocksSession = ({ setId, cards }: BlocksSessionProps) => {
     advanceTimeoutRef.current = window.setTimeout(() => advance(result.columns, newScore), ADVANCE_DWELL_MS)
   }
 
+  // Digit-key select, one shortcut per mutually-exclusive phase (the
+  // registry gives each phase its own scope so both can use '1'-N without
+  // colliding — see keybindings.ts).
+  const currentAnswerOptions = questions[questionIndex]?.options
+  useNumberedShortcut(
+    'blocksQuestion.selectOption',
+    currentAnswerOptions?.length ?? 0,
+    phase === 'question',
+    (index) => {
+      const option = currentAnswerOptions?.[index]
+      if (option !== undefined) handleAnswer(option)
+    },
+  )
+  useNumberedShortcut('blocksPlacing.column', columns.length, phase === 'placing', handlePlace)
+
   const handlePlayAgain = () => {
     if (advanceTimeoutRef.current !== null) {
       window.clearTimeout(advanceTimeoutRef.current)
@@ -140,16 +249,14 @@ export const BlocksSession = ({ setId, cards }: BlocksSessionProps) => {
 
   return (
     <div className="blocks-session">
-      <div className="blocks-status-bar">
-        <p className="blocks-score">Score: {score}</p>
-        <p className="blocks-progress">
-          Card {Math.min(questionIndex + 1, questions.length)} / {questions.length}
-        </p>
-        <p className="blocks-best">
-          {bestScoreAtStart === null ? 'No personal best yet' : `Best: ${bestScoreAtStart}`}
-          {isComplete && isNewBest && ' (new)'}
-        </p>
-      </div>
+      <BlocksStatusBar
+        score={score}
+        questionIndex={questionIndex}
+        totalQuestions={questions.length}
+        bestScoreAtStart={bestScoreAtStart}
+        isComplete={isComplete}
+        isNewBest={isNewBest}
+      />
 
       <p role="status" aria-live="polite" className="blocks-feedback">
         {feedback}
@@ -158,37 +265,13 @@ export const BlocksSession = ({ setId, cards }: BlocksSessionProps) => {
       {!isComplete && <BlocksGrid columns={columns} />}
 
       {phase === 'question' && currentQuestion && (
-        <Legible as="fieldset" className="blocks-question">
-          <legend className="blocks-prompt">{currentQuestion.prompt}</legend>
-          <div className="blocks-options">
-            {currentQuestion.options.map((option) => (
-              <button key={option} type="button" className="blocks-option" onClick={() => handleAnswer(option)}>
-                {option}
-              </button>
-            ))}
-          </div>
-        </Legible>
+        <BlocksQuestionView question={currentQuestion} keyFor={keyFor} onAnswer={handleAnswer} />
       )}
 
-      {phase === 'placing' && (
-        <fieldset className="blocks-columns">
-          <legend className="visually-hidden">Choose a column for your block</legend>
-          {columns.map((_, col) => (
-            <button
-              key={col}
-              type="button"
-              className="blocks-column-button"
-              disabled={!canPlace(columns, col)}
-              onClick={() => handlePlace(col)}
-            >
-              Column {col + 1}
-            </button>
-          ))}
-        </fieldset>
-      )}
+      {phase === 'placing' && <BlocksPlacingView columns={columns} keyFor={keyFor} onPlace={handlePlace} />}
 
       {isComplete && (
-        <div className="blocks-complete">
+        <div className="illuminated-panel blocks-complete" role="status">
           <p className="blocks-final-score">Final score: {score}</p>
           <p className="blocks-final-clears">
             Rows cleared: {rowsCleared} &middot; Columns cleared: {columnsCleared}

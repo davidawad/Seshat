@@ -57,17 +57,3 @@ export const StatsIcon = () => (
     <path d="M4 17V10M10 17V3M16 17v-6" />
   </svg>
 )
-
-export const DocsIcon = () => (
-  <svg {...commonProps}>
-    <path d="M6 2.5h6l3 3V17a.5.5 0 0 1-.5.5h-9a.5.5 0 0 1-.5-.5v-14a.5.5 0 0 1 .5-.5Z" />
-    <path d="M12 2.5V6h3M7.5 10h5M7.5 13h5" />
-  </svg>
-)
-
-export const AttributionsIcon = () => (
-  <svg {...commonProps}>
-    <circle cx="10" cy="7" r="4" />
-    <path d="M4 17.5a6 6 0 0 1 12 0" />
-  </svg>
-)

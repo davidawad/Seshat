@@ -1,13 +1,22 @@
 import { useId } from 'react'
 import { Legible } from '../../components/Legible'
+import { useKeybindings } from '../../lib/useKeybindings'
 import type { Grade, StudyCard } from '../../types'
 import { type Attempt, GRADE_ORDER, attemptLabel, correctAnswerLabel } from './grading'
 import { ImageOcclusionReveal } from './ImageOcclusionReveal'
 
 const GRADE_LABELS: Record<Grade, string> = { again: 'Again', hard: 'Hard', good: 'Good', easy: 'Easy' }
 
-const GRADE_OPTIONS: readonly { readonly value: Grade; readonly label: string; readonly key: string }[] =
-  GRADE_ORDER.map((value, index) => ({ value, label: GRADE_LABELS[value], key: String(index + 1) }))
+/** action id in lib/keybindings.ts for each grade, in `GRADE_ORDER`. */
+const GRADE_ACTION_IDS: readonly string[] = [
+  'studyReveal.again',
+  'studyReveal.hard',
+  'studyReveal.good',
+  'studyReveal.easy',
+]
+
+const GRADE_VALUES: readonly { readonly value: Grade; readonly label: string; readonly actionId: string }[] =
+  GRADE_ORDER.map((value, index) => ({ value, label: GRADE_LABELS[value], actionId: GRADE_ACTION_IDS[index]! }))
 
 interface RevealPanelProps {
   readonly card: StudyCard
@@ -37,6 +46,7 @@ export const RevealPanel = ({
   const correctAnswer = correctAnswerLabel(card.content, attempt)
   const suggestedGrade: Grade = correct ? 'good' : 'again'
   const selfExplanationId = useId()
+  const { key: keyFor } = useKeybindings()
 
   return (
     <div className={correct ? 'review-reveal is-correct' : 'review-reveal is-incorrect'}>
@@ -70,7 +80,7 @@ export const RevealPanel = ({
       <fieldset className="review-grade">
         <legend>How well did you recall this?</legend>
         <div className="grade-options">
-          {GRADE_OPTIONS.map((option) => (
+          {GRADE_VALUES.map((option) => (
             <button
               key={option.value}
               type="button"
@@ -78,7 +88,7 @@ export const RevealPanel = ({
               className={option.value === suggestedGrade ? 'grade-button is-suggested' : 'grade-button'}
               onClick={() => onGrade(option.value)}
             >
-              {option.label} <span className="grade-key">({option.key})</span>
+              {option.label} <span className="grade-key">({keyFor(option.actionId)})</span>
             </button>
           ))}
         </div>
