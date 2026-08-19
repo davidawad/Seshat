@@ -6,6 +6,7 @@ import {
   useRef,
   useState,
 } from 'react'
+import { ShortcutHelp, type Shortcut } from '../../components/ShortcutHelp'
 import { useSeshatStore } from '../../lib/store'
 import type { StudyCard } from '../../types'
 import { cardFrontBack } from '../study/card-summary'
@@ -13,6 +14,12 @@ import './flashcards.css'
 
 const UNKNOWN_KEY = '1'
 const KNOWN_KEY = '2'
+
+const FLASHCARD_SHORTCUTS: readonly Shortcut[] = [
+  { key: 'Space', label: 'Flip card' },
+  { key: UNKNOWN_KEY, label: "Don't know (once flipped)" },
+  { key: KNOWN_KEY, label: 'Know (once flipped)' },
+]
 
 /** Minimum horizontal drag, in px, before a pointer gesture counts as a swipe rather than a tap. */
 const SWIPE_THRESHOLD_PX = 60
@@ -164,6 +171,8 @@ export const FlashcardSession = ({ card, position, total, onAdvance }: Flashcard
       <p className="review-progress">
         Card {position + 1} of {total}
       </p>
+
+      <ShortcutHelp shortcuts={FLASHCARD_SHORTCUTS} />
 
       <div className="flashcard-flip-scene">
         <div

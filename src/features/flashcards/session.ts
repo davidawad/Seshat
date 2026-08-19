@@ -2,25 +2,32 @@ import type { CardId } from '../../types'
 import { shuffle } from './shuffle'
 
 /**
- * Pure session state for the Flashcards mode: a shuffled order over a
- * set's cards plus a cursor and a running "known" tally. Kept as a plain
- * value + pure transitions (rather than folded into component state) so
- * the advance/completion logic is unit-testable without React.
+ * Pure session state for the Flashcards mode: an order over a set's cards
+ * plus a cursor and the ids sorted into known/unknown as the learner grades
+ * each one. Kept as a plain value + pure transitions (rather than folded
+ * into component state) so the advance/completion logic is unit-testable
+ * without React. `knownIds`/`unknownIds` (not just counts) are what let the
+ * end-of-session screen offer "restudy just the unknown ones."
  */
 export interface FlashcardSessionState {
   readonly order: readonly CardId[]
   readonly position: number
-  readonly knownCount: number
+  readonly knownIds: readonly CardId[]
+  readonly unknownIds: readonly CardId[]
 }
 
-/** Starts a new session over `cardIds`, shuffled via Fisher-Yates. */
+export type FlashcardOrder = 'shuffled' | 'original'
+
+/** Starts a new session over `cardIds`, either Fisher-Yates shuffled or in the given order. */
 export const createFlashcardSession = (
   cardIds: readonly CardId[],
+  order: FlashcardOrder = 'shuffled',
   random: () => number = Math.random,
 ): FlashcardSessionState => ({
-  order: shuffle(cardIds, random),
+  order: order === 'shuffled' ? shuffle(cardIds, random) : cardIds,
   position: 0,
-  knownCount: 0,
+  knownIds: [],
+  unknownIds: [],
 })
 
 export const isSessionComplete = (session: FlashcardSessionState): boolean => session.position >= session.order.length
@@ -32,8 +39,12 @@ export const currentCardId = (session: FlashcardSessionState): CardId | null => 
 }
 
 /** Records a Know/Don't-know outcome for the current card and moves the cursor forward. */
-export const advanceSession = (session: FlashcardSessionState, known: boolean): FlashcardSessionState => ({
-  ...session,
-  position: session.position + 1,
-  knownCount: session.knownCount + (known ? 1 : 0),
-})
+export const advanceSession = (session: FlashcardSessionState, known: boolean): FlashcardSessionState => {
+  const cardId = currentCardId(session)
+  return {
+    ...session,
+    position: session.position + 1,
+    knownIds: known && cardId !== null ? [...session.knownIds, cardId] : session.knownIds,
+    unknownIds: !known && cardId !== null ? [...session.unknownIds, cardId] : session.unknownIds,
+  }
+}

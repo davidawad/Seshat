@@ -269,6 +269,29 @@ const SelfExplanationField = ({ settings, updateSettings }: FieldProps) => {
   )
 }
 
+const ExperimentalGamesField = ({ settings, updateSettings }: FieldProps) => {
+  const inputId = useId()
+  const hintId = useId()
+  return (
+    <div className="settings-field">
+      <label className="settings-option-inline" htmlFor={inputId}>
+        <input
+          id={inputId}
+          type="checkbox"
+          checked={settings.experimentalGamesEnabled}
+          onChange={(event) => updateSettings({ experimentalGamesEnabled: event.target.checked })}
+          aria-describedby={hintId}
+        />
+        <span>Experimental: Games (Match, Blast, Blocks)</span>
+      </label>
+      <p id={hintId} className="field-hint">
+        Arcade-style practice modes — fun, ungraded, and separate from the FSRS-scheduled study modes. On by default;
+        turn off to keep the app to just Study/Flashcards/Test.
+      </p>
+    </div>
+  )
+}
+
 // ---------------------------------------------------------------------------
 
 /** The Settings content itself — rendered inside the large modal opened from the footer (see components/Modal.tsx). */
@@ -292,6 +315,7 @@ export const SettingsForm = () => {
         <ReducedMotionField {...fieldProps} />
         <RetentionField {...fieldProps} />
         <SelfExplanationField {...fieldProps} />
+        <ExperimentalGamesField {...fieldProps} />
       </form>
     </>
   )

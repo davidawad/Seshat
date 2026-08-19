@@ -1,6 +1,6 @@
 import { describe, expect, it } from 'vitest'
 import type { CardId } from '../../types'
-import { type MatchPair, createRound, layoutTiles, pickRoundPairs } from './round'
+import { type MatchPair, availablePairCaps, createRound, layoutTiles, pickRoundPairs } from './round'
 
 const makePairs = (count: number): MatchPair[] =>
   Array.from({ length: count }, (_, i) => ({
@@ -123,5 +123,27 @@ describe('createRound', () => {
     for (const cardId of cardIds) {
       expect(tiles.filter((t) => t.cardId === cardId)).toHaveLength(2)
     }
+  })
+})
+
+describe('availablePairCaps', () => {
+  it('offers every fixed choice at or below what the set has, plus the set size as an "all" option', () => {
+    expect(availablePairCaps(20)).toEqual([6, 8, 12, 16, 20])
+  })
+
+  it('adds the set size itself when it falls between fixed choices', () => {
+    expect(availablePairCaps(10)).toEqual([6, 8, 10])
+  })
+
+  it('is just the set size when it is smaller than the smallest fixed choice', () => {
+    expect(availablePairCaps(4)).toEqual([4])
+  })
+
+  it('returns nothing for an empty set', () => {
+    expect(availablePairCaps(0)).toEqual([])
+  })
+
+  it('does not duplicate the set size when it already matches a fixed choice', () => {
+    expect(availablePairCaps(8)).toEqual([6, 8])
   })
 })

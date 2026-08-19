@@ -3,16 +3,19 @@ import { DownloadIcon, EditIcon } from '../../components/icons'
 import { useSeshatStore } from '../../lib/store'
 import { setIdSchema } from '../../types'
 import { downloadJson, slugify } from './download'
+import { SetMasterySummary } from './SetMasterySummary'
 import './sets.css'
 import { toSimpleJson } from './simple-json'
 import { SetPreviewCard } from './SetPreviewCard'
+import { SetTermList } from './SetTermList'
 
-const MODES = [
+const CORE_MODES = [
   { to: 'study', label: 'Study', hint: 'Recommended — recall-first, spaced by FSRS' },
   { to: 'flashcards', label: 'Flashcards', hint: 'Flip through the whole set' },
   { to: 'test', label: 'Test', hint: 'A generated practice test, scored at the end' },
-  { to: 'match', label: 'Match', hint: 'A timed matching drill' },
 ] as const
+
+const GAMES_MODE = { to: 'games', label: 'Games', hint: 'Experimental — Match, Blast, Blocks and the like' } as const
 
 /**
  * The hub for one set — the page you land on after opening it. Mode
@@ -54,6 +57,7 @@ export const SetDetailPage = () => {
   }
 
   const cards = state.cards.filter((card) => card.setId === setId)
+  const modes = state.settings.experimentalGamesEnabled ? [...CORE_MODES, GAMES_MODE] : CORE_MODES
 
   // One icon, one click — pick the format that preserves the most fidelity
   // for what's actually in the set, rather than asking the user to choose.
@@ -107,8 +111,10 @@ export const SetDetailPage = () => {
         </p>
       ) : (
         <>
+          <SetMasterySummary cards={cards} />
+
           <nav aria-label="Study modes" className="mode-grid">
-            {MODES.map((mode) => (
+            {modes.map((mode) => (
               <Link key={mode.to} to={`/sets/${setId}/${mode.to}`} className="mode-button">
                 <span className="mode-button-label">{mode.label}</span>
                 <span className="mode-button-hint">{mode.hint}</span>
@@ -117,6 +123,9 @@ export const SetDetailPage = () => {
           </nav>
 
           <SetPreviewCard cards={cards} />
+
+          <h2 className="set-term-list-heading">Terms in this set</h2>
+          <SetTermList cards={cards} />
         </>
       )}
     </section>

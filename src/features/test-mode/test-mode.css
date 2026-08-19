@@ -42,6 +42,10 @@
   margin: 0 0 1.25rem;
 }
 
+.test-retry-missed {
+  margin: 0 0 1.5rem;
+}
+
 .test-review-list {
   list-style: none;
   margin: 0;

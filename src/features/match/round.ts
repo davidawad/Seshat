@@ -11,6 +11,21 @@ import type { CardId } from '../../types'
  *  into a memory/scanning slog. */
 export const DEFAULT_PAIR_CAP = 8
 
+/** Round-size choices offered to the user, before clamping to what the set actually has. */
+const PAIR_CAP_CHOICES = [6, 8, 12, 16] as const
+
+/**
+ * The tile-count/difficulty choices to offer for a set with `totalPairs`
+ * pairs available — the fixed choices at or below what the set has, plus
+ * `totalPairs` itself so a set with an in-between count (e.g. 10) still
+ * gets an "everything" option instead of being stuck under its size.
+ */
+export const availablePairCaps = (totalPairs: number): number[] => {
+  const choices: number[] = PAIR_CAP_CHOICES.filter((choice) => choice <= totalPairs)
+  if (totalPairs > 0 && choices[choices.length - 1] !== totalPairs) choices.push(totalPairs)
+  return choices
+}
+
 export interface MatchPair {
   readonly cardId: CardId
   readonly front: string

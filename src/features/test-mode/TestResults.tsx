@@ -5,22 +5,30 @@ import { type TestAnswer, answerLabel, correctAnswerLabel, gradeAnswer } from '.
 interface TestResultsProps {
   readonly questions: readonly TestQuestion[]
   readonly answers: readonly TestAnswer[]
+  /** Omitted (no button shown) when nothing was missed. */
+  readonly onRetryMissed?: () => void
 }
 
 /** Post-submit summary score plus a per-question review list (question, your answer, correct answer, right/wrong). */
-export const TestResults = ({ questions, answers }: TestResultsProps) => {
+export const TestResults = ({ questions, answers, onRetryMissed }: TestResultsProps) => {
   const graded = questions.map((question, index) => {
     const answer = answers[index]
     const correct = answer !== undefined && gradeAnswer(question, answer)
     return { question, answer, correct }
   })
   const correctCount = graded.filter((entry) => entry.correct).length
+  const missedCount = questions.length - correctCount
 
   return (
     <div className="test-results">
       <p role="status" className="test-score">
         {correctCount} / {questions.length} correct
       </p>
+      {missedCount > 0 && onRetryMissed !== undefined && (
+        <button type="button" className="test-retry-missed" onClick={onRetryMissed} autoFocus>
+          Retry {missedCount} missed question{missedCount === 1 ? '' : 's'}
+        </button>
+      )}
       <ol className="test-review-list">
         {graded.map(({ question, answer, correct }, index) => (
           <li

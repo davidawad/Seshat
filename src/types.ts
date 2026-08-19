@@ -209,6 +209,11 @@ export const settingsSchema = z.object({
   // research/learning-science/bisra-2018.md. Defaults off: it lengthens
   // every review, so it shouldn't be sprung on anyone who hasn't chosen it.
   selfExplanationEnabled: z.boolean().default(false),
+  // Gates the whole Games section (Match + newer arcade-style modes) as one
+  // experimental cohort — see features/games/. Defaults on so existing
+  // Match users see no regression; the toggle exists for people who'd
+  // rather keep the app to just the FSRS-graded modes.
+  experimentalGamesEnabled: z.boolean().default(true),
 })
 
 export type Settings = z.infer<typeof settingsSchema>
@@ -223,6 +228,7 @@ export const DEFAULT_SETTINGS: Settings = {
   retentionPreset: 'balanced',
   desiredRetention: 0.9,
   selfExplanationEnabled: false,
+  experimentalGamesEnabled: true,
 }
 
 // Anki/FSRS-guidance-derived presets — see research/learning-science for citations.

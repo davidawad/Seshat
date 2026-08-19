@@ -28,7 +28,7 @@ interface TestSessionProps {
  */
 export const TestSession = ({ cards }: TestSessionProps) => {
   const { recordReview } = useSeshatStore()
-  const [questions] = useState<TestQuestion[]>(() => generateTest(cards))
+  const [questions, setQuestions] = useState<TestQuestion[]>(() => generateTest(cards))
   const [answers, setAnswers] = useState<TestAnswer[]>(() => questions.map(emptyAnswer))
   const [submitted, setSubmitted] = useState(false)
   const startedAt = useRef(performance.now())
@@ -54,12 +54,31 @@ export const TestSession = ({ cards }: TestSessionProps) => {
     setSubmitted(true)
   }
 
+  const handleRetryMissed = () => {
+    const missedCardIds = new Set(
+      questions
+        .filter((question, index) => {
+          const answer = answers[index]
+          return answer === undefined || !gradeAnswer(question, answer)
+        })
+        .map((question) => question.cardId),
+    )
+    const missedCards = cards.filter((card) => missedCardIds.has(card.id))
+    if (missedCards.length === 0) return
+
+    const nextQuestions = generateTest(missedCards)
+    setQuestions(nextQuestions)
+    setAnswers(nextQuestions.map(emptyAnswer))
+    setSubmitted(false)
+    startedAt.current = performance.now()
+  }
+
   if (questions.length === 0) {
     return <p>This set doesn&rsquo;t have enough cards to generate a test.</p>
   }
 
   if (submitted) {
-    return <TestResults questions={questions} answers={answers} />
+    return <TestResults questions={questions} answers={answers} onRetryMissed={handleRetryMissed} />
   }
 
   return (

@@ -1,5 +1,6 @@
 import { useCallback, useEffect, useRef, useState } from 'react'
 import { Legible } from '../../components/Legible'
+import { ShortcutHelp, type Shortcut } from '../../components/ShortcutHelp'
 import { useSeshatStore } from '../../lib/store'
 import type { ConfidenceRating, Grade, StudyCard } from '../../types'
 import { CardInput } from './CardInput'
@@ -15,11 +16,18 @@ const CONFIDENCE_OPTIONS: readonly { readonly value: ConfidenceRating; readonly 
   { value: 'sure', label: 'Sure' },
 ]
 
+const STUDY_SHORTCUTS: readonly Shortcut[] = [
+  { key: '1', label: 'Confidence: Guessed / Grade: Again' },
+  { key: '2', label: 'Confidence: Unsure / Grade: Hard' },
+  { key: '3', label: 'Confidence: Sure / Grade: Good' },
+  { key: '4', label: 'Grade: Easy' },
+]
+
 interface ReviewSessionProps {
   readonly card: StudyCard
   readonly position: number
   readonly total: number
-  readonly onAdvance: (grade: Grade) => void
+  readonly onAdvance: (grade: Grade, correct: boolean) => void
 }
 
 /**
@@ -77,7 +85,7 @@ export const ReviewSession = ({ card, position, total, onAdvance }: ReviewSessio
       const trimmedExplanation =
         selfExplanation !== null && selfExplanation.trim() !== '' ? selfExplanation.trim() : null
       recordReview(card.id, grade, confidence, correct, elapsedMs, trimmedExplanation)
-      onAdvance(grade)
+      onAdvance(grade, correct)
     },
     [card.id, confidence, correct, onAdvance, recordReview, selfExplanation],
   )
@@ -102,9 +110,19 @@ export const ReviewSession = ({ card, position, total, onAdvance }: ReviewSessio
 
   return (
     <div className="review-session">
-      <p className="review-progress">
-        Card {position + 1} of {total}
-      </p>
+      <div className="review-progress">
+        <p className="review-progress-label">
+          Card {position + 1} of {total}
+        </p>
+        <progress
+          className="review-progress-track"
+          aria-label="Study session progress"
+          value={position + 1}
+          max={total}
+        />
+      </div>
+
+      <ShortcutHelp shortcuts={STUDY_SHORTCUTS} />
 
       {step === 'answer' && (
         <form

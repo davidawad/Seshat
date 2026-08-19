@@ -3,7 +3,7 @@ import { Legible } from '../../components/Legible'
 import type { CardId, SetId } from '../../types'
 import { formatElapsed, getBestTimeMs, recordCompletionTime } from './bestTime'
 import './match.css'
-import { type MatchPair, type MatchTile, DEFAULT_PAIR_CAP, createRound } from './round'
+import { type MatchPair, type MatchTile, DEFAULT_PAIR_CAP, availablePairCaps, createRound } from './round'
 
 /** How long a missed pair stays visually marked before it clears, in ms. Not
  *  an animation — just how long the "not a match" state is held before the
@@ -52,15 +52,18 @@ const TileButton = ({ tile, isSelected, isMatched, isMiss, onSelect }: TileButto
 }
 
 export const MatchSession = ({ setId, pairs }: MatchSessionProps) => {
-  const [round, setRound] = useState<readonly MatchTile[]>(() => createRound(pairs, DEFAULT_PAIR_CAP))
+  const pairCapChoices = availablePairCaps(pairs.length)
+  const [pairCap, setPairCap] = useState<number>(Math.min(DEFAULT_PAIR_CAP, pairs.length))
+  const [round, setRound] = useState<readonly MatchTile[]>(() => createRound(pairs, pairCap))
   const [selectedTileId, setSelectedTileId] = useState<string | null>(null)
   const [matchedCardIds, setMatchedCardIds] = useState<ReadonlySet<CardId>>(new Set())
   const [missTileIds, setMissTileIds] = useState<readonly [string, string] | null>(null)
+  const [mistakeCount, setMistakeCount] = useState(0)
   const [startedAt, setStartedAt] = useState<number | null>(null)
   const [completedAt, setCompletedAt] = useState<number | null>(null)
   const [now, setNow] = useState<number>(() => Date.now())
   const [feedback, setFeedback] = useState<string>('')
-  const [bestAtStart, setBestAtStart] = useState<number | null>(() => getBestTimeMs(setId))
+  const [bestAtStart, setBestAtStart] = useState<number | null>(() => getBestTimeMs(setId, pairCap))
   const [isNewBest, setIsNewBest] = useState<boolean>(false)
 
   const missTimeoutRef = useRef<number | null>(null)
@@ -83,20 +86,26 @@ export const MatchSession = ({ setId, pairs }: MatchSessionProps) => {
   const pairCount = round.length / 2
   const elapsedMs = startedAt === null ? 0 : (completedAt ?? now) - startedAt
 
-  const startNewRound = () => {
+  const startNewRound = (cap: number = pairCap) => {
     if (missTimeoutRef.current !== null) {
       window.clearTimeout(missTimeoutRef.current)
       missTimeoutRef.current = null
     }
-    setRound(createRound(pairs, DEFAULT_PAIR_CAP))
+    setRound(createRound(pairs, cap))
     setSelectedTileId(null)
     setMatchedCardIds(new Set())
     setMissTileIds(null)
+    setMistakeCount(0)
     setStartedAt(null)
     setCompletedAt(null)
     setFeedback('')
-    setBestAtStart(getBestTimeMs(setId))
+    setBestAtStart(getBestTimeMs(setId, cap))
     setIsNewBest(false)
+  }
+
+  const handleCapChange = (cap: number) => {
+    setPairCap(cap)
+    startNewRound(cap)
   }
 
   const handleSelect = (tile: MatchTile) => {
@@ -133,7 +142,7 @@ export const MatchSession = ({ setId, pairs }: MatchSessionProps) => {
         const elapsed = finishedAt - (startedAt ?? finishedAt)
         setCompletedAt(finishedAt)
         const previousBest = bestAtStart
-        const updatedBest = recordCompletionTime(setId, elapsed)
+        const updatedBest = recordCompletionTime(setId, pairCap, elapsed)
         const wonBest = previousBest === null || elapsed < previousBest
         setIsNewBest(wonBest)
         setBestAtStart(updatedBest)
@@ -148,6 +157,7 @@ export const MatchSession = ({ setId, pairs }: MatchSessionProps) => {
 
     setMissTileIds([selectedTileId, tile.tileId])
     setSelectedTileId(null)
+    setMistakeCount((count) => count + 1)
     setFeedback('Not a match — try again.')
     missTimeoutRef.current = window.setTimeout(() => {
       setMissTileIds(null)
@@ -161,11 +171,29 @@ export const MatchSession = ({ setId, pairs }: MatchSessionProps) => {
     <div className="match-session">
       <div className="match-status-bar">
         <p className="match-timer">Time: {formatElapsed(elapsedMs)}</p>
+        <p className="match-mistakes">Mistakes: {mistakeCount}</p>
         <p className="match-best">
           {bestAtStart === null ? 'No personal best yet' : `Best: ${formatElapsed(bestAtStart)}`}
           {isComplete && isNewBest && ' (new)'}
         </p>
       </div>
+
+      {pairCapChoices.length > 1 && (
+        <fieldset className="match-cap-choices">
+          <legend className="sr-only">Tiles per round</legend>
+          {pairCapChoices.map((cap) => (
+            <button
+              key={cap}
+              type="button"
+              aria-pressed={cap === pairCap}
+              className={cap === pairCap ? 'is-active' : ''}
+              onClick={() => handleCapChange(cap)}
+            >
+              {cap} pairs
+            </button>
+          ))}
+        </fieldset>
+      )}
 
       <p role="status" aria-live="polite" className="match-feedback">
         {feedback}
@@ -185,7 +213,7 @@ export const MatchSession = ({ setId, pairs }: MatchSessionProps) => {
       </div>
 
       {isComplete && (
-        <button type="button" className="match-play-again" onClick={startNewRound} autoFocus>
+        <button type="button" className="match-play-again" onClick={() => startNewRound()} autoFocus>
           Play again
         </button>
       )}

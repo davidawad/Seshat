@@ -9,13 +9,16 @@ import type { SetId } from '../../types'
  * the one place in Match mode allowed to touch `localStorage` directly.
  */
 
-const bestTimeKey = (setId: SetId): string => `seshat:match-best:${setId}`
+// Keyed by pairCap too, not just setId — a "best" is only meaningful
+// against a fixed round size (a 6-pair round is trivially faster than a
+// 16-pair one), so different round sizes must not share one record.
+const bestTimeKey = (setId: SetId, pairCap: number): string => `seshat:match-best:${setId}:${pairCap}`
 
-/** Reads the stored personal-best time for a set, in milliseconds. `null` if none yet, or if the stored value is missing/corrupt. */
-export const getBestTimeMs = (setId: SetId): number | null => {
+/** Reads the stored personal-best time for a set at a given round size, in milliseconds. `null` if none yet, or if the stored value is missing/corrupt. */
+export const getBestTimeMs = (setId: SetId, pairCap: number): number | null => {
   let raw: string | null
   try {
-    raw = window.localStorage.getItem(bestTimeKey(setId))
+    raw = window.localStorage.getItem(bestTimeKey(setId, pairCap))
   } catch {
     return null
   }
@@ -25,15 +28,15 @@ export const getBestTimeMs = (setId: SetId): number | null => {
 }
 
 /**
- * Records a completed round's time if it beats (or sets) the personal best.
- * Returns the resulting best time — the new one if it won, otherwise the
- * previous one unchanged.
+ * Records a completed round's time if it beats (or sets) the personal best
+ * for that round size. Returns the resulting best time — the new one if it
+ * won, otherwise the previous one unchanged.
  */
-export const recordCompletionTime = (setId: SetId, elapsedMs: number): number => {
-  const previousBest = getBestTimeMs(setId)
+export const recordCompletionTime = (setId: SetId, pairCap: number, elapsedMs: number): number => {
+  const previousBest = getBestTimeMs(setId, pairCap)
   if (previousBest !== null && previousBest <= elapsedMs) return previousBest
   try {
-    window.localStorage.setItem(bestTimeKey(setId), String(elapsedMs))
+    window.localStorage.setItem(bestTimeKey(setId, pairCap), String(elapsedMs))
   } catch {
     // localStorage unavailable (private browsing, quota, etc.) — the round
     // still completed, we just can't persist a new best. Not worth

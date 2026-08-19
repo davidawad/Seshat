@@ -11,11 +11,36 @@
 }
 
 .match-timer,
+.match-mistakes,
 .match-best {
   margin: 0;
   font-family: var(--font-ui);
   font-size: 0.9rem;
   color: var(--color-fg-muted);
+}
+
+.match-cap-choices {
+  display: inline-flex;
+  gap: 0.25rem;
+  padding: 0.2rem;
+  margin: 0;
+  border: none;
+  border-radius: var(--radius-sm);
+  background: var(--color-bg-elevated-2);
+  align-self: flex-start;
+}
+
+.match-cap-choices button {
+  padding: 0.35rem 0.75rem;
+  border: none;
+  border-radius: var(--radius-sm);
+  background: transparent;
+  color: var(--color-fg-muted);
+}
+
+.match-cap-choices button.is-active {
+  background: var(--color-accent);
+  color: var(--color-accent-contrast);
 }
 
 .match-feedback {
