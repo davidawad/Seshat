@@ -76,7 +76,8 @@ mount.
 
 ## License
 
-[MIT](./LICENSE) — Copyright (c) 2026 David Awad. Use it, fork it, self-host it.
+[GNU GPLv3](./LICENSE) — Copyright (C) 2026 David Awad. Use it, fork it, self-host it — and any distributed
+modifications stay free software under the same license.
 
 ## Learn more
 

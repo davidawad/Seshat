@@ -20,6 +20,9 @@ export interface LegibleProps {
   readonly id?: string
   /** For a block that announces itself to screen readers when its content changes. */
   readonly 'aria-live'?: 'polite' | 'assertive' | 'off'
+  readonly role?: string
+  /** Pairs with `role="group"` — the label a real `<legend>` would give a `<fieldset>`, for cases where a legend's inability to wrap past one line without visibly breaking its border rules that out. */
+  readonly 'aria-labelledby'?: string
 }
 
 /**
@@ -42,7 +45,13 @@ export const Legible = ({ as = 'div', measure = true, className, children, id, .
   const Tag = TAGS[as]
   const classes = ['legible', measure ? 'legible-measure' : null, className ?? null].filter(Boolean).join(' ')
   return (
-    <Tag className={classes} id={id} aria-live={rest['aria-live']}>
+    <Tag
+      className={classes}
+      id={id}
+      aria-live={rest['aria-live']}
+      role={rest.role}
+      aria-labelledby={rest['aria-labelledby']}
+    >
       {children}
     </Tag>
   )

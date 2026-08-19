@@ -1,0 +1,57 @@
+.session-summary {
+  max-width: 32rem;
+}
+
+.session-summary-heading {
+  font-family: var(--font-display);
+  margin: 0 0 1rem;
+}
+
+.session-summary-stats {
+  display: flex;
+  gap: 1.5rem;
+  flex-wrap: wrap;
+  margin: 0 0 1.25rem;
+}
+
+.session-summary-stats dt {
+  font-size: 0.8rem;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: var(--color-fg-muted);
+  margin: 0 0 0.25rem;
+}
+
+.session-summary-stats dd {
+  font-family: var(--font-display);
+  font-size: 1.5rem;
+  font-weight: 600;
+  margin: 0;
+}
+
+.session-summary-grades {
+  display: flex;
+  gap: 0.75rem;
+  flex-wrap: wrap;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.session-summary-grades li {
+  display: flex;
+  align-items: baseline;
+  gap: 0.4rem;
+  padding: 0.35rem 0.65rem;
+  border-radius: var(--radius-sm);
+  background: var(--color-bg-elevated-2);
+}
+
+.session-summary-grade-label {
+  font-size: 0.8rem;
+  color: var(--color-fg-muted);
+}
+
+.session-summary-grade-count {
+  font-weight: 600;
+}

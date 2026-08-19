@@ -55,12 +55,15 @@ export default defineConfig(({ command, isPreview }) => ({
     coverage: {
       provider: 'v8',
       reporter: ['text', 'html'],
-      // This repo's established convention (see swe-typescript-standards):
-      // pure logic gets unit tests, React wiring gets manual/browser
-      // verification (documented throughout the commit history) — not
-      // React Testing Library component tests. Coverage is scoped to the
-      // pure-logic surface that convention actually covers, not blanket
-      // 100% across .tsx UI that's deliberately tested a different way.
+      // .tsx is still excluded from the coverage GATE even though a growing
+      // set of components now have real React Testing Library tests
+      // (FlashcardSession, ReviewSession, MatchSession, TestSession, etc.)
+      // — most .tsx files (editors, forms, layout chrome) are still
+      // untested, so folding component coverage into the threshold here
+      // would either fail the gate or require auditing every .tsx file's
+      // coverage individually. Revisit this exclude once component test
+      // coverage is broad enough to set a real .tsx threshold rather than
+      // an all-or-nothing one.
       exclude: [
         '**/*.tsx',
         'src/main.tsx',

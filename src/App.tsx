@@ -3,6 +3,7 @@ import { Layout } from './components/Layout'
 import { AttributionsPage } from './pages/Attributions'
 import { DocsPage } from './pages/Docs'
 import { HomePage } from './pages/Home'
+import { LicensePage } from './pages/License'
 import { SetsPage } from './pages/Sets'
 import { StatsPage } from './pages/Stats'
 
@@ -18,6 +19,10 @@ export const App = () => (
       <Route path="stats" element={<StatsPage />} />
       <Route path="docs" element={<DocsPage />} />
       <Route path="attributions" element={<AttributionsPage />} />
+      {/* Not "license" — collides with public/LICENSE on a case-insensitive
+          filesystem (macOS/Windows), which serves the raw static file
+          instead of falling through to this route. */}
+      <Route path="licensing" element={<LicensePage />} />
     </Route>
   </Routes>
 )

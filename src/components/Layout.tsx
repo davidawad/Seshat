@@ -1,17 +1,21 @@
-import { useId, useState } from 'react'
+import { useEffect, useId, useState } from 'react'
 import { Link, NavLink, Outlet } from 'react-router-dom'
 import { ImportFromUrl } from '../features/sets/ImportFromUrl'
 import { SettingsForm } from '../features/settings/SettingsForm'
 import { useApplyTheme } from '../features/settings/theme'
+import { matchesBinding } from '../lib/keybindings'
+import { useKeybindings } from '../lib/useKeybindings'
 import { Footer } from './Footer'
-import { AttributionsIcon, DocsIcon, SetsIcon, StatsIcon } from './icons'
+import { SetsIcon, StatsIcon } from './icons'
 import { Modal } from './Modal'
 
+// Docs/Attributions/License all live in the footer (see Footer.tsx)
+// alongside Settings, not up here — they're reference material you'd look
+// up, not a mode you switch into like Sets/Stats, so they don't need equal
+// billing in the primary nav or the thumb-reachable mobile tab bar.
 const NAV_ITEMS = [
   { to: '/sets', label: 'Sets', end: false, icon: SetsIcon },
   { to: '/stats', label: 'Stats', end: false, icon: StatsIcon },
-  { to: '/docs', label: 'Docs', end: false, icon: DocsIcon },
-  { to: '/attributions', label: 'Attributions', end: false, icon: AttributionsIcon },
 ] as const
 
 // Seshat's own hieroglyphic emblem — a seven-pointed star on a stem, the
@@ -35,6 +39,21 @@ export const Layout = () => {
   useApplyTheme()
   const [settingsOpen, setSettingsOpen] = useState(false)
   const settingsTitleId = useId()
+  const { key: keyFor } = useKeybindings()
+
+  // Global "open settings" shortcut (default '?') — skipped while a text
+  // input is focused or the modal is already open (Escape/the visible close
+  // button already handle closing it, via the native <dialog>).
+  useEffect(() => {
+    const handler = (event: KeyboardEvent) => {
+      if (event.repeat || settingsOpen) return
+      if (event.target instanceof HTMLInputElement || event.target instanceof HTMLTextAreaElement) return
+      if (!matchesBinding(keyFor('global.openSettings'), event)) return
+      setSettingsOpen(true)
+    }
+    window.addEventListener('keydown', handler)
+    return () => window.removeEventListener('keydown', handler)
+  }, [settingsOpen, keyFor])
 
   return (
     <div className="app-shell">

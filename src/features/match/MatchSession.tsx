@@ -1,9 +1,15 @@
 import { useEffect, useRef, useState } from 'react'
 import { Legible } from '../../components/Legible'
+import { ShortcutHelp } from '../../components/ShortcutHelp'
+import { useKeybindings } from '../../lib/useKeybindings'
+import { useNumberedShortcut } from '../../lib/useNumberedShortcut'
 import type { CardId, SetId } from '../../types'
 import { formatElapsed, getBestTimeMs, recordCompletionTime } from './bestTime'
 import './match.css'
-import { type MatchPair, type MatchTile, DEFAULT_PAIR_CAP, createRound } from './round'
+import { type MatchPair, type MatchTile, DEFAULT_PAIR_CAP, availablePairCaps, createRound } from './round'
+
+/** How many leading tiles get a digit-key shortcut — see `match.selectTile1-9` in lib/keybindings.ts. */
+const MAX_SHORTCUT_TILES = 9
 
 /** How long a missed pair stays visually marked before it clears, in ms. Not
  *  an animation — just how long the "not a match" state is held before the
@@ -51,16 +57,64 @@ const TileButton = ({ tile, isSelected, isMatched, isMiss, onSelect }: TileButto
   )
 }
 
+interface MatchStatusBarProps {
+  readonly elapsedMs: number
+  readonly mistakeCount: number
+  readonly bestAtStart: number | null
+  readonly isComplete: boolean
+  readonly isNewBest: boolean
+}
+
+/** The timer/mistakes/best-time header — split out of `MatchSession` to keep that component's size in check. */
+const MatchStatusBar = ({ elapsedMs, mistakeCount, bestAtStart, isComplete, isNewBest }: MatchStatusBarProps) => (
+  <div className="match-status-bar">
+    <p className="match-timer">Time: {formatElapsed(elapsedMs)}</p>
+    <p className="match-mistakes">Mistakes: {mistakeCount}</p>
+    <p className="match-best">
+      {bestAtStart === null ? 'No personal best yet' : `Best: ${formatElapsed(bestAtStart)}`}
+      {isComplete && isNewBest && ' (new)'}
+    </p>
+  </div>
+)
+
+interface MatchCapChoicesProps {
+  readonly choices: readonly number[]
+  readonly pairCap: number
+  readonly onChange: (cap: number) => void
+}
+
+/** The tile-count/difficulty switcher — split out for the same reason as `MatchStatusBar` above. */
+const MatchCapChoices = ({ choices, pairCap, onChange }: MatchCapChoicesProps) => (
+  <fieldset className="match-cap-choices">
+    <legend className="sr-only">Tiles per round</legend>
+    {choices.map((cap) => (
+      <button
+        key={cap}
+        type="button"
+        aria-pressed={cap === pairCap}
+        className={cap === pairCap ? 'is-active' : ''}
+        onClick={() => onChange(cap)}
+      >
+        {cap} pairs
+      </button>
+    ))}
+  </fieldset>
+)
+
 export const MatchSession = ({ setId, pairs }: MatchSessionProps) => {
-  const [round, setRound] = useState<readonly MatchTile[]>(() => createRound(pairs, DEFAULT_PAIR_CAP))
+  const { key: keyFor } = useKeybindings()
+  const pairCapChoices = availablePairCaps(pairs.length)
+  const [pairCap, setPairCap] = useState<number>(Math.min(DEFAULT_PAIR_CAP, pairs.length))
+  const [round, setRound] = useState<readonly MatchTile[]>(() => createRound(pairs, pairCap))
   const [selectedTileId, setSelectedTileId] = useState<string | null>(null)
   const [matchedCardIds, setMatchedCardIds] = useState<ReadonlySet<CardId>>(new Set())
   const [missTileIds, setMissTileIds] = useState<readonly [string, string] | null>(null)
+  const [mistakeCount, setMistakeCount] = useState(0)
   const [startedAt, setStartedAt] = useState<number | null>(null)
   const [completedAt, setCompletedAt] = useState<number | null>(null)
   const [now, setNow] = useState<number>(() => Date.now())
   const [feedback, setFeedback] = useState<string>('')
-  const [bestAtStart, setBestAtStart] = useState<number | null>(() => getBestTimeMs(setId))
+  const [bestAtStart, setBestAtStart] = useState<number | null>(() => getBestTimeMs(setId, pairCap))
   const [isNewBest, setIsNewBest] = useState<boolean>(false)
 
   const missTimeoutRef = useRef<number | null>(null)
@@ -83,20 +137,26 @@ export const MatchSession = ({ setId, pairs }: MatchSessionProps) => {
   const pairCount = round.length / 2
   const elapsedMs = startedAt === null ? 0 : (completedAt ?? now) - startedAt
 
-  const startNewRound = () => {
+  const startNewRound = (cap: number = pairCap) => {
     if (missTimeoutRef.current !== null) {
       window.clearTimeout(missTimeoutRef.current)
       missTimeoutRef.current = null
     }
-    setRound(createRound(pairs, DEFAULT_PAIR_CAP))
+    setRound(createRound(pairs, cap))
     setSelectedTileId(null)
     setMatchedCardIds(new Set())
     setMissTileIds(null)
+    setMistakeCount(0)
     setStartedAt(null)
     setCompletedAt(null)
     setFeedback('')
-    setBestAtStart(getBestTimeMs(setId))
+    setBestAtStart(getBestTimeMs(setId, cap))
     setIsNewBest(false)
+  }
+
+  const handleCapChange = (cap: number) => {
+    setPairCap(cap)
+    startNewRound(cap)
   }
 
   const handleSelect = (tile: MatchTile) => {
@@ -133,7 +193,7 @@ export const MatchSession = ({ setId, pairs }: MatchSessionProps) => {
         const elapsed = finishedAt - (startedAt ?? finishedAt)
         setCompletedAt(finishedAt)
         const previousBest = bestAtStart
-        const updatedBest = recordCompletionTime(setId, elapsed)
+        const updatedBest = recordCompletionTime(setId, pairCap, elapsed)
         const wonBest = previousBest === null || elapsed < previousBest
         setIsNewBest(wonBest)
         setBestAtStart(updatedBest)
@@ -148,6 +208,7 @@ export const MatchSession = ({ setId, pairs }: MatchSessionProps) => {
 
     setMissTileIds([selectedTileId, tile.tileId])
     setSelectedTileId(null)
+    setMistakeCount((count) => count + 1)
     setFeedback('Not a match — try again.')
     missTimeoutRef.current = window.setTimeout(() => {
       setMissTileIds(null)
@@ -155,17 +216,35 @@ export const MatchSession = ({ setId, pairs }: MatchSessionProps) => {
     }, MISS_DWELL_MS)
   }
 
+  // Digit-key tile select (first MAX_SHORTCUT_TILES tiles only — a plain
+  // digit key can't address a round larger than that; see keybindings.ts).
+  useNumberedShortcut('match.selectTile', Math.min(round.length, MAX_SHORTCUT_TILES), true, (index) => {
+    const tile = round[index]
+    if (tile !== undefined) handleSelect(tile)
+  })
+
   const isComplete = completedAt !== null
 
   return (
     <div className="match-session">
-      <div className="match-status-bar">
-        <p className="match-timer">Time: {formatElapsed(elapsedMs)}</p>
-        <p className="match-best">
-          {bestAtStart === null ? 'No personal best yet' : `Best: ${formatElapsed(bestAtStart)}`}
-          {isComplete && isNewBest && ' (new)'}
-        </p>
-      </div>
+      <MatchStatusBar
+        elapsedMs={elapsedMs}
+        mistakeCount={mistakeCount}
+        bestAtStart={bestAtStart}
+        isComplete={isComplete}
+        isNewBest={isNewBest}
+      />
+
+      <ShortcutHelp
+        shortcuts={round.slice(0, MAX_SHORTCUT_TILES).map((_, index) => ({
+          key: keyFor(`match.selectTile${index + 1}`),
+          label: `Select tile ${index + 1}`,
+        }))}
+      />
+
+      {pairCapChoices.length > 1 && (
+        <MatchCapChoices choices={pairCapChoices} pairCap={pairCap} onChange={handleCapChange} />
+      )}
 
       <p role="status" aria-live="polite" className="match-feedback">
         {feedback}
@@ -185,7 +264,7 @@ export const MatchSession = ({ setId, pairs }: MatchSessionProps) => {
       </div>
 
       {isComplete && (
-        <button type="button" className="match-play-again" onClick={startNewRound} autoFocus>
+        <button type="button" className="match-play-again" onClick={() => startNewRound()} autoFocus>
           Play again
         </button>
       )}

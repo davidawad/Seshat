@@ -17,6 +17,16 @@
   font-size: 1.15rem;
   font-weight: 600;
   margin: 0;
+  text-align: center;
+}
+
+/* The cloze fill-in-the-blank sentence (before-blank/input/after-blank,
+   all inline in one paragraph — see ClozeCard.tsx). Centered to match
+   `.study-prompt` and the rest of the app's card treatments (the
+   Flashcards flip faces, the set-preview index card) — a study card
+   reads as a physical card, not a left-margin-anchored form. */
+.study-cloze-text {
+  text-align: center;
 }
 
 .study-field {
@@ -46,10 +56,47 @@
 }
 
 .review-progress {
+  display: flex;
+  flex-direction: column;
+  gap: 0.35rem;
+  margin-bottom: 0.75rem;
+}
+
+.review-progress-label {
   font-size: 0.85rem;
   letter-spacing: 0.04em;
   text-transform: uppercase;
   color: var(--color-fg-muted);
+  margin: 0;
+}
+
+.review-progress-track {
+  appearance: none;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  width: 100%;
+  height: 6px;
+  border: none;
+  border-radius: 999px;
+  overflow: hidden;
+  background: var(--color-border);
+}
+
+.review-progress-track::-webkit-progress-bar {
+  background: var(--color-border);
+  border-radius: 999px;
+}
+
+.review-progress-track::-webkit-progress-value {
+  background: var(--color-accent);
+  border-radius: 999px;
+  transition: width 0.25s ease;
+}
+
+.review-progress-track::-moz-progress-bar {
+  background: var(--color-accent);
+  border-radius: 999px;
+  transition: width 0.25s ease;
 }
 
 /* Grading just happened — a colored frame on the whole reveal panel (not
