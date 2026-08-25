@@ -1,7 +1,4 @@
 {
-  "database": "dolt",
-  "backend": "dolt",
-  "dolt_mode": "embedded",
-  "dolt_database": "Seshat",
-  "project_id": "e4a90674-e45b-461c-9cbb-764578d3f495"
+  "database": "beads.db",
+  "jsonl_export": "issues.jsonl"
 }

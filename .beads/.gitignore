@@ -75,3 +75,11 @@ bd.db
 # They would override fork protection in .git/info/exclude.
 # Config files (metadata.json, config.yaml) are tracked by git by default
 # since no pattern above ignores them.
+
+# br (beads_rust)'s own JSONL export -- kept current on every mutating
+# command, local-only (no cross-machine sync mechanism for this repo's
+# tracker; see CLAUDE.md's Beads Issue Tracker section). Was untracked-
+# but-NOT-ignored before this pattern existed (would show as `??` in git
+# status and risk an accidental `git add -A` commit) -- caught during the
+# bd->br migration's adversarial review, 2026-08-25.
+issues.jsonl
