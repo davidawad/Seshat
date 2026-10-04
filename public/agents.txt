@@ -204,11 +204,12 @@ Modals:
   settings-modal, settings-modal-close, shortcuts-modal, shortcuts-modal-close, shortcuts-preset-group,
   modal-close (dialogs without their own),
   flashcard-options-modal, flashcard-options-modal-close
-Home:
-  home-page, home-set-card, home-set-link, home-study-link, home-starter-load, home-manage-sets
-Sets list (/sets):
-  sets-page, sets-search, sets-list, sets-list-item, sets-edit-link, sets-starter-load,
-  sets-new-button (link to /sets/new), import-set-button (link to /sets/import)
+Sets browser (the one component behind both / "Your sets" and /sets "Sets"; identical apart from the h1):
+  sets-browser, sets-browser-search, sets-browser-create (link to /sets/new),
+  sets-browser-import (link to /sets/import), sets-browser-starter-load, sets-browser-new-set,
+  sets-browser-view-toggle, sets-browser-view-grid, sets-browser-view-table,
+  sets-browser-grid, sets-browser-card, sets-browser-table, sets-browser-row,
+  sets-browser-set-link, sets-browser-study-link, sets-browser-edit-link (to /sets/:id/edit)
 Create a set (/sets/new):
   create-page, create-back, create-title, create-title-error, create-description, create-tags,
   create-card-list, create-card-row, create-term, create-definition, create-delete-card,
