@@ -1,0 +1,33 @@
+import './flip-card.css'
+
+interface FlipCardProps {
+  readonly front: string
+  readonly back: string
+  readonly imageDataUrl: string | undefined
+  readonly flipped: boolean
+}
+
+/**
+ * A two-sided index card that physically turns over: each side is its own
+ * `.illuminated-panel` (background, border, padding), so the whole card
+ * rotates — not just the text sitting on a stationary card. Presentational
+ * only; the flashcard session and the set-page preview each wrap it with
+ * their own interaction (swipe/keyboard vs a plain button). The side that
+ * is turned away is `aria-hidden` so a screen reader reads one face at a
+ * time. Reduced motion is handled globally (typography.css zeroes
+ * transitions), so the flip simply swaps instantly there.
+ */
+export const FlipCard = ({ front, back, imageDataUrl, flipped }: FlipCardProps) => (
+  <div className="flip-card-scene">
+    <div className={flipped ? 'flip-card-inner is-flipped' : 'flip-card-inner'}>
+      <div className="legible illuminated-panel flip-card-face flip-card-front" aria-hidden={flipped}>
+        {imageDataUrl !== undefined && <img src={imageDataUrl} alt="" className="flip-card-image" />}
+        <p>{front}</p>
+      </div>
+      <div className="legible illuminated-panel flip-card-face flip-card-back" aria-hidden={!flipped}>
+        {imageDataUrl !== undefined && <img src={imageDataUrl} alt="" className="flip-card-image" />}
+        <p>{back}</p>
+      </div>
+    </div>
+  </div>
+)

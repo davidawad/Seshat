@@ -1,0 +1,4 @@
+# Seshat is a static, client-side app with nothing private to protect: crawling is welcome.
+# Agent-oriented docs sit next to this file: llms.txt, llms-full.txt, agents.txt, AGENTS.md, ai.txt.
+User-agent: *
+Allow: /

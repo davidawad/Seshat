@@ -1,3 +1,4 @@
+import './home.css'
 import { CITATIONS } from '../features/attributions/citations'
 import type { Citation, CitationCategory } from '../features/attributions/citations'
 
@@ -66,5 +67,10 @@ export const AttributionsPage = () => (
         </section>
       )
     })}
+
+    <aside className="dedication" aria-label="Dedication">
+      <p className="dedication-line">For Sandra,</p>
+      <p>for whom this was made — and who, like the goddess, keeps the record.</p>
+    </aside>
   </section>
 )

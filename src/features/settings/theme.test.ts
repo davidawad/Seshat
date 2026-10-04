@@ -1,5 +1,5 @@
 import { describe, expect, it } from 'vitest'
-import { resolveSizingCssVars, resolveThemeAttribute, resolveTypefaceAttribute } from './theme'
+import { resolveEffectiveMode, resolveSizingCssVars, resolveThemeAttribute, resolveTypefaceAttribute } from './theme'
 
 describe('resolveThemeAttribute', () => {
   it('resolves system to null so the media query governs', () => {
@@ -9,6 +9,18 @@ describe('resolveThemeAttribute', () => {
   it('resolves light/dark to themselves', () => {
     expect(resolveThemeAttribute('light')).toBe('light')
     expect(resolveThemeAttribute('dark')).toBe('dark')
+  })
+})
+
+describe('resolveEffectiveMode', () => {
+  it('follows the OS only for system', () => {
+    expect(resolveEffectiveMode('system', true)).toBe('light')
+    expect(resolveEffectiveMode('system', false)).toBe('dark')
+  })
+
+  it('lets an explicit choice win over the OS', () => {
+    expect(resolveEffectiveMode('dark', true)).toBe('dark')
+    expect(resolveEffectiveMode('light', false)).toBe('light')
   })
 })
 

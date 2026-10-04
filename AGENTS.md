@@ -41,13 +41,13 @@ the entire setup.
 For scripting an already-running instance from the browser's own console (bookmarklets, userscripts, ad hoc
 one-liners). Full docs: the "Scripting Seshat's data" section of [`README.md`](./README.md#scripting-seshats-data);
 implementation: `src/lib/window-api.ts`. Methods: `listSets()`, `listCards(setId)`, `exportSet(setId)`,
-`exportSetSimple(setId)`, `importSet(json)`, `importSimpleJson(raw, setName?)`.
+`exportSetSimple(setId)`, `importSet(json)`, `importSimpleJson(raw, setName?)`, `exportAll()`,
+`importAll(json, mode)` (`mode` is `'merge'` or `'replace'`).
 
-**Caveat that matters for agents:** this API reads and writes `localStorage` directly — it does not go through
-React state. If the Seshat tab is open and mounted while you call it, the page won't reflect the change until it
-reloads (React only reads `localStorage` once, on mount). If you're driving a browser and want the change to
-show up live without a manual reload, use the URL query-param importer below instead — it goes through React's
-own state via the app's store, not around it.
+**How it reaches the page:** this API reads and writes `localStorage` directly, then dispatches a
+`seshat:external-write` window event; the app's store listens for it and re-hydrates, so an open tab updates
+live without a reload. If something still looks stale, reload once. The URL query-param importer below and the
+WebMCP tools go through the app's store directly.
 
 ## URL query-param import (the fast path for a fresh set)
 
@@ -137,6 +137,22 @@ import path for image-occlusion cards; use the in-app editor instead (see below)
 
 For anything beyond short-answer/cloze/mcq authored programmatically, or any image-occlusion card, drive the
 running app's editor UI directly rather than trying to force it through either import path.
+
+## WebMCP tools
+
+Where the browser supports WebMCP, the app registers structured tools an agent can call instead of clicking.
+Implementation: `src/lib/webmcp.ts` (pure, tested) mounted once by `src/lib/useWebMcp.ts` in `Layout.tsx`. Built
+against the W3C WebML CG draft of 2 October 2026: entry point is `document.modelContext` (the older
+`navigator.modelContext` is a fallback), tools are registered with `registerTool(tool, { signal })` and
+unregistered by aborting the signal (StrictMode-safe), and results are `{ content: [{ type: 'text', text }] }`
+with `isError` on failure. Chrome only ships it behind a flag, so nothing registers elsewhere.
+
+Tools: `list_sets`, `list_cards {setId}`, `get_settings`, `update_settings {patch}`, `import_set {json}`,
+`export_set {setId}`, `export_all`, `import_all {json, mode}` (`merge` default; `replace` is destructive and
+flagged `consequentialHint`), `navigate {to, setId?}`. Each tool's Zod schema yields both its JSON Schema and its
+runtime validation; agent input is untrusted (spec security section is unresolved), so every argument is
+validated and size-capped, and errors come back as values. All writes go through the React store, so an open tab
+updates live — unlike `window.seshat`.
 
 ## Beads Issue Tracker
 

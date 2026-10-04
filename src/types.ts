@@ -193,8 +193,23 @@ export type Typeface = z.infer<typeof typefaceSchema>
 export const themeSchema = z.enum(['light', 'dark', 'system'])
 export type Theme = z.infer<typeof themeSchema>
 
+// Named color palettes — pure data in features/settings/palettes.ts; 'archive'
+// is the original gold/brown look and the default, so nothing changes unless
+// someone picks another.
+export const paletteSchema = z.enum(['archive', 'slate', 'sage', 'rose', 'high-contrast'])
+export type Palette = z.infer<typeof paletteSchema>
+
+// Optional custom accent, stored as lowercase #rrggbb. Contrast against the
+// background is checked at input time and again when applied (see
+// features/settings/palettes.ts), so a stale/hand-edited value can't make
+// the UI unreadable.
+export const hexColorSchema = z.string().regex(/^#[0-9a-f]{6}$/)
+
 export const retentionPresetSchema = z.enum(['low-workload', 'balanced', 'exam-prep', 'custom'])
 export type RetentionPreset = z.infer<typeof retentionPresetSchema>
+
+export const flashcardsFrontSchema = z.enum(['term', 'definition'])
+export type FlashcardsFront = z.infer<typeof flashcardsFrontSchema>
 
 export const settingsSchema = z.object({
   typeface: typefaceSchema,
@@ -202,6 +217,8 @@ export const settingsSchema = z.object({
   lineHeight: z.number().min(1.4).max(1.5),
   measureCh: z.number().min(55).max(75),
   theme: themeSchema,
+  palette: paletteSchema.default('archive'),
+  customAccent: hexColorSchema.nullable().default(null),
   reducedMotion: z.boolean(),
   retentionPreset: retentionPresetSchema,
   desiredRetention: z.number().min(0.7).max(0.98),
@@ -214,6 +231,11 @@ export const settingsSchema = z.object({
   // Match users see no regression; the toggle exists for people who'd
   // rather keep the app to just the FSRS-graded modes.
   experimentalGamesEnabled: z.boolean().default(true),
+  // Flashcards Options modal. Tracking off = grading only advances the card
+  // (no FSRS/review-log change); `Front` picks which side shows first.
+  // Defaults match the pre-option behavior so old saved data is unchanged.
+  flashcardsTrackProgress: z.boolean().default(true),
+  flashcardsFront: flashcardsFrontSchema.default('term'),
   // The "Install Seshat" PWA banner (components/InstallPrompt.tsx). Defaults
   // off — it's a fixed-position overlay that can sit on top of page content
   // (see index.css's `body.has-install-prompt` padding workaround), and not
@@ -231,11 +253,15 @@ export const DEFAULT_SETTINGS: Settings = {
   lineHeight: 1.45,
   measureCh: 65,
   theme: 'system',
+  palette: 'archive',
+  customAccent: null,
   reducedMotion: false,
   retentionPreset: 'balanced',
   desiredRetention: 0.9,
   selfExplanationEnabled: false,
   experimentalGamesEnabled: true,
+  flashcardsTrackProgress: true,
+  flashcardsFront: 'term',
   installPromptEnabled: false,
 }
 

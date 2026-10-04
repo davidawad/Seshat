@@ -7,13 +7,16 @@
  * connections), so this API works directly against `localStorage`
  * instead, through the same `loadState`/`saveState` the app itself uses.
  *
- * Caveat, and it's a real one: if the Seshat tab is open and mounted
- * while a script calls this API, the React app's in-memory state won't
- * pick up the change until the page reloads (React only reads
- * localStorage once, on mount). This API is for scripting Seshat's data
- * from outside the app, not for live two-way sync with an open tab.
+ * Writes dispatch a `seshat:external-write` window event after saving;
+ * the store listens for it and reloads, so an open tab updates live (the
+ * browser's own `storage` event never fires in the tab that did the
+ * writing, hence the explicit event). Reads always see what is persisted,
+ * which can trail React state by one render if a script runs mid-edit.
  */
 import { newCardId, newSetId } from './id'
+import { type Backup, type ImportMode, type ImportReport, applyBackup, createBackup, parseBackup } from './backup'
+import { loadKeybindingOverrides, saveKeybindingOverrides } from './keybindingStorage'
+import { notifyExternalWrite } from './persistence'
 import { loadState, saveState } from './storage'
 import {
   type ExportedSet,
@@ -118,6 +121,7 @@ const insertSet = (exported: ExportedSet): StudySet => {
     ...exportedCard,
   }))
   saveState({ ...state, sets: [...state.sets, set], cards: [...state.cards, ...cards] })
+  notifyExternalWrite()
   return set
 }
 
@@ -140,6 +144,21 @@ const importSimpleJson = (raw: string, setName?: string): Result<SetSummary, str
   return ok({ id: set.id, name: set.name, cardCount: parsed.value.cards.length })
 }
 
+/** Everything — settings, keybindings, sets, cards, review history — as one backup object. */
+const exportAll = (): Backup => createBackup(currentState(), loadKeybindingOverrides(), new Date())
+
+/** Restores a backup JSON string. `replace` swaps everything; `merge` only adds sets/cards whose ids are missing. */
+const importAll = (json: string, mode: ImportMode): Result<ImportReport, string> => {
+  const backup = parseBackup(json)
+  if (!backup.ok) return err(backup.error)
+  const { state, report } = applyBackup(currentState(), backup.value, mode)
+  const saved = saveState(state)
+  if (!saved.ok) return err(`Could not save the restored data (${saved.error.kind}).`)
+  if (report.keybindings !== null) saveKeybindingOverrides(report.keybindings)
+  notifyExternalWrite()
+  return ok(report)
+}
+
 export interface SeshatWindowApi {
   readonly listSets: typeof listSets
   readonly listCards: typeof listCards
@@ -147,6 +166,8 @@ export interface SeshatWindowApi {
   readonly exportSetSimple: typeof exportSetSimple
   readonly importSet: typeof importSet
   readonly importSimpleJson: typeof importSimpleJson
+  readonly exportAll: typeof exportAll
+  readonly importAll: typeof importAll
   readonly cardFrontBack: typeof cardFrontBack
 }
 
@@ -157,6 +178,8 @@ export const seshatWindowApi: SeshatWindowApi = {
   exportSetSimple,
   importSet,
   importSimpleJson,
+  exportAll,
+  importAll,
   cardFrontBack,
 }
 

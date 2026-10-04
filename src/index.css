@@ -11,8 +11,16 @@ body {
   margin: 0;
   background: var(--color-bg);
   background-image:
-    radial-gradient(ellipse 900px 500px at 15% -10%, rgba(180, 144, 63, 0.06), transparent 60%),
-    radial-gradient(ellipse 700px 500px at 100% 20%, rgba(168, 64, 42, 0.04), transparent 55%);
+    radial-gradient(
+      ellipse 900px 500px at 15% -10%,
+      color-mix(in srgb, var(--color-accent) 6%, transparent),
+      transparent 60%
+    ),
+    radial-gradient(
+      ellipse 700px 500px at 100% 20%,
+      color-mix(in srgb, var(--color-error) 4%, transparent),
+      transparent 55%
+    );
   background-attachment: fixed;
   color: var(--color-fg);
 }
@@ -132,6 +140,10 @@ body.has-install-prompt .app-main {
   padding: 1rem 1.5rem;
   border-top: 1px solid var(--color-border);
   background: var(--color-bg-elevated);
+  /* Pinned to the viewport bottom on every page, not just short ones. */
+  position: sticky;
+  bottom: 0;
+  z-index: 10;
 }
 
 .app-footer-copyright {
@@ -337,53 +349,6 @@ body.has-install-prompt .app-main {
   color: var(--color-fg-muted);
 }
 
-.shortcut-help {
-  display: inline-block;
-  margin: 0 0 0.75rem;
-  font-size: 0.85rem;
-  color: var(--color-fg-muted);
-}
-
-.shortcut-help summary {
-  cursor: pointer;
-  list-style: none;
-}
-
-.shortcut-help summary::-webkit-details-marker {
-  display: none;
-}
-
-.shortcut-help summary::before {
-  content: '⌨ ';
-}
-
-.shortcut-help[open] summary {
-  margin-bottom: 0.4rem;
-}
-
-.shortcut-help ul {
-  list-style: none;
-  margin: 0;
-  padding: 0.5rem 0.75rem;
-  border: 1px solid var(--color-border);
-  border-radius: var(--radius-sm);
-  display: flex;
-  flex-direction: column;
-  gap: 0.3rem;
-}
-
-.shortcut-help kbd {
-  display: inline-block;
-  min-width: 1.4em;
-  padding: 0.05rem 0.35rem;
-  margin-right: 0.4rem;
-  border: 1px solid var(--color-border-strong);
-  border-radius: 3px;
-  font-family: var(--font-mono);
-  font-size: 0.8em;
-  text-align: center;
-}
-
 /*
  * Mobile layout (<=640px) — the one breakpoint used across the app.
  *
@@ -446,6 +411,11 @@ body.has-install-prompt .app-main {
      clear the fixed tab bar instead of being hidden behind it. */
   .app-shell {
     padding-bottom: calc(4.5rem + env(safe-area-inset-bottom, 0));
+  }
+
+  /* Sit just above the fixed tab bar rather than behind it. */
+  .app-footer {
+    bottom: calc(4.5rem + env(safe-area-inset-bottom, 0));
   }
 
   .modal {

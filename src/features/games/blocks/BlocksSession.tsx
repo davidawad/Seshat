@@ -1,8 +1,8 @@
 import { useEffect, useRef, useState } from 'react'
 import { Legible } from '../../../components/Legible'
-import { ShortcutHelp } from '../../../components/ShortcutHelp'
-import { useKeybindings } from '../../../lib/useKeybindings'
+import { OptionAnnouncer } from '../../../lib/OptionAnnouncer'
 import { useNumberedShortcut } from '../../../lib/useNumberedShortcut'
+import { NAV_OPTION_ATTRIBUTE, useOptionNavigation } from '../../../lib/useOptionNavigation'
 import type { SetId, StudyCard } from '../../../types'
 import { getBestScore, recordScore } from './bestScore'
 import './blocks.css'
@@ -71,66 +71,91 @@ const BlocksGrid = ({ columns }: BlocksGridProps) => {
 
 interface BlocksQuestionViewProps {
   readonly question: BlocksQuestion
-  readonly keyFor: (actionId: string) => string
   readonly onAnswer: (option: string) => void
 }
 
-/** The "answer a question" phase view — split out of `BlocksSession` to keep that component's size/complexity in check. */
-const BlocksQuestionView = ({ question, keyFor, onAnswer }: BlocksQuestionViewProps) => (
-  <>
-    <ShortcutHelp
-      shortcuts={question.options.map((_, index) => ({
-        key: keyFor(`blocksQuestion.selectOption${index + 1}`),
-        label: `Select option ${index + 1}`,
-      }))}
-    />
-    <Legible as="fieldset" className="blocks-question">
-      <legend className="blocks-prompt">{question.prompt}</legend>
-      <div className="blocks-options">
-        {question.options.map((option) => (
-          <button key={option} type="button" className="blocks-option" onClick={() => onAnswer(option)}>
-            {option}
-          </button>
-        ))}
-      </div>
-    </Legible>
-  </>
-)
+/** The "answer a question" phase view — split out of `BlocksSession` to keep that component's size/complexity in check. Mounted per question (`key`), so the arrow-key highlight resets for each one. */
+const BlocksQuestionView = ({ question, onAnswer }: BlocksQuestionViewProps) => {
+  const [highlight, setHighlight] = useState<number | null>(null)
+  const optionsRef = useRef<HTMLDivElement>(null)
+  useOptionNavigation({
+    count: question.options.length,
+    index: highlight,
+    onIndexChange: setHighlight,
+    onConfirm: (index) => {
+      const option = question.options[index]
+      if (option !== undefined) onAnswer(option)
+    },
+    orientation: 'vertical',
+    enabled: true,
+    containerRef: optionsRef,
+  })
+  return (
+    <>
+      <Legible as="fieldset" className="blocks-question">
+        <legend className="blocks-prompt">{question.prompt}</legend>
+        <div ref={optionsRef} className="blocks-options">
+          {question.options.map((option, index) => (
+            <button
+              key={option}
+              type="button"
+              className="blocks-option"
+              onClick={() => onAnswer(option)}
+              onFocus={() => setHighlight(index)}
+              {...{ [NAV_OPTION_ATTRIBUTE]: '' }}
+            >
+              {option}
+            </button>
+          ))}
+        </div>
+      </Legible>
+      <OptionAnnouncer index={highlight} labels={question.options} />
+    </>
+  )
+}
 
 interface BlocksPlacingViewProps {
   readonly columns: readonly number[]
-  readonly keyFor: (actionId: string) => string
   readonly onPlace: (column: number) => void
 }
 
-/** The "drop your earned block" phase view — split out for the same reason as `BlocksQuestionView` above. */
-const BlocksPlacingView = ({ columns, keyFor, onPlace }: BlocksPlacingViewProps) => (
-  <>
-    <ShortcutHelp
-      shortcuts={columns.map((_, index) => ({
-        key: keyFor(`blocksPlacing.column${index + 1}`),
-        label: `Drop in column ${index + 1}`,
-      }))}
-    />
-    <fieldset className="blocks-columns">
-      <legend className="visually-hidden">Choose a column for your block</legend>
-      {columns.map((_, col) => (
-        <button
-          key={col}
-          type="button"
-          className="blocks-column-button"
-          disabled={!canPlace(columns, col)}
-          onClick={() => onPlace(col)}
-        >
-          Column {col + 1}
-        </button>
-      ))}
-    </fieldset>
-  </>
-)
+/** The "drop your earned block" phase view — split out for the same reason as `BlocksQuestionView` above. Full columns are skipped by arrow-key navigation. */
+const BlocksPlacingView = ({ columns, onPlace }: BlocksPlacingViewProps) => {
+  const [highlight, setHighlight] = useState<number | null>(null)
+  const columnsRef = useRef<HTMLFieldSetElement>(null)
+  useOptionNavigation({
+    count: columns.length,
+    index: highlight,
+    onIndexChange: setHighlight,
+    onConfirm: onPlace,
+    orientation: 'horizontal',
+    enabled: true,
+    containerRef: columnsRef,
+    isDisabled: (col) => !canPlace(columns, col),
+  })
+  return (
+    <>
+      <fieldset ref={columnsRef} className="blocks-columns">
+        <legend className="visually-hidden">Choose a column for your block</legend>
+        {columns.map((_, col) => (
+          <button
+            key={col}
+            type="button"
+            className="blocks-column-button"
+            disabled={!canPlace(columns, col)}
+            onClick={() => onPlace(col)}
+            onFocus={() => setHighlight(col)}
+            {...{ [NAV_OPTION_ATTRIBUTE]: '' }}
+          >
+            Column {col + 1}
+          </button>
+        ))}
+      </fieldset>
+    </>
+  )
+}
 
 export const BlocksSession = ({ setId, cards }: BlocksSessionProps) => {
-  const { key: keyFor } = useKeybindings()
   const [questions, setQuestions] = useState<readonly BlocksQuestion[]>(() => buildQuestions(cards))
   const [questionIndex, setQuestionIndex] = useState(0)
   const [phase, setPhase] = useState<Phase>('question')
@@ -265,10 +290,10 @@ export const BlocksSession = ({ setId, cards }: BlocksSessionProps) => {
       {!isComplete && <BlocksGrid columns={columns} />}
 
       {phase === 'question' && currentQuestion && (
-        <BlocksQuestionView question={currentQuestion} keyFor={keyFor} onAnswer={handleAnswer} />
+        <BlocksQuestionView key={questionIndex} question={currentQuestion} onAnswer={handleAnswer} />
       )}
 
-      {phase === 'placing' && <BlocksPlacingView columns={columns} keyFor={keyFor} onPlace={handlePlace} />}
+      {phase === 'placing' && <BlocksPlacingView columns={columns} onPlace={handlePlace} />}
 
       {isComplete && (
         <div className="illuminated-panel blocks-complete" role="status">

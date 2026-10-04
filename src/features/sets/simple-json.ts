@@ -47,6 +47,9 @@ const wrappedSchema = z.object({
   terms: z.array(rawTermSchema).min(1),
 })
 
+/** Every shape `parseSimpleJson` accepts — exported so the build can derive the published JSON Schema from it. */
+export const simpleImportSchema = z.union([wrappedSchema, bareArraySchema])
+
 export interface SimpleJsonImportResult {
   /** `null` when the file was a bare array with no set name to infer. */
   readonly name: string | null

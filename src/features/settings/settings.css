@@ -109,3 +109,152 @@
   margin: 0;
   color: var(--color-error);
 }
+
+/* Theme + palette pickers (ThemeField.tsx, PaletteField.tsx). The radio
+   inputs stay in the DOM and keyboard-operable (arrow keys, one tab stop);
+   they're only visually replaced, and the sibling's outline shows focus. */
+
+.settings-fieldset {
+  border: none;
+  padding: 0;
+  margin: 0;
+  min-width: 0;
+}
+
+.settings-fieldset legend {
+  padding: 0;
+  margin-bottom: 0.4rem;
+}
+
+.segmented-option input,
+.palette-card input {
+  position: absolute;
+  opacity: 0;
+  width: 1px;
+  height: 1px;
+  margin: 0;
+  pointer-events: none;
+}
+
+.segmented {
+  display: inline-flex;
+  flex-wrap: wrap;
+  align-self: flex-start;
+  border: 1px solid var(--color-border-strong);
+  border-radius: var(--radius-sm);
+  overflow: hidden;
+}
+
+.segmented-option {
+  position: relative;
+  margin: 0;
+  cursor: pointer;
+}
+
+.segmented-option + .segmented-option {
+  border-left: 1px solid var(--color-border-strong);
+}
+
+.segmented-option span {
+  display: block;
+  padding: 0.5em 1rem;
+  min-width: 6rem;
+  text-align: center;
+  color: var(--color-fg);
+}
+
+.segmented-option input:checked + span {
+  background: var(--color-accent);
+  color: var(--color-accent-contrast);
+  font-weight: 600;
+}
+
+.segmented-option input:focus-visible + span {
+  outline: 3px solid var(--color-focus-ring);
+  outline-offset: -3px;
+}
+
+.palette-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(10rem, 1fr));
+  gap: 0.75rem;
+}
+
+.palette-card {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  gap: 0.35rem;
+  margin: 0;
+  padding: 0.6rem;
+  border: 1px solid var(--color-border-strong);
+  border-radius: var(--radius-sm);
+  background: var(--color-bg-elevated);
+  cursor: pointer;
+}
+
+.palette-card:has(input:checked) {
+  border-color: var(--color-accent);
+  box-shadow: 0 0 0 2px var(--color-accent);
+}
+
+.palette-card:has(input:focus-visible) {
+  outline: 3px solid var(--color-focus-ring);
+  outline-offset: 2px;
+}
+
+.palette-swatch {
+  display: flex;
+  gap: 0.3rem;
+  padding: 0.4rem;
+  border: 1px solid var(--color-border-strong);
+  border-radius: var(--radius-sm);
+}
+
+.palette-swatch-chip {
+  flex: 1;
+  height: 1.5rem;
+  border-radius: 2px;
+}
+
+.palette-card-name {
+  font-weight: 600;
+}
+
+.palette-card-desc {
+  color: var(--color-fg-muted);
+  font-size: 0.85rem;
+}
+
+.accent-row {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.5rem 0.75rem;
+  margin-top: 0.75rem;
+}
+
+.accent-row label,
+.accent-row input,
+.accent-row button {
+  margin: 0;
+}
+
+.accent-row input[type='color'] {
+  padding: 0.15rem;
+  width: 3rem;
+  height: 2.25rem;
+}
+
+.accent-row input[type='text'] {
+  width: 8rem;
+  font-family: var(--font-mono);
+}
+
+.accent-error {
+  color: var(--color-error);
+}
+
+output.field-hint {
+  display: block;
+}

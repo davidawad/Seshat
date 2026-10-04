@@ -17,6 +17,7 @@ import { z } from 'zod'
 
 export type KeybindingScope =
   | 'global'
+  | 'navigation'
   | 'flashcards'
   | 'studyAnswer'
   | 'studyConfidence'
@@ -28,6 +29,23 @@ export type KeybindingScope =
   | 'blast'
   | 'blocksQuestion'
   | 'blocksPlacing'
+
+/** Human-readable group names for each scope — shared by the Settings keybinding editor and the footer shortcuts modal. */
+export const KEYBINDING_SCOPE_LABELS: Record<KeybindingScope, string> = {
+  global: 'Global',
+  navigation: 'Navigation (arrow-style keys)',
+  flashcards: 'Flashcards',
+  studyAnswer: 'Study — answering (multiple choice)',
+  studyConfidence: 'Study — confidence step',
+  studyReveal: 'Study — grading step',
+  match: 'Match',
+  test: 'Test',
+  setDetail: 'Set page — mode picker',
+  games: 'Games list',
+  blast: 'Blast',
+  blocksQuestion: 'Blocks — question step',
+  blocksPlacing: 'Blocks — placing step',
+}
 
 export interface KeybindingAction {
   readonly id: string
@@ -54,13 +72,27 @@ export const KEYBINDING_REGISTRY: readonly KeybindingAction[] = [
   // Global — available anywhere in the app shell.
   { id: 'global.openSettings', defaultKey: '?', label: 'Open settings', scope: 'global' },
 
+  // Navigation — the four "arrow" keys, remappable as a set (arrows / WASD /
+  // HJKL presets, see NAV_PRESETS). Left/right grade a flashcard
+  // (left = still learning, right = know it); up/down move the highlight
+  // through an option list. Kept in their own scope so a preset swap can
+  // never collide with a per-page action's key.
+  { id: 'nav.left', defaultKey: 'ArrowLeft', label: 'Left — still learning / previous', scope: 'navigation' },
+  { id: 'nav.right', defaultKey: 'ArrowRight', label: 'Right — know it / next', scope: 'navigation' },
+  { id: 'nav.up', defaultKey: 'ArrowUp', label: 'Up — previous option', scope: 'navigation' },
+  { id: 'nav.down', defaultKey: 'ArrowDown', label: 'Down — next option', scope: 'navigation' },
+
   // Flashcards session (features/flashcards/FlashcardSession.tsx) plus the
   // order toggle on the page that hosts it (pages/Flashcards.tsx) — grouped
   // in one scope since both are only ever active while viewing flashcards.
   { id: 'flashcards.flip', defaultKey: 'Space', label: 'Flip card', scope: 'flashcards' },
-  { id: 'flashcards.dontKnow', defaultKey: '1', label: "Grade: Don't know (once flipped)", scope: 'flashcards' },
-  { id: 'flashcards.know', defaultKey: '2', label: 'Grade: Know (once flipped)', scope: 'flashcards' },
-  { id: 'flashcards.toggleOrder', defaultKey: 'o', label: 'Toggle shuffled / original order', scope: 'flashcards' },
+  { id: 'flashcards.dontKnow', defaultKey: '1', label: "Grade: Still learning (don't know)", scope: 'flashcards' },
+  { id: 'flashcards.know', defaultKey: '2', label: 'Grade: Know', scope: 'flashcards' },
+  // Canonical single-letter keys are uppercase (see `normalizeKeyName`), so
+  // these are 'O'/'U', not 'o'/'u'. U avoids A/S/D/W/H/J/K/L, which the
+  // WASD/HJKL navigation presets claim.
+  { id: 'flashcards.toggleOrder', defaultKey: 'O', label: 'Toggle shuffled / original order', scope: 'flashcards' },
+  { id: 'flashcards.undo', defaultKey: 'U', label: 'Undo last answer', scope: 'flashcards' },
 
   // Study session (features/study/ReviewSession.tsx) — one scope per step,
   // since the answer/confidence/reveal steps are mutually exclusive (only
@@ -354,3 +386,45 @@ export const sanitizeOverrides = (raw: unknown): SanitizeOverridesResult => {
 
   return { overrides: accepted, ignoredActionIds: [...structurallyInvalid, ...conflicted, ...unknownActionIds] }
 }
+
+// ---------------------------------------------------------------------------
+// Navigation-key presets and display helpers
+// ---------------------------------------------------------------------------
+
+export type NavPresetId = 'arrows' | 'wasd' | 'hjkl'
+
+/** The four `nav.*` actions bound as a set: left, right, up, down. */
+export const NAV_PRESETS: Readonly<Record<NavPresetId, Readonly<Record<string, string>>>> = {
+  arrows: { 'nav.left': 'ArrowLeft', 'nav.right': 'ArrowRight', 'nav.up': 'ArrowUp', 'nav.down': 'ArrowDown' },
+  wasd: { 'nav.left': 'A', 'nav.right': 'D', 'nav.up': 'W', 'nav.down': 'S' },
+  hjkl: { 'nav.left': 'H', 'nav.right': 'L', 'nav.up': 'K', 'nav.down': 'J' },
+}
+
+export const NAV_PRESET_LABELS: Readonly<Record<NavPresetId, string>> = {
+  arrows: 'Arrow keys',
+  wasd: 'WASD',
+  hjkl: 'HJKL (vim)',
+}
+
+/** Which preset the resolved `nav.*` keys currently match, or `'custom'` if they match none. */
+export const detectNavPreset = (keyFor: (actionId: string) => string): NavPresetId | 'custom' => {
+  for (const id of Object.keys(NAV_PRESETS) as NavPresetId[]) {
+    const preset = NAV_PRESETS[id]
+    if (Object.entries(preset).every(([actionId, key]) => keyFor(actionId) === key)) return id
+  }
+  return 'custom'
+}
+
+const KEY_GLYPHS: Readonly<Record<string, string>> = {
+  ArrowLeft: '←',
+  ArrowRight: '→',
+  ArrowUp: '↑',
+  ArrowDown: '↓',
+}
+
+/** A binding string as it should read on a key cap: arrows become glyphs, modifier chords keep their `+`. */
+export const formatKeyLabel = (key: string): string =>
+  key
+    .split('+')
+    .map((part) => KEY_GLYPHS[part] ?? part)
+    .join('+')

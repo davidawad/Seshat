@@ -1,0 +1,12 @@
+/* TEAM */
+Author: David Awad
+
+/* LICENSE */
+GNU General Public License v3.0 or later (GPL-3.0-or-later). See LICENSE.
+
+/* SITE */
+Name: Seshat
+Standards: HTML5, CSS3, Web App Manifest
+Stack: Vite, React 19, TypeScript (strict), react-router, Zod, ts-fsrs, pnpm
+Data: Local-first; all data stays in the visitor's browser (localStorage). No backend, no tracking.
+Research: Design decisions are backed by cited sources; see the in-app /attributions page and the research/ folder in the repository.

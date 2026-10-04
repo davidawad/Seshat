@@ -1,6 +1,7 @@
 import { act, cleanup, render, screen, within } from '@testing-library/react'
 import userEvent from '@testing-library/user-event'
 import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest'
+import { KEYBINDING_REGISTRY } from '../../lib/keybindings'
 import { useKeybindings } from '../../lib/useKeybindings'
 import { KeybindingsField } from './KeybindingsField'
 
@@ -79,9 +80,10 @@ describe('KeybindingsField', () => {
   it('refuses a remap that would collide with another action already bound to that key in the same scope', async () => {
     const user = userEvent.setup()
     render(<KeybindingsField />)
-    // "Grade: Don't know (once flipped)" defaults to '1'; try to also bind
-    // "Grade: Know (once flipped)" (defaults to '2') to '1'.
-    const knowRow = rowFor('Grade: Know (once flipped)')
+    // flashcards.dontKnow defaults to '1'; try to also bind flashcards.know
+    // (defaults to '2') to '1'. The label is looked up by id so rewording it
+    // in the registry cannot silently break this test.
+    const knowRow = rowFor(KEYBINDING_REGISTRY.find((action) => action.id === 'flashcards.know')!.label)
 
     await user.click(within(knowRow).getByText('Change'))
     await user.keyboard('1')

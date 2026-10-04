@@ -1,0 +1,50 @@
+/* Establishes the 3D space the card rotates within — `perspective` has to
+   live on an ancestor of the rotated element, not the element itself. */
+.flip-card-scene {
+  width: 100%;
+  perspective: 1400px;
+}
+
+/* The rotating layer. Front/back are stacked in the same CSS grid cell
+   rather than absolutely positioned, so this sizes to whichever face is
+   taller instead of clipping longer answers. */
+.flip-card-inner {
+  display: grid;
+  transform-style: preserve-3d;
+  transition: transform 0.4s cubic-bezier(0.45, 0.05, 0.55, 0.95);
+}
+
+.flip-card-inner.is-flipped {
+  transform: rotateY(180deg);
+}
+
+/* Each face IS the card (an .illuminated-panel), so the whole card turns.
+   The scene prefix out-ranks `.legible`'s own font-size. */
+.flip-card-scene .flip-card-face {
+  grid-area: 1 / 1;
+  min-height: 14rem;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  backface-visibility: hidden;
+  font-size: calc(var(--font-size-body) * var(--card-text-scale));
+  line-height: 1.25;
+  overflow-wrap: anywhere;
+}
+
+.flip-card-face p {
+  margin: 0;
+}
+
+.flip-card-scene .flip-card-back {
+  transform: rotateY(180deg);
+}
+
+.flip-card-image {
+  max-width: 100%;
+  max-height: 20rem;
+  border-radius: var(--radius-page);
+}

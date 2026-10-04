@@ -1,18 +1,18 @@
 import { useId } from 'react'
 import { Combobox } from '../../components/Combobox'
 import './settings.css'
-import { KeybindingsField } from './KeybindingsField'
+import { BackupField } from './BackupField'
 import { useSeshatStore } from '../../lib/store'
 import {
   RETENTION_PRESETS,
   retentionPresetSchema,
-  themeSchema,
   typefaceSchema,
   type RetentionPreset,
   type Settings,
-  type Theme,
   type Typeface,
 } from '../../types'
+import { PaletteField } from './PaletteField'
+import { ThemeField } from './ThemeField'
 
 // ---------------------------------------------------------------------------
 // Static copy — kept out of JSX so the render function stays about layout.
@@ -50,14 +50,6 @@ const TYPEFACE_OPTIONS = typefaceSchema.options.map((typeface) => ({
 }))
 
 const PREVIEW_TEXT = 'The quick brown fox jumps over the lazy dog — 0123456789.'
-
-const THEME_LABELS: Record<Theme, string> = {
-  light: 'Light',
-  dark: 'Dark',
-  system: 'Match system',
-}
-
-const THEME_OPTIONS = themeSchema.options.map((theme) => ({ value: theme, label: THEME_LABELS[theme] }))
 
 const RETENTION_PRESET_LABELS: Record<RetentionPreset, string> = {
   'low-workload': 'Low workload (85% retention)',
@@ -159,21 +151,6 @@ const MeasureField = ({ settings, updateSettings }: FieldProps) => {
         step={1}
         value={settings.measureCh}
         onChange={(event) => updateSettings({ measureCh: Number(event.target.value) })}
-      />
-    </div>
-  )
-}
-
-const ThemeField = ({ settings, updateSettings }: FieldProps) => {
-  const selectId = useId()
-  return (
-    <div className="settings-field">
-      <label htmlFor={selectId}>Theme</label>
-      <Combobox
-        id={selectId}
-        value={settings.theme}
-        onChange={(theme) => updateSettings({ theme })}
-        options={THEME_OPTIONS}
       />
     </div>
   )
@@ -337,12 +314,13 @@ export const SettingsForm = () => {
         <LineHeightField {...fieldProps} />
         <MeasureField {...fieldProps} />
         <ThemeField {...fieldProps} />
+        <PaletteField {...fieldProps} />
         <ReducedMotionField {...fieldProps} />
         <RetentionField {...fieldProps} />
         <SelfExplanationField {...fieldProps} />
         <ExperimentalGamesField {...fieldProps} />
         <InstallPromptField {...fieldProps} />
-        <KeybindingsField />
+        <BackupField />
       </form>
     </>
   )

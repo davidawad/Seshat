@@ -1,5 +1,6 @@
 import { Route, Routes } from 'react-router-dom'
 import { Layout } from './components/Layout'
+import { AboutPage } from './pages/About'
 import { AttributionsPage } from './pages/Attributions'
 import { DocsPage } from './pages/Docs'
 import { HomePage } from './pages/Home'
@@ -17,6 +18,7 @@ export const App = () => (
       <Route index element={<HomePage />} />
       <Route path="sets/*" element={<SetsPage />} />
       <Route path="stats" element={<StatsPage />} />
+      <Route path="about" element={<AboutPage />} />
       <Route path="docs" element={<DocsPage />} />
       <Route path="attributions" element={<AttributionsPage />} />
       {/* Not "license" — collides with public/LICENSE on a case-insensitive

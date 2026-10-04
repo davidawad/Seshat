@@ -5,9 +5,11 @@ import { SettingsForm } from '../features/settings/SettingsForm'
 import { useApplyTheme } from '../features/settings/theme'
 import { matchesBinding } from '../lib/keybindings'
 import { useKeybindings } from '../lib/useKeybindings'
+import { useWebMcp } from '../lib/useWebMcp'
 import { Footer } from './Footer'
 import { SetsIcon, StatsIcon } from './icons'
 import { Modal } from './Modal'
+import { ShortcutsModal } from './ShortcutsModal'
 
 // Docs/Attributions/License all live in the footer (see Footer.tsx)
 // alongside Settings, not up here — they're reference material you'd look
@@ -37,8 +39,11 @@ const SeshatMark = () => (
 
 export const Layout = () => {
   useApplyTheme()
+  useWebMcp()
   const [settingsOpen, setSettingsOpen] = useState(false)
+  const [shortcutsOpen, setShortcutsOpen] = useState(false)
   const settingsTitleId = useId()
+  const shortcutsTitleId = useId()
   const { key: keyFor } = useKeybindings()
 
   // Global "open settings" shortcut (default '?') — skipped while a text
@@ -81,10 +86,11 @@ export const Layout = () => {
       <main id="main-content" className="app-main">
         <Outlet />
       </main>
-      <Footer onOpenSettings={() => setSettingsOpen(true)} />
+      <Footer onOpenSettings={() => setSettingsOpen(true)} onOpenShortcuts={() => setShortcutsOpen(true)} />
       <Modal open={settingsOpen} onClose={() => setSettingsOpen(false)} titleId={settingsTitleId} title="Settings">
         <SettingsForm />
       </Modal>
+      <ShortcutsModal open={shortcutsOpen} onClose={() => setShortcutsOpen(false)} titleId={shortcutsTitleId} />
       {/* Bottom tab bar — the mobile replacement for .app-nav-desktop below
           the 640px breakpoint (see index.css). Same NAV_ITEMS/routes, just
           a thumb-reachable fixed layout instead of a header row that has no

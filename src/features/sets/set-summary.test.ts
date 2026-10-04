@@ -80,6 +80,18 @@ describe('summarizeMastery', () => {
   })
 
   it('handles an empty set', () => {
-    expect(summarizeMastery([], now)).toEqual({ total: 0, due: 0, newCount: 0, lastStudied: null })
+    expect(summarizeMastery([], now)).toEqual({ total: 0, due: 0, newCount: 0, lastStudied: null, memorized: 0 })
+  })
+
+  it('counts only graduated (Review) cards that are not yet due as memorized', () => {
+    const future = new Date(now.getTime() + 86_400_000).toISOString()
+    const past = new Date(now.getTime() - 1000).toISOString()
+    const cards = [
+      makeCard('c1', { state: 'Review', lastReview: now.toISOString(), due: future }),
+      makeCard('c2', { state: 'Review', lastReview: now.toISOString(), due: past }),
+      makeCard('c3', { state: 'Learning', lastReview: now.toISOString(), due: future }),
+      makeCard('c4'),
+    ]
+    expect(summarizeMastery(cards, now).memorized).toBe(1)
   })
 })

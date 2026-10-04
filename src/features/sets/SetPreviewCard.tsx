@@ -1,5 +1,5 @@
 import { useMemo, useState } from 'react'
-import { Legible } from '../../components/Legible'
+import { FlipCard } from '../../components/FlipCard'
 import type { StudyCard } from '../../types'
 import { cardFrontBack } from '../study/card-summary'
 
@@ -24,10 +24,7 @@ export const SetPreviewCard = ({ cards }: SetPreviewCardProps) => {
 
   return (
     <div className="set-preview">
-      <Legible as="div" className="illuminated-panel set-preview-face">
-        {imageDataUrl !== undefined && <img src={imageDataUrl} alt="" className="set-preview-image" />}
-        <p>{flipped ? back : front}</p>
-      </Legible>
+      <FlipCard front={front} back={back} imageDataUrl={imageDataUrl} flipped={flipped} />
       <button type="button" onClick={() => setFlipped((current) => !current)}>
         {flipped ? 'Show term' : 'Show definition'}
       </button>

@@ -57,3 +57,37 @@ export const StatsIcon = () => (
     <path d="M4 17V10M10 17V3M16 17v-6" />
   </svg>
 )
+
+// Flashcards control-bar icons (features/flashcards/FlashcardControls.tsx).
+
+export const CheckIcon = () => (
+  <svg {...commonProps}>
+    <path d="m4 10.5 4 4 8-9" />
+  </svg>
+)
+
+export const CrossIcon = () => (
+  <svg {...commonProps}>
+    <path d="m5 5 10 10M15 5 5 15" />
+  </svg>
+)
+
+export const UndoIcon = () => (
+  <svg {...commonProps}>
+    <path d="M7 4 3.5 7.5 7 11" />
+    <path d="M3.5 7.5H12a4.5 4.5 0 0 1 0 9H8" />
+  </svg>
+)
+
+export const ShuffleIcon = () => (
+  <svg {...commonProps}>
+    <path d="M3 5.5h2.5c3 0 4 9 7 9H17M3 14.5h2.5c1.2 0 2-1.4 2.8-3M12.5 5.5H17M15 3l2 2.5-2 2.5M15 12l2 2.5-2 2.5" />
+  </svg>
+)
+
+export const GearIcon = () => (
+  <svg {...commonProps}>
+    <circle cx="10" cy="10" r="2.5" />
+    <path d="M10 2.5v2M10 15.5v2M2.5 10h2M15.5 10h2M4.7 4.7l1.4 1.4M13.9 13.9l1.4 1.4M4.7 15.3l1.4-1.4M13.9 6.1l1.4-1.4" />
+  </svg>
+)

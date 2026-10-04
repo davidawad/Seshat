@@ -3,16 +3,18 @@ import {
   type PointerEvent as ReactPointerEvent,
   useCallback,
   useEffect,
-  useMemo,
   useRef,
   useState,
 } from 'react'
-import { ShortcutHelp, type Shortcut } from '../../components/ShortcutHelp'
 import { matchesBinding } from '../../lib/keybindings'
 import { useSeshatStore } from '../../lib/store'
 import { useKeybindings } from '../../lib/useKeybindings'
 import type { StudyCard } from '../../types'
 import { cardFrontBack } from '../study/card-summary'
+import { FlipCard } from '../../components/FlipCard'
+import { FlashcardControls, FlashcardHint } from './FlashcardControls'
+import { type FlashcardOptions, gradeForKey, orientFaces } from './options'
+import type { GradeRecord } from './session'
 import './flashcards.css'
 
 /** Minimum horizontal drag, in px, before a pointer gesture counts as a swipe rather than a tap. */
@@ -26,8 +28,16 @@ interface FlashcardSessionProps {
   readonly card: StudyCard
   readonly position: number
   readonly total: number
-  /** Called after the outcome for the current card has been recorded. */
-  readonly onAdvance: (known: boolean) => void
+  readonly options: FlashcardOptions
+  /** False while a modal is open over the session, so its keys don't grade or flip the card behind it. */
+  readonly shortcutsEnabled: boolean
+  /** Called after the outcome for the current card has been recorded (or skipped, if progress tracking is off). */
+  readonly onGrade: (record: GradeRecord) => void
+  readonly canUndo: boolean
+  readonly shuffled: boolean
+  readonly onUndo: () => void
+  readonly onToggleShuffle: () => void
+  readonly onOpenOptions: () => void
 }
 
 interface FlashcardFaceProps {
@@ -58,33 +68,22 @@ const FlashcardFace = ({
   onPointerUp,
   onPointerCancel,
 }: FlashcardFaceProps) => (
-  <div className="flashcard-flip-scene">
-    <div
-      className="legible legible-measure illuminated-panel flashcard-face"
-      role="button"
-      tabIndex={0}
-      aria-live="polite"
-      aria-pressed={flipped}
-      aria-label={flipped ? 'Answer revealed' : 'Question shown. Activate to reveal the answer.'}
-      onClick={onClick}
-      onKeyDown={onKeyDown}
-      onPointerDown={onPointerDown}
-      onPointerMove={onPointerMove}
-      onPointerUp={onPointerUp}
-      onPointerCancel={onPointerCancel}
-      style={dragX !== 0 ? { transform: `translateX(${dragX}px)` } : undefined}
-    >
-      <div className={flipped ? 'flashcard-flip-inner is-flipped' : 'flashcard-flip-inner'}>
-        <div className="flashcard-flip-face flashcard-flip-front">
-          {imageDataUrl !== undefined && <img src={imageDataUrl} alt="" className="flashcard-image" />}
-          <p>{front}</p>
-        </div>
-        <div className="flashcard-flip-face flashcard-flip-back">
-          {imageDataUrl !== undefined && <img src={imageDataUrl} alt="" className="flashcard-image" />}
-          <p>{back}</p>
-        </div>
-      </div>
-    </div>
+  <div
+    className="flashcard-face"
+    role="button"
+    tabIndex={0}
+    aria-live="polite"
+    aria-pressed={flipped}
+    aria-label={flipped ? 'Answer revealed' : 'Question shown. Activate to reveal the answer.'}
+    onClick={onClick}
+    onKeyDown={onKeyDown}
+    onPointerDown={onPointerDown}
+    onPointerMove={onPointerMove}
+    onPointerUp={onPointerUp}
+    onPointerCancel={onPointerCancel}
+    style={dragX !== 0 ? { transform: `translateX(${dragX}px)` } : undefined}
+  >
+    <FlipCard front={front} back={back} imageDataUrl={imageDataUrl} flipped={flipped} />
   </div>
 )
 
@@ -93,9 +92,23 @@ const FlashcardFace = ({
  * FSRS self-rating scale — just "did you know it," which is deliberately
  * simpler than the default recall-first mode but still worth feeding into
  * FSRS (Know -> good/correct, Don't know -> again/incorrect) rather than
- * discarding the study effort.
+ * discarding the study effort — unless the learner turned progress tracking
+ * off in Options, in which case grading only moves to the next card. As in
+ * Quizlet, a card can be graded without flipping it first.
  */
-export const FlashcardSession = ({ card, position, total, onAdvance }: FlashcardSessionProps) => {
+export const FlashcardSession = ({
+  card,
+  position,
+  total,
+  options,
+  shortcutsEnabled,
+  onGrade,
+  canUndo,
+  shuffled,
+  onUndo,
+  onToggleShuffle,
+  onOpenOptions,
+}: FlashcardSessionProps) => {
   const { recordReview } = useSeshatStore()
   const { key: keyFor } = useKeybindings()
   const [flipped, setFlipped] = useState(false)
@@ -117,39 +130,51 @@ export const FlashcardSession = ({ card, position, total, onAdvance }: Flashcard
     shownAt.current = performance.now()
   }, [card.id])
 
-  const { front, back, imageDataUrl } = cardFrontBack(card)
+  const { imageDataUrl, ...faces } = cardFrontBack(card)
+  const { front, back } = orientFaces(faces, options.front)
 
-  const flip = useCallback(() => setFlipped(true), [])
+  const toggleFlip = useCallback(() => setFlipped((current) => !current), [])
 
   const handleGrade = useCallback(
     (known: boolean) => {
       const elapsedMs = performance.now() - shownAt.current
-      recordReview(card.id, known ? 'good' : 'again', null, known, elapsedMs)
-      onAdvance(known)
+      const reviewedAt = options.trackProgress
+        ? recordReview(card.id, known ? 'good' : 'again', null, known, elapsedMs)
+        : null
+      onGrade({
+        cardId: card.id,
+        known,
+        previousScheduling: reviewedAt === null ? null : card.scheduling,
+        reviewedAt,
+      })
     },
-    [card.id, onAdvance, recordReview],
+    [card.id, card.scheduling, onGrade, options.trackProgress, recordReview],
   )
 
-  // Remappable flip/grade shortcuts (defaults: Space to flip, 1/2 to grade
-  // once flipped) — skipped while a text input is focused, matching the
-  // default study mode's convention.
+  // Remappable shortcuts: Space flips; the nav left/right keys (arrows by
+  // default, WASD/HJKL by preset) and 1/2 grade. Skipped while a text input
+  // is focused, matching the default study mode's convention — and for the
+  // flip key while a button/select has focus, since Space already activates
+  // those and would otherwise do both.
   useEffect(() => {
+    if (!shortcutsEnabled) return
     const handler = (event: KeyboardEvent) => {
       if (event.repeat) return
       if (event.target instanceof HTMLInputElement || event.target instanceof HTMLTextAreaElement) return
-      if (!flipped) {
-        if (matchesBinding(keyFor('flashcards.flip'), event)) {
-          event.preventDefault()
-          flip()
-        }
+      if (matchesBinding(keyFor('flashcards.flip'), event)) {
+        if (event.target instanceof HTMLButtonElement || event.target instanceof HTMLSelectElement) return
+        event.preventDefault()
+        toggleFlip()
         return
       }
-      if (matchesBinding(keyFor('flashcards.dontKnow'), event)) handleGrade(false)
-      else if (matchesBinding(keyFor('flashcards.know'), event)) handleGrade(true)
+      const grade = gradeForKey(event, keyFor)
+      if (grade === null) return
+      event.preventDefault()
+      handleGrade(grade === 'know')
     }
     window.addEventListener('keydown', handler)
     return () => window.removeEventListener('keydown', handler)
-  }, [flipped, flip, handleGrade, keyFor])
+  }, [shortcutsEnabled, toggleFlip, handleGrade, keyFor])
 
   const handleFaceClick = () => {
     // A swipe that just released fires a synthetic click right after —
@@ -159,22 +184,22 @@ export const FlashcardSession = ({ card, position, total, onAdvance }: Flashcard
       justSwiped.current = false
       return
     }
-    if (!flipped) flip()
+    toggleFlip()
   }
 
+  // Space is handled by the window listener above (it is the remappable flip
+  // key); Enter is the extra activation a focused role="button" face owes.
   const handleFaceKeyDown = (event: ReactKeyboardEvent<HTMLDivElement>) => {
-    if (event.key !== ' ' && event.key !== 'Enter') return
+    if (event.key !== 'Enter') return
     event.preventDefault()
-    if (!flipped) flip()
+    toggleFlip()
   }
 
-  // Swipe navigation, additive to tap/Space/grade buttons/1-2 keys above.
+  // Swipe navigation, additive to tap/Space/grade buttons/keys above.
   // Follows the pointer-capture + threshold-on-release pattern used by the
-  // occlusion-region drag in ImageOcclusionEditor.tsx. Before the card is
-  // flipped, either direction just reveals the answer (there's nothing else
-  // to navigate to pre-reveal). Once flipped, a swipe commits a grade and
-  // advances — left mirrors the "Don't know" (1) action, right mirrors
-  // "Know" (2) — same as the existing grade buttons/keys, just gestural.
+  // occlusion-region drag in ImageOcclusionEditor.tsx. A swipe commits a
+  // grade and advances — left mirrors "still learning", right mirrors
+  // "know" — same as the buttons/keys, just gestural.
   const handlePointerDown = (event: ReactPointerEvent<HTMLDivElement>) => {
     swipeStartX.current = event.clientX
     swipeStartY.current = event.clientY
@@ -207,10 +232,6 @@ export const FlashcardSession = ({ card, position, total, onAdvance }: Flashcard
     if (Math.abs(deltaX) < SWIPE_THRESHOLD_PX || Math.abs(deltaX) < Math.abs(deltaY)) return
 
     justSwiped.current = true
-    if (!flipped) {
-      flip()
-      return
-    }
     handleGrade(deltaX > 0)
   }
 
@@ -220,51 +241,42 @@ export const FlashcardSession = ({ card, position, total, onAdvance }: Flashcard
     endSwipeGesture(event)
   }
 
-  const flashcardShortcuts = useMemo<readonly Shortcut[]>(
-    () => [
-      { key: keyFor('flashcards.flip'), label: 'Flip card' },
-      { key: keyFor('flashcards.dontKnow'), label: "Don't know (once flipped)" },
-      { key: keyFor('flashcards.know'), label: 'Know (once flipped)' },
-    ],
-    [keyFor],
-  )
-
   return (
     <div className="flashcard-session">
-      <p className="review-progress">
-        Card {position + 1} of {total}
-      </p>
+      <div className="flashcard-stack">
+        <FlashcardFace
+          flipped={flipped}
+          front={front}
+          back={back}
+          imageDataUrl={imageDataUrl}
+          dragX={dragX}
+          onClick={handleFaceClick}
+          onKeyDown={handleFaceKeyDown}
+          onPointerDown={handlePointerDown}
+          onPointerMove={handlePointerMove}
+          onPointerUp={handlePointerUp}
+          onPointerCancel={handlePointerCancel}
+        />
+        <FlashcardHint leftKey={keyFor('nav.left')} rightKey={keyFor('nav.right')} />
+      </div>
 
-      <ShortcutHelp shortcuts={flashcardShortcuts} />
-
-      <FlashcardFace
-        flipped={flipped}
-        front={front}
-        back={back}
-        imageDataUrl={imageDataUrl}
-        dragX={dragX}
-        onClick={handleFaceClick}
-        onKeyDown={handleFaceKeyDown}
-        onPointerDown={handlePointerDown}
-        onPointerMove={handlePointerMove}
-        onPointerUp={handlePointerUp}
-        onPointerCancel={handlePointerCancel}
+      <FlashcardControls
+        position={position}
+        total={total}
+        keys={{
+          stillLearning: keyFor('nav.left'),
+          know: keyFor('nav.right'),
+          undo: keyFor('flashcards.undo'),
+          shuffle: keyFor('flashcards.toggleOrder'),
+        }}
+        canUndo={canUndo}
+        shuffled={shuffled}
+        onStillLearning={() => handleGrade(false)}
+        onKnow={() => handleGrade(true)}
+        onUndo={onUndo}
+        onToggleShuffle={onToggleShuffle}
+        onOpenOptions={onOpenOptions}
       />
-
-      {!flipped ? (
-        <button type="button" onClick={flip} autoFocus>
-          Flip card <span className="flashcard-key">({keyFor('flashcards.flip')})</span>
-        </button>
-      ) : (
-        <div className="flashcard-grade-options">
-          <button type="button" onClick={() => handleGrade(false)}>
-            Don&rsquo;t know <span className="flashcard-key">({keyFor('flashcards.dontKnow')})</span>
-          </button>
-          <button type="button" onClick={() => handleGrade(true)} autoFocus>
-            Know <span className="flashcard-key">({keyFor('flashcards.know')})</span>
-          </button>
-        </div>
-      )}
     </div>
   )
 }

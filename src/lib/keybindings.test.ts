@@ -1,10 +1,13 @@
 import { describe, expect, it } from 'vitest'
 import {
   KEYBINDING_REGISTRY,
+  NAV_PRESETS,
   canonicalizeKeyString,
   describeKeyEvent,
+  detectNavPreset,
   findBindingConflict,
   findRegistryDefaultCollisions,
+  formatKeyLabel,
   matchesBinding,
   resolveKey,
   resolveKeybindings,
@@ -231,5 +234,42 @@ describe('sanitizeOverrides', () => {
     const result = sanitizeOverrides({ 'flashcards.flip': 42, 'flashcards.know': '3' })
     expect(result.overrides).toEqual({ 'flashcards.know': '3' })
     expect(result.ignoredActionIds).toContain('flashcards.flip')
+  })
+})
+
+describe('registry default keys', () => {
+  it('are all already canonical, so a keypress can actually match them', () => {
+    // A default like 'o' would never match: keypresses normalise to 'O'.
+    for (const action of KEYBINDING_REGISTRY) {
+      expect(canonicalizeKeyString(action.defaultKey), action.id).toBe(action.defaultKey)
+    }
+  })
+})
+
+describe('navigation presets', () => {
+  const resolveWith = (overrides: Record<string, string>) => (actionId: string) => resolveKey(actionId, overrides)
+
+  it('defaults to the arrow-key preset', () => {
+    expect(detectNavPreset(resolveWith({}))).toBe('arrows')
+  })
+
+  it.each(['arrows', 'wasd', 'hjkl'] as const)('detects the %s preset once its keys are applied', (id) => {
+    expect(detectNavPreset(resolveWith({ ...NAV_PRESETS[id] }))).toBe(id)
+  })
+
+  it('reports custom when the nav keys match no preset', () => {
+    expect(detectNavPreset(resolveWith({ 'nav.left': 'Q' }))).toBe('custom')
+  })
+
+  it('keeps every preset collision-free within the navigation scope', () => {
+    for (const preset of Object.values(NAV_PRESETS)) {
+      expect(new Set(Object.values(preset)).size).toBe(4)
+    }
+  })
+
+  it('renders arrow keys as glyphs and leaves other keys alone', () => {
+    expect(formatKeyLabel('ArrowLeft')).toBe('←')
+    expect(formatKeyLabel('Ctrl+ArrowUp')).toBe('Ctrl+↑')
+    expect(formatKeyLabel('Space')).toBe('Space')
   })
 })

@@ -1,24 +1,15 @@
-.flashcard-order-toggle {
-  display: inline-flex;
-  gap: 0.25rem;
-  padding: 0.2rem;
-  margin: 0 0 1rem;
-  border: none;
-  border-radius: var(--radius-sm);
-  background: var(--color-bg-elevated-2);
+/* Back link and set title on one row, baseline-aligned; wraps on narrow screens. */
+.flashcards-header {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  gap: 0.25rem 1.5rem;
+  margin-bottom: 1.5rem;
 }
 
-.flashcard-order-toggle button {
-  padding: 0.35rem 0.75rem;
-  border: none;
-  border-radius: var(--radius-sm);
-  background: transparent;
-  color: var(--color-fg-muted);
-}
-
-.flashcard-order-toggle button.is-active {
-  background: var(--color-accent);
-  color: var(--color-accent-contrast);
+.flashcards-header h1 {
+  margin: 0;
+  overflow-wrap: anywhere;
 }
 
 .flashcard-complete {

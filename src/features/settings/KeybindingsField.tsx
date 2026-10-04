@@ -1,5 +1,10 @@
 import { type ChangeEvent, useEffect, useId, useState } from 'react'
-import { type KeybindingAction, type KeybindingScope, describeKeyEvent, sanitizeOverrides } from '../../lib/keybindings'
+import {
+  type KeybindingAction,
+  KEYBINDING_SCOPE_LABELS,
+  describeKeyEvent,
+  sanitizeOverrides,
+} from '../../lib/keybindings'
 import { actionsByScope, useKeybindings } from '../../lib/useKeybindings'
 import { downloadJson } from '../sets/download'
 
@@ -11,21 +16,6 @@ import { downloadJson } from '../sets/download'
  * Mirrors `ImportPanel.tsx`'s FileReader + `type="file"` upload pattern and
  * `SetDetail.tsx`'s `downloadJson` export pattern.
  */
-
-const SCOPE_LABELS: Record<KeybindingScope, string> = {
-  global: 'Global',
-  flashcards: 'Flashcards',
-  studyAnswer: 'Study — answering (multiple choice)',
-  studyConfidence: 'Study — confidence step',
-  studyReveal: 'Study — grading step',
-  match: 'Match',
-  test: 'Test',
-  setDetail: 'Set page — mode picker',
-  games: 'Games list',
-  blast: 'Blast',
-  blocksQuestion: 'Blocks — question step',
-  blocksPlacing: 'Blocks — placing step',
-}
 
 const MODIFIER_KEY_NAMES: ReadonlySet<string> = new Set(['Control', 'Meta', 'Alt', 'Shift'])
 
@@ -226,7 +216,7 @@ export const KeybindingsField = () => {
 
       {Array.from(grouped.entries()).map(([scope, actions]) => (
         <fieldset key={scope} className="keybindings-scope">
-          <legend>{SCOPE_LABELS[scope]}</legend>
+          <legend>{KEYBINDING_SCOPE_LABELS[scope]}</legend>
           {actions.map((action) => (
             <KeybindingRow key={action.id} action={action} />
           ))}

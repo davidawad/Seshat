@@ -3,6 +3,10 @@ import { Link } from 'react-router-dom'
 export const DocsPage = () => (
   <section aria-labelledby="docs-heading">
     <h1 id="docs-heading">Docs</h1>
+    <p>
+      Using an AI agent? Read the <a href={`${import.meta.env.BASE_URL}agents.txt`}>agent guide (agents.txt)</a> for URL
+      import, the console API and the import JSON Schema.
+    </p>
 
     <section aria-labelledby="docs-origin-heading">
       <h2 id="docs-origin-heading">Why Seshat exists</h2>

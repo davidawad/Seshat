@@ -1,5 +1,4 @@
 import { type FormEvent, useEffect, useRef, useState } from 'react'
-import { ShortcutHelp } from '../../components/ShortcutHelp'
 import { matchesBinding } from '../../lib/keybindings'
 import { useSeshatStore } from '../../lib/store'
 import { useKeybindings } from '../../lib/useKeybindings'
@@ -105,7 +104,6 @@ export const TestSession = ({ cards }: TestSessionProps) => {
 
   return (
     <form className="test-session" onSubmit={handleSubmit}>
-      <ShortcutHelp shortcuts={[{ key: keyFor('test.submit'), label: 'Submit test' }]} />
       <ol className="test-question-list">
         {questions.map((question, index) => (
           <li key={question.cardId} className="illuminated-panel test-question-item">

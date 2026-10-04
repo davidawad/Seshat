@@ -1,9 +1,44 @@
 import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest'
-import { loadKeybindingOverrides, saveKeybindingOverrides } from './keybindingStorage'
+import {
+  KEYBINDINGS_STORAGE_KEY,
+  loadKeybindingOverrides,
+  saveKeybindingOverrides,
+  subscribeToKeybindingOverrides,
+} from './keybindingStorage'
+import { clearMirrors } from './persistence'
 
 describe('keybindingStorage', () => {
   beforeEach(() => {
     window.localStorage.clear()
+    clearMirrors()
+  })
+
+  describe('cookie mirror', () => {
+    it('falls back to the mirrored overrides when localStorage has none', () => {
+      saveKeybindingOverrides({ 'flashcards.flip': 'Enter' })
+      window.localStorage.clear()
+      expect(loadKeybindingOverrides()).toEqual({ 'flashcards.flip': 'Enter' })
+    })
+
+    it('prefers localStorage over the mirror, even when it is corrupt', () => {
+      saveKeybindingOverrides({ 'flashcards.flip': 'Enter' })
+      window.localStorage.setItem(KEYBINDINGS_STORAGE_KEY, '{not valid json')
+      expect(loadKeybindingOverrides()).toEqual({})
+    })
+  })
+
+  it('notifies subscribers when another tab changes the overrides', () => {
+    const onChange = vi.fn()
+    const stop = subscribeToKeybindingOverrides(onChange)
+    window.localStorage.setItem(KEYBINDINGS_STORAGE_KEY, JSON.stringify({ 'flashcards.flip': 'Enter' }))
+    window.dispatchEvent(
+      new StorageEvent('storage', {
+        key: KEYBINDINGS_STORAGE_KEY,
+        newValue: JSON.stringify({ 'flashcards.flip': 'Enter' }),
+      }),
+    )
+    expect(onChange).toHaveBeenCalledWith({ 'flashcards.flip': 'Enter' })
+    stop()
   })
 
   it('returns {} when nothing has been saved', () => {

@@ -1,3 +1,11 @@
+# agents.txt
+# Standard: https://agents-txt.com/spec/
+# Seshat has no MCP server, no Skills/A2A/UCP endpoint, requires no authentication or identity,
+# and takes no payments, so none of those directives are declared. Every path in this file is
+# relative to the directory this file is served from (the site root of the deployment).
+# In-page WebMCP tools are shipped (see the WEBMCP section); no WebMCP: directive is declared
+# because agents-txt defines none for in-page tools — they are discovered via the browser API.
+
 SESHAT — AGENT NOTES
 =====================
 
@@ -11,9 +19,10 @@ CONSOLE API (window.seshat)
 ----------------------------
 Open the browser devtools console on this page and call window.seshat directly:
   listSets(), listCards(setId), exportSet(setId), exportSetSimple(setId),
-  importSet(json), importSimpleJson(raw, setName?)
-Reads/writes localStorage directly. Caveat: if this tab is already open while you call it, reload
-the page to see the change — React only reads localStorage once, on mount.
+  importSet(json), importSimpleJson(raw, setName?), exportAll(), importAll(json, mode)
+  (mode is "merge" or "replace")
+Reads/writes localStorage directly, then dispatches a window event the app listens for, so an open
+tab updates live. If something still looks stale, reload once.
 
 QUICK IMPORT VIA URL (recommended for a browser-driving agent)
 ----------------------------------------------------------------
@@ -40,7 +49,50 @@ needed.
   Size note: keep the whole URL under roughly 8KB for reliability across browsers. Image-occlusion
   cards embed a full data: URL image and are not realistic to build this way.
 
+WEBMCP (IN-PAGE TOOLS)
+----------------------
+Where the browser exposes WebMCP (document.modelContext per the W3C Web Machine Learning CG draft of
+2 October 2026; older flagged Chrome builds expose navigator.modelContext, which is also tried), the app
+registers these tools via registerTool(). They act through the running app's own state, so the open tab
+updates live (unlike window.seshat). Arguments are validated; failures return {"error": ...} with
+isError true instead of throwing.
+  list_sets()                      sets with id, name, description, tags, cardCount, memorized, due, new
+  list_cards({setId})              cards of one set
+  get_settings()                   current settings
+  update_settings({patch})         change settings; unknown/out-of-range fields reject the whole call
+  import_set({json})               simple {name, terms} or full set export (same parser as ?import=)
+  export_set({setId})              one set as set-export JSON
+  export_all()                     whole-app backup object (settings, sets, cards, review history)
+  import_all({json, mode})         restore a backup; mode "merge" (default) only adds missing sets/cards,
+                                   mode "replace" DESTROYS current data (flagged consequentialHint)
+  navigate({to, setId?})           to: home | sets | stats | docs | about | set (set needs setId)
+Tool results are {"content":[{"type":"text","text":"<JSON>"}]}. JSON arguments are strings, capped at 25M
+characters. Browsers without WebMCP register nothing; use ?import= or window.seshat instead.
+
+SCHEMAS
+-------
+JSON Schema for both accepted import shapes (simple {name, terms} and full seshatExportVersion 1):
+  schema/set-import.schema.json   (relative to this file)
+Generated from the app's own Zod schemas at build time, so it cannot drift from the importer.
+
+HOW TO DRIVE THE UI (browser-driving agents)
+---------------------------------------------
+- Prefer ?import= above over clicking through the importer; it is one navigation.
+- Routes: / (home), /sets, /sets/:id, /docs, /attributions, /licensing. Study modes are launched
+  from a set's page.
+- Interactive elements use native buttons, links and form controls with accessible names, so
+  role + label locators (e.g. getByRole('button', { name: ... })) are stable. Prefer those over CSS
+  classes, which are not a stable interface.
+- data-testid attributes are PLANNED for key controls; they do not exist yet.
+- Everything is client-side: a fresh browser profile starts empty, and data from one profile or
+  origin is invisible to another (dev server vs. deployed site are different origins).
+
+PLANNED (NOT YET AVAILABLE — do not rely on these)
+---------------------------------------------------
+- Full-data JSON backup export/import (all sets, review history and settings in one file).
+
 MORE
 ----
-Full agent-oriented docs (repo-level, for coding agents with source access): /AGENTS.md in the
-project source. Human-facing docs: /docs and /attributions in this app.
+Machine-readable index: llms.txt (and llms-full.txt, a single-file concatenation of the docs) next
+to this file. Repo-level docs for coding agents with source access: AGENTS.md next to this file
+(also in the project source). Human-facing docs: /docs and /attributions in this app.
