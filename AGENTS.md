@@ -27,8 +27,9 @@ pnpm run lint              # oxlint
 pnpm run typecheck          # tsc -b --noEmit
 pnpm run format:check        # prettier --check .
 pnpm run format                # prettier --write .
-pnpm run ci                     # format:check + lint + typecheck + test + build, in order — run this before
-                                  # calling anything done
+pnpm run ci                     # format:check + lint + typecheck + circular + duplication + license +
+                                  # test:coverage + build + size — run this before calling anything done
+pnpm run knip                    # unused files/exports (a commit gate, not part of ci)
 ```
 
 pnpm is canonical (see `packageManager` in `package.json`) — never `npm install`/`yarn` here.
@@ -45,9 +46,11 @@ implementation: `src/lib/window-api.ts`. Methods: `listSets()`, `listCards(setId
 `importAll(json, mode)` (`mode` is `'merge'` or `'replace'`).
 
 **How it reaches the page:** this API reads and writes `localStorage` directly, then dispatches a
-`seshat:external-write` window event; the app's store listens for it and re-hydrates, so an open tab updates
-live without a reload. If something still looks stale, reload once. The URL query-param importer below and the
-WebMCP tools go through the app's store directly.
+`seshat:external-write` window event (`notifyExternalWrite` in `src/lib/persistence.ts`); the app's store listens
+for it and re-hydrates, so an open tab updates live without a reload. `importSet` takes a parsed object;
+`importSimpleJson` and `importAll` take a JSON string; `importAll` returns `{ ok, value: report }` or
+`{ ok: false, error }`. The URL query-param importer below and the WebMCP tools go through the app's store
+directly.
 
 ## URL query-param import (the fast path for a fresh set)
 
@@ -143,16 +146,69 @@ running app's editor UI directly rather than trying to force it through either i
 Where the browser supports WebMCP, the app registers structured tools an agent can call instead of clicking.
 Implementation: `src/lib/webmcp.ts` (pure, tested) mounted once by `src/lib/useWebMcp.ts` in `Layout.tsx`. Built
 against the W3C WebML CG draft of 2 October 2026: entry point is `document.modelContext` (the older
-`navigator.modelContext` is a fallback), tools are registered with `registerTool(tool, { signal })` and
-unregistered by aborting the signal (StrictMode-safe), and results are `{ content: [{ type: 'text', text }] }`
-with `isError` on failure. Chrome only ships it behind a flag, so nothing registers elsewhere.
+`navigator.modelContext` is the fallback, see `detectModelContext`), tools are registered with
+`registerTool(tool, { signal })` and unregistered by aborting the signal (StrictMode-safe), and results are
+`{ content: [{ type: 'text', text }] }` with `isError` on failure. Chrome only ships it behind a flag, so nothing
+registers elsewhere.
 
-Tools: `list_sets`, `list_cards {setId}`, `get_settings`, `update_settings {patch}`, `import_set {json}`,
-`export_set {setId}`, `export_all`, `import_all {json, mode}` (`merge` default; `replace` is destructive and
-flagged `consequentialHint`), `navigate {to, setId?}`. Each tool's Zod schema yields both its JSON Schema and its
-runtime validation; agent input is untrusted (spec security section is unresolved), so every argument is
-validated and size-capped, and errors come back as values. All writes go through the React store, so an open tab
-updates live — unlike `window.seshat`.
+| Tool              | Input                                                      | Annotations                        |
+| ----------------- | ---------------------------------------------------------- | ---------------------------------- |
+| `list_sets`       | none                                                       | readOnlyHint, untrustedContentHint |
+| `list_cards`      | `{setId}`                                                  | readOnlyHint, untrustedContentHint |
+| `get_settings`    | none                                                       | readOnlyHint                       |
+| `update_settings` | `{patch}` (any subset of settings)                         | none                               |
+| `import_set`      | `{json}` (simple or full set JSON string)                  | none                               |
+| `export_set`      | `{setId}`                                                  | readOnlyHint, untrustedContentHint |
+| `export_all`      | none                                                       | readOnlyHint, untrustedContentHint |
+| `import_all`      | `{json, mode}` (`merge` default / `replace`)               | consequentialHint                  |
+| `navigate`        | `{to, setId?}` (`to`: home, sets, stats, docs, about, set) | none                               |
+
+Each tool's Zod schema yields both its JSON Schema and its runtime validation. Security: the spec's security
+section is unresolved, so agent input is untrusted: arguments are strict objects (unknown keys rejected),
+string payloads are capped at 25M characters (`MAX_BACKUP_CHARS`), `update_settings` rejects the whole call on any
+bad field and only applies keys actually sent, `replace` is destructive and flagged `consequentialHint`, errors
+come back as `{ error }` values and never throw, and card text in results is flagged `untrustedContentHint`.
+All writes go through the React store, so an open tab updates live.
+
+## Full-data backup
+
+One JSON file with settings, keybinding overrides, sets, cards (FSRS scheduling kept) and review history:
+`{ format: 'seshat-backup', version: 1, appVersion, exportedAt, settings, keybindings, sets, cards, reviewLog }`.
+Export/restore from Settings -> Backup (merge or replace), `window.seshat.exportAll()/importAll(json, mode)`, or the
+`export_all`/`import_all` tools. `merge` (default) only adds sets/cards whose ids are missing, plus the review
+history of added cards; it never touches existing data, settings or keybindings. `replace` swaps everything.
+`parseBackup` (`src/lib/backup.ts`) is strict: unknown fields rejected, unique ids, cards need a set, log entries
+need a card, `settings` may be partial, size-capped, newer versions refused, older versions migrated via
+`MIGRATIONS` (bump `BACKUP_VERSION` and add a step when the format changes).
+
+JSON Schemas are generated from the Zod schemas by the agent-files plugin and served at
+`/schema/set-import.schema.json`, `/schema/seshat-backup.schema.json` and `/schema/seshat-settings.schema.json`
+(draft 2020-12; the settings schema lists every field's enum/range/default). Change a Zod schema and the served
+schema follows; `vite-plugins/agent-files.test.ts` checks parity.
+
+## Settings, cookie mirror and keybindings
+
+- Settings: `settingsSchema` in `src/types.ts` (typeface, size, line height, measure, theme, palette,
+  `customAccent`, `reducedMotion`, retention, `selfExplanationEnabled`, `experimentalGamesEnabled`,
+  `flashcardsTrackProgress`, `flashcardsFront`, `installPromptEnabled`). Add a field there with a `.default()` so old
+  saves and backups still parse.
+- Cookie mirror (`src/lib/persistence.ts`): settings and keybinding overrides only (never study data) are mirrored to
+  the cookies `seshat_settings` and `seshat_keys`, read only when localStorage has no copy, and re-validated with
+  the same schemas. Encoded budget 3500 characters per cookie (over budget drops the cookie); `Path` = deploy base,
+  `Max-Age` 400 days, `SameSite=Lax`, `Secure` on https. Cookies are shared per host, not per port: dev servers on
+  different ports of `localhost` see each other's cookies (localStorage stays per origin), so test a "fresh
+  profile" with a new host or cleared cookies.
+- Keyboard model (`src/lib/keybindings.ts`): every action is in `KEYBINDING_REGISTRY` (id, default key, label,
+  scope); overrides live in localStorage `seshat:keybindings:v1` (and the cookie) and only differ-from-default
+  entries are stored, so an agent reads live bindings from `exportAll().keybindings` plus the registry defaults.
+  Navigation preset (`NAV_PRESETS`): Arrow keys, WASD, HJKL, remapped together. Number keys select numbered items
+  (set modes 1-4, games 1-5, MCQ options, match tiles 1-9, confidence 1-3, grades 1-4). Flashcards: Space flips,
+  1/Left still learning, 2/Right know, U undo, O toggle shuffled/original order. The footer "Keyboard shortcuts"
+  modal lists everything with current bindings; `?` opens Settings. Add a shortcut by adding a registry entry (the
+  test enforces no same-scope default collisions); never hard-code a key.
+- Flashcards Options: `flashcardsTrackProgress` (default on; off = grading only advances the session, no FSRS or
+  review-log change) and `flashcardsFront` (`term` | `definition`). Undo restores the previous scheduling and removes
+  that review-log entry.
 
 ## Beads Issue Tracker
 

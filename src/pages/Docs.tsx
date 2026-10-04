@@ -5,8 +5,40 @@ export const DocsPage = () => (
     <h1 id="docs-heading">Docs</h1>
     <p>
       Using an AI agent? Read the <a href={`${import.meta.env.BASE_URL}agents.txt`}>agent guide (agents.txt)</a> for URL
-      import, the console API and the import JSON Schema.
+      import, the console API, WebMCP tools, the backup format and the JSON Schemas.
     </p>
+
+    <section aria-labelledby="docs-agents-heading">
+      <h2 id="docs-agents-heading">For AI agents and scripts</h2>
+      <p>
+        Everything below runs in your browser; there is no server. Details and examples are in the{' '}
+        <a href={`${import.meta.env.BASE_URL}agents.txt`}>agent guide</a>.
+      </p>
+      <ul>
+        <li>
+          <strong>URL import:</strong> add <code>?import=</code> with URL-encoded set JSON to any page.
+        </li>
+        <li>
+          <strong>Console API:</strong> <code>window.seshat</code> offers <code>listSets</code>, <code>listCards</code>,{' '}
+          <code>exportSet</code>, <code>importSet</code>, <code>exportAll</code> and{' '}
+          <code>importAll(json, &apos;merge&apos; | &apos;replace&apos;)</code>; an open tab updates live.
+        </li>
+        <li>
+          <strong>WebMCP:</strong> where the browser supports it, tools such as <code>list_sets</code>,{' '}
+          <code>import_set</code>, <code>export_all</code> and <code>update_settings</code> are registered on{' '}
+          <code>document.modelContext</code>.
+        </li>
+        <li>
+          <strong>Backup:</strong> Settings &rarr; Backup downloads and restores one file holding settings, keyboard
+          remaps, sets, cards and review history. Merge only adds what is missing; Replace overwrites everything.
+        </li>
+        <li>
+          <strong>Schemas:</strong> <a href={`${import.meta.env.BASE_URL}schema/set-import.schema.json`}>set import</a>,{' '}
+          <a href={`${import.meta.env.BASE_URL}schema/seshat-backup.schema.json`}>backup</a> and{' '}
+          <a href={`${import.meta.env.BASE_URL}schema/seshat-settings.schema.json`}>settings</a> (JSON Schema).
+        </li>
+      </ul>
+    </section>
 
     <section aria-labelledby="docs-origin-heading">
       <h2 id="docs-origin-heading">Why Seshat exists</h2>
