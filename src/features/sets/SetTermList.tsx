@@ -1,3 +1,4 @@
+import { CardImage } from '../../components/CardImage'
 import { Legible } from '../../components/Legible'
 import { TESTIDS } from '../../lib/testids'
 import type { StudyCard } from '../../types'
@@ -16,7 +17,7 @@ interface SetTermListProps {
  */
 export const SetTermList = ({ cards }: SetTermListProps) => {
   const rows = cards.map((card) => ({ card, ...cardFrontBack(card) }))
-  const hasDiagrams = rows.some((row) => row.imageDataUrl !== undefined)
+  const hasDiagrams = rows.some((row) => row.image !== null || row.imageDataUrl !== undefined)
   return (
     <div className="set-term-scroll">
       <table className="set-term-table" data-testid={TESTIDS.setTermList}>
@@ -29,7 +30,7 @@ export const SetTermList = ({ cards }: SetTermListProps) => {
           </tr>
         </thead>
         <tbody>
-          {rows.map(({ card, front, back, imageDataUrl }) => (
+          {rows.map(({ card, front, back, image, imageDataUrl }) => (
             <tr key={card.id}>
               <td className="set-term-front">
                 <Legible as="span" measure={false}>
@@ -43,7 +44,7 @@ export const SetTermList = ({ cards }: SetTermListProps) => {
               </td>
               {hasDiagrams && (
                 <td className="set-term-diagram">
-                  {imageDataUrl !== undefined && <img src={imageDataUrl} alt="" className="set-term-image" />}
+                  <CardImage image={image} imageDataUrl={imageDataUrl} alt="" className="set-term-image" />
                 </td>
               )}
             </tr>

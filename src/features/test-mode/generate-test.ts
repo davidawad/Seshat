@@ -1,3 +1,4 @@
+import type { MediaRef } from '../../lib/media/types'
 import type { CardId, StudyCard } from '../../types'
 import { cardFrontBack } from '../study/card-summary'
 import { textCards } from '../study/text-cards'
@@ -15,6 +16,8 @@ export type QuestionFormat = 'written' | 'true-false' | 'multiple-choice'
 interface BaseQuestion {
   readonly cardId: CardId
   readonly front: string
+  /** The card's prompt image (MediaRef), when it has one. */
+  readonly image?: MediaRef
 }
 
 export interface WrittenQuestion extends BaseQuestion {
@@ -61,7 +64,11 @@ interface FrontBackPair {
   readonly card: StudyCard
   readonly front: string
   readonly back: string
+  readonly image?: MediaRef
 }
+
+const imageOf = (pair: FrontBackPair): { readonly image?: MediaRef } =>
+  pair.image === undefined ? {} : { image: pair.image }
 
 /**
  * Picks up to `count` distractor answers from `pool`, excluding anything
@@ -122,7 +129,13 @@ export const generateTest = (allCards: readonly StudyCard[], random: () => numbe
 
     switch (format) {
       case 'written':
-        return { format: 'written', cardId: pair.card.id, front: pair.front, correctAnswer: pair.back }
+        return {
+          format: 'written',
+          cardId: pair.card.id,
+          front: pair.front,
+          ...imageOf(pair),
+          correctAnswer: pair.back,
+        }
 
       case 'true-false': {
         const decoyCandidates = pickDistinct(
@@ -140,6 +153,7 @@ export const generateTest = (allCards: readonly StudyCard[], random: () => numbe
           format: 'true-false',
           cardId: pair.card.id,
           front: pair.front,
+          ...imageOf(pair),
           claimedAnswer: claimIsTrue ? pair.back : decoy!,
           claimIsTrue,
         }
@@ -156,6 +170,7 @@ export const generateTest = (allCards: readonly StudyCard[], random: () => numbe
           format: 'multiple-choice',
           cardId: pair.card.id,
           front: pair.front,
+          ...imageOf(pair),
           options: shuffle([pair.back, ...distractors], random),
           correctOption: pair.back,
         }

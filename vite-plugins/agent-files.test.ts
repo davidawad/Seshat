@@ -1,5 +1,5 @@
 import { describe, expect, it } from 'vitest'
-import { BACKUP_FORMAT, BACKUP_VERSION, backupV1Schema } from '../src/lib/backup-schema.ts'
+import { BACKUP_FORMAT, BACKUP_VERSION, backupSchema } from '../src/lib/backup-schema.ts'
 import { createInitialScheduling } from '../src/lib/fsrs.ts'
 import {
   type AppState,
@@ -170,6 +170,7 @@ const createBackup = (state: AppState, keybindings: Record<string, string>, now:
   sets: state.sets,
   cards: state.cards,
   reviewLog: state.reviewLog,
+  media: {},
 })
 
 const sampleState = () => {
@@ -182,7 +183,8 @@ const sampleState = () => {
         id: cardIdSchema.parse('10000000-0000-4000-8000-000000000001'),
         setId,
         prompt: 'Q',
-        content: { kind: 'short-answer' as const, acceptableAnswers: [], answer: 'A' },
+        promptImage: null,
+        content: { kind: 'short-answer' as const, acceptableAnswers: [], answerImage: null, answer: 'A' },
         explanation: null,
         sourceRef: null,
         tags: [],
@@ -208,7 +210,7 @@ describe('buildBackupSchema', () => {
   })
 
   it('accepts a real createBackup output, an empty one, and one with partial settings', () => {
-    expect(backupV1Schema.safeParse(backup).success).toBe(true)
+    expect(backupSchema.safeParse(backup).success).toBe(true)
     expect(validate(schema, backup)).toBe(true)
     expect(validate(schema, JSON.parse(JSON.stringify(createBackup(createEmptyAppState(), {}, new Date(ISO)))))).toBe(
       true,
@@ -216,11 +218,30 @@ describe('buildBackupSchema', () => {
     expect(validate(schema, { ...backup, settings: { theme: 'dark' } })).toBe(true)
   })
 
+  it('describes the v2 media map and the new card image fields', () => {
+    const props = schema['properties'] as Record<string, Obj>
+    expect(props['version']).toMatchObject({ const: 2 })
+    expect(props['media']).toBeDefined()
+    const media = { ['a'.repeat(64)]: { mime: 'image/png', dataBase64: 'AAAA', width: 1, height: 1 } }
+    expect(validate(schema, { ...backup, media })).toBe(true)
+    expect(
+      validate(schema, {
+        ...backup,
+        media: { ['a'.repeat(64)]: { mime: 'image/gif', dataBase64: 'AAAA', width: 1, height: 1 } },
+      }),
+    ).toBe(false)
+    const text = JSON.stringify(schema)
+    expect(text).toContain('promptImage')
+    expect(text).toContain('answerImage')
+    expect(text).toContain('imageDataUrl')
+  })
+
   it('rejects garbage', () => {
     expect(validate(schema, 'nope')).toBe(false)
     expect(validate(schema, {})).toBe(false)
     expect(validate(schema, { ...backup, format: 'other' })).toBe(false)
-    expect(validate(schema, { ...backup, version: 2 })).toBe(false)
+    expect(validate(schema, { ...backup, version: 1 })).toBe(false)
+    expect(validate(schema, { ...backup, version: 3 })).toBe(false)
     expect(validate(schema, { ...backup, extra: 1 })).toBe(false)
     expect(validate(schema, { ...backup, settings: { theme: 'neon' } })).toBe(false)
     expect(validate(schema, { ...backup, settings: { bodyFontSizePt: 99 } })).toBe(false)

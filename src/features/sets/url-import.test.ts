@@ -15,7 +15,13 @@ describe('parseImportParam', () => {
       cards: [
         {
           prompt: 'What does MPEP stand for?',
-          content: { kind: 'short-answer', answer: 'Manual of Patent Examining Procedure', acceptableAnswers: [] },
+          promptImage: null,
+          content: {
+            kind: 'short-answer',
+            answer: 'Manual of Patent Examining Procedure',
+            acceptableAnswers: [],
+            answerImage: null,
+          },
           explanation: null,
           sourceRef: null,
           tags: [],
@@ -41,7 +47,8 @@ describe('parseImportParam', () => {
         cards: [
           {
             prompt: 'A',
-            content: { kind: 'short-answer', answer: 'B', acceptableAnswers: [] },
+            promptImage: null,
+            content: { kind: 'short-answer', answer: 'B', acceptableAnswers: [], answerImage: null },
             explanation: null,
             sourceRef: null,
             tags: [],

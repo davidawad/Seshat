@@ -1,5 +1,6 @@
 import { useEffect, useRef } from 'react'
 import { useNavigate } from 'react-router-dom'
+import { useMediaStore } from './media/MediaStoreProvider'
 import { useSeshatStore } from './store'
 import { type WebMcpDeps, detectModelContext, registerWebMcpTools } from './webmcp'
 
@@ -12,11 +13,12 @@ import { type WebMcpDeps, detectModelContext, registerWebMcpTools } from './webm
  */
 export const useWebMcp = (): void => {
   const store = useSeshatStore()
+  const media = useMediaStore()
   const navigate = useNavigate()
-  const depsRef = useRef<WebMcpDeps>({ store, navigate, now: () => new Date() })
+  const depsRef = useRef<WebMcpDeps>({ store, media, navigate, now: () => new Date() })
 
   useEffect(() => {
-    depsRef.current = { store, navigate, now: () => new Date() }
+    depsRef.current = { store, media, navigate, now: () => new Date() }
   })
 
   useEffect(() => registerWebMcpTools(detectModelContext(), () => depsRef.current), [])

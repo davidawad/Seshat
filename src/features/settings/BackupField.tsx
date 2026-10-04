@@ -1,8 +1,16 @@
 import { type ChangeEvent, useId, useState } from 'react'
-import { type Backup, type ImportMode, backupFilename, describeImport, parseBackup } from '../../lib/backup'
+import {
+  type Backup,
+  type ImportMode,
+  backupFilename,
+  buildBackupBlob,
+  describeImport,
+  parseBackup,
+} from '../../lib/backup'
+import { useMediaStore } from '../../lib/media/MediaStoreProvider'
 import { useSeshatStore } from '../../lib/store'
 import { useKeybindings } from '../../lib/useKeybindings'
-import { downloadJson } from '../sets/download'
+import { downloadBlob } from '../sets/download'
 
 /**
  * The Settings "Backup" section: download everything (settings, keyboard
@@ -27,6 +35,7 @@ const readFileAsText = (file: File): Promise<string> =>
 
 export const BackupField = () => {
   const { exportAll, importAll } = useSeshatStore()
+  const media = useMediaStore()
   const { replaceAll: replaceKeybindings } = useKeybindings()
   const [mode, setMode] = useState<ImportMode>('merge')
   const [pending, setPending] = useState<Backup | null>(null)
@@ -36,9 +45,9 @@ export const BackupField = () => {
   const errorId = useId()
   const modeName = useId()
 
-  const apply = (backup: Backup, chosenMode: ImportMode) => {
-    const result = importAll(backup, chosenMode)
+  const apply = async (backup: Backup, chosenMode: ImportMode) => {
     setPending(null)
+    const result = await importAll(backup, chosenMode)
     if (!result.ok) {
       setError(result.error)
       return
@@ -71,14 +80,23 @@ export const BackupField = () => {
       return
     }
     if (mode === 'replace') setPending(parsed.value)
-    else apply(parsed.value, 'merge')
+    else await apply(parsed.value, 'merge')
   }
 
-  const handleDownload = () => {
-    const now = new Date()
-    downloadJson(backupFilename(now), exportAll())
+  const handleDownload = async () => {
     setError(null)
-    setMessage('Downloaded a backup of all your data.')
+    setMessage(null)
+    try {
+      const { value: blob, missing } = await buildBackupBlob(exportAll(), media)
+      downloadBlob(backupFilename(new Date()), blob)
+      setMessage(
+        missing.length === 0
+          ? 'Downloaded a backup of all your data.'
+          : `Downloaded a backup, but ${missing.length} image${missing.length === 1 ? ' was' : 's were'} missing from this device and could not be included.`,
+      )
+    } catch {
+      setError('Could not read your images to build the backup. Nothing was downloaded.')
+    }
   }
 
   return (
@@ -87,7 +105,13 @@ export const BackupField = () => {
       <p className="field-hint">
         One JSON file with all your settings, keyboard shortcuts, sets, cards and review history.
       </p>
-      <button type="button" data-testid="backup-download" onClick={handleDownload}>
+      <button
+        type="button"
+        data-testid="backup-download"
+        onClick={() => {
+          void handleDownload()
+        }}
+      >
         Download all data (JSON)
       </button>
 
@@ -136,7 +160,13 @@ export const BackupField = () => {
             Replace everything with this backup ({pending.sets.length} sets, {pending.cards.length} cards)? Your current
             sets, review history and settings will be overwritten. This cannot be undone.
           </p>
-          <button type="button" data-testid="backup-confirm-replace" onClick={() => apply(pending, 'replace')}>
+          <button
+            type="button"
+            data-testid="backup-confirm-replace"
+            onClick={() => {
+              void apply(pending, 'replace')
+            }}
+          >
             Replace everything
           </button>
           <button type="button" data-testid="backup-confirm-cancel" onClick={() => setPending(null)}>

@@ -30,7 +30,7 @@ export const AddTermRow = ({ setId }: AddTermRowProps) => {
     isCommittingRef.current = true
     addCard(setId, {
       prompt: trimmedTerm,
-      content: { kind: 'short-answer', answer: trimmedDefinition, acceptableAnswers: [] },
+      content: { kind: 'short-answer', answer: trimmedDefinition, acceptableAnswers: [], answerImage: null },
       explanation: null,
       sourceRef: null,
       tags: [],

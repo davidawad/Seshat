@@ -59,7 +59,8 @@ export interface SimpleJsonImportResult {
 const toExportedCards = (terms: readonly { readonly term: string; readonly definition: string }[]): ExportedCard[] =>
   terms.map((t) => ({
     prompt: t.term,
-    content: { kind: 'short-answer', answer: t.definition, acceptableAnswers: [] },
+    promptImage: null,
+    content: { kind: 'short-answer', answer: t.definition, acceptableAnswers: [], answerImage: null },
     explanation: null,
     sourceRef: null,
     tags: [],

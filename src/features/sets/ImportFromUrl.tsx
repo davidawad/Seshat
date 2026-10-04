@@ -21,7 +21,7 @@ import { parseImportParam } from './url-import'
  */
 export const ImportFromUrl = () => {
   const [searchParams, setSearchParams] = useSearchParams()
-  const { importSet } = useSeshatStore()
+  const { importSet, prepareSetImport } = useSeshatStore()
   const navigate = useNavigate()
   const location = useLocation()
   const [error, setError] = useState<string | null>(null)
@@ -67,9 +67,16 @@ export const ImportFromUrl = () => {
       return
     }
 
-    const set = importSet(result.value)
-    navigate(`/sets/${set.id}`, { replace: true })
-  }, [searchParams, setSearchParams, importSet, navigate, location.pathname])
+    void prepareSetImport(result.value).then((prepared) => {
+      if (!prepared.ok) {
+        setError(prepared.error)
+        errorPathnameRef.current = location.pathname
+        return
+      }
+      const set = importSet(prepared.value)
+      navigate(`/sets/${set.id}`, { replace: true })
+    })
+  }, [searchParams, setSearchParams, importSet, prepareSetImport, navigate, location.pathname])
 
   if (error === null) return null
 

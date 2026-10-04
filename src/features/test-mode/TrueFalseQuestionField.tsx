@@ -1,3 +1,4 @@
+import { CardImage } from '../../components/CardImage'
 import { useId } from 'react'
 import { Legible } from '../../components/Legible'
 import type { TrueFalseQuestion } from './generate-test'
@@ -20,6 +21,7 @@ export const TrueFalseQuestionField = ({ question, index, value, onChange }: Tru
       <p id={promptId} className="test-question-prompt">
         {index + 1}. {question.front}
       </p>
+      <CardImage image={question.image} alt="" />
       <p className="test-truefalse-claim">{question.claimedAnswer}</p>
       <div className="test-truefalse-options">
         <label>

@@ -7,7 +7,7 @@ agent-workflow-focused — it does not repeat product/architecture context that'
 ## Orientation
 
 Seshat is a free, local-first, zero-backend flashcard/spaced-repetition app: Vite + React 19 + TypeScript
-(strict) + react-router-dom + Zod + ts-fsrs, all state in the browser's `localStorage`, no server at all. If
+(strict) + react-router-dom + Zod + ts-fsrs, all text state in the browser's `localStorage` (key `seshat:app-state:v2`) and image bytes in IndexedDB (`seshat-media`, content-addressed by SHA-256), no server at all. If
 you're asked to do something like "add these flashcards to Seshat" or "load this study material into Seshat and
 quiz me," the two mechanisms below — the URL query-param importer and the `window.seshat` console API — are the
 fast paths. Editing `localStorage` by hand or reverse-engineering the storage format is never necessary; use one
@@ -43,9 +43,11 @@ For scripting an already-running instance from the browser's own console (bookma
 one-liners). Full docs: the "Scripting Seshat's data" section of [`README.md`](./README.md#scripting-seshats-data);
 implementation: `src/lib/window-api.ts`. Methods: `listSets()`, `listCards(setId)`, `exportSet(setId)`,
 `exportSetSimple(setId)`, `importSet(json)`, `importSimpleJson(raw, setName?)`, `exportAll()`,
-`importAll(json, mode)` (`mode` is `'merge'` or `'replace'`).
+`importAll(json, mode)` (`mode` is `'merge'` or `'replace'`), plus `exportAllWithMedia()` / `exportSetWithMedia(setId)`.
+`importSet` and `importAll` are **async** (they store the file's images first) and `exportAll()`/`exportSet()` carry
+image MediaRefs only; the `...WithMedia` variants embed the bytes as base64 in a `media` map.
 
-**How it reaches the page:** this API reads and writes `localStorage` directly, then dispatches a
+**How it reaches the page:** this API reads and writes `localStorage` (text) and the IndexedDB media store (images) directly, then dispatches a
 `seshat:external-write` window event (`notifyExternalWrite` in `src/lib/persistence.ts`); the app's store listens
 for it and re-hydrates, so an open tab updates live without a reload. `importSet` takes a parsed object;
 `importSimpleJson` and `importAll` take a JSON string; `importAll` returns `{ ok, value: report }` or
@@ -125,18 +127,19 @@ http://localhost:5173/sets?import=%7B%22name%22%3A%22Cell%20Biology%20Basics%22%
 This is client-side only, so there's no server-imposed URL length cap — but browsers do have practical ceilings.
 Chrome and Firefox comfortably handle URLs in the tens of KB, but treat **~8KB as a soft target** for the whole
 URL if you want this to work reliably everywhere (older browsers, URL-shortening or logging middleware in
-between, etc.). That's plenty for a set of short-answer/cloze/mcq cards, but **image-occlusion cards embed a
-full `data:` URL image** in their content and will blow past that ceiling almost immediately — don't use this
-import path for image-occlusion cards; use the in-app editor instead (see below).
+between, etc.). That's plenty for a set of short-answer/cloze/mcq cards, but **image-occlusion cards need image
+bytes** (a legacy inline `data:` URL, or a `media` map of base64 blobs next to `image` MediaRefs) and will blow past
+that ceiling almost immediately — don't use this import path for image-occlusion cards; use the in-app editor, or
+`window.seshat.importSet`/`importAll`, which have no URL limit.
 
 ## Card kinds — which are realistic to author via URL import
 
-| Kind              | Realistic via URL import?  | Notes                                                                                                                                                                                                                                                                                                           |
-| ----------------- | -------------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| `short-answer`    | Yes                        | The default for both accepted JSON shapes; straightforward to hand-construct.                                                                                                                                                                                                                                   |
-| `cloze`           | Yes                        | `{"kind": "cloze", "text": "..."}` with deletions written as `{{answer}}` inside `text`. Full shape only — the simple shape can't express this.                                                                                                                                                                 |
-| `mcq`             | Yes, for small option sets | `{"kind": "mcq", "options": [...], "correctIndex": 0}`. Full shape only. Keep option text short — it all counts against the size budget.                                                                                                                                                                        |
-| `image-occlusion` | No — use the in-app editor | Requires an embedded `data:` image plus percentage-based region rectangles (`src/types.ts` `imageOcclusionContentSchema`). Blows past the practical URL-length ceiling and there's no reasonable way to hand-author occlusion regions as raw JSON. Create these at `/sets/:id/edit` in the running app instead. |
+| Kind              | Realistic via URL import?  | Notes                                                                                                                                                                                                                                                                                                                                                                        |
+| ----------------- | -------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `short-answer`    | Yes                        | The default for both accepted JSON shapes; straightforward to hand-construct.                                                                                                                                                                                                                                                                                                |
+| `cloze`           | Yes                        | `{"kind": "cloze", "text": "..."}` with deletions written as `{{answer}}` inside `text`. Full shape only — the simple shape can't express this.                                                                                                                                                                                                                              |
+| `mcq`             | Yes, for small option sets | `{"kind": "mcq", "options": [...], "correctIndex": 0}`. Full shape only. Keep option text short — it all counts against the size budget.                                                                                                                                                                                                                                     |
+| `image-occlusion` | No — use the in-app editor | Requires image bytes (an `image` MediaRef plus the blob in `media`, or a legacy `imageDataUrl`) plus percentage-based region rectangles (`src/types.ts` `imageOcclusionContentSchema`). Blows past the practical URL-length ceiling and there's no reasonable way to hand-author occlusion regions as raw JSON. Create these at `/sets/:id/edit` in the running app instead. |
 
 For anything beyond short-answer/cloze/mcq authored programmatically, or any image-occlusion card, drive the
 running app's editor UI directly rather than trying to force it through either import path.
@@ -163,13 +166,14 @@ registers elsewhere.
 | `import_all`      | `{json, mode}` (`merge` default / `replace`)               | consequentialHint                  |
 | `navigate`        | `{to, setId?}` (`to`: home, sets, stats, docs, about, set) | none                               |
 
-`list_cards` omits image bytes: an image-occlusion card's `content` has `image: { hasImage, approxBytes, mime }`
-instead of `imageDataUrl` (regions and labels are kept). `export_set` and `export_all` return full data,
-including image data URLs, and can be very large.
+`list_cards` never inlines image bytes: a stored image (card `promptImage`, short-answer `answerImage`,
+image-occlusion `content.image`) shows as `{ id, alt, width, height }`; a legacy not-yet-migrated data URL shows as
+`image: { hasImage, approxBytes, mime }` (regions and labels are kept). `export_set` and `export_all` return full
+data: images are embedded as base64 in a `media` map keyed by image id (SHA-256 of the bytes), and can be very large.
 
 Each tool's Zod schema yields both its JSON Schema and its runtime validation. Security: the spec's security
 section is unresolved, so agent input is untrusted: arguments are strict objects (unknown keys rejected),
-string payloads are capped at 25M characters (`MAX_BACKUP_CHARS`), `update_settings` rejects the whole call on any
+string payloads are capped at 25M characters (`MAX_BACKUP_CHARS`; 256M for a backup that declares `media`), `update_settings` rejects the whole call on any
 bad field and only applies keys actually sent, `replace` is destructive and flagged `consequentialHint`, errors
 come back as `{ error }` values and never throw, and card text in results is flagged `untrustedContentHint`.
 All writes go through the React store, so an open tab updates live.
@@ -177,7 +181,9 @@ All writes go through the React store, so an open tab updates live.
 ## Full-data backup
 
 One JSON file with settings, keybinding overrides, sets, cards (FSRS scheduling kept) and review history:
-`{ format: 'seshat-backup', version: 1, appVersion, exportedAt, settings, keybindings, sets, cards, reviewLog }`.
+`{ format: 'seshat-backup', version: 2, appVersion, exportedAt, settings, keybindings, sets, cards, reviewLog, media }`
+where `media` is `{ <mediaId>: { mime, dataBase64, width, height } }` for every image the cards reference (version 1 files,
+with images inline as `imageDataUrl` data URLs, still import: the images are converted into the media store).
 Export/restore from Settings -> Backup (merge or replace), `window.seshat.exportAll()/importAll(json, mode)`, or the
 `export_all`/`import_all` tools. `merge` (default) only adds sets/cards whose ids are missing, plus the review
 history of added cards; it never touches existing data, settings or keybindings. `replace` swaps everything.

@@ -11,6 +11,7 @@ const makeCardOf = (prompt: string, content: CardContent): StudyCard => {
     id: `card-${counter}` as CardId,
     setId: 'set-fixture' as SetId,
     prompt,
+    promptImage: null,
     content,
     explanation: null,
     sourceRef: null,
@@ -31,10 +32,12 @@ const makeCardOf = (prompt: string, content: CardContent): StudyCard => {
   }
 }
 
-const text = (term: string) => makeCardOf(term, { kind: 'short-answer', answer: `${term}-def`, acceptableAnswers: [] })
+const text = (term: string) =>
+  makeCardOf(term, { kind: 'short-answer', answer: `${term}-def`, acceptableAnswers: [], answerImage: null })
 const image = (prompt: string) =>
   makeCardOf(prompt, {
     kind: 'image-occlusion',
+    image: null,
     imageDataUrl: 'data:image/jpeg;base64,AAAA',
     occlusions: [{ id: 'r1', xPct: 0, yPct: 0, widthPct: 50, heightPct: 50, label: 'Heart' }],
   })

@@ -1,4 +1,5 @@
-import type { CardContent, StudyCard } from '../../types'
+import type { MediaRef } from '../../lib/media/types'
+import type { CardContent, ImageOcclusionContent, StudyCard } from '../../types'
 import { blankedCloze, clozeAnswer } from './cloze'
 
 /**
@@ -11,8 +12,16 @@ import { blankedCloze, clozeAnswer } from './cloze'
 export interface CardFrontBack {
   readonly front: string
   readonly back: string
-  /** Present only for image-occlusion cards. */
+  /** The card's image as a MediaRef (image-occlusion `image`, else the card's `promptImage`). Absent when it has none. */
+  readonly image?: MediaRef
+  /** LEGACY inline data URL (image-occlusion cards not migrated yet). Present only when there is no `image`. */
   readonly imageDataUrl?: string
+}
+
+/** A stored image wins; the legacy data URL is only used while there is none. */
+const occlusionImage = (content: ImageOcclusionContent): Pick<CardFrontBack, 'image' | 'imageDataUrl'> => {
+  if (content.image !== null) return { image: content.image }
+  return content.imageDataUrl === undefined ? {} : { imageDataUrl: content.imageDataUrl }
 }
 
 const contentFrontBack = (prompt: string, content: CardContent): CardFrontBack => {
@@ -35,10 +44,14 @@ const contentFrontBack = (prompt: string, content: CardContent): CardFrontBack =
       return { front: prompt, back: content.options[content.correctIndex] ?? '(unknown)' }
     case 'image-occlusion': {
       const first = content.occlusions[0]
-      return { front: prompt, back: first?.label ?? '(unknown)', imageDataUrl: content.imageDataUrl }
+      return { front: prompt, back: first?.label ?? '(unknown)', ...occlusionImage(content) }
     }
   }
 }
 
 /** The front/back pair for a full `StudyCard` (prompt + content together). */
-export const cardFrontBack = (card: StudyCard): CardFrontBack => contentFrontBack(card.prompt, card.content)
+export const cardFrontBack = (card: StudyCard): CardFrontBack => {
+  const faces = contentFrontBack(card.prompt, card.content)
+  const hasImage = faces.image !== undefined || faces.imageDataUrl !== undefined
+  return card.promptImage !== null && !hasImage ? { ...faces, image: card.promptImage } : faces
+}

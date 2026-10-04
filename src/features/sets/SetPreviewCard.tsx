@@ -43,12 +43,12 @@ export const SetPreviewCard = ({ cards }: SetPreviewCardProps) => {
 
   if (card === undefined) return null
 
-  const { front, back, imageDataUrl } = cardFrontBack(card)
+  const { front, back, image, imageDataUrl } = cardFrontBack(card)
 
   return (
     <div className="set-preview">
       <div className="card-with-tip">
-        <FlipCard front={front} back={back} imageDataUrl={imageDataUrl} flipped={flipped} />
+        <FlipCard front={front} back={back} image={image} imageDataUrl={imageDataUrl} flipped={flipped} />
         <CardTip label="Tip">
           Press <kbd>{formatKeyLabel(flipKey)}</kbd> to flip the card
         </CardTip>

@@ -113,7 +113,8 @@ export interface DraftProblems {
 
 const toExportedCard = (term: string, definition: string): ExportedCard => ({
   prompt: term.trim(),
-  content: { kind: 'short-answer', answer: definition.trim(), acceptableAnswers: [] },
+  promptImage: null,
+  content: { kind: 'short-answer', answer: definition.trim(), acceptableAnswers: [], answerImage: null },
   explanation: null,
   sourceRef: null,
   tags: [],

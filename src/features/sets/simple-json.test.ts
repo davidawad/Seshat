@@ -11,7 +11,8 @@ describe('parseSimpleJson', () => {
       expect(result.value.cards).toEqual([
         {
           prompt: 'A',
-          content: { kind: 'short-answer', answer: 'B', acceptableAnswers: [] },
+          promptImage: null,
+          content: { kind: 'short-answer', answer: 'B', acceptableAnswers: [], answerImage: null },
           explanation: null,
           sourceRef: null,
           tags: [],
@@ -73,7 +74,8 @@ describe('toSimpleJson', () => {
       id: 'c1' as StudyCard['id'],
       setId: 'd1' as StudyCard['setId'],
       prompt: 'Powerhouse of the cell?',
-      content: { kind: 'short-answer', answer: 'Mitochondria', acceptableAnswers: [] },
+      promptImage: null,
+      content: { kind: 'short-answer', answer: 'Mitochondria', acceptableAnswers: [], answerImage: null },
       explanation: null,
       sourceRef: null,
       tags: [],

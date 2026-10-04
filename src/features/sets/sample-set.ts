@@ -15,11 +15,13 @@ export const SAMPLE_SET: ExportedSet = {
   cards: [
     {
       prompt: 'What is the spacing effect?',
+      promptImage: null,
       content: {
         kind: 'short-answer',
         answer:
           'Distributing study or practice sessions over time produces better long-term retention than massing them together (cramming).',
         acceptableAnswers: ['distributed practice beats massed practice'],
+        answerImage: null,
       },
       explanation: 'This is the core mechanism spaced-repetition schedulers like FSRS are built to exploit.',
       sourceRef: 'Cepeda et al., 2006, Psychological Bulletin meta-analysis',
@@ -28,10 +30,12 @@ export const SAMPLE_SET: ExportedSet = {
     {
       prompt:
         'Of all commonly studied learning techniques, which has the largest average effect size in meta-analysis?',
+      promptImage: null,
       content: {
         kind: 'short-answer',
         answer: 'Distributed practice (spacing)',
         acceptableAnswers: ['spacing', 'spaced practice'],
+        answerImage: null,
       },
       explanation:
         'Reported effect size is large, around d≈0.85 — bigger than highlighting, rereading, or summarizing.',
@@ -40,6 +44,7 @@ export const SAMPLE_SET: ExportedSet = {
     },
     {
       prompt: 'Retrieval practice fill-in-the-blank',
+      promptImage: null,
       content: {
         kind: 'cloze',
         text: 'Retrieval practice works because {{effortful recall}} strengthens memory more than passive review.',
@@ -50,6 +55,7 @@ export const SAMPLE_SET: ExportedSet = {
     },
     {
       prompt: 'What does FSRS (Free Spaced Repetition Scheduler) optimize for?',
+      promptImage: null,
       content: {
         kind: 'mcq',
         options: [
@@ -67,11 +73,13 @@ export const SAMPLE_SET: ExportedSet = {
     },
     {
       prompt: 'What is "desirable difficulty" in learning?',
+      promptImage: null,
       content: {
         kind: 'short-answer',
         answer:
           "A level of challenge during learning that's hard enough to require effort — which boosts long-term retention — but not so hard it causes failure and disengagement.",
         acceptableAnswers: [],
+        answerImage: null,
       },
       explanation: null,
       sourceRef: 'Bjork & Bjork, 1992',
@@ -79,6 +87,7 @@ export const SAMPLE_SET: ExportedSet = {
     },
     {
       prompt: 'Stability fill-in-the-blank',
+      promptImage: null,
       content: {
         kind: 'cloze',
         text: 'In the FSRS model, {{stability}} represents how long a memory is expected to last before recall probability decays to a given threshold.',
@@ -89,11 +98,13 @@ export const SAMPLE_SET: ExportedSet = {
     },
     {
       prompt: 'What is the "testing effect" (retrieval practice effect)?',
+      promptImage: null,
       content: {
         kind: 'short-answer',
         answer:
           'Actively retrieving information from memory (e.g. self-testing, flashcards) produces better long-term retention than passively re-reading or re-studying the same material.',
         acceptableAnswers: ['retrieval practice effect'],
+        answerImage: null,
       },
       explanation:
         'Reported effect size is moderate, around d≈0.50 — smaller than spacing, but still one of the highest-utility techniques studied.',
@@ -102,6 +113,7 @@ export const SAMPLE_SET: ExportedSet = {
     },
     {
       prompt: 'Which of these is a popular study technique rated LOW-utility in the evidence, despite widespread use?',
+      promptImage: null,
       content: {
         kind: 'mcq',
         options: [
@@ -119,11 +131,13 @@ export const SAMPLE_SET: ExportedSet = {
     },
     {
       prompt: 'What is interleaving, as a study technique?',
+      promptImage: null,
       content: {
         kind: 'short-answer',
         answer:
           'Mixing different topics or problem types within a single study session, instead of blocking practice by topic — it improves discrimination between concepts and long-term transfer.',
         acceptableAnswers: ['mixed practice'],
+        answerImage: null,
       },
       explanation: null,
       sourceRef: null,
@@ -131,6 +145,7 @@ export const SAMPLE_SET: ExportedSet = {
     },
     {
       prompt: 'Retrievability fill-in-the-blank',
+      promptImage: null,
       content: {
         kind: 'cloze',
         text: "A card's {{retrievability}} is the scheduler's real-time estimate of the probability you could successfully recall it right now, and it decays continuously between reviews.",

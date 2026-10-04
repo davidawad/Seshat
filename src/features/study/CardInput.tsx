@@ -1,3 +1,4 @@
+import { CardImage } from '../../components/CardImage'
 import type { StudyCard } from '../../types'
 import { ClozeCard } from './ClozeCard'
 import type { Attempt } from './grading'
@@ -12,8 +13,16 @@ interface CardInputProps {
   readonly disabled: boolean
 }
 
+/** The card's prompt image (if any) above the content-kind-specific input. */
+export const CardInput = (props: CardInputProps) => (
+  <>
+    <CardImage image={props.card.promptImage} alt="" className="study-prompt-image" />
+    <KindInput {...props} />
+  </>
+)
+
 /** Dispatches to the content-kind-specific card component, keeping `attempt` in sync with `card.content`. */
-export const CardInput = ({ card, attempt, onChange, disabled }: CardInputProps) => {
+const KindInput = ({ card, attempt, onChange, disabled }: CardInputProps) => {
   switch (card.content.kind) {
     case 'short-answer':
       return (

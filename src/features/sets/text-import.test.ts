@@ -11,10 +11,12 @@ describe('parseTermDefinitionText', () => {
     expect(result.value).toHaveLength(2)
     expect(result.value[0]).toEqual({
       prompt: 'mitosis',
+      promptImage: null,
       content: {
         kind: 'short-answer',
         answer: 'cell division producing two identical daughter cells',
         acceptableAnswers: [],
+        answerImage: null,
       },
       explanation: null,
       sourceRef: null,
@@ -30,7 +32,8 @@ describe('parseTermDefinitionText', () => {
     expect(result.value).toEqual([
       {
         prompt: 'term',
-        content: { kind: 'short-answer', answer: 'definition of term', acceptableAnswers: [] },
+        promptImage: null,
+        content: { kind: 'short-answer', answer: 'definition of term', acceptableAnswers: [], answerImage: null },
         explanation: null,
         sourceRef: null,
         tags: [],
@@ -46,6 +49,7 @@ describe('parseTermDefinitionText', () => {
       kind: 'short-answer',
       answer: 'definition, with a comma',
       acceptableAnswers: [],
+      answerImage: null,
     })
   })
 
@@ -70,7 +74,12 @@ describe('parseTermDefinitionText', () => {
     if (!result.ok) return
     const card = result.value[0]
     expect(card?.prompt).toBe('term')
-    expect(card?.content).toEqual({ kind: 'short-answer', answer: 'definition', acceptableAnswers: [] })
+    expect(card?.content).toEqual({
+      kind: 'short-answer',
+      answer: 'definition',
+      acceptableAnswers: [],
+      answerImage: null,
+    })
   })
 
   it('returns an error for empty input', () => {

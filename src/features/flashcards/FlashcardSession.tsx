@@ -12,6 +12,7 @@ import { matchesBinding } from '../../lib/keybindings'
 import { useSeshatStore } from '../../lib/store'
 import { TESTIDS } from '../../lib/testids'
 import { useKeybindings } from '../../lib/useKeybindings'
+import type { MediaRef } from '../../lib/media/types'
 import type { StudyCard } from '../../types'
 import { cardFrontBack } from '../study/card-summary'
 import { FlipCard } from '../../components/FlipCard'
@@ -48,6 +49,7 @@ interface FlashcardFaceProps {
   readonly flipped: boolean
   readonly front: string
   readonly back: string
+  readonly image: MediaRef | undefined
   readonly imageDataUrl: string | undefined
   readonly dragX: number
   readonly onClick: () => void
@@ -65,6 +67,7 @@ const FlashcardFace = ({
   flipped,
   front,
   back,
+  image,
   imageDataUrl,
   dragX,
   onClick,
@@ -97,7 +100,7 @@ const FlashcardFace = ({
     onPointerCancel={onPointerCancel}
     style={dragX !== 0 ? { transform: `translateX(${dragX}px)` } : undefined}
   >
-    <FlipCard front={front} back={back} imageDataUrl={imageDataUrl} flipped={flipped} />
+    <FlipCard front={front} back={back} image={image} imageDataUrl={imageDataUrl} flipped={flipped} />
     {badge}
   </div>
 )
@@ -138,7 +141,7 @@ export const FlashcardSession = ({
     shownAt.current = performance.now()
   }, [card.id])
 
-  const { imageDataUrl, ...faces } = cardFrontBack(card)
+  const { image, imageDataUrl, ...faces } = cardFrontBack(card)
   const { front, back } = orientFaces(faces, options.front)
 
   const toggleFlip = useCallback(() => setFlipped((current) => !current), [])
@@ -224,6 +227,7 @@ export const FlashcardSession = ({
           flipped={flipped}
           front={front}
           back={back}
+          image={image}
           imageDataUrl={imageDataUrl}
           dragX={dragX}
           onClick={handleFaceClick}

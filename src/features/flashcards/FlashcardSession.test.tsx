@@ -261,7 +261,7 @@ describe('FlashcardSession shortcuts and options', () => {
       ...card,
       id: cardIdSchema.parse('c2222222-2222-4222-8222-222222222222'),
       prompt: 'What is 2+2?',
-      content: { kind: 'short-answer', answer: '4', acceptableAnswers: [] },
+      content: { kind: 'short-answer', answer: '4', acceptableAnswers: [], answerImage: null },
     }
     seedStore(card)
     const handlers = makeHandlers()

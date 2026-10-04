@@ -464,3 +464,9 @@ body.has-install-prompt .app-main {
   margin: 0;
   flex: 1 1 16rem;
 }
+
+/* The one-time image-storage upgrade note (components/MigrationNotice.tsx): top corner, so it never sits on the install banner. */
+.install-prompt.migration-notice {
+  top: 1rem;
+  bottom: auto;
+}
