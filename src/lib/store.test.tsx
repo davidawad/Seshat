@@ -1,12 +1,20 @@
 import { act, cleanup, render } from '@testing-library/react'
-import { afterEach, beforeEach, describe, expect, it } from 'vitest'
+import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest'
 import { DEFAULT_SETTINGS, createEmptyAppState } from '../types'
 import { saveKeybindingOverrides } from './keybindingStorage'
 import { clearMirrors } from './persistence'
 import { STORAGE_KEY } from './storage'
 import { SeshatProvider, useSeshatStore } from './store'
 
-afterEach(() => cleanup())
+afterEach(() => {
+  cleanup()
+  vi.restoreAllMocks()
+})
+
+/** setItem that throws only for the app-state key (the availability probe must still pass). */
+const failOnState = (error: Error) => (key: string) => {
+  if (key === STORAGE_KEY) throw error
+}
 
 type Store = ReturnType<typeof useSeshatStore>
 
@@ -139,5 +147,32 @@ describe('SeshatProvider backup', () => {
     })
     expect(result).toMatchObject({ ok: false })
     expect(store.current().state.sets).toHaveLength(1)
+  })
+})
+
+describe('SeshatProvider save errors', () => {
+  beforeEach(() => {
+    window.localStorage.clear()
+    clearMirrors()
+  })
+
+  it('surfaces a quota failure, then clears it after a successful save', () => {
+    const store = mount()
+    expect(store.current().saveError).toBeNull()
+    const spy = vi
+      .spyOn(Storage.prototype, 'setItem')
+      .mockImplementation(failOnState(new DOMException('full', 'QuotaExceededError')))
+    act(() => store.current().updateSettings({ theme: 'dark' }))
+    expect(store.current().saveError).toEqual({ kind: 'quota-exceeded' })
+    spy.mockRestore()
+    act(() => store.current().updateSettings({ theme: 'light' }))
+    expect(store.current().saveError).toBeNull()
+  })
+
+  it('reports other write failures as write-failed', () => {
+    const store = mount()
+    vi.spyOn(Storage.prototype, 'setItem').mockImplementation(failOnState(new Error('boom')))
+    act(() => store.current().updateSettings({ theme: 'dark' }))
+    expect(store.current().saveError).toEqual({ kind: 'write-failed', message: 'boom' })
   })
 })

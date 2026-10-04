@@ -1,5 +1,6 @@
 import type { CardId, StudyCard } from '../../../types'
 import { cardFrontBack } from '../../study/card-summary'
+import { textCards } from '../../study/text-cards'
 
 /**
  * Pure question setup for Blocks: turns a set's cards into a shuffled queue
@@ -68,7 +69,8 @@ const pickDistinct = (pool: readonly string[], exclude: string, count: number, r
  * of text.
  */
 export const buildQuestions = (cards: readonly StudyCard[], random: () => number = Math.random): BlocksQuestion[] => {
-  const pairs = cards.map((card) => ({ card, ...cardFrontBack(card) }))
+  // Image cards are unanswerable once reduced to text (see study/text-cards.ts).
+  const pairs = textCards(cards).map((card) => ({ card, ...cardFrontBack(card) }))
 
   return shuffle(pairs, random).map((pair): BlocksQuestion => {
     const side: PromptSide = random() < 0.5 ? 'front' : 'back'

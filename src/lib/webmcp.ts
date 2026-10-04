@@ -1,7 +1,7 @@
 import { z } from 'zod'
 import { summarizeMastery } from '../features/sets/set-summary'
 import { parseImportParam } from '../features/sets/url-import'
-import { type Result, err, ok, setIdSchema } from '../types'
+import { type Result, type StudyCard, err, ok, setIdSchema } from '../types'
 import { SETTING_KEYS, parseSettingsPatch } from './settings-patch'
 import { MAX_BACKUP_CHARS } from './backup'
 import type { useSeshatStore } from './store'
@@ -142,6 +142,20 @@ const defineTool =
 
 const READ = { readOnlyHint: true, untrustedContentHint: true } as const
 
+/**
+ * Card content as list_cards shows it: image bytes (a data URL, easily
+ * hundreds of KB) are swapped for a short descriptor so an agent's context is
+ * not flooded; everything else (regions, labels, text) is kept. export_set and
+ * export_all are the explicit way to get the full data.
+ */
+export const stripImageBytes = (content: StudyCard['content']) => {
+  if (content.kind !== 'image-occlusion') return content
+  const { imageDataUrl, ...rest } = content
+  const mime = /^data:([^;,]+)/.exec(imageDataUrl)?.[1] ?? 'unknown'
+  const base64 = imageDataUrl.slice(imageDataUrl.indexOf(',') + 1)
+  return { ...rest, image: { hasImage: true, approxBytes: Math.floor((base64.length * 3) / 4), mime } }
+}
+
 export const TOOL_FACTORIES = [
   defineTool({
     name: 'list_sets',
@@ -168,7 +182,8 @@ export const TOOL_FACTORIES = [
   }),
   defineTool({
     name: 'list_cards',
-    description: 'List the cards in one study set (prompt, content, tags and review state).',
+    description:
+      'List the cards in one study set (prompt, content, tags and review state). Image-occlusion cards omit the image bytes: their content carries image {hasImage, approxBytes, mime} instead of imageDataUrl (use export_set for the full data).',
     schema: setArgs,
     annotations: READ,
     run: ({ setId }, { store }) =>
@@ -179,7 +194,7 @@ export const TOOL_FACTORIES = [
               .map(({ id, prompt, content, explanation, tags, scheduling }) => ({
                 id,
                 prompt,
-                content,
+                content: stripImageBytes(content),
                 explanation,
                 tags,
                 state: scheduling.state,
@@ -224,7 +239,8 @@ export const TOOL_FACTORIES = [
   }),
   defineTool({
     name: 'export_set',
-    description: 'Export one study set as Seshat set-export JSON (no review history).',
+    description:
+      'Export one study set as Seshat set-export JSON (no review history). Full data, including image data URLs.',
     schema: setArgs,
     annotations: READ,
     run: ({ setId }, { store }) => {
@@ -234,7 +250,8 @@ export const TOOL_FACTORIES = [
   }),
   defineTool({
     name: 'export_all',
-    description: 'Export everything (settings, keybindings, all sets, cards and review history) as one backup object.',
+    description:
+      'Export everything (settings, keybindings, all sets, cards and review history) as one backup object. Full data, including image data URLs (can be very large).',
     schema: noArgs,
     annotations: READ,
     run: (_args, { store }) => ok(store.exportAll()),

@@ -23,6 +23,8 @@
 export const TESTIDS = {
   // Layout, nav, footer
   layoutMain: 'layout-main',
+  layoutSaveError: 'layout-save-error',
+  layoutSaveErrorSettings: 'layout-save-error-settings',
   navHome: 'nav-home',
   navSets: 'nav-sets',
   navStats: 'nav-stats',
@@ -166,9 +168,12 @@ export const TESTIDS = {
   testSubmit: 'test-submit',
   testScore: 'test-score',
   testRetryMissed: 'test-retry-missed',
+  testImageNote: 'test-image-note',
+  testNoTextCards: 'test-no-text-cards',
 
   // Games
   gamesPage: 'games-page',
+  gamesImageNote: 'games-image-note',
   gamesOpenMatch: 'games-open-match',
   gamesOpenBlast: 'games-open-blast',
   gamesOpenBlocks: 'games-open-blocks',

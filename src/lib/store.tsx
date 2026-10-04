@@ -1,4 +1,4 @@
-import { createContext, useCallback, useContext, useEffect, useMemo, useReducer } from 'react'
+import { createContext, useCallback, useContext, useEffect, useMemo, useReducer, useState } from 'react'
 import type { ReactNode } from 'react'
 import { createInitialScheduling, scheduleReview } from './fsrs'
 import { newCardId, newSetId } from './id'
@@ -126,6 +126,8 @@ const reducer = (state: AppState, action: Action): AppState => {
 interface SeshatStore {
   readonly state: AppState
   readonly storageError: StorageError | null
+  /** The last failed save (quota full, storage blocked); null once a later save succeeds. */
+  readonly saveError: StorageError | null
   readonly addSet: (input: NewSetInput) => StudySet
   readonly updateSet: (id: SetId, patch: Partial<NewSetInput>) => void
   readonly deleteSet: (id: SetId) => void
@@ -169,8 +171,11 @@ export const SeshatProvider = ({ children }: { readonly children: ReactNode }) =
     return result.ok ? null : result.error
   }, [])
 
+  const [saveError, setSaveError] = useState<StorageError | null>(null)
+
   useEffect(() => {
-    saveState(state)
+    const result = saveState(state)
+    setSaveError(result.ok ? null : result.error)
   }, [state])
 
   // Other tabs (and window.seshat) write straight to storage; pull their
@@ -327,6 +332,7 @@ export const SeshatProvider = ({ children }: { readonly children: ReactNode }) =
     () => ({
       state,
       storageError,
+      saveError,
       addSet,
       updateSet,
       deleteSet,
@@ -345,6 +351,7 @@ export const SeshatProvider = ({ children }: { readonly children: ReactNode }) =
     [
       state,
       storageError,
+      saveError,
       addSet,
       updateSet,
       deleteSet,

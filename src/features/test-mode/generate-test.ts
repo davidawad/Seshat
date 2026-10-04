@@ -1,5 +1,6 @@
 import type { CardId, StudyCard } from '../../types'
 import { cardFrontBack } from '../study/card-summary'
+import { textCards } from '../study/text-cards'
 
 /**
  * A set larger than this only contributes a random subset to any one test —
@@ -95,7 +96,10 @@ const pickDistinct = (pool: readonly string[], exclude: string, count: number, r
  * multiple-choice); smaller sets fall back to written-only questions for
  * every card.
  */
-export const generateTest = (cards: readonly StudyCard[], random: () => number = Math.random): TestQuestion[] => {
+export const generateTest = (allCards: readonly StudyCard[], random: () => number = Math.random): TestQuestion[] => {
+  // Image-occlusion cards would become unanswerable text questions (the
+  // image is dropped by `cardFrontBack`), so they never enter a test.
+  const cards = textCards(allCards)
   if (cards.length === 0) return []
 
   const allPairs: FrontBackPair[] = cards.map((card) => ({ card, ...cardFrontBack(card) }))

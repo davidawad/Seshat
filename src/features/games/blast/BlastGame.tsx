@@ -1,10 +1,11 @@
 import { cardFrontBack } from '../../study/card-summary'
+import { textCards } from '../../study/text-cards'
 import type { GameSessionProps } from '../types'
 import { BlastSession } from './BlastSession'
 import type { BlastPair } from './round'
 
 export const BlastGame = ({ setId, cards }: GameSessionProps) => {
-  const pairs: BlastPair[] = cards.map((card) => {
+  const pairs: BlastPair[] = textCards(cards).map((card) => {
     const { front, back } = cardFrontBack(card)
     return { cardId: card.id, front, back }
   })

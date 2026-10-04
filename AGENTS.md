@@ -163,6 +163,10 @@ registers elsewhere.
 | `import_all`      | `{json, mode}` (`merge` default / `replace`)               | consequentialHint                  |
 | `navigate`        | `{to, setId?}` (`to`: home, sets, stats, docs, about, set) | none                               |
 
+`list_cards` omits image bytes: an image-occlusion card's `content` has `image: { hasImage, approxBytes, mime }`
+instead of `imageDataUrl` (regions and labels are kept). `export_set` and `export_all` return full data,
+including image data URLs, and can be very large.
+
 Each tool's Zod schema yields both its JSON Schema and its runtime validation. Security: the spec's security
 section is unresolved, so agent input is untrusted: arguments are strict objects (unknown keys rejected),
 string payloads are capped at 25M characters (`MAX_BACKUP_CHARS`), `update_settings` rejects the whole call on any
