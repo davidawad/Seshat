@@ -212,6 +212,13 @@
   margin-inline: auto;
 }
 
+/* A column-flex child sizes to its contents unless told otherwise, which let a
+   long term stretch the card past its container; pin it to the container. */
+.set-preview .card-with-tip {
+  width: 100%;
+  min-width: 0;
+}
+
 .set-preview button {
   margin-top: 1.75rem;
 }
