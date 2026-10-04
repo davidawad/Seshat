@@ -34,6 +34,10 @@ export const DocsPage = () => (
           remaps, sets, cards and review history. Merge only adds what is missing; Replace overwrites everything.
         </li>
         <li>
+          <strong>Command menu:</strong> press <kbd>Ctrl</kbd>/<kbd>Cmd</kbd>+<kbd>K</kbd> anywhere to search and jump
+          to a page, a set, its Study or Flashcards view, or an action like Settings or Toggle theme.
+        </li>
+        <li>
           <strong>Schemas:</strong> <a href={`${import.meta.env.BASE_URL}schema/set-import.schema.json`}>set import</a>,{' '}
           <a href={`${import.meta.env.BASE_URL}schema/seshat-backup.schema.json`}>backup</a> and{' '}
           <a href={`${import.meta.env.BASE_URL}schema/seshat-settings.schema.json`}>settings</a> (JSON Schema).

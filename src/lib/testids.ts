@@ -35,6 +35,15 @@ export const TESTIDS = {
   footerLicense: 'footer-license',
   shortcutsOpen: 'shortcuts-open',
   settingsOpen: 'settings-open',
+  paletteOpen: 'palette-open',
+
+  // Command palette (features/palette)
+  palette: 'palette',
+  paletteInput: 'palette-input',
+  paletteList: 'palette-list',
+  paletteItem: 'palette-item',
+  paletteEmpty: 'palette-empty',
+  paletteStatus: 'palette-status',
 
   // Modals
   settingsModal: 'settings-modal',

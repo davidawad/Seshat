@@ -1,0 +1,112 @@
+/*
+ * The Cmd/Ctrl+K command menu (features/palette/CommandPalette.tsx): a native
+ * <dialog> docked near the top of the viewport, holding cmdk's headless
+ * `Command`. Colors come only from the theme tokens so every palette and
+ * both color schemes apply; motion is zeroed globally by typography.css
+ * under reduced motion.
+ */
+.palette {
+  width: min(92vw, 40rem);
+  max-width: none;
+  margin: 12vh auto 0;
+  padding: 0;
+  border: 1px solid var(--color-border-strong);
+  border-radius: var(--radius-page);
+  background: var(--color-bg-elevated);
+  color: var(--color-fg);
+  overflow: hidden;
+}
+
+.palette[open] {
+  animation: palette-in 120ms ease-out;
+}
+
+.palette::backdrop {
+  background: color-mix(in srgb, var(--color-bg) 55%, transparent);
+  backdrop-filter: blur(2px);
+}
+
+@keyframes palette-in {
+  from {
+    opacity: 0;
+    transform: translateY(-6px);
+  }
+}
+
+.palette-input {
+  display: block;
+  width: 100%;
+  box-sizing: border-box;
+  padding: 1rem 1.25rem;
+  border: 0;
+  border-bottom: 1px solid var(--color-border-strong);
+  border-radius: 0;
+  background: transparent;
+  color: var(--color-fg);
+  font-family: var(--font-ui);
+  font-size: 1rem;
+}
+
+.palette-input:focus-visible {
+  outline: 2px solid var(--color-focus-ring);
+  outline-offset: -2px;
+}
+
+.palette-list {
+  max-height: min(60vh, 26rem);
+  overflow-y: auto;
+  overscroll-behavior: contain;
+  padding: 0.25rem 0.5rem 0.5rem;
+}
+
+.palette-group [cmdk-group-heading] {
+  padding: 0.75rem 0.75rem 0.25rem;
+  color: var(--color-fg-muted);
+  font-family: var(--font-ui);
+  font-size: 0.75rem;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+}
+
+.palette-item {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 1rem;
+  padding: 0.55rem 0.75rem;
+  border-radius: var(--radius-sm);
+  cursor: pointer;
+}
+
+.palette-item[data-selected='true'] {
+  background: var(--color-accent);
+  color: var(--color-accent-contrast);
+}
+
+.palette-item-label {
+  min-width: 0;
+  overflow-wrap: anywhere;
+}
+
+.palette-item-hint {
+  flex: none;
+  color: var(--color-fg-muted);
+  font-family: var(--font-ui);
+  font-size: 0.8rem;
+}
+
+.palette-item[data-selected='true'] .palette-item-hint {
+  color: inherit;
+}
+
+.palette-empty {
+  padding: 1.5rem 0.75rem;
+  color: var(--color-fg-muted);
+  text-align: center;
+}
+
+@media (max-width: 640px) {
+  .palette {
+    margin-top: 4vh;
+  }
+}
