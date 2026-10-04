@@ -47,6 +47,14 @@ export const HomePage = () => {
               </li>
             )
           })}
+          <li>
+            <Link to="/sets/new" className="new-set-tile" data-testid={TESTIDS.homeNewSet}>
+              <span className="new-set-tile-plus" aria-hidden="true">
+                +
+              </span>
+              <span>New set</span>
+            </Link>
+          </li>
         </ul>
       )}
 

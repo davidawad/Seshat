@@ -53,6 +53,7 @@ export const TESTIDS = {
   homeStudyLink: 'home-study-link',
   homeStarterLoad: 'home-starter-load',
   homeManageSets: 'home-manage-sets',
+  homeNewSet: 'home-new-set',
 
   // Sets list
   setsPage: 'sets-page',
