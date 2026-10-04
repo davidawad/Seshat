@@ -7,6 +7,7 @@ import { NAV_OPTION_ATTRIBUTE, useOptionNavigation } from '../../../lib/useOptio
 import type { SetId } from '../../../types'
 import { getBestScore, recordScore } from './bestScore'
 import './blast.css'
+import { motionAttr, rockClassName, useBump, useEnter, useFieldMotion } from './blast-motion'
 import { type BlastPair, type BlastQuestion, START_LIVES, buildRound } from './round'
 
 /**
@@ -53,6 +54,8 @@ const BlastAsteroidField = ({
 }: BlastAsteroidFieldProps) => {
   const [highlight, setHighlight] = useState<number | null>(null)
   const fieldRef = useRef<HTMLDivElement>(null)
+  useFieldMotion(fieldRef, status)
+  useEnter(fieldRef)
   useOptionNavigation({
     count: question.options.length,
     index: highlight,
@@ -95,21 +98,23 @@ const BlastAsteroidField = ({
           if (isPicked) classNames.push('is-picked')
           if (revealCorrect) classNames.push('is-correct')
           if (revealWrongPick) classNames.push('is-wrong')
+          const rockClass = rockClassName(status, isPicked, option === question.correctOption)
           return (
-            <button
-              key={option}
-              type="button"
-              className={classNames.join(' ')}
-              data-testid={TESTIDS.blastOption}
-              disabled={status !== 'playing'}
-              onClick={() => onSelect(option)}
-              onFocus={() => setHighlight(question.options.indexOf(option))}
-              {...{ [NAV_OPTION_ATTRIBUTE]: '' }}
-            >
-              <Legible as="span" measure={false} className="blast-asteroid-text">
-                {option}
-              </Legible>
-            </button>
+            <div key={option} className={rockClass}>
+              <button
+                type="button"
+                className={classNames.join(' ')}
+                data-testid={TESTIDS.blastOption}
+                disabled={status !== 'playing'}
+                onClick={() => onSelect(option)}
+                onFocus={() => setHighlight(question.options.indexOf(option))}
+                {...{ [NAV_OPTION_ATTRIBUTE]: '' }}
+              >
+                <Legible as="span" measure={false} className="blast-asteroid-text">
+                  {option}
+                </Legible>
+              </button>
+            </div>
           )
         })}
       </div>
@@ -127,24 +132,45 @@ interface BlastCompleteProps {
 }
 
 /** The end-of-run summary — split out of `BlastSession` for the same reason as `BlastAsteroidField` above. */
-const BlastComplete = ({ endReason, score, attemptedCount, totalQuestions, onPlayAgain }: BlastCompleteProps) => (
-  <div className="illuminated-panel blast-complete" role="status">
-    <p className="blast-complete-heading">{endReason === 'lives' ? 'Out of lives.' : 'Cleared the whole set.'}</p>
-    <p>Score: {score}</p>
-    <p>
-      Cards cleared: {attemptedCount} of {totalQuestions}
+const BlastComplete = ({ endReason, score, attemptedCount, totalQuestions, onPlayAgain }: BlastCompleteProps) => {
+  const ref = useRef<HTMLDivElement>(null)
+  useEnter(ref, true)
+  return (
+    <div ref={ref} className="illuminated-panel blast-complete" role="status">
+      <p className="blast-complete-heading">{endReason === 'lives' ? 'Out of lives.' : 'Cleared the whole set.'}</p>
+      <p>Score: {score}</p>
+      <p>
+        Cards cleared: {attemptedCount} of {totalQuestions}
+      </p>
+      <button
+        type="button"
+        className="blast-play-again"
+        data-testid={TESTIDS.blastPlayAgain}
+        onClick={onPlayAgain}
+        autoFocus
+      >
+        Play again
+      </button>
+    </div>
+  )
+}
+
+interface BlastStatProps {
+  readonly className: string
+  readonly label: string
+  readonly value: number
+}
+
+/** A status-bar counter that bumps when its value changes. */
+const BlastStat = ({ className, label, value }: BlastStatProps) => {
+  const ref = useRef<HTMLParagraphElement>(null)
+  useBump(ref, value)
+  return (
+    <p ref={ref} className={className}>
+      {label}: {value}
     </p>
-    <button
-      type="button"
-      className="blast-play-again"
-      data-testid={TESTIDS.blastPlayAgain}
-      onClick={onPlayAgain}
-      autoFocus
-    >
-      Play again
-    </button>
-  </div>
-)
+  )
+}
 
 export const BlastSession = ({ setId, pairs }: BlastSessionProps) => {
   const [questions, setQuestions] = useState<readonly BlastQuestion[]>(() => buildRound(pairs))
@@ -254,10 +280,10 @@ export const BlastSession = ({ setId, pairs }: BlastSessionProps) => {
   }
 
   return (
-    <div className="blast-session">
+    <div className="blast-session" data-motion={motionAttr()}>
       <div className="blast-status-bar">
-        <p className="blast-score">Score: {score}</p>
-        <p className="blast-lives">Lives: {lives}</p>
+        <BlastStat className="blast-score" label="Score" value={score} />
+        <BlastStat className="blast-lives" label="Lives" value={lives} />
         <p className="blast-best">
           {bestAtStart === null ? 'No personal best yet' : `Best: ${bestAtStart}`}
           {isComplete && isNewBest && ' (new)'}
