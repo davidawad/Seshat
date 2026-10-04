@@ -160,6 +160,8 @@ export const TESTIDS = {
   flashcardTallyKnow: 'flashcard-tally-know',
   flashcardTallyLearning: 'flashcard-tally-learning',
   flashcardGradeBadge: 'flashcard-grade-badge',
+  cardTip: 'card-tip',
+  settingsCardTips: 'settings-card-tips',
   flashcardsAnnouncer: 'flashcards-announcer',
   flashcardTrackProgress: 'flashcard-track-progress',
   flashcardFront: 'flashcard-front',

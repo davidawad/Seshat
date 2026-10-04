@@ -214,8 +214,7 @@
 
 /* A column-flex child sizes to its contents unless told otherwise, which let a
    long term stretch the card past its container; pin it to the container. */
-.set-preview .card-with-tip {
-  width: 100%;
+.set-preview .flip-card-scene {
   min-width: 0;
 }
 

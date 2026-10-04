@@ -274,6 +274,9 @@ export const settingsSchema = z.object({
   // own native install affordance (if any) is left alone too — see
   // InstallPrompt.tsx for why disabling this doesn't call preventDefault.
   installPromptEnabled: z.boolean().default(false),
+  // The "Press [key] ..." tip on flashcard faces. On by default; each tip also retires itself
+  // once the learner has done what it teaches (see lib/tipDismissal.ts).
+  cardTipsEnabled: z.boolean().default(true),
 })
 
 export type Settings = z.infer<typeof settingsSchema>
@@ -297,6 +300,7 @@ export const DEFAULT_SETTINGS: Settings = {
   flashcardsFront: 'term',
   homeView: 'grid',
   installPromptEnabled: false,
+  cardTipsEnabled: true,
 }
 
 // Anki/FSRS-guidance-derived presets — see research/learning-science for citations.

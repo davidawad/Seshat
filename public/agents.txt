@@ -234,6 +234,8 @@ Flashcards (/sets/:id/flashcards):
   flashcard-shuffle, flashcard-options, flashcard-progress, flashcards-announcer,
   flashcard-track-progress, flashcard-front, flashcard-restart, flashcard-complete,
   flashcard-restudy-unknown, flashcard-restart-full, flashcard-undo-last
+Card tip (the "Press [key] ..." footer inside BOTH faces of a flip card, on the set page and flashcards):
+  card-tip (one per face; the hidden face is aria-hidden; removed after the first flip / first grade)
 Test (/sets/:id/test):
   test-page, test-form, test-question, test-answer-input, test-submit, test-score,
   test-retry-missed, test-image-note, test-no-text-cards
@@ -249,7 +251,7 @@ Command menu (Cmd/Ctrl+K, or the footer "Search / jump to" button):
 Settings (inside the Settings modal):
   theme-field, palette-field, palette-reset, accent-color, accent-hex, accent-status,
   backup-download, backup-mode-merge, backup-mode-replace, backup-file, backup-confirm,
-  backup-confirm-replace, backup-confirm-cancel, backup-status
+  backup-confirm-replace, backup-confirm-cancel, backup-status, settings-card-tips
 Also dynamic (existing): theme-<system|light|dark>, palette-<id>, nav-preset-<arrows|wasd|hjkl>.
 Repeated items (cards, rows, tiles) share one id; scope by page id. Same ids: TESTIDS in
 src/lib/testids.ts.
