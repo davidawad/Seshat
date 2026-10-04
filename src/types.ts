@@ -208,6 +208,9 @@ export const hexColorSchema = z.string().regex(/^#[0-9a-f]{6}$/)
 export const retentionPresetSchema = z.enum(['low-workload', 'balanced', 'exam-prep', 'custom'])
 export type RetentionPreset = z.infer<typeof retentionPresetSchema>
 
+export const homeViewSchema = z.enum(['grid', 'table'])
+export type HomeView = z.infer<typeof homeViewSchema>
+
 export const flashcardsFrontSchema = z.enum(['term', 'definition'])
 export type FlashcardsFront = z.infer<typeof flashcardsFrontSchema>
 
@@ -245,6 +248,8 @@ export const settingsSchema = z.object({
   // Defaults match the pre-option behavior so old saved data is unchanged.
   flashcardsTrackProgress: z.boolean().default(true),
   flashcardsFront: flashcardsFrontSchema.default('term'),
+  // How the home page lists sets: cards (grid) or a compact table.
+  homeView: homeViewSchema.default('grid'),
   // The "Install Seshat" PWA banner (components/InstallPrompt.tsx). Defaults
   // off — it's a fixed-position overlay that can sit on top of page content
   // (see index.css's `body.has-install-prompt` padding workaround), and not
@@ -273,6 +278,7 @@ export const DEFAULT_SETTINGS: Settings = {
   experimentalGamesEnabled: true,
   flashcardsTrackProgress: true,
   flashcardsFront: 'term',
+  homeView: 'grid',
   installPromptEnabled: false,
 }
 

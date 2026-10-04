@@ -92,3 +92,19 @@ export const GearIcon = () => (
     <circle cx="10" cy="10" r="2.6" />
   </svg>
 )
+
+export const GridViewIcon = () => (
+  <svg {...commonProps}>
+    <rect x="3" y="3" width="5.5" height="5.5" rx="1" />
+    <rect x="11.5" y="3" width="5.5" height="5.5" rx="1" />
+    <rect x="3" y="11.5" width="5.5" height="5.5" rx="1" />
+    <rect x="11.5" y="11.5" width="5.5" height="5.5" rx="1" />
+  </svg>
+)
+
+export const TableViewIcon = () => (
+  <svg {...commonProps}>
+    <rect x="3" y="3.5" width="14" height="13" rx="1.5" />
+    <path d="M3 8h14M3 12.2h14M8 8v8.5" />
+  </svg>
+)

@@ -54,6 +54,11 @@ export const TESTIDS = {
   homeStarterLoad: 'home-starter-load',
   homeManageSets: 'home-manage-sets',
   homeNewSet: 'home-new-set',
+  homeViewToggle: 'home-view-toggle',
+  homeViewGrid: 'home-view-grid',
+  homeViewTable: 'home-view-table',
+  homeSetTable: 'home-set-table',
+  homeSetRow: 'home-set-row',
 
   // Sets list
   setsPage: 'sets-page',

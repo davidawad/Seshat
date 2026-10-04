@@ -1,5 +1,7 @@
 import { Link, useNavigate } from 'react-router-dom'
+import { HomeViewToggle } from '../features/sets/HomeViewToggle'
 import { SetProgressCard } from '../features/sets/SetProgressCard'
+import { SetTable } from '../features/sets/SetTable'
 import { type StarterSet, STARTER_SETS } from '../features/sets/starter-sets'
 import { summarizeMastery } from '../features/sets/set-summary'
 import { useSeshatStore } from '../lib/store'
@@ -8,7 +10,7 @@ import './home.css'
 
 /** Landing page: your sets as cards with memorized/total progress, so you can open the page and jump straight into studying. */
 export const HomePage = () => {
-  const { state, importSet } = useSeshatStore()
+  const { state, importSet, updateSettings } = useSeshatStore()
   const navigate = useNavigate()
   const now = new Date()
 
@@ -19,7 +21,12 @@ export const HomePage = () => {
 
   return (
     <section aria-labelledby="home-heading" data-testid={TESTIDS.homePage}>
-      <h1 id="home-heading">Your sets</h1>
+      <div className="home-heading-row">
+        <h1 id="home-heading">Your sets</h1>
+        {state.sets.length > 0 && (
+          <HomeViewToggle value={state.settings.homeView} onChange={(homeView) => updateSettings({ homeView })} />
+        )}
+      </div>
 
       {state.sets.length === 0 ? (
         <div>
@@ -34,6 +41,16 @@ export const HomePage = () => {
             ))}
           </ul>
         </div>
+      ) : state.settings.homeView === 'table' ? (
+        <SetTable
+          rows={state.sets.map((set) => ({
+            set,
+            mastery: summarizeMastery(
+              state.cards.filter((card) => card.setId === set.id),
+              now,
+            ),
+          }))}
+        />
       ) : (
         <ul className="home-set-grid">
           {state.sets.map((set) => {

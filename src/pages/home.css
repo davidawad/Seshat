@@ -186,3 +186,143 @@
   line-height: 1;
   font-weight: 400;
 }
+
+.home-heading-row {
+  display: flex;
+  align-items: center;
+  gap: 1.25rem;
+  flex-wrap: wrap;
+}
+
+.home-heading-row h1 {
+  margin: 0;
+}
+
+/* Cards / table switch: two icon buttons sharing one rounded outline. */
+.view-toggle {
+  display: inline-flex;
+  border: 2px solid var(--color-border-strong);
+  border-radius: var(--radius-page);
+  overflow: hidden;
+}
+
+.view-toggle-option {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0.5rem 0.7rem;
+  color: var(--color-fg-muted);
+  cursor: pointer;
+}
+
+.view-toggle-option + .view-toggle-option {
+  border-inline-start: 2px solid var(--color-border-strong);
+}
+
+/* The radio is the hit target and focus holder; the icon is its picture. */
+.view-toggle-option input {
+  position: absolute;
+  inset: 0;
+  margin: 0;
+  opacity: 0;
+  cursor: pointer;
+}
+
+.view-toggle-option:has(input:checked) {
+  background: var(--color-accent);
+  color: var(--color-accent-contrast);
+}
+
+.view-toggle-option:has(input:focus-visible) {
+  outline: 3px solid var(--color-focus-ring);
+  outline-offset: -3px;
+}
+
+/* Table view */
+.set-table-wrap {
+  margin-top: 1.5rem;
+}
+
+.set-table {
+  width: 100%;
+  border-collapse: collapse;
+  background: var(--color-bg-elevated);
+  border: 1px solid var(--color-border-strong);
+}
+
+.set-table th,
+.set-table td {
+  padding: 0.75rem 1rem;
+  text-align: start;
+  border-bottom: 1px solid var(--color-border);
+  vertical-align: middle;
+}
+
+.set-table thead th {
+  font-family: var(--font-ui);
+  font-size: 0.8rem;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: var(--color-fg-muted);
+}
+
+.set-table tbody th {
+  font-family: var(--font-chrome);
+  font-size: 1.05rem;
+  font-weight: 600;
+}
+
+.set-table .num {
+  text-align: end;
+  font-variant-numeric: tabular-nums;
+}
+
+.set-table-progress {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  min-width: 10rem;
+}
+
+.set-table-study {
+  display: inline-block;
+  padding: 0.3rem 0.8rem;
+  border-radius: var(--radius-sm);
+  background: var(--color-accent);
+  color: var(--color-accent-contrast);
+  text-decoration: none;
+  font-weight: 500;
+}
+
+.new-set-row {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  margin-top: 0.75rem;
+  padding: 0.9rem;
+  border: 2px dashed var(--color-border-strong);
+  border-radius: var(--radius-page);
+  color: var(--color-fg-muted);
+  font-family: var(--font-ui);
+  font-weight: 600;
+  text-decoration: none;
+}
+
+.new-set-row:hover,
+.new-set-row:focus-visible {
+  color: var(--color-accent);
+  border-color: var(--color-accent);
+}
+
+@media (max-width: 640px) {
+  .set-table th,
+  .set-table td {
+    padding: 0.6rem 0.5rem;
+  }
+
+  .set-table-progress {
+    min-width: 6rem;
+  }
+}
