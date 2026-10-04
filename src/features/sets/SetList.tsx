@@ -1,10 +1,8 @@
 import { useId, useState } from 'react'
-import { useNavigate } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
 import { useSeshatStore } from '../../lib/store'
 import { TESTIDS } from '../../lib/testids'
-import { CreateSetForm } from './CreateSetForm'
 import { setMatchesQuery } from './filters'
-import { ImportButton } from './ImportPanel'
 import './sets.css'
 import { SetListItem } from './SetListItem'
 import { type StarterSet, STARTER_SETS } from './starter-sets'
@@ -33,14 +31,18 @@ export const SetListPage = () => {
       <header className="sets-header">
         <h1 id="sets-heading">Sets</h1>
         <div className="sets-header-actions">
-          <CreateSetForm />
-          <ImportButton />
+          <Link to="/sets/new" className="primary-link" data-testid={TESTIDS.setsNewButton}>
+            Create
+          </Link>
+          <Link to="/sets/import" className="secondary-link" data-testid={TESTIDS.importSetButton}>
+            Import
+          </Link>
         </div>
       </header>
 
       {state.sets.length === 0 ? (
         <div>
-          <p>You don&apos;t have any sets yet. Start from a test set, or create your own above.</p>
+          <p>You don&apos;t have any sets yet. Start from a test set, or create or import your own.</p>
           <ul className="starter-set-list">
             {STARTER_SETS.map((starter) => (
               <li key={starter.id}>

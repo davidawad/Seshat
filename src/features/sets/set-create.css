@@ -1,0 +1,269 @@
+/* Full-page create / import editors (Quizlet-style). Tokens only, no raw colors. */
+
+.page-back {
+  margin: 0 0 0.5rem;
+}
+
+.set-create,
+.set-import {
+  max-width: 64rem;
+  margin-inline: auto;
+}
+
+.set-import {
+  max-width: 48rem;
+}
+
+.set-create-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.75rem 1.5rem;
+  flex-wrap: wrap;
+  margin-bottom: 0.25rem;
+}
+
+.set-create-header h1,
+.set-import h1 {
+  margin: 0;
+}
+
+.set-create-actions {
+  display: flex;
+  gap: 0.6rem;
+  flex-wrap: wrap;
+}
+
+.set-create-actions button,
+.primary-button {
+  margin-bottom: 0;
+  border-width: 2px;
+  border-radius: var(--radius-page);
+  padding: 0.6rem 1.1rem;
+  font-weight: 600;
+}
+
+.primary-button {
+  background: var(--color-accent);
+  color: var(--color-accent-contrast);
+  border-color: var(--color-accent);
+}
+
+.set-create-status {
+  min-height: 1.4em;
+  margin: 0.25rem 0 1rem;
+  font-size: 0.85rem;
+  color: var(--color-fg-muted);
+}
+
+.set-create-field {
+  margin-bottom: 1.25rem;
+}
+
+.set-create-field input,
+.card-editor-field textarea {
+  display: block;
+  width: 100%;
+  box-sizing: border-box;
+  margin-bottom: 0;
+  border-width: 2px;
+  border-radius: var(--radius-page);
+}
+
+.set-create-field input {
+  padding: 0.85rem 1rem;
+  font-size: 1.1rem;
+}
+
+.card-editor-caption {
+  display: block;
+  margin: 0.4rem 0 0;
+  font-size: 0.72rem;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--color-fg-muted);
+}
+
+.tag-chips {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.4rem;
+  margin: 0.6rem 0 0;
+  padding: 0;
+  list-style: none;
+}
+
+.tag-chip {
+  padding: 0.15rem 0.7rem;
+  border: 1px solid var(--color-border-strong);
+  border-radius: 999px;
+  font-size: 0.85rem;
+}
+
+.card-editor-list {
+  list-style: none;
+  margin: 1.5rem 0 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.card-editor {
+  padding: 0.75rem 1.25rem 1.25rem;
+  background: var(--color-bg-elevated);
+  border: 1px solid var(--color-border-strong);
+  border-radius: calc(var(--radius-page) * 2);
+}
+
+.card-editor-top {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 0.5rem;
+}
+
+.card-editor-number {
+  font-family: var(--font-display);
+  font-weight: 600;
+  color: var(--color-fg-muted);
+}
+
+.card-editor-delete {
+  margin-bottom: 0;
+}
+
+.card-editor-fields {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1.5rem;
+}
+
+.card-editor-field {
+  min-width: 0;
+}
+
+.card-editor-field textarea {
+  min-height: 3.5rem;
+  resize: none;
+  overflow: hidden;
+  padding: 0.7rem 0.9rem;
+  background: var(--color-bg);
+  font-family: inherit;
+  line-height: 1.4;
+}
+
+.card-editor-field textarea[aria-invalid='true'],
+.set-create-field input[aria-invalid='true'] {
+  border-color: var(--color-error);
+}
+
+.card-editor .field-error {
+  margin-top: 0.75rem;
+}
+
+.set-create-add {
+  display: flex;
+  justify-content: center;
+  margin: 1.5rem 0 3rem;
+}
+
+.pill-button {
+  margin-bottom: 0;
+  border-width: 2px;
+  border-radius: 999px;
+  padding: 0.85rem 3rem;
+  font-size: 1.05rem;
+  font-weight: 600;
+}
+
+@media (max-width: 640px) {
+  .card-editor-fields {
+    grid-template-columns: 1fr;
+    gap: 1rem;
+  }
+
+  .set-create-actions {
+    width: 100%;
+  }
+
+  .set-create-actions button {
+    flex: 1 1 auto;
+  }
+}
+
+/* Import page */
+
+.set-import form {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+  margin-top: 1.25rem;
+}
+
+.import-dropzone {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 2rem 1rem;
+  text-align: center;
+  cursor: pointer;
+  border: 2px dashed var(--color-border-strong);
+  border-radius: calc(var(--radius-page) * 2);
+  background: var(--color-bg-elevated);
+  margin: 0;
+}
+
+.import-dropzone:hover,
+.import-dropzone.is-dragging,
+.import-dropzone:focus-within {
+  border-color: var(--color-accent);
+}
+
+.import-dropzone-title {
+  font-family: var(--font-display);
+  font-weight: 600;
+  font-size: 1.1rem;
+}
+
+.import-dropzone-file {
+  font-size: 0.9rem;
+  color: var(--color-fg-muted);
+}
+
+.import-file-input {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  opacity: 0;
+  overflow: hidden;
+}
+
+.import-field input,
+.import-field textarea {
+  display: block;
+  width: 100%;
+  box-sizing: border-box;
+  margin-bottom: 0;
+  border-width: 2px;
+  border-radius: var(--radius-page);
+}
+
+.import-field textarea {
+  min-height: 12rem;
+  font-family: inherit;
+  resize: vertical;
+}
+
+.import-preview {
+  margin: 0.4rem 0 0;
+  font-size: 0.9rem;
+  color: var(--color-fg-muted);
+}
+
+.import-submit {
+  align-self: flex-start;
+  margin-bottom: 0;
+}

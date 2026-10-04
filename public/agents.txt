@@ -158,7 +158,7 @@ listed cards.)
 HOW TO DRIVE THE UI (browser-driving agents)
 ---------------------------------------------
 - Prefer ?import= above over clicking through the importer; it is one navigation.
-- Routes: / (home), /sets, /sets/:id, /docs, /attributions, /licensing. Study modes are launched
+- Routes: / (home), /sets, /sets/new (create editor), /sets/import (import page), /sets/:id, /docs, /attributions, /licensing. Study modes are launched
   from a set's page.
 - Interactive elements use native buttons, links and form controls with accessible names, so
   role + label locators (e.g. getByRole('button', { name: ... })) are stable. Prefer those over CSS
@@ -186,8 +186,14 @@ Home:
   home-page, home-set-card, home-set-link, home-study-link, home-starter-load, home-manage-sets
 Sets list (/sets):
   sets-page, sets-search, sets-list, sets-list-item, sets-edit-link, sets-starter-load,
-  sets-new-button, sets-new-name, sets-new-submit, sets-new-cancel, import-set-button,
-  import-panel, import-file, import-paste-name, import-paste-text, import-paste-submit
+  sets-new-button (link to /sets/new), import-set-button (link to /sets/import)
+Create a set (/sets/new):
+  create-page, create-back, create-title, create-title-error, create-description, create-tags,
+  create-card-list, create-card-row, create-term, create-definition, create-delete-card,
+  create-add-card, create-submit, create-submit-practice, create-draft-status, create-problems
+Import a set (/sets/import):
+  import-page, import-back, import-dropzone, import-file, import-file-name, import-paste-name,
+  import-paste-text, import-preview, import-error, import-paste-submit
 Set detail (/sets/:id):
   set-page, set-edit-link, set-export, set-mode-study, set-mode-flashcards, set-mode-test,
   set-mode-games, set-preview-flip, set-term-list
