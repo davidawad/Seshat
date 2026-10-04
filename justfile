@@ -1,28 +1,37 @@
 default: run
 
+# pnpm is canonical (see `packageManager` in package.json) — never npm/yarn here.
 install:
-    npm install
+    pnpm install
 
 run:
-    npm run dev
+    pnpm run dev
 
 build:
-    npm run build
+    pnpm run build
 
 test:
-    npm run test
+    pnpm run test
 
 lint:
-    npm run lint
+    pnpm run lint
 
 typecheck:
-    npm run typecheck
+    pnpm run typecheck
 
 format:
-    npm run format
+    pnpm run format
 
 format-check:
-    npm run format:check
+    pnpm run format:check
 
+# format:check + lint + typecheck + circular + duplication + license +
+# test:coverage + build + size — see the `ci` script in package.json.
 ci:
-    npm run ci
+    pnpm run ci
+
+# The gate the landing queue (`land`) runs on a merge candidate before
+# publishing it: install exactly what the lockfile says, then the full CI.
+test-gate:
+    pnpm install --frozen-lockfile
+    pnpm run ci
