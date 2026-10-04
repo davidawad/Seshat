@@ -32,7 +32,36 @@
 .blocks-grid {
   display: grid;
   gap: 0.25rem;
-  max-width: 24rem;
+  width: 100%;
+}
+
+/* Blocks on the left, question/options on the right (DOM order = reading
+   order). On phones the panel moves above the blocks so the player reads
+   the question before dropping. */
+.blocks-board {
+  display: grid;
+  grid-template-columns: minmax(14rem, 22rem) minmax(0, 1fr);
+  gap: 1.5rem;
+  align-items: start;
+}
+
+.blocks-panel {
+  min-width: 0;
+  overflow-wrap: anywhere;
+}
+
+@media (max-width: 640px) {
+  .blocks-board {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .blocks-panel {
+    order: -1;
+  }
+
+  .blocks-grid {
+    max-width: 20rem;
+  }
 }
 
 .blocks-cell {
@@ -60,8 +89,6 @@
   flex-direction: column;
   gap: 0.5rem;
   width: 100%;
-  max-width: 40rem;
-  margin-inline: auto;
 }
 
 .blocks-option {
