@@ -1,4 +1,3 @@
-import { z } from 'zod'
 import {
   type AppState,
   APP_STATE_VERSION,
@@ -7,11 +6,9 @@ import {
   type Settings,
   err,
   ok,
-  reviewLogEntrySchema,
   settingsSchema,
-  studyCardSchema,
-  studySetSchema,
 } from '../types'
+import { BACKUP_FORMAT, BACKUP_VERSION, backupV1Schema } from './backup-schema'
 import { type KeybindingOverrides, sanitizeOverrides } from './keybindings'
 
 /**
@@ -30,8 +27,7 @@ import { type KeybindingOverrides, sanitizeOverrides } from './keybindings'
  * ever validated against.
  */
 
-export const BACKUP_FORMAT = 'seshat-backup'
-export const BACKUP_VERSION = 1
+export { BACKUP_FORMAT, BACKUP_VERSION }
 
 /** Rejects absurd inputs before JSON.parse allocates for them. (Characters, not bytes — close enough for a sanity cap.) */
 export const MAX_BACKUP_CHARS = 25 * 1024 * 1024
@@ -39,24 +35,6 @@ export const MAX_BACKUP_CHARS = 25 * 1024 * 1024
 // Informational only (never gates an import — `version` does). Set VITE_APP_VERSION at build time to stamp it.
 const envAppVersion: unknown = import.meta.env['VITE_APP_VERSION']
 const APP_VERSION = typeof envAppVersion === 'string' ? envAppVersion : '0.0.0'
-
-// Settings are validated as a *partial*, then layered over defaults: a
-// backup taken before a setting existed must still import, and the schema
-// stays generic (new Settings fields flow through with no edit here) while
-// remaining strict about fields that are not settings at all.
-const backupSettingsSchema = settingsSchema.partial().strict()
-
-const backupV1Schema = z.strictObject({
-  format: z.literal(BACKUP_FORMAT),
-  version: z.literal(1),
-  appVersion: z.string(),
-  exportedAt: z.iso.datetime(),
-  settings: backupSettingsSchema,
-  keybindings: z.record(z.string(), z.string()),
-  sets: z.array(studySetSchema),
-  cards: z.array(studyCardSchema),
-  reviewLog: z.array(reviewLogEntrySchema),
-})
 
 export interface Backup {
   readonly format: typeof BACKUP_FORMAT
