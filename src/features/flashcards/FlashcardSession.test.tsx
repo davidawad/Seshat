@@ -1,15 +1,12 @@
 import { act, cleanup, render, screen } from '@testing-library/react'
 import userEvent from '@testing-library/user-event'
-import { afterEach, beforeAll, beforeEach, describe, expect, it, vi } from 'vitest'
-import { createInitialScheduling } from '../../lib/fsrs'
+import { afterEach, beforeAll, beforeEach, describe, expect, it } from 'vitest'
 import { NAV_PRESETS } from '../../lib/keybindings'
-import { saveState } from '../../lib/storage'
 import { SeshatProvider, useSeshatStore } from '../../lib/store'
 import { useKeybindings } from '../../lib/useKeybindings'
-import { type StudyCard, cardIdSchema, createEmptyAppState, setIdSchema } from '../../types'
+import { type StudyCard, cardIdSchema } from '../../types'
 import { FlashcardSession } from './FlashcardSession'
-import type { FlashcardOptions } from './options'
-import type { GradeRecord } from './session'
+import { makeCard, makeHandlers, renderSession, seedStore, sessionElement } from './session-test-helpers'
 
 // @testing-library/react's auto-cleanup relies on a global `afterEach` hook
 // (registered via vitest's `globals: true`), which this project's
@@ -23,88 +20,6 @@ beforeAll(() => {
   HTMLElement.prototype.hasPointerCapture ??= () => false
   HTMLElement.prototype.releasePointerCapture ??= () => undefined
 })
-
-const setId = setIdSchema.parse('a1111111-1111-4111-8111-111111111111')
-const cardId = cardIdSchema.parse('c1111111-1111-4111-8111-111111111111')
-
-const makeCard = (): StudyCard => {
-  const now = new Date().toISOString()
-  return {
-    id: cardId,
-    setId,
-    prompt: 'What is the capital of France?',
-    content: { kind: 'short-answer', answer: 'Paris', acceptableAnswers: [] },
-    explanation: null,
-    sourceRef: null,
-    tags: [],
-    createdAt: now,
-    updatedAt: now,
-    scheduling: createInitialScheduling(new Date()),
-  }
-}
-
-const seedStore = (card: StudyCard) => {
-  const state = createEmptyAppState()
-  saveState({
-    ...state,
-    sets: [
-      {
-        id: setId,
-        name: 'Test Set',
-        description: '',
-        tags: [],
-        createdAt: card.createdAt,
-        updatedAt: card.updatedAt,
-        goalDate: null,
-      },
-    ],
-    cards: [card],
-  })
-}
-
-const defaultOptions: FlashcardOptions = { trackProgress: true, front: 'term' }
-
-interface RenderOverrides {
-  readonly options?: FlashcardOptions
-  readonly shortcutsEnabled?: boolean
-  readonly canUndo?: boolean
-  readonly shuffled?: boolean
-}
-
-const sessionElement = (
-  card: StudyCard,
-  handlers: ReturnType<typeof makeHandlers>,
-  overrides: RenderOverrides = {},
-) => (
-  <SeshatProvider>
-    <FlashcardSession
-      card={card}
-      position={0}
-      total={3}
-      options={overrides.options ?? defaultOptions}
-      shortcutsEnabled={overrides.shortcutsEnabled ?? true}
-      canUndo={overrides.canUndo ?? false}
-      shuffled={overrides.shuffled ?? true}
-      onGrade={handlers.onGrade}
-      onUndo={handlers.onUndo}
-      onToggleShuffle={handlers.onToggleShuffle}
-      onOpenOptions={handlers.onOpenOptions}
-    />
-  </SeshatProvider>
-)
-
-const makeHandlers = () => ({
-  onGrade: vi.fn<(record: GradeRecord) => void>(),
-  onUndo: vi.fn<() => void>(),
-  onToggleShuffle: vi.fn<() => void>(),
-  onOpenOptions: vi.fn<() => void>(),
-})
-
-const renderSession = (card: StudyCard, overrides: RenderOverrides = {}) => {
-  const handlers = makeHandlers()
-  render(sessionElement(card, handlers, overrides))
-  return handlers
-}
 
 /**
  * The flip card face renders both front and back text at all times (a
@@ -228,6 +143,8 @@ describe('FlashcardSession', () => {
           total={3}
           options={{ trackProgress: false, front: 'term' }}
           shortcutsEnabled
+          knownCount={4}
+          unknownCount={2}
           canUndo={false}
           shuffled
           onGrade={handlers.onGrade}

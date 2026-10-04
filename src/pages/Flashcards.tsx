@@ -212,6 +212,8 @@ const FlashcardRunner = ({ setId, setName, cardIds }: FlashcardRunnerProps) => {
             options={options}
             shortcutsEnabled={!optionsOpen}
             onGrade={handleGrade}
+            knownCount={session.knownIds.length}
+            unknownCount={session.unknownIds.length}
             canUndo={canUndo(run)}
             shuffled={orderMode === 'shuffled'}
             onUndo={handleUndo}

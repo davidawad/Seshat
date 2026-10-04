@@ -12,6 +12,20 @@
 .flashcard-stack {
   width: 100%;
   max-width: 52rem;
+  /* Each newly shown card eases in; the badge/border for grading live below. */
+  animation: flashcard-enter 0.18s ease-out;
+}
+
+@keyframes flashcard-enter {
+  from {
+    opacity: 0;
+    transform: scale(0.97);
+  }
+
+  to {
+    opacity: 1;
+    transform: none;
+  }
 }
 
 .flashcard-stack .flip-card-scene .flip-card-face {
@@ -20,6 +34,7 @@
 }
 
 .flashcard-face {
+  position: relative;
   cursor: pointer;
   -webkit-user-select: none;
   user-select: none;
@@ -159,5 +174,112 @@
 
   .flashcard-grade-cluster {
     gap: 1rem;
+  }
+}
+
+/*
+ * Grading feedback. While a card leaves (see grade-motion.ts) the stack gets
+ * is-leaving-know / is-leaving-learning: the card takes a colored border, a
+ * badge pops in on its top corner on that side, and the matching tally chip
+ * pulses. Colors are the success/error tokens, so every palette follows.
+ */
+.flashcard-stack.is-leaving-know .flip-card-scene .flip-card-face {
+  border-color: var(--color-success);
+  box-shadow: 0 0 0 3px color-mix(in srgb, var(--color-success) 40%, transparent);
+}
+
+.flashcard-stack.is-leaving-learning .flip-card-scene .flip-card-face {
+  border-color: var(--color-error);
+  box-shadow: 0 0 0 3px color-mix(in srgb, var(--color-error) 40%, transparent);
+}
+
+.flashcard-grade-badge {
+  position: absolute;
+  top: 1rem;
+  z-index: 2;
+  padding: 0.35rem 0.95rem;
+  border: 2px solid currentColor;
+  border-radius: 999px;
+  background: var(--color-surface-highlight);
+  font-family: var(--font-ui);
+  font-size: 0.95rem;
+  font-weight: 700;
+  animation: grade-badge-pop 0.18s ease-out both;
+}
+
+.flashcard-grade-badge.is-know {
+  right: 1rem;
+  color: var(--color-success);
+}
+
+.flashcard-grade-badge.is-learning {
+  left: 1rem;
+  color: var(--color-error);
+}
+
+@keyframes grade-badge-pop {
+  from {
+    opacity: 0;
+    transform: scale(0.7);
+  }
+
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+/* Outlined count chips above the card: Still learning (left), Know (right). */
+.flashcard-tally {
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+  max-width: 52rem;
+  margin-bottom: -1rem;
+}
+
+.flashcard-tally-side {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  margin: 0;
+  font-size: 0.9rem;
+  font-weight: 600;
+}
+
+.flashcard-tally-side.is-learning {
+  color: var(--color-error);
+}
+
+.flashcard-tally-side.is-know {
+  color: var(--color-success);
+}
+
+.flashcard-tally-chip {
+  min-width: 2.5rem;
+  padding: 0.1rem 0.6rem;
+  border: 1px solid currentColor;
+  border-radius: 18px;
+  text-align: center;
+  font-family: var(--font-ui);
+  font-variant-numeric: tabular-nums;
+}
+
+.flashcard-tally-side.is-bump .flashcard-tally-chip {
+  animation: tally-bump 0.32s ease-out;
+}
+
+@keyframes tally-bump {
+  0% {
+    transform: scale(1);
+  }
+
+  40% {
+    transform: scale(1.18);
+    background: color-mix(in srgb, currentColor 18%, transparent);
+  }
+
+  100% {
+    transform: scale(1);
   }
 }

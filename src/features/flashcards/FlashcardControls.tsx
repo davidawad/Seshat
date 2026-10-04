@@ -1,6 +1,7 @@
 import { CheckIcon, CrossIcon, GearIcon, ShuffleIcon, UndoIcon } from '../../components/icons'
 import { formatKeyLabel } from '../../lib/keybindings'
 import { TESTIDS } from '../../lib/testids'
+import type { Leaving } from './grade-motion'
 
 interface FlashcardControlsProps {
   readonly position: number
@@ -20,6 +21,40 @@ interface FlashcardControlsProps {
   readonly onToggleShuffle: () => void
   readonly onOpenOptions: () => void
 }
+
+/**
+ * Outlined count chips above the card: "Still learning n" on the left, "Know n"
+ * on the right. While a grade animation runs the chip it is going to is shown
+ * already incremented and pulses, so the count visibly lands with the card.
+ */
+export const FlashcardTally = ({
+  knownCount,
+  unknownCount,
+  leaving,
+}: {
+  readonly knownCount: number
+  readonly unknownCount: number
+  readonly leaving: Leaving | null
+}) => (
+  <div className="flashcard-tally" data-testid={TESTIDS.flashcardTally}>
+    <p
+      className={
+        leaving === 'learning' ? 'flashcard-tally-side is-learning is-bump' : 'flashcard-tally-side is-learning'
+      }
+    >
+      <span>Still learning</span>
+      <span className="flashcard-tally-chip" data-testid={TESTIDS.flashcardTallyLearning}>
+        {unknownCount + (leaving === 'learning' ? 1 : 0)}
+      </span>
+    </p>
+    <p className={leaving === 'know' ? 'flashcard-tally-side is-know is-bump' : 'flashcard-tally-side is-know'}>
+      <span>Know</span>
+      <span className="flashcard-tally-chip" data-testid={TESTIDS.flashcardTallyKnow}>
+        {knownCount + (leaving === 'know' ? 1 : 0)}
+      </span>
+    </p>
+  </div>
+)
 
 /** The strip attached under the card: the Quizlet-style "press [←] / [→]" hint. */
 export const FlashcardHint = ({ leftKey, rightKey }: { readonly leftKey: string; readonly rightKey: string }) => (
