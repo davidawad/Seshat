@@ -17,7 +17,7 @@ interface SetTermListProps {
  */
 export const SetTermList = ({ cards }: SetTermListProps) => {
   const rows = cards.map((card) => ({ card, ...cardFrontBack(card) }))
-  const hasDiagrams = rows.some((row) => row.image !== null || row.imageDataUrl !== undefined)
+  const hasDiagrams = rows.some((row) => Boolean(row.image) || row.imageDataUrl !== undefined)
   return (
     <div className="set-term-scroll">
       <table className="set-term-table" data-testid={TESTIDS.setTermList}>
