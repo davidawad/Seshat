@@ -1,6 +1,7 @@
 import { Link } from 'react-router-dom'
 import { EditIcon } from '../../components/icons'
 import { isDue } from '../../lib/fsrs'
+import { TESTIDS } from '../../lib/testids'
 import type { StudyCard, StudySet } from '../../types'
 
 interface SetListItemProps {
@@ -18,7 +19,7 @@ export const SetListItem = ({ set, setCards }: SetListItemProps) => {
   const dueCount = setCards.filter((card) => isDue(card.scheduling, now)).length
 
   return (
-    <li className="set-row">
+    <li className="set-row" data-testid={TESTIDS.setsListItem}>
       <Link to={`/sets/${set.id}`} className="set-row-main">
         <span className="set-row-name">{set.name}</span>
         {set.description.length > 0 && <span className="set-row-description">{set.description}</span>}
@@ -33,7 +34,12 @@ export const SetListItem = ({ set, setCards }: SetListItemProps) => {
       <span className="set-row-count">
         {setCards.length} card{setCards.length === 1 ? '' : 's'} · {dueCount} due now
       </span>
-      <Link to={`/sets/${set.id}/edit`} className="icon-button" aria-label={`Edit ${set.name}`}>
+      <Link
+        to={`/sets/${set.id}/edit`}
+        className="icon-button"
+        aria-label={`Edit ${set.name}`}
+        data-testid={TESTIDS.setsEditLink}
+      >
         <EditIcon />
       </Link>
     </li>

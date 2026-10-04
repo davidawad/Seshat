@@ -1,3 +1,4 @@
+import { TESTIDS } from '../lib/testids'
 import './home.css'
 import { CITATIONS } from '../features/attributions/citations'
 import type { Citation, CitationCategory } from '../features/attributions/citations'
@@ -13,7 +14,7 @@ const CATEGORY_ORDER: readonly CitationCategory[] = ['learning-science', 'legibi
 const formatYear = (year: Citation['year']): string => (typeof year === 'number' ? String(year) : year)
 
 export const AttributionsPage = () => (
-  <section aria-labelledby="attributions-heading">
+  <section aria-labelledby="attributions-heading" data-testid={TESTIDS.attributionsPage}>
     <h1 id="attributions-heading">Attributions</h1>
     <p>
       Seshat&rsquo;s study engine, scheduling defaults, and typography system are built on the research below, plus one
@@ -52,7 +53,12 @@ export const AttributionsPage = () => (
                         <div>
                           <dt>Link</dt>
                           <dd>
-                            <a href={citation.link} target="_blank" rel="noopener noreferrer">
+                            <a
+                              href={citation.link}
+                              target="_blank"
+                              rel="noopener noreferrer"
+                              aria-label={`${citation.title}: ${citation.link} (opens in a new tab)`}
+                            >
                               {citation.link}
                             </a>
                           </dd>

@@ -1,4 +1,7 @@
+import { useRef } from 'react'
 import { Legible } from '../../components/Legible'
+import { useFocusWhen } from '../../lib/routeFocus'
+import { TESTIDS } from '../../lib/testids'
 import type { TestQuestion } from './generate-test'
 import { type TestAnswer, answerLabel, correctAnswerLabel, gradeAnswer } from './grade-test'
 
@@ -18,14 +21,23 @@ export const TestResults = ({ questions, answers, onRetryMissed }: TestResultsPr
   })
   const correctCount = graded.filter((entry) => entry.correct).length
   const missedCount = questions.length - correctCount
+  // The Submit button just unmounted; with no autofocused retry button, land on the score.
+  const scoreRef = useRef<HTMLParagraphElement>(null)
+  useFocusWhen(scoreRef, missedCount === 0 || onRetryMissed === undefined)
 
   return (
     <div className="test-results">
-      <p role="status" className="test-score">
+      <p ref={scoreRef} tabIndex={-1} role="status" className="test-score" data-testid={TESTIDS.testScore}>
         {correctCount} / {questions.length} correct
       </p>
       {missedCount > 0 && onRetryMissed !== undefined && (
-        <button type="button" className="test-retry-missed" onClick={onRetryMissed} autoFocus>
+        <button
+          type="button"
+          className="test-retry-missed"
+          data-testid={TESTIDS.testRetryMissed}
+          onClick={onRetryMissed}
+          autoFocus
+        >
           Retry {missedCount} missed question{missedCount === 1 ? '' : 's'}
         </button>
       )}

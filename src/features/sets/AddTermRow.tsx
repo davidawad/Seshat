@@ -1,5 +1,6 @@
 import { type KeyboardEvent, useId, useRef, useState } from 'react'
 import { useSeshatStore } from '../../lib/store'
+import { TESTIDS } from '../../lib/testids'
 import type { SetId } from '../../types'
 
 interface AddTermRowProps {
@@ -55,6 +56,7 @@ export const AddTermRow = ({ setId }: AddTermRowProps) => {
       <input
         id={termId}
         ref={termInputRef}
+        data-testid={TESTIDS.editAddTerm}
         type="text"
         className="card-row-input legible"
         placeholder="Term"
@@ -68,6 +70,7 @@ export const AddTermRow = ({ setId }: AddTermRowProps) => {
       <input
         id={definitionId}
         type="text"
+        data-testid={TESTIDS.editAddDefinition}
         className="card-row-input legible"
         placeholder="Definition"
         value={definition}

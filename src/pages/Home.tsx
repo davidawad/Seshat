@@ -3,6 +3,7 @@ import { SetProgressCard } from '../features/sets/SetProgressCard'
 import { type StarterSet, STARTER_SETS } from '../features/sets/starter-sets'
 import { summarizeMastery } from '../features/sets/set-summary'
 import { useSeshatStore } from '../lib/store'
+import { TESTIDS } from '../lib/testids'
 import './home.css'
 
 /** Landing page: your sets as cards with memorized/total progress, so you can open the page and jump straight into studying. */
@@ -17,7 +18,7 @@ export const HomePage = () => {
   }
 
   return (
-    <section aria-labelledby="home-heading">
+    <section aria-labelledby="home-heading" data-testid={TESTIDS.homePage}>
       <h1 id="home-heading">Your sets</h1>
 
       {state.sets.length === 0 ? (
@@ -26,7 +27,7 @@ export const HomePage = () => {
           <ul className="starter-set-list">
             {STARTER_SETS.map((starter) => (
               <li key={starter.id}>
-                <button type="button" onClick={() => handleLoadStarter(starter)}>
+                <button type="button" data-testid={TESTIDS.homeStarterLoad} onClick={() => handleLoadStarter(starter)}>
                   Load: {starter.label}
                 </button>
               </li>
@@ -50,7 +51,9 @@ export const HomePage = () => {
       )}
 
       <p className="home-manage-sets">
-        <Link to="/sets">Manage sets</Link>
+        <Link to="/sets" data-testid={TESTIDS.homeManageSets}>
+          Manage sets
+        </Link>
       </p>
     </section>
   )

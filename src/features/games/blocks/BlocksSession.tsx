@@ -1,6 +1,7 @@
 import { useEffect, useRef, useState } from 'react'
 import { Legible } from '../../../components/Legible'
 import { OptionAnnouncer } from '../../../lib/OptionAnnouncer'
+import { TESTIDS } from '../../../lib/testids'
 import { useNumberedShortcut } from '../../../lib/useNumberedShortcut'
 import { NAV_OPTION_ATTRIBUTE, useOptionNavigation } from '../../../lib/useOptionNavigation'
 import type { SetId, StudyCard } from '../../../types'
@@ -100,6 +101,7 @@ const BlocksQuestionView = ({ question, onAnswer }: BlocksQuestionViewProps) => 
               key={option}
               type="button"
               className="blocks-option"
+              data-testid={TESTIDS.blocksOption}
               onClick={() => onAnswer(option)}
               onFocus={() => setHighlight(index)}
               {...{ [NAV_OPTION_ATTRIBUTE]: '' }}
@@ -142,6 +144,7 @@ const BlocksPlacingView = ({ columns, onPlace }: BlocksPlacingViewProps) => {
             key={col}
             type="button"
             className="blocks-column-button"
+            data-testid={TESTIDS.blocksColumn}
             disabled={!canPlace(columns, col)}
             onClick={() => onPlace(col)}
             onFocus={() => setHighlight(col)}
@@ -283,7 +286,7 @@ export const BlocksSession = ({ setId, cards }: BlocksSessionProps) => {
         isNewBest={isNewBest}
       />
 
-      <p role="status" aria-live="polite" className="blocks-feedback">
+      <p role="status" className="blocks-feedback" data-testid={TESTIDS.blocksFeedback}>
         {feedback}
       </p>
 
@@ -301,7 +304,13 @@ export const BlocksSession = ({ setId, cards }: BlocksSessionProps) => {
           <p className="blocks-final-clears">
             Rows cleared: {rowsCleared} &middot; Columns cleared: {columnsCleared}
           </p>
-          <button type="button" className="blocks-play-again" onClick={handlePlayAgain} autoFocus>
+          <button
+            type="button"
+            className="blocks-play-again"
+            data-testid={TESTIDS.blocksPlayAgain}
+            onClick={handlePlayAgain}
+            autoFocus
+          >
             Play again
           </button>
         </div>

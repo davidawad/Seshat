@@ -151,7 +151,7 @@ describe('FlashcardsPage', () => {
   it('header is a plain Back link to the set plus the bare set name as the h1', () => {
     seedThreeCards()
     renderPage()
-    expect(screen.getByRole('link', { name: 'Back' })).toHaveAttribute('href', `/sets/${setId}`)
+    expect(screen.getByRole('link', { name: 'Back to Test Set' })).toHaveAttribute('href', `/sets/${setId}`)
     expect(screen.getByRole('heading', { level: 1, name: 'Test Set' })).toBeInTheDocument()
   })
 

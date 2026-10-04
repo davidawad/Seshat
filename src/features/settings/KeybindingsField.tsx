@@ -106,6 +106,7 @@ const KeybindingRow = ({ action }: KeybindingRowProps) => {
         type="button"
         className="keybinding-change"
         aria-pressed={recording}
+        aria-label={`Change shortcut: ${action.label}`}
         onClick={() => {
           setConflictMessage(null)
           setRecording(true)
@@ -115,6 +116,7 @@ const KeybindingRow = ({ action }: KeybindingRowProps) => {
       </button>
       <button
         type="button"
+        aria-label={`Reset shortcut: ${action.label}`}
         onClick={() => {
           setConflictMessage(null)
           resetBinding(action.id)

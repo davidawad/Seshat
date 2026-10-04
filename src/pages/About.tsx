@@ -1,9 +1,10 @@
 import { Link } from 'react-router-dom'
+import { TESTIDS } from '../lib/testids'
 import './home.css'
 
 /** Why Seshat exists and the research behind it — moved off the landing page so Home can be a dashboard of your sets. */
 export const AboutPage = () => (
-  <section aria-labelledby="about-heading">
+  <section aria-labelledby="about-heading" data-testid={TESTIDS.aboutPage}>
     <p className="home-eyebrow">Free &amp; open source</p>
     <h1 id="about-heading">Seshat is a flashcard app built on what actually works.</h1>
     <p className="home-lede">

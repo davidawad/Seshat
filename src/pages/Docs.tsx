@@ -1,7 +1,8 @@
 import { Link } from 'react-router-dom'
+import { TESTIDS } from '../lib/testids'
 
 export const DocsPage = () => (
-  <section aria-labelledby="docs-heading">
+  <section aria-labelledby="docs-heading" data-testid={TESTIDS.docsPage}>
     <h1 id="docs-heading">Docs</h1>
     <p>
       Using an AI agent? Read the <a href={`${import.meta.env.BASE_URL}agents.txt`}>agent guide (agents.txt)</a> for URL

@@ -1,6 +1,7 @@
 import { Link, useParams } from 'react-router-dom'
 import { TestSession } from '../features/test-mode/TestSession'
 import { useSeshatStore } from '../lib/store'
+import { TESTIDS } from '../lib/testids'
 import { setIdSchema } from '../types'
 
 const NotFound = ({ message }: { readonly message: string }) => (
@@ -27,7 +28,7 @@ export const TestPage = () => {
   const cards = state.cards.filter((candidate) => candidate.setId === setId)
 
   return (
-    <section aria-labelledby="test-heading">
+    <section aria-labelledby="test-heading" data-testid={TESTIDS.testPage}>
       <p>
         <Link to={`/sets/${setId}`}>Back to {set.name}</Link>
       </p>

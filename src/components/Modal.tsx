@@ -1,5 +1,6 @@
 import { useEffect, useRef } from 'react'
 import type { ReactNode } from 'react'
+import { TESTIDS } from '../lib/testids'
 
 export interface ModalProps {
   readonly open: boolean
@@ -7,6 +8,10 @@ export interface ModalProps {
   readonly titleId: string
   readonly title: string
   readonly children: ReactNode
+  /** Stable `data-testid` for the dialog element (see lib/testids.ts). */
+  readonly testId?: string
+  /** Stable `data-testid` for the dialog's close button; unique per dialog so selectors never match all of them. */
+  readonly closeTestId?: string
 }
 
 /**
@@ -14,7 +19,7 @@ export interface ModalProps {
  * free focus trapping, Escape-to-close, and a `::backdrop` (styled in
  * index.css), no dialog library needed.
  */
-export const Modal = ({ open, onClose, titleId, title, children }: ModalProps) => {
+export const Modal = ({ open, onClose, titleId, title, children, testId, closeTestId }: ModalProps) => {
   const dialogRef = useRef<HTMLDialogElement>(null)
 
   useEffect(() => {
@@ -29,6 +34,7 @@ export const Modal = ({ open, onClose, titleId, title, children }: ModalProps) =
       ref={dialogRef}
       className="modal"
       aria-labelledby={titleId}
+      data-testid={testId}
       onClose={onClose}
       onClick={(event) => {
         // A click landing on the <dialog> element itself (not its content)
@@ -39,7 +45,13 @@ export const Modal = ({ open, onClose, titleId, title, children }: ModalProps) =
     >
       <div className="modal-header">
         <h2 id={titleId}>{title}</h2>
-        <button type="button" className="icon-button" onClick={onClose} aria-label="Close">
+        <button
+          type="button"
+          className="icon-button"
+          onClick={onClose}
+          aria-label="Close"
+          data-testid={closeTestId ?? TESTIDS.modalClose}
+        >
           ✕
         </button>
       </div>

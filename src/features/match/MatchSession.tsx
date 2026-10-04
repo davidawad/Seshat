@@ -1,6 +1,7 @@
 import { useEffect, useRef, useState } from 'react'
 import { Legible } from '../../components/Legible'
 import { OptionAnnouncer } from '../../lib/OptionAnnouncer'
+import { TESTIDS } from '../../lib/testids'
 import { useNumberedShortcut } from '../../lib/useNumberedShortcut'
 import { NAV_OPTION_ATTRIBUTE, useOptionNavigation } from '../../lib/useOptionNavigation'
 import type { CardId, SetId } from '../../types'
@@ -47,6 +48,7 @@ const TileButton = ({ tile, isSelected, isMatched, isMiss, onSelect, onFocusTile
       type="button"
       className={classNames.join(' ')}
       aria-pressed={isSelected}
+      data-testid={TESTIDS.matchTile}
       disabled={isMatched}
       onClick={() => onSelect(tile)}
       onFocus={onFocusTile}
@@ -271,7 +273,7 @@ export const MatchSession = ({ setId, pairs }: MatchSessionProps) => {
         <MatchCapChoices choices={pairCapChoices} pairCap={pairCap} onChange={handleCapChange} />
       )}
 
-      <p role="status" aria-live="polite" className="match-feedback">
+      <p role="status" className="match-feedback" data-testid={TESTIDS.matchFeedback}>
         {feedback}
       </p>
 
@@ -291,7 +293,13 @@ export const MatchSession = ({ setId, pairs }: MatchSessionProps) => {
       <OptionAnnouncer index={highlight} labels={round.map((tile) => tile.text)} />
 
       {isComplete && (
-        <button type="button" className="match-play-again" onClick={() => startNewRound()} autoFocus>
+        <button
+          type="button"
+          className="match-play-again"
+          data-testid={TESTIDS.matchPlayAgain}
+          onClick={() => startNewRound()}
+          autoFocus
+        >
           Play again
         </button>
       )}
