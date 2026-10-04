@@ -1,3 +1,4 @@
+import type { ReactNode } from 'react'
 import type { MediaRef } from '../lib/media/types'
 import { CardImage } from './CardImage'
 import './flip-card.css'
@@ -9,6 +10,8 @@ interface FlipCardProps {
   /** LEGACY inline data URL; shown only when `image` is absent. */
   readonly imageDataUrl: string | undefined
   readonly flipped: boolean
+  /** Footer rendered inside BOTH faces (overlaid at the bottom edge), so it turns with the card. */
+  readonly tip?: ReactNode
 }
 
 /**
@@ -29,16 +32,18 @@ interface FlipCardProps {
  * TODO(image-cards): render the front with all regions masked and the back
  * with the asked region revealed, or ask every region. Not redesigned here.
  */
-export const FlipCard = ({ front, back, image, imageDataUrl, flipped }: FlipCardProps) => (
+export const FlipCard = ({ front, back, image, imageDataUrl, flipped, tip }: FlipCardProps) => (
   <div className="flip-card-scene">
     <div className={flipped ? 'flip-card-inner is-flipped' : 'flip-card-inner'}>
       <div className="legible illuminated-panel flip-card-face flip-card-front" aria-hidden={flipped}>
         <CardImage image={image} imageDataUrl={imageDataUrl} alt="" className="flip-card-image" />
         <p>{front}</p>
+        {tip}
       </div>
       <div className="legible illuminated-panel flip-card-face flip-card-back" aria-hidden={!flipped}>
         <CardImage image={image} imageDataUrl={imageDataUrl} alt="" className="flip-card-image" />
         <p>{back}</p>
+        {tip}
       </div>
     </div>
   </div>

@@ -55,8 +55,9 @@ describe('FlashcardSession', () => {
     const card = makeCard()
     seedStore(card)
     renderSession(card)
-    expect(screen.getByText(/Press/)).toHaveTextContent('Press ← to study again or → if you know the answer')
-    expect(screen.getByText('Shortcut')).toBeInTheDocument()
+    const tips = screen.getAllByText(/Press/)
+    expect(tips).toHaveLength(2) // one per face; only the visible one is exposed
+    for (const tip of tips) expect(tip).toHaveTextContent('Press ← to study again or → if you know the answer')
   })
 
   it('flips on card click and on Space, and flips back on a second one', async () => {
@@ -171,7 +172,7 @@ describe('FlashcardSession', () => {
     const card = makeCard()
     seedStore(card)
     renderSession(card, { options: { trackProgress: true, front: 'definition', cardSize: 'small' } })
-    const faces = document.querySelectorAll('.flip-card-face p')
+    const faces = document.querySelectorAll('.flip-card-face > p:not(.card-tip)')
     expect(faces[0]).toHaveTextContent('Paris')
     expect(faces[1]).toHaveTextContent('What is the capital of France?')
   })

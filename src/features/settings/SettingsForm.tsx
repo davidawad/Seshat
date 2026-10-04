@@ -3,6 +3,8 @@ import { Combobox } from '../../components/Combobox'
 import './settings.css'
 import { BackupField } from './BackupField'
 import { useSeshatStore } from '../../lib/store'
+import { TESTIDS } from '../../lib/testids'
+import { resetDismissedTips } from '../../lib/tipDismissal'
 import {
   RETENTION_PRESETS,
   retentionPresetSchema,
@@ -336,6 +338,28 @@ const ExperimentalGamesField = ({ settings, updateSettings }: FieldProps) => {
   )
 }
 
+const CardTipsField = ({ settings, updateSettings }: FieldProps) => {
+  const inputId = useId()
+  return (
+    <div className="settings-field">
+      <label className="settings-option-inline" htmlFor={inputId}>
+        <input
+          id={inputId}
+          type="checkbox"
+          data-testid={TESTIDS.settingsCardTips}
+          checked={settings.cardTipsEnabled}
+          onChange={(event) => {
+            // Turning tips back on also brings back the ones already dismissed.
+            if (event.target.checked) resetDismissedTips()
+            updateSettings({ cardTipsEnabled: event.target.checked })
+          }}
+        />
+        <span>Show card tips</span>
+      </label>
+    </div>
+  )
+}
+
 const InstallPromptField = ({ settings, updateSettings }: FieldProps) => {
   const inputId = useId()
   const hintId = useId()
@@ -387,6 +411,7 @@ export const SettingsForm = () => {
         <SelfRatingPromptField {...fieldProps} />
         <SelfExplanationField {...fieldProps} />
         <ExperimentalGamesField {...fieldProps} />
+        <CardTipsField {...fieldProps} />
         <InstallPromptField {...fieldProps} />
         <BackupField />
         <StorageField />

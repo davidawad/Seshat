@@ -11,6 +11,7 @@ import {
 import { matchesBinding } from '../../lib/keybindings'
 import { useSeshatStore } from '../../lib/store'
 import { TESTIDS } from '../../lib/testids'
+import { useCardTip } from '../../lib/useCardTip'
 import { useKeybindings } from '../../lib/useKeybindings'
 import type { MediaRef } from '../../lib/media/types'
 import type { StudyCard } from '../../types'
@@ -46,6 +47,8 @@ interface FlashcardFaceProps {
   readonly ref: Ref<HTMLDivElement>
   /** Shown on top of the card, travelling with it (the Know / Still learning badge). */
   readonly badge: ReactNode
+  /** Footer inside both card faces (the grade-keys hint). */
+  readonly tip: ReactNode
   readonly flipped: boolean
   readonly front: string
   readonly back: string
@@ -64,6 +67,7 @@ interface FlashcardFaceProps {
 const FlashcardFace = ({
   ref,
   badge,
+  tip,
   flipped,
   front,
   back,
@@ -100,7 +104,7 @@ const FlashcardFace = ({
     onPointerCancel={onPointerCancel}
     style={dragX !== 0 ? { transform: `translateX(${dragX}px)` } : undefined}
   >
-    <FlipCard front={front} back={back} image={image} imageDataUrl={imageDataUrl} flipped={flipped} />
+    <FlipCard front={front} back={back} image={image} imageDataUrl={imageDataUrl} flipped={flipped} tip={tip} />
     {badge}
   </div>
 )
@@ -134,6 +138,9 @@ export const FlashcardSession = ({
   const [flipped, setFlipped] = useState(false)
   const faceRef = useRef<HTMLDivElement>(null)
   const shownAt = useRef(performance.now())
+  // The hint teaches grading, so the learner's first grade (key, button or swipe) retires it.
+  const tip = useCardTip('flashcards-grade')
+  const { dismiss: dismissTip } = tip
 
   // Reset per-card state whenever a new card is shown.
   useEffect(() => {
@@ -149,6 +156,7 @@ export const FlashcardSession = ({
   const commitGrade = useCallback(
     (known: boolean) => {
       const elapsedMs = performance.now() - shownAt.current
+      dismissTip()
       const reviewedAt = options.trackProgress
         ? recordReview(card.id, known ? 'good' : 'again', null, known, elapsedMs)
         : null
@@ -159,7 +167,7 @@ export const FlashcardSession = ({
         reviewedAt,
       })
     },
-    [card.id, card.scheduling, onGrade, options.trackProgress, recordReview],
+    [card.id, card.scheduling, dismissTip, onGrade, options.trackProgress, recordReview],
   )
 
   const { leaving, handleGrade } = useGradeMotion(faceRef, commitGrade)
@@ -206,11 +214,7 @@ export const FlashcardSession = ({
   return (
     <div className="flashcard-session">
       <FlashcardTally knownCount={knownCount} unknownCount={unknownCount} leaving={leaving} />
-      <div
-        className={
-          leaving === null ? 'flashcard-stack card-with-tip' : `flashcard-stack card-with-tip is-leaving-${leaving}`
-        }
-      >
+      <div className={leaving === null ? 'flashcard-stack' : `flashcard-stack is-leaving-${leaving}`}>
         <FlashcardFace
           ref={faceRef}
           badge={
@@ -224,6 +228,7 @@ export const FlashcardSession = ({
               </span>
             )
           }
+          tip={<FlashcardHint leftKey={keyFor('nav.left')} rightKey={keyFor('nav.right')} open={tip.open} />}
           flipped={flipped}
           front={front}
           back={back}
@@ -234,7 +239,6 @@ export const FlashcardSession = ({
           onKeyDown={handleFaceKeyDown}
           {...pointerHandlers}
         />
-        <FlashcardHint leftKey={keyFor('nav.left')} rightKey={keyFor('nav.right')} />
       </div>
 
       <FlashcardControls
