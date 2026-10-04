@@ -208,7 +208,7 @@
   flex-direction: column;
   align-items: center;
   width: 100%;
-  max-width: 18rem;
+  max-width: var(--card-max-width);
   margin-inline: auto;
 }
 

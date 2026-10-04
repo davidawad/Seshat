@@ -163,6 +163,7 @@ export const TESTIDS = {
   flashcardsAnnouncer: 'flashcards-announcer',
   flashcardTrackProgress: 'flashcard-track-progress',
   flashcardFront: 'flashcard-front',
+  flashcardCardSize: 'flashcard-card-size',
   flashcardRestart: 'flashcard-restart',
   flashcardComplete: 'flashcard-complete',
   flashcardRestudyUnknown: 'flashcard-restudy-unknown',

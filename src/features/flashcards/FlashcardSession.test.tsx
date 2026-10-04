@@ -141,7 +141,7 @@ describe('FlashcardSession', () => {
           card={card}
           position={0}
           total={3}
-          options={{ trackProgress: false, front: 'term' }}
+          options={{ trackProgress: false, front: 'term', cardSize: 'small' }}
           shortcutsEnabled
           knownCount={4}
           unknownCount={2}
@@ -170,7 +170,7 @@ describe('FlashcardSession', () => {
   it('shows the definition first when Front is Definition', () => {
     const card = makeCard()
     seedStore(card)
-    renderSession(card, { options: { trackProgress: true, front: 'definition' } })
+    renderSession(card, { options: { trackProgress: true, front: 'definition', cardSize: 'small' } })
     const faces = document.querySelectorAll('.flip-card-face p')
     expect(faces[0]).toHaveTextContent('Paris')
     expect(faces[1]).toHaveTextContent('What is the capital of France?')

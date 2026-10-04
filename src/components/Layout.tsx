@@ -3,6 +3,7 @@ import { Link, NavLink, Outlet, useLocation } from 'react-router-dom'
 import { ImportFromUrl } from '../features/sets/ImportFromUrl'
 import { isMacPlatform, paletteKeyHint } from '../features/palette/palette-items'
 import { SettingsForm } from '../features/settings/SettingsForm'
+import { useApplyCardSize } from '../features/flashcards/useCardSize'
 import { useApplyTheme } from '../features/settings/theme'
 import { formatKeyLabel, matchesBinding } from '../lib/keybindings'
 import { useRouteFocus } from '../lib/routeFocus'
@@ -49,6 +50,7 @@ const SeshatMark = () => (
 
 export const Layout = () => {
   useApplyTheme()
+  useApplyCardSize()
   useWebMcp()
   const [settingsOpen, setSettingsOpen] = useState(false)
   const [shortcutsOpen, setShortcutsOpen] = useState(false)

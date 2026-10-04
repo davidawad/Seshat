@@ -49,7 +49,7 @@ export const seedStore = (card: StudyCard) => {
   })
 }
 
-const defaultOptions: FlashcardOptions = { trackProgress: true, front: 'term' }
+const defaultOptions: FlashcardOptions = { trackProgress: true, front: 'term', cardSize: 'small' }
 
 export interface RenderOverrides {
   readonly options?: FlashcardOptions

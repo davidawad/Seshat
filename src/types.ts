@@ -228,6 +228,9 @@ export type RetentionPreset = z.infer<typeof retentionPresetSchema>
 export const homeViewSchema = z.enum(['grid', 'table'])
 export type HomeView = z.infer<typeof homeViewSchema>
 
+export const cardSizeSchema = z.enum(['small', 'medium', 'large'])
+export type CardSize = z.infer<typeof cardSizeSchema>
+
 export const flashcardsFrontSchema = z.enum(['term', 'definition'])
 export type FlashcardsFront = z.infer<typeof flashcardsFrontSchema>
 
@@ -265,6 +268,8 @@ export const settingsSchema = z.object({
   // Defaults match the pre-option behavior so old saved data is unchanged.
   flashcardsTrackProgress: z.boolean().default(true),
   flashcardsFront: flashcardsFrontSchema.default('term'),
+  // How big index cards render on the flashcards page and the set-page preview.
+  flashcardsCardSize: cardSizeSchema.default('small'),
   // How the home page lists sets: cards (grid) or a compact table.
   homeView: homeViewSchema.default('grid'),
   // The "Install Seshat" PWA banner (components/InstallPrompt.tsx). Defaults
@@ -295,6 +300,7 @@ export const DEFAULT_SETTINGS: Settings = {
   experimentalGamesEnabled: true,
   flashcardsTrackProgress: true,
   flashcardsFront: 'term',
+  flashcardsCardSize: 'small',
   homeView: 'grid',
   installPromptEnabled: false,
 }

@@ -11,7 +11,7 @@
    go square and the strip continues its border, so there is no seam. */
 .flashcard-stack {
   width: 100%;
-  max-width: 20rem;
+  max-width: var(--card-max-width);
   /* Each newly shown card eases in; the badge/border for grading live below. */
   animation: flashcard-enter 0.18s ease-out;
 }
@@ -56,7 +56,7 @@
   align-items: center;
   gap: 1rem;
   width: 100%;
-  max-width: 20rem;
+  max-width: var(--card-max-width);
 }
 
 .flashcard-grade-cluster {
@@ -192,7 +192,7 @@
   display: flex;
   justify-content: space-between;
   width: 100%;
-  max-width: 20rem;
+  max-width: var(--card-max-width);
   margin-bottom: -1rem;
 }
 

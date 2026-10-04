@@ -1,7 +1,7 @@
 import { Modal } from '../../components/Modal'
 import { TESTIDS } from '../../lib/testids'
-import { type FlashcardsFront, flashcardsFrontSchema } from '../../types'
-import { FRONT_LABELS, type FlashcardOptions } from './options'
+import { type CardSize, type FlashcardsFront, cardSizeSchema, flashcardsFrontSchema } from '../../types'
+import { CARD_SIZE_LABELS, FRONT_LABELS, type FlashcardOptions } from './options'
 import './flashcard-options.css'
 
 interface FlashcardOptionsModalProps {
@@ -10,6 +10,7 @@ interface FlashcardOptionsModalProps {
   readonly onClose: () => void
   readonly onTrackProgressChange: (trackProgress: boolean) => void
   readonly onFrontChange: (front: FlashcardsFront) => void
+  readonly onCardSizeChange: (size: CardSize) => void
   readonly onRestart: () => void
 }
 
@@ -28,6 +29,7 @@ export const FlashcardOptionsModal = ({
   onClose,
   onTrackProgressChange,
   onFrontChange,
+  onCardSizeChange,
   onRestart,
 }: FlashcardOptionsModalProps) => (
   <Modal
@@ -77,6 +79,28 @@ export const FlashcardOptionsModal = ({
           {flashcardsFrontSchema.options.map((side) => (
             <option key={side} value={side}>
               {FRONT_LABELS[side]}
+            </option>
+          ))}
+        </select>
+      </div>
+
+      <div className="flashcard-options-row">
+        <label htmlFor="flashcard-size-select" className="flashcard-options-label">
+          Card size
+        </label>
+        <select
+          id="flashcard-size-select"
+          className="flashcard-options-select"
+          value={options.cardSize}
+          data-testid={TESTIDS.flashcardCardSize}
+          onChange={(event) => {
+            const parsed = cardSizeSchema.safeParse(event.target.value)
+            if (parsed.success) onCardSizeChange(parsed.data)
+          }}
+        >
+          {cardSizeSchema.options.map((size) => (
+            <option key={size} value={size}>
+              {CARD_SIZE_LABELS[size]}
             </option>
           ))}
         </select>
