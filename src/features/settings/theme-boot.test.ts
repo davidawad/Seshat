@@ -57,6 +57,8 @@ describe('readBootSettings', () => {
     expect(readBootSettings({ localState: () => local, cookies: () => cookie }).theme).toBe('dark')
     expect(readBootSettings({ localState: () => null, cookies: () => cookie }).theme).toBe('light')
     expect(readBootSettings({ localState: () => null, cookies: () => '' })).toEqual(BOOT_DEFAULTS)
+    const v1Only = (key: string) => (key.endsWith(':v1') ? local : null)
+    expect(readBootSettings({ localState: v1Only, cookies: () => '' }).theme).toBe('dark')
   })
 
   it('never throws', () => {

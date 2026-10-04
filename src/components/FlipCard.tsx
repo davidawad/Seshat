@@ -1,8 +1,12 @@
+import type { MediaRef } from '../lib/media/types'
+import { CardImage } from './CardImage'
 import './flip-card.css'
 
 interface FlipCardProps {
   readonly front: string
   readonly back: string
+  readonly image?: MediaRef | undefined
+  /** LEGACY inline data URL; shown only when `image` is absent. */
   readonly imageDataUrl: string | undefined
   readonly flipped: boolean
 }
@@ -25,15 +29,15 @@ interface FlipCardProps {
  * TODO(image-cards): render the front with all regions masked and the back
  * with the asked region revealed, or ask every region. Not redesigned here.
  */
-export const FlipCard = ({ front, back, imageDataUrl, flipped }: FlipCardProps) => (
+export const FlipCard = ({ front, back, image, imageDataUrl, flipped }: FlipCardProps) => (
   <div className="flip-card-scene">
     <div className={flipped ? 'flip-card-inner is-flipped' : 'flip-card-inner'}>
       <div className="legible illuminated-panel flip-card-face flip-card-front" aria-hidden={flipped}>
-        {imageDataUrl !== undefined && <img src={imageDataUrl} alt="" className="flip-card-image" />}
+        <CardImage image={image} imageDataUrl={imageDataUrl} alt="" className="flip-card-image" />
         <p>{front}</p>
       </div>
       <div className="legible illuminated-panel flip-card-face flip-card-back" aria-hidden={!flipped}>
-        {imageDataUrl !== undefined && <img src={imageDataUrl} alt="" className="flip-card-image" />}
+        <CardImage image={image} imageDataUrl={imageDataUrl} alt="" className="flip-card-image" />
         <p>{back}</p>
       </div>
     </div>

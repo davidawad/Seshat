@@ -1,12 +1,17 @@
 import { type ChangeEvent, type PointerEvent as ReactPointerEvent, useId, useRef, useState } from 'react'
+import { CardImage } from '../../components/CardImage'
 import { Legible } from '../../components/Legible'
+import type { MediaRef } from '../../lib/media'
 import type { OcclusionRegion } from '../../types'
 import { downscaleImageFile, isImageDataUrlOversized } from './image-processing'
 import './image-occlusion-editor.css'
 import { clientPointToPct, isRegionRectSignificant, type PointPct, rectFromPoints } from './region-geometry'
 
 export interface ImageOcclusionDraft {
+  /** LEGACY inline data URL; '' when the card has none. */
   readonly imageDataUrl: string
+  /** A stored image (MediaRef), kept as-is until a new file replaces it. */
+  readonly image: MediaRef | null
   readonly occlusions: OcclusionRegion[]
 }
 
@@ -20,6 +25,11 @@ const defaultRegionRect = (existingCount: number) => {
   const offset = (existingCount * 8) % 50
   return { xPct: 10 + offset, yPct: 10 + offset, widthPct: 25, heightPct: 15 }
 }
+
+const hasAnyImage = (value: ImageOcclusionDraft): boolean => value.imageDataUrl !== '' || value.image !== null
+
+const isOversizedLegacy = (value: ImageOcclusionDraft): boolean =>
+  value.imageDataUrl !== '' && isImageDataUrlOversized(value.imageDataUrl)
 
 const round1 = (value: number): number => Math.round(value * 10) / 10
 
@@ -38,6 +48,7 @@ export const ImageOcclusionEditor = ({ value, onChange }: ImageOcclusionEditorPr
   const dragOrigin = useRef<PointPct | null>(null)
   const wrapRef = useRef<HTMLDivElement | null>(null)
 
+  const hasImage = hasAnyImage(value)
   const fileInputId = useId()
   const regionBaseId = useId()
 
@@ -52,7 +63,7 @@ export const ImageOcclusionEditor = ({ value, onChange }: ImageOcclusionEditorPr
       .then((imageDataUrl) => {
         // A new image invalidates any existing regions (they were labeled
         // for the previous image), so start the region list over.
-        onChange({ imageDataUrl, occlusions: [] })
+        onChange({ imageDataUrl, image: null, occlusions: [] })
       })
       .catch((error: unknown) => {
         setProcessingError(error instanceof Error ? error.message : 'Could not process the selected image.')
@@ -86,7 +97,7 @@ export const ImageOcclusionEditor = ({ value, onChange }: ImageOcclusionEditorPr
   }
 
   const handlePointerDown = (event: ReactPointerEvent<HTMLDivElement>) => {
-    if (value.imageDataUrl === '') return
+    if (!hasImage) return
     const bounds = event.currentTarget.getBoundingClientRect()
     const point = clientPointToPct(event.clientX, event.clientY, bounds)
     dragOrigin.current = point
@@ -117,7 +128,7 @@ export const ImageOcclusionEditor = ({ value, onChange }: ImageOcclusionEditorPr
   }
 
   const drawnRect = draftRect === null ? null : rectFromPoints(draftRect.a, draftRect.b)
-  const oversized = value.imageDataUrl !== '' && isImageDataUrlOversized(value.imageDataUrl)
+  const oversized = isOversizedLegacy(value)
 
   return (
     <div className="occlusion-editor">
@@ -139,7 +150,7 @@ export const ImageOcclusionEditor = ({ value, onChange }: ImageOcclusionEditorPr
         )}
       </div>
 
-      {value.imageDataUrl !== '' && (
+      {hasImage && (
         <>
           <p className="field-hint">
             Drag on the image to draw a region, or use &ldquo;Add region&rdquo; below and set its position with the
@@ -152,7 +163,12 @@ export const ImageOcclusionEditor = ({ value, onChange }: ImageOcclusionEditorPr
             onPointerMove={handlePointerMove}
             onPointerUp={handlePointerUp}
           >
-            <img src={value.imageDataUrl} alt="" className="occlusion-editor-image" />
+            <CardImage
+              image={value.image}
+              imageDataUrl={value.imageDataUrl === '' ? undefined : value.imageDataUrl}
+              alt=""
+              className="occlusion-editor-image"
+            />
             {value.occlusions.map((region) => (
               <span
                 key={region.id}

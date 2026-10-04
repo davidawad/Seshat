@@ -10,8 +10,8 @@ import {
 export const MEDIA_DB_NAME = 'seshat-media'
 const DB_VERSION = 1
 const BLOBS = 'blobs'
-/** Reserved for later migration rollback copies (key string -> string). Unused by this adapter. */
-const LEGACY = 'legacy'
+/** Migration rollback copies (key string -> string); read and written by legacy-store.ts, never by the blob store. */
+export const LEGACY_STORE_NAME = 'legacy'
 
 interface BlobRecord extends BlobDescription {
   readonly blob: Blob
@@ -31,7 +31,7 @@ export const toStoreError = (cause: unknown): MediaStoreError => {
   return new MediaStoreError('failed', 'Image storage operation failed.', { cause })
 }
 
-const openDatabase = (factory: IDBFactory, name: string, onVersionChange: () => void): Promise<IDBDatabase> =>
+export const openDatabase = (factory: IDBFactory, name: string, onVersionChange: () => void): Promise<IDBDatabase> =>
   new Promise((resolve, reject) => {
     let settled = false
     let request: IDBOpenDBRequest
@@ -44,7 +44,7 @@ const openDatabase = (factory: IDBFactory, name: string, onVersionChange: () => 
     request.onupgradeneeded = () => {
       const db = request.result
       if (!db.objectStoreNames.contains(BLOBS)) db.createObjectStore(BLOBS, { keyPath: 'id' })
-      if (!db.objectStoreNames.contains(LEGACY)) db.createObjectStore(LEGACY)
+      if (!db.objectStoreNames.contains(LEGACY_STORE_NAME)) db.createObjectStore(LEGACY_STORE_NAME)
     }
     request.onsuccess = () => {
       const db = request.result
@@ -81,7 +81,8 @@ const transact = <T>(
 ): Promise<T> =>
   new Promise((resolve, reject) => {
     try {
-      const tx = db.transaction(BLOBS, mode)
+      // 'strict' asks the browser to flush to disk before oncomplete (a hint; ignored where unsupported).
+      const tx = db.transaction(BLOBS, mode, mode === 'readwrite' ? { durability: 'strict' } : undefined)
       let value = fallback
       let failure: unknown
       tx.oncomplete = () => resolve(value)

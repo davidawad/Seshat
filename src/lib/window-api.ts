@@ -14,7 +14,21 @@
  * which can trail React state by one render if a script runs mid-edit.
  */
 import { newCardId, newSetId } from './id'
-import { type Backup, type ImportMode, type ImportReport, applyBackup, createBackup, parseBackup } from './backup'
+import {
+  type Backup,
+  type ImportMode,
+  type ImportReport,
+  applyBackup,
+  attachBackupMedia,
+  createBackup,
+  parseBackup,
+} from './backup'
+import { getSharedMediaStore } from './media/default-store'
+import { loadMediaMap } from './media/export'
+import { processImage } from './media/image-pipeline'
+import { prepareCardsForImport } from './media/import-prepare'
+import { collectMediaRefs } from './media/refs'
+import { mediaSummary } from './media/refs'
 import { loadKeybindingOverrides, saveKeybindingOverrides } from './keybindingStorage'
 import { notifyExternalWrite } from './persistence'
 import { loadState, saveState } from './storage'
@@ -57,12 +71,21 @@ export interface CardSummary {
   readonly id: string
   readonly front: string
   readonly back: string
+  /** Stored image as {id, alt, width, height} (never bytes). */
+  readonly image?: ReturnType<typeof mediaSummary>
+  /** LEGACY inline image, present only for cards the boot migration has not converted. */
+  readonly imageDataUrl?: string
 }
 
-/** Every card in a set, reduced to {id, front, back} regardless of content kind. */
+/** Every card in a set, reduced to {id, front, back (+ image summary)} regardless of content kind. */
 const listCards = (setId: string): readonly CardSummary[] => {
   const state = currentState()
-  return state.cards.filter((card) => card.setId === setId).map((card) => ({ id: card.id, ...cardFrontBack(card) }))
+  return state.cards
+    .filter((card) => card.setId === setId)
+    .map((card) => {
+      const { image, ...faces } = cardFrontBack(card)
+      return { id: card.id, ...faces, ...(image === undefined ? {} : { image: mediaSummary(image) }) }
+    })
 }
 
 /** The full Seshat set-export JSON for one set, or `null` if it doesn't exist. */
@@ -78,6 +101,7 @@ const exportSet = (setId: string): ExportedSet | null => {
     tags: set.tags,
     cards: cards.map((card) => ({
       prompt: card.prompt,
+      promptImage: card.promptImage,
       content: card.content,
       explanation: card.explanation,
       sourceRef: card.sourceRef,
@@ -125,12 +149,20 @@ const insertSet = (exported: ExportedSet): StudySet => {
   return set
 }
 
-/** Imports a full Seshat set-export object (already parsed JSON, not a string). */
-const importSet = (json: unknown): Result<SetSummary, string> => {
+const ingestDeps = () => ({ store: getSharedMediaStore(), process: (blob: Blob) => processImage(blob) })
+
+/**
+ * Imports a full Seshat set-export object (already parsed JSON, not a string). Async: embedded `media` (and v1-era
+ * inline data-URL images) are stored first, so the cards' images are there by the time the set appears.
+ */
+const importSet = async (json: unknown): Promise<Result<SetSummary, string>> => {
   const parsed = exportedSetSchema.safeParse(json)
   if (!parsed.success) return err(parsed.error.issues.map((issue) => issue.message).join('; '))
-  const set = insertSet(parsed.data)
-  return ok({ id: set.id, name: set.name, cardCount: parsed.data.cards.length })
+  const prepared = await prepareCardsForImport(parsed.data.cards, parsed.data.media, ingestDeps())
+  if (!prepared.ok) return err(prepared.error)
+  const { media: _embedded, ...rest } = parsed.data
+  const set = insertSet({ ...rest, cards: prepared.value.cards })
+  return ok({ id: set.id, name: set.name, cardCount: prepared.value.cards.length })
 }
 
 /** Imports a term/definition JSON string (bare array or {name/title, terms}). `setName` is used only if the file has none. */
@@ -144,14 +176,33 @@ const importSimpleJson = (raw: string, setName?: string): Result<SetSummary, str
   return ok({ id: set.id, name: set.name, cardCount: parsed.value.cards.length })
 }
 
-/** Everything — settings, keybindings, sets, cards, review history — as one backup object. */
+/** Everything — settings, keybindings, sets, cards, review history — as one backup object. Images are MediaRefs only (no bytes). */
 const exportAll = (): Backup => createBackup(currentState(), loadKeybindingOverrides(), new Date())
 
-/** Restores a backup JSON string. `replace` swaps everything; `merge` only adds sets/cards whose ids are missing. */
-const importAll = (json: string, mode: ImportMode): Result<ImportReport, string> => {
+/** Like `exportAll`, with every referenced image's bytes embedded (base64 `media` map): a self-contained backup. */
+const exportAllWithMedia = async (): Promise<Backup> =>
+  (await attachBackupMedia(exportAll(), getSharedMediaStore())).value
+
+/** Like `exportSet`, with the images' bytes embedded in a `media` map. `null` if the set does not exist. */
+const exportSetWithMedia = async (setId: string): Promise<ExportedSet | null> => {
+  const exported = exportSet(setId)
+  if (exported === null) return null
+  const { value } = await loadMediaMap(getSharedMediaStore(), collectMediaRefs(exported.cards))
+  return { ...exported, media: value }
+}
+
+/** Restores a backup JSON string. `replace` swaps everything; `merge` only adds sets/cards whose ids are missing. Async (stores the images first). */
+const importAll = async (json: string, mode: ImportMode): Promise<Result<ImportReport, string>> => {
   const backup = parseBackup(json)
   if (!backup.ok) return err(backup.error)
-  const { state, report } = applyBackup(currentState(), backup.value, mode)
+  const prepared = await prepareCardsForImport(backup.value.cards, backup.value.media, ingestDeps())
+  if (!prepared.ok) return err(prepared.error)
+  const { state, report: base } = applyBackup(
+    currentState(),
+    { ...backup.value, cards: prepared.value.cards, media: {} },
+    mode,
+  )
+  const report = { ...base, imagesMissing: prepared.value.missing, imagesNotConverted: prepared.value.notConverted }
   const saved = saveState(state)
   if (!saved.ok) return err(`Could not save the restored data (${saved.error.kind}).`)
   if (report.keybindings !== null) saveKeybindingOverrides(report.keybindings)
@@ -167,6 +218,8 @@ export interface SeshatWindowApi {
   readonly importSet: typeof importSet
   readonly importSimpleJson: typeof importSimpleJson
   readonly exportAll: typeof exportAll
+  readonly exportAllWithMedia: typeof exportAllWithMedia
+  readonly exportSetWithMedia: typeof exportSetWithMedia
   readonly importAll: typeof importAll
   readonly cardFrontBack: typeof cardFrontBack
 }
@@ -179,6 +232,8 @@ export const seshatWindowApi: SeshatWindowApi = {
   importSet,
   importSimpleJson,
   exportAll,
+  exportAllWithMedia,
+  exportSetWithMedia,
   importAll,
   cardFrontBack,
 }

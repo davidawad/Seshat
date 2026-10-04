@@ -124,7 +124,8 @@ export const applyThemeDom = (doc: Document, dom: ThemeDom): void => {
 // Boot: read persisted settings defensively (mirrors storage.ts's order)
 // ---------------------------------------------------------------------------
 
-const STATE_KEY = 'seshat:app-state:v1'
+// Same keys, same order as src/lib/storage.ts (kept literal: this module is bundled into a tiny pre-paint script).
+const STATE_KEYS = ['seshat:app-state:v2', 'seshat:app-state:v1'] as const
 const SETTINGS_COOKIE_NAME = 'seshat_settings'
 
 /** Defaults for the appearance fields; pinned to DEFAULT_SETTINGS by test. */
@@ -200,18 +201,20 @@ const cookieValue = (header: string, name: string): string | null => {
 
 /** Raw sources, injected so tests need no browser globals. Each may throw. */
 export interface BootSources {
-  readonly localState: () => string | null
+  readonly localState: (key: string) => string | null
   readonly cookies: () => string
 }
 
-/** localStorage app state first, else the cookie mirror, else defaults. Never throws. */
+/** localStorage app state (v2, else the not-yet-migrated v1), else the cookie mirror, else defaults. Never throws. */
 export const readBootSettings = (sources: BootSources): ThemeSettings => {
-  try {
-    const state = parseJson(sources.localState())
-    const fromLocal = isRecord(state) ? coerceThemeSettings(state['settings'], true) : null
-    if (fromLocal !== null) return fromLocal
-  } catch {
-    // storage blocked — fall through to the mirror.
+  for (const key of STATE_KEYS) {
+    try {
+      const state = parseJson(sources.localState(key))
+      const fromLocal = isRecord(state) ? coerceThemeSettings(state['settings'], true) : null
+      if (fromLocal !== null) return fromLocal
+    } catch {
+      // storage blocked — try the next key, then the mirror.
+    }
   }
   try {
     const encoded = cookieValue(sources.cookies(), SETTINGS_COOKIE_NAME)
@@ -227,7 +230,7 @@ export const readBootSettings = (sources: BootSources): ThemeSettings => {
 export const bootTheme = (win: Window): void => {
   try {
     const settings = readBootSettings({
-      localState: () => win.localStorage.getItem(STATE_KEY),
+      localState: (key) => win.localStorage.getItem(key),
       cookies: () => win.document.cookie,
     })
     const prefersLight = typeof win.matchMedia === 'function' && win.matchMedia('(prefers-color-scheme: light)').matches

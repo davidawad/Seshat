@@ -1,3 +1,4 @@
+import { createMemoryMediaStore } from './media/store'
 import { describe, expect, it, vi } from 'vitest'
 import { DEFAULT_SETTINGS, createEmptyAppState } from '../types'
 import {
@@ -15,12 +16,14 @@ const makeDeps = (overrides: Partial<WebMcpDeps['store']> = {}): WebMcpDeps => (
   store: {
     state: createEmptyAppState(),
     importSet: vi.fn(),
+    prepareSetImport: vi.fn(async (exported: unknown) => ({ ok: true as const, value: exported })),
     exportSet: vi.fn(() => null),
     updateSettings: vi.fn(),
     exportAll: vi.fn(),
     importAll: vi.fn(),
     ...overrides,
   } as WebMcpDeps['store'],
+  media: createMemoryMediaStore(),
   navigate: vi.fn(),
   now: () => new Date('2026-10-03T00:00:00Z'),
 })
@@ -203,11 +206,11 @@ describe('tools', () => {
   })
 
   it('export_set / export_all', async () => {
-    const t = tools(() => makeDeps({ exportAll: () => ({ format: 'seshat-backup' }) as never }))
+    const t = tools(() => makeDeps({ exportAll: () => ({ format: 'seshat-backup', cards: [] }) as never }))
     expect((await call(t['export_set'], { setId: SET_ID })).isError).toBe(true)
-    expect((await call(t['export_all'], {})).body).toEqual({ format: 'seshat-backup' })
-    const found = tools(() => makeDeps({ exportSet: () => ({ name: 'x' }) as never }))
-    expect((await call(found['export_set'], { setId: SET_ID })).body).toEqual({ name: 'x' })
+    expect((await call(t['export_all'], {})).body).toEqual({ format: 'seshat-backup', cards: [], media: {} })
+    const found = tools(() => makeDeps({ exportSet: () => ({ name: 'x', cards: [] }) as never }))
+    expect((await call(found['export_set'], { setId: SET_ID })).body).toEqual({ name: 'x', cards: [], media: {} })
   })
 
   it('import_all defaults to merge, passes replace only when explicit, reports errors', async () => {

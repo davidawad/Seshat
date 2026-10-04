@@ -1,10 +1,11 @@
 /**
- * Client-side image downscale/compression for image-occlusion cards. There
- * is no blob store — the image lives as a `data:` URL inside the same
- * single localStorage blob as everything else (see lib/storage.ts), which
- * has a hard ~5-10MB-per-origin ceiling shared across the whole app. An
- * uploaded image is downscaled and re-compressed before it's ever assigned
- * to `imageDataUrl`, instead of being stored at its original resolution.
+ * LEGACY client-side image downscale for image-occlusion cards: it produces an
+ * inline `data:` URL (`imageDataUrl`), the pre-v2 storage format. New images
+ * belong in the IndexedDB media store through lib/media's `processImage` +
+ * `MediaStore.put`, which return a small MediaRef instead; existing inline
+ * images are converted once at boot by lib/media/migrate.ts. This module stays
+ * for the not-yet-migrated path (and its size warning), because a data URL
+ * counts against the same ~5MB localStorage quota as all the text state.
  */
 
 /** Longest edge, in px, an uploaded image is downscaled to before compression. Diagrams stay legible well below this. */

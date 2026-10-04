@@ -9,10 +9,18 @@ import { BackupField } from './BackupField'
 
 afterEach(() => cleanup())
 
-const downloadJsonMock = vi.fn<(filename: string, data: unknown) => void>()
+const downloadJsonMock = vi.fn<(filename: string, blob: Blob) => void>()
 vi.mock('../sets/download', () => ({
-  downloadJson: (filename: string, data: unknown) => downloadJsonMock(filename, data),
+  downloadBlob: (filename: string, blob: Blob) => downloadJsonMock(filename, blob),
 }))
+
+const readBlob = (blob: Blob): Promise<string> =>
+  new Promise((resolve, reject) => {
+    const reader = new FileReader()
+    reader.onload = () => resolve(String(reader.result))
+    reader.onerror = () => reject(new Error('read failed'))
+    reader.readAsText(blob)
+  })
 
 const SetCount = () => <p data-testid="set-count">{useSeshatStore().state.sets.length}</p>
 const AddSet = () => {
@@ -61,10 +69,10 @@ describe('BackupField', () => {
   it('downloads the whole app as one dated JSON file', async () => {
     renderField()
     await userEvent.click(screen.getByRole('button', { name: 'Download all data (JSON)' }))
-    expect(downloadJsonMock).toHaveBeenCalledTimes(1)
-    const [filename, data] = downloadJsonMock.mock.calls[0] ?? []
+    await waitFor(() => expect(downloadJsonMock).toHaveBeenCalledTimes(1))
+    const [filename, blob] = downloadJsonMock.mock.calls[0] ?? []
     expect(filename).toMatch(/^seshat-backup-\d{4}-\d{2}-\d{2}\.json$/)
-    expect(data).toMatchObject({ format: 'seshat-backup', version: 1 })
+    expect(JSON.parse(await readBlob(blob as Blob))).toMatchObject({ format: 'seshat-backup', version: 2, media: {} })
     expect(screen.getByRole('status')).toHaveTextContent('Downloaded')
   })
 

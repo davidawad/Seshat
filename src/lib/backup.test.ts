@@ -43,7 +43,8 @@ const makeCard = (n: number, forSet: number, prompt = `Q${n}`): StudyCard => ({
   id: cardId(n),
   setId: setId(forSet),
   prompt,
-  content: { kind: 'short-answer', answer: 'a', acceptableAnswers: [] },
+  promptImage: null,
+  content: { kind: 'short-answer', answer: 'a', acceptableAnswers: [], answerImage: null },
   explanation: null,
   sourceRef: null,
   tags: [],
@@ -182,7 +183,7 @@ describe('createBackup / parseBackup', () => {
 
 describe('migrateEnvelope', () => {
   it('passes a current-version envelope through untouched', () => {
-    const raw = { version: 1, a: 1 }
+    const raw = { version: 2, a: 1 }
     expect(migrateEnvelope(raw)).toEqual({ ok: true, value: raw })
   })
 
@@ -272,6 +273,8 @@ describe('describeImport', () => {
     cardsSkipped: 1,
     reviewsAdded: 1,
     reviewsSkipped: 0,
+    imagesMissing: 0,
+    imagesNotConverted: 0,
     keybindings: null,
   }
   it('summarizes replace and merge with correct pluralization', () => {

@@ -33,14 +33,17 @@ const baseCard = (
 const shortAnswerCard = (id: string, prompt: string, answer: string): StudyCard => ({
   ...baseCard(id),
   prompt,
-  content: { kind: 'short-answer', answer, acceptableAnswers: [] },
+  promptImage: null,
+  content: { kind: 'short-answer', answer, acceptableAnswers: [], answerImage: null },
 })
 
 const imageOcclusionCard = (id: string, prompt: string, imageDataUrl: string, label: string): StudyCard => ({
   ...baseCard(id),
   prompt,
+  promptImage: null,
   content: {
     kind: 'image-occlusion',
+    image: null,
     imageDataUrl,
     occlusions: [{ id: 'r1', xPct: 10, yPct: 10, widthPct: 20, heightPct: 20, label }],
   },

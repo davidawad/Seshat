@@ -99,7 +99,8 @@ describe('rowsToCards', () => {
     expect(result.cards).toEqual([
       {
         prompt: 'term',
-        content: { kind: 'short-answer', answer: 'def', acceptableAnswers: [] },
+        promptImage: null,
+        content: { kind: 'short-answer', answer: 'def', acceptableAnswers: [], answerImage: null },
         explanation: null,
         sourceRef: null,
         tags: [],

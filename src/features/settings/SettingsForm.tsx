@@ -12,6 +12,8 @@ import {
   type Typeface,
 } from '../../types'
 import { PaletteField } from './PaletteField'
+import { RestorePreviousField } from './RestorePreviousField'
+import { StorageField } from './StorageField'
 import { ThemeField } from './ThemeField'
 
 // ---------------------------------------------------------------------------
@@ -387,6 +389,8 @@ export const SettingsForm = () => {
         <ExperimentalGamesField {...fieldProps} />
         <InstallPromptField {...fieldProps} />
         <BackupField />
+        <StorageField />
+        <RestorePreviousField />
       </form>
     </>
   )

@@ -35,7 +35,10 @@ const draftFromContent = (content: CardContent | null) => ({
   clozeText: content?.kind === 'cloze' ? content.text : '',
   options: content?.kind === 'mcq' ? content.options : ['', ''],
   correctIndex: content?.kind === 'mcq' ? content.correctIndex : 0,
-  imageDataUrl: content?.kind === 'image-occlusion' ? content.imageDataUrl : '',
+  imageDataUrl: content?.kind === 'image-occlusion' ? (content.imageDataUrl ?? '') : '',
+  // Stored images are carried through an edit untouched unless the user uploads a replacement.
+  image: content?.kind === 'image-occlusion' ? content.image : null,
+  answerImage: content?.kind === 'short-answer' ? content.answerImage : null,
   occlusions: (content?.kind === 'image-occlusion' ? content.occlusions : []) as OcclusionRegion[],
 })
 
@@ -86,6 +89,7 @@ export const CardForm = ({ setId, editingCard, onDone }: CardFormProps) => {
           kind: 'short-answer',
           answer: draft.answer.trim(),
           acceptableAnswers: splitLines(draft.acceptableAnswersText),
+          answerImage: draft.answerImage,
         }
       case 'cloze':
         return { kind: 'cloze', text: draft.clozeText.trim() }
@@ -98,7 +102,8 @@ export const CardForm = ({ setId, editingCard, onDone }: CardFormProps) => {
       case 'image-occlusion':
         return {
           kind: 'image-occlusion',
-          imageDataUrl: draft.imageDataUrl,
+          image: draft.image,
+          ...(draft.imageDataUrl === '' ? {} : { imageDataUrl: draft.imageDataUrl }),
           occlusions: draft.occlusions,
         }
     }
@@ -259,8 +264,10 @@ export const CardForm = ({ setId, editingCard, onDone }: CardFormProps) => {
         <fieldset>
           <legend>Image and regions</legend>
           <ImageOcclusionEditor
-            value={{ imageDataUrl: draft.imageDataUrl, occlusions: draft.occlusions }}
-            onChange={({ imageDataUrl, occlusions }) => setDraft((prev) => ({ ...prev, imageDataUrl, occlusions }))}
+            value={{ imageDataUrl: draft.imageDataUrl, image: draft.image, occlusions: draft.occlusions }}
+            onChange={({ imageDataUrl, image, occlusions }) =>
+              setDraft((prev) => ({ ...prev, imageDataUrl, image, occlusions }))
+            }
           />
         </fieldset>
       )}

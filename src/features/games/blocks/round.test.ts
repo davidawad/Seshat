@@ -14,11 +14,17 @@ const cardId = (): CardId => {
 }
 
 const makeCard = (term: string, definition: string): StudyCard => {
-  const content: ShortAnswerContent = { kind: 'short-answer', answer: definition, acceptableAnswers: [] }
+  const content: ShortAnswerContent = {
+    kind: 'short-answer',
+    answer: definition,
+    acceptableAnswers: [],
+    answerImage: null,
+  }
   return {
     id: cardId(),
     setId,
     prompt: term,
+    promptImage: null,
     content,
     explanation: null,
     sourceRef: null,

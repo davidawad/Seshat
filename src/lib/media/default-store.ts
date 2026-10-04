@@ -33,3 +33,8 @@ export const createDefaultMediaStore = (
     usage: async () => (await resolve()).usage(),
   }
 }
+
+let shared: MediaStore | null = null
+
+/** The one process-wide default store (what the provider and non-React code like window.seshat share). */
+export const getSharedMediaStore = (): MediaStore => (shared ??= createDefaultMediaStore())

@@ -24,6 +24,7 @@ const card = (n: number, content: CardContent) => {
     id: cardIdSchema.parse(`c000000${n}-1111-4111-8111-111111111111`),
     setId,
     prompt: `Prompt ${n}`,
+    promptImage: null,
     content,
     explanation: null,
     sourceRef: null,
@@ -33,10 +34,12 @@ const card = (n: number, content: CardContent) => {
     scheduling: createInitialScheduling(new Date()),
   }
 }
-const textCard = (n: number) => card(n, { kind: 'short-answer', answer: `Answer ${n}`, acceptableAnswers: [] })
+const textCard = (n: number) =>
+  card(n, { kind: 'short-answer', answer: `Answer ${n}`, acceptableAnswers: [], answerImage: null })
 const imageCard = (n: number) =>
   card(n, {
     kind: 'image-occlusion',
+    image: null,
     imageDataUrl: 'data:image/jpeg;base64,AAAA',
     occlusions: [{ id: 'r1', xPct: 0, yPct: 0, widthPct: 50, heightPct: 50, label: 'Heart' }],
   })

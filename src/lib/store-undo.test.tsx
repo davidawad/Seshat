@@ -32,7 +32,7 @@ const seedCard = (store: ReturnType<typeof mount>) => {
     const set = store.current().addSet({ name: 'Bio', description: '', tags: [] })
     cardId = store.current().addCard(set.id, {
       prompt: 'Q',
-      content: { kind: 'short-answer', answer: 'a', acceptableAnswers: [] },
+      content: { kind: 'short-answer', answer: 'a', acceptableAnswers: [], answerImage: null },
       explanation: null,
       sourceRef: null,
       tags: [],

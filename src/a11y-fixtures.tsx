@@ -30,7 +30,7 @@ export const setId = setIdSchema.parse('a1111111-1111-4111-8111-111111111111')
 const cardSpecs: readonly (readonly [CardId, StudyCard['content']])[] = [
   [
     cardIdSchema.parse('c1111111-1111-4111-8111-111111111111'),
-    { kind: 'short-answer', answer: 'Paris', acceptableAnswers: [] },
+    { kind: 'short-answer', answer: 'Paris', acceptableAnswers: [], answerImage: null },
   ],
   [
     cardIdSchema.parse('c2222222-2222-4222-8222-222222222222'),
@@ -42,7 +42,7 @@ const cardSpecs: readonly (readonly [CardId, StudyCard['content']])[] = [
   ],
   [
     cardIdSchema.parse('c4444444-4444-4444-8444-444444444444'),
-    { kind: 'short-answer', answer: 'Berlin', acceptableAnswers: [] },
+    { kind: 'short-answer', answer: 'Berlin', acceptableAnswers: [], answerImage: null },
   ],
 ]
 
@@ -65,6 +65,7 @@ export const seed = () => {
       id,
       setId,
       prompt: `Prompt ${index + 1}`,
+      promptImage: null,
       content,
       explanation: null,
       sourceRef: null,

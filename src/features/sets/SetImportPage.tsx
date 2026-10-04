@@ -29,7 +29,7 @@ interface StagedFile {
  * text. Parsing lives in `file-import.ts`; this is only the form.
  */
 export const SetImportPage = () => {
-  const { importSet } = useSeshatStore()
+  const { importSet, prepareSetImport } = useSeshatStore()
   const navigate = useNavigate()
   const [file, setFile] = useState<StagedFile | null>(null)
   const [name, setName] = useState('')
@@ -64,7 +64,7 @@ export const SetImportPage = () => {
     void stage(event.dataTransfer.files[0])
   }
 
-  const handleSubmit = (event: FormEvent<HTMLFormElement>) => {
+  const handleSubmit = async (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault()
     const result = file === null ? parsePastedSet(raw, name) : parseImportFile(file.text, name)
     if (!result.ok) {
@@ -72,7 +72,13 @@ export const SetImportPage = () => {
       return
     }
     setError(null)
-    const set = importSet(result.value)
+    // Store the file's images (or convert v1-era inline ones) before the cards that use them appear.
+    const prepared = await prepareSetImport(result.value)
+    if (!prepared.ok) {
+      setError(prepared.error)
+      return
+    }
+    const set = importSet(prepared.value)
     navigate(`/sets/${set.id}`)
   }
 
@@ -88,7 +94,13 @@ export const SetImportPage = () => {
       </p>
       <h1 id="import-heading">Import a set</h1>
 
-      <form onSubmit={handleSubmit} noValidate aria-labelledby="import-heading">
+      <form
+        onSubmit={(event) => {
+          void handleSubmit(event)
+        }}
+        noValidate
+        aria-labelledby="import-heading"
+      >
         <label
           htmlFor={fileId}
           className={`import-dropzone${dragging ? ' is-dragging' : ''}`}

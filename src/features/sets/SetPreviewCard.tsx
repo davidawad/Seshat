@@ -21,11 +21,11 @@ export const SetPreviewCard = ({ cards }: SetPreviewCardProps) => {
 
   if (card === undefined) return null
 
-  const { front, back, imageDataUrl } = cardFrontBack(card)
+  const { front, back, image, imageDataUrl } = cardFrontBack(card)
 
   return (
     <div className="set-preview">
-      <FlipCard front={front} back={back} imageDataUrl={imageDataUrl} flipped={flipped} />
+      <FlipCard front={front} back={back} image={image} imageDataUrl={imageDataUrl} flipped={flipped} />
       <button type="button" data-testid={TESTIDS.setPreviewFlip} onClick={() => setFlipped((current) => !current)}>
         {flipped ? 'Show term' : 'Show definition'}
       </button>

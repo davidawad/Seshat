@@ -1,13 +1,16 @@
 import { useMemo, useRef, useState } from 'react'
 import { Link, useNavigate, useParams } from 'react-router-dom'
 import { DownloadIcon, EditIcon } from '../../components/icons'
+import { useMediaStore } from '../../lib/media/MediaStoreProvider'
+import { toJsonBlobWithMedia } from '../../lib/media/export'
+import { collectMediaRefs } from '../../lib/media/refs'
 import { useSeshatStore } from '../../lib/store'
 import { TESTIDS } from '../../lib/testids'
 import { OptionAnnouncer } from '../../lib/OptionAnnouncer'
 import { useNumberedShortcut } from '../../lib/useNumberedShortcut'
 import { NAV_OPTION_ATTRIBUTE, useOptionNavigation } from '../../lib/useOptionNavigation'
 import { type AppState, type SetId, type StudyCard, setIdSchema } from '../../types'
-import { downloadJson, slugify } from './download'
+import { downloadBlob, downloadJson, slugify } from './download'
 import { SetMasterySummary } from './SetMasterySummary'
 import './sets.css'
 import { toSimpleJson } from './simple-json'
@@ -91,6 +94,7 @@ const SetDetailHeader = ({ setId, name, description, tags, exportDisabled, onExp
 export const SetDetailPage = () => {
   const { id } = useParams<{ id: string }>()
   const { state, exportSet } = useSeshatStore()
+  const media = useMediaStore()
   const navigate = useNavigate()
 
   const parsedId = setIdSchema.safeParse(id ?? '')
@@ -154,11 +158,16 @@ export const SetDetailPage = () => {
 
   // One icon, one click — pick the format that preserves the most fidelity
   // for what's actually in the set, rather than asking the user to choose.
-  const handleExport = () => {
-    const hasRichContent = cards.some((card) => card.content.kind !== 'short-answer')
+  const handleExport = async () => {
+    const hasRichContent = cards.some(
+      (card) => card.content.kind !== 'short-answer' || card.promptImage !== null || card.content.answerImage !== null,
+    )
     if (hasRichContent) {
       const exported = exportSet(setId)
-      if (exported !== null) downloadJson(`${slugify(set.name)}.seshat.json`, exported)
+      if (exported === null) return
+      // Images travel inside the file (base64 `media`), built from Blob parts rather than one giant string.
+      const { value } = await toJsonBlobWithMedia(exported, media, collectMediaRefs(exported.cards))
+      downloadBlob(`${slugify(set.name)}.seshat.json`, value)
     } else {
       downloadJson(`${slugify(set.name)}.json`, toSimpleJson(set.name, cards))
     }
@@ -176,7 +185,9 @@ export const SetDetailPage = () => {
         description={set.description}
         tags={set.tags}
         exportDisabled={cards.length === 0}
-        onExport={handleExport}
+        onExport={() => {
+          void handleExport()
+        }}
       />
 
       {cards.length === 0 ? (

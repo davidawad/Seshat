@@ -31,7 +31,7 @@ receipts.
 - **FSRS spaced scheduling** — per-card, per-learner difficulty/stability modeling (via [`ts-fsrs`](https://github.com/open-spaced-repetition/ts-fsrs)) instead of a fixed interval table, with selectable desired-retention
   presets (85% / 90% / 93%).
 - **Local-first, zero-backend** — no account, no server, no tracking. Your sets, cards, review history, and
-  settings live entirely in your browser's `localStorage` and never leave your device. Settings and keyboard
+  settings live entirely in your browser (text in `localStorage`, images in IndexedDB) and never leave your device. Settings and keyboard
   remaps are also mirrored to two small cookies as a recovery net (never study data).
 - **A real legibility system, not just a font picker** — `<Legible>` (`src/components/Legible.tsx`) is the one
   component every card/set surface uses to apply the whole research-backed cluster at once: Settings-driven
@@ -74,7 +74,8 @@ pnpm run ci            # every gate: format, lint, types, circular, duplication,
 
 Open the browser console on the app and call `window.seshat` directly — `listSets()`, `listCards(setId)`,
 `exportSet(setId)`, `exportSetSimple(setId)`, `importSet(json)`, `importSimpleJson(raw, setName?)`, `exportAll()`,
-`importAll(json, mode)` (`'merge'` or `'replace'`). It reads and writes the same `localStorage` the app does, with
+`importAll(json, mode)` (`'merge'` or `'replace'`; `importSet` and `importAll` are async), plus
+`exportAllWithMedia()` / `exportSetWithMedia(setId)` which embed image bytes. It reads and writes the same `localStorage` and IndexedDB the app does, with
 no server involved (a browser tab can't run an MCP server or accept incoming connections at all — there's no
 listening-socket API in JS — so this is the real "browser-only, zero-backend" version of programmatic access).
 Writes dispatch a `seshat:external-write` event, so an open tab updates live without a reload.

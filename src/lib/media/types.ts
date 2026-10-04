@@ -18,3 +18,16 @@ export const mediaRefSchema = z.object({
 
 export type MediaRef = z.infer<typeof mediaRefSchema>
 export type MediaMime = z.infer<typeof mediaMimeSchema>
+
+/** One image's bytes as they travel inside a backup / set export (base64, never a data URL). */
+export const mediaPayloadSchema = z.object({
+  mime: mediaMimeSchema,
+  dataBase64: z.string().min(1),
+  width: z.number().int().positive(),
+  height: z.number().int().positive(),
+})
+export type MediaPayload = z.infer<typeof mediaPayloadSchema>
+
+/** `media` in backups and set exports: mediaId -> payload. */
+export const mediaMapSchema = z.record(mediaIdSchema, mediaPayloadSchema)
+export type MediaMap = z.infer<typeof mediaMapSchema>
