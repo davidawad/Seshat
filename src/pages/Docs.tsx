@@ -61,10 +61,12 @@ export const DocsPage = () => (
         does. Scheduling runs on <strong>FSRS</strong> (Free Spaced Repetition Scheduler), which fits a
         difficulty/stability model per card and per learner instead of applying one fixed interval table to everyone,
         and defaults to a 90% desired-retention target — enough spacing to actually forget a little between reviews
-        (that&rsquo;s where the learning happens) without making the workload unbearable. After you answer, Seshat also
-        asks how confident you were, and tracks whether that confidence was justified — a{' '}
-        <strong>confidence calibration</strong> check against the well-documented gap between feeling like you know
-        something and actually knowing it.
+        (that&rsquo;s where the learning happens) without making the workload unbearable. After you answer, Seshat shows
+        whether you were right and the correct answer, then moves on. Two optional steps are off by default and can be
+        switched on in Settings: a <strong>confidence prompt</strong>, which asks how sure you were before the reveal
+        and feeds a calibration check on the Stats page against the well-documented gap between feeling like you know
+        something and actually knowing it; and a <strong>self-rating</strong> (Again / Hard / Good / Easy). With
+        self-rating off, a correct answer counts as Good and a wrong one as Again.
       </p>
       <p>
         None of this is asserted from vibes. Every one of these design decisions is backed by a citation, a summary of

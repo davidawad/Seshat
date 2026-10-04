@@ -5,11 +5,13 @@ import {
   type Attempt,
   attemptLabel,
   correctAnswerLabel,
+  derivedGrade,
   initialAttempt,
   isAttemptComplete,
   isCorrect,
   normalizeAnswer,
   pickOcclusionRegion,
+  stepAfterAnswer,
 } from './grading'
 
 const shortAnswer: ShortAnswerContent = {
@@ -220,5 +222,19 @@ describe('image-occlusion grading', () => {
 
   it('echoes back the free-text response as the attempt label', () => {
     expect(attemptLabel(imageOcclusion, imageOcclusionAttempt('r1', 'my guess'))).toBe('my guess')
+  })
+})
+
+describe('stepAfterAnswer', () => {
+  it('goes to confidence only when the prompt is enabled', () => {
+    expect(stepAfterAnswer(true)).toBe('confidence')
+    expect(stepAfterAnswer(false)).toBe('reveal')
+  })
+})
+
+describe('derivedGrade', () => {
+  it('maps correct to good and incorrect to again', () => {
+    expect(derivedGrade(true)).toBe('good')
+    expect(derivedGrade(false)).toBe('again')
   })
 })

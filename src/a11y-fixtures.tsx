@@ -76,7 +76,13 @@ export const seed = () => {
         due: new Date(Date.UTC(2020, 0, 1, 0, 0, index)).toISOString(),
       },
     })),
-    settings: { ...createEmptyAppState().settings, experimentalGamesEnabled: true },
+    settings: {
+      ...createEmptyAppState().settings,
+      experimentalGamesEnabled: true,
+      // The a11y study flow walks every optional step.
+      confidencePromptEnabled: true,
+      selfRatingPromptEnabled: true,
+    },
   })
 }
 

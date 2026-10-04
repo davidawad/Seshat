@@ -1,6 +1,7 @@
 import { useMemo } from 'react'
 import {
   calibrationBuckets,
+  hasConfidenceData,
   dueBacklogCount,
   retentionEstimate,
   reviewedTodayCount,
@@ -25,6 +26,7 @@ export const StatsPage = () => {
   const reviewedToday = useMemo(() => reviewedTodayCount(state.reviewLog, now), [state.reviewLog, now])
   const retention = useMemo(() => retentionEstimate(state.reviewLog), [state.reviewLog])
   const buckets = useMemo(() => calibrationBuckets(state.reviewLog), [state.reviewLog])
+  const hasConfidence = useMemo(() => hasConfidenceData(state.reviewLog), [state.reviewLog])
 
   return (
     <section aria-labelledby="stats-heading" data-testid={TESTIDS.statsPage}>
@@ -51,26 +53,34 @@ export const StatsPage = () => {
         &ldquo;Sure&rdquo; answers come back correct less often than &ldquo;Guessed&rdquo; ones, that&rsquo;s
         overconfidence — the fluency illusion at work, not a knowledge problem.
       </p>
-      <div className="table-scroll">
-        <table aria-labelledby="calibration-heading" data-testid={TESTIDS.statsCalibrationTable}>
-          <thead>
-            <tr>
-              <th scope="col">Confidence</th>
-              <th scope="col">Reviews</th>
-              <th scope="col">Actual correct rate</th>
-            </tr>
-          </thead>
-          <tbody>
-            {buckets.map((bucket) => (
-              <tr key={bucket.confidence}>
-                <th scope="row">{CONFIDENCE_LABELS[bucket.confidence]}</th>
-                <td>{bucket.total}</td>
-                <td>{bucket.correctRate === null ? '—' : formatPercent(bucket.correctRate)}</td>
+      {!hasConfidence && (
+        <p data-testid={TESTIDS.statsCalibrationEmpty}>
+          No confidence ratings yet. Turn on the confidence prompt in Settings to see how well your confidence matches
+          your results.
+        </p>
+      )}
+      {hasConfidence && (
+        <div className="table-scroll">
+          <table aria-labelledby="calibration-heading" data-testid={TESTIDS.statsCalibrationTable}>
+            <thead>
+              <tr>
+                <th scope="col">Confidence</th>
+                <th scope="col">Reviews</th>
+                <th scope="col">Actual correct rate</th>
               </tr>
-            ))}
-          </tbody>
-        </table>
-      </div>
+            </thead>
+            <tbody>
+              {buckets.map((bucket) => (
+                <tr key={bucket.confidence}>
+                  <th scope="row">{CONFIDENCE_LABELS[bucket.confidence]}</th>
+                  <td>{bucket.total}</td>
+                  <td>{bucket.correctRate === null ? '—' : formatPercent(bucket.correctRate)}</td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        </div>
+      )}
     </section>
   )
 }

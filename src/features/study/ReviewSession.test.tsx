@@ -80,7 +80,8 @@ const seedStore = (
       },
     ],
     cards: [card],
-    settings: { ...state.settings, ...settingsPatch },
+    // Existing tests exercise the full flow; the lighter defaults live in the flag-combination suite.
+    settings: { ...state.settings, confidencePromptEnabled: true, selfRatingPromptEnabled: true, ...settingsPatch },
   })
 }
 

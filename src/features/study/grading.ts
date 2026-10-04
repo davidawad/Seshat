@@ -4,6 +4,15 @@ import { clozeAnswer } from './cloze'
 /** Canonical order of the FSRS self-rating grades, also used for the 1-4 keyboard shortcuts. */
 export const GRADE_ORDER: readonly Grade[] = ['again', 'hard', 'good', 'easy']
 
+export type StudyStep = 'answer' | 'confidence' | 'reveal'
+
+/** Which step follows a completed answer: the confidence prompt only when enabled, else straight to the reveal. */
+export const stepAfterAnswer = (confidencePromptEnabled: boolean): Exclude<StudyStep, 'answer'> =>
+  confidencePromptEnabled ? 'confidence' : 'reveal'
+
+/** The FSRS grade when the learner is not asked to self-rate: correct -> good, incorrect -> again. */
+export const derivedGrade = (correct: boolean): Grade => (correct ? 'good' : 'again')
+
 /**
  * Pure grading logic, decoupled from React. One `Attempt` variant per
  * `CardContent` kind — every function below exhaustively switches on
