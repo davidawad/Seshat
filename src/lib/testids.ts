@@ -193,6 +193,7 @@ export const TESTIDS = {
   blastOption: 'blast-option',
   blastFeedback: 'blast-feedback',
   blastPlayAgain: 'blast-play-again',
+  blocksBoard: 'blocks-board',
   blocksOption: 'blocks-option',
   blocksColumn: 'blocks-column',
   blocksFeedback: 'blocks-feedback',
