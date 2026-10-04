@@ -1,9 +1,10 @@
 import { Link } from 'react-router-dom'
+import { TESTIDS } from '../lib/testids'
 import './home.css'
 
 /** Why Seshat exists and the research behind it — moved off the landing page so Home can be a dashboard of your sets. */
 export const AboutPage = () => (
-  <section aria-labelledby="about-heading">
+  <section aria-labelledby="about-heading" data-testid={TESTIDS.aboutPage}>
     <p className="home-eyebrow">Free &amp; open source</p>
     <h1 id="about-heading">Seshat is a flashcard app built on what actually works.</h1>
     <p className="home-lede">
@@ -96,9 +97,10 @@ export const AboutPage = () => (
       <p>
         <strong>Recall-first:</strong> short-answer and cloze cards ask you to produce an answer, not recognize one.{' '}
         <strong>FSRS scheduling:</strong> a trainable per-card, per-learner model decides when you&rsquo;re about to
-        forget something, instead of a fixed interval table. <strong>Confidence calibration:</strong> you rate how sure
-        you were before you see if you were right, and Seshat shows you the gap. See <Link to="/docs">Docs</Link> for
-        the full explanation, or jump straight to your <Link to="/sets">sets</Link>.
+        forget something, instead of a fixed interval table. <strong>Confidence calibration (optional):</strong> turn on
+        the confidence prompt in Settings to rate how sure you were before you see if you were right, and Seshat shows
+        you the gap. See <Link to="/docs">Docs</Link> for the full explanation, or jump straight to your{' '}
+        <Link to="/sets">sets</Link>.
       </p>
     </section>
   </section>

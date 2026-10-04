@@ -176,6 +176,17 @@ describe('tools', () => {
     expect(deps.store.updateSettings).toHaveBeenCalledTimes(1)
   })
 
+  it('update_settings applies only the keys sent (no defaults injected)', async () => {
+    const deps = makeDeps()
+    const t = tools(() => deps)
+    await call(t['update_settings'], { patch: { theme: 'light' } })
+    expect(deps.store.updateSettings).toHaveBeenCalledWith({ theme: 'light' })
+    const sent = vi.mocked(deps.store.updateSettings).mock.calls[0]?.[0] as Record<string, unknown>
+    for (const key of ['palette', 'customAccent', 'flashcardsTrackProgress', 'flashcardsFront']) {
+      expect(sent).not.toHaveProperty(key)
+    }
+  })
+
   it('import_set accepts simple and full shapes, rejects the rest', async () => {
     const importSet = vi.fn(() => ({ id: SET_ID, name: 'S' }))
     const t = tools(() => makeDeps({ importSet } as never))

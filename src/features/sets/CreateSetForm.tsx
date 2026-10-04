@@ -1,6 +1,7 @@
 import { type FormEvent, useId, useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 import { useSeshatStore } from '../../lib/store'
+import { TESTIDS } from '../../lib/testids'
 
 /**
  * A clearly visible "+ New set" action, collapsed to a single button until
@@ -34,7 +35,12 @@ export const CreateSetForm = () => {
 
   if (!isOpen) {
     return (
-      <button type="button" className="create-set-button" onClick={() => setIsOpen(true)}>
+      <button
+        type="button"
+        className="create-set-button"
+        data-testid={TESTIDS.setsNewButton}
+        onClick={() => setIsOpen(true)}
+      >
         + New set
       </button>
     )
@@ -49,6 +55,7 @@ export const CreateSetForm = () => {
         <input
           id={nameId}
           type="text"
+          data-testid={TESTIDS.setsNewName}
           value={name}
           onChange={(event) => setName(event.target.value)}
           placeholder="Name your set…"
@@ -64,12 +71,13 @@ export const CreateSetForm = () => {
         )}
       </div>
       <div className="create-set-actions">
-        <button type="submit" className="create-set-button">
+        <button type="submit" className="create-set-button" data-testid={TESTIDS.setsNewSubmit}>
           Create
         </button>
         <button
           type="button"
           className="create-set-cancel"
+          data-testid={TESTIDS.setsNewCancel}
           onClick={() => {
             setIsOpen(false)
             setError(null)

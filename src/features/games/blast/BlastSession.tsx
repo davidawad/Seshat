@@ -1,6 +1,7 @@
 import { useEffect, useRef, useState } from 'react'
 import { Legible } from '../../../components/Legible'
 import { OptionAnnouncer } from '../../../lib/OptionAnnouncer'
+import { TESTIDS } from '../../../lib/testids'
 import { useNumberedShortcut } from '../../../lib/useNumberedShortcut'
 import { NAV_OPTION_ATTRIBUTE, useOptionNavigation } from '../../../lib/useOptionNavigation'
 import type { SetId } from '../../../types'
@@ -81,7 +82,7 @@ const BlastAsteroidField = ({
         </Legible>
       </div>
 
-      <p role="status" aria-live="polite" className="blast-feedback">
+      <p role="status" className="blast-feedback" data-testid={TESTIDS.blastFeedback}>
         {feedback}
       </p>
 
@@ -99,6 +100,7 @@ const BlastAsteroidField = ({
               key={option}
               type="button"
               className={classNames.join(' ')}
+              data-testid={TESTIDS.blastOption}
               disabled={status !== 'playing'}
               onClick={() => onSelect(option)}
               onFocus={() => setHighlight(question.options.indexOf(option))}
@@ -132,7 +134,13 @@ const BlastComplete = ({ endReason, score, attemptedCount, totalQuestions, onPla
     <p>
       Cards cleared: {attemptedCount} of {totalQuestions}
     </p>
-    <button type="button" className="blast-play-again" onClick={onPlayAgain} autoFocus>
+    <button
+      type="button"
+      className="blast-play-again"
+      data-testid={TESTIDS.blastPlayAgain}
+      onClick={onPlayAgain}
+      autoFocus
+    >
       Play again
     </button>
   </div>

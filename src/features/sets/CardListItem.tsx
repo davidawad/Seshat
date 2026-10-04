@@ -2,6 +2,7 @@ import { useId, useState } from 'react'
 import { DeleteIcon } from '../../components/icons'
 import { Legible } from '../../components/Legible'
 import { useSeshatStore } from '../../lib/store'
+import { TESTIDS } from '../../lib/testids'
 import type { StudyCard } from '../../types'
 import { CardForm } from './CardForm'
 
@@ -92,7 +93,7 @@ export const CardListItem = ({ card }: CardListItemProps) => {
           onBlur={saveTerm}
         />
         <label htmlFor={definitionId} className="sr-only">
-          Definition
+          Definition of {card.prompt}
         </label>
         <input
           id={definitionId}
@@ -102,7 +103,13 @@ export const CardListItem = ({ card }: CardListItemProps) => {
           onChange={(event) => setDefinition(event.target.value)}
           onBlur={saveDefinition}
         />
-        <button type="button" className="icon-button" onClick={handleDelete} aria-label="Delete card">
+        <button
+          type="button"
+          className="icon-button"
+          onClick={handleDelete}
+          aria-label={`Delete card: ${card.prompt}`}
+          data-testid={TESTIDS.editCardDelete}
+        >
           <DeleteIcon />
         </button>
       </li>
@@ -129,10 +136,20 @@ export const CardListItem = ({ card }: CardListItemProps) => {
           ))}
         </ul>
       )}
-      <button type="button" onClick={() => setIsEditing(true)}>
+      <button
+        type="button"
+        onClick={() => setIsEditing(true)}
+        aria-label={`Edit card: ${card.prompt}`}
+        data-testid={TESTIDS.editCardEdit}
+      >
         Edit
       </button>
-      <button type="button" onClick={handleDelete}>
+      <button
+        type="button"
+        onClick={handleDelete}
+        aria-label={`Delete card: ${card.prompt}`}
+        data-testid={TESTIDS.editCardDelete}
+      >
         Delete
       </button>
     </li>

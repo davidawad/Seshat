@@ -31,7 +31,8 @@ receipts.
 - **FSRS spaced scheduling** — per-card, per-learner difficulty/stability modeling (via [`ts-fsrs`](https://github.com/open-spaced-repetition/ts-fsrs)) instead of a fixed interval table, with selectable desired-retention
   presets (85% / 90% / 93%).
 - **Local-first, zero-backend** — no account, no server, no tracking. Your sets, cards, review history, and
-  settings live entirely in your browser's `localStorage` and never leave your device.
+  settings live entirely in your browser's `localStorage` and never leave your device. Settings and keyboard
+  remaps are also mirrored to two small cookies as a recovery net (never study data).
 - **A real legibility system, not just a font picker** — `<Legible>` (`src/components/Legible.tsx`) is the one
   component every card/set surface uses to apply the whole research-backed cluster at once: Settings-driven
   typeface, 11.5–13pt size, 1.4–1.5 line height, and a 55–75 character measure. Seshat's own UI intentionally
@@ -40,8 +41,12 @@ receipts.
 - **Portable JSON everywhere** — the full Seshat format round-trips every card kind; a simpler Quizlet-style
   `[{term, definition}]` (or `{name, terms: [...]}`) format also imports and exports per set, for interop with
   plain files from other tools. One icon button imports (auto-detects the format), one exports.
-- **A browser-only scripting API** — `window.seshat` (see below) lets any same-page script read or write your
-  sets with zero backend involved.
+- **Full-data backup** — Settings -> Backup downloads one JSON file with everything (settings, keybindings, sets,
+  cards, FSRS scheduling, review history) and restores it by merging or replacing.
+- **Keyboard-first** — footer "Keyboard shortcuts" lists every binding; navigation keys switch between Arrow keys,
+  WASD and HJKL, and every action is remappable.
+- **Agent-friendly** — a `?import=` URL importer, a browser-only scripting API (`window.seshat`, see below), WebMCP
+  tools where the browser supports them, and JSON Schemas for imports, backups and settings.
 
 ## Tech stack
 
@@ -62,17 +67,26 @@ pnpm run dev        # start the dev server
 pnpm run build       # type-check and build for production
 pnpm run test         # run the test suite
 pnpm run lint          # lint with oxlint
+pnpm run ci            # every gate: format, lint, types, circular, duplication, license, coverage, build, size
 ```
 
 ## Scripting Seshat's data
 
 Open the browser console on the app and call `window.seshat` directly — `listSets()`, `listCards(setId)`,
-`exportSet(setId)`, `exportSetSimple(setId)`, `importSet(json)`, `importSimpleJson(raw, setName?)`. It reads
-and writes the same `localStorage` the app does, with no server involved (a browser tab can't run an MCP server
-or accept incoming connections at all — there's no listening-socket API in JS — so this is the real
-"browser-only, zero-backend" version of programmatic access). One caveat: if the app is open in the same tab
-while a script writes through this API, reload to see the change — React only reads `localStorage` once, on
-mount.
+`exportSet(setId)`, `exportSetSimple(setId)`, `importSet(json)`, `importSimpleJson(raw, setName?)`, `exportAll()`,
+`importAll(json, mode)` (`'merge'` or `'replace'`). It reads and writes the same `localStorage` the app does, with
+no server involved (a browser tab can't run an MCP server or accept incoming connections at all — there's no
+listening-socket API in JS — so this is the real "browser-only, zero-backend" version of programmatic access).
+Writes dispatch a `seshat:external-write` event, so an open tab updates live without a reload.
+
+Other agent entry points, all documented in [`AGENTS.md`](./AGENTS.md) and `public/agents.txt`:
+
+- `?import=<url-encoded JSON>` on any URL imports a set and opens it.
+- WebMCP tools (`list_sets`, `import_all`, `update_settings`, ...) register on `document.modelContext` where the
+  browser exposes it.
+- JSON Schemas, generated from the Zod schemas at build time: `/schema/set-import.schema.json`,
+  `/schema/seshat-backup.schema.json`, `/schema/seshat-settings.schema.json`. Discovery files `/llms.txt`,
+  `/llms-full.txt` and `/agents.txt` link them.
 
 ## License
 

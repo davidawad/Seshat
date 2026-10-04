@@ -1,6 +1,7 @@
 import { type ChangeEvent, type FormEvent, useId, useState } from 'react'
 import { UploadIcon } from '../../components/icons'
 import { useSeshatStore } from '../../lib/store'
+import { TESTIDS } from '../../lib/testids'
 import { exportedSetSchema } from '../../types'
 import { parseSimpleJson } from './simple-json'
 import { parseTermDefinitionText } from './text-import'
@@ -83,6 +84,7 @@ const FileImportForm = ({ onDone }: { readonly onDone: () => void }) => {
       <input
         id={fileId}
         type="file"
+        data-testid={TESTIDS.importFile}
         accept="application/json"
         onChange={(event) => {
           void handleChange(event)
@@ -130,13 +132,21 @@ const PasteTextForm = ({ onDone }: { readonly onDone: () => void }) => {
 
   return (
     <form onSubmit={handleSubmit} aria-labelledby="paste-import-heading">
-      <h3 id="paste-import-heading">Or paste term/definition pairs</h3>
+      <h2 id="paste-import-heading">Or paste term/definition pairs</h2>
       <label htmlFor={nameId}>New set name</label>
-      <input id={nameId} type="text" value={name} onChange={(event) => setName(event.target.value)} required />
+      <input
+        id={nameId}
+        type="text"
+        value={name}
+        onChange={(event) => setName(event.target.value)}
+        data-testid={TESTIDS.importPasteName}
+        required
+      />
       <label htmlFor={textId}>Term and definition, one pair per line</label>
       <p id={`${textId}-hint`}>Separate each pair with a tab (or a comma if there&apos;s no tab on that line).</p>
       <textarea
         id={textId}
+        data-testid={TESTIDS.importPasteText}
         aria-describedby={`${textId}-hint${error !== null ? ` ${errorId}` : ''}`}
         value={raw}
         onChange={(event) => setRaw(event.target.value)}
@@ -148,7 +158,9 @@ const PasteTextForm = ({ onDone }: { readonly onDone: () => void }) => {
           {error}
         </p>
       )}
-      <button type="submit">Import</button>
+      <button type="submit" data-testid={TESTIDS.importPasteSubmit}>
+        Import
+      </button>
     </form>
   )
 }
@@ -170,7 +182,8 @@ export const ImportButton = () => {
         type="button"
         className="icon-button"
         aria-expanded={open}
-        aria-controls={panelId}
+        aria-controls={open ? panelId : undefined}
+        data-testid={TESTIDS.importSetButton}
         onClick={() => {
           setOpen((current) => !current)
           setSuccessMessage(null)
@@ -181,7 +194,7 @@ export const ImportButton = () => {
       </button>
       {successMessage !== null && <p role="status">{successMessage}</p>}
       {open && (
-        <div id={panelId} className="import-panel">
+        <div id={panelId} className="import-panel" data-testid={TESTIDS.importPanel}>
           <FileImportForm onDone={handleDone} />
           <PasteTextForm onDone={handleDone} />
         </div>

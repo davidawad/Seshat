@@ -1,6 +1,7 @@
 import { useId, useState } from 'react'
 import { Link, useNavigate, useParams } from 'react-router-dom'
 import { useSeshatStore } from '../../lib/store'
+import { TESTIDS } from '../../lib/testids'
 import { type StudySet, setIdSchema } from '../../types'
 import { AddTermRow } from './AddTermRow'
 import { CardForm } from './CardForm'
@@ -27,6 +28,7 @@ const GoalDateField = ({ set }: { readonly set: StudySet }) => {
       <input
         id={inputId}
         type="date"
+        data-testid={TESTIDS.editGoalDate}
         value={set.goalDate ?? ''}
         onChange={(event) => updateSet(set.id, { goalDate: event.target.value.length > 0 ? event.target.value : null })}
       />
@@ -80,6 +82,7 @@ const SetDetailsFields = ({ set }: { readonly set: StudySet }) => {
           <label htmlFor={nameId}>Name</label>
           <input
             id={nameId}
+            data-testid={TESTIDS.editName}
             type="text"
             value={name}
             onChange={(event) => setName(event.target.value)}
@@ -98,6 +101,7 @@ const SetDetailsFields = ({ set }: { readonly set: StudySet }) => {
           <label htmlFor={tagsId}>Tags (comma-separated)</label>
           <input
             id={tagsId}
+            data-testid={TESTIDS.editTags}
             type="text"
             value={tagsText}
             onChange={(event) => setTagsText(event.target.value)}
@@ -109,6 +113,7 @@ const SetDetailsFields = ({ set }: { readonly set: StudySet }) => {
         <label htmlFor={descriptionId}>Description</label>
         <textarea
           id={descriptionId}
+          data-testid={TESTIDS.editDescription}
           value={description}
           onChange={(event) => setDescription(event.target.value)}
           onBlur={() => updateSet(set.id, { description: description.trim() })}
@@ -166,7 +171,7 @@ export const SetEditPage = () => {
   }
 
   return (
-    <section aria-labelledby="set-edit-heading">
+    <section aria-labelledby="set-edit-heading" data-testid={TESTIDS.editPage}>
       <p>
         <Link to={`/sets/${setId}`}>Back to {set.name}</Link>
       </p>
@@ -176,7 +181,7 @@ export const SetEditPage = () => {
       <GoalDateField set={set} />
 
       <h2>Cards ({cards.length})</h2>
-      <ul className="card-list">
+      <ul className="card-list" data-testid={TESTIDS.editCardList}>
         {cards.map((card) => (
           <CardListItem key={card.id} card={card} />
         ))}
@@ -186,13 +191,18 @@ export const SetEditPage = () => {
       {isAdding ? (
         <CardForm setId={setId} editingCard={null} onDone={() => setIsAdding(false)} />
       ) : (
-        <button type="button" className="card-add-other-kind" onClick={() => setIsAdding(true)}>
+        <button
+          type="button"
+          className="card-add-other-kind"
+          data-testid={TESTIDS.editAddOtherKind}
+          onClick={() => setIsAdding(true)}
+        >
           Add a cloze, multiple choice, or image-occlusion card
         </button>
       )}
 
       <p className="set-danger-zone">
-        <button type="button" onClick={handleDelete}>
+        <button type="button" data-testid={TESTIDS.editDeleteSet} onClick={handleDelete}>
           Delete this set
         </button>
       </p>

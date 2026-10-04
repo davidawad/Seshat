@@ -1,33 +1,14 @@
 import { useCallback, useEffect, useRef, useState } from 'react'
 import { Legible } from '../../components/Legible'
-import { matchesBinding } from '../../lib/keybindings'
 import { useSeshatStore } from '../../lib/store'
-import { useKeybindings } from '../../lib/useKeybindings'
+import { TESTIDS } from '../../lib/testids'
 import { NAV_OPTION_ATTRIBUTE, useOptionNavigation } from '../../lib/useOptionNavigation'
 import type { ConfidenceRating, Grade, StudyCard } from '../../types'
 import { CardInput } from './CardInput'
-import { type Attempt, GRADE_ORDER, initialAttempt, isAttemptComplete, isCorrect } from './grading'
+import { type Attempt, type StudyStep, initialAttempt, isAttemptComplete, isCorrect, stepAfterAnswer } from './grading'
 import { RevealPanel } from './RevealPanel'
+import { CONFIDENCE_OPTIONS, useStudyShortcuts } from './useStudyShortcuts'
 import './review-session.css'
-
-type Step = 'answer' | 'confidence' | 'reveal'
-
-const CONFIDENCE_OPTIONS: readonly {
-  readonly value: ConfidenceRating
-  readonly label: string
-  readonly actionId: string
-}[] = [
-  { value: 'guessed', label: 'Guessed', actionId: 'studyConfidence.guessed' },
-  { value: 'unsure', label: 'Unsure', actionId: 'studyConfidence.unsure' },
-  { value: 'sure', label: 'Sure', actionId: 'studyConfidence.sure' },
-]
-
-const GRADE_ACTION_IDS: readonly string[] = [
-  'studyReveal.again',
-  'studyReveal.hard',
-  'studyReveal.good',
-  'studyReveal.easy',
-]
 
 interface ReviewSessionProps {
   readonly card: StudyCard
@@ -37,9 +18,11 @@ interface ReviewSessionProps {
 }
 
 /**
- * One card, one screen at a time, recall-first: answer -> confidence
- * (captured before the learner sees whether they were right) -> reveal +
- * FSRS self-rating -> record + advance. See the study-engine spec for why
+ * One card, one screen at a time, recall-first: answer -> [confidence,
+ * captured before the learner sees whether they were right] -> reveal ->
+ * record + advance. The bracketed confidence step and the FSRS self-rating
+ * on the reveal are optional settings (both off by default); with self-rating
+ * off the grade is derived from correctness. See the study-engine spec for why
  * this ordering matters (retrieval practice + calibration are the two
  * evidence-backed levers this app leans on).
  */
@@ -47,11 +30,10 @@ export const ReviewSession = ({ card, position, total, onAdvance }: ReviewSessio
   const {
     recordReview,
     state: {
-      settings: { selfExplanationEnabled },
+      settings: { selfExplanationEnabled, confidencePromptEnabled, selfRatingPromptEnabled },
     },
   } = useSeshatStore()
-  const { key: keyFor } = useKeybindings()
-  const [step, setStep] = useState<Step>('answer')
+  const [step, setStep] = useState<StudyStep>('answer')
   const [attempt, setAttempt] = useState<Attempt>(() => initialAttempt(card.content))
   const [confidence, setConfidence] = useState<ConfidenceRating | null>(null)
   const [correct, setCorrect] = useState(false)
@@ -77,9 +59,16 @@ export const ReviewSession = ({ card, position, total, onAdvance }: ReviewSessio
 
   const handleAnswerContinue = useCallback(() => {
     if (!complete) return
-    setConfidenceIndex(0)
-    setStep('confidence')
-  }, [complete])
+    const next = stepAfterAnswer(confidencePromptEnabled)
+    if (next === 'confidence') {
+      setConfidenceIndex(0)
+    } else {
+      // No confidence step: nothing is recorded for it, and correctness is computed now.
+      setConfidence(null)
+      setCorrect(isCorrect(card.content, attempt))
+    }
+    setStep(next)
+  }, [attempt, card.content, complete, confidencePromptEnabled])
 
   const handleConfidence = useCallback(
     (rating: ConfidenceRating) => {
@@ -118,29 +107,16 @@ export const ReviewSession = ({ card, position, total, onAdvance }: ReviewSessio
     containerRef: confidenceRef,
   })
 
-  // Remappable keyboard shortcuts (confidence step, then reveal/grade step)
-  // — skipped while a text input is focused so digits keep typing into
-  // short-answer/cloze fields.
-  useEffect(() => {
-    const handler = (event: KeyboardEvent) => {
-      if (event.repeat) return
-      if (event.target instanceof HTMLInputElement || event.target instanceof HTMLTextAreaElement) return
-      if (step === 'confidence') {
-        const option = CONFIDENCE_OPTIONS.find((candidate) => matchesBinding(keyFor(candidate.actionId), event))
-        if (option !== undefined) handleConfidence(option.value)
-      } else if (step === 'reveal') {
-        const index = GRADE_ACTION_IDS.findIndex((actionId) => matchesBinding(keyFor(actionId), event))
-        const grade = index === -1 ? undefined : GRADE_ORDER[index]
-        if (grade !== undefined) handleGrade(grade)
-      }
-    }
-    window.addEventListener('keydown', handler)
-    return () => window.removeEventListener('keydown', handler)
-  }, [step, handleConfidence, handleGrade, keyFor])
+  useStudyShortcuts({
+    step,
+    selfRatingEnabled: selfRatingPromptEnabled,
+    onConfidence: handleConfidence,
+    onGrade: handleGrade,
+  })
 
   return (
     <div className="review-session">
-      <div className="review-progress">
+      <div className="review-progress" data-testid={TESTIDS.studyProgress}>
         <p className="review-progress-label">
           Card {position + 1} of {total}
         </p>
@@ -162,7 +138,7 @@ export const ReviewSession = ({ card, position, total, onAdvance }: ReviewSessio
           <Legible className="illuminated-panel">
             <CardInput card={card} attempt={attempt} onChange={setAttempt} disabled={false} />
           </Legible>
-          <button type="submit" disabled={!complete}>
+          <button type="submit" disabled={!complete} data-testid={TESTIDS.studyContinue}>
             Continue
           </button>
         </form>
@@ -181,6 +157,7 @@ export const ReviewSession = ({ card, position, total, onAdvance }: ReviewSessio
                   key={option.value}
                   type="button"
                   autoFocus={index === 0}
+                  data-testid={option.testId}
                   onClick={() => handleConfidence(option.value)}
                   onFocus={() => setConfidenceIndex(index)}
                   {...{ [NAV_OPTION_ATTRIBUTE]: '' }}
@@ -200,6 +177,7 @@ export const ReviewSession = ({ card, position, total, onAdvance }: ReviewSessio
             attempt={attempt}
             correct={correct}
             onGrade={handleGrade}
+            selfRatingEnabled={selfRatingPromptEnabled}
             selfExplanation={selfExplanation}
             onSelfExplanationChange={setSelfExplanation}
           />

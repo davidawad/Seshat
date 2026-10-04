@@ -58,6 +58,7 @@ const seedCards = (cards: readonly StudyCard[]) => {
       },
     ],
     cards: [...cards],
+    settings: { ...state.settings, confidencePromptEnabled: true, selfRatingPromptEnabled: true },
   })
 }
 

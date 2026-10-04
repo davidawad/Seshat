@@ -1,5 +1,7 @@
 import { CheckIcon, CrossIcon, GearIcon, ShuffleIcon, UndoIcon } from '../../components/icons'
 import { formatKeyLabel } from '../../lib/keybindings'
+import { TESTIDS } from '../../lib/testids'
+import type { Leaving } from './grade-motion'
 
 interface FlashcardControlsProps {
   readonly position: number
@@ -19,6 +21,40 @@ interface FlashcardControlsProps {
   readonly onToggleShuffle: () => void
   readonly onOpenOptions: () => void
 }
+
+/**
+ * Outlined count chips above the card: "Still learning n" on the left, "Know n"
+ * on the right. While a grade animation runs the chip it is going to is shown
+ * already incremented and pulses, so the count visibly lands with the card.
+ */
+export const FlashcardTally = ({
+  knownCount,
+  unknownCount,
+  leaving,
+}: {
+  readonly knownCount: number
+  readonly unknownCount: number
+  readonly leaving: Leaving | null
+}) => (
+  <div className="flashcard-tally" data-testid={TESTIDS.flashcardTally}>
+    <p
+      className={
+        leaving === 'learning' ? 'flashcard-tally-side is-learning is-bump' : 'flashcard-tally-side is-learning'
+      }
+    >
+      <span>Still learning</span>
+      <span className="flashcard-tally-chip" data-testid={TESTIDS.flashcardTallyLearning}>
+        {unknownCount + (leaving === 'learning' ? 1 : 0)}
+      </span>
+    </p>
+    <p className={leaving === 'know' ? 'flashcard-tally-side is-know is-bump' : 'flashcard-tally-side is-know'}>
+      <span>Know</span>
+      <span className="flashcard-tally-chip" data-testid={TESTIDS.flashcardTallyKnow}>
+        {knownCount + (leaving === 'know' ? 1 : 0)}
+      </span>
+    </p>
+  </div>
+)
 
 /** The strip attached under the card: the Quizlet-style "press [←] / [→]" hint. */
 export const FlashcardHint = ({ leftKey, rightKey }: { readonly leftKey: string; readonly rightKey: string }) => (
@@ -54,12 +90,12 @@ export const FlashcardControls = ({
         type="button"
         className="flashcard-pill flashcard-pill-learning"
         aria-label={`Still learning (${formatKeyLabel(keys.stillLearning)})`}
-        data-testid="flashcard-still-learning"
+        data-testid={TESTIDS.flashcardStillLearning}
         onClick={onStillLearning}
       >
         <CrossIcon />
       </button>
-      <p className="flashcard-progress" aria-live="polite" aria-atomic="true" data-testid="flashcard-progress">
+      <p className="flashcard-progress" data-testid={TESTIDS.flashcardProgress}>
         <span className="sr-only">Card </span>
         {position + 1} / {total}
       </p>
@@ -67,7 +103,7 @@ export const FlashcardControls = ({
         type="button"
         className="flashcard-pill flashcard-pill-know"
         aria-label={`Know (${formatKeyLabel(keys.know)})`}
-        data-testid="flashcard-know"
+        data-testid={TESTIDS.flashcardKnow}
         onClick={onKnow}
       >
         <CheckIcon />
@@ -79,7 +115,7 @@ export const FlashcardControls = ({
         type="button"
         className="icon-button"
         aria-label={`Undo (${formatKeyLabel(keys.undo)})`}
-        data-testid="flashcard-undo"
+        data-testid={TESTIDS.flashcardUndo}
         disabled={!canUndo}
         onClick={onUndo}
       >
@@ -90,7 +126,7 @@ export const FlashcardControls = ({
         className="icon-button flashcard-toggle"
         aria-label={`Shuffle (${formatKeyLabel(keys.shuffle)})`}
         aria-pressed={shuffled}
-        data-testid="flashcard-shuffle"
+        data-testid={TESTIDS.flashcardShuffle}
         onClick={onToggleShuffle}
       >
         <ShuffleIcon />
@@ -100,7 +136,7 @@ export const FlashcardControls = ({
         className="icon-button"
         aria-label="Options"
         aria-haspopup="dialog"
-        data-testid="flashcard-options"
+        data-testid={TESTIDS.flashcardOptions}
         onClick={onOpenOptions}
       >
         <GearIcon />

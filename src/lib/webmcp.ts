@@ -1,7 +1,8 @@
 import { z } from 'zod'
 import { summarizeMastery } from '../features/sets/set-summary'
 import { parseImportParam } from '../features/sets/url-import'
-import { type Result, type Settings, err, ok, setIdSchema, settingsSchema } from '../types'
+import { type Result, err, ok, setIdSchema } from '../types'
+import { SETTING_KEYS, parseSettingsPatch } from './settings-patch'
 import { MAX_BACKUP_CHARS } from './backup'
 import type { useSeshatStore } from './store'
 
@@ -101,7 +102,9 @@ const navTargetSchema = z.enum(['home', 'sets', 'stats', 'docs', 'about', 'set']
 
 const noArgs = z.strictObject({})
 const setArgs = z.strictObject({ setId: setIdSchema.describe('A set id, as returned by list_sets.') })
-const settingsPatch = settingsSchema.partial().strict()
+const settingsPatch = z
+  .record(z.string(), z.unknown())
+  .describe(`Settings to change, keyed by name. Known keys: ${SETTING_KEYS.join(', ')}.`)
 
 // A call's outcome: a value to report, or an error message to hand back as a structured error.
 type Outcome = Result<unknown, string>
@@ -136,18 +139,6 @@ const defineTool =
       }
     },
   })
-
-/**
- * `settingsSchema.partial()` still fills `.default()` fields for keys the
- * agent never sent, which would silently reset them. Keep only the keys that
- * were actually in the request (`raw` is `{ patch }`, already validated).
- */
-const sentKeysOnly = (patch: object, raw: unknown): Partial<Settings> => {
-  const sent = new Set(Object.keys(z.object({ patch: z.record(z.string(), z.unknown()) }).parse(raw).patch))
-  return Object.fromEntries(
-    Object.entries(patch).filter(([key, value]) => sent.has(key) && value !== undefined),
-  ) as Partial<Settings>
-}
 
 const READ = { readOnlyHint: true, untrustedContentHint: true } as const
 
@@ -210,11 +201,12 @@ export const TOOL_FACTORIES = [
       'Change one or more app settings. Pass only the fields to change; unknown or out-of-range fields are rejected and nothing is applied.',
     schema: z.strictObject({ patch: settingsPatch }),
     annotations: {},
-    run: ({ patch }, { store }, raw) => {
-      const changes = sentKeysOnly(patch, raw)
-      if (Object.keys(changes).length === 0) return err('patch is empty; pass at least one setting.')
-      store.updateSettings(changes)
-      return ok({ applied: Object.keys(changes) })
+    run: ({ patch }, { store }) => {
+      const changes = parseSettingsPatch(patch)
+      if (!changes.ok) return changes
+      if (Object.keys(changes.value).length === 0) return err('patch is empty; pass at least one setting.')
+      store.updateSettings(changes.value)
+      return ok({ applied: Object.keys(changes.value) })
     },
   }),
   defineTool({

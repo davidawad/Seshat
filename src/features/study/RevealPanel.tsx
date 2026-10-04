@@ -1,9 +1,10 @@
 import { useCallback, useId, useRef, useState } from 'react'
 import { Legible } from '../../components/Legible'
+import { TESTIDS } from '../../lib/testids'
 import { useKeybindings } from '../../lib/useKeybindings'
 import { NAV_OPTION_ATTRIBUTE, useOptionNavigation } from '../../lib/useOptionNavigation'
 import type { Grade, StudyCard } from '../../types'
-import { type Attempt, GRADE_ORDER, attemptLabel, correctAnswerLabel } from './grading'
+import { type Attempt, GRADE_ORDER, attemptLabel, correctAnswerLabel, derivedGrade } from './grading'
 import { ImageOcclusionReveal } from './ImageOcclusionReveal'
 
 const GRADE_LABELS: Record<Grade, string> = { again: 'Again', hard: 'Hard', good: 'Good', easy: 'Easy' }
@@ -16,6 +17,13 @@ const GRADE_ACTION_IDS: readonly string[] = [
   'studyReveal.easy',
 ]
 
+const GRADE_TESTIDS: Readonly<Record<Grade, string>> = {
+  again: TESTIDS.studyGradeAgain,
+  hard: TESTIDS.studyGradeHard,
+  good: TESTIDS.studyGradeGood,
+  easy: TESTIDS.studyGradeEasy,
+}
+
 const GRADE_VALUES: readonly { readonly value: Grade; readonly label: string; readonly actionId: string }[] =
   GRADE_ORDER.map((value, index) => ({ value, label: GRADE_LABELS[value], actionId: GRADE_ACTION_IDS[index]! }))
 
@@ -24,22 +32,25 @@ interface RevealPanelProps {
   readonly attempt: Attempt
   readonly correct: boolean
   readonly onGrade: (grade: Grade) => void
+  /** Settings.selfRatingPromptEnabled: show Again/Hard/Good/Easy, else a single Continue with a derived grade. */
+  readonly selfRatingEnabled: boolean
   /** `null` when Settings.selfExplanationEnabled is off — hides the prompt entirely. */
   readonly selfExplanation: string | null
   readonly onSelfExplanationChange: (value: string) => void
 }
 
 /**
- * Reveal + FSRS self-rating step. Correctness was already auto-graded from
- * the attempt, but per standard Anki/FSRS UX, the learner's own Again/Hard/
- * Good/Easy rating is what actually drives spacing — so it's always offered,
- * just biased toward "Again" when the auto-grade came back wrong.
+ * Reveal step: immediate feedback, then either the learner's own Again/Hard/
+ * Good/Easy rating (setting on; biased toward "Again" when the auto-grade came
+ * back wrong, per standard Anki/FSRS UX) or a single Continue that submits the
+ * grade derived from correctness (setting off, the default).
  */
 export const RevealPanel = ({
   card,
   attempt,
   correct,
   onGrade,
+  selfRatingEnabled,
   selfExplanation,
   onSelfExplanationChange,
 }: RevealPanelProps) => {
@@ -67,7 +78,7 @@ export const RevealPanel = ({
     onIndexChange: setGradeIndex,
     onConfirm: confirmGrade,
     orientation: 'horizontal',
-    enabled: true,
+    enabled: selfRatingEnabled,
     containerRef: gradeRef,
   })
 
@@ -75,8 +86,8 @@ export const RevealPanel = ({
     <div className={correct ? 'review-reveal is-correct' : 'review-reveal is-incorrect'}>
       <p
         role="status"
-        aria-live="polite"
         className={correct ? 'review-result is-correct' : 'review-result is-incorrect'}
+        data-testid={TESTIDS.studyResult}
       >
         {correct ? 'Correct' : 'Incorrect'}
       </p>
@@ -93,6 +104,7 @@ export const RevealPanel = ({
             <label htmlFor={selfExplanationId}>Why is that the correct answer? (optional)</label>
             <textarea
               id={selfExplanationId}
+              data-testid={TESTIDS.studySelfExplanation}
               value={selfExplanation}
               onChange={(event) => onSelfExplanationChange(event.target.value)}
               rows={2}
@@ -100,24 +112,37 @@ export const RevealPanel = ({
           </div>
         )}
       </Legible>
-      <fieldset className="review-grade">
-        <legend>How well did you recall this?</legend>
-        <div ref={gradeRef} className="grade-options">
-          {GRADE_VALUES.map((option) => (
-            <button
-              key={option.value}
-              type="button"
-              autoFocus={option.value === suggestedGrade}
-              className={option.value === suggestedGrade ? 'grade-button is-suggested' : 'grade-button'}
-              onClick={() => onGrade(option.value)}
-              onFocus={() => setGradeIndex(GRADE_VALUES.indexOf(option))}
-              {...{ [NAV_OPTION_ATTRIBUTE]: '' }}
-            >
-              {option.label} <span className="grade-key">({keyFor(option.actionId)})</span>
-            </button>
-          ))}
-        </div>
-      </fieldset>
+      {!selfRatingEnabled && (
+        <button
+          type="button"
+          autoFocus
+          data-testid={TESTIDS.studyContinue}
+          onClick={() => onGrade(derivedGrade(correct))}
+        >
+          Continue
+        </button>
+      )}
+      {selfRatingEnabled && (
+        <fieldset className="review-grade">
+          <legend>How well did you recall this?</legend>
+          <div ref={gradeRef} className="grade-options">
+            {GRADE_VALUES.map((option) => (
+              <button
+                key={option.value}
+                type="button"
+                autoFocus={option.value === suggestedGrade}
+                data-testid={GRADE_TESTIDS[option.value]}
+                className={option.value === suggestedGrade ? 'grade-button is-suggested' : 'grade-button'}
+                onClick={() => onGrade(option.value)}
+                onFocus={() => setGradeIndex(GRADE_VALUES.indexOf(option))}
+                {...{ [NAV_OPTION_ATTRIBUTE]: '' }}
+              >
+                {option.label} <span className="grade-key">({keyFor(option.actionId)})</span>
+              </button>
+            ))}
+          </div>
+        </fieldset>
+      )}
     </div>
   )
 }

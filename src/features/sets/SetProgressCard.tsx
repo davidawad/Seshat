@@ -1,4 +1,5 @@
 import { Link } from 'react-router-dom'
+import { TESTIDS } from '../../lib/testids'
 import type { StudySet } from '../../types'
 import type { SetMastery } from './set-summary'
 
@@ -14,8 +15,8 @@ export const SetProgressCard = ({ set, mastery }: SetProgressCardProps) => {
   const nextUp = due + newCount
 
   return (
-    <article className="set-progress-card" aria-label={set.name}>
-      <Link to={`/sets/${set.id}`} className="set-progress-card-main">
+    <article className="set-progress-card" aria-label={set.name} data-testid={TESTIDS.homeSetCard}>
+      <Link to={`/sets/${set.id}`} className="set-progress-card-main" data-testid={TESTIDS.homeSetLink}>
         <h2 className="set-progress-card-name">{set.name}</h2>
         {set.description.length > 0 && <p className="set-progress-card-description">{set.description}</p>}
       </Link>
@@ -35,7 +36,12 @@ export const SetProgressCard = ({ set, mastery }: SetProgressCardProps) => {
         </span>
       </div>
       <p className="set-progress-card-meta">{nextUp === 0 ? 'Nothing due' : `${due} due · ${newCount} new`}</p>
-      <Link to={`/sets/${set.id}/study`} className="set-progress-card-study">
+      <Link
+        to={`/sets/${set.id}/study`}
+        className="set-progress-card-study"
+        aria-label={`Study ${set.name}`}
+        data-testid={TESTIDS.homeStudyLink}
+      >
         Study
       </Link>
     </article>

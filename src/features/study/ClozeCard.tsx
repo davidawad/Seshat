@@ -1,3 +1,4 @@
+import { TESTIDS } from '../../lib/testids'
 import { useId } from 'react'
 import type { ClozeContent } from '../../types'
 import { parseCloze } from './cloze'
@@ -27,6 +28,7 @@ export const ClozeCard = ({ prompt, content, value, onChange, disabled }: ClozeC
             <input
               id={inputId}
               type="text"
+              data-testid={TESTIDS.studyAnswerInput}
               className="study-cloze-input"
               value={value}
               onChange={(event) => onChange(event.target.value)}

@@ -226,6 +226,15 @@ export const settingsSchema = z.object({
   // research/learning-science/bisra-2018.md. Defaults off: it lengthens
   // every review, so it shouldn't be sprung on anyone who hasn't chosen it.
   selfExplanationEnabled: z.boolean().default(false),
+  // Optional Study steps, both OFF by default (the lighter, Quizlet-Learn-like
+  // flow: answer -> feedback -> Continue). This is the single place the
+  // defaults live (DEFAULT_SETTINGS below mirrors them for typed construction).
+  // Confidence on: ask Guessed/Unsure/Sure before the reveal and log it
+  // (see research/learning-science/janssen-lazonder-2024.md). Off: no step,
+  // `confidence: null` is logged. Self-rating on: learner picks
+  // Again/Hard/Good/Easy; off: grade is derived from correctness.
+  confidencePromptEnabled: z.boolean().default(false),
+  selfRatingPromptEnabled: z.boolean().default(false),
   // Gates the whole Games section (Match + newer arcade-style modes) as one
   // experimental cohort — see features/games/. Defaults on so existing
   // Match users see no regression; the toggle exists for people who'd
@@ -259,6 +268,8 @@ export const DEFAULT_SETTINGS: Settings = {
   retentionPreset: 'balanced',
   desiredRetention: 0.9,
   selfExplanationEnabled: false,
+  confidencePromptEnabled: false,
+  selfRatingPromptEnabled: false,
   experimentalGamesEnabled: true,
   flashcardsTrackProgress: true,
   flashcardsFront: 'term',

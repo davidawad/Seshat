@@ -1,4 +1,5 @@
 import { Legible } from '../../components/Legible'
+import { TESTIDS } from '../../lib/testids'
 import type { StudyCard } from '../../types'
 import { cardFrontBack } from '../study/card-summary'
 
@@ -13,7 +14,7 @@ interface SetTermListProps {
  * (see SetDetail's own comment on why this page isn't a card console).
  */
 export const SetTermList = ({ cards }: SetTermListProps) => (
-  <ul className="set-term-list" aria-label="Terms in this set">
+  <ul className="set-term-list" aria-label="Terms in this set" data-testid={TESTIDS.setTermList}>
     {cards.map((card) => {
       const { front, back, imageDataUrl } = cardFrontBack(card)
       return (

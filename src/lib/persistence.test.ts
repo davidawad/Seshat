@@ -65,6 +65,17 @@ describe('mirror payload parsing', () => {
     expect(settingsFromMirror({ theme: 'dark' })).toEqual({ ...DEFAULT_SETTINGS, theme: 'dark' })
   })
 
+  it('a theme-only payload leaves every other setting at its stored value', () => {
+    const out = settingsFromMirror({ theme: 'light' })
+    expect(out).toEqual({ ...DEFAULT_SETTINGS, theme: 'light' })
+    expect(out?.palette).toBe(DEFAULT_SETTINGS.palette)
+    expect(out?.flashcardsFront).toBe(DEFAULT_SETTINGS.flashcardsFront)
+  })
+
+  it('ignores unknown keys instead of failing', () => {
+    expect(settingsFromMirror({ theme: 'dark', bogus: 1 })).toEqual({ ...DEFAULT_SETTINGS, theme: 'dark' })
+  })
+
   it('rejects settings with invalid values or non-objects', () => {
     expect(settingsFromMirror({ theme: 'neon' })).toBeNull()
     expect(settingsFromMirror('dark')).toBeNull()
