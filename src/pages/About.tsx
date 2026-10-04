@@ -97,9 +97,10 @@ export const AboutPage = () => (
       <p>
         <strong>Recall-first:</strong> short-answer and cloze cards ask you to produce an answer, not recognize one.{' '}
         <strong>FSRS scheduling:</strong> a trainable per-card, per-learner model decides when you&rsquo;re about to
-        forget something, instead of a fixed interval table. <strong>Confidence calibration:</strong> you rate how sure
-        you were before you see if you were right, and Seshat shows you the gap. See <Link to="/docs">Docs</Link> for
-        the full explanation, or jump straight to your <Link to="/sets">sets</Link>.
+        forget something, instead of a fixed interval table. <strong>Confidence calibration (optional):</strong> turn on
+        the confidence prompt in Settings to rate how sure you were before you see if you were right, and Seshat shows
+        you the gap. See <Link to="/docs">Docs</Link> for the full explanation, or jump straight to your{' '}
+        <Link to="/sets">sets</Link>.
       </p>
     </section>
   </section>

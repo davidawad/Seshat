@@ -166,6 +166,7 @@ export const TESTIDS = {
   statsPage: 'stats-page',
   statsSummary: 'stats-summary',
   statsCalibrationTable: 'stats-calibration-table',
+  statsCalibrationEmpty: 'stats-calibration-empty',
   docsPage: 'docs-page',
   aboutPage: 'about-page',
   attributionsPage: 'attributions-page',

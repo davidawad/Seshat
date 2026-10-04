@@ -247,6 +247,70 @@ const SelfExplanationField = ({ settings, updateSettings }: FieldProps) => {
   )
 }
 
+const ConfidencePromptField = ({ settings, updateSettings }: FieldProps) => {
+  const inputId = useId()
+  const hintId = useId()
+  return (
+    <div className="settings-field">
+      <label className="settings-option-inline" htmlFor={inputId}>
+        <input
+          id={inputId}
+          type="checkbox"
+          checked={settings.confidencePromptEnabled}
+          onChange={(event) => updateSettings({ confidencePromptEnabled: event.target.checked })}
+          aria-describedby={hintId}
+        />
+        <span>Ask "how confident are you?" before showing the answer</span>
+      </label>
+      <p
+        id={hintId}
+        className="field-hint"
+        title="Janssen & Lazonder (2024), Educational Psychology Review — meta-analysis of 35 studies, g = 0.25 [0.12, 0.37]."
+      >
+        Off by default — off is faster, on gives you a calibration check on the Stats page. Interventions that improve
+        how accurately learners judge their own answers help a little but reliably: Janssen &amp; Lazonder (2024),{' '}
+        <cite>Meta-analysis of Interventions for Monitoring Accuracy in Problem Solving</cite>,{' '}
+        <i>Educational Psychology Review</i> — g = 0.25 across 35 studies. That review studied problem solving, not
+        flashcards, and found the benefit depends on pairing the judgment with feedback (which the reveal always gives).
+        See <code>research/learning-science/janssen-lazonder-2024.md</code>.
+      </p>
+    </div>
+  )
+}
+
+const SelfRatingPromptField = ({ settings, updateSettings }: FieldProps) => {
+  const inputId = useId()
+  const hintId = useId()
+  return (
+    <div className="settings-field">
+      <label className="settings-option-inline" htmlFor={inputId}>
+        <input
+          id={inputId}
+          type="checkbox"
+          checked={settings.selfRatingPromptEnabled}
+          onChange={(event) => updateSettings({ selfRatingPromptEnabled: event.target.checked })}
+          aria-describedby={hintId}
+        />
+        <span>Rate how well I recalled each card (Again / Hard / Good / Easy)</span>
+      </label>
+      <p
+        id={hintId}
+        className="field-hint"
+        title="Rowland (2014), Psychological Bulletin — testing-effect meta-analysis of 61 experiments; feedback after a response is a moderator."
+      >
+        Off by default — off is faster: you see whether you were right plus the correct answer, then press Continue, and
+        the schedule treats a correct answer as Good and a wrong one as Again. On lets you grade finer (Hard, Easy),
+        which gives the scheduler more detail at the cost of one decision per card. Either way you get the correct
+        answer right after responding, which Rowland (2014),{' '}
+        <cite>The Effect of Testing Versus Restudy on Retention</cite>, <i>Psychological Bulletin</i>, identifies as a
+        moderator that strengthens the testing effect (d ≈ 0.50 overall across 61 experiments). None of the sources in
+        this repo compares self-rated with automatic grading, so this setting is a workload tradeoff, not an
+        evidence-backed one. See <code>research/learning-science/rowland-2014.md</code>.
+      </p>
+    </div>
+  )
+}
+
 const ExperimentalGamesField = ({ settings, updateSettings }: FieldProps) => {
   const inputId = useId()
   const hintId = useId()
@@ -317,6 +381,8 @@ export const SettingsForm = () => {
         <PaletteField {...fieldProps} />
         <ReducedMotionField {...fieldProps} />
         <RetentionField {...fieldProps} />
+        <ConfidencePromptField {...fieldProps} />
+        <SelfRatingPromptField {...fieldProps} />
         <SelfExplanationField {...fieldProps} />
         <ExperimentalGamesField {...fieldProps} />
         <InstallPromptField {...fieldProps} />

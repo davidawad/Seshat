@@ -65,3 +65,7 @@ export const retentionEstimate = (reviewLog: readonly ReviewLogEntry[], sampleSi
   const correctCount = recent.filter((entry) => entry.correct).length
   return correctCount / recent.length
 }
+
+/** Whether any review was logged with a confidence rating (confidence prompts are an optional setting). */
+export const hasConfidenceData = (reviewLog: readonly ReviewLogEntry[]): boolean =>
+  reviewLog.some((entry) => entry.confidence !== null)

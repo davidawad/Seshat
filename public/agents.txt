@@ -125,7 +125,8 @@ page, games); two actions may share a key only in different scopes.
   Navigation preset (four actions nav.left/right/up/down, set together): Arrow keys (default), WASD,
   HJKL. Left/right = still learning / know it on flashcards; up/down = move through an option list.
   Number keys: set page 1-4 jumps to a study mode, games list 1-5, multiple-choice options 1-4,
-  match tiles 1-9, study confidence 1-3 (guessed/unsure/sure), study grade 1-4 (again/hard/good/easy).
+  match tiles 1-9, study confidence 1-3 (guessed/unsure/sure; only when the confidence prompt setting is on), study
+  grade 1-4 (again/hard/good/easy; only when the self-rating setting is on, else Continue).
   Flashcards: Space flips, 1 or Left = still learning, 2 or Right = know it, U undoes the last
   answer, O toggles shuffled/original order. Test: Ctrl+Enter submits.
 Reading live bindings: export_all or window.seshat.exportAll() returns "keybindings", the user's
@@ -212,7 +213,7 @@ Games (/sets/:id/games, needs the Games setting on):
   match-feedback, match-play-again, blast-option, blast-feedback, blast-play-again, blocks-option,
   blocks-column, blocks-feedback, blocks-play-again
 Stats and reference pages:
-  stats-page, stats-summary, stats-calibration-table, docs-page, about-page, attributions-page,
+  stats-page, stats-summary, stats-calibration-table, stats-calibration-empty, docs-page, about-page, attributions-page,
   license-page
 Settings (inside the Settings modal):
   theme-field, palette-field, palette-reset, accent-color, accent-hex, accent-status,
