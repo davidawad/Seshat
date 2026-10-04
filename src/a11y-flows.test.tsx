@@ -1,11 +1,16 @@
 import { screen, within } from '@testing-library/react'
 import userEvent from '@testing-library/user-event'
-import { beforeEach, describe, expect, it } from 'vitest'
+import { beforeEach, describe, expect, it, vi } from 'vitest'
 import { base, expectAccessible, installA11yTestEnv, renderAt, seed } from './a11y-fixtures'
 import { duplicatedTestIds, headingLevels, headingSkips, missingTestIds, unnamedInteractive } from './lib/a11y-audit'
 import { TESTIDS } from './lib/testids'
 
 installA11yTestEnv()
+
+// These render the whole App and walk multi-step flows with user-event; they
+// take seconds each alone and flaked at the global 20s when the full suite ran
+// in parallel with coverage instrumentation.
+vi.setConfig({ testTimeout: 60_000 })
 
 describe('accessibility tree: flows', () => {
   beforeEach(() => {

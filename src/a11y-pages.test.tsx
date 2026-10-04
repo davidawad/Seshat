@@ -1,11 +1,14 @@
 import { screen } from '@testing-library/react'
 import userEvent from '@testing-library/user-event'
-import { beforeEach, describe, expect, it } from 'vitest'
+import { beforeEach, describe, expect, it, vi } from 'vitest'
 import { base, expectAccessible, installA11yTestEnv, renderAt, seed } from './a11y-fixtures'
 import { missingTestIds } from './lib/a11y-audit'
 import { TESTIDS } from './lib/testids'
 
 installA11yTestEnv()
+
+// Whole-App renders; see a11y-flows.test.tsx for why the timeout is explicit.
+vi.setConfig({ testTimeout: 60_000 })
 
 describe('accessibility tree: pages', () => {
   beforeEach(() => {
