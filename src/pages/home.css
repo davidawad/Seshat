@@ -198,22 +198,31 @@
   margin: 0;
 }
 
-/* Cards / table switch: two icon buttons sharing one rounded outline. */
+/* Cards / table switch: two equal square icon cells sharing one outline. */
 .view-toggle {
-  display: inline-flex;
+  display: inline-grid;
+  grid-auto-flow: column;
+  grid-auto-columns: 2.75rem;
+  grid-template-rows: 1fr;
+  height: 2.75rem;
   border: 2px solid var(--color-border-strong);
   border-radius: var(--radius-page);
   overflow: hidden;
+  line-height: 0;
 }
 
+/* margin: 0 — the global `label` rule adds a bottom margin that left a strip under the fill. */
 .view-toggle-option {
   position: relative;
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  padding: 0.5rem 0.7rem;
+  margin: 0;
+  display: grid;
+  place-items: center;
   color: var(--color-fg-muted);
   cursor: pointer;
+}
+
+.view-toggle-option svg {
+  display: block;
 }
 
 .view-toggle-option + .view-toggle-option {
@@ -224,6 +233,8 @@
 .view-toggle-option input {
   position: absolute;
   inset: 0;
+  width: 100%;
+  height: 100%;
   margin: 0;
   opacity: 0;
   cursor: pointer;
