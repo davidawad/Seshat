@@ -1,4 +1,5 @@
 import { Modal } from '../../components/Modal'
+import { TESTIDS } from '../../lib/testids'
 import { type FlashcardsFront, flashcardsFrontSchema } from '../../types'
 import { FRONT_LABELS, type FlashcardOptions } from './options'
 import './flashcard-options.css'
@@ -29,7 +30,14 @@ export const FlashcardOptionsModal = ({
   onFrontChange,
   onRestart,
 }: FlashcardOptionsModalProps) => (
-  <Modal open={open} onClose={onClose} titleId="flashcard-options-title" title="Options">
+  <Modal
+    open={open}
+    onClose={onClose}
+    titleId="flashcard-options-title"
+    title="Options"
+    testId={TESTIDS.flashcardOptionsModal}
+    closeTestId={TESTIDS.flashcardOptionsModalClose}
+  >
     <div className="flashcard-options">
       <div className="flashcard-options-row">
         <div className="flashcard-options-text">
@@ -47,7 +55,7 @@ export const FlashcardOptionsModal = ({
           aria-checked={options.trackProgress}
           aria-labelledby="flashcard-track-label"
           aria-describedby="flashcard-track-hint"
-          data-testid="flashcard-track-progress"
+          data-testid={TESTIDS.flashcardTrackProgress}
           onClick={() => onTrackProgressChange(!options.trackProgress)}
         />
       </div>
@@ -60,7 +68,7 @@ export const FlashcardOptionsModal = ({
           id="flashcard-front-select"
           className="flashcard-options-select"
           value={options.front}
-          data-testid="flashcard-front"
+          data-testid={TESTIDS.flashcardFront}
           onChange={(event) => {
             const parsed = flashcardsFrontSchema.safeParse(event.target.value)
             if (parsed.success) onFrontChange(parsed.data)
@@ -75,7 +83,7 @@ export const FlashcardOptionsModal = ({
       </div>
 
       <div className="flashcard-options-row">
-        <button type="button" className="flashcard-restart" data-testid="flashcard-restart" onClick={onRestart}>
+        <button type="button" className="flashcard-restart" data-testid={TESTIDS.flashcardRestart} onClick={onRestart}>
           Restart flashcards
         </button>
       </div>

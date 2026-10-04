@@ -1,6 +1,7 @@
 import { type FormEvent, useEffect, useRef, useState } from 'react'
 import { matchesBinding } from '../../lib/keybindings'
 import { useSeshatStore } from '../../lib/store'
+import { TESTIDS } from '../../lib/testids'
 import { useKeybindings } from '../../lib/useKeybindings'
 import type { StudyCard } from '../../types'
 import { type TestQuestion, generateTest } from './generate-test'
@@ -103,10 +104,10 @@ export const TestSession = ({ cards }: TestSessionProps) => {
   }
 
   return (
-    <form className="test-session" onSubmit={handleSubmit}>
+    <form className="test-session" onSubmit={handleSubmit} aria-label="Practice test" data-testid={TESTIDS.testForm}>
       <ol className="test-question-list">
         {questions.map((question, index) => (
-          <li key={question.cardId} className="illuminated-panel test-question-item">
+          <li key={question.cardId} className="illuminated-panel test-question-item" data-testid={TESTIDS.testQuestion}>
             <TestQuestionField
               question={question}
               index={index}
@@ -116,7 +117,9 @@ export const TestSession = ({ cards }: TestSessionProps) => {
           </li>
         ))}
       </ol>
-      <button type="submit">Submit test</button>
+      <button type="submit" data-testid={TESTIDS.testSubmit}>
+        Submit test
+      </button>
     </form>
   )
 }

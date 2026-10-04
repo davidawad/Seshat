@@ -8,6 +8,7 @@ import {
 } from 'react'
 import { matchesBinding } from '../../lib/keybindings'
 import { useSeshatStore } from '../../lib/store'
+import { TESTIDS } from '../../lib/testids'
 import { useKeybindings } from '../../lib/useKeybindings'
 import type { StudyCard } from '../../types'
 import { cardFrontBack } from '../study/card-summary'
@@ -74,7 +75,14 @@ const FlashcardFace = ({
     tabIndex={0}
     aria-live="polite"
     aria-pressed={flipped}
-    aria-label={flipped ? 'Answer revealed' : 'Question shown. Activate to reveal the answer.'}
+    // The name must carry the card text: a button's children are presentational,
+    // so without it the accessibility tree would hide the question and answer.
+    aria-label={
+      flipped
+        ? `Answer revealed: ${back} (activate to show the question)`
+        : `Question shown: ${front} (activate to reveal the answer)`
+    }
+    data-testid={TESTIDS.flashcardFace}
     onClick={onClick}
     onKeyDown={onKeyDown}
     onPointerDown={onPointerDown}

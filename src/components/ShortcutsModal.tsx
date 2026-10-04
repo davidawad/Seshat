@@ -9,6 +9,7 @@ import {
   formatKeyLabel,
 } from '../lib/keybindings'
 import { actionsByScope, useKeybindings } from '../lib/useKeybindings'
+import { navPresetTestId, TESTIDS } from '../lib/testids'
 import { Modal } from './Modal'
 import './shortcuts-modal.css'
 
@@ -41,9 +42,20 @@ export const ShortcutsModal = ({ open, onClose, titleId }: ShortcutsModalProps) 
   }
 
   return (
-    <Modal open={open} onClose={onClose} titleId={titleId} title="Keyboard shortcuts">
+    <Modal
+      open={open}
+      onClose={onClose}
+      titleId={titleId}
+      title="Keyboard shortcuts"
+      testId={TESTIDS.shortcutsModal}
+      closeTestId={TESTIDS.shortcutsModalClose}
+    >
       <div className="shortcuts-modal">
-        <fieldset className="shortcuts-presets" aria-labelledby={presetGroupId}>
+        <fieldset
+          className="shortcuts-presets"
+          aria-labelledby={presetGroupId}
+          data-testid={TESTIDS.shortcutsPresetGroup}
+        >
           <legend id={presetGroupId}>Navigation keys</legend>
           <div className="shortcuts-preset-options">
             {PRESET_IDS.map((id) => (
@@ -53,7 +65,7 @@ export const ShortcutsModal = ({ open, onClose, titleId }: ShortcutsModalProps) 
                   name="nav-preset"
                   checked={currentPreset === id}
                   onChange={() => applyPreset(id)}
-                  data-testid={`nav-preset-${id}`}
+                  data-testid={navPresetTestId(id)}
                 />
                 <span>{NAV_PRESET_LABELS[id]}</span>
               </label>

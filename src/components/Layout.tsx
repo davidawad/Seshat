@@ -1,9 +1,11 @@
-import { useEffect, useId, useState } from 'react'
-import { Link, NavLink, Outlet } from 'react-router-dom'
+import { useEffect, useId, useRef, useState } from 'react'
+import { Link, NavLink, Outlet, useLocation } from 'react-router-dom'
 import { ImportFromUrl } from '../features/sets/ImportFromUrl'
 import { SettingsForm } from '../features/settings/SettingsForm'
 import { useApplyTheme } from '../features/settings/theme'
 import { matchesBinding } from '../lib/keybindings'
+import { useRouteFocus } from '../lib/routeFocus'
+import { TESTIDS } from '../lib/testids'
 import { useKeybindings } from '../lib/useKeybindings'
 import { useWebMcp } from '../lib/useWebMcp'
 import { Footer } from './Footer'
@@ -16,8 +18,8 @@ import { ShortcutsModal } from './ShortcutsModal'
 // up, not a mode you switch into like Sets/Stats, so they don't need equal
 // billing in the primary nav or the thumb-reachable mobile tab bar.
 const NAV_ITEMS = [
-  { to: '/sets', label: 'Sets', end: false, icon: SetsIcon },
-  { to: '/stats', label: 'Stats', end: false, icon: StatsIcon },
+  { to: '/sets', label: 'Sets', end: false, icon: SetsIcon, testId: TESTIDS.navSets },
+  { to: '/stats', label: 'Stats', end: false, icon: StatsIcon, testId: TESTIDS.navStats },
 ] as const
 
 // Seshat's own hieroglyphic emblem — a seven-pointed star on a stem, the
@@ -45,6 +47,10 @@ export const Layout = () => {
   const settingsTitleId = useId()
   const shortcutsTitleId = useId()
   const { key: keyFor } = useKeybindings()
+  const { pathname } = useLocation()
+  const mainRef = useRef<HTMLElement>(null)
+  // After a route change, put focus on the new page's h1 (see lib/routeFocus.ts).
+  useRouteFocus(pathname, mainRef)
 
   // Global "open settings" shortcut (default '?') — skipped while a text
   // input is focused or the modal is already open (Escape/the visible close
@@ -66,7 +72,7 @@ export const Layout = () => {
         Skip to content
       </a>
       <header className="app-header">
-        <Link to="/" className="app-brand">
+        <Link to="/" className="app-brand" data-testid={TESTIDS.navHome}>
           <SeshatMark />
           Seshat
         </Link>
@@ -74,7 +80,7 @@ export const Layout = () => {
           <ul className="app-nav">
             {NAV_ITEMS.map((item) => (
               <li key={item.to}>
-                <NavLink to={item.to} end={item.end}>
+                <NavLink to={item.to} end={item.end} data-testid={item.testId}>
                   {item.label}
                 </NavLink>
               </li>
@@ -83,11 +89,18 @@ export const Layout = () => {
         </nav>
       </header>
       <ImportFromUrl />
-      <main id="main-content" className="app-main">
+      <main id="main-content" ref={mainRef} className="app-main" data-testid={TESTIDS.layoutMain}>
         <Outlet />
       </main>
       <Footer onOpenSettings={() => setSettingsOpen(true)} onOpenShortcuts={() => setShortcutsOpen(true)} />
-      <Modal open={settingsOpen} onClose={() => setSettingsOpen(false)} titleId={settingsTitleId} title="Settings">
+      <Modal
+        open={settingsOpen}
+        onClose={() => setSettingsOpen(false)}
+        titleId={settingsTitleId}
+        title="Settings"
+        testId={TESTIDS.settingsModal}
+        closeTestId={TESTIDS.settingsModalClose}
+      >
         <SettingsForm />
       </Modal>
       <ShortcutsModal open={shortcutsOpen} onClose={() => setShortcutsOpen(false)} titleId={shortcutsTitleId} />

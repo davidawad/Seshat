@@ -3,6 +3,7 @@ import { Link, useNavigate, useParams } from 'react-router-dom'
 import { GAMES } from '../features/games/registry'
 import { useSeshatStore } from '../lib/store'
 import { OptionAnnouncer } from '../lib/OptionAnnouncer'
+import { TESTIDS } from '../lib/testids'
 import { useNumberedShortcut } from '../lib/useNumberedShortcut'
 import { NAV_OPTION_ATTRIBUTE, useOptionNavigation } from '../lib/useOptionNavigation'
 import { setIdSchema } from '../types'
@@ -10,6 +11,12 @@ import '../features/sets/sets.css'
 
 /** How many leading games get a jump-to-game shortcut — see `games.select1-5` in lib/keybindings.ts. */
 const MAX_SHORTCUT_GAMES = 5
+
+const GAME_TESTIDS: Readonly<Record<string, string>> = {
+  match: TESTIDS.gamesOpenMatch,
+  blast: TESTIDS.gamesOpenBlast,
+  blocks: TESTIDS.gamesOpenBlocks,
+}
 
 const NotFound = ({ message }: { readonly message: string }) => (
   <section aria-labelledby="games-heading">
@@ -77,7 +84,7 @@ export const GamesListPage = () => {
   const { setId, set, cards } = context
 
   return (
-    <section aria-labelledby="games-heading">
+    <section aria-labelledby="games-heading" data-testid={TESTIDS.gamesPage}>
       <p>
         <Link to={`/sets/${setId}`}>Back to {set.name}</Link>
       </p>
@@ -91,6 +98,7 @@ export const GamesListPage = () => {
               key={game.id}
               to={`/sets/${setId}/games/${game.id}`}
               className="mode-button"
+              data-testid={GAME_TESTIDS[game.id]}
               onFocus={() => setHighlight(index)}
               {...{ [NAV_OPTION_ATTRIBUTE]: '' }}
             >
@@ -128,7 +136,7 @@ export const GameSessionPage = () => {
   if (game === undefined) return <NotFound message="This game doesn't exist." />
 
   return (
-    <section aria-labelledby="games-heading">
+    <section aria-labelledby="games-heading" data-testid={TESTIDS.gamePage}>
       <p>
         <Link to={`/sets/${setId}/games`}>Back to games</Link>
       </p>

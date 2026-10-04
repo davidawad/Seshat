@@ -1,3 +1,4 @@
+import { TESTIDS } from '../lib/testids'
 import licenseText from '../../public/LICENSE?raw'
 import './license-page.css'
 
@@ -11,7 +12,7 @@ import './license-page.css'
  * and other repos look for, this page is the in-app reading experience.
  */
 export const LicensePage = () => (
-  <section aria-labelledby="license-heading">
+  <section aria-labelledby="license-heading" data-testid={TESTIDS.licensePage}>
     <h1 id="license-heading">License</h1>
     <p>Seshat is licensed under the GNU General Public License v3 (or, at your option, any later version).</p>
     <pre className="license-text">{licenseText}</pre>

@@ -1,4 +1,4 @@
-import { useEffect, useEffectEvent, useMemo, useState } from 'react'
+import { useEffect, useEffectEvent, useMemo, useRef, useState } from 'react'
 import { Link, useParams } from 'react-router-dom'
 import { z } from 'zod'
 import { FlashcardOptionsModal } from '../features/flashcards/FlashcardOptionsModal'
@@ -18,8 +18,10 @@ import {
   undoRun,
 } from '../features/flashcards/session'
 import { matchesBinding } from '../lib/keybindings'
+import { useFocusWhen } from '../lib/routeFocus'
 import { clearResumeState, loadResumeState, saveResumeState } from '../lib/sessionResume'
 import { useSeshatStore } from '../lib/store'
+import { TESTIDS } from '../lib/testids'
 import { useKeybindings } from '../lib/useKeybindings'
 import { type CardId, type SetId, cardIdSchema, setIdSchema } from '../types'
 import './flashcards-page.css'
@@ -52,30 +54,37 @@ interface FlashcardCompleteProps {
   readonly onUndo: (() => void) | undefined
 }
 
-const FlashcardComplete = ({ session, onRestudyUnknown, onRestartFull, onUndo }: FlashcardCompleteProps) => (
-  <div className="illuminated-panel flashcard-complete" role="status">
-    <h2 className="flashcard-complete-heading">Session complete</h2>
-    <p>
-      {session.order.length} card{session.order.length === 1 ? '' : 's'} — {session.knownIds.length} known,{' '}
-      {session.unknownIds.length} to review again.
-    </p>
-    <div className="flashcard-complete-actions">
-      {session.unknownIds.length > 0 && (
-        <button type="button" onClick={onRestudyUnknown} autoFocus>
-          Restudy {session.unknownIds.length} unknown card{session.unknownIds.length === 1 ? '' : 's'}
+const FlashcardComplete = ({ session, onRestudyUnknown, onRestartFull, onUndo }: FlashcardCompleteProps) => {
+  // With nothing to restudy there is no autofocused button; land on the heading rather than <body>.
+  const headingRef = useRef<HTMLHeadingElement>(null)
+  useFocusWhen(headingRef, session.unknownIds.length === 0)
+  return (
+    <div className="illuminated-panel flashcard-complete" role="status" data-testid={TESTIDS.flashcardComplete}>
+      <h2 ref={headingRef} tabIndex={-1} className="flashcard-complete-heading">
+        Session complete
+      </h2>
+      <p>
+        {session.order.length} card{session.order.length === 1 ? '' : 's'} — {session.knownIds.length} known,{' '}
+        {session.unknownIds.length} to review again.
+      </p>
+      <div className="flashcard-complete-actions">
+        {session.unknownIds.length > 0 && (
+          <button type="button" onClick={onRestudyUnknown} autoFocus data-testid={TESTIDS.flashcardRestudyUnknown}>
+            Restudy {session.unknownIds.length} unknown card{session.unknownIds.length === 1 ? '' : 's'}
+          </button>
+        )}
+        <button type="button" onClick={onRestartFull} data-testid={TESTIDS.flashcardRestartFull}>
+          Restart full deck
         </button>
-      )}
-      <button type="button" onClick={onRestartFull}>
-        Restart full deck
-      </button>
-      {onUndo !== undefined && (
-        <button type="button" onClick={onUndo}>
-          Undo last answer
-        </button>
-      )}
+        {onUndo !== undefined && (
+          <button type="button" onClick={onUndo} data-testid={TESTIDS.flashcardUndoLast}>
+            Undo last answer
+          </button>
+        )}
+      </div>
     </div>
-  </div>
-)
+  )
+}
 
 interface FlashcardRunnerProps {
   readonly setId: SetId
@@ -85,7 +94,9 @@ interface FlashcardRunnerProps {
 
 const PageHeader = ({ setId, setName }: { readonly setId: SetId; readonly setName: string }) => (
   <div className="flashcards-header">
-    <Link to={`/sets/${setId}`}>Back</Link>
+    <Link to={`/sets/${setId}`} aria-label={`Back to ${setName}`}>
+      Back
+    </Link>
     <h1 id="flashcards-heading">{setName}</h1>
   </div>
 )
@@ -179,7 +190,7 @@ const FlashcardRunner = ({ setId, setName, cardIds }: FlashcardRunnerProps) => {
   const complete = isSessionComplete(session) || card === undefined
 
   return (
-    <section aria-labelledby="flashcards-heading">
+    <section aria-labelledby="flashcards-heading" data-testid={TESTIDS.flashcardsPage}>
       <PageHeader setId={setId} setName={setName} />
 
       {complete ? (
@@ -210,7 +221,7 @@ const FlashcardRunner = ({ setId, setName, cardIds }: FlashcardRunnerProps) => {
         )
       )}
 
-      <p role="status" className="sr-only" data-testid="flashcards-announcer">
+      <p role="status" className="sr-only" data-testid={TESTIDS.flashcardsAnnouncer}>
         {announcement}
       </p>
 

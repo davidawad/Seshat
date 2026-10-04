@@ -171,3 +171,56 @@ MORE
 Machine-readable index: llms.txt (and llms-full.txt, a single-file concatenation of the docs) next
 to this file. Repo-level docs for coding agents with source access: AGENTS.md next to this file
 (also in the project source). Human-facing docs: /docs and /attributions in this app.
+
+STABLE SELECTORS (data-testid)
+-------------------------------
+Layout / nav / footer:
+  layout-main, nav-home, nav-sets, nav-stats, footer-about, footer-agents, footer-docs,
+  footer-attributions, footer-license, shortcuts-open, settings-open
+Modals:
+  settings-modal, settings-modal-close, shortcuts-modal, shortcuts-modal-close, shortcuts-preset-group,
+  modal-close (dialogs without their own),
+  flashcard-options-modal, flashcard-options-modal-close
+Home:
+  home-page, home-set-card, home-set-link, home-study-link, home-starter-load, home-manage-sets
+Sets list (/sets):
+  sets-page, sets-search, sets-list, sets-list-item, sets-edit-link, sets-starter-load,
+  sets-new-button, sets-new-name, sets-new-submit, sets-new-cancel, import-set-button,
+  import-panel, import-file, import-paste-name, import-paste-text, import-paste-submit
+Set detail (/sets/:id):
+  set-page, set-edit-link, set-export, set-mode-study, set-mode-flashcards, set-mode-test,
+  set-mode-games, set-preview-flip, set-term-list
+Set edit (/sets/:id/edit):
+  edit-page, edit-name, edit-tags, edit-description, edit-goal-date, edit-card-list,
+  edit-add-term,
+  edit-add-definition, edit-add-other-kind, edit-card-edit, edit-card-delete, edit-delete-set
+Study (/sets/:id/study):
+  study-page, study-progress, study-answer-input, study-show-options, study-mcq-options,
+  study-continue, study-confidence-guessed, study-confidence-unsure, study-confidence-sure,
+  study-result, study-self-explanation, study-grade-again, study-grade-hard, study-grade-good,
+  study-grade-easy, study-summary, study-empty
+Flashcards (/sets/:id/flashcards):
+  flashcards-page, flashcard-face, flashcard-know, flashcard-still-learning, flashcard-undo,
+  flashcard-shuffle, flashcard-options, flashcard-progress, flashcards-announcer,
+  flashcard-track-progress, flashcard-front, flashcard-restart, flashcard-complete,
+  flashcard-restudy-unknown, flashcard-restart-full, flashcard-undo-last
+Test (/sets/:id/test):
+  test-page, test-form, test-question, test-answer-input, test-submit, test-score,
+  test-retry-missed
+Games (/sets/:id/games, needs the Games setting on):
+  games-page, games-open-match, games-open-blast, games-open-blocks, game-page, match-tile,
+  match-feedback, match-play-again, blast-option, blast-feedback, blast-play-again, blocks-option,
+  blocks-column, blocks-feedback, blocks-play-again
+Stats and reference pages:
+  stats-page, stats-summary, stats-calibration-table, docs-page, about-page, attributions-page,
+  license-page
+Settings (inside the Settings modal):
+  theme-field, palette-field, palette-reset, accent-color, accent-hex, accent-status,
+  backup-download, backup-mode-merge, backup-mode-replace, backup-file, backup-confirm,
+  backup-confirm-replace, backup-confirm-cancel, backup-status
+Also dynamic (existing): theme-<system|light|dark>, palette-<id>, nav-preset-<arrows|wasd|hjkl>.
+Repeated items (cards, rows, tiles) share one id; scope by page id. Same ids: TESTIDS in
+src/lib/testids.ts.
+DRIVING BY ACCESSIBLE NAME: every control is a native button/link/field with a name, e.g.
+  getByRole('button', {name: 'Continue'}), getByLabel('Your answer'); per-item names carry the item:
+  'Study <set>', 'Edit <set>', 'Delete card: <prompt>'. Focus moves to the page h1 after each navigation.

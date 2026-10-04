@@ -2,6 +2,7 @@ import { useMemo, useRef, useState } from 'react'
 import { Link, useNavigate, useParams } from 'react-router-dom'
 import { DownloadIcon, EditIcon } from '../../components/icons'
 import { useSeshatStore } from '../../lib/store'
+import { TESTIDS } from '../../lib/testids'
 import { OptionAnnouncer } from '../../lib/OptionAnnouncer'
 import { useNumberedShortcut } from '../../lib/useNumberedShortcut'
 import { NAV_OPTION_ATTRIBUTE, useOptionNavigation } from '../../lib/useOptionNavigation'
@@ -14,12 +15,17 @@ import { SetPreviewCard } from './SetPreviewCard'
 import { SetTermList } from './SetTermList'
 
 const CORE_MODES = [
-  { to: 'study', label: 'Study', hint: 'Recommended — recall-first, spaced by FSRS' },
-  { to: 'flashcards', label: 'Flashcards', hint: 'Flip through the whole set' },
-  { to: 'test', label: 'Test', hint: 'A generated practice test, scored at the end' },
+  { to: 'study', label: 'Study', hint: 'Recommended — recall-first, spaced by FSRS', testId: TESTIDS.setModeStudy },
+  { to: 'flashcards', label: 'Flashcards', hint: 'Flip through the whole set', testId: TESTIDS.setModeFlashcards },
+  { to: 'test', label: 'Test', hint: 'A generated practice test, scored at the end', testId: TESTIDS.setModeTest },
 ] as const
 
-const GAMES_MODE = { to: 'games', label: 'Games', hint: 'Experimental — Match, Blast, Blocks and the like' } as const
+const GAMES_MODE = {
+  to: 'games',
+  label: 'Games',
+  hint: 'Experimental — Match, Blast, Blocks and the like',
+  testId: TESTIDS.setModeGames,
+} as const
 
 /** Resolves `setId` (already parsed, or `null` if the route param was invalid) to its set + cards. `undefined`/`[]` for a missing/invalid id, mirroring "not found" rather than throwing. */
 const resolveSetContext = (state: AppState, setId: SetId | null) => {
@@ -53,7 +59,12 @@ const SetDetailHeader = ({ setId, name, description, tags, exportDisabled, onExp
       )}
     </div>
     <div className="set-detail-actions">
-      <Link to={`/sets/${setId}/edit`} className="icon-button" aria-label={`Edit ${name}`}>
+      <Link
+        to={`/sets/${setId}/edit`}
+        className="icon-button"
+        aria-label={`Edit ${name}`}
+        data-testid={TESTIDS.setEditLink}
+      >
         <EditIcon />
       </Link>
       <button
@@ -62,6 +73,7 @@ const SetDetailHeader = ({ setId, name, description, tags, exportDisabled, onExp
         onClick={onExport}
         disabled={exportDisabled}
         aria-label={`Export ${name}`}
+        data-testid={TESTIDS.setExport}
       >
         <DownloadIcon />
       </button>
@@ -153,7 +165,7 @@ export const SetDetailPage = () => {
   }
 
   return (
-    <section aria-labelledby="set-detail-heading" className="set-detail">
+    <section aria-labelledby="set-detail-heading" className="set-detail" data-testid={TESTIDS.setPage}>
       <p>
         <Link to="/sets">Back to sets</Link>
       </p>
@@ -181,6 +193,7 @@ export const SetDetailPage = () => {
                 key={mode.to}
                 to={`/sets/${setId}/${mode.to}`}
                 className="mode-button"
+                data-testid={mode.testId}
                 onFocus={() => setHighlight(index)}
                 {...{ [NAV_OPTION_ATTRIBUTE]: '' }}
               >

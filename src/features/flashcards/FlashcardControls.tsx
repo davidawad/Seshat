@@ -1,5 +1,6 @@
 import { CheckIcon, CrossIcon, GearIcon, ShuffleIcon, UndoIcon } from '../../components/icons'
 import { formatKeyLabel } from '../../lib/keybindings'
+import { TESTIDS } from '../../lib/testids'
 
 interface FlashcardControlsProps {
   readonly position: number
@@ -54,12 +55,12 @@ export const FlashcardControls = ({
         type="button"
         className="flashcard-pill flashcard-pill-learning"
         aria-label={`Still learning (${formatKeyLabel(keys.stillLearning)})`}
-        data-testid="flashcard-still-learning"
+        data-testid={TESTIDS.flashcardStillLearning}
         onClick={onStillLearning}
       >
         <CrossIcon />
       </button>
-      <p className="flashcard-progress" aria-live="polite" aria-atomic="true" data-testid="flashcard-progress">
+      <p className="flashcard-progress" data-testid={TESTIDS.flashcardProgress}>
         <span className="sr-only">Card </span>
         {position + 1} / {total}
       </p>
@@ -67,7 +68,7 @@ export const FlashcardControls = ({
         type="button"
         className="flashcard-pill flashcard-pill-know"
         aria-label={`Know (${formatKeyLabel(keys.know)})`}
-        data-testid="flashcard-know"
+        data-testid={TESTIDS.flashcardKnow}
         onClick={onKnow}
       >
         <CheckIcon />
@@ -79,7 +80,7 @@ export const FlashcardControls = ({
         type="button"
         className="icon-button"
         aria-label={`Undo (${formatKeyLabel(keys.undo)})`}
-        data-testid="flashcard-undo"
+        data-testid={TESTIDS.flashcardUndo}
         disabled={!canUndo}
         onClick={onUndo}
       >
@@ -90,7 +91,7 @@ export const FlashcardControls = ({
         className="icon-button flashcard-toggle"
         aria-label={`Shuffle (${formatKeyLabel(keys.shuffle)})`}
         aria-pressed={shuffled}
-        data-testid="flashcard-shuffle"
+        data-testid={TESTIDS.flashcardShuffle}
         onClick={onToggleShuffle}
       >
         <ShuffleIcon />
@@ -100,7 +101,7 @@ export const FlashcardControls = ({
         className="icon-button"
         aria-label="Options"
         aria-haspopup="dialog"
-        data-testid="flashcard-options"
+        data-testid={TESTIDS.flashcardOptions}
         onClick={onOpenOptions}
       >
         <GearIcon />

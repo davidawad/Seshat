@@ -6,6 +6,7 @@ import {
   reviewedTodayCount,
 } from '../features/stats/calibration'
 import { useSeshatStore } from '../lib/store'
+import { TESTIDS } from '../lib/testids'
 import type { ConfidenceRating } from '../types'
 
 const CONFIDENCE_LABELS: Record<ConfidenceRating, string> = {
@@ -26,10 +27,10 @@ export const StatsPage = () => {
   const buckets = useMemo(() => calibrationBuckets(state.reviewLog), [state.reviewLog])
 
   return (
-    <section aria-labelledby="stats-heading">
+    <section aria-labelledby="stats-heading" data-testid={TESTIDS.statsPage}>
       <h1 id="stats-heading">Stats</h1>
 
-      <dl className="stats-summary">
+      <dl className="stats-summary" data-testid={TESTIDS.statsSummary}>
         <div className="stats-metric">
           <dt>Due now</dt>
           <dd>{backlog}</dd>
@@ -51,7 +52,7 @@ export const StatsPage = () => {
         overconfidence — the fluency illusion at work, not a knowledge problem.
       </p>
       <div className="table-scroll">
-        <table aria-labelledby="calibration-heading">
+        <table aria-labelledby="calibration-heading" data-testid={TESTIDS.statsCalibrationTable}>
           <thead>
             <tr>
               <th scope="col">Confidence</th>

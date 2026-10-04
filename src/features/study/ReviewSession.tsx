@@ -2,6 +2,7 @@ import { useCallback, useEffect, useRef, useState } from 'react'
 import { Legible } from '../../components/Legible'
 import { matchesBinding } from '../../lib/keybindings'
 import { useSeshatStore } from '../../lib/store'
+import { TESTIDS } from '../../lib/testids'
 import { useKeybindings } from '../../lib/useKeybindings'
 import { NAV_OPTION_ATTRIBUTE, useOptionNavigation } from '../../lib/useOptionNavigation'
 import type { ConfidenceRating, Grade, StudyCard } from '../../types'
@@ -16,10 +17,11 @@ const CONFIDENCE_OPTIONS: readonly {
   readonly value: ConfidenceRating
   readonly label: string
   readonly actionId: string
+  readonly testId: string
 }[] = [
-  { value: 'guessed', label: 'Guessed', actionId: 'studyConfidence.guessed' },
-  { value: 'unsure', label: 'Unsure', actionId: 'studyConfidence.unsure' },
-  { value: 'sure', label: 'Sure', actionId: 'studyConfidence.sure' },
+  { value: 'guessed', label: 'Guessed', actionId: 'studyConfidence.guessed', testId: TESTIDS.studyConfidenceGuessed },
+  { value: 'unsure', label: 'Unsure', actionId: 'studyConfidence.unsure', testId: TESTIDS.studyConfidenceUnsure },
+  { value: 'sure', label: 'Sure', actionId: 'studyConfidence.sure', testId: TESTIDS.studyConfidenceSure },
 ]
 
 const GRADE_ACTION_IDS: readonly string[] = [
@@ -140,7 +142,7 @@ export const ReviewSession = ({ card, position, total, onAdvance }: ReviewSessio
 
   return (
     <div className="review-session">
-      <div className="review-progress">
+      <div className="review-progress" data-testid={TESTIDS.studyProgress}>
         <p className="review-progress-label">
           Card {position + 1} of {total}
         </p>
@@ -162,7 +164,7 @@ export const ReviewSession = ({ card, position, total, onAdvance }: ReviewSessio
           <Legible className="illuminated-panel">
             <CardInput card={card} attempt={attempt} onChange={setAttempt} disabled={false} />
           </Legible>
-          <button type="submit" disabled={!complete}>
+          <button type="submit" disabled={!complete} data-testid={TESTIDS.studyContinue}>
             Continue
           </button>
         </form>
@@ -181,6 +183,7 @@ export const ReviewSession = ({ card, position, total, onAdvance }: ReviewSessio
                   key={option.value}
                   type="button"
                   autoFocus={index === 0}
+                  data-testid={option.testId}
                   onClick={() => handleConfidence(option.value)}
                   onFocus={() => setConfidenceIndex(index)}
                   {...{ [NAV_OPTION_ATTRIBUTE]: '' }}

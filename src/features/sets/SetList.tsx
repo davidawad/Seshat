@@ -1,6 +1,7 @@
 import { useId, useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 import { useSeshatStore } from '../../lib/store'
+import { TESTIDS } from '../../lib/testids'
 import { CreateSetForm } from './CreateSetForm'
 import { setMatchesQuery } from './filters'
 import { ImportButton } from './ImportPanel'
@@ -28,7 +29,7 @@ export const SetListPage = () => {
   }
 
   return (
-    <section aria-labelledby="sets-heading">
+    <section aria-labelledby="sets-heading" data-testid={TESTIDS.setsPage}>
       <header className="sets-header">
         <h1 id="sets-heading">Sets</h1>
         <div className="sets-header-actions">
@@ -43,7 +44,7 @@ export const SetListPage = () => {
           <ul className="starter-set-list">
             {STARTER_SETS.map((starter) => (
               <li key={starter.id}>
-                <button type="button" onClick={() => handleLoadStarter(starter)}>
+                <button type="button" data-testid={TESTIDS.setsStarterLoad} onClick={() => handleLoadStarter(starter)}>
                   Load: {starter.label}
                 </button>
               </li>
@@ -56,12 +57,13 @@ export const SetListPage = () => {
           <input
             id={searchId}
             type="search"
+            data-testid={TESTIDS.setsSearch}
             value={query}
             onChange={(event) => setQuery(event.target.value)}
             placeholder="Search by name, tag, or card content"
           />
 
-          <ul className="set-list">
+          <ul className="set-list" data-testid={TESTIDS.setsList}>
             {filteredSets.map((set) => (
               <SetListItem key={set.id} set={set} setCards={state.cards.filter((card) => card.setId === set.id)} />
             ))}

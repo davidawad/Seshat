@@ -4,8 +4,10 @@ import { z } from 'zod'
 import { ReviewSession } from '../features/study/ReviewSession'
 import { countDueCategories, reinsertForRelearning, selectDueQueue } from '../features/study/dueQueue'
 import { GRADE_ORDER } from '../features/study/grading'
+import { useFocusWhen } from '../lib/routeFocus'
 import { clearResumeState, loadResumeState, saveResumeState } from '../lib/sessionResume'
 import { useSeshatStore } from '../lib/store'
+import { TESTIDS } from '../lib/testids'
 import { type CardId, type Grade, type SetId, type StudyCard, cardIdSchema, setIdSchema } from '../types'
 import './study.css'
 
@@ -51,9 +53,14 @@ const formatDuration = (ms: number): string => {
 
 const SessionSummary = ({ stats, elapsedMs }: SessionSummaryProps) => {
   const accuracy = stats.reviewed === 0 ? 0 : Math.round((stats.correct / stats.reviewed) * 100)
+  // The grade button that had focus just unmounted; land on the summary instead of <body>.
+  const headingRef = useRef<HTMLHeadingElement>(null)
+  useFocusWhen(headingRef, true)
   return (
-    <div className="illuminated-panel session-summary" role="status">
-      <h2 className="session-summary-heading">Session complete</h2>
+    <div className="illuminated-panel session-summary" role="status" data-testid={TESTIDS.studySummary}>
+      <h2 ref={headingRef} tabIndex={-1} className="session-summary-heading">
+        Session complete
+      </h2>
       <dl className="session-summary-stats">
         <div>
           <dt>Cards reviewed</dt>
@@ -167,7 +174,7 @@ const StudyQueue = ({ setId }: StudyQueueProps) => {
   if (dueIds.length === 0) {
     const later = cardsInScope.length
     return (
-      <p role="status">
+      <p role="status" data-testid={TESTIDS.studyEmpty}>
         Nothing due right now — {later} card{later === 1 ? '' : 's'} scheduled for later.
       </p>
     )
@@ -233,7 +240,7 @@ export const StudyPage = () => {
   }
 
   return (
-    <section aria-labelledby="study-heading">
+    <section aria-labelledby="study-heading" data-testid={TESTIDS.studyPage}>
       <p>
         <Link to={`/sets/${setId}`}>Back to {set.name}</Link>
       </p>

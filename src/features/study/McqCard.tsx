@@ -1,4 +1,5 @@
 import { useRef, useState } from 'react'
+import { TESTIDS } from '../../lib/testids'
 import { OptionAnnouncer } from '../../lib/OptionAnnouncer'
 import { NAV_OPTION_ATTRIBUTE, useOptionNavigation } from '../../lib/useOptionNavigation'
 import { useNumberedShortcut } from '../../lib/useNumberedShortcut'
@@ -53,11 +54,23 @@ export const McqCard = ({ prompt, content, value, onChange, disabled }: McqCardP
     <div className="study-card">
       <p className="study-prompt">{prompt}</p>
       {!revealed ? (
-        <button type="button" onClick={() => setRevealed(true)} disabled={disabled} autoFocus={!disabled}>
+        <button
+          type="button"
+          data-testid={TESTIDS.studyShowOptions}
+          onClick={() => setRevealed(true)}
+          disabled={disabled}
+          autoFocus={!disabled}
+        >
           Show options
         </button>
       ) : (
-        <div ref={optionsRef} role="radiogroup" aria-label="Answer options" className="study-mcq-options">
+        <div
+          ref={optionsRef}
+          role="radiogroup"
+          aria-label="Answer options"
+          className="study-mcq-options"
+          data-testid={TESTIDS.studyMcqOptions}
+        >
           {content.options.map((option, index) => (
             <button
               key={`${index}-${option}`}
