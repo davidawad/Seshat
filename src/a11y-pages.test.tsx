@@ -64,27 +64,6 @@ describe('accessibility tree: pages', () => {
     expect(missingTestIds(container, [TESTIDS.setsStarterLoad])).toEqual([])
   })
 
-  it('new set form and import panel expose their fields', async () => {
-    const user = userEvent.setup()
-    seed()
-    const { container } = renderAt('/sets')
-    await user.click(screen.getByTestId(TESTIDS.setsNewButton))
-    await user.click(screen.getByTestId(TESTIDS.importSetButton))
-    expectAccessible(container)
-    expect(
-      missingTestIds(container, [
-        TESTIDS.setsNewName,
-        TESTIDS.setsNewSubmit,
-        TESTIDS.setsNewCancel,
-        TESTIDS.importPanel,
-        TESTIDS.importFile,
-        TESTIDS.importPasteName,
-        TESTIDS.importPasteText,
-        TESTIDS.importPasteSubmit,
-      ]),
-    ).toEqual([])
-  })
-
   it('set detail', () => {
     seed()
     const { container } = renderAt(base)
@@ -200,5 +179,76 @@ describe('accessibility tree: test mode, games and reference pages', () => {
     const links = screen.getAllByRole('link', { name: /\(opens in a new tab\)/ })
     expect(links.length).toBeGreaterThan(0)
     for (const link of links) expect(link).toHaveAccessibleName(/^.+: https?:\/\//)
+  })
+})
+
+describe('accessibility tree: create and import pages', () => {
+  beforeEach(() => {
+    window.localStorage.clear()
+  })
+
+  it('create page: every control is named, headings in order, h1 gets focus on arrival', async () => {
+    const user = userEvent.setup()
+    seed()
+    const { container } = renderAt('/sets')
+    await user.click(screen.getByRole('link', { name: 'Create' }))
+    expect(screen.getByRole('heading', { level: 1, name: 'Create a new set' })).toHaveFocus()
+    expectAccessible(container)
+    expect(
+      missingTestIds(container, [
+        TESTIDS.createPage,
+        TESTIDS.createBack,
+        TESTIDS.createTitle,
+        TESTIDS.createDescription,
+        TESTIDS.createTags,
+        TESTIDS.createCardList,
+        TESTIDS.createCardRow,
+        TESTIDS.createTerm,
+        TESTIDS.createDefinition,
+        TESTIDS.createDeleteCard,
+        TESTIDS.createAddCard,
+        TESTIDS.createSubmit,
+        TESTIDS.createSubmitPractice,
+        TESTIDS.createDraftStatus,
+      ]),
+    ).toEqual([])
+    expect(screen.getByRole('link', { name: 'Back' })).toHaveAttribute('href', '/sets')
+    for (const name of [
+      'Title',
+      'Description (optional)',
+      'Tags (optional)',
+      'Term for card 1',
+      'Definition for card 2',
+    ]) {
+      expect(screen.getByRole('textbox', { name })).toBeInTheDocument()
+    }
+    expect(screen.getByRole('button', { name: 'Delete card 2' })).toBeInTheDocument()
+    expect(screen.getByRole('button', { name: 'Add a card' })).toBeInTheDocument()
+    expect(screen.getByRole('button', { name: 'Create and practice' })).toBeInTheDocument()
+  })
+
+  it('import page: dropzone, paste area and name are labelled, h1 gets focus on arrival', async () => {
+    const user = userEvent.setup()
+    seed()
+    const { container } = renderAt('/sets')
+    await user.click(screen.getByRole('link', { name: 'Import' }))
+    expect(screen.getByRole('heading', { level: 1, name: 'Import a set' })).toHaveFocus()
+    expectAccessible(container)
+    expect(
+      missingTestIds(container, [
+        TESTIDS.importPage,
+        TESTIDS.importBack,
+        TESTIDS.importDropzone,
+        TESTIDS.importFile,
+        TESTIDS.importPasteName,
+        TESTIDS.importPasteText,
+        TESTIDS.importPreview,
+        TESTIDS.importPasteSubmit,
+      ]),
+    ).toEqual([])
+    expect(screen.getByLabelText(/Upload a \.json file/)).toBeInTheDocument()
+    expect(screen.getByRole('textbox', { name: 'Paste terms and definitions' })).toBeInTheDocument()
+    expect(screen.getByRole('textbox', { name: 'Set name' })).toBeInTheDocument()
+    expect(screen.getByRole('button', { name: 'Import' })).toBeInTheDocument()
   })
 })
