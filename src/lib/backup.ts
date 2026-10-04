@@ -13,6 +13,7 @@ import {
   studySetSchema,
 } from '../types'
 import { type KeybindingOverrides, sanitizeOverrides } from './keybindings'
+import { parseSettingsPatch } from './settings-patch'
 
 /**
  * Whole-app backup: one self-describing JSON file holding every setting,
@@ -40,18 +41,15 @@ export const MAX_BACKUP_CHARS = 25 * 1024 * 1024
 const envAppVersion: unknown = import.meta.env['VITE_APP_VERSION']
 const APP_VERSION = typeof envAppVersion === 'string' ? envAppVersion : '0.0.0'
 
-// Settings are validated as a *partial*, then layered over defaults: a
-// backup taken before a setting existed must still import, and the schema
-// stays generic (new Settings fields flow through with no edit here) while
-// remaining strict about fields that are not settings at all.
-const backupSettingsSchema = settingsSchema.partial().strict()
-
+// Settings are validated as a *patch* (parseSettingsPatch, only keys present)
+// and layered over defaults: a backup taken before a setting existed must
+// still import, and new Settings fields flow through with no edit here.
 const backupV1Schema = z.strictObject({
   format: z.literal(BACKUP_FORMAT),
   version: z.literal(1),
   appVersion: z.string(),
   exportedAt: z.iso.datetime(),
-  settings: backupSettingsSchema,
+  settings: z.record(z.string(), z.unknown()),
   keybindings: z.record(z.string(), z.string()),
   sets: z.array(studySetSchema),
   cards: z.array(studyCardSchema),
@@ -167,7 +165,9 @@ export const parseBackup = (raw: string): Result<Backup, string> => {
     )
   }
 
-  const settings = settingsSchema.safeParse({ ...DEFAULT_SETTINGS, ...withoutUndefined(parsed.data.settings) })
+  const patch = parseSettingsPatch(parsed.data.settings)
+  if (!patch.ok) return err(`That backup has invalid settings: ${patch.error}`)
+  const settings = settingsSchema.safeParse({ ...DEFAULT_SETTINGS, ...patch.value })
   if (!settings.success) return err('That backup has invalid settings.')
 
   const backup: Backup = {
@@ -178,9 +178,6 @@ export const parseBackup = (raw: string): Result<Backup, string> => {
   const problem = integrityError(backup)
   return problem === null ? ok(backup) : err(problem)
 }
-
-const withoutUndefined = (record: object): Record<string, unknown> =>
-  Object.fromEntries(Object.entries(record).filter(([, value]) => value !== undefined))
 
 // ---------------------------------------------------------------------------
 // Apply

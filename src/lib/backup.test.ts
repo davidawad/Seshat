@@ -101,6 +101,13 @@ describe('createBackup / parseBackup', () => {
     expect(parsed.ok && parsed.value.settings).toEqual({ ...DEFAULT_SETTINGS, theme: 'dark' })
   })
 
+  it('a theme-only settings patch keeps palette, accent and flashcards options at defaults', () => {
+    const raw = JSON.parse(serialize(createBackup(state(), {}, NOW)))
+    raw.settings = { theme: 'light' }
+    const parsed = parseBackup(serialize(raw))
+    expect(parsed.ok && parsed.value.settings).toEqual({ ...DEFAULT_SETTINGS, theme: 'light' })
+  })
+
   it('drops invalid keybinding entries instead of failing the whole backup', () => {
     const raw = JSON.parse(serialize(createBackup(state(), {}, NOW)))
     raw.keybindings = { 'not.an.action': 'x' }

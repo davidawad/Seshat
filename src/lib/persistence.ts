@@ -1,6 +1,7 @@
 import { z } from 'zod'
 import { type Result, DEFAULT_SETTINGS, type Settings, err, ok, settingsSchema } from '../types'
 import { type KeybindingOverrides, sanitizeOverrides } from './keybindings'
+import { parseSettingsPatch } from './settings-patch'
 
 /**
  * The one place Seshat touches browser storage for app data. Two tiers:
@@ -127,18 +128,15 @@ export const buildCookie = (name: string, encodedValue: string, attributes: Cook
     attributes.secure ? '; Secure' : ''
   }`
 
-const partialSettingsSchema = settingsSchema.partial()
-
 /**
  * Settings recovered from a mirror payload: only known, valid keys,
  * layered over defaults, then re-validated as a whole. `null` if the
  * payload isn't an object of valid settings at all.
  */
 export const settingsFromMirror = (payload: unknown): Settings | null => {
-  const partial = partialSettingsSchema.safeParse(payload)
-  if (!partial.success) return null
-  const defined = Object.fromEntries(Object.entries(partial.data).filter(([, value]) => value !== undefined))
-  const full = settingsSchema.safeParse({ ...DEFAULT_SETTINGS, ...defined })
+  const patch = parseSettingsPatch(payload, { unknownKeys: 'ignore' })
+  if (!patch.ok) return null
+  const full = settingsSchema.safeParse({ ...DEFAULT_SETTINGS, ...patch.value })
   return full.success ? full.data : null
 }
 
