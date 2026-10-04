@@ -1,4 +1,5 @@
 import { Link, useParams } from 'react-router-dom'
+import { imageCardCount, imageCardsNote, textCards } from '../features/study/text-cards'
 import { TestSession } from '../features/test-mode/TestSession'
 import { useSeshatStore } from '../lib/store'
 import { TESTIDS } from '../lib/testids'
@@ -25,7 +26,10 @@ export const TestPage = () => {
   const set = state.sets.find((candidate) => candidate.id === setId)
   if (set === undefined) return <NotFound message="This set may have been deleted." />
 
-  const cards = state.cards.filter((candidate) => candidate.setId === setId)
+  const setCards = state.cards.filter((candidate) => candidate.setId === setId)
+  // Image-occlusion cards cannot be asked as text questions; they stay in Study/Flashcards.
+  const cards = textCards(setCards)
+  const note = imageCardsNote(imageCardCount(setCards))
 
   return (
     <section aria-labelledby="test-heading" data-testid={TESTIDS.testPage}>
@@ -33,8 +37,13 @@ export const TestPage = () => {
         <Link to={`/sets/${setId}`}>Back to {set.name}</Link>
       </p>
       <h1 id="test-heading">Test: {set.name}</h1>
-      {cards.length === 0 ? (
+      {note !== null && <p data-testid={TESTIDS.testImageNote}>{note}</p>}
+      {setCards.length === 0 ? (
         <p>This set has no cards yet. Add some from the set page first.</p>
+      ) : cards.length === 0 ? (
+        <p data-testid={TESTIDS.testNoTextCards}>
+          Test mode needs text cards, and every card in this set is an image card. Use Study or Flashcards instead.
+        </p>
       ) : (
         <TestSession key={setId} cards={cards} />
       )}

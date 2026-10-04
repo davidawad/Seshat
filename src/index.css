@@ -435,3 +435,22 @@ body.has-install-prompt .app-main {
     max-height: calc(100dvh - 4.5rem);
   }
 }
+
+/* Persistent banner while the last save failed (components/SaveErrorBanner.tsx). */
+.save-error-banner {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.75rem;
+  margin: 0.5rem 1rem;
+  padding: 0.75rem 1rem;
+  background: var(--color-bg-elevated);
+  border: 2px solid var(--color-error);
+  border-radius: var(--radius-page);
+  color: var(--color-fg);
+}
+
+.save-error-banner p {
+  margin: 0;
+  flex: 1 1 16rem;
+}

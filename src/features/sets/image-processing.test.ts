@@ -1,10 +1,24 @@
 import { describe, expect, it } from 'vitest'
 import {
   IMAGE_SIZE_WARNING_BYTES,
+  OUTPUT_MIME,
   computeScaledDimensions,
   estimateDataUrlBytes,
   isImageDataUrlOversized,
+  matteColorFor,
 } from './image-processing'
+
+describe('matteColorFor', () => {
+  it('fills JPEG output with an opaque matte so transparency is not black', () => {
+    expect(matteColorFor('image/jpeg')).toBe('white')
+    expect(matteColorFor(OUTPUT_MIME)).not.toBeNull()
+  })
+
+  it('needs no matte for formats that keep alpha', () => {
+    expect(matteColorFor('image/png')).toBeNull()
+    expect(matteColorFor('image/webp')).toBeNull()
+  })
+})
 
 describe('computeScaledDimensions', () => {
   it('leaves an image untouched when already within the cap', () => {

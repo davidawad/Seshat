@@ -11,6 +11,7 @@ import { useWebMcp } from '../lib/useWebMcp'
 import { Footer } from './Footer'
 import { SetsIcon, StatsIcon } from './icons'
 import { Modal } from './Modal'
+import { SaveErrorBanner } from './SaveErrorBanner'
 import { ShortcutsModal } from './ShortcutsModal'
 
 // Docs/Attributions/License all live in the footer (see Footer.tsx)
@@ -88,6 +89,7 @@ export const Layout = () => {
           </ul>
         </nav>
       </header>
+      <SaveErrorBanner onOpenSettings={() => setSettingsOpen(true)} />
       <ImportFromUrl />
       <main id="main-content" ref={mainRef} className="app-main" data-testid={TESTIDS.layoutMain}>
         <Outlet />
