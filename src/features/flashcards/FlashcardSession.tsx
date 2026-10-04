@@ -203,7 +203,11 @@ export const FlashcardSession = ({
   return (
     <div className="flashcard-session">
       <FlashcardTally knownCount={knownCount} unknownCount={unknownCount} leaving={leaving} />
-      <div className={leaving === null ? 'flashcard-stack' : `flashcard-stack is-leaving-${leaving}`}>
+      <div
+        className={
+          leaving === null ? 'flashcard-stack card-with-tip' : `flashcard-stack card-with-tip is-leaving-${leaving}`
+        }
+      >
         <FlashcardFace
           ref={faceRef}
           badge={

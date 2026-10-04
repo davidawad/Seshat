@@ -1,3 +1,4 @@
+import { CardTip } from '../../components/CardTip'
 import { CheckIcon, CrossIcon, GearIcon, ShuffleIcon, UndoIcon } from '../../components/icons'
 import { formatKeyLabel } from '../../lib/keybindings'
 import { TESTIDS } from '../../lib/testids'
@@ -58,13 +59,10 @@ export const FlashcardTally = ({
 
 /** The strip attached under the card: the Quizlet-style "press [←] / [→]" hint. */
 export const FlashcardHint = ({ leftKey, rightKey }: { readonly leftKey: string; readonly rightKey: string }) => (
-  <p className="flashcard-hint">
-    <span className="flashcard-hint-label">Shortcut</span>
-    <span>
-      Press <kbd>{formatKeyLabel(leftKey)}</kbd> to study again or <kbd>{formatKeyLabel(rightKey)}</kbd> if you know the
-      answer
-    </span>
-  </p>
+  <CardTip>
+    Press <kbd>{formatKeyLabel(leftKey)}</kbd> to study again or <kbd>{formatKeyLabel(rightKey)}</kbd> if you know the
+    answer
+  </CardTip>
 )
 
 /**

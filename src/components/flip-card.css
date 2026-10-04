@@ -22,7 +22,8 @@
    The scene prefix out-ranks `.legible`'s own font-size. */
 .flip-card-scene .flip-card-face {
   grid-area: 1 / 1;
-  min-height: 14rem;
+  /* A 3x5 index card: five wide for every three tall. Long text can still grow it. */
+  aspect-ratio: 5 / 3;
   display: flex;
   flex-direction: column;
   gap: 1rem;

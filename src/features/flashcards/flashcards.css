@@ -11,7 +11,7 @@
    go square and the strip continues its border, so there is no seam. */
 .flashcard-stack {
   width: 100%;
-  max-width: 52rem;
+  max-width: 40rem;
   /* Each newly shown card eases in; the badge/border for grading live below. */
   animation: flashcard-enter 0.18s ease-out;
 }
@@ -26,11 +26,6 @@
     opacity: 1;
     transform: none;
   }
-}
-
-.flashcard-stack .flip-card-scene .flip-card-face {
-  border-bottom-left-radius: 0;
-  border-bottom-right-radius: 0;
 }
 
 .flashcard-face {
@@ -51,40 +46,6 @@
   outline-offset: 3px;
 }
 
-.flashcard-hint {
-  display: flex;
-  flex-wrap: wrap;
-  align-items: center;
-  gap: 0.35rem 1.25rem;
-  margin: 0;
-  padding: 0.85rem 1.25rem;
-  border: 1px solid var(--color-surface-highlight-border);
-  border-top: none;
-  border-radius: 0 0 var(--radius-page) var(--radius-page);
-  background: color-mix(in srgb, var(--color-accent) 16%, var(--color-bg-elevated));
-  color: var(--color-fg);
-  font-size: 0.95rem;
-}
-
-.flashcard-hint-label {
-  font-weight: 700;
-}
-
-/* Bold-outlined key cap, same look as the footer shortcuts modal's. */
-.flashcard-hint kbd {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  min-width: 1.9rem;
-  padding: 0.05rem 0.45rem;
-  margin: 0 0.15rem;
-  border: 2px solid var(--color-fg);
-  border-radius: 7px;
-  font-family: var(--font-ui);
-  font-weight: 700;
-  line-height: 1.3;
-}
-
 /* Center cluster (still learning | n / total | know) with the tools pinned
    to the far right; the empty ::before balances the grid so the cluster
    stays centered under the card regardless of the tools' width. */
@@ -94,7 +55,7 @@
   align-items: center;
   gap: 1rem;
   width: 100%;
-  max-width: 52rem;
+  max-width: 40rem;
 }
 
 .flashcard-controls::before {
@@ -234,7 +195,7 @@
   display: flex;
   justify-content: space-between;
   width: 100%;
-  max-width: 52rem;
+  max-width: 40rem;
   margin-bottom: -1rem;
 }
 

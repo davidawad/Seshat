@@ -1,0 +1,39 @@
+/* The card + tip unit: the card's bottom corners square off against the tip. */
+.card-with-tip .flip-card-scene .flip-card-face {
+  border-bottom-left-radius: 0;
+  border-bottom-right-radius: 0;
+}
+
+.card-tip {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.35rem 1.25rem;
+  margin: 0;
+  padding: 0.85rem 1.25rem;
+  border: 1px solid var(--color-surface-highlight-border);
+  border-top: none;
+  border-radius: 0 0 var(--radius-page) var(--radius-page);
+  background: color-mix(in srgb, var(--color-accent) 16%, var(--color-bg-elevated));
+  color: var(--color-fg);
+  font-size: 0.95rem;
+}
+
+.card-tip-label {
+  font-weight: 700;
+}
+
+/* Bold-outlined key cap, same look as the footer shortcuts modal's. */
+.card-tip kbd {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 1.9rem;
+  padding: 0.05rem 0.45rem;
+  margin: 0 0.15rem;
+  border: 2px solid var(--color-fg);
+  border-radius: 7px;
+  font-family: var(--font-ui);
+  font-weight: 700;
+  line-height: 1.3;
+}
