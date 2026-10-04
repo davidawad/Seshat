@@ -14,22 +14,26 @@ export interface SetMastery {
   /** Never studied yet (`scheduling.state === 'New'`), regardless of its (always-due) `due` date. */
   readonly newCount: number
   readonly lastStudied: Date | null
+  /** Graduated to FSRS 'Review' state and not due again yet — i.e. currently "memorized" by the scheduler's own reckoning. Drops back as cards come due, so it tracks what you'd still recall today, not a high-water mark. */
+  readonly memorized: number
 }
 
 export const summarizeMastery = (cards: readonly StudyCard[], now: Date): SetMastery => {
   let due = 0
   let newCount = 0
+  let memorized = 0
   let lastStudied: Date | null = null
 
   for (const card of cards) {
     const isNew = card.scheduling.state === 'New'
     if (isNew) newCount += 1
     else if (isDue(card.scheduling, now)) due += 1
+    else if (card.scheduling.state === 'Review') memorized += 1
     if (card.scheduling.lastReview !== null) {
       const reviewedAt = new Date(card.scheduling.lastReview)
       if (lastStudied === null || reviewedAt > lastStudied) lastStudied = reviewedAt
     }
   }
 
-  return { total: cards.length, due, newCount, lastStudied }
+  return { total: cards.length, due, newCount, lastStudied, memorized }
 }

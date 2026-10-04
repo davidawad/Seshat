@@ -1,14 +1,21 @@
-import { useEffect, useMemo, useState } from 'react'
+import { useEffect, useEffectEvent, useMemo, useState } from 'react'
 import { Link, useParams } from 'react-router-dom'
 import { z } from 'zod'
+import { FlashcardOptionsModal } from '../features/flashcards/FlashcardOptionsModal'
 import { FlashcardSession } from '../features/flashcards/FlashcardSession'
+import { gradeAnnouncement, resolveOptions, undoAnnouncement } from '../features/flashcards/options'
 import {
   type FlashcardOrder,
+  type FlashcardRun,
   type FlashcardSessionState,
-  advanceSession,
+  type GradeRecord,
+  canUndo,
+  createFlashcardRun,
   createFlashcardSession,
   currentCardId,
+  gradeRun,
   isSessionComplete,
+  undoRun,
 } from '../features/flashcards/session'
 import { matchesBinding } from '../lib/keybindings'
 import { clearResumeState, loadResumeState, saveResumeState } from '../lib/sessionResume'
@@ -41,9 +48,11 @@ interface FlashcardCompleteProps {
   readonly session: FlashcardSessionState
   readonly onRestudyUnknown: () => void
   readonly onRestartFull: () => void
+  /** Present only while the last grade can still be taken back. */
+  readonly onUndo: (() => void) | undefined
 }
 
-const FlashcardComplete = ({ session, onRestudyUnknown, onRestartFull }: FlashcardCompleteProps) => (
+const FlashcardComplete = ({ session, onRestudyUnknown, onRestartFull, onUndo }: FlashcardCompleteProps) => (
   <div className="illuminated-panel flashcard-complete" role="status">
     <h2 className="flashcard-complete-heading">Session complete</h2>
     <p>
@@ -59,6 +68,11 @@ const FlashcardComplete = ({ session, onRestudyUnknown, onRestartFull }: Flashca
       <button type="button" onClick={onRestartFull}>
         Restart full deck
       </button>
+      {onUndo !== undefined && (
+        <button type="button" onClick={onUndo}>
+          Undo last answer
+        </button>
+      )}
     </div>
   </div>
 )
@@ -69,22 +83,38 @@ interface FlashcardRunnerProps {
   readonly cardIds: readonly CardId[]
 }
 
+const PageHeader = ({ setId, setName }: { readonly setId: SetId; readonly setName: string }) => (
+  <div className="flashcards-header">
+    <Link to={`/sets/${setId}`}>Back</Link>
+    <h1 id="flashcards-heading">{setName}</h1>
+  </div>
+)
+
 /**
- * Owns the session's order, position, and known/unknown ids. The order is
- * fixed once at mount (via the lazy `useState` initializer) so recording a
- * review — which updates that card's FSRS scheduling in the store — never
- * reshuffles or resizes the running session. Changing the shuffle/order
- * toggle or restarting deliberately replaces the whole session rather than
- * reordering in place, same as Quizlet's own "shuffle" control.
+ * Owns the run: the session's order/position/known/unknown ids plus the
+ * undo stack (see `FlashcardRun`). The order is fixed once at mount (via the
+ * lazy `useState` initializer) so recording a review — which updates that
+ * card's FSRS scheduling in the store — never reshuffles or resizes the
+ * running session. Changing the shuffle toggle or restarting deliberately
+ * replaces the whole run rather than reordering in place, same as Quizlet's
+ * own "shuffle" control. Only the session is persisted for resume; the undo
+ * stack is in-memory, so a resumed session starts with nothing to undo.
  */
 const FlashcardRunner = ({ setId, setName, cardIds }: FlashcardRunnerProps) => {
-  const { state } = useSeshatStore()
+  const { state, undoReview, updateSettings } = useSeshatStore()
   const { key: keyFor } = useKeybindings()
+  const options = resolveOptions(state.settings)
   const resumed = useMemo(() => loadResumeState(RESUME_MODE, setId, flashcardResumeSchema), [setId])
   const [orderMode, setOrderMode] = useState<FlashcardOrder>(resumed?.orderMode ?? 'shuffled')
-  const [session, setSession] = useState<FlashcardSessionState>(
-    () => resumed ?? createFlashcardSession(cardIds, orderMode),
+  const [run, setRun] = useState<FlashcardRun>(() =>
+    createFlashcardRun(resumed ?? createFlashcardSession(cardIds, orderMode)),
   )
+  const [optionsOpen, setOptionsOpen] = useState(false)
+  const [announcement, setAnnouncement] = useState('')
+  // Bumped on every restart so the card remounts unflipped even when the new
+  // run starts on the same card at the same position.
+  const [runId, setRunId] = useState(0)
+  const { session } = run
 
   const persistOrClear = (next: FlashcardSessionState, order: FlashcardOrder) => {
     if (isSessionComplete(next)) {
@@ -94,15 +124,31 @@ const FlashcardRunner = ({ setId, setName, cardIds }: FlashcardRunnerProps) => {
     }
   }
 
-  const handleAdvance = (known: boolean) => {
-    const next = advanceSession(session, known)
-    setSession(next)
-    persistOrClear(next, orderMode)
+  const handleGrade = (record: GradeRecord) => {
+    const next = gradeRun(run, record)
+    setRun(next)
+    persistOrClear(next.session, orderMode)
+    setAnnouncement(gradeAnnouncement(record.known, next.session.position, next.session.order.length))
+  }
+
+  // Steps back one card and, if that grade was tracked, rolls the card's FSRS
+  // scheduling and its review-log entry back too.
+  const handleUndo = () => {
+    const { run: next, undone } = undoRun(run)
+    if (undone === null) return
+    if (undone.previousScheduling !== null && undone.reviewedAt !== null) {
+      undoReview(undone.cardId, undone.previousScheduling, undone.reviewedAt)
+    }
+    setRun(next)
+    persistOrClear(next.session, orderMode)
+    setAnnouncement(undoAnnouncement(next.session.position, next.session.order.length))
   }
 
   const restart = (ids: readonly CardId[], order: FlashcardOrder) => {
-    setSession(createFlashcardSession(ids, order))
+    setRun(createFlashcardRun(createFlashcardSession(ids, order)))
     clearResumeState(RESUME_MODE, setId)
+    setAnnouncement('')
+    setRunId((id) => id + 1)
   }
 
   const setOrderAndRestart = (order: FlashcardOrder) => {
@@ -110,20 +156,23 @@ const FlashcardRunner = ({ setId, setName, cardIds }: FlashcardRunnerProps) => {
     restart(cardIds, order)
   }
 
-  // Toggles shuffled/original order — restarting the session is a deliberate
-  // choice already made by the click-driven toggle above; the shortcut just
-  // reaches the same action. Skipped while a text input is focused, matching
-  // every other keyboard handler in the app.
+  const toggleOrder = () => setOrderAndRestart(orderMode === 'shuffled' ? 'original' : 'shuffled')
+
+  // Order-toggle and undo shortcuts — restarting the session is a deliberate
+  // choice already made by the click-driven toggle; the shortcut just reaches
+  // the same action. Skipped while a text input is focused, matching every
+  // other keyboard handler in the app, and while the Options modal is open.
+  const onShortcut = useEffectEvent((event: KeyboardEvent) => {
+    if (event.repeat) return
+    if (event.target instanceof HTMLInputElement || event.target instanceof HTMLTextAreaElement) return
+    if (matchesBinding(keyFor('flashcards.toggleOrder'), event)) toggleOrder()
+    else if (matchesBinding(keyFor('flashcards.undo'), event)) handleUndo()
+  })
   useEffect(() => {
-    const handler = (event: KeyboardEvent) => {
-      if (event.repeat) return
-      if (event.target instanceof HTMLInputElement || event.target instanceof HTMLTextAreaElement) return
-      if (!matchesBinding(keyFor('flashcards.toggleOrder'), event)) return
-      setOrderAndRestart(orderMode === 'shuffled' ? 'original' : 'shuffled')
-    }
-    window.addEventListener('keydown', handler)
-    return () => window.removeEventListener('keydown', handler)
-  }, [keyFor, orderMode, cardIds])
+    if (optionsOpen) return
+    window.addEventListener('keydown', onShortcut)
+    return () => window.removeEventListener('keydown', onShortcut)
+  }, [optionsOpen])
 
   const currentId = currentCardId(session)
   const card = currentId === null ? undefined : state.cards.find((candidate) => candidate.id === currentId)
@@ -131,47 +180,51 @@ const FlashcardRunner = ({ setId, setName, cardIds }: FlashcardRunnerProps) => {
 
   return (
     <section aria-labelledby="flashcards-heading">
-      <p>
-        <Link to={`/sets/${setId}`}>Back to {setName}</Link>
-      </p>
-      <h1 id="flashcards-heading">Flashcards: {setName}</h1>
-
-      <fieldset className="flashcard-order-toggle">
-        <legend className="sr-only">Card order</legend>
-        <button
-          type="button"
-          aria-pressed={orderMode === 'shuffled'}
-          className={orderMode === 'shuffled' ? 'is-active' : ''}
-          onClick={() => setOrderAndRestart('shuffled')}
-        >
-          Shuffled
-        </button>
-        <button
-          type="button"
-          aria-pressed={orderMode === 'original'}
-          className={orderMode === 'original' ? 'is-active' : ''}
-          onClick={() => setOrderAndRestart('original')}
-        >
-          Original order
-        </button>
-      </fieldset>
+      <PageHeader setId={setId} setName={setName} />
 
       {complete ? (
         <FlashcardComplete
           session={session}
           onRestudyUnknown={() => restart(session.unknownIds, orderMode)}
           onRestartFull={() => restart(cardIds, orderMode)}
+          onUndo={canUndo(run) ? handleUndo : undefined}
         />
       ) : (
         card !== undefined && (
+          // Keyed per card shown so the flip state resets instantly instead of
+          // animating the next card's answer into view while turning back.
           <FlashcardSession
+            key={`${runId}:${session.position}`}
             card={card}
             position={session.position}
             total={session.order.length}
-            onAdvance={handleAdvance}
+            options={options}
+            shortcutsEnabled={!optionsOpen}
+            onGrade={handleGrade}
+            canUndo={canUndo(run)}
+            shuffled={orderMode === 'shuffled'}
+            onUndo={handleUndo}
+            onToggleShuffle={toggleOrder}
+            onOpenOptions={() => setOptionsOpen(true)}
           />
         )
       )}
+
+      <p role="status" className="sr-only" data-testid="flashcards-announcer">
+        {announcement}
+      </p>
+
+      <FlashcardOptionsModal
+        open={optionsOpen}
+        options={options}
+        onClose={() => setOptionsOpen(false)}
+        onTrackProgressChange={(flashcardsTrackProgress) => updateSettings({ flashcardsTrackProgress })}
+        onFrontChange={(flashcardsFront) => updateSettings({ flashcardsFront })}
+        onRestart={() => {
+          restart(cardIds, orderMode)
+          setOptionsOpen(false)
+        }}
+      />
     </section>
   )
 }
@@ -191,10 +244,7 @@ export const FlashcardsPage = () => {
   if (cards.length === 0) {
     return (
       <section aria-labelledby="flashcards-heading">
-        <p>
-          <Link to={`/sets/${setId}`}>Back to {set.name}</Link>
-        </p>
-        <h1 id="flashcards-heading">Flashcards: {set.name}</h1>
+        <PageHeader setId={setId} setName={set.name} />
         <p>This set has no cards yet. Add some from the set page first.</p>
       </section>
     )

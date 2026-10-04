@@ -2,6 +2,7 @@ import { realpathSync } from 'node:fs'
 import react from '@vitejs/plugin-react'
 import { defineConfig } from 'vitest/config'
 import packageJson from './package.json' with { type: 'json' }
+import { agentFiles } from './vite-plugins/agent-files.ts'
 
 // GitLab Pages serves this project (no custom domain) at
 // /<gitlab-project-name>/, so the base path must track the project's
@@ -38,7 +39,7 @@ export default defineConfig(({ command, isPreview }) => ({
   // '/', 404s straight into the SPA fallback, and silently renders a blank
   // page.
   base: command === 'build' || isPreview ? GITLAB_PAGES_BASE : '/',
-  plugins: [react()],
+  plugins: [react(), agentFiles()],
   server: {
     fs: {
       allow: ['.', NODE_MODULES_REAL_PATH],
@@ -46,6 +47,11 @@ export default defineConfig(({ command, isPreview }) => ({
   },
   test: {
     environment: 'jsdom',
+    // The full suite renders real React trees in jsdom across many parallel
+    // workers; under CPU contention (coverage instrumentation, a dev server,
+    // other builds on the machine) the 5s default flaked on tests that pass
+    // alone in a few hundred ms — a load artefact, not slow code.
+    testTimeout: 20_000,
     // Vitest's default exclude list skips .git but not .claude — a stray
     // git worktree under .claude/worktrees/ (e.g. from Claude Code's
     // EnterWorktree) duplicates every *.test.ts file into the run and

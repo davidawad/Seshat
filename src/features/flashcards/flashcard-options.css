@@ -1,0 +1,86 @@
+/* The Options dialog is a small settings sheet, not the 48rem Settings-sized
+   modal Modal.tsx defaults to. */
+dialog.modal:has(.flashcard-options) {
+  width: min(92vw, 30rem);
+}
+
+.flashcard-options {
+  border: 1px solid var(--color-border-strong);
+  border-radius: 12px;
+}
+
+.flashcard-options-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1.25rem;
+  padding: 1rem 1.25rem;
+  border-bottom: 1px solid var(--color-border);
+}
+
+.flashcard-options-row:last-child {
+  border-bottom: none;
+}
+
+.flashcard-options-text {
+  display: flex;
+  flex-direction: column;
+  gap: 0.35rem;
+}
+
+.flashcard-options-label {
+  font-weight: 700;
+}
+
+.flashcard-options-hint {
+  color: var(--color-fg-muted);
+  font-size: 0.9rem;
+}
+
+.flashcard-options-select {
+  min-width: 8.5rem;
+}
+
+/* Switch: a button (role="switch") drawn as a track plus a sliding knob. */
+.flashcard-switch {
+  position: relative;
+  flex: none;
+  width: 3rem;
+  height: 1.75rem;
+  padding: 0;
+  border: 2px solid var(--color-border-strong);
+  border-radius: 999px;
+  background: var(--color-bg-elevated-2);
+}
+
+.flashcard-switch::after {
+  content: '';
+  position: absolute;
+  top: 2px;
+  left: 2px;
+  width: calc(1.75rem - 8px);
+  height: calc(1.75rem - 8px);
+  border-radius: 50%;
+  background: var(--color-fg-muted);
+  transition: transform 0.15s ease;
+}
+
+.flashcard-switch[aria-checked='true'] {
+  background: var(--color-accent);
+  border-color: var(--color-accent);
+}
+
+.flashcard-switch[aria-checked='true']::after {
+  background: var(--color-accent-contrast);
+  transform: translateX(1.25rem);
+}
+
+.flashcard-restart {
+  padding: 0;
+  border: none;
+  background: transparent;
+  color: var(--color-error);
+  font-weight: 700;
+  text-decoration: underline;
+  text-underline-offset: 0.2em;
+}

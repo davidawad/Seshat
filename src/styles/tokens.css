@@ -26,6 +26,25 @@
  *   - `theme: 'light'`/`'dark'` → `useApplyTheme` sets `data-theme` on
  *     <html>, which wins over the media query.
  *
+ * Palette resolution (Settings → Color palette):
+ *   - The blocks below ARE the default `archive` palette (dark default,
+ *     light via media query / [data-theme='light']); nothing here changes
+ *     unless the user picks something else.
+ *   - Other presets (slate, sage, rose, high-contrast) live as pure data in
+ *     src/features/settings/palettes.ts, keyed by the same custom-property
+ *     names. `useApplyTheme` resolves the EFFECTIVE mode (explicit theme, or
+ *     the OS preference when theme is 'system', tracked live via
+ *     matchMedia) and sets that mode's half of the palette as INLINE
+ *     variables on <html>. Inline styles outrank every selector here, so the
+ *     result is correct for system+palette, light+palette and dark+palette
+ *     with no per-combination CSS and no duplicated hex values.
+ *   - A custom accent (Settings) overrides --color-accent, -accent-contrast
+ *     (auto black/white) and -focus-ring on top of the palette, and is only
+ *     applied in a mode where it clears 3:1 against that mode's background.
+ *   - `data-palette` is also set on <html> as a styling/test hook.
+ *   - palettes.test.ts asserts every preset in both modes meets the
+ *     thresholds quoted below (text >= 4.5:1, border-strong/focus-ring >= 3:1).
+ *
  * Contrast ratios below are computed against the WCAG 2.2 relative-
  * luminance formula, not eyeballed. Body-text pairs clear 4.5:1 (WCAG
  * 1.4.3 AA); interactive-component borders and the focus ring clear 3:1
@@ -113,6 +132,16 @@
   /* ---- Content sizing (driven by Settings; see useApplyTheme) --------- */
   --font-size-body: 12.5pt;
   --line-height-body: 1.45;
+
+  /* Card text (flashcard faces, study prompts, the set-page preview card) is
+     this multiple of the body size. Phones get 2x so a 3x line still fits. */
+  --card-text-scale: 3;
+}
+
+@media (max-width: 640px) {
+  :root {
+    --card-text-scale: 2;
+  }
 }
 
 [data-typeface='atkinson-hyperlegible'] {

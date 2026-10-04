@@ -12,7 +12,7 @@ if (rootElement === null) throw new Error('#root element not found')
 
 window.seshat = seshatWindowApi
 console.info(
-  'Seshat exposes a scripting API at window.seshat — try window.seshat.listSets(). No backend involved; it reads/writes the same localStorage the app does. See README.md.',
+  'Seshat exposes a scripting API at window.seshat — try window.seshat.listSets(). No backend involved; it reads/writes the same localStorage the app does, and an open tab picks up its writes live. See README.md.',
 )
 
 // Registered production-only: in dev, a cached service worker would fight

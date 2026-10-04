@@ -1,8 +1,8 @@
-import { useEffect, useState } from 'react'
+import { useEffect, useRef, useState } from 'react'
 import { Legible } from '../../../components/Legible'
-import { ShortcutHelp } from '../../../components/ShortcutHelp'
-import { useKeybindings } from '../../../lib/useKeybindings'
+import { OptionAnnouncer } from '../../../lib/OptionAnnouncer'
 import { useNumberedShortcut } from '../../../lib/useNumberedShortcut'
+import { NAV_OPTION_ATTRIBUTE, useOptionNavigation } from '../../../lib/useOptionNavigation'
 import type { SetId } from '../../../types'
 import { getBestScore, recordScore } from './bestScore'
 import './blast.css'
@@ -38,72 +38,83 @@ interface BlastAsteroidFieldProps {
   readonly status: AnswerStatus
   readonly pickedOption: string | null
   readonly feedback: string
-  readonly keyFor: (actionId: string) => string
   readonly onSelect: (option: string) => void
 }
 
-/** The live-question view: timer, prompt, feedback, and the asteroid field — split out of `BlastSession` to keep that component's size/complexity in check. */
+/** The live-question view: timer, prompt, feedback, and the asteroid field — split out of `BlastSession` to keep that component's size/complexity in check. Mounted per asteroid (`key`), so the arrow-key highlight resets each round. */
 const BlastAsteroidField = ({
   question,
   roundIndex,
   status,
   pickedOption,
   feedback,
-  keyFor,
   onSelect,
-}: BlastAsteroidFieldProps) => (
-  <>
-    <ShortcutHelp
-      shortcuts={question.options.map((_, index) => ({
-        key: keyFor(`blast.selectOption${index + 1}`),
-        label: `Select option ${index + 1}`,
-      }))}
-    />
-    <div className="blast-timer-track" aria-hidden="true">
-      <div
-        key={roundIndex}
-        className={status === 'playing' ? 'blast-timer-bar' : 'blast-timer-bar is-paused'}
-        style={{ animationDuration: `${ROUND_TIME_MS}ms` }}
-      />
-    </div>
+}: BlastAsteroidFieldProps) => {
+  const [highlight, setHighlight] = useState<number | null>(null)
+  const fieldRef = useRef<HTMLDivElement>(null)
+  useOptionNavigation({
+    count: question.options.length,
+    index: highlight,
+    onIndexChange: setHighlight,
+    onConfirm: (index) => {
+      const option = question.options[index]
+      if (option !== undefined) onSelect(option)
+    },
+    orientation: 'grid',
+    enabled: status === 'playing',
+    containerRef: fieldRef,
+  })
+  return (
+    <>
+      <div className="blast-timer-track" aria-hidden="true">
+        <div
+          key={roundIndex}
+          className={status === 'playing' ? 'blast-timer-bar' : 'blast-timer-bar is-paused'}
+          style={{ animationDuration: `${ROUND_TIME_MS}ms` }}
+        />
+      </div>
 
-    <div className="blast-prompt">
-      <p className="blast-prompt-label">Blast the rock that matches:</p>
-      <Legible as="p" className="blast-prompt-text">
-        {question.prompt}
-      </Legible>
-    </div>
+      <div className="blast-prompt">
+        <p className="blast-prompt-label">Blast the rock that matches:</p>
+        <Legible as="p" className="blast-prompt-text">
+          {question.prompt}
+        </Legible>
+      </div>
 
-    <p role="status" aria-live="polite" className="blast-feedback">
-      {feedback}
-    </p>
+      <p role="status" aria-live="polite" className="blast-feedback">
+        {feedback}
+      </p>
 
-    <div className="blast-field">
-      {question.options.map((option) => {
-        const isPicked = option === pickedOption
-        const revealCorrect = status !== 'playing' && option === question.correctOption
-        const revealWrongPick = status === 'wrong' && isPicked
-        const classNames = ['blast-asteroid']
-        if (isPicked) classNames.push('is-picked')
-        if (revealCorrect) classNames.push('is-correct')
-        if (revealWrongPick) classNames.push('is-wrong')
-        return (
-          <button
-            key={option}
-            type="button"
-            className={classNames.join(' ')}
-            disabled={status !== 'playing'}
-            onClick={() => onSelect(option)}
-          >
-            <Legible as="span" measure={false} className="blast-asteroid-text">
-              {option}
-            </Legible>
-          </button>
-        )
-      })}
-    </div>
-  </>
-)
+      <div ref={fieldRef} className="blast-field">
+        {question.options.map((option) => {
+          const isPicked = option === pickedOption
+          const revealCorrect = status !== 'playing' && option === question.correctOption
+          const revealWrongPick = status === 'wrong' && isPicked
+          const classNames = ['blast-asteroid']
+          if (isPicked) classNames.push('is-picked')
+          if (revealCorrect) classNames.push('is-correct')
+          if (revealWrongPick) classNames.push('is-wrong')
+          return (
+            <button
+              key={option}
+              type="button"
+              className={classNames.join(' ')}
+              disabled={status !== 'playing'}
+              onClick={() => onSelect(option)}
+              onFocus={() => setHighlight(question.options.indexOf(option))}
+              {...{ [NAV_OPTION_ATTRIBUTE]: '' }}
+            >
+              <Legible as="span" measure={false} className="blast-asteroid-text">
+                {option}
+              </Legible>
+            </button>
+          )
+        })}
+      </div>
+      <OptionAnnouncer index={highlight} labels={question.options} />
+    </>
+  )
+}
 
 interface BlastCompleteProps {
   readonly endReason: EndReason | null
@@ -128,7 +139,6 @@ const BlastComplete = ({ endReason, score, attemptedCount, totalQuestions, onPla
 )
 
 export const BlastSession = ({ setId, pairs }: BlastSessionProps) => {
-  const { key: keyFor } = useKeybindings()
   const [questions, setQuestions] = useState<readonly BlastQuestion[]>(() => buildRound(pairs))
   const [index, setIndex] = useState(0)
   const [score, setScore] = useState(0)
@@ -248,12 +258,12 @@ export const BlastSession = ({ setId, pairs }: BlastSessionProps) => {
 
       {!isComplete && question !== undefined && (
         <BlastAsteroidField
+          key={index}
           question={question}
           roundIndex={index}
           status={status}
           pickedOption={pickedOption}
           feedback={feedback}
-          keyFor={keyFor}
           onSelect={handleSelect}
         />
       )}

@@ -1,4 +1,5 @@
 import { type KeybindingOverrides, sanitizeOverrides } from './keybindings'
+import { mirrorKeybindings, readLocal, readMirroredKeybindings, subscribeToKey, writeLocal } from './persistence'
 
 /**
  * Persists only the user's keybinding *overrides* (not the whole resolved
@@ -9,20 +10,17 @@ import { type KeybindingOverrides, sanitizeOverrides } from './keybindings'
  * round-trip through the set export/import path or survive an `AppState`
  * schema migration. Best-effort throughout — a lost remap just means the
  * next session falls back to registry defaults, never worth surfacing an
- * error for. Parse-don't-trust on load, mirroring `lib/storage.ts`.
+ * error for. Parse-don't-trust on load, mirroring `lib/storage.ts`. Like
+ * settings, overrides are mirrored to a small cookie (see `./persistence`)
+ * and fall back to it when localStorage has no copy.
  */
 
-const STORAGE_KEY = 'seshat:keybindings:v1'
+export const KEYBINDINGS_STORAGE_KEY = 'seshat:keybindings:v1'
 
 /** Reads and validates stored keybinding overrides. `{}` (registry defaults only) if absent, corrupt, or storage is unavailable. */
 export const loadKeybindingOverrides = (): KeybindingOverrides => {
-  let raw: string | null
-  try {
-    raw = window.localStorage.getItem(STORAGE_KEY)
-  } catch {
-    return {}
-  }
-  if (raw === null) return {}
+  const raw = readLocal(KEYBINDINGS_STORAGE_KEY)
+  if (raw === null) return readMirroredKeybindings() ?? {}
 
   let parsedJson: unknown
   try {
@@ -35,9 +33,12 @@ export const loadKeybindingOverrides = (): KeybindingOverrides => {
 }
 
 export const saveKeybindingOverrides = (overrides: KeybindingOverrides): void => {
-  try {
-    window.localStorage.setItem(STORAGE_KEY, JSON.stringify(overrides))
-  } catch {
-    // localStorage unavailable/full — nothing to do, remaps are a nice-to-have.
-  }
+  // Result deliberately ignored: localStorage unavailable/full just means
+  // remaps are lost next session — a nice-to-have, never worth an error.
+  writeLocal(KEYBINDINGS_STORAGE_KEY, JSON.stringify(overrides))
+  mirrorKeybindings(overrides)
 }
+
+/** Calls `onChange` with the new overrides when another tab (or a scripted writer) changes them. */
+export const subscribeToKeybindingOverrides = (onChange: (overrides: KeybindingOverrides) => void): (() => void) =>
+  subscribeToKey(KEYBINDINGS_STORAGE_KEY, () => onChange(loadKeybindingOverrides()))

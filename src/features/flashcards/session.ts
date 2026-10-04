@@ -1,4 +1,4 @@
-import type { CardId } from '../../types'
+import type { CardId, StudyCard } from '../../types'
 import { shuffle } from './shuffle'
 
 /**
@@ -46,5 +46,59 @@ export const advanceSession = (session: FlashcardSessionState, known: boolean): 
     position: session.position + 1,
     knownIds: known && cardId !== null ? [...session.knownIds, cardId] : session.knownIds,
     unknownIds: !known && cardId !== null ? [...session.unknownIds, cardId] : session.unknownIds,
+  }
+}
+
+/**
+ * One graded card, kept just long enough to be undone. `previousScheduling`
+ * and `reviewedAt` are null when progress tracking was off for that grade
+ * (nothing was written to the store, so there is nothing to roll back there).
+ */
+export interface GradeRecord {
+  readonly cardId: CardId
+  readonly known: boolean
+  readonly previousScheduling: StudyCard['scheduling'] | null
+  readonly reviewedAt: string | null
+}
+
+/** A session plus the stack of grades that can still be undone, newest last. */
+export interface FlashcardRun {
+  readonly session: FlashcardSessionState
+  readonly history: readonly GradeRecord[]
+}
+
+export const createFlashcardRun = (session: FlashcardSessionState): FlashcardRun => ({ session, history: [] })
+
+export const canUndo = (run: FlashcardRun): boolean => run.history.length > 0
+
+/** Advances the session for `record`'s outcome and remembers it on the undo stack. */
+export const gradeRun = (run: FlashcardRun, record: GradeRecord): FlashcardRun => ({
+  session: advanceSession(run.session, record.known),
+  history: [...run.history, record],
+})
+
+const withoutLast = <T>(items: readonly T[]): readonly T[] => items.slice(0, -1)
+
+/**
+ * Steps back one card: moves the cursor back and takes the card out of the
+ * known/unknown bucket it was sorted into. Returns the popped record too so
+ * the caller can roll the store back; `undone` is null when there is nothing
+ * to undo (the run comes back unchanged).
+ */
+export const undoRun = (run: FlashcardRun): { readonly run: FlashcardRun; readonly undone: GradeRecord | null } => {
+  const undone = run.history[run.history.length - 1]
+  if (undone === undefined) return { run, undone: null }
+  const { session } = run
+  return {
+    run: {
+      session: {
+        ...session,
+        position: Math.max(0, session.position - 1),
+        knownIds: undone.known ? withoutLast(session.knownIds) : session.knownIds,
+        unknownIds: undone.known ? session.unknownIds : withoutLast(session.unknownIds),
+      },
+      history: withoutLast(run.history),
+    },
+    undone,
   }
 }

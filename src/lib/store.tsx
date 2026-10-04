@@ -2,7 +2,9 @@ import { createContext, useCallback, useContext, useEffect, useMemo, useReducer 
 import type { ReactNode } from 'react'
 import { createInitialScheduling, scheduleReview } from './fsrs'
 import { newCardId, newSetId } from './id'
-import { type StorageError, loadState, saveState } from './storage'
+import { type Backup, type ImportMode, type ImportReport, applyBackup, createBackup, parseBackup } from './backup'
+import { loadKeybindingOverrides, saveKeybindingOverrides } from './keybindingStorage'
+import { type StorageError, loadInitialState, loadState, saveState, subscribeToAppState } from './storage'
 import {
   type AppState,
   type CardId,
@@ -11,10 +13,13 @@ import {
   type ExportedSet,
   type Grade,
   type SetId,
+  type Result,
   type Settings,
   type StudyCard,
   type StudySet,
   createEmptyAppState,
+  err,
+  ok,
 } from '../types'
 
 interface NewCardInput {
@@ -45,6 +50,12 @@ type Action =
       readonly cardId: CardId
       readonly scheduling: StudyCard['scheduling']
       readonly logEntry: AppState['reviewLog'][number]
+    }
+  | {
+      readonly type: 'undo-review'
+      readonly cardId: CardId
+      readonly scheduling: StudyCard['scheduling']
+      readonly reviewedAt: string
     }
   | { readonly type: 'import-set'; readonly set: StudySet; readonly cards: readonly StudyCard[] }
   | { readonly type: 'update-settings'; readonly patch: Partial<Settings> }
@@ -93,6 +104,16 @@ const reducer = (state: AppState, action: Action): AppState => {
         ),
         reviewLog: [...state.reviewLog, action.logEntry],
       }
+    case 'undo-review':
+      return {
+        ...state,
+        cards: state.cards.map((card) =>
+          card.id === action.cardId ? { ...card, scheduling: action.scheduling } : card,
+        ),
+        reviewLog: state.reviewLog.filter(
+          (entry) => !(entry.cardId === action.cardId && entry.reviewedAt === action.reviewedAt),
+        ),
+      }
     case 'import-set':
       return { ...state, sets: [...state.sets, action.set], cards: [...state.cards, ...action.cards] }
     case 'update-settings':
@@ -118,10 +139,16 @@ interface SeshatStore {
     correct: boolean,
     elapsedMs: number,
     selfExplanation?: string | null,
-  ) => void
+  ) => string | null
+  /** Reverses one `recordReview`: restores the card's earlier scheduling and drops the log entry stamped `reviewedAt`. */
+  readonly undoReview: (cardId: CardId, previousScheduling: StudyCard['scheduling'], reviewedAt: string) => void
   readonly importSet: (exported: ExportedSet) => StudySet
   readonly exportSet: (setId: SetId) => ExportedSet | null
   readonly updateSettings: (patch: Partial<Settings>) => void
+  /** The whole app (settings, keybindings, sets, cards, review history) as one backup object. */
+  readonly exportAll: () => Backup
+  /** Restores a backup (a raw JSON string is parsed strictly first). Replace swaps everything; merge only adds missing sets/cards. */
+  readonly importAll: (input: string | Backup, mode: ImportMode) => Result<ImportReport, string>
   readonly resetAll: () => void
 }
 
@@ -136,10 +163,7 @@ const toExportedCard = (card: StudyCard): ExportedCard => ({
 })
 
 export const SeshatProvider = ({ children }: { readonly children: ReactNode }) => {
-  const [state, dispatch] = useReducer(reducer, undefined, () => {
-    const result = loadState()
-    return result.ok ? result.value : createEmptyAppState()
-  })
+  const [state, dispatch] = useReducer(reducer, undefined, loadInitialState)
   const storageError = useMemo(() => {
     const result = loadState()
     return result.ok ? null : result.error
@@ -148,6 +172,12 @@ export const SeshatProvider = ({ children }: { readonly children: ReactNode }) =
   useEffect(() => {
     saveState(state)
   }, [state])
+
+  // Other tabs (and window.seshat) write straight to storage; pull their
+  // changes into React state. Our own saves fire no event here, and a
+  // hydrate that echoes back identical bytes is a no-op write, so this
+  // cannot loop.
+  useEffect(() => subscribeToAppState((next) => dispatch({ type: 'hydrate', state: next })), [])
 
   const addSet = useCallback((input: NewSetInput): StudySet => {
     const now = new Date().toISOString()
@@ -196,7 +226,7 @@ export const SeshatProvider = ({ children }: { readonly children: ReactNode }) =
       selfExplanation: string | null = null,
     ) => {
       const card = state.cards.find((candidate) => candidate.id === cardId)
-      if (card === undefined) return
+      if (card === undefined) return null
       const set = state.sets.find((candidate) => candidate.id === card.setId)
       const goalDate = set?.goalDate == null ? null : new Date(set.goalDate)
       const now = new Date()
@@ -223,9 +253,14 @@ export const SeshatProvider = ({ children }: { readonly children: ReactNode }) =
           selfExplanation,
         },
       })
+      return now.toISOString()
     },
     [state.cards, state.sets, state.settings.desiredRetention],
   )
+
+  const undoReview = useCallback((cardId: CardId, previousScheduling: StudyCard['scheduling'], reviewedAt: string) => {
+    dispatch({ type: 'undo-review', cardId, scheduling: previousScheduling, reviewedAt })
+  }, [])
 
   const importSet = useCallback((exported: ExportedSet): StudySet => {
     const now = new Date().toISOString()
@@ -269,6 +304,21 @@ export const SeshatProvider = ({ children }: { readonly children: ReactNode }) =
     dispatch({ type: 'update-settings', patch })
   }, [])
 
+  const exportAll = useCallback((): Backup => createBackup(state, loadKeybindingOverrides(), new Date()), [state])
+
+  const importAll = useCallback(
+    (input: string | Backup, mode: ImportMode): Result<ImportReport, string> => {
+      const backup = typeof input === 'string' ? parseBackup(input) : ok(input)
+      if (!backup.ok) return err(backup.error)
+      const { state: next, report } = applyBackup(state, backup.value, mode)
+      dispatch({ type: 'hydrate', state: next })
+      // Keybinding overrides live outside AppState (see keybindingStorage.ts).
+      if (report.keybindings !== null) saveKeybindingOverrides(report.keybindings)
+      return ok(report)
+    },
+    [state],
+  )
+
   const resetAll = useCallback(() => {
     dispatch({ type: 'reset' })
   }, [])
@@ -284,9 +334,12 @@ export const SeshatProvider = ({ children }: { readonly children: ReactNode }) =
       updateCard,
       deleteCard,
       recordReview,
+      undoReview,
       importSet,
       exportSet,
       updateSettings,
+      exportAll,
+      importAll,
       resetAll,
     }),
     [
@@ -299,9 +352,12 @@ export const SeshatProvider = ({ children }: { readonly children: ReactNode }) =
       updateCard,
       deleteCard,
       recordReview,
+      undoReview,
       importSet,
       exportSet,
       updateSettings,
+      exportAll,
+      importAll,
       resetAll,
     ],
   )

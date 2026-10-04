@@ -1,10 +1,10 @@
-import { useMemo } from 'react'
+import { useMemo, useRef, useState } from 'react'
 import { Link, useNavigate, useParams } from 'react-router-dom'
 import { DownloadIcon, EditIcon } from '../../components/icons'
-import { ShortcutHelp } from '../../components/ShortcutHelp'
 import { useSeshatStore } from '../../lib/store'
-import { useKeybindings } from '../../lib/useKeybindings'
+import { OptionAnnouncer } from '../../lib/OptionAnnouncer'
 import { useNumberedShortcut } from '../../lib/useNumberedShortcut'
+import { NAV_OPTION_ATTRIBUTE, useOptionNavigation } from '../../lib/useOptionNavigation'
 import { type AppState, type SetId, type StudyCard, setIdSchema } from '../../types'
 import { downloadJson, slugify } from './download'
 import { SetMasterySummary } from './SetMasterySummary'
@@ -80,7 +80,6 @@ export const SetDetailPage = () => {
   const { id } = useParams<{ id: string }>()
   const { state, exportSet } = useSeshatStore()
   const navigate = useNavigate()
-  const { key: keyFor } = useKeybindings()
 
   const parsedId = setIdSchema.safeParse(id ?? '')
   const setId = parsedId.success ? parsedId.data : null
@@ -99,6 +98,23 @@ export const SetDetailPage = () => {
   useNumberedShortcut('setDetail.mode', modes.length, set !== undefined && cards.length > 0, (index) => {
     const mode = modes[index]
     if (setId !== null && mode !== undefined) navigate(`/sets/${setId}/${mode.to}`)
+  })
+
+  // Arrow-style keys move focus across the mode buttons; Enter on the
+  // focused link activates it natively.
+  const [highlight, setHighlight] = useState<number | null>(null)
+  const modesRef = useRef<HTMLElement>(null)
+  useOptionNavigation({
+    count: modes.length,
+    index: highlight,
+    onIndexChange: setHighlight,
+    onConfirm: (index) => {
+      const mode = modes[index]
+      if (setId !== null && mode !== undefined) navigate(`/sets/${setId}/${mode.to}`)
+    },
+    orientation: 'grid',
+    enabled: set !== undefined && cards.length > 0,
+    containerRef: modesRef,
   })
 
   if (setId === null) {
@@ -159,21 +175,21 @@ export const SetDetailPage = () => {
         <>
           <SetMasterySummary cards={cards} />
 
-          <ShortcutHelp
-            shortcuts={modes.map((mode, index) => ({
-              key: keyFor(`setDetail.mode${index + 1}`),
-              label: `Jump to ${mode.label}`,
-            }))}
-          />
-
-          <nav aria-label="Study modes" className="mode-grid">
-            {modes.map((mode) => (
-              <Link key={mode.to} to={`/sets/${setId}/${mode.to}`} className="mode-button">
+          <nav ref={modesRef} aria-label="Study modes" className="mode-grid">
+            {modes.map((mode, index) => (
+              <Link
+                key={mode.to}
+                to={`/sets/${setId}/${mode.to}`}
+                className="mode-button"
+                onFocus={() => setHighlight(index)}
+                {...{ [NAV_OPTION_ATTRIBUTE]: '' }}
+              >
                 <span className="mode-button-label">{mode.label}</span>
                 <span className="mode-button-hint">{mode.hint}</span>
               </Link>
             ))}
           </nav>
+          <OptionAnnouncer index={highlight} labels={modes.map((mode) => mode.label)} />
 
           <SetPreviewCard cards={cards} />
 

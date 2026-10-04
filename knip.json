@@ -1,6 +1,6 @@
 {
   "$schema": "https://unpkg.com/knip@6/schema.json",
-  "project": ["src/**/*.{ts,tsx}"],
+  "project": ["src/**/*.{ts,tsx}", "vite-plugins/**/*.ts"],
   "ignoreDependencies": [
     // Consumed via CSS `@import` in src/styles/fonts.css, not a JS import —
     // knip only sees the latter.

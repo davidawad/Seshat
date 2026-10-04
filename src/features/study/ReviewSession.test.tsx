@@ -114,13 +114,6 @@ describe('ReviewSession', () => {
     expect(screen.getByRole('progressbar', { name: /study session progress/i })).toHaveAttribute('max', '5')
     expect(screen.getByRole('button', { name: /continue/i })).toBeDisabled()
   })
-
-  it('renders the keyboard shortcut legend', () => {
-    const card = makeCard()
-    seedStore(card)
-    renderSession(card)
-    expect(screen.getByText('Keyboard shortcuts')).toBeInTheDocument()
-  })
 })
 
 describe('ReviewSession answer -> confidence -> reveal flow', () => {
@@ -339,5 +332,138 @@ describe('ReviewSession card-change reset', () => {
     expect(screen.getByText('What is 2+2?')).toBeInTheDocument()
     expect(screen.getByLabelText(/your answer/i)).toHaveValue('')
     expect(screen.queryByText(/how confident are you/i)).not.toBeInTheDocument()
+  })
+})
+
+const mcqCard = () =>
+  makeCard({
+    prompt: 'Pick one',
+    content: { kind: 'mcq', options: ['Alpha', 'Beta', 'Gamma', 'Delta'], correctIndex: 1 },
+  })
+
+const startMcq = async (user: ReturnType<typeof userEvent.setup>) => {
+  const card = mcqCard()
+  seedStore(card)
+  const onAdvance = renderSession(card)
+  await user.click(screen.getByRole('button', { name: /show options/i }))
+  return onAdvance
+}
+
+const reachConfidence = async (user: ReturnType<typeof userEvent.setup>) => {
+  const card = makeCard()
+  seedStore(card)
+  const onAdvance = renderSession(card)
+  await user.type(screen.getByLabelText(/your answer/i), 'Paris')
+  await user.click(screen.getByRole('button', { name: /continue/i }))
+  return onAdvance
+}
+
+describe('ReviewSession arrow-style option navigation', () => {
+  beforeEach(() => {
+    window.localStorage.clear()
+    resetAllKeybindings()
+  })
+
+  afterEach(() => {
+    resetAllKeybindings()
+  })
+
+  it('MCQ: nav.down/nav.up move the selected option (wrapping) and Enter submits; numbers still work', async () => {
+    const user = userEvent.setup()
+    await startMcq(user)
+    const option = (name: string) => screen.getByRole('radio', { name })
+
+    await user.keyboard('{ArrowDown}')
+    expect(option('Alpha')).toHaveAttribute('aria-checked', 'true')
+    expect(option('Alpha')).toHaveFocus()
+    await user.keyboard('{ArrowDown}')
+    expect(option('Beta')).toHaveAttribute('aria-checked', 'true')
+    await user.keyboard('{ArrowUp}{ArrowUp}')
+    expect(option('Delta')).toHaveAttribute('aria-checked', 'true')
+    expect(screen.getByRole('status')).toHaveTextContent('Option 4 of 4: Delta')
+
+    await user.keyboard('3')
+    expect(option('Gamma')).toHaveAttribute('aria-checked', 'true')
+
+    await user.keyboard('{Enter}')
+    expect(screen.getByText(/how confident are you/i)).toBeInTheDocument()
+  })
+
+  it('MCQ: Enter on a focused but unselected option selects it instead of submitting', async () => {
+    const user = userEvent.setup()
+    await startMcq(user)
+    screen.getByRole('radio', { name: 'Gamma' }).focus()
+    await user.keyboard('{Enter}')
+    expect(screen.getByRole('radio', { name: 'Gamma' })).toHaveAttribute('aria-checked', 'true')
+    expect(screen.queryByText(/how confident are you/i)).not.toBeInTheDocument()
+  })
+
+  it('MCQ: ignores left/right and follows a WASD remap via setBinding', async () => {
+    const user = userEvent.setup()
+    remapAction('nav.up', 'W')
+    remapAction('nav.down', 'S')
+    await startMcq(user)
+
+    await user.keyboard('{ArrowLeft}')
+    expect(screen.queryByRole('radio', { checked: true })).toBeNull()
+    await user.keyboard('{ArrowDown}') // old default no longer bound
+    expect(screen.queryByRole('radio', { checked: true })).toBeNull()
+    await user.keyboard('s')
+    expect(screen.getByRole('radio', { name: 'Alpha' })).toHaveAttribute('aria-checked', 'true')
+    await user.keyboard('w')
+    expect(screen.getByRole('radio', { name: 'Delta' })).toHaveAttribute('aria-checked', 'true')
+  })
+
+  it('confidence step: left/right move focus, Enter commits', async () => {
+    const user = userEvent.setup()
+    await reachConfidence(user)
+
+    expect(screen.getByRole('button', { name: 'Guessed' })).toHaveFocus()
+    await user.keyboard('{ArrowRight}')
+    expect(screen.getByRole('button', { name: 'Unsure' })).toHaveFocus()
+    await user.keyboard('{ArrowRight}{ArrowRight}')
+    expect(screen.getByRole('button', { name: 'Guessed' })).toHaveFocus() // wrapped
+    await user.keyboard('{ArrowLeft}')
+    expect(screen.getByRole('button', { name: 'Sure' })).toHaveFocus()
+    await user.keyboard('{Enter}')
+    expect(screen.getByText('Correct')).toBeInTheDocument()
+  })
+
+  it('confidence step: HJKL remap moves the highlight and Enter commits it even after focus was lost', async () => {
+    const user = userEvent.setup()
+    remapAction('nav.left', 'H')
+    remapAction('nav.right', 'L')
+    await reachConfidence(user)
+
+    await user.keyboard('l')
+    expect(screen.getByRole('button', { name: 'Unsure' })).toHaveFocus()
+    ;(document.activeElement as HTMLElement).blur()
+    await user.keyboard('{Enter}')
+    expect(screen.getByText('Correct')).toBeInTheDocument()
+  })
+
+  it('grading step: arrows move from the suggested grade and Enter commits', async () => {
+    const user = userEvent.setup()
+    const onAdvance = await reachConfidence(user)
+    await user.click(screen.getByRole('button', { name: 'Sure' }))
+
+    expect(screen.getByRole('button', { name: /^Good/ })).toHaveFocus()
+    await user.keyboard('{ArrowRight}')
+    expect(screen.getByRole('button', { name: /^Easy/ })).toHaveFocus()
+    await user.keyboard('{ArrowLeft}{ArrowLeft}')
+    expect(screen.getByRole('button', { name: /^Hard/ })).toHaveFocus()
+    await user.keyboard('{Enter}')
+    expect(onAdvance).toHaveBeenCalledWith('hard', true)
+  })
+
+  it('grading step: focus-less Enter commits the highlight and numbers still work', async () => {
+    const user = userEvent.setup()
+    const onAdvance = await reachConfidence(user)
+    await user.click(screen.getByRole('button', { name: 'Sure' }))
+    ;(document.activeElement as HTMLElement).blur()
+    await user.keyboard('{Enter}')
+    expect(onAdvance).toHaveBeenLastCalledWith('good', true)
+    await user.keyboard('4')
+    expect(onAdvance).toHaveBeenLastCalledWith('easy', true)
   })
 })

@@ -1,0 +1,12 @@
+# AI usage policy, per draft-car-ai-txt-wellknown-00
+# https://www.ietf.org/archive/id/draft-car-ai-txt-wellknown-00.html
+# Seshat collects no data: everything a visitor creates stays in their own browser.
+Spec-Version: 1.0
+Site-Name: Seshat
+Description: Free, local-first flashcard and spaced-repetition app. Open source, no accounts, no backend.
+Training: allow
+Scraping: allow
+Indexing: allow
+Caching: allow
+Training-License: GPL-3.0-or-later
+Attribution: recommended

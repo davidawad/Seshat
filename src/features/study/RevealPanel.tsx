@@ -1,6 +1,7 @@
-import { useId } from 'react'
+import { useCallback, useId, useRef, useState } from 'react'
 import { Legible } from '../../components/Legible'
 import { useKeybindings } from '../../lib/useKeybindings'
+import { NAV_OPTION_ATTRIBUTE, useOptionNavigation } from '../../lib/useOptionNavigation'
 import type { Grade, StudyCard } from '../../types'
 import { type Attempt, GRADE_ORDER, attemptLabel, correctAnswerLabel } from './grading'
 import { ImageOcclusionReveal } from './ImageOcclusionReveal'
@@ -48,6 +49,28 @@ export const RevealPanel = ({
   const selfExplanationId = useId()
   const { key: keyFor } = useKeybindings()
 
+  // Arrow-style navigation across the grade buttons, starting on the suggested one (which is autoFocused).
+  const [gradeIndex, setGradeIndex] = useState(() =>
+    GRADE_VALUES.findIndex((option) => option.value === suggestedGrade),
+  )
+  const gradeRef = useRef<HTMLDivElement>(null)
+  const confirmGrade = useCallback(
+    (index: number) => {
+      const option = GRADE_VALUES[index]
+      if (option !== undefined) onGrade(option.value)
+    },
+    [onGrade],
+  )
+  useOptionNavigation({
+    count: GRADE_VALUES.length,
+    index: gradeIndex,
+    onIndexChange: setGradeIndex,
+    onConfirm: confirmGrade,
+    orientation: 'horizontal',
+    enabled: true,
+    containerRef: gradeRef,
+  })
+
   return (
     <div className={correct ? 'review-reveal is-correct' : 'review-reveal is-incorrect'}>
       <p
@@ -79,7 +102,7 @@ export const RevealPanel = ({
       </Legible>
       <fieldset className="review-grade">
         <legend>How well did you recall this?</legend>
-        <div className="grade-options">
+        <div ref={gradeRef} className="grade-options">
           {GRADE_VALUES.map((option) => (
             <button
               key={option.value}
@@ -87,6 +110,8 @@ export const RevealPanel = ({
               autoFocus={option.value === suggestedGrade}
               className={option.value === suggestedGrade ? 'grade-button is-suggested' : 'grade-button'}
               onClick={() => onGrade(option.value)}
+              onFocus={() => setGradeIndex(GRADE_VALUES.indexOf(option))}
+              {...{ [NAV_OPTION_ATTRIBUTE]: '' }}
             >
               {option.label} <span className="grade-key">({keyFor(option.actionId)})</span>
             </button>

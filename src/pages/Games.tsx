@@ -1,9 +1,10 @@
+import { useRef, useState } from 'react'
 import { Link, useNavigate, useParams } from 'react-router-dom'
-import { ShortcutHelp } from '../components/ShortcutHelp'
 import { GAMES } from '../features/games/registry'
 import { useSeshatStore } from '../lib/store'
-import { useKeybindings } from '../lib/useKeybindings'
+import { OptionAnnouncer } from '../lib/OptionAnnouncer'
 import { useNumberedShortcut } from '../lib/useNumberedShortcut'
+import { NAV_OPTION_ATTRIBUTE, useOptionNavigation } from '../lib/useOptionNavigation'
 import { setIdSchema } from '../types'
 import '../features/sets/sets.css'
 
@@ -40,7 +41,6 @@ const useSetContext = () => {
 export const GamesListPage = () => {
   const context = useSetContext()
   const navigate = useNavigate()
-  const { key: keyFor } = useKeybindings()
 
   // Jump straight to a playable game by number. `useNumberedShortcut` is
   // called unconditionally (before the `context === null` early return)
@@ -50,6 +50,27 @@ export const GamesListPage = () => {
     const game = GAMES[index]
     if (game === undefined || context.cards.length < game.minCards) return
     navigate(`/sets/${context.setId}/games/${game.id}`)
+  })
+
+  // Arrow-style keys move focus across the game cards (unplayable ones are
+  // skipped); Enter on the focused link activates it natively.
+  const [highlight, setHighlight] = useState<number | null>(null)
+  const navRef = useRef<HTMLElement>(null)
+  useOptionNavigation({
+    count: GAMES.length,
+    index: highlight,
+    onIndexChange: setHighlight,
+    onConfirm: (index) => {
+      const game = GAMES[index]
+      if (context !== null && game !== undefined) navigate(`/sets/${context.setId}/games/${game.id}`)
+    },
+    orientation: 'grid',
+    enabled: context !== null,
+    containerRef: navRef,
+    isDisabled: (index) => {
+      const game = GAMES[index]
+      return game === undefined || context === null || context.cards.length < game.minCards
+    },
   })
 
   if (context === null) return <NotFound message="This set may have been deleted." />
@@ -62,22 +83,27 @@ export const GamesListPage = () => {
       </p>
       <h1 id="games-heading">Games: {set.name}</h1>
       <p>Ungraded, arcade-style practice — these don't feed your Study schedule.</p>
-      <ShortcutHelp
-        shortcuts={GAMES.slice(0, MAX_SHORTCUT_GAMES).map((game, index) => ({
-          key: keyFor(`games.select${index + 1}`),
-          label: `Jump to ${game.label}`,
-        }))}
-      />
-      <nav aria-label="Games" className="mode-grid">
-        {GAMES.map((game) => {
+      <nav ref={navRef} aria-label="Games" className="mode-grid">
+        {GAMES.map((game, index) => {
           const playable = cards.length >= game.minCards
           return playable ? (
-            <Link key={game.id} to={`/sets/${setId}/games/${game.id}`} className="mode-button">
+            <Link
+              key={game.id}
+              to={`/sets/${setId}/games/${game.id}`}
+              className="mode-button"
+              onFocus={() => setHighlight(index)}
+              {...{ [NAV_OPTION_ATTRIBUTE]: '' }}
+            >
               <span className="mode-button-label">{game.label}</span>
               <span className="mode-button-hint">{game.description}</span>
             </Link>
           ) : (
-            <div key={game.id} className="mode-button is-disabled" aria-disabled="true">
+            <div
+              key={game.id}
+              className="mode-button is-disabled"
+              aria-disabled="true"
+              {...{ [NAV_OPTION_ATTRIBUTE]: '' }}
+            >
               <span className="mode-button-label">{game.label}</span>
               <span className="mode-button-hint">
                 Needs at least {game.minCards} card{game.minCards === 1 ? '' : 's'} — this set has {cards.length}.
@@ -86,6 +112,7 @@ export const GamesListPage = () => {
           )
         })}
       </nav>
+      <OptionAnnouncer index={highlight} labels={GAMES.map((game) => game.label)} />
     </section>
   )
 }

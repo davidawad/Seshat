@@ -1,9 +1,9 @@
-import { useCallback, useEffect, useMemo, useRef, useState } from 'react'
+import { useCallback, useEffect, useRef, useState } from 'react'
 import { Legible } from '../../components/Legible'
-import { ShortcutHelp, type Shortcut } from '../../components/ShortcutHelp'
 import { matchesBinding } from '../../lib/keybindings'
 import { useSeshatStore } from '../../lib/store'
 import { useKeybindings } from '../../lib/useKeybindings'
+import { NAV_OPTION_ATTRIBUTE, useOptionNavigation } from '../../lib/useOptionNavigation'
 import type { ConfidenceRating, Grade, StudyCard } from '../../types'
 import { CardInput } from './CardInput'
 import { type Attempt, GRADE_ORDER, initialAttempt, isAttemptComplete, isCorrect } from './grading'
@@ -59,6 +59,9 @@ export const ReviewSession = ({ card, position, total, onAdvance }: ReviewSessio
   // an untouched prompt from one the learner explicitly left blank.
   const [selfExplanation, setSelfExplanation] = useState<string | null>(null)
   const promptShownAt = useRef(performance.now())
+  // Highlighted confidence option for arrow-style navigation (see useOptionNavigation).
+  const [confidenceIndex, setConfidenceIndex] = useState(0)
+  const confidenceRef = useRef<HTMLDivElement>(null)
 
   // Reset all per-card state whenever a new card is shown.
   useEffect(() => {
@@ -74,6 +77,7 @@ export const ReviewSession = ({ card, position, total, onAdvance }: ReviewSessio
 
   const handleAnswerContinue = useCallback(() => {
     if (!complete) return
+    setConfidenceIndex(0)
     setStep('confidence')
   }, [complete])
 
@@ -97,6 +101,23 @@ export const ReviewSession = ({ card, position, total, onAdvance }: ReviewSessio
     [card.id, confidence, correct, onAdvance, recordReview, selfExplanation],
   )
 
+  const confirmConfidence = useCallback(
+    (index: number) => {
+      const option = CONFIDENCE_OPTIONS[index]
+      if (option !== undefined) handleConfidence(option.value)
+    },
+    [handleConfidence],
+  )
+  useOptionNavigation({
+    count: CONFIDENCE_OPTIONS.length,
+    index: confidenceIndex,
+    onIndexChange: setConfidenceIndex,
+    onConfirm: confirmConfidence,
+    orientation: 'horizontal',
+    enabled: step === 'confidence',
+    containerRef: confidenceRef,
+  })
+
   // Remappable keyboard shortcuts (confidence step, then reveal/grade step)
   // — skipped while a text input is focused so digits keep typing into
   // short-answer/cloze fields.
@@ -117,30 +138,6 @@ export const ReviewSession = ({ card, position, total, onAdvance }: ReviewSessio
     return () => window.removeEventListener('keydown', handler)
   }, [step, handleConfidence, handleGrade, keyFor])
 
-  const studyShortcuts = useMemo<readonly Shortcut[]>(() => {
-    if (step === 'answer' && card.content.kind === 'mcq') {
-      // The registry only covers the first 4 options (see keybindings.ts) —
-      // a card with more options than that just has no shortcut past #4.
-      return card.content.options.slice(0, 4).map((_, index) => ({
-        key: keyFor(`studyAnswer.mcqOption${index + 1}`),
-        label: `Select option ${index + 1}`,
-      }))
-    }
-    if (step === 'confidence') {
-      return CONFIDENCE_OPTIONS.map((option) => ({
-        key: keyFor(option.actionId),
-        label: `Confidence: ${option.label}`,
-      }))
-    }
-    if (step === 'reveal') {
-      return GRADE_ORDER.map((grade, index) => ({
-        key: keyFor(GRADE_ACTION_IDS[index]!),
-        label: `Grade: ${grade.charAt(0).toUpperCase()}${grade.slice(1)}`,
-      }))
-    }
-    return []
-  }, [step, card.content, keyFor])
-
   return (
     <div className="review-session">
       <div className="review-progress">
@@ -154,8 +151,6 @@ export const ReviewSession = ({ card, position, total, onAdvance }: ReviewSessio
           max={total}
         />
       </div>
-
-      <ShortcutHelp shortcuts={studyShortcuts} />
 
       {step === 'answer' && (
         <form
@@ -180,13 +175,15 @@ export const ReviewSession = ({ card, position, total, onAdvance }: ReviewSessio
           </Legible>
           <fieldset className="review-confidence">
             <legend>How confident are you in that answer?</legend>
-            <div className="confidence-options">
+            <div ref={confidenceRef} className="confidence-options">
               {CONFIDENCE_OPTIONS.map((option, index) => (
                 <button
                   key={option.value}
                   type="button"
                   autoFocus={index === 0}
                   onClick={() => handleConfidence(option.value)}
+                  onFocus={() => setConfidenceIndex(index)}
+                  {...{ [NAV_OPTION_ATTRIBUTE]: '' }}
                 >
                   {option.label}
                 </button>

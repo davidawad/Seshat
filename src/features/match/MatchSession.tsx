@@ -1,8 +1,8 @@
 import { useEffect, useRef, useState } from 'react'
 import { Legible } from '../../components/Legible'
-import { ShortcutHelp } from '../../components/ShortcutHelp'
-import { useKeybindings } from '../../lib/useKeybindings'
+import { OptionAnnouncer } from '../../lib/OptionAnnouncer'
 import { useNumberedShortcut } from '../../lib/useNumberedShortcut'
+import { NAV_OPTION_ATTRIBUTE, useOptionNavigation } from '../../lib/useOptionNavigation'
 import type { CardId, SetId } from '../../types'
 import { formatElapsed, getBestTimeMs, recordCompletionTime } from './bestTime'
 import './match.css'
@@ -33,9 +33,10 @@ interface TileButtonProps {
   readonly isMatched: boolean
   readonly isMiss: boolean
   readonly onSelect: (tile: MatchTile) => void
+  readonly onFocusTile: () => void
 }
 
-const TileButton = ({ tile, isSelected, isMatched, isMiss, onSelect }: TileButtonProps) => {
+const TileButton = ({ tile, isSelected, isMatched, isMiss, onSelect, onFocusTile }: TileButtonProps) => {
   const classNames = ['match-tile']
   if (isSelected) classNames.push('is-selected')
   if (isMatched) classNames.push('is-matched')
@@ -48,6 +49,8 @@ const TileButton = ({ tile, isSelected, isMatched, isMiss, onSelect }: TileButto
       aria-pressed={isSelected}
       disabled={isMatched}
       onClick={() => onSelect(tile)}
+      onFocus={onFocusTile}
+      {...{ [NAV_OPTION_ATTRIBUTE]: '' }}
     >
       <Legible as="span" measure={false} className="match-tile-text">
         {tile.text}
@@ -101,8 +104,35 @@ const MatchCapChoices = ({ choices, pairCap, onChange }: MatchCapChoicesProps) =
   </fieldset>
 )
 
+/** Arrow-style keys move a highlight (real focus) across the tile grid; the column count is read from the live CSS grid. Matched tiles are skipped. */
+const useTileNavigation = (
+  round: readonly MatchTile[],
+  matchedCardIds: ReadonlySet<CardId>,
+  enabled: boolean,
+  onSelect: (tile: MatchTile) => void,
+) => {
+  const [highlight, setHighlight] = useState<number | null>(null)
+  const gridRef = useRef<HTMLDivElement>(null)
+  useOptionNavigation({
+    count: round.length,
+    index: highlight,
+    onIndexChange: setHighlight,
+    onConfirm: (index) => {
+      const tile = round[index]
+      if (tile !== undefined) onSelect(tile)
+    },
+    orientation: 'grid',
+    enabled,
+    containerRef: gridRef,
+    isDisabled: (index) => {
+      const tile = round[index]
+      return tile === undefined || matchedCardIds.has(tile.cardId)
+    },
+  })
+  return { highlight, setHighlight, gridRef }
+}
+
 export const MatchSession = ({ setId, pairs }: MatchSessionProps) => {
-  const { key: keyFor } = useKeybindings()
   const pairCapChoices = availablePairCaps(pairs.length)
   const [pairCap, setPairCap] = useState<number>(Math.min(DEFAULT_PAIR_CAP, pairs.length))
   const [round, setRound] = useState<readonly MatchTile[]>(() => createRound(pairs, pairCap))
@@ -225,6 +255,8 @@ export const MatchSession = ({ setId, pairs }: MatchSessionProps) => {
 
   const isComplete = completedAt !== null
 
+  const { highlight, setHighlight, gridRef } = useTileNavigation(round, matchedCardIds, !isComplete, handleSelect)
+
   return (
     <div className="match-session">
       <MatchStatusBar
@@ -235,13 +267,6 @@ export const MatchSession = ({ setId, pairs }: MatchSessionProps) => {
         isNewBest={isNewBest}
       />
 
-      <ShortcutHelp
-        shortcuts={round.slice(0, MAX_SHORTCUT_TILES).map((_, index) => ({
-          key: keyFor(`match.selectTile${index + 1}`),
-          label: `Select tile ${index + 1}`,
-        }))}
-      />
-
       {pairCapChoices.length > 1 && (
         <MatchCapChoices choices={pairCapChoices} pairCap={pairCap} onChange={handleCapChange} />
       )}
@@ -250,8 +275,8 @@ export const MatchSession = ({ setId, pairs }: MatchSessionProps) => {
         {feedback}
       </p>
 
-      <div className="match-grid">
-        {round.map((tile) => (
+      <div ref={gridRef} className="match-grid">
+        {round.map((tile, tileIndex) => (
           <TileButton
             key={tile.tileId}
             tile={tile}
@@ -259,9 +284,11 @@ export const MatchSession = ({ setId, pairs }: MatchSessionProps) => {
             isMatched={matchedCardIds.has(tile.cardId)}
             isMiss={missTileIds !== null && missTileIds.includes(tile.tileId)}
             onSelect={handleSelect}
+            onFocusTile={() => setHighlight(tileIndex)}
           />
         ))}
       </div>
+      <OptionAnnouncer index={highlight} labels={round.map((tile) => tile.text)} />
 
       {isComplete && (
         <button type="button" className="match-play-again" onClick={() => startNewRound()} autoFocus>
