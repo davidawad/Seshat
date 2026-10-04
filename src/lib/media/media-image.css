@@ -1,0 +1,46 @@
+.media-image {
+  display: block;
+  max-width: 100%;
+  height: auto;
+}
+
+.media-image--loading {
+  width: 100%;
+  border-radius: 4px;
+  background: linear-gradient(
+    90deg,
+    var(--color-bg-elevated) 25%,
+    color-mix(in srgb, var(--color-fg) 8%, var(--color-bg-elevated)) 50%,
+    var(--color-bg-elevated) 75%
+  );
+  background-size: 200% 100%;
+  animation: media-image-shimmer 1.4s ease-in-out infinite;
+}
+
+.media-image--missing {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  box-sizing: border-box;
+  border: 1px dashed var(--color-border-strong);
+  border-radius: 4px;
+  background: var(--color-bg-elevated);
+  color: var(--color-fg-muted);
+  font-size: 0.875rem;
+}
+
+@keyframes media-image-shimmer {
+  from {
+    background-position: 200% 0;
+  }
+  to {
+    background-position: -200% 0;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .media-image--loading {
+    animation: none;
+  }
+}
