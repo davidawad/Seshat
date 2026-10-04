@@ -170,7 +170,7 @@ describe('accessibility tree: flows', () => {
     const user = userEvent.setup()
     seed()
     renderAt('/')
-    await user.click(screen.getByTestId(TESTIDS.homeSetLink))
+    await user.click(screen.getByTestId(TESTIDS.setsBrowserSetLink))
     expect(screen.getByRole('heading', { level: 1, name: 'Capitals' })).toHaveFocus()
     await user.click(screen.getByTestId(TESTIDS.footerDocs))
     expect(screen.getByRole('heading', { level: 1, name: 'Docs' })).toHaveFocus()

@@ -18,14 +18,21 @@ describe('accessibility tree: pages', () => {
   it('home, empty: starter buttons are named and testids exist', () => {
     const { container } = renderAt('/')
     expectAccessible(container)
-    expect(missingTestIds(container, [TESTIDS.homePage, TESTIDS.homeStarterLoad, TESTIDS.homeManageSets])).toEqual([])
+    expect(missingTestIds(container, [TESTIDS.setsBrowser, TESTIDS.setsBrowserStarterLoad])).toEqual([])
   })
 
   it('home with sets: card, set link and study link', () => {
     seed()
     const { container } = renderAt('/')
     expectAccessible(container)
-    expect(missingTestIds(container, [TESTIDS.homeSetCard, TESTIDS.homeSetLink, TESTIDS.homeStudyLink])).toEqual([])
+    expect(
+      missingTestIds(container, [
+        TESTIDS.setsBrowserCard,
+        TESTIDS.setsBrowserSetLink,
+        TESTIDS.setsBrowserStudyLink,
+        TESTIDS.setsBrowserEditLink,
+      ]),
+    ).toEqual([])
     expect(screen.getByRole('link', { name: 'Study Capitals' })).toBeInTheDocument()
     expect(screen.getByRole('progressbar', { name: /Capitals: 0 of 4 cards memorized/ })).toBeInTheDocument()
   })
@@ -47,13 +54,13 @@ describe('accessibility tree: pages', () => {
     expectAccessible(container)
     expect(
       missingTestIds(container, [
-        TESTIDS.setsPage,
-        TESTIDS.setsSearch,
-        TESTIDS.setsList,
-        TESTIDS.setsListItem,
-        TESTIDS.setsEditLink,
-        TESTIDS.setsNewButton,
-        TESTIDS.importSetButton,
+        TESTIDS.setsBrowser,
+        TESTIDS.setsBrowserSearch,
+        TESTIDS.setsBrowserGrid,
+        TESTIDS.setsBrowserCard,
+        TESTIDS.setsBrowserEditLink,
+        TESTIDS.setsBrowserCreate,
+        TESTIDS.setsBrowserImport,
       ]),
     ).toEqual([])
   })
@@ -61,7 +68,7 @@ describe('accessibility tree: pages', () => {
   it('sets list, empty: starter buttons', () => {
     const { container } = renderAt('/sets')
     expectAccessible(container)
-    expect(missingTestIds(container, [TESTIDS.setsStarterLoad])).toEqual([])
+    expect(missingTestIds(container, [TESTIDS.setsBrowserStarterLoad])).toEqual([])
   })
 
   it('set detail', () => {

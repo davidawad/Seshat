@@ -1,18 +1,20 @@
 import { Link } from 'react-router-dom'
 import { TESTIDS } from '../../lib/testids'
 import type { StudySet } from '../../types'
+import { SetEditLink } from './SetEditLink'
 import type { SetMastery } from './set-summary'
+import { SetTags } from './SetTags'
 
 export interface SetTableRow {
   readonly set: StudySet
   readonly mastery: SetMastery
 }
 
-/** The home page's table view: one row per set with progress, due/new counts and a Study link. */
+/** The table view: one row per set with tags, progress, counts, a Study link and an edit link. */
 export const SetTable = ({ rows }: { readonly rows: readonly SetTableRow[] }) => (
   <div className="set-table-wrap">
-    <table className="set-table" data-testid={TESTIDS.homeSetTable}>
-      <caption className="sr-only">Your sets</caption>
+    <table className="set-table" data-testid={TESTIDS.setsBrowserTable}>
+      <caption className="sr-only">Sets</caption>
       <thead>
         <tr>
           <th scope="col">Set</th>
@@ -35,9 +37,12 @@ export const SetTable = ({ rows }: { readonly rows: readonly SetTableRow[] }) =>
         {rows.map(({ set, mastery }) => {
           const percent = mastery.total === 0 ? 0 : Math.round((mastery.memorized / mastery.total) * 100)
           return (
-            <tr key={set.id} data-testid={TESTIDS.homeSetRow}>
+            <tr key={set.id} data-testid={TESTIDS.setsBrowserRow}>
               <th scope="row">
-                <Link to={`/sets/${set.id}`}>{set.name}</Link>
+                <Link to={`/sets/${set.id}`} data-testid={TESTIDS.setsBrowserSetLink}>
+                  {set.name}
+                </Link>
+                <SetTags tags={set.tags} />
               </th>
               <td>
                 <div className="set-table-progress">
@@ -60,16 +65,24 @@ export const SetTable = ({ rows }: { readonly rows: readonly SetTableRow[] }) =>
               <td className="num">{mastery.newCount}</td>
               <td className="num">{mastery.total}</td>
               <td>
-                <Link to={`/sets/${set.id}/study`} className="set-table-study" aria-label={`Study ${set.name}`}>
-                  Study
-                </Link>
+                <div className="set-table-actions">
+                  <Link
+                    to={`/sets/${set.id}/study`}
+                    className="set-table-study"
+                    aria-label={`Study ${set.name}`}
+                    data-testid={TESTIDS.setsBrowserStudyLink}
+                  >
+                    Study
+                  </Link>
+                  <SetEditLink set={set} />
+                </div>
               </td>
             </tr>
           )
         })}
       </tbody>
     </table>
-    <Link to="/sets/new" className="new-set-row" data-testid={TESTIDS.homeNewSet}>
+    <Link to="/sets/new" className="new-set-row" data-testid={TESTIDS.setsBrowserNewSet}>
       <span aria-hidden="true">+</span> New set
     </Link>
   </div>
