@@ -134,13 +134,14 @@
   --line-height-body: 1.45;
 
   /* Card text (flashcard faces, study prompts, the set-page preview card) is
-     this multiple of the body size. Phones get 2x so a 3x line still fits. */
-  --card-text-scale: 3;
+     this multiple of the body size. Phones get a smaller multiple so long
+     terms still fit on one screen. */
+  --card-text-scale: 2;
 }
 
 @media (max-width: 640px) {
   :root {
-    --card-text-scale: 2;
+    --card-text-scale: 1.35;
   }
 }
 
