@@ -71,6 +71,9 @@ const numberedActions = (
 export const KEYBINDING_REGISTRY: readonly KeybindingAction[] = [
   // Global — available anywhere in the app shell.
   { id: 'global.openSettings', defaultKey: '?', label: 'Open settings', scope: 'global' },
+  // `matchesBinding` treats Ctrl and Meta as interchangeable, so this one
+  // default covers both Ctrl+K and Cmd+K. Unlike '?', it also works from text fields.
+  { id: 'global.openPalette', defaultKey: 'Ctrl+K', label: 'Open command menu (Ctrl/Cmd + K)', scope: 'global' },
 
   // Navigation — the four "arrow" keys, remappable as a set (arrows / WASD /
   // HJKL presets, see NAV_PRESETS). Left/right grade a flashcard

@@ -208,7 +208,8 @@ schema follows; `vite-plugins/agent-files.test.ts` checks parity.
   Navigation preset (`NAV_PRESETS`): Arrow keys, WASD, HJKL, remapped together. Number keys select numbered items
   (set modes 1-4, games 1-5, MCQ options, match tiles 1-9, confidence 1-3, grades 1-4). Flashcards: Space flips,
   1/Left still learning, 2/Right know, U undo, O toggle shuffled/original order. The footer "Keyboard shortcuts"
-  modal lists everything with current bindings; `?` opens Settings. Add a shortcut by adding a registry entry (the
+  modal lists everything with current bindings; `?` opens Settings; Cmd/Ctrl+K (`global.openPalette`, works
+  from text fields too) opens the cmdk command menu in `src/features/palette/` (lazy-loaded; pages, sets, actions). Add a shortcut by adding a registry entry (the
   test enforces no same-scope default collisions); never hard-code a key.
 - Flashcards Options: `flashcardsTrackProgress` (default on; off = grading only advances the session, no FSRS or
   review-log change) and `flashcardsFront` (`term` | `definition`). Undo restores the previous scheduling and removes

@@ -43,7 +43,7 @@ receipts.
   plain files from other tools. One icon button imports (auto-detects the format), one exports.
 - **Full-data backup** — Settings -> Backup downloads one JSON file with everything (settings, keybindings, sets,
   cards, FSRS scheduling, review history) and restores it by merging or replacing.
-- **Keyboard-first** — footer "Keyboard shortcuts" lists every binding; navigation keys switch between Arrow keys,
+- **Keyboard-first** — Cmd/Ctrl+K opens a command menu to jump anywhere; footer "Keyboard shortcuts" lists every binding; navigation keys switch between Arrow keys,
   WASD and HJKL, and every action is remappable.
 - **Agent-friendly** — a `?import=` URL importer, a browser-only scripting API (`window.seshat`, see below), WebMCP
   tools where the browser supports them, and JSON Schemas for imports, backups and settings.
