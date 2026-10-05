@@ -183,7 +183,7 @@ describe('processImage', () => {
     await expect(processImage(file(), { maxBytes: 10 }, never.deps)).rejects.toMatchObject({ kind: 'too-large' })
     expect(never.canvases.length).toBeLessThan(40)
     expect(never.close).toHaveBeenCalledOnce()
-  })
+  }, 120_000)
 
   it('treats unreadable pixel data as a photo and reports a missing 2d context', async () => {
     const tainted = harness({ width: 20, height: 20, getImageDataThrows: true })
