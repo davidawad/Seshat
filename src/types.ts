@@ -269,7 +269,7 @@ export const settingsSchema = z.object({
   flashcardsTrackProgress: z.boolean().default(true),
   flashcardsFront: flashcardsFrontSchema.default('term'),
   // How big index cards render on the flashcards page and the set-page preview.
-  flashcardsCardSize: cardSizeSchema.default('small'),
+  flashcardsCardSize: cardSizeSchema.default('large'),
   // How the home page lists sets: cards (grid) or a compact table.
   homeView: homeViewSchema.default('grid'),
   // The "Install Seshat" PWA banner (components/InstallPrompt.tsx). Defaults
@@ -303,7 +303,7 @@ export const DEFAULT_SETTINGS: Settings = {
   experimentalGamesEnabled: true,
   flashcardsTrackProgress: true,
   flashcardsFront: 'term',
-  flashcardsCardSize: 'small',
+  flashcardsCardSize: 'large',
   homeView: 'grid',
   installPromptEnabled: false,
   cardTipsEnabled: true,

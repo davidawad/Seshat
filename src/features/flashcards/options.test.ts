@@ -4,12 +4,12 @@ import { gradeAnnouncement, gradeForKey, orientFaces, resolveOptions, undoAnnoun
 
 describe('resolveOptions', () => {
   it('defaults to tracking progress with the term first', () => {
-    expect(resolveOptions(DEFAULT_SETTINGS)).toEqual({ trackProgress: true, front: 'term', cardSize: 'small' })
+    expect(resolveOptions(DEFAULT_SETTINGS)).toEqual({ trackProgress: true, front: 'term', cardSize: 'large' })
   })
 
   it('reflects the saved settings', () => {
     const settings = { ...DEFAULT_SETTINGS, flashcardsTrackProgress: false, flashcardsFront: 'definition' as const }
-    expect(resolveOptions(settings)).toEqual({ trackProgress: false, front: 'definition', cardSize: 'small' })
+    expect(resolveOptions(settings)).toEqual({ trackProgress: false, front: 'definition', cardSize: 'large' })
   })
 
   it('old saved settings without the new fields still parse to the defaults', () => {
@@ -17,11 +17,11 @@ describe('resolveOptions', () => {
     const parsed = settingsSchema.parse(old)
     expect(parsed.flashcardsTrackProgress).toBe(true)
     expect(parsed.flashcardsFront).toBe('term')
-    expect(parsed.flashcardsCardSize).toBe('small')
+    expect(parsed.flashcardsCardSize).toBe('large')
   })
 
   it('carries the saved card size', () => {
-    expect(resolveOptions({ ...DEFAULT_SETTINGS, flashcardsCardSize: 'large' }).cardSize).toBe('large')
+    expect(resolveOptions({ ...DEFAULT_SETTINGS, flashcardsCardSize: 'small' }).cardSize).toBe('small')
   })
 })
 

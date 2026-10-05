@@ -143,6 +143,12 @@ dd,
   border-radius: 2px;
 }
 
+/* Programmatic focus targets (page headings focused on navigation for screen
+   readers, tabindex="-1") are not controls; a ring around the title is noise. */
+[tabindex='-1']:focus-visible {
+  outline: none;
+}
+
 /* ---------------------------------------------------------------------
  * Form controls / interactive boundaries — meet the 3:1 non-text
  * contrast bar (WCAG 1.4.11) via --color-border-strong (see tokens.css
