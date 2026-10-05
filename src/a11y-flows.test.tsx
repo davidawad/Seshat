@@ -173,6 +173,6 @@ describe('accessibility tree: flows', () => {
     await user.click(screen.getByTestId(TESTIDS.setsBrowserSetLink))
     expect(screen.getByRole('heading', { level: 1, name: 'Capitals' })).toHaveFocus()
     await user.click(screen.getByTestId(TESTIDS.footerDocs))
-    expect(screen.getByRole('heading', { level: 1, name: 'Docs' })).toHaveFocus()
+    expect(await screen.findByRole('heading', { level: 1, name: 'Docs' })).toHaveFocus()
   })
 })

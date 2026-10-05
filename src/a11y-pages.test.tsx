@@ -164,7 +164,7 @@ describe('accessibility tree: test mode, games and reference pages', () => {
     expect(missingTestIds(blocks.container, [TESTIDS.blocksOption, TESTIDS.blocksFeedback])).toEqual([])
   })
 
-  it('stats, docs, about, attributions and license', () => {
+  it('stats, docs, about, attributions and license', async () => {
     seed()
     const pages: readonly (readonly [string, readonly string[]])[] = [
       ['/stats', [TESTIDS.statsPage, TESTIDS.statsSummary, TESTIDS.statsCalibrationEmpty]],
@@ -175,15 +175,17 @@ describe('accessibility tree: test mode, games and reference pages', () => {
     ]
     for (const [path, ids] of pages) {
       const { container, unmount } = renderAt(path)
+      // These routes are lazy-loaded; wait for the page to arrive.
+      await screen.findByTestId(ids[0]!)
       expectAccessible(container)
       expect(missingTestIds(container, ids)).toEqual([])
       unmount()
     }
   })
 
-  it('attribution links carry the citation title in their name', () => {
+  it('attribution links carry the citation title in their name', async () => {
     renderAt('/attributions')
-    const links = screen.getAllByRole('link', { name: /\(opens in a new tab\)/ })
+    const links = await screen.findAllByRole('link', { name: /\(opens in a new tab\)/ })
     expect(links.length).toBeGreaterThan(0)
     for (const link of links) expect(link).toHaveAccessibleName(/^.+: https?:\/\//)
   })
