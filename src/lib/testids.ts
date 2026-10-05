@@ -189,6 +189,7 @@ export const TESTIDS = {
   gamesOpenMatch: 'games-open-match',
   gamesOpenBlast: 'games-open-blast',
   gamesOpenBlocks: 'games-open-blocks',
+  gamesPreview: 'games-preview',
   gamePage: 'game-page',
   matchTile: 'match-tile',
   matchFeedback: 'match-feedback',
