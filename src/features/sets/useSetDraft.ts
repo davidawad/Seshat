@@ -1,6 +1,6 @@
 import { useCallback, useEffect, useRef, useState } from 'react'
 import {
-  type DraftRow,
+  type DraftRowPatch,
   type SetDraft,
   clearDraft,
   emptyDraft,
@@ -17,7 +17,7 @@ export interface SetDraftApi {
   /** True while the stored copy matches what is on screen and is not empty. */
   readonly saved: boolean
   readonly setField: (field: 'title' | 'description' | 'tags', value: string) => void
-  readonly setRow: (id: string, patch: Partial<Pick<DraftRow, 'term' | 'definition'>>) => void
+  readonly setRow: (id: string, patch: DraftRowPatch) => void
   /** Appends a blank row and returns its id. */
   readonly addRow: () => string
   /** Removes a row, but never the last one. */
@@ -45,7 +45,7 @@ export const useSetDraft = (): SetDraftApi => {
     setDraft((current) => ({ ...current, [field]: value }))
   }, [])
 
-  const setRow = useCallback((id: string, patch: Partial<Pick<DraftRow, 'term' | 'definition'>>) => {
+  const setRow = useCallback((id: string, patch: DraftRowPatch) => {
     setDraft((current) => ({
       ...current,
       rows: current.rows.map((row) => (row.id === id ? { ...row, ...patch } : row)),

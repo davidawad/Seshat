@@ -35,3 +35,9 @@ ci:
 test-gate:
     pnpm install --frozen-lockfile
     pnpm run ci
+
+# Real-browser accessibility + WebMCP check (Playwright bundled Chromium, axe-core).
+# Not part of `ci`: needs a browser. One-time: pnpm exec playwright-core install chromium
+e2e:
+    pnpm run build
+    node e2e/real-browser.mjs
