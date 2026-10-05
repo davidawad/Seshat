@@ -36,5 +36,8 @@ coverage
 .beads/proxieddb/
 .beads/interactions.jsonl
 
+# Bombadil traces (just bombadil)
+target/
+
 # git worktrees
 .worktrees/

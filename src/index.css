@@ -115,6 +115,17 @@ body {
   padding: 2rem 1.5rem 4rem;
 }
 
+/* Phone-width guard (found by Bombadil): code blocks scroll inside themselves and long
+   bare URLs (Attributions) wrap, so no page widens past the viewport. */
+.app-main pre {
+  max-width: 100%;
+  overflow-x: auto;
+}
+
+.app-main a {
+  overflow-wrap: anywhere;
+}
+
 /* Reserves room for the fixed-position install banner (see InstallPrompt.tsx
    and .install-prompt below) so it floats below the page's own content
    instead of covering the tail end of it — only while the banner is
