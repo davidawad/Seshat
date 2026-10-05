@@ -41,3 +41,6 @@ target/
 
 # git worktrees
 .worktrees/
+
+# Launch video assets and their render scripts (large binaries, kept local)
+launch/
