@@ -10,6 +10,7 @@ const SetEditPage = lazy(async () => ({ default: (await import('../features/sets
 const SetCreatePage = lazy(async () => ({ default: (await import('../features/sets/SetCreatePage')).SetCreatePage }))
 const SetImportPage = lazy(async () => ({ default: (await import('../features/sets/SetImportPage')).SetImportPage }))
 const TestPage = lazy(async () => ({ default: (await import('./Test')).TestPage }))
+const LearnPage = lazy(async () => ({ default: (await import('./Learn')).LearnPage }))
 
 // The Games section is experimental and rarely visited: its CSS/JS load on demand.
 const GamesListPage = lazy(async () => ({ default: (await import('./Games')).GamesListPage }))
@@ -34,6 +35,7 @@ export const SetsPage = () => (
       <Route path=":id/study" element={<StudyPage />} />
       <Route path=":id/flashcards" element={<FlashcardsPage />} />
       <Route path=":id/test" element={<TestPage />} />
+      <Route path=":id/learn" element={<LearnPage />} />
       <Route path=":id/games" element={<GamesListPage />} />
       <Route path=":id/games/:gameId" element={<GameSessionPage />} />
     </Routes>

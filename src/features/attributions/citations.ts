@@ -71,6 +71,15 @@ export const CITATIONS: readonly Citation[] = [
   },
   {
     category: 'learning-science',
+    title: 'Optimizing Schedules of Retrieval Practice for Durable and Efficient Learning: How Much Is Enough?',
+    authors: 'Rawson, K. A., & Dunlosky, J.',
+    year: 2011,
+    summary:
+      'Retrieval practice repeated until an item is recalled correctly, and then relearned in later sessions, supports durable retention — the basis for Learn mode working in rounds and bringing missed terms back soon.',
+    link: 'https://doi.org/10.1037/a0023956',
+  },
+  {
+    category: 'learning-science',
     title: 'Rethinking the Use of Tests: A Meta-Analysis of Practice Testing',
     authors: 'Adesope, O. O., Trevisan, D. A., & Sundararajan, N.',
     year: 2017,

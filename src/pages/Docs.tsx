@@ -35,7 +35,7 @@ export const DocsPage = () => (
         </li>
         <li>
           <strong>Command menu:</strong> press <kbd>Ctrl</kbd>/<kbd>Cmd</kbd>+<kbd>K</kbd> anywhere to search and jump
-          to a page, a set, its Study or Flashcards view, or an action like Settings or Toggle theme.
+          to a page, a set, its Study, Learn or Flashcards view, or an action like Settings or Toggle theme.
         </li>
         <li>
           <strong>Schemas:</strong> <a href={`${import.meta.env.BASE_URL}schema/set-import.schema.json`}>set import</a>,{' '}
@@ -71,6 +71,17 @@ export const DocsPage = () => (
         and feeds a calibration check on the Stats page against the well-documented gap between feeling like you know
         something and actually knowing it; and a <strong>self-rating</strong> (Again / Hard / Good / Easy). With
         self-rating off, a correct answer counts as Good and a wrong one as Again.
+      </p>
+      <p>
+        <strong>Learn</strong> (a button on each set page, next to Flashcards and Test) is a gentler on-ramp for terms
+        you do not know yet. It works in rounds of about six cards. Each card is first asked as multiple choice, with
+        wrong options drawn from the same set; get it right and it moves on to typing the answer from memory; type it
+        correctly and the card counts as mastered. A miss drops the card back a step, shows the correct answer, and
+        brings it up again a couple of questions later. Every round ends with where each card stands (mastered, learning
+        or not started), and the session ends with a summary. Typed answers, and misses, are logged and scheduled by
+        FSRS exactly like Study reviews, so Stats and the set&rsquo;s progress include them, and the confidence and
+        self-rating settings apply to typed answers. The design rests on the testing effect (Rowland, 2014) and
+        successive relearning (Rawson &amp; Dunlosky, 2011); see Attributions.
       </p>
       <p>
         None of this is asserted from vibes. Every one of these design decisions is backed by a citation, a summary of

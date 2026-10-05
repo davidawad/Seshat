@@ -217,7 +217,7 @@ schema follows; `vite-plugins/agent-files.test.ts` checks parity.
   scope); overrides live in localStorage `seshat:keybindings:v1` (and the cookie) and only differ-from-default
   entries are stored, so an agent reads live bindings from `exportAll().keybindings` plus the registry defaults.
   Navigation preset (`NAV_PRESETS`): Arrow keys, WASD, HJKL, remapped together. Number keys select numbered items
-  (set modes 1-4, games 1-5, MCQ options, match tiles 1-9, confidence 1-3, grades 1-4). Flashcards: Space flips,
+  (set modes 1-5, games 1-5, MCQ options, match tiles 1-9, confidence 1-3, grades 1-4). Flashcards: Space flips,
   1/Left still learning, 2/Right know, U undo, O toggle shuffled/original order. The footer "Keyboard shortcuts"
   modal lists everything with current bindings; `?` opens Settings; Cmd/Ctrl+K (`global.openPalette`, works
   from text fields too) opens the cmdk command menu in `src/features/palette/` (lazy-loaded; pages, sets, actions). Add a shortcut by adding a registry entry (the

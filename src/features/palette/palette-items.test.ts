@@ -78,23 +78,24 @@ describe('buildPaletteItems', () => {
     expect(buildPaletteItems([], [], 'dark').find((item) => item.label === 'Toggle theme')?.hint).toBe('dark')
   })
 
-  it('adds open, study and flashcards entries for a set with cards, with a card-count hint', () => {
+  it('adds open, study, learn and flashcards entries for a set with cards, with a card-count hint', () => {
     const items = buildPaletteItems([makeSet(idA, 'Capitals', ['geo'])], [makeCard(idA, 1), makeCard(idA, 2)], 'system')
     const sets = items.filter((item) => item.group === 'Your sets')
-    expect(labels(sets)).toEqual(['Capitals', 'Study Capitals', 'Flashcards Capitals'])
+    expect(labels(sets)).toEqual(['Capitals', 'Study Capitals', 'Learn Capitals', 'Flashcards Capitals'])
     expect(sets[0]?.hint).toBe('2 cards')
     expect(sets.map((item) => item.target)).toEqual([
       { kind: 'route', to: `/sets/${idA}` },
       { kind: 'route', to: `/sets/${idA}/study` },
+      { kind: 'route', to: `/sets/${idA}/learn` },
       { kind: 'route', to: `/sets/${idA}/flashcards` },
     ])
     expect(sets[1]?.keywords).toContain('geo')
   })
 
-  it('hides Study and Flashcards for an empty set and singularizes the hint', () => {
+  it('hides Study, Learn and Flashcards for an empty set and singularizes the hint', () => {
     const items = buildPaletteItems([makeSet(idA, 'Empty'), makeSet(idB, 'One')], [makeCard(idB, 1)], 'system')
     const sets = items.filter((item) => item.group === 'Your sets')
-    expect(labels(sets)).toEqual(['Empty', 'One', 'Study One', 'Flashcards One'])
+    expect(labels(sets)).toEqual(['Empty', 'One', 'Study One', 'Learn One', 'Flashcards One'])
     expect(sets[0]?.hint).toBe('0 cards')
     expect(sets[1]?.hint).toBe('1 card')
   })

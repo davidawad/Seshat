@@ -124,6 +124,7 @@ export const TESTIDS = {
   setModeStudy: 'set-mode-study',
   setModeFlashcards: 'set-mode-flashcards',
   setModeTest: 'set-mode-test',
+  setModeLearn: 'set-mode-learn',
   setModeGames: 'set-mode-games',
   setPreviewFlip: 'set-preview-flip',
   setTermList: 'set-term-list',
@@ -211,6 +212,25 @@ export const TESTIDS = {
   testRetryMissed: 'test-retry-missed',
   testImageNote: 'test-image-note',
   testNoTextCards: 'test-no-text-cards',
+
+  // Learn (/sets/:id/learn)
+  learnPage: 'learn-page',
+  learnProgress: 'learn-progress',
+  learnStage: 'learn-stage',
+  learnPrompt: 'learn-prompt',
+  learnOptions: 'learn-options',
+  learnOption: 'learn-option',
+  learnAnswerInput: 'learn-answer-input',
+  learnCheck: 'learn-check',
+  learnDontKnow: 'learn-dont-know',
+  learnRoundSummary: 'learn-round-summary',
+  learnNextRound: 'learn-next-round',
+  learnFinish: 'learn-finish',
+  learnSummary: 'learn-summary',
+  learnRestart: 'learn-restart',
+  learnResearch: 'learn-research',
+  learnEmpty: 'learn-empty',
+  learnNoTextCards: 'learn-no-text-cards',
 
   // Games
   gamesPage: 'games-page',
