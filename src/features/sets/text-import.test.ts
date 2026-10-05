@@ -108,4 +108,26 @@ describe('parseTermDefinitionText', () => {
     expect(result.value).toHaveLength(1)
     expect(result.value[0]?.prompt).toBe('term')
   })
+
+  it('keeps commas inside a CSV-quoted term and unquotes the definition', () => {
+    const result = parseTermDefinitionText('"Paris, France","Capital of ""France"""')
+    expect(result.ok && result.value.map((card) => [card.prompt, card.content])).toEqual([
+      [
+        'Paris, France',
+        { kind: 'short-answer', answer: 'Capital of "France"', acceptableAnswers: [], answerImage: null },
+      ],
+    ])
+  })
+
+  it('drops a leading term,definition header row but not later lookalikes', () => {
+    const result = parseTermDefinitionText('Term,Definition\nDefinition,a meaning\nx,y')
+    expect(result.ok && result.value.map((card) => card.prompt)).toEqual(['Definition', 'x'])
+    const tsv = parseTermDefinitionText('front\tback\na\tb')
+    expect(tsv.ok && tsv.value).toHaveLength(1)
+  })
+
+  it('handles CRLF line endings from spreadsheet exports', () => {
+    const result = parseTermDefinitionText('a,b\r\nc,d\r\n')
+    expect(result.ok && result.value.map((card) => card.prompt)).toEqual(['a', 'c'])
+  })
 })

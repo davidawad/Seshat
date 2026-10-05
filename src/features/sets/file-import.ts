@@ -40,3 +40,29 @@ export const countPastedCards = (raw: string): number => {
   const parsed = parseTermDefinitionText(raw)
   return parsed.ok ? parsed.value.length : 0
 }
+
+const TEXT_EXTENSIONS = ['.csv', '.tsv', '.txt']
+
+const hasExtension = (fileName: string, extensions: readonly string[]): boolean =>
+  extensions.some((extension) => fileName.toLowerCase().endsWith(extension))
+
+/** JSON by extension, else sniffed from the first character when the extension says nothing. */
+const isJsonFile = (fileName: string, text: string): boolean =>
+  hasExtension(fileName, ['.json']) || (!hasExtension(fileName, TEXT_EXTENSIONS) && /^[[{]/.test(text.trimStart()))
+
+/** Whether an uploaded file is delimited text (.csv/.tsv/.txt) rather than JSON. */
+export const isTextFile = (fileName: string, text: string): boolean => !isJsonFile(fileName, text)
+
+/** An uploaded file: JSON goes through `parseImportFile`, delimited text through the paste parser. */
+export const parseUploadedFile = (fileName: string, text: string, fallbackName: string): Result<ExportedSet, string> =>
+  isJsonFile(fileName, text) ? parseImportFile(text, fallbackName) : parsePastedSet(text, fallbackName)
+
+/** "quizlet_biology-ch3.csv" becomes "Quizlet biology ch3": a name to pre-fill, never forced. */
+export const suggestSetName = (fileName: string): string => {
+  const base = fileName
+    .replace(/\.[^./\\]+$/, '')
+    .replace(/[_-]+/g, ' ')
+    .replace(/\s+/g, ' ')
+    .trim()
+  return base.length === 0 ? '' : `${base.charAt(0).toUpperCase()}${base.slice(1)}`
+}

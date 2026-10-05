@@ -3,7 +3,7 @@ import { Link, useNavigate } from 'react-router-dom'
 import { UploadIcon } from '../../components/icons'
 import { useSeshatStore } from '../../lib/store'
 import { TESTIDS } from '../../lib/testids'
-import { countPastedCards, parseImportFile, parsePastedSet } from './file-import'
+import { countPastedCards, isTextFile, parseUploadedFile, suggestSetName } from './file-import'
 import './set-create.css'
 
 const readFileAsText = (file: File): Promise<string> =>
@@ -22,11 +22,56 @@ interface StagedFile {
   readonly text: string
 }
 
+const QUIZLET_STEPS = [
+  'On Quizlet, open your set, choose the three-dot menu, then Export.',
+  'Pick Tab between term and definition and New line between rows, then copy the text (or save it as a .txt file).',
+  'Paste it below, or upload the file, check the card count, and press Import.',
+] as const
+
+const QuizletGuide = () => (
+  <section aria-labelledby="import-quizlet-heading" className="import-guide" data-testid={TESTIDS.importQuizletGuide}>
+    <h2 id="import-quizlet-heading">Coming from Quizlet?</h2>
+    <ol>
+      {QUIZLET_STEPS.map((step) => (
+        <li key={step}>{step}</li>
+      ))}
+    </ol>
+    <p className="field-hint">
+      Quizlet&rsquo;s menus change from time to time. Any list with one term and definition per line, split by a tab or
+      a comma, imports the same way.
+    </p>
+  </section>
+)
+
+const AdvancedNotes = () => (
+  <details className="import-advanced" data-testid={TESTIDS.importAdvanced}>
+    <summary>Advanced / agents</summary>
+    <p>
+      The upload box above also takes <code>.json</code>: a Seshat export (keeps cloze, multiple-choice, images and
+      tags) or a plain <code>{'[{term, definition}]'}</code> array. Ask an LLM for that array and save it as a file.
+    </p>
+    <p>
+      Scripts and agents can skip this page: <code>?import=</code> in the URL, <code>window.seshat</code> and the WebMCP
+      tools are described in the <a href={`${import.meta.env.BASE_URL}agents.txt`}>agent guide</a> and on the{' '}
+      <Link to="/docs">Docs</Link> page.
+    </p>
+  </details>
+)
+
+/** The live card-count line: counted from a chosen text file, else the paste box; empty for a JSON file. */
+const previewMessage = (file: StagedFile | null, raw: string): string => {
+  const text = file === null ? raw : isTextFile(file.name, file.text) ? file.text : ''
+  if (text.trim().length === 0) return ''
+  const count = countPastedCards(text)
+  return `${count} ${count === 1 ? 'card' : 'cards'} parsed from ${file === null ? 'the pasted text' : file.name}.`
+}
+
 /**
- * `/sets/import` — the whole page is the import form: upload a .json file
- * (Seshat export or plain `[{term, definition}]`) and/or paste term/definition
- * lines, name the set, press Import. A chosen file takes priority over pasted
- * text. Parsing lives in `file-import.ts`; this is only the form.
+ * `/sets/import` — the whole page is the import form, Quizlet-first: three export
+ * steps, then paste term/definition lines or upload a .csv/.tsv/.txt file, name the
+ * set (suggested from the file name), press Import. Seshat/simple JSON files still
+ * work through the same upload and live under "Advanced / agents". A chosen file takes
+ * priority over pasted text. Parsing lives in `file-import.ts`; this is only the form.
  */
 export const SetImportPage = () => {
   const { importSet, prepareSetImport } = useSeshatStore()
@@ -46,6 +91,7 @@ export const SetImportPage = () => {
     setError(null)
     try {
       setFile({ name: chosen.name, text: await readFileAsText(chosen) })
+      setName((current) => (current.trim().length === 0 ? suggestSetName(chosen.name) : current))
     } catch {
       setFile(null)
       setError('Could not read that file.')
@@ -66,7 +112,8 @@ export const SetImportPage = () => {
 
   const handleSubmit = async (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault()
-    const result = file === null ? parsePastedSet(raw, name) : parseImportFile(file.text, name)
+    const result =
+      file === null ? parseUploadedFile('paste.txt', raw, name) : parseUploadedFile(file.name, file.text, name)
     if (!result.ok) {
       setError(result.error)
       return
@@ -82,7 +129,6 @@ export const SetImportPage = () => {
     navigate(`/sets/${set.id}`)
   }
 
-  const count = countPastedCards(raw)
   const describedBy = error !== null ? errorId : undefined
 
   return (
@@ -94,6 +140,8 @@ export const SetImportPage = () => {
       </p>
       <h1 id="import-heading">Import a set</h1>
 
+      <QuizletGuide />
+
       <form
         onSubmit={(event) => {
           void handleSubmit(event)
@@ -101,41 +149,6 @@ export const SetImportPage = () => {
         noValidate
         aria-labelledby="import-heading"
       >
-        <label
-          htmlFor={fileId}
-          className={`import-dropzone${dragging ? ' is-dragging' : ''}`}
-          data-testid={TESTIDS.importDropzone}
-          onDragOver={(event) => {
-            event.preventDefault()
-            setDragging(true)
-          }}
-          onDragLeave={() => setDragging(false)}
-          onDrop={handleDrop}
-        >
-          <UploadIcon />
-          <span className="import-dropzone-title">Upload a .json file</span>
-          <span className="field-hint">
-            Choose or drop a Seshat export, or a plain <code>{'[{term, definition}]'}</code> file.
-          </span>
-          <input
-            id={fileId}
-            type="file"
-            className="import-file-input"
-            data-testid={TESTIDS.importFile}
-            accept="application/json,.json"
-            aria-describedby={describedBy}
-            onChange={handleChange}
-          />
-        </label>
-        {file !== null && (
-          <p className="import-dropzone-file" data-testid={TESTIDS.importFileName}>
-            Ready to import: {file.name}{' '}
-            <button type="button" onClick={() => setFile(null)}>
-              Remove file
-            </button>
-          </p>
-        )}
-
         <div className="import-field">
           <label htmlFor={textId}>Paste terms and definitions</label>
           <textarea
@@ -151,9 +164,42 @@ export const SetImportPage = () => {
             is used instead of pasted text.
           </p>
           <p role="status" className="import-preview" data-testid={TESTIDS.importPreview}>
-            {raw.trim().length === 0 ? '' : `${count} ${count === 1 ? 'card' : 'cards'} parsed from the pasted text.`}
+            {previewMessage(file, raw)}
           </p>
         </div>
+
+        <label
+          htmlFor={fileId}
+          className={`import-dropzone${dragging ? ' is-dragging' : ''}`}
+          data-testid={TESTIDS.importDropzone}
+          onDragOver={(event) => {
+            event.preventDefault()
+            setDragging(true)
+          }}
+          onDragLeave={() => setDragging(false)}
+          onDrop={handleDrop}
+        >
+          <UploadIcon />
+          <span className="import-dropzone-title">Or upload a .csv, .tsv or .txt file</span>
+          <span className="field-hint">Choose or drop a Quizlet export or any term,definition list.</span>
+          <input
+            id={fileId}
+            type="file"
+            className="import-file-input"
+            data-testid={TESTIDS.importFile}
+            accept=".csv,.tsv,.txt,.json,text/csv,text/tab-separated-values,text/plain,application/json"
+            aria-describedby={describedBy}
+            onChange={handleChange}
+          />
+        </label>
+        {file !== null && (
+          <p className="import-dropzone-file" data-testid={TESTIDS.importFileName}>
+            Ready to import: {file.name}{' '}
+            <button type="button" onClick={() => setFile(null)}>
+              Remove file
+            </button>
+          </p>
+        )}
 
         <div className="import-field">
           <label htmlFor={nameId}>Set name</label>
@@ -166,7 +212,8 @@ export const SetImportPage = () => {
             onChange={(event) => setName(event.target.value)}
           />
           <p id={`${nameId}-hint`} className="field-hint">
-            Required for pasted text. For a file, only used if the file has no name of its own.
+            Required for pasted text and for files without a name of their own. Filled in from the file name when you
+            choose one.
           </p>
         </div>
 
@@ -180,6 +227,7 @@ export const SetImportPage = () => {
           Import
         </button>
       </form>
+      <AdvancedNotes />
     </section>
   )
 }
