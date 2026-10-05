@@ -16,42 +16,69 @@ export const focusPageHeading = (main: HTMLElement | null, active: Element | nul
   return target
 }
 
+/** What `useRouteFocus` needs to know about the current navigation (from react-router's hooks). */
+export interface RouteFocusTarget {
+  readonly pathname: string
+  /** `useLocation().key`: unique per history entry, so Back/Forward and redirects are distinguishable. */
+  readonly key?: string
+  /** `useNavigationType()`: `POP` is browser Back/Forward, `REPLACE` is a redirect. */
+  readonly type?: 'POP' | 'PUSH' | 'REPLACE'
+}
+
+const isTextEntry = (element: Element | null): boolean =>
+  element instanceof HTMLInputElement ||
+  element instanceof HTMLTextAreaElement ||
+  element instanceof HTMLSelectElement ||
+  (element instanceof HTMLElement && element.isContentEditable)
+
+/** True when focus is nowhere useful: on body, on `main` itself, or on an element that left the DOM. */
+const focusIsLost = (main: HTMLElement, active: Element | null): boolean =>
+  active === null || active === document.body || active === main || !active.isConnected
+
+/** How long after a navigation a late-mounting (lazy / redirected) heading may still claim focus. */
+const SETTLE_MS = 3_000
+
 /**
- * Moves focus to the page heading whenever `pathname` changes (not on first
- * mount), so keyboard and screen-reader users land at the top of the new page
- * instead of on `body` after the focused link/button unmounts.
+ * Moves focus to the page heading after every navigation to a different page (not on first
+ * mount), so keyboard and screen-reader users land at the top of the new page instead of on
+ * `body` after the focused link/button unmounts. Covers browser Back/Forward (`POP`) and
+ * redirects (`REPLACE`) as well as links: it keys off the location entry, not the pathname
+ * alone, and keeps watching briefly because lazy routes and redirected pages mount (or swap)
+ * their `h1` after the first effect. It never steals focus from a field the user is typing in
+ * or from a control inside the page.
  */
-export const useRouteFocus = (pathname: string, mainRef: RefObject<HTMLElement | null>): void => {
-  const previous = useRef(pathname)
+export const useRouteFocus = (route: RouteFocusTarget, mainRef: RefObject<HTMLElement | null>): void => {
+  const { pathname, type } = route
+  const key = route.key ?? pathname
+  const previous = useRef({ key, pathname })
   useEffect(() => {
-    if (previous.current === pathname) return
-    previous.current = pathname
+    const last = previous.current
+    previous.current = { key, pathname }
+    if (last.key === key) return undefined
+    // A same-page search/hash change (a filter, an anchor) is not a page change.
+    if (last.pathname === pathname && type !== 'POP') return undefined
     const main = mainRef.current
     if (main === null) return undefined
-    // Lazy routes can mount their h1 after this effect runs: wait for it, then
-    // move focus unless the user has already put it somewhere inside the page.
-    if (main.querySelector('h1') !== null) {
-      focusPageHeading(main, document.activeElement)
-      return undefined
-    }
-    focusPageHeading(main, document.activeElement)
-    const observer = new MutationObserver(() => {
+    if (!isTextEntry(document.activeElement)) focusPageHeading(main, document.activeElement)
+    const reclaim = () => {
+      const active = document.activeElement
+      if (isTextEntry(active) || !focusIsLost(main, active)) return
       const heading = main.querySelector<HTMLElement>('h1')
       if (heading === null) return
-      observer.disconnect()
-      const active = document.activeElement
-      if (active === null || active === document.body || active === main) {
-        heading.setAttribute('tabindex', '-1')
-        heading.focus()
-      }
-    })
+      heading.setAttribute('tabindex', '-1')
+      heading.focus()
+    }
+    const observer = new MutationObserver(reclaim)
     observer.observe(main, { childList: true, subtree: true })
-    const stop = window.setTimeout(() => observer.disconnect(), 10_000)
+    // The first focus can also land on something that unmounts right after (a redirect).
+    const retry = window.setTimeout(reclaim, 150)
+    const stop = window.setTimeout(() => observer.disconnect(), SETTLE_MS)
     return () => {
       observer.disconnect()
+      window.clearTimeout(retry)
       window.clearTimeout(stop)
     }
-  }, [pathname, mainRef])
+  }, [key, pathname, type, mainRef])
 }
 
 /** Focuses `ref` once when `enabled` becomes true (used for in-page "session complete" panels). */

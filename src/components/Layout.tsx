@@ -1,5 +1,5 @@
 import { lazy, Suspense, useEffect, useId, useRef, useState } from 'react'
-import { Link, NavLink, Outlet, useLocation } from 'react-router-dom'
+import { Link, NavLink, Outlet, useLocation, useNavigationType } from 'react-router-dom'
 import { ImportFromUrl } from '../features/sets/ImportFromUrl'
 import { SettingsForm } from '../features/settings/SettingsForm'
 import { useApplyCardSize } from '../features/flashcards/useCardSize'
@@ -59,10 +59,11 @@ export const Layout = () => {
   const settingsTitleId = useId()
   const shortcutsTitleId = useId()
   const { key: keyFor } = useKeybindings()
-  const { pathname } = useLocation()
+  const { pathname, key } = useLocation()
+  const navigationType = useNavigationType()
   const mainRef = useRef<HTMLElement>(null)
   // After a route change, put focus on the new page's h1 (see lib/routeFocus.ts).
-  useRouteFocus(pathname, mainRef)
+  useRouteFocus({ pathname, key, type: navigationType }, mainRef)
 
   // Global "open settings" shortcut (default '?') — skipped while a text
   // input is focused or the modal is already open (Escape/the visible close
