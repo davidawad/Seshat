@@ -9,6 +9,7 @@ import {
   legacyAppStateSchema,
   ok,
 } from '../types'
+import { backfillActivation } from './activation'
 import {
   type StorageError,
   isLocalStorageAvailable,
@@ -71,7 +72,7 @@ const parseWith =
     const result = schema.safeParse(json.value)
     if (!result.success) return err({ kind: 'corrupt', message: result.error.message })
     // Legacy and current share one in-memory shape; only the envelope version differs.
-    return ok({ ...result.data, version: APP_STATE_VERSION })
+    return ok(backfillActivation({ ...result.data, version: APP_STATE_VERSION }))
   }
 
 /** Parses a raw v2 blob (also used by the cross-tab listener). */

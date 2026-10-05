@@ -7,6 +7,7 @@ import { loadKeybindingOverrides, saveKeybindingOverrides } from './keybindingSt
 import { processImage } from './media/image-pipeline'
 import { prepareCardsForImport } from './media/import-prepare'
 import { useMediaStore } from './media/MediaStoreProvider'
+import { type NewCardInput, type NewSetInput, reducer } from './store-reducer'
 import { type StorageError, loadInitialState, loadState, saveState, subscribeToAppState } from './storage'
 import {
   type AppState,
@@ -14,118 +15,16 @@ import {
   type ConfidenceRating,
   type ExportedCard,
   type ExportedSet,
+  type FirstSetSource,
   type Grade,
   type SetId,
   type Result,
   type Settings,
   type StudyCard,
   type StudySet,
-  createEmptyAppState,
   err,
   ok,
 } from '../types'
-
-interface NewCardInput {
-  readonly prompt: StudyCard['prompt']
-  readonly promptImage?: StudyCard['promptImage']
-  readonly content: StudyCard['content']
-  readonly explanation: string | null
-  readonly sourceRef: string | null
-  readonly tags: string[]
-}
-
-interface NewSetInput {
-  readonly name: string
-  readonly description: string
-  readonly tags: string[]
-  readonly goalDate?: string | null
-}
-
-type Action =
-  | { readonly type: 'hydrate'; readonly state: AppState }
-  | { readonly type: 'add-set'; readonly set: StudySet }
-  | { readonly type: 'update-set'; readonly id: SetId; readonly patch: Partial<NewSetInput>; readonly now: string }
-  | { readonly type: 'delete-set'; readonly id: SetId }
-  | { readonly type: 'add-card'; readonly card: StudyCard }
-  | { readonly type: 'update-card'; readonly id: CardId; readonly patch: Partial<NewCardInput>; readonly now: string }
-  | { readonly type: 'delete-card'; readonly id: CardId }
-  | {
-      readonly type: 'record-review'
-      readonly cardId: CardId
-      readonly scheduling: StudyCard['scheduling']
-      readonly logEntry: AppState['reviewLog'][number]
-    }
-  | {
-      readonly type: 'undo-review'
-      readonly cardId: CardId
-      readonly scheduling: StudyCard['scheduling']
-      readonly reviewedAt: string
-    }
-  | { readonly type: 'import-set'; readonly set: StudySet; readonly cards: readonly StudyCard[] }
-  | { readonly type: 'update-settings'; readonly patch: Partial<Settings> }
-  | { readonly type: 'reset' }
-
-const reducer = (state: AppState, action: Action): AppState => {
-  switch (action.type) {
-    case 'hydrate':
-      return action.state
-    case 'add-set':
-      return { ...state, sets: [...state.sets, action.set] }
-    case 'update-set':
-      return {
-        ...state,
-        sets: state.sets.map((set) =>
-          set.id === action.id ? { ...set, ...action.patch, updatedAt: action.now } : set,
-        ),
-      }
-    case 'delete-set':
-      return {
-        ...state,
-        sets: state.sets.filter((set) => set.id !== action.id),
-        cards: state.cards.filter((card) => card.setId !== action.id),
-        reviewLog: state.reviewLog.filter((entry) => entry.setId !== action.id),
-      }
-    case 'add-card':
-      return { ...state, cards: [...state.cards, action.card] }
-    case 'update-card':
-      return {
-        ...state,
-        cards: state.cards.map((card) =>
-          card.id === action.id ? { ...card, ...action.patch, updatedAt: action.now } : card,
-        ),
-      }
-    case 'delete-card':
-      return {
-        ...state,
-        cards: state.cards.filter((card) => card.id !== action.id),
-        reviewLog: state.reviewLog.filter((entry) => entry.cardId !== action.id),
-      }
-    case 'record-review':
-      return {
-        ...state,
-        cards: state.cards.map((card) =>
-          card.id === action.cardId ? { ...card, scheduling: action.scheduling } : card,
-        ),
-        reviewLog: [...state.reviewLog, action.logEntry],
-      }
-    case 'undo-review':
-      return {
-        ...state,
-        cards: state.cards.map((card) =>
-          card.id === action.cardId ? { ...card, scheduling: action.scheduling } : card,
-        ),
-        reviewLog: state.reviewLog.filter(
-          (entry) => !(entry.cardId === action.cardId && entry.reviewedAt === action.reviewedAt),
-        ),
-      }
-    case 'import-set':
-      return { ...state, sets: [...state.sets, action.set], cards: [...state.cards, ...action.cards] }
-    case 'update-settings':
-      return { ...state, settings: { ...state.settings, ...action.patch } }
-    case 'reset':
-      return createEmptyAppState()
-  }
-}
 
 interface SeshatStore {
   readonly state: AppState
@@ -148,7 +47,12 @@ interface SeshatStore {
   ) => string | null
   /** Reverses one `recordReview`: restores the card's earlier scheduling and drops the log entry stamped `reviewedAt`. */
   readonly undoReview: (cardId: CardId, previousScheduling: StudyCard['scheduling'], reviewedAt: string) => void
-  readonly importSet: (exported: ExportedSet) => StudySet
+  /** Adds an exported set as a new one; `source` ('import' by default) is recorded for the local first-week stats. */
+  readonly importSet: (exported: ExportedSet, source?: FirstSetSource) => StudySet
+  /** Notes (locally only) that a full backup was just downloaded, restarting the backup-reminder schedule. */
+  readonly recordBackupDownloaded: () => void
+  /** Hides the backup reminder until the next 30 days / 50 reviews. */
+  readonly dismissBackupNudge: () => void
   /**
    * Async step BEFORE `importSet` for a set that came from a file/URL: stores the export's embedded `media`, converts
    * v1-era inline data URLs into stored images, and returns the export ready for `importSet`.
@@ -290,7 +194,7 @@ export const SeshatProvider = ({ children }: { readonly children: ReactNode }) =
     dispatch({ type: 'undo-review', cardId, scheduling: previousScheduling, reviewedAt })
   }, [])
 
-  const importSet = useCallback((exported: ExportedSet): StudySet => {
+  const importSet = useCallback((exported: ExportedSet, source: FirstSetSource = 'import'): StudySet => {
     const now = new Date().toISOString()
     const set: StudySet = {
       id: newSetId(),
@@ -309,8 +213,16 @@ export const SeshatProvider = ({ children }: { readonly children: ReactNode }) =
       scheduling: createInitialScheduling(new Date()),
       ...exportedCard,
     }))
-    dispatch({ type: 'import-set', set, cards })
+    dispatch({ type: 'import-set', set, cards, source })
     return set
+  }, [])
+
+  const recordBackupDownloaded = useCallback(() => {
+    dispatch({ type: 'backup-downloaded', at: new Date().toISOString() })
+  }, [])
+
+  const dismissBackupNudge = useCallback(() => {
+    dispatch({ type: 'backup-nudge-dismissed', at: new Date().toISOString() })
   }, [])
 
   const prepareSetImport = useCallback(
@@ -385,6 +297,8 @@ export const SeshatProvider = ({ children }: { readonly children: ReactNode }) =
       recordReview,
       undoReview,
       importSet,
+      recordBackupDownloaded,
+      dismissBackupNudge,
       prepareSetImport,
       exportSet,
       updateSettings,
@@ -406,6 +320,8 @@ export const SeshatProvider = ({ children }: { readonly children: ReactNode }) =
       recordReview,
       undoReview,
       importSet,
+      recordBackupDownloaded,
+      dismissBackupNudge,
       prepareSetImport,
       exportSet,
       updateSettings,

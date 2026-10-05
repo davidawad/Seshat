@@ -191,6 +191,11 @@ history of added cards; it never touches existing data, settings or keybindings.
 need a card, `settings` may be partial, size-capped, newer versions refused, older versions migrated via
 `MIGRATIONS` (bump `BACKUP_VERSION` and add a step when the format changes).
 
+The app state also holds an `activation` record (first-week counters and backup-reminder timestamps, see
+`src/lib/activation.ts`). It is local to the device, never transmitted, and deliberately not part of the backup file
+(a `replace` restore keeps the device's own record). The "Show backup reminders" setting
+(`backupRemindersEnabled`, default on) controls the dismissible backup banner.
+
 JSON Schemas are generated from the Zod schemas by the agent-files plugin and served at
 `/schema/set-import.schema.json`, `/schema/seshat-backup.schema.json` and `/schema/seshat-settings.schema.json`
 (draft 2020-12; the settings schema lists every field's enum/range/default). Change a Zod schema and the served

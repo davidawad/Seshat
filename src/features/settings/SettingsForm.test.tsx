@@ -73,3 +73,21 @@ describe('SettingsForm card tips', () => {
     expect(isTipDismissed('set-preview-flip')).toBe(false)
   })
 })
+
+describe('SettingsForm backup reminders', () => {
+  it('defaults on, explains itself in one line, and persists when turned off', async () => {
+    const user = userEvent.setup()
+    render(
+      <SeshatProvider>
+        <SettingsForm />
+      </SeshatProvider>,
+    )
+    const reminders = screen.getByRole('checkbox', { name: 'Show backup reminders' })
+    expect(reminders).toBeChecked()
+    expect(reminders).toHaveAccessibleDescription(/every 30 days or 50 reviews/i)
+    await user.click(reminders)
+    expect(stored()).toMatchObject({ backupRemindersEnabled: false })
+    await user.click(reminders)
+    expect(stored()).toMatchObject({ backupRemindersEnabled: true })
+  })
+})

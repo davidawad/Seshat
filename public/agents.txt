@@ -254,14 +254,15 @@ Games (/sets/:id/games, needs the Games setting on):
   match-feedback, match-play-again, blast-option, blast-feedback, blast-play-again, blocks-option,
   blocks-column, blocks-feedback, blocks-play-again
 Stats and reference pages:
-  stats-page, stats-summary, stats-calibration-table, stats-calibration-empty, docs-page, about-page, attributions-page,
+  stats-page, stats-summary, stats-first-week, stats-calibration-table, stats-calibration-empty, docs-page, about-page, attributions-page,
   license-page
 Command menu (Cmd/Ctrl+K):
   palette, palette-input, palette-list, palette-item, palette-empty, palette-status
 Settings (inside the Settings modal):
   theme-field, palette-field, palette-reset, accent-color, accent-hex, accent-status,
   backup-download, backup-mode-merge, backup-mode-replace, backup-file, backup-confirm,
-  backup-confirm-replace, backup-confirm-cancel, backup-status, settings-card-tips
+  backup-confirm-replace, backup-confirm-cancel, backup-status, settings-card-tips,
+  settings-backup-reminders
 Also dynamic (existing): theme-<system|light|dark>, palette-<id>, nav-preset-<arrows|wasd|hjkl>.
 Repeated items (cards, rows, tiles) share one id; scope by page id. Same ids: TESTIDS in
 src/lib/testids.ts.
