@@ -91,6 +91,51 @@ const pickDistinct = (pool: readonly string[], exclude: string, count: number, r
 }
 
 /**
+ * One multiple-choice question for `pair`: its real answer plus up to 3
+ * distractors drawn from the other cards' answers, shuffled. Shared with
+ * Learn mode's recognition stage. Fewer than 3 distractors is legitimate
+ * for a small or repetitive set; callers decide whether that is enough.
+ */
+const multipleChoiceFor = (
+  pair: FrontBackPair,
+  otherPairs: readonly FrontBackPair[],
+  random: () => number,
+): MultipleChoiceQuestion => {
+  const distractors = pickDistinct(
+    otherPairs.map((other) => other.back),
+    pair.back,
+    3,
+    random,
+  )
+  return {
+    format: 'multiple-choice',
+    cardId: pair.card.id,
+    front: pair.front,
+    ...imageOf(pair),
+    options: shuffle([pair.back, ...distractors], random),
+    correctOption: pair.back,
+  }
+}
+
+/**
+ * The multiple-choice question for one `card`, with distractors from the other
+ * text cards in `cards` (the same set). Used by Learn mode's recognition stage.
+ */
+export const buildMultipleChoice = (
+  card: StudyCard,
+  cards: readonly StudyCard[],
+  random: () => number = Math.random,
+): MultipleChoiceQuestion => {
+  const pairs: FrontBackPair[] = textCards(cards).map((other) => ({ card: other, ...cardFrontBack(other) }))
+  const pair: FrontBackPair = { card, ...cardFrontBack(card) }
+  return multipleChoiceFor(
+    pair,
+    pairs.filter((other) => other.card.id !== card.id),
+    random,
+  )
+}
+
+/**
  * Generates a multi-format practice test covering (up to `MAX_TEST_QUESTIONS`
  * of) a set's cards. Each card becomes one question in one of three formats
  * — written recall, true/false, or multiple-choice — distributed round-robin
@@ -159,22 +204,8 @@ export const generateTest = (allCards: readonly StudyCard[], random: () => numbe
         }
       }
 
-      case 'multiple-choice': {
-        const distractors = pickDistinct(
-          otherPairs.map((other) => other.back),
-          pair.back,
-          3,
-          random,
-        )
-        return {
-          format: 'multiple-choice',
-          cardId: pair.card.id,
-          front: pair.front,
-          ...imageOf(pair),
-          options: shuffle([pair.back, ...distractors], random),
-          correctOption: pair.back,
-        }
-      }
+      case 'multiple-choice':
+        return multipleChoiceFor(pair, otherPairs, random)
     }
   })
 }

@@ -102,6 +102,9 @@ describe('SetDetailPage: one primary action', () => {
     expect(nav.querySelectorAll('.primary-link')).toHaveLength(1)
     expect(within(nav).getByTestId(TESTIDS.setModeFlashcards)).not.toHaveClass('primary-link')
     expect(within(nav).getByTestId(TESTIDS.setModeTest)).not.toHaveClass('primary-link')
+    const learn = within(nav).getByTestId(TESTIDS.setModeLearn)
+    expect(learn).not.toHaveClass('primary-link')
+    expect(learn).toHaveAttribute('href', `/sets/${setId}/learn`)
   })
 
   it('tucks Games into a closed More disclosure outside the main mode links', () => {
@@ -139,5 +142,24 @@ describe('SetDetailPage: one primary action', () => {
     )
     await user.keyboard('1')
     expect(screen.getByTestId('where')).toHaveTextContent(`/sets/${setId}/study`)
+  })
+
+  it('jumps to Learn with 4', async () => {
+    const setId = newSetId()
+    seedStore(setId, newCardId())
+    const user = userEvent.setup()
+    const Where = () => <p data-testid="where">{useLocation().pathname}</p>
+    render(
+      <SeshatProvider>
+        <MemoryRouter initialEntries={[`/sets/${setId}`]}>
+          <Routes>
+            <Route path="/sets/:id" element={<SetDetailPage />} />
+            <Route path="*" element={<Where />} />
+          </Routes>
+        </MemoryRouter>
+      </SeshatProvider>,
+    )
+    await user.keyboard('4')
+    expect(screen.getByTestId('where')).toHaveTextContent(`/sets/${setId}/learn`)
   })
 })

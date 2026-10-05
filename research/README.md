@@ -15,6 +15,7 @@ Evidence for retrieval practice, spacing, generation, multimedia design, and met
 | [`cepeda-2006.md`](learning-science/cepeda-2006.md) | Canonical spacing-effect synthesis (317 experiments): the optimal inter-study gap grows as the desired retention interval grows. |
 | [`cepeda-2008.md`](learning-science/cepeda-2008.md) | The spacing "temporal ridgeline": optimal gap is ~20-40% of a 1-week retention delay, ~5-10% of a 1-year delay — no single magic interval. |
 | [`rowland-2014.md`](learning-science/rowland-2014.md) | Testing-effect meta-analysis: testing beats restudy (d≈0.50), and recall-based tests beat recognition-based (MCQ) tests. |
+| [`rawson-dunlosky-2011.md`](learning-science/rawson-dunlosky-2011.md) | Successive relearning: retrieval practice repeated to a correct-recall criterion and relearned across sessions supports durable retention; the basis for Learn mode's rounds. |
 | [`adesope-2017.md`](learning-science/adesope-2017.md) | Broad practice-testing meta-analysis (272 effect sizes) with moderator breakdowns by test format, feedback, and retention interval. |
 | [`latimier-2021.md`](learning-science/latimier-2021.md) | Spaced retrieval practice beats massed retrieval practice (g=0.74); expanding-interval schedules are not automatically better than uniform ones. |
 | [`brunmair-richter-2019.md`](learning-science/brunmair-richter-2019.md) | Interleaving meta-analysis (g=0.42 overall): strong for visual/perceptual material, weak/negative for word-list vocabulary learning. |

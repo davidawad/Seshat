@@ -54,7 +54,7 @@ Client-only, no backend:
 
 - [Vite](https://vite.dev) + [React 19](https://react.dev) + TypeScript (strict mode)
 - [react-router-dom](https://reactrouter.com) for routing — RESTfully nested: `/sets`, `/sets/:id`,
-  `/sets/:id/edit`, `/sets/:id/{study,flashcards,test,match}`, plus a global `/study` across every set
+  `/sets/:id/edit`, `/sets/:id/{study,flashcards,test,learn,match}`, plus a global `/study` across every set
 - [Zod](https://zod.dev) — every persisted or imported shape is validated at the storage/import boundary
 - [ts-fsrs](https://github.com/open-spaced-repetition/ts-fsrs) — the FSRS scheduling engine
 - [Vitest](https://vitest.dev) + Testing Library for tests

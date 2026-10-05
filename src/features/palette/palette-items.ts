@@ -127,6 +127,13 @@ const setItems = (sets: readonly StudySet[], cards: readonly StudyCard[]): reado
         target: { kind: 'route', to: `${base}/study` },
       },
       {
+        id: `learn-${set.id}`,
+        group: 'Your sets',
+        label: `Learn ${name}`,
+        keywords: ['rounds', 'adaptive', 'multiple choice', 'typed', 'mastery', ...set.tags],
+        target: { kind: 'route', to: `${base}/learn` },
+      },
+      {
         id: `flashcards-${set.id}`,
         group: 'Your sets',
         label: `Flashcards ${name}`,

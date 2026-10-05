@@ -2,12 +2,12 @@ import { useCallback, useEffect, useRef, useState } from 'react'
 import { Legible } from '../../components/Legible'
 import { useSeshatStore } from '../../lib/store'
 import { TESTIDS } from '../../lib/testids'
-import { NAV_OPTION_ATTRIBUTE, useOptionNavigation } from '../../lib/useOptionNavigation'
 import type { ConfidenceRating, Grade, StudyCard } from '../../types'
 import { CardInput } from './CardInput'
+import { ConfidencePrompt } from './ConfidencePrompt'
 import { type Attempt, type StudyStep, initialAttempt, isAttemptComplete, isCorrect, stepAfterAnswer } from './grading'
 import { RevealPanel } from './RevealPanel'
-import { CONFIDENCE_OPTIONS, useStudyShortcuts } from './useStudyShortcuts'
+import { useStudyShortcuts } from './useStudyShortcuts'
 import './review-session.css'
 
 interface ReviewSessionProps {
@@ -41,9 +41,6 @@ export const ReviewSession = ({ card, position, total, onAdvance }: ReviewSessio
   // an untouched prompt from one the learner explicitly left blank.
   const [selfExplanation, setSelfExplanation] = useState<string | null>(null)
   const promptShownAt = useRef(performance.now())
-  // Highlighted confidence option for arrow-style navigation (see useOptionNavigation).
-  const [confidenceIndex, setConfidenceIndex] = useState(0)
-  const confidenceRef = useRef<HTMLDivElement>(null)
 
   // Reset all per-card state whenever a new card is shown.
   useEffect(() => {
@@ -60,9 +57,7 @@ export const ReviewSession = ({ card, position, total, onAdvance }: ReviewSessio
   const handleAnswerContinue = useCallback(() => {
     if (!complete) return
     const next = stepAfterAnswer(confidencePromptEnabled)
-    if (next === 'confidence') {
-      setConfidenceIndex(0)
-    } else {
+    if (next !== 'confidence') {
       // No confidence step: nothing is recorded for it, and correctness is computed now.
       setConfidence(null)
       setCorrect(isCorrect(card.content, attempt))
@@ -89,23 +84,6 @@ export const ReviewSession = ({ card, position, total, onAdvance }: ReviewSessio
     },
     [card.id, confidence, correct, onAdvance, recordReview, selfExplanation],
   )
-
-  const confirmConfidence = useCallback(
-    (index: number) => {
-      const option = CONFIDENCE_OPTIONS[index]
-      if (option !== undefined) handleConfidence(option.value)
-    },
-    [handleConfidence],
-  )
-  useOptionNavigation({
-    count: CONFIDENCE_OPTIONS.length,
-    index: confidenceIndex,
-    onIndexChange: setConfidenceIndex,
-    onConfirm: confirmConfidence,
-    orientation: 'horizontal',
-    enabled: step === 'confidence',
-    containerRef: confidenceRef,
-  })
 
   useStudyShortcuts({
     step,
@@ -149,24 +127,7 @@ export const ReviewSession = ({ card, position, total, onAdvance }: ReviewSessio
           <Legible className="illuminated-panel">
             <CardInput card={card} attempt={attempt} onChange={setAttempt} disabled />
           </Legible>
-          <fieldset className="review-confidence">
-            <legend>How confident are you in that answer?</legend>
-            <div ref={confidenceRef} className="confidence-options">
-              {CONFIDENCE_OPTIONS.map((option, index) => (
-                <button
-                  key={option.value}
-                  type="button"
-                  autoFocus={index === 0}
-                  data-testid={option.testId}
-                  onClick={() => handleConfidence(option.value)}
-                  onFocus={() => setConfidenceIndex(index)}
-                  {...{ [NAV_OPTION_ATTRIBUTE]: '' }}
-                >
-                  {option.label}
-                </button>
-              ))}
-            </div>
-          </fieldset>
+          <ConfidencePrompt onSelect={handleConfidence} />
         </div>
       )}
 

@@ -22,6 +22,7 @@ export type KeybindingScope =
   | 'studyAnswer'
   | 'studyConfidence'
   | 'studyReveal'
+  | 'learn'
   | 'match'
   | 'test'
   | 'setDetail'
@@ -38,6 +39,7 @@ export const KEYBINDING_SCOPE_LABELS: Record<KeybindingScope, string> = {
   studyAnswer: 'Study — answering (multiple choice)',
   studyConfidence: 'Study — confidence step',
   studyReveal: 'Study — grading step',
+  learn: 'Learn — answering (multiple choice)',
   match: 'Match',
   test: 'Test',
   setDetail: 'Set page — mode picker',
@@ -109,6 +111,11 @@ export const KEYBINDING_REGISTRY: readonly KeybindingAction[] = [
   { id: 'studyReveal.good', defaultKey: '3', label: 'Grade: Good', scope: 'studyReveal' },
   { id: 'studyReveal.easy', defaultKey: '4', label: 'Grade: Easy', scope: 'studyReveal' },
 
+  // Learn (features/learn/LearnSession.tsx) — pick a multiple-choice option, or admit you don't know.
+  // Typed questions are plain text fields, so these only act on the multiple-choice stage.
+  ...numberedActions('learn.option', 'learn', 4, 'Select option'),
+  { id: 'learn.dontKnow', defaultKey: '5', label: "Learn: I don't know", scope: 'learn' },
+
   // Match (features/match/MatchSession.tsx) — direct tile select by grid
   // position. Only covers the first 9 tiles (a plain digit key can't address
   // a 16-tile round) — larger rounds fall back to click/tap past tile 9; see
@@ -125,7 +132,8 @@ export const KEYBINDING_REGISTRY: readonly KeybindingAction[] = [
   { id: 'setDetail.mode1', defaultKey: '1', label: 'Jump to mode 1 (Study)', scope: 'setDetail' },
   { id: 'setDetail.mode2', defaultKey: '2', label: 'Jump to mode 2 (Flashcards)', scope: 'setDetail' },
   { id: 'setDetail.mode3', defaultKey: '3', label: 'Jump to mode 3 (Test)', scope: 'setDetail' },
-  { id: 'setDetail.mode4', defaultKey: '4', label: 'Jump to mode 4 (Games)', scope: 'setDetail' },
+  { id: 'setDetail.mode4', defaultKey: '4', label: 'Jump to mode 4 (Learn)', scope: 'setDetail' },
+  { id: 'setDetail.mode5', defaultKey: '5', label: 'Jump to mode 5 (Games)', scope: 'setDetail' },
 
   // Games list page (pages/Games.tsx `GamesListPage`) — jump to a game.
   ...numberedActions('games.select', 'games', 5, 'Jump to game'),
