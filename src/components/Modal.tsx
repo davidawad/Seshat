@@ -1,5 +1,5 @@
 import { useEffect, useRef } from 'react'
-import type { ReactNode } from 'react'
+import type { ReactNode, RefObject } from 'react'
 import { TESTIDS } from '../lib/testids'
 
 export interface ModalProps {
@@ -12,6 +12,8 @@ export interface ModalProps {
   readonly testId?: string
   /** Stable `data-testid` for the dialog's close button; unique per dialog so selectors never match all of them. */
   readonly closeTestId?: string
+  /** Element to focus on open instead of the browser default (the first focusable, i.e. the close button). */
+  readonly initialFocusRef?: RefObject<HTMLElement | null>
 }
 
 /**
@@ -19,15 +21,27 @@ export interface ModalProps {
  * free focus trapping, Escape-to-close, and a `::backdrop` (styled in
  * index.css), no dialog library needed.
  */
-export const Modal = ({ open, onClose, titleId, title, children, testId, closeTestId }: ModalProps) => {
+export const Modal = ({
+  open,
+  onClose,
+  titleId,
+  title,
+  children,
+  testId,
+  closeTestId,
+  initialFocusRef,
+}: ModalProps) => {
   const dialogRef = useRef<HTMLDialogElement>(null)
 
   useEffect(() => {
     const dialog = dialogRef.current
     if (dialog === null) return
-    if (open && !dialog.open) dialog.showModal()
+    if (open && !dialog.open) {
+      dialog.showModal()
+      initialFocusRef?.current?.focus()
+    }
     if (!open && dialog.open) dialog.close()
-  }, [open])
+  }, [open, initialFocusRef])
 
   return (
     <dialog

@@ -1,4 +1,5 @@
 import { useId, useState } from 'react'
+import { ConfirmDialog } from '../../components/ConfirmDialog'
 import { DeleteIcon } from '../../components/icons'
 import { Legible } from '../../components/Legible'
 import { useSeshatStore } from '../../lib/store'
@@ -37,19 +38,28 @@ interface CardListItemProps {
 export const CardListItem = ({ card }: CardListItemProps) => {
   const { updateCard, deleteCard } = useSeshatStore()
   const [isEditing, setIsEditing] = useState(false)
+  const [confirmingDelete, setConfirmingDelete] = useState(false)
   const [term, setTerm] = useState(card.prompt)
   const [definition, setDefinition] = useState(card.content.kind === 'short-answer' ? card.content.answer : '')
   const termId = useId()
   const definitionId = useId()
+  const confirmTitleId = useId()
   const summary = contentSummary(card)
 
-  const handleDelete = () => {
-    const confirmed = window.confirm(
-      `Delete this card? This removes its review history too and cannot be undone.\n\nPrompt: ${card.prompt}`,
-    )
-    if (!confirmed) return
-    deleteCard(card.id)
-  }
+  const handleDelete = () => setConfirmingDelete(true)
+  // Mounted only while asking, so a long card list does not carry one hidden dialog per row.
+  const confirmDialog = confirmingDelete ? (
+    <ConfirmDialog
+      open
+      titleId={confirmTitleId}
+      title="Delete this card?"
+      message="This removes its review history too and cannot be undone."
+      detail={card.prompt}
+      confirmLabel="Delete card"
+      onConfirm={() => deleteCard(card.id)}
+      onCancel={() => setConfirmingDelete(false)}
+    />
+  ) : null
 
   if (isEditing) {
     return (
@@ -127,6 +137,7 @@ export const CardListItem = ({ card }: CardListItemProps) => {
             onChange={(answerImage) => updateCard(card.id, { content: { ...content, answerImage } })}
           />
         </div>
+        {confirmDialog}
       </li>
     )
   }
@@ -167,6 +178,7 @@ export const CardListItem = ({ card }: CardListItemProps) => {
       >
         Delete
       </button>
+      {confirmDialog}
     </li>
   )
 }

@@ -203,7 +203,10 @@ Layout / nav / footer:
 Modals:
   settings-modal, settings-modal-close, shortcuts-modal, shortcuts-modal-close, shortcuts-preset-group,
   modal-close (dialogs without their own),
-  flashcard-options-modal, flashcard-options-modal-close
+  flashcard-options-modal, flashcard-options-modal-close,
+  confirm-dialog (in-app confirmation for every destructive delete: deleting a card or a set),
+  confirm-dialog-accept (the destructive button), confirm-dialog-cancel (the safe button, focused on
+  open; Escape also cancels), confirm-dialog-close (the X)
 Sets browser (the one component behind both / "Your sets" and /sets "Sets"; identical apart from the h1):
   sets-browser, sets-browser-search, sets-browser-create (link to /sets/new),
   sets-browser-import (link to /sets/import), sets-browser-starter-load (a button inside the
