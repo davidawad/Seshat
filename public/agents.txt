@@ -224,6 +224,8 @@ Import a set (/sets/import):
 Set detail (/sets/:id):
   set-page, set-edit-link, set-export, set-mode-study, set-mode-flashcards, set-mode-test,
   set-mode-games, set-preview-flip, set-term-list
+  (set-mode-study is the primary "Start studying" link; set-mode-games sits inside a closed "More"
+  <details> and only exists while the Games setting is on)
 Set edit (/sets/:id/edit):
   edit-page, edit-name, edit-tags, edit-description, edit-goal-date, edit-card-list,
   edit-add-term,

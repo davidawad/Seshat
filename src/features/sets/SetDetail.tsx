@@ -17,8 +17,14 @@ import { toSimpleJson } from './simple-json'
 import { SetPreviewCard } from './SetPreviewCard'
 import { SetTermList } from './SetTermList'
 
-const CORE_MODES = [
-  { to: 'study', label: 'Study', hint: 'Recommended — recall-first, spaced by FSRS', testId: TESTIDS.setModeStudy },
+const START_MODE = {
+  to: 'study',
+  label: 'Start studying',
+  hint: 'Recall-first, spaced by FSRS',
+  testId: TESTIDS.setModeStudy,
+} as const
+
+const SECONDARY_MODES = [
   { to: 'flashcards', label: 'Flashcards', hint: 'Flip through the whole set', testId: TESTIDS.setModeFlashcards },
   { to: 'test', label: 'Test', hint: 'A generated practice test, scored at the end', testId: TESTIDS.setModeTest },
 ] as const
@@ -26,9 +32,12 @@ const CORE_MODES = [
 const GAMES_MODE = {
   to: 'games',
   label: 'Games',
-  hint: 'Experimental — Match, Blast, Blocks and the like',
+  hint: 'Experimental: Match, Blast, Blocks and the like',
   testId: TESTIDS.setModeGames,
 } as const
+
+/** The navigable modes in shortcut order: the primary one first, the secondary ones next. */
+const NAV_MODES = [START_MODE, ...SECONDARY_MODES] as const
 
 /** Resolves `setId` (already parsed, or `null` if the route param was invalid) to its set + cards. `undefined`/`[]` for a missing/invalid id, mirroring "not found" rather than throwing. */
 const resolveSetContext = (state: AppState, setId: SetId | null) => {
@@ -100,10 +109,9 @@ export const SetDetailPage = () => {
   const parsedId = setIdSchema.safeParse(id ?? '')
   const setId = parsedId.success ? parsedId.data : null
   const { set, cards } = resolveSetContext(state, setId)
-  const modes = useMemo(
-    () => (state.settings.experimentalGamesEnabled ? [...CORE_MODES, GAMES_MODE] : CORE_MODES),
-    [state.settings.experimentalGamesEnabled],
-  )
+  const showGames = state.settings.experimentalGamesEnabled
+  // Number keys reach every mode (Games last); arrow keys only walk the three links that are always visible.
+  const modes = useMemo(() => (showGames ? [...NAV_MODES, GAMES_MODE] : NAV_MODES), [showGames])
 
   // Jump straight to a mode by number (only once the set actually has cards
   // and mode buttons are on screen — see the `cards.length === 0` branch
@@ -121,11 +129,11 @@ export const SetDetailPage = () => {
   const [highlight, setHighlight] = useState<number | null>(null)
   const modesRef = useRef<HTMLElement>(null)
   useOptionNavigation({
-    count: modes.length,
+    count: NAV_MODES.length,
     index: highlight,
     onIndexChange: setHighlight,
     onConfirm: (index) => {
-      const mode = modes[index]
+      const mode = NAV_MODES[index]
       if (setId !== null && mode !== undefined) navigate(`/sets/${setId}/${mode.to}`)
     },
     orientation: 'grid',
@@ -198,22 +206,43 @@ export const SetDetailPage = () => {
         <>
           <SetMasterySummary cards={cards} />
 
-          <nav ref={modesRef} aria-label="Study modes" className="mode-grid">
-            {modes.map((mode, index) => (
-              <Link
-                key={mode.to}
-                to={`/sets/${setId}/${mode.to}`}
-                className="mode-button"
-                data-testid={mode.testId}
-                onFocus={() => setHighlight(index)}
-                {...{ [NAV_OPTION_ATTRIBUTE]: '' }}
-              >
-                <span className="mode-button-label">{mode.label}</span>
-                <span className="mode-button-hint">{mode.hint}</span>
-              </Link>
-            ))}
+          <nav ref={modesRef} aria-label="Study modes" className="mode-nav">
+            <Link
+              to={`/sets/${setId}/${START_MODE.to}`}
+              className="primary-link mode-start"
+              data-testid={START_MODE.testId}
+              onFocus={() => setHighlight(0)}
+              {...{ [NAV_OPTION_ATTRIBUTE]: '' }}
+            >
+              {START_MODE.label}
+            </Link>
+            <p className="mode-start-hint">{START_MODE.hint}</p>
+            <div className="mode-secondary">
+              {SECONDARY_MODES.map((mode, index) => (
+                <Link
+                  key={mode.to}
+                  to={`/sets/${setId}/${mode.to}`}
+                  className="mode-button"
+                  data-testid={mode.testId}
+                  onFocus={() => setHighlight(index + 1)}
+                  {...{ [NAV_OPTION_ATTRIBUTE]: '' }}
+                >
+                  <span className="mode-button-label">{mode.label}</span>
+                  <span className="mode-button-hint">{mode.hint}</span>
+                </Link>
+              ))}
+            </div>
           </nav>
-          <OptionAnnouncer index={highlight} labels={modes.map((mode) => mode.label)} />
+          <OptionAnnouncer index={highlight} labels={NAV_MODES.map((mode) => mode.label)} />
+          {showGames && (
+            <details className="mode-more">
+              <summary>More</summary>
+              <Link to={`/sets/${setId}/${GAMES_MODE.to}`} className="mode-button" data-testid={GAMES_MODE.testId}>
+                <span className="mode-button-label">{GAMES_MODE.label}</span>
+                <span className="mode-button-hint">{GAMES_MODE.hint}</span>
+              </Link>
+            </details>
+          )}
 
           <SetPreviewCard cards={cards} />
 
