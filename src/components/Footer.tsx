@@ -9,7 +9,11 @@ interface FooterProps {
 /** The app-wide footer: a copyright notice on the left, reference/config links (About, Agents, Docs, Attributions, License) plus the Keyboard shortcuts and Settings buttons, styled as plain text links grouped on the right. */
 export const Footer = ({ onOpenSettings, onOpenShortcuts }: FooterProps) => (
   <footer className="app-footer">
-    <span className="app-footer-copyright">&copy; {new Date().getFullYear()} David Awad — free &amp; open source</span>
+    <span className="app-footer-copyright">
+      &copy; {new Date().getFullYear()} David Awad — free &amp; open source
+      {' · '}
+      <span data-testid={TESTIDS.footerVersion}>v{import.meta.env.VITE_APP_VERSION}</span>
+    </span>
     <nav aria-label="Footer" className="app-footer-actions">
       <Link to="/about" className="app-footer-link" data-testid={TESTIDS.footerAbout}>
         About
@@ -19,6 +23,9 @@ export const Footer = ({ onOpenSettings, onOpenShortcuts }: FooterProps) => (
       </a>
       <Link to="/docs" className="app-footer-link" data-testid={TESTIDS.footerDocs}>
         Docs
+      </Link>
+      <Link to="/releases" className="app-footer-link" data-testid={TESTIDS.footerReleases}>
+        Release notes
       </Link>
       <Link to="/attributions" className="app-footer-link" data-testid={TESTIDS.footerAttributions}>
         Attributions
