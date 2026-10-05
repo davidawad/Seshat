@@ -11,6 +11,7 @@ const AboutPage = lazyPage(() => import('./pages/About'), 'AboutPage')
 const AttributionsPage = lazyPage(() => import('./pages/Attributions'), 'AttributionsPage')
 const DocsPage = lazyPage(() => import('./pages/Docs'), 'DocsPage')
 const LicensePage = lazyPage(() => import('./pages/License'), 'LicensePage')
+const ReleaseNotesPage = lazyPage(() => import('./pages/ReleaseNotes'), 'ReleaseNotesPage')
 const StatsPage = lazyPage(() => import('./pages/Stats'), 'StatsPage')
 
 // Settings lives as a modal (opened from the footer, see components/Layout.tsx)
@@ -26,6 +27,7 @@ export const App = () => (
         <Route path="stats" element={<StatsPage />} />
         <Route path="about" element={<AboutPage />} />
         <Route path="docs" element={<DocsPage />} />
+        <Route path="releases" element={<ReleaseNotesPage />} />
         <Route path="attributions" element={<AttributionsPage />} />
         {/* Not "license" — collides with public/LICENSE on a case-insensitive
           filesystem (macOS/Windows), which serves the raw static file

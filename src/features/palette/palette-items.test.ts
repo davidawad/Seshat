@@ -52,6 +52,7 @@ describe('buildPaletteItems', () => {
       'Stats',
       'About',
       'Docs',
+      'Release notes',
       'Attributions',
       'License',
       'Open Settings',

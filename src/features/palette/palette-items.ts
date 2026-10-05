@@ -39,6 +39,7 @@ const PAGE_ITEMS: readonly PaletteItem[] = [
   route('page-stats', 'Stats', '/stats', ['statistics', 'progress', 'analytics', 'calibration', 'history']),
   route('page-about', 'About', '/about', ['info', 'author']),
   route('page-docs', 'Docs', '/docs', ['documentation', 'help', 'guide', 'manual']),
+  route('page-releases', 'Release notes', '/releases', ['changelog', 'changes', 'whats new', 'version', 'history']),
   route('page-attributions', 'Attributions', '/attributions', ['credits', 'sources', 'citations', 'research']),
   route('page-license', 'License', '/licensing', ['licence', 'legal', 'open source', 'terms']),
 ]

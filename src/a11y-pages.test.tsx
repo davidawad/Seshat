@@ -178,6 +178,7 @@ describe('accessibility tree: test mode, games and reference pages', () => {
     const pages: readonly (readonly [string, readonly string[]])[] = [
       ['/stats', [TESTIDS.statsPage, TESTIDS.statsSummary, TESTIDS.statsCalibrationEmpty]],
       ['/docs', [TESTIDS.docsPage]],
+      ['/releases', [TESTIDS.releasesPage, TESTIDS.releasesVersion]],
       ['/about', [TESTIDS.aboutPage]],
       ['/attributions', [TESTIDS.attributionsPage]],
       ['/licensing', [TESTIDS.licensePage]],

@@ -38,6 +38,12 @@ export const DocsPage = () => (
           to a page, a set, its Study, Learn or Flashcards view, or an action like Settings or Toggle theme.
         </li>
         <li>
+          <strong>Release notes:</strong> the <Link to="/releases">Release notes</Link> page lists every change by
+          release, generated from the commit history on each build; agents can fetch{' '}
+          <a href={`${import.meta.env.BASE_URL}releases.txt`}>releases.txt</a> or{' '}
+          <a href={`${import.meta.env.BASE_URL}CHANGELOG.md`}>CHANGELOG.md</a>.
+        </li>
+        <li>
           <strong>Schemas:</strong> <a href={`${import.meta.env.BASE_URL}schema/set-import.schema.json`}>set import</a>,{' '}
           <a href={`${import.meta.env.BASE_URL}schema/seshat-backup.schema.json`}>backup</a> and{' '}
           <a href={`${import.meta.env.BASE_URL}schema/seshat-settings.schema.json`}>settings</a> (JSON Schema).
