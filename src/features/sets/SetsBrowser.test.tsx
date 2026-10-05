@@ -1,10 +1,10 @@
-import { cleanup, render, screen, within } from '@testing-library/react'
+import { cleanup, render, screen, waitFor, within } from '@testing-library/react'
 import userEvent from '@testing-library/user-event'
 import { MemoryRouter } from 'react-router-dom'
 import { afterEach, beforeEach, describe, expect, it } from 'vitest'
 import { createInitialScheduling } from '../../lib/fsrs'
 import { clearMirrors } from '../../lib/persistence'
-import { saveState } from '../../lib/storage'
+import { STORAGE_KEY, saveState } from '../../lib/storage'
 import { SeshatProvider } from '../../lib/store'
 import { TESTIDS } from '../../lib/testids'
 import { type StudyCard, cardIdSchema, createEmptyAppState, setIdSchema } from '../../types'
@@ -107,12 +107,40 @@ const seedMany = () =>
   })
 
 describe('SetsBrowser contents', () => {
-  it('empty: starter loaders, Create and Import, but no toggle or search', () => {
+  it('empty: hero with promise, privacy line and the three CTAs; no toggle or search', () => {
     renderBrowser()
-    expect(screen.getAllByTestId(TESTIDS.setsBrowserStarterLoad).length).toBeGreaterThan(0)
+    expect(screen.getByTestId(TESTIDS.setsBrowserHero)).toHaveTextContent(/spaced repetition/i)
+    expect(screen.getByTestId(TESTIDS.setsBrowserPrivacy)).toHaveTextContent(/no account/i)
+    expect(screen.getByTestId(TESTIDS.setsBrowserHeroImport)).toHaveAttribute('href', '/sets/import')
+    expect(screen.getByTestId(TESTIDS.setsBrowserHeroCreate)).toHaveAttribute('href', '/sets/new')
+    expect(screen.getByTestId(TESTIDS.setsBrowserSampleLoad)).toHaveTextContent('Try a 10-card sample')
     expect(screen.getByRole('link', { name: 'Create' })).toHaveAttribute('href', '/sets/new')
     expect(screen.getByRole('link', { name: 'Import' })).toHaveAttribute('href', '/sets/import')
     expect(screen.queryByRole('searchbox', { name: 'Search sets' })).not.toBeInTheDocument()
+  })
+
+  it('empty: niche starter decks live under a closed "More examples" disclosure', () => {
+    renderBrowser()
+    const more = screen.getByTestId(TESTIDS.setsBrowserMoreExamples)
+    expect(more.tagName).toBe('DETAILS')
+    expect(more).not.toHaveAttribute('open')
+    expect(within(more).getByText('More examples')).toBeInTheDocument()
+    expect(within(more).getAllByTestId(TESTIDS.setsBrowserStarterLoad).length).toBeGreaterThan(0)
+    expect(within(more).queryByTestId(TESTIDS.setsBrowserSampleLoad)).not.toBeInTheDocument()
+  })
+
+  it('empty: the sample button adds the neutral 10-card deck and opens it', async () => {
+    const user = userEvent.setup()
+    renderBrowser()
+    await user.click(screen.getByTestId(TESTIDS.setsBrowserSampleLoad))
+    await waitFor(() => {
+      const stored = JSON.parse(window.localStorage.getItem(STORAGE_KEY) ?? '{}') as {
+        sets: { name: string }[]
+        cards: unknown[]
+      }
+      expect(stored.sets.map((set) => set.name)).toEqual(['Try Seshat: 10 general cards'])
+      expect(stored.cards).toHaveLength(10)
+    })
   })
 
   it('grid: each card links to the set, shows tags, counts, Study and Edit', () => {

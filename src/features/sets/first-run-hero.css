@@ -1,0 +1,63 @@
+.first-run {
+  max-width: 52rem;
+}
+
+.first-run-promise {
+  margin: 0;
+  font-family: var(--font-display);
+  font-size: 1.5rem;
+  line-height: 1.25;
+}
+
+.first-run-privacy {
+  margin: 0.5rem 0 0;
+  color: var(--color-fg-muted);
+}
+
+/* Same dashed-tile language as the "+ New set" tile; three across, stacked on a phone. */
+.first-run-actions {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(13rem, 1fr));
+  gap: 1rem;
+  margin: 1.5rem 0 1rem;
+}
+
+.first-run-cta {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 0.25rem;
+  min-height: 6.5rem;
+  padding: 1rem;
+  border: 2px dashed var(--color-border-strong);
+  border-radius: var(--radius-page);
+  background: transparent;
+  color: var(--color-fg);
+  font: inherit;
+  text-align: center;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+.first-run-cta:hover,
+.first-run-cta:focus-visible {
+  color: var(--color-accent);
+  border-color: var(--color-accent);
+  background: color-mix(in srgb, var(--color-accent) 8%, transparent);
+}
+
+.first-run-cta-title {
+  font-family: var(--font-ui);
+  font-weight: 600;
+}
+
+.first-run-cta-hint {
+  color: var(--color-fg-muted);
+  font-size: 0.85rem;
+}
+
+.first-run-more summary {
+  cursor: pointer;
+  color: var(--color-fg-muted);
+}
