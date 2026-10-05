@@ -17,6 +17,9 @@ export const CARD_SIZE_LABELS: Readonly<Record<CardSize, string>> = {
   small: 'Small',
   medium: 'Medium',
   large: 'Large',
+  xlarge: 'Extra large',
+  xxlarge: 'Extra extra large',
+  quizlet: 'Quizlet',
 }
 
 export const resolveOptions = (settings: {

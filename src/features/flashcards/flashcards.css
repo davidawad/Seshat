@@ -51,12 +51,16 @@
    stays centered under the card regardless of the tools' width. */
 .flashcard-controls {
   display: grid;
-  grid-template-columns: 1fr;
-  justify-items: center;
+  /* Grade cluster centered; the tools sit in the bottom-right corner on the same row. */
+  grid-template-columns: 1fr auto 1fr;
   align-items: center;
   gap: 1rem;
   width: 100%;
   max-width: var(--card-max-width);
+}
+
+.flashcard-controls .flashcard-grade-cluster {
+  grid-column: 2;
 }
 
 .flashcard-grade-cluster {
@@ -105,7 +109,8 @@
 
 .flashcard-tools {
   display: flex;
-  justify-content: center;
+  grid-column: 3;
+  justify-content: flex-end;
   gap: 0.5rem;
 }
 
@@ -124,6 +129,12 @@
   .flashcard-controls {
     grid-template-columns: 1fr;
     justify-items: center;
+  }
+
+  .flashcard-controls .flashcard-grade-cluster,
+  .flashcard-tools {
+    grid-column: auto;
+    justify-content: center;
   }
 
   .flashcard-controls::before {
