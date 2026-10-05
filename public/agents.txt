@@ -139,11 +139,12 @@ Study/Flashcards for a set, or an action (Settings, Keyboard shortcuts, Toggle t
 Footer -> "Keyboard shortcuts" opens a modal listing every shortcut with its current binding.
 Settings -> Keyboard shortcuts remaps actions; ? opens Settings anywhere. Bindings are canonical
 strings: "1", "Space", "ArrowRight", "Ctrl+Enter", letters uppercase ("O"); Ctrl and Meta match
-interchangeably. Shortcuts are scoped (global, navigation, flashcards, study steps, match, test, set
+interchangeably. Shortcuts are scoped (global, navigation, flashcards, study steps, learn, match, test, set
 page, games); two actions may share a key only in different scopes.
   Navigation preset (four actions nav.left/right/up/down, set together): Arrow keys (default), WASD,
   HJKL. Left/right = still learning / know it on flashcards; up/down = move through an option list.
-  Number keys: set page 1-4 jumps to a study mode, games list 1-5, multiple-choice options 1-4,
+  Number keys: set page 1-5 jumps to a mode (1 Study, 2 Flashcards, 3 Test, 4 Learn, 5 Games), games list 1-5,
+  multiple-choice options 1-4 (Learn: 1-4 pick an option, 5 = I don't know),
   match tiles 1-9, study confidence 1-3 (guessed/unsure/sure; only when the confidence prompt setting is on), study
   grade 1-4 (again/hard/good/easy; only when the self-rating setting is on, else Continue).
   Flashcards: Space flips, 1 or Left = still learning, 2 or Right = know it, U undoes the last
@@ -179,8 +180,8 @@ HOW TO DRIVE THE UI (browser-driving agents)
 - Prefer ?import= above over clicking through the importer; it is one navigation.
 - The /sets/import file box accepts .csv, .tsv and .txt (one term and definition per line, split by a
   tab or a comma; Quizlet's text export) as well as .json. The set name is pre-filled from the file name.
-- Routes: / (home), /sets, /sets/new (create editor), /sets/import (import page), /sets/:id, /docs, /attributions, /licensing. Study modes are launched
-  from a set's page.
+- Routes: / (home), /sets, /sets/new (create editor), /sets/import (import page), /sets/:id, /docs, /attributions, /licensing. Study modes (study, flashcards,
+  test, learn, games) are launched from a set's page at /sets/:id/<mode>.
 - Interactive elements use native buttons, links and form controls with accessible names, so
   role + label locators (e.g. getByRole('button', { name: ... })) are stable. Prefer those over CSS
   classes, which are not a stable interface.
@@ -225,7 +226,7 @@ Import a set (/sets/import):
   import-paste-text, import-preview, import-error, import-paste-submit, import-quizlet-guide,
   import-advanced (disclosure holding the JSON / agent notes)
 Set detail (/sets/:id):
-  set-page, set-edit-link, set-export, set-mode-study, set-mode-flashcards, set-mode-test,
+  set-page, set-edit-link, set-export, set-mode-study, set-mode-flashcards, set-mode-test, set-mode-learn,
   set-mode-games, set-preview-flip, set-term-list
   (set-mode-study is the primary "Start studying" link; set-mode-games sits inside a closed "More"
   <details> and only exists while the Games setting is on)
@@ -249,6 +250,11 @@ Card tip (the "Press [key] ..." footer inside BOTH faces of a flip card, on the 
 Test (/sets/:id/test):
   test-page, test-form, test-question, test-answer-input, test-submit, test-score,
   test-retry-missed, test-image-note, test-no-text-cards
+Learn (/sets/:id/learn; rounds of ~6 cards, multiple choice then typed; the reveal reuses study-result,
+  study-continue, study-confidence-* and study-grade-* when those settings are on):
+  learn-page, learn-progress, learn-stage, learn-prompt, learn-options, learn-option, learn-answer-input,
+  learn-check, learn-dont-know, learn-round-summary, learn-next-round, learn-finish (End session / Finish
+  session), learn-summary, learn-restart, learn-research, learn-empty, learn-no-text-cards
 Games (/sets/:id/games, needs the Games setting on):
   games-page, games-image-note, games-open-match, games-open-blast, games-open-blocks, game-page, match-tile,
   match-feedback, match-play-again, blast-option, blast-feedback, blast-play-again, blocks-option,

@@ -27,6 +27,12 @@ const START_MODE = {
 const SECONDARY_MODES = [
   { to: 'flashcards', label: 'Flashcards', hint: 'Flip through the whole set', testId: TESTIDS.setModeFlashcards },
   { to: 'test', label: 'Test', hint: 'A generated practice test, scored at the end', testId: TESTIDS.setModeTest },
+  {
+    to: 'learn',
+    label: 'Learn',
+    hint: 'Short rounds: multiple choice, then typing',
+    testId: TESTIDS.setModeLearn,
+  },
 ] as const
 
 const GAMES_MODE = {
