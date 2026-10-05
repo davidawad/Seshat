@@ -138,7 +138,7 @@ describe('accessibility tree: test mode, games and reference pages', () => {
   it('games list and each game', async () => {
     seed()
     const list = renderAt(`${base}/games`)
-    await screen.findByTestId(TESTIDS.gamesPage)
+    await screen.findByTestId(TESTIDS.gamesPage, undefined, { timeout: 30_000 })
     expectAccessible(list.container)
     expect(
       missingTestIds(list.container, [

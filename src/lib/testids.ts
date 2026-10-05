@@ -35,7 +35,6 @@ export const TESTIDS = {
   footerLicense: 'footer-license',
   shortcutsOpen: 'shortcuts-open',
   settingsOpen: 'settings-open',
-  paletteOpen: 'palette-open',
 
   // Command palette (features/palette)
   palette: 'palette',

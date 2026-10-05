@@ -51,17 +51,12 @@ describe('ShortcutsModal navigation presets', () => {
   })
 })
 
-describe('Footer shortcuts button', () => {
+describe('Footer keyboard shortcuts link', () => {
   it('calls onOpenShortcuts when the Keyboard shortcuts button is clicked', () => {
     const onOpenShortcuts = vi.fn()
     render(
       <MemoryRouter>
-        <Footer
-          onOpenSettings={() => undefined}
-          onOpenShortcuts={onOpenShortcuts}
-          onOpenPalette={() => undefined}
-          paletteKeyHint="Ctrl+K"
-        />
+        <Footer onOpenSettings={() => undefined} onOpenShortcuts={onOpenShortcuts} />
       </MemoryRouter>,
     )
     screen.getByRole('button', { name: 'Keyboard shortcuts' }).click()
