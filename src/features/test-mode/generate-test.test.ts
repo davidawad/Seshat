@@ -1,6 +1,6 @@
 import { describe, expect, it } from 'vitest'
 import type { CardId, SetId, ShortAnswerContent, StudyCard } from '../../types'
-import { MAX_TEST_QUESTIONS, type TestQuestion, generateTest, shuffle } from './generate-test'
+import { MAX_TEST_QUESTIONS, type TestQuestion, buildMultipleChoice, generateTest, shuffle } from './generate-test'
 
 // Branded IDs are just strings at runtime (the brand is a compile-time-only
 // phantom field), and generateTest never parses them through the zod schema
@@ -241,5 +241,24 @@ describe('generateTest', () => {
       front: 'Term 0',
       correctAnswer: 'Definition 0',
     })
+  })
+})
+
+describe('buildMultipleChoice', () => {
+  it("offers the card's own answer plus distractors from the other cards, never duplicated", () => {
+    const cards = makeCards(6)
+    const target = cards[2]!
+    const question = buildMultipleChoice(target, cards)
+    expect(question.cardId).toBe(target.id)
+    expect(question.front).toBe('Term 2')
+    expect(question.correctOption).toBe('Definition 2')
+    expect(question.options).toHaveLength(4)
+    expect(new Set(question.options).size).toBe(4)
+    expect(question.options).toContain('Definition 2')
+  })
+
+  it('yields fewer options when the set has fewer distinct answers', () => {
+    const cards = makeCards(2)
+    expect(buildMultipleChoice(cards[0]!, cards).options).toHaveLength(2)
   })
 })
