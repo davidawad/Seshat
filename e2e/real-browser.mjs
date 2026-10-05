@@ -42,6 +42,7 @@ const server = spawn(
 const waitForServer = async () => {
   for (let i = 0; i < 60; i += 1) {
     try {
+      // nosemgrep: react-insecure-request -- local preview server readiness probe
       if ((await fetch(`${BASE}/`)).ok) return
     } catch {
       // not up yet
