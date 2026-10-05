@@ -6,6 +6,9 @@ stages:
 
 variables:
   PNPM_HOME: .pnpm-home
+  # Release notes are generated from the commit history and its v*.*.* tags at build
+  # time, so jobs need a full clone, not GitLab's default shallow one.
+  GIT_DEPTH: '0'
 
 cache:
   key:
@@ -15,6 +18,10 @@ cache:
     - .pnpm-store
 
 before_script:
+  # Belt and braces for runners that still hand out a shallow clone or no tags. A failure
+  # here is not fatal: the release notes page then says its history is incomplete.
+  - git fetch --tags --force || true
+  - if [ "$(git rev-parse --is-shallow-repository)" = "true" ]; then git fetch --unshallow --tags || true; fi
   - corepack enable
   - pnpm config set store-dir .pnpm-store
   - pnpm install --frozen-lockfile

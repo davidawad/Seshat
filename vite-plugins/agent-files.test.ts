@@ -330,3 +330,14 @@ describe('labeled diagram fields (backward compatible)', () => {
     expect(buildSettingsSchema()).toMatchObject({ properties: { diagramHideAllLabels: { default: false } } })
   })
 })
+
+describe('release notes listings', () => {
+  it('lists releases.txt and CHANGELOG.md in llms.txt and agents.txt', () => {
+    const llms = buildLlmsTxt('/seshat/')
+    expect(llms).toContain('](/seshat/releases.txt)')
+    expect(llms).toContain('](/seshat/CHANGELOG.md)')
+    const agents = readFileSync(resolve(process.cwd(), 'public/agents.txt'), 'utf8')
+    expect(agents).toContain('releases-page')
+    expect(agents).toContain('releases.txt')
+  })
+})
