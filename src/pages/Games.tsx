@@ -1,5 +1,6 @@
 import { useRef, useState } from 'react'
 import { Link, useNavigate, useParams } from 'react-router-dom'
+import { GamePreview } from '../features/games/GamePreview'
 import { GAMES } from '../features/games/registry'
 import { imageCardCount, imageCardsNote, textCards } from '../features/study/text-cards'
 import { useSeshatStore } from '../lib/store'
@@ -108,6 +109,7 @@ export const GamesListPage = () => {
             >
               <span className="mode-button-label">{game.label}</span>
               <span className="mode-button-hint">{game.description}</span>
+              <GamePreview gameId={game.id} />
             </Link>
           ) : (
             <div

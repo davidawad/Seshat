@@ -135,9 +135,10 @@ describe('accessibility tree: test mode, games and reference pages', () => {
     expect(missingTestIds(container, [TESTIDS.testScore])).toEqual([])
   })
 
-  it('games list and each game', () => {
+  it('games list and each game', async () => {
     seed()
     const list = renderAt(`${base}/games`)
+    await screen.findByTestId(TESTIDS.gamesPage)
     expectAccessible(list.container)
     expect(
       missingTestIds(list.container, [
@@ -147,19 +148,25 @@ describe('accessibility tree: test mode, games and reference pages', () => {
         TESTIDS.gamesOpenBlocks,
       ]),
     ).toEqual([])
+    expect(list.container.querySelectorAll(`[data-testid="${TESTIDS.gamesPreview}"][aria-hidden="true"]`)).toHaveLength(
+      3,
+    )
     list.unmount()
 
     const match = renderAt(`${base}/games/match`)
+    await screen.findByTestId(TESTIDS.gamePage)
     expectAccessible(match.container)
     expect(missingTestIds(match.container, [TESTIDS.gamePage, TESTIDS.matchTile, TESTIDS.matchFeedback])).toEqual([])
     match.unmount()
 
     const blast = renderAt(`${base}/games/blast`)
+    await screen.findByTestId(TESTIDS.gamePage)
     expectAccessible(blast.container)
     expect(missingTestIds(blast.container, [TESTIDS.blastOption, TESTIDS.blastFeedback])).toEqual([])
     blast.unmount()
 
     const blocks = renderAt(`${base}/games/blocks`)
+    await screen.findByTestId(TESTIDS.gamePage)
     expectAccessible(blocks.container)
     expect(missingTestIds(blocks.container, [TESTIDS.blocksOption, TESTIDS.blocksFeedback])).toEqual([])
   })
