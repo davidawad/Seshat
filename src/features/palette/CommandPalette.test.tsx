@@ -61,16 +61,6 @@ describe('command palette', () => {
     expect(screen.getByTestId(TESTIDS.paletteInput)).toHaveFocus()
   })
 
-  it('opens from the footer button, which shows the key hint', async () => {
-    const user = userEvent.setup()
-    renderAt('/')
-    const button = screen.getByTestId(TESTIDS.paletteOpen)
-    expect(button).toHaveTextContent('Search / jump to…')
-    expect(button).toHaveTextContent(/K$/)
-    await user.click(button)
-    expect(await screen.findByRole('dialog', { name: 'Command menu' })).toHaveAttribute('open')
-  })
-
   it('closes when the dialog closes (Escape)', async () => {
     const user = userEvent.setup()
     renderAt('/')

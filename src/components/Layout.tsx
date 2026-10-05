@@ -1,11 +1,10 @@
 import { lazy, Suspense, useEffect, useId, useRef, useState } from 'react'
 import { Link, NavLink, Outlet, useLocation } from 'react-router-dom'
 import { ImportFromUrl } from '../features/sets/ImportFromUrl'
-import { isMacPlatform, paletteKeyHint } from '../features/palette/palette-items'
 import { SettingsForm } from '../features/settings/SettingsForm'
 import { useApplyCardSize } from '../features/flashcards/useCardSize'
 import { useApplyTheme } from '../features/settings/theme'
-import { formatKeyLabel, matchesBinding } from '../lib/keybindings'
+import { matchesBinding } from '../lib/keybindings'
 import { useRouteFocus } from '../lib/routeFocus'
 import { TESTIDS } from '../lib/testids'
 import { useKeybindings } from '../lib/useKeybindings'
@@ -92,11 +91,6 @@ export const Layout = () => {
     return () => window.removeEventListener('keydown', handler)
   }, [keyFor])
 
-  const openPalette = () => {
-    setPaletteWanted(true)
-    setPaletteOpen(true)
-  }
-
   return (
     <div className="app-shell">
       <a className="skip-link" href="#main-content">
@@ -124,12 +118,7 @@ export const Layout = () => {
       <main id="main-content" ref={mainRef} className="app-main" data-testid={TESTIDS.layoutMain}>
         <Outlet />
       </main>
-      <Footer
-        onOpenSettings={() => setSettingsOpen(true)}
-        onOpenShortcuts={() => setShortcutsOpen(true)}
-        onOpenPalette={openPalette}
-        paletteKeyHint={paletteKeyHint(formatKeyLabel(keyFor('global.openPalette')), isMacPlatform())}
-      />
+      <Footer onOpenSettings={() => setSettingsOpen(true)} onOpenShortcuts={() => setShortcutsOpen(true)} />
       {/* Before the Settings/Shortcuts modals: when a palette action opens one, the
           palette must close (and restore focus) first. */}
       {paletteWanted && (

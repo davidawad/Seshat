@@ -56,12 +56,7 @@ describe('Footer shortcuts button', () => {
     const onOpenShortcuts = vi.fn()
     render(
       <MemoryRouter>
-        <Footer
-          onOpenSettings={() => undefined}
-          onOpenShortcuts={onOpenShortcuts}
-          onOpenPalette={() => undefined}
-          paletteKeyHint="Ctrl+K"
-        />
+        <Footer onOpenSettings={() => undefined} onOpenShortcuts={onOpenShortcuts} />
       </MemoryRouter>,
     )
     screen.getByRole('button', { name: 'Keyboard shortcuts' }).click()

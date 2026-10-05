@@ -135,8 +135,7 @@ There is no server; the cookies are only read by the page itself.
 KEYBOARD MODEL
 --------------
 Cmd/Ctrl+K (works from anywhere, even inside text fields) opens a command menu: type to jump to a page, a set,
-Study/Flashcards for a set, or an action (Settings, Keyboard shortcuts, Toggle theme, Export a backup); the footer
-"Search / jump to" button does the same. Arrow keys + Enter pick, Esc closes.
+Study/Flashcards for a set, or an action (Settings, Keyboard shortcuts, Toggle theme, Export a backup). Arrow keys + Enter pick, Esc closes.
 Footer -> "Keyboard shortcuts" opens a modal listing every shortcut with its current binding.
 Settings -> Keyboard shortcuts remaps actions; ? opens Settings anywhere. Bindings are canonical
 strings: "1", "Space", "ArrowRight", "Ctrl+Enter", letters uppercase ("O"); Ctrl and Meta match
@@ -198,8 +197,7 @@ STABLE SELECTORS (data-testid)
 Layout / nav / footer:
   layout-main, layout-save-error (alert shown when the last save failed), layout-save-error-settings,
   nav-home, nav-sets, nav-stats, footer-about, footer-agents, footer-docs,
-  footer-attributions, footer-license, shortcuts-open, settings-open,
-  palette-open
+  footer-attributions, footer-license, shortcuts-open, settings-open
 Modals:
   settings-modal, settings-modal-close, shortcuts-modal, shortcuts-modal-close, shortcuts-preset-group,
   modal-close (dialogs without their own),
@@ -246,8 +244,8 @@ Games (/sets/:id/games, needs the Games setting on):
 Stats and reference pages:
   stats-page, stats-summary, stats-calibration-table, stats-calibration-empty, docs-page, about-page, attributions-page,
   license-page
-Command menu (Cmd/Ctrl+K, or the footer "Search / jump to" button):
-  palette-open, palette, palette-input, palette-list, palette-item, palette-empty, palette-status
+Command menu (Cmd/Ctrl+K):
+  palette, palette-input, palette-list, palette-item, palette-empty, palette-status
 Settings (inside the Settings modal):
   theme-field, palette-field, palette-reset, accent-color, accent-hex, accent-status,
   backup-download, backup-mode-merge, backup-mode-replace, backup-file, backup-confirm,
