@@ -60,6 +60,12 @@
       "rules": { "eslint/max-lines-per-function": "off" }
     },
     {
+      // Browser-driving property-test harness (just bombadil): branchy by nature (DOM probing and
+      // scripted flows that tolerate any page state), not product code.
+      "files": ["e2e/bombadil/lib/*.ts"],
+      "rules": { "eslint/complexity": "off", "eslint/max-lines-per-function": "off" }
+    },
+    {
       "files": ["src/lib/fsrs.ts"],
       "rules": { "eslint/max-params": "off" }
     },

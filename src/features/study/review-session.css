@@ -87,6 +87,11 @@
 
 .study-mcq-option {
   text-align: center;
+  /* An answer that is one long unbroken string (a pasted URL) wraps inside its button instead of
+     widening the page (found by Bombadil in Learn at 390px: +638px). */
+  min-width: 0;
+  max-width: 100%;
+  overflow-wrap: anywhere;
 }
 
 .study-mcq-option.is-selected {

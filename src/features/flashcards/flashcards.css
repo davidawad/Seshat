@@ -7,6 +7,11 @@
   gap: 2rem;
   min-width: 0;
   max-width: 100%;
+  /* A graded card slides 140px off to its side (grade-motion.ts); on a phone that widened the
+     page by up to 140px for the length of the animation (found by Bombadil). Clip it here; the
+     margin keeps the card's focus ring and grade glow from being cut at rest. */
+  overflow-x: clip;
+  overflow-clip-margin: 0.5rem;
 }
 
 /* The card and its hint strip read as one unit: the card's bottom corners

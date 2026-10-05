@@ -11,6 +11,32 @@ describe('phone-width overflow guards', () => {
     expect(/\.app-main a \{([^}]*)\}/.exec(css)?.[1] ?? '').toMatch(/overflow-wrap:\s*anywhere\s*;/)
   })
 
+  it('breaks long typed text echoed in paragraphs (sets search "No sets match ...")', () => {
+    expect(/\.app-main p \{([^}]*)\}/.exec(css)?.[1] ?? '').toMatch(/overflow-wrap:\s*break-word\s*;/)
+  })
+
+  it('breaks long set names in page headings', () => {
+    expect(/\.app-main :is\(h1, h2, h3, h4\) \{([^}]*)\}/.exec(css)?.[1] ?? '').toMatch(/overflow-wrap:\s*anywhere\s*;/)
+  })
+  it('wraps long tags inside their pill', () => {
+    const rules = /\.tag-chips li \{([^}]*)\}/.exec(css)?.[1] ?? ''
+    expect(rules).toMatch(/overflow-wrap:\s*anywhere\s*;/)
+    expect(rules).toMatch(/max-width:\s*100%\s*;/)
+  })
+
+  it('wraps long answers inside Study/Learn multiple-choice buttons', () => {
+    const rules =
+      /\.study-mcq-option \{([^}]*)\}/.exec(readFileSync('src/features/study/review-session.css', 'utf8'))?.[1] ?? ''
+    expect(rules).toMatch(/overflow-wrap:\s*anywhere\s*;/)
+    expect(rules).toMatch(/max-width:\s*100%\s*;/)
+  })
+
+  it('lets the set page title column shrink so a long description wraps beside the action buttons', () => {
+    const setsCss = readFileSync('src/features/sets/sets.css', 'utf8')
+    const rules = /\.set-detail-header > :first-child \{([^}]*)\}/.exec(setsCss)?.[1] ?? ''
+    expect(rules).toMatch(/min-width:\s*0\s*;/)
+  })
+
   // Flashcards page (seshat-r5a): at 390px a long unbroken term, an image, or a 52-64rem card size
   // widened the page by up to 115px. These pin the CSS that prevents it (measured in a real browser).
   const block = (source: string, selector: string): string => {
@@ -36,6 +62,12 @@ describe('phone-width overflow guards', () => {
       expect(rules).toMatch(/min-width:\s*0\s*;/)
     },
   )
+
+  it('clips the graded card sliding off the side so the page never scrolls sideways mid-animation', () => {
+    const rules = block(flashCss, '.flashcard-session')
+    expect(rules).toMatch(/overflow-x:\s*clip\s*;/)
+    expect(rules).toMatch(/overflow-clip-margin:/)
+  })
 
   it('lets the phone control row and tip wrap', () => {
     expect(flashCss).toMatch(/max-width:\s*30rem\)[^@]*\.flashcard-grade-cluster \{[^}]*flex-wrap:\s*wrap/)
