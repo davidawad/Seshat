@@ -51,7 +51,7 @@ describe('ShortcutsModal navigation presets', () => {
   })
 })
 
-describe('Footer shortcuts button', () => {
+describe('Footer keyboard shortcuts link', () => {
   it('calls onOpenShortcuts when the Keyboard shortcuts button is clicked', () => {
     const onOpenShortcuts = vi.fn()
     render(
