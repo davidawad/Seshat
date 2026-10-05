@@ -146,9 +146,10 @@ describe('generateTest', () => {
   describe('true/false questions', () => {
     it('claims are sometimes true and sometimes false across many cards', () => {
       const cards = makeCards(20)
-      const questions = generateTest(cards).filter(
-        (q): q is Extract<TestQuestion, { format: 'true-false' }> => q.format === 'true-false',
-      )
+      // Pool several generations: one run can legitimately draw few true/false questions.
+      const questions = Array.from({ length: 10 }, () => generateTest(cards))
+        .flat()
+        .filter((q): q is Extract<TestQuestion, { format: 'true-false' }> => q.format === 'true-false')
       expect(questions.length).toBeGreaterThan(0)
       expect(questions.some((q) => q.claimIsTrue)).toBe(true)
       expect(questions.some((q) => !q.claimIsTrue)).toBe(true)
