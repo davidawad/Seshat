@@ -1,13 +1,15 @@
 import { Suspense, lazy } from 'react'
 import { Route, Routes } from 'react-router-dom'
-import { SetsBrowser } from '../features/sets/SetsBrowser'
-import { SetDetailPage } from '../features/sets/SetDetail'
-import { SetEditPage } from '../features/sets/SetEdit'
-import { SetCreatePage } from '../features/sets/SetCreatePage'
-import { SetImportPage } from '../features/sets/SetImportPage'
 import { FlashcardsPage } from './Flashcards'
 import { StudyPage } from './Study'
-import { TestPage } from './Test'
+import { SetsBrowser } from '../features/sets/SetsBrowser'
+import { SetDetailPage } from '../features/sets/SetDetail'
+
+// Editors, importers and the test mode load on demand so their CSS/JS stay out of the entry bundle.
+const SetEditPage = lazy(async () => ({ default: (await import('../features/sets/SetEdit')).SetEditPage }))
+const SetCreatePage = lazy(async () => ({ default: (await import('../features/sets/SetCreatePage')).SetCreatePage }))
+const SetImportPage = lazy(async () => ({ default: (await import('../features/sets/SetImportPage')).SetImportPage }))
+const TestPage = lazy(async () => ({ default: (await import('./Test')).TestPage }))
 
 // The Games section is experimental and rarely visited: its CSS/JS load on demand.
 const GamesListPage = lazy(async () => ({ default: (await import('./Games')).GamesListPage }))
