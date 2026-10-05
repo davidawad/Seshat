@@ -3,6 +3,7 @@ import { Combobox } from '../../components/Combobox'
 import { Legible } from '../../components/Legible'
 import { useSeshatStore } from '../../lib/store'
 import { type CardContent, type OcclusionRegion, type SetId, type StudyCard, cardContentSchema } from '../../types'
+import { CardImageSlot } from './CardImageSlot'
 import { ImageOcclusionEditor } from './ImageOcclusionEditor'
 import { parseTagsInput } from './tags'
 
@@ -45,6 +46,7 @@ const draftFromContent = (content: CardContent | null) => ({
 export const CardForm = ({ setId, editingCard, onDone }: CardFormProps) => {
   const { addCard, updateCard } = useSeshatStore()
   const [prompt, setPrompt] = useState(editingCard?.prompt ?? '')
+  const [promptImage, setPromptImage] = useState(editingCard?.promptImage ?? null)
   const [explanation, setExplanation] = useState(editingCard?.explanation ?? '')
   const [sourceRef, setSourceRef] = useState(editingCard?.sourceRef ?? '')
   const [tagsText, setTagsText] = useState(editingCard?.tags.join(', ') ?? '')
@@ -131,6 +133,7 @@ export const CardForm = ({ setId, editingCard, onDone }: CardFormProps) => {
 
     const input = {
       prompt: trimmedPrompt,
+      promptImage,
       content,
       explanation: explanation.trim().length > 0 ? explanation.trim() : null,
       sourceRef: sourceRef.trim().length > 0 ? sourceRef.trim() : null,
@@ -167,6 +170,10 @@ export const CardForm = ({ setId, editingCard, onDone }: CardFormProps) => {
         )}
       </div>
 
+      <div className="card-editor-images">
+        <CardImageSlot label="term image" context="this card" value={promptImage} onChange={setPromptImage} />
+      </div>
+
       <fieldset>
         <legend>Card type</legend>
         <label htmlFor={kindId}>Kind</label>
@@ -186,6 +193,14 @@ export const CardForm = ({ setId, editingCard, onDone }: CardFormProps) => {
                 required
               />
             </Legible>
+          </div>
+          <div className="card-editor-images">
+            <CardImageSlot
+              label="definition image"
+              context="this card"
+              value={draft.answerImage}
+              onChange={(answerImage) => setDraft((prev) => ({ ...prev, answerImage }))}
+            />
           </div>
           <div>
             <label htmlFor={acceptableId}>Other acceptable answers (one per line, optional)</label>

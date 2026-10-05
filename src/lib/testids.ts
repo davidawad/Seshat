@@ -112,6 +112,17 @@ export const TESTIDS = {
   setModeGames: 'set-mode-games',
   setPreviewFlip: 'set-preview-flip',
   setTermList: 'set-term-list',
+  setTermImage: 'set-term-image',
+  setDefinitionImage: 'set-definition-image',
+
+  // Card image slots (term / definition images in the editors)
+  imageSlot: 'image-slot',
+  imageSlotFile: 'image-slot-file',
+  imageSlotAdd: 'image-slot-add',
+  imageSlotThumb: 'image-slot-thumb',
+  imageSlotAlt: 'image-slot-alt',
+  imageSlotReplace: 'image-slot-replace',
+  imageSlotRemove: 'image-slot-remove',
 
   // Set edit
   editPage: 'edit-page',

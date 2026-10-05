@@ -1,7 +1,8 @@
 import { type KeyboardEvent, type RefObject, useEffect, useId, useLayoutEffect, useRef } from 'react'
 import { DeleteIcon } from '../../components/icons'
 import { TESTIDS } from '../../lib/testids'
-import type { DraftRow } from './set-draft'
+import { CardImageSlot } from './CardImageSlot'
+import type { DraftRow, DraftRowPatch } from './set-draft'
 
 /** Grows a textarea to fit its content (height tracks scrollHeight; jsdom reports 0, which is harmless). */
 const useAutoGrow = (ref: RefObject<HTMLTextAreaElement | null>, value: string) => {
@@ -68,7 +69,7 @@ interface CardRowEditorProps {
   /** When true the term field takes focus once (a freshly added row). */
   readonly focusTerm: boolean
   readonly onFocused: () => void
-  readonly onChange: (patch: Partial<Pick<DraftRow, 'term' | 'definition'>>) => void
+  readonly onChange: (patch: DraftRowPatch) => void
   readonly onDelete: () => void
   /** Tab out of the last row's definition: add a row (the parent focuses its term). */
   readonly onTabPastEnd: () => void
@@ -146,6 +147,20 @@ export const CardRowEditor = ({
           textareaRef={definitionRef}
           onChange={(definition) => onChange({ definition })}
           onKeyDown={handleDefinitionKeyDown}
+        />
+      </div>
+      <div className="card-editor-images">
+        <CardImageSlot
+          label="term image"
+          context={`card ${number}`}
+          value={row.termImage}
+          onChange={(termImage) => onChange({ termImage })}
+        />
+        <CardImageSlot
+          label="definition image"
+          context={`card ${number}`}
+          value={row.definitionImage}
+          onChange={(definitionImage) => onChange({ definitionImage })}
         />
       </div>
       {incomplete && (

@@ -5,6 +5,7 @@ import { useSeshatStore } from '../../lib/store'
 import { TESTIDS } from '../../lib/testids'
 import type { StudyCard } from '../../types'
 import { CardForm } from './CardForm'
+import { CardImageSlot } from './CardImageSlot'
 
 const contentSummary = (card: StudyCard): { readonly label: string; readonly detail: string } => {
   switch (card.content.kind) {
@@ -112,6 +113,20 @@ export const CardListItem = ({ card }: CardListItemProps) => {
         >
           <DeleteIcon />
         </button>
+        <div className="card-row-images">
+          <CardImageSlot
+            label="term image"
+            context={`"${card.prompt}"`}
+            value={card.promptImage}
+            onChange={(promptImage) => updateCard(card.id, { promptImage })}
+          />
+          <CardImageSlot
+            label="definition image"
+            context={`"${card.prompt}"`}
+            value={content.answerImage}
+            onChange={(answerImage) => updateCard(card.id, { content: { ...content, answerImage } })}
+          />
+        </div>
       </li>
     )
   }

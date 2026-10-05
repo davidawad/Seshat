@@ -14,7 +14,22 @@ import {
 } from './set-draft'
 
 const draftWith = (overrides: Partial<SetDraft>): SetDraft => ({ ...emptyDraft(), ...overrides })
-const row = (id: string, term: string, definition: string) => ({ id, term, definition })
+const row = (id: string, term: string, definition: string) => ({
+  id,
+  term,
+  definition,
+  termImage: null,
+  definitionImage: null,
+})
+const ref = {
+  id: 'a'.repeat(64),
+  mime: 'image/png' as const,
+  width: 4,
+  height: 3,
+  bytes: 9,
+  alt: 'x',
+  decorative: false,
+}
 
 describe('emptyDraft / isDraftEmpty', () => {
   it('starts with two empty rows and counts as empty', () => {
@@ -135,5 +150,25 @@ describe('draftToExportedSet', () => {
       ok: false,
       error: { titleMissing: false, incompleteRows: [], noCards: true },
     })
+  })
+})
+
+describe('row images', () => {
+  it('carry through to the exported cards as promptImage / answerImage', () => {
+    const { cards } = rowsToCards([{ ...row('a', 'q', 'a'), termImage: ref, definitionImage: ref }])
+    expect(cards[0]?.promptImage).toEqual(ref)
+    expect(cards[0]?.content).toMatchObject({ kind: 'short-answer', answerImage: ref })
+  })
+
+  it('round-trip through the stored draft, and older drafts without image fields still parse', () => {
+    const draft = draftWith({ title: 'T', rows: [{ ...row('a', 'q', 'a'), termImage: ref }] })
+    expect(parseDraft(serializeDraft(draft))).toEqual(draft)
+    const legacy = JSON.stringify({
+      title: '',
+      description: '',
+      tags: '',
+      rows: [{ id: 'a', term: 'q', definition: 'a' }],
+    })
+    expect(parseDraft(legacy)?.rows[0]).toEqual(row('a', 'q', 'a'))
   })
 })
