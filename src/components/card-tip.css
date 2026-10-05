@@ -60,3 +60,10 @@
 .card-tip-text {
   white-space: nowrap;
 }
+
+/* A nowrap tip wider than a phone-width card would spill out of it. */
+@media (max-width: 30rem) {
+  .card-tip-text {
+    white-space: normal;
+  }
+}
