@@ -204,7 +204,10 @@ Modals:
   flashcard-options-modal, flashcard-options-modal-close
 Sets browser (the one component behind both / "Your sets" and /sets "Sets"; identical apart from the h1):
   sets-browser, sets-browser-search, sets-browser-create (link to /sets/new),
-  sets-browser-import (link to /sets/import), sets-browser-starter-load, sets-browser-new-set,
+  sets-browser-import (link to /sets/import), sets-browser-starter-load (a button inside the
+  sets-browser-more-examples disclosure), sets-browser-new-set,
+  empty-state hero: sets-browser-hero, sets-browser-privacy, sets-browser-hero-import,
+  sets-browser-hero-create, sets-browser-sample-load (loads the 10-card sample),
   sets-browser-view-toggle, sets-browser-view-grid, sets-browser-view-table,
   sets-browser-grid, sets-browser-card, sets-browser-table, sets-browser-row,
   sets-browser-set-link, sets-browser-study-link, sets-browser-edit-link (to /sets/:id/edit)
