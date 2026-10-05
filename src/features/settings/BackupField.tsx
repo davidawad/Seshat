@@ -34,7 +34,7 @@ const readFileAsText = (file: File): Promise<string> =>
   })
 
 export const BackupField = () => {
-  const { exportAll, importAll } = useSeshatStore()
+  const { exportAll, importAll, recordBackupDownloaded } = useSeshatStore()
   const media = useMediaStore()
   const { replaceAll: replaceKeybindings } = useKeybindings()
   const [mode, setMode] = useState<ImportMode>('merge')
@@ -89,6 +89,7 @@ export const BackupField = () => {
     try {
       const { value: blob, missing } = await buildBackupBlob(exportAll(), media)
       downloadBlob(backupFilename(new Date()), blob)
+      recordBackupDownloaded()
       setMessage(
         missing.length === 0
           ? 'Downloaded a backup of all your data.'

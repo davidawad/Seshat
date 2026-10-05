@@ -44,7 +44,7 @@
   // real refactor candidates, not just legacy debt.
   "overrides": [
     {
-      "files": ["src/lib/store.tsx"],
+      "files": ["src/lib/store.tsx", "src/lib/store-reducer.ts"],
       "rules": {
         "eslint/complexity": "off",
         "eslint/max-params": "off",
