@@ -4,10 +4,12 @@ import { z } from 'zod'
 import { ReviewSession } from '../features/study/ReviewSession'
 import { countDueCategories, reinsertForRelearning, selectDueQueue } from '../features/study/dueQueue'
 import { GRADE_ORDER } from '../features/study/grading'
+import { StudyCoach } from '../features/study/StudyCoach'
 import { useFocusWhen } from '../lib/routeFocus'
 import { clearResumeState, loadResumeState, saveResumeState } from '../lib/sessionResume'
 import { useSeshatStore } from '../lib/store'
 import { TESTIDS } from '../lib/testids'
+import { useCardTip } from '../lib/useCardTip'
 import { type CardId, type Grade, type SetId, type StudyCard, cardIdSchema, setIdSchema } from '../types'
 import './study.css'
 
@@ -135,6 +137,8 @@ interface StudyQueueProps {
 
 const StudyQueue = ({ setId }: StudyQueueProps) => {
   const { state } = useSeshatStore()
+  // The coach explains the loop once; grading a card (doing what it teaches) retires it for good.
+  const coach = useCardTip('study-coach')
 
   // The due queue is snapshotted once per session (keyed by setId in the
   // parent) rather than recomputed from `state.cards` on every update —
@@ -150,6 +154,7 @@ const StudyQueue = ({ setId }: StudyQueueProps) => {
   const cardsInScope = useMemo(() => state.cards.filter((card) => card.setId === setId), [state.cards, setId])
 
   const handleAdvance = (grade: Grade, correct: boolean, cardId: CardId) => {
+    coach.dismiss()
     const nextDueIds = grade === 'again' ? reinsertForRelearning(dueIds, position, cardId) : dueIds
     const next: StudySessionState = {
       dueIds: nextDueIds,
@@ -197,6 +202,7 @@ const StudyQueue = ({ setId }: StudyQueueProps) => {
 
   return (
     <>
+      {coach.open && <StudyCoach setId={setId} onDismiss={coach.dismiss} />}
       {showInterleaveNote && <p>Cards are interleaved across topics to sharpen discrimination between them.</p>}
       <ReviewSession
         card={card}
