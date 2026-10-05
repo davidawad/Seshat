@@ -1,4 +1,5 @@
 import { z } from 'zod'
+import { type MediaRef, mediaRefSchema } from '../../lib/media/types'
 import { type ExportedCard, type ExportedSet, type Result, err, ok } from '../../types'
 import { parseTagsInput } from './tags'
 
@@ -15,7 +16,12 @@ export interface DraftRow {
   readonly id: string
   readonly term: string
   readonly definition: string
+  /** Optional stored images (small MediaRefs; the bytes live in the media store). */
+  readonly termImage: MediaRef | null
+  readonly definitionImage: MediaRef | null
 }
+
+export type DraftRowPatch = Partial<Omit<DraftRow, 'id'>>
 
 export interface SetDraft {
   readonly title: string
@@ -29,11 +35,27 @@ const draftSchema = z.object({
   title: z.string(),
   description: z.string(),
   tags: z.string(),
-  rows: z.array(z.object({ id: z.string().min(1), term: z.string(), definition: z.string() })).min(1),
+  rows: z
+    .array(
+      z.object({
+        id: z.string().min(1),
+        term: z.string(),
+        definition: z.string(),
+        termImage: mediaRefSchema.nullable().default(null),
+        definitionImage: mediaRefSchema.nullable().default(null),
+      }),
+    )
+    .min(1),
 })
 
 export const newRowId = (): string => crypto.randomUUID()
-export const newRow = (): DraftRow => ({ id: newRowId(), term: '', definition: '' })
+export const newRow = (): DraftRow => ({
+  id: newRowId(),
+  term: '',
+  definition: '',
+  termImage: null,
+  definitionImage: null,
+})
 
 export const INITIAL_ROW_COUNT = 2
 
@@ -111,10 +133,15 @@ export interface DraftProblems {
   readonly noCards: boolean
 }
 
-const toExportedCard = (term: string, definition: string): ExportedCard => ({
-  prompt: term.trim(),
-  promptImage: null,
-  content: { kind: 'short-answer', answer: definition.trim(), acceptableAnswers: [], answerImage: null },
+const toExportedCard = (row: DraftRow): ExportedCard => ({
+  prompt: row.term.trim(),
+  promptImage: row.termImage,
+  content: {
+    kind: 'short-answer',
+    answer: row.definition.trim(),
+    acceptableAnswers: [],
+    answerImage: row.definitionImage,
+  },
   explanation: null,
   sourceRef: null,
   tags: [],
@@ -124,9 +151,7 @@ const toExportedCard = (term: string, definition: string): ExportedCard => ({
 export const rowsToCards = (
   rows: readonly DraftRow[],
 ): { readonly cards: readonly ExportedCard[]; readonly incompleteRows: readonly number[] } => ({
-  cards: rows
-    .filter((row) => !isBlank(row.term) && !isBlank(row.definition))
-    .map((row) => toExportedCard(row.term, row.definition)),
+  cards: rows.filter((row) => !isBlank(row.term) && !isBlank(row.definition)).map(toExportedCard),
   incompleteRows: rows.flatMap((row, index) => (isBlank(row.term) !== isBlank(row.definition) ? [index + 1] : [])),
 })
 

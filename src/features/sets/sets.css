@@ -290,6 +290,11 @@
   width: 6rem;
 }
 
+.set-term-front .set-term-image,
+.set-term-back .set-term-image {
+  margin-top: 0.35rem;
+}
+
 .set-term-image {
   display: block;
   max-width: 4.5rem;

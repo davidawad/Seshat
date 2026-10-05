@@ -1,6 +1,7 @@
 import { cleanup, render, screen } from '@testing-library/react'
 import { afterEach, describe, expect, it } from 'vitest'
 import { createInitialScheduling } from '../../lib/fsrs'
+import { MediaStoreProvider, createMemoryMediaStore } from '../../lib/media'
 import type { CardId, SetId, StudyCard } from '../../types'
 import { SetTermList } from './SetTermList'
 
@@ -101,6 +102,32 @@ describe('SetTermList', () => {
     ]
     render(<SetTermList cards={cards} />)
     expect(screen.getByRole('columnheader', { name: 'Diagram' })).toBeInTheDocument()
+  })
+
+  it('shows term and definition thumbnails in their own cells, without a Diagram column', () => {
+    const ref = {
+      id: 'b'.repeat(64),
+      mime: 'image/png' as const,
+      width: 4,
+      height: 3,
+      bytes: 9,
+      alt: '',
+      decorative: false,
+    }
+    const card = shortAnswerCard('c1', 'Heart', 'Pumps blood')
+    const withImages: StudyCard = {
+      ...card,
+      promptImage: ref,
+      content: { kind: 'short-answer', answer: 'Pumps blood', acceptableAnswers: [], answerImage: ref },
+    }
+    render(
+      <MediaStoreProvider store={createMemoryMediaStore()}>
+        <SetTermList cards={[withImages]} />
+      </MediaStoreProvider>,
+    )
+    expect(screen.getByTestId('set-term-image').closest('td')).toHaveClass('set-term-front')
+    expect(screen.getByTestId('set-definition-image').closest('td')).toHaveClass('set-term-back')
+    expect(screen.queryByRole('columnheader', { name: 'Diagram' })).toBeNull()
   })
 
   it('renders only the header row when there are no cards', () => {
