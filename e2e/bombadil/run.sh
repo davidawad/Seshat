@@ -48,12 +48,14 @@ kill_tree() {
 violations=0
 wedges=0
 for viewport in "desktop 1024 768" "phone 390 844"; do
+  # shellcheck disable=SC2086 # intentional: split "name width height" into positional args
   set -- $viewport
   name=$1 width=$2 height=$3
   for n in $(seq 1 "$runs"); do
     out="target/bombadil/$name-$n"
     log="$out.log"
     mkdir -p target/bombadil
+    # shellcheck disable=SC2086 # BOMBADIL_ARGS is a deliberate space-separated extra-args list
     bombadil browser test "http://127.0.0.1:$port/seshat/" e2e/bombadil/spec.ts --headless \
       --width "$width" --height "$height" --time-limit "$limit" --output-path "$out" \
       --output-path-overwrite ${BOMBADIL_ARGS:-} > "$log" 2>&1 &
