@@ -1,5 +1,6 @@
 import type { MediaRef } from '../../lib/media/types'
-import type { CardContent, ImageOcclusionContent, StudyCard } from '../../types'
+import { askedRegion } from '../../lib/diagram'
+import type { CardContent, ImageOcclusionContent, OcclusionRegion, StudyCard } from '../../types'
 import { blankedCloze, clozeAnswer } from './cloze'
 
 /**
@@ -18,6 +19,12 @@ export interface CardFrontBack {
   readonly answerImage?: MediaRef
   /** LEGACY inline data URL (image-occlusion cards not migrated yet). Present only when there is no `image`. */
   readonly imageDataUrl?: string
+  /**
+   * Diagram cards only: the regions and the asked one, so a face can draw the
+   * masked question / revealed answer instead of the bare image. `alt` is the
+   * author's alt text for the image ('' when none).
+   */
+  readonly diagram?: { readonly regions: readonly OcclusionRegion[]; readonly askedId: string; readonly alt: string }
 }
 
 /** A stored image wins; the legacy data URL is only used while there is none. */
@@ -26,7 +33,7 @@ const occlusionImage = (content: ImageOcclusionContent): Pick<CardFrontBack, 'im
   return content.imageDataUrl === undefined ? {} : { imageDataUrl: content.imageDataUrl }
 }
 
-const contentFrontBack = (prompt: string, content: CardContent): CardFrontBack => {
+const contentFrontBack = (prompt: string, content: CardContent, regionId?: string): CardFrontBack => {
   switch (content.kind) {
     case 'short-answer':
       return content.answerImage === null
@@ -47,15 +54,24 @@ const contentFrontBack = (prompt: string, content: CardContent): CardFrontBack =
     case 'mcq':
       return { front: prompt, back: content.options[content.correctIndex] ?? '(unknown)' }
     case 'image-occlusion': {
-      const first = content.occlusions[0]
-      return { front: prompt, back: first?.label ?? '(unknown)', ...occlusionImage(content) }
+      const asked = askedRegion(content, regionId)
+      return {
+        front: prompt,
+        back: asked.label,
+        ...occlusionImage(content),
+        diagram: { regions: content.occlusions, askedId: asked.id, alt: content.image?.alt ?? '' },
+      }
     }
   }
 }
 
-/** The front/back pair for a full `StudyCard` (prompt + content together). */
-export const cardFrontBack = (card: StudyCard): CardFrontBack => {
-  const faces = contentFrontBack(card.prompt, card.content)
+/**
+ * The front/back pair for a full `StudyCard` (prompt + content together).
+ * `regionId` picks which region a legacy multi-region diagram card asks about
+ * (default: its own `askedRegionId`, else the first); other kinds ignore it.
+ */
+export const cardFrontBack = (card: StudyCard, regionId?: string): CardFrontBack => {
+  const faces = contentFrontBack(card.prompt, card.content, regionId)
   const hasImage = faces.image !== undefined || faces.imageDataUrl !== undefined
   return card.promptImage !== null && !hasImage ? { ...faces, image: card.promptImage } : faces
 }

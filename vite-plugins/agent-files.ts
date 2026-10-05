@@ -97,7 +97,7 @@ export const buildImportSchema = (): Record<string, unknown> => {
     $schema,
     title: 'Seshat set import',
     description:
-      'Either the simple term/definition shape (an object {name, terms} or a bare array of term/definition pairs) or the full Seshat export (seshatExportVersion 1). In the full export, images are listed in an optional `media` map (mediaId -> {mime, dataBase64, width, height}) that cards reference through MediaRefs; an image-occlusion card needs `image` (a MediaRef) or, in older exports, an inline `imageDataUrl` (the app rejects a card with neither; this schema cannot express that rule).',
+      'Either the simple term/definition shape (an object {name, terms} or a bare array of term/definition pairs) or the full Seshat export (seshatExportVersion 1). In the full export, images are listed in an optional `media` map (mediaId -> {mime, dataBase64, width, height}) that cards reference through MediaRefs; an image-occlusion card (a labeled diagram; one card per label) needs `image` (a MediaRef) or, in older exports, an inline `imageDataUrl` (the app rejects a card with neither; this schema cannot express that rule), plus `occlusions` (all regions) and optionally `askedRegionId` (the region this card asks about) and `diagramId` (shared by the cards of one diagram).',
     anyOf: [simpleShape, exportShape],
   }
 }

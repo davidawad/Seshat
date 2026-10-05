@@ -4,6 +4,7 @@ import { createInitialScheduling } from '../src/lib/fsrs.ts'
 import {
   type AppState,
   DEFAULT_SETTINGS,
+  cardContentSchema,
   cardIdSchema,
   createEmptyAppState,
   exportedSetSchema,
@@ -308,5 +309,24 @@ describe('public AGENTS.md allowlist', () => {
     expect(out).toContain('## Beads')
     expect(out).not.toContain('Secret')
     expect(out).not.toContain('gone')
+  })
+})
+
+describe('labeled diagram fields (backward compatible)', () => {
+  const region = { id: 'r1', xPct: 1, yPct: 1, widthPct: 10, heightPct: 10, label: 'Aorta' }
+  const old = { kind: 'image-occlusion', image: null, imageDataUrl: 'data:image/png;base64,AAAA', occlusions: [region] }
+
+  it('accepts a pre-diagram card without askedRegionId / diagramId and keeps the new ones when present', () => {
+    expect(cardContentSchema.safeParse(old).success).toBe(true)
+    const next = cardContentSchema.parse({ ...old, askedRegionId: 'r1', diagramId: 'D' })
+    expect(next).toMatchObject({ askedRegionId: 'r1', diagramId: 'D' })
+  })
+
+  it('publishes both fields in the import and backup JSON Schemas, and the setting with its default', () => {
+    const json = JSON.stringify(buildImportSchema())
+    expect(json).toContain('askedRegionId')
+    expect(json).toContain('diagramId')
+    expect(JSON.stringify(buildBackupSchema())).toContain('askedRegionId')
+    expect(buildSettingsSchema()).toMatchObject({ properties: { diagramHideAllLabels: { default: false } } })
   })
 })

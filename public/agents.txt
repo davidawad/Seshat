@@ -117,7 +117,21 @@ write). Allowed values, ranges and defaults: schema/seshat-settings.schema.json.
 bodyFontSizePt, lineHeight, measureCh, theme (light|dark|system), palette, customAccent (#rrggbb or
 null), reducedMotion, retentionPreset, desiredRetention, selfExplanationEnabled,
 experimentalGamesEnabled, flashcardsTrackProgress, flashcardsFront (term|definition),
-installPromptEnabled.
+installPromptEnabled, cardTipsEnabled, backupRemindersEnabled, diagramHideAllLabels (false: studying a
+diagram label hides only that label's region; true: hides every label on the diagram).
+
+LABELED DIAGRAMS (image-occlusion cards)
+----------------------------------------
+A diagram is one image with labeled rectangles, studied as ONE FSRS card PER LABEL. Each such card has
+content {"kind": "image-occlusion", "image": <MediaRef>, "occlusions": [{"id", "xPct", "yPct",
+"widthPct", "heightPct", "label"}, ...] (ALL the diagram's regions, percentages of the image),
+"askedRegionId": "<id of the region this card asks about>", "diagramId": "<shared by the sibling cards>"}.
+askedRegionId and diagramId are optional: older cards lack them, ask one random region per review and
+are shown as a diagram of one. The question side masks only the asked region (all regions when the
+diagramHideAllLabels setting is on); the answer side outlines it and shows its label. The image's
+MediaRef alt is the diagram's alt text. Test and Games skip diagram cards. Author them in the app:
+Set edit -> "Add a labeled diagram" (keyboard: Tab to a region, arrows move, Shift+arrows resize,
+Delete removes, Ctrl/Cmd+Z undo, Ctrl/Cmd+Shift+Z redo); hand-writing them as JSON needs the image bytes.
 
 COOKIE MIRROR (SETTINGS AND KEYBINDINGS)
 ----------------------------------------
@@ -233,7 +247,14 @@ Set detail (/sets/:id):
 Set edit (/sets/:id/edit):
   edit-page, edit-name, edit-tags, edit-description, edit-goal-date, edit-card-list,
   edit-add-term,
-  edit-add-definition, edit-add-other-kind, edit-card-edit, edit-card-delete, edit-delete-set
+  edit-add-definition, edit-add-other-kind, edit-add-diagram, edit-card-edit, edit-card-delete, edit-delete-set
+Diagram editor (inside /sets/:id/edit; one card per label; a diagram's list row reuses edit-card-edit /
+edit-card-delete, which then act on the whole diagram):
+  diagram-editor, diagram-canvas (the image with its regions),
+  diagram-region (one per region, role=button, keyboard operable), diagram-region-label (the label input),
+  diagram-region-delete, diagram-add-region, diagram-undo, diagram-redo, diagram-preview (live question
+  and answer sides), diagram-card-count, diagram-save, diagram-cancel; the image and its alt text use
+  image-slot-* (above); set-diagram-thumb is the masked thumbnail in the set page's Diagram column
 Study (/sets/:id/study):
   study-page, study-progress, study-answer-input, study-show-options, study-mcq-options,
   study-continue, study-confidence-guessed, study-confidence-unsure, study-confidence-sure,
@@ -268,7 +289,7 @@ Settings (inside the Settings modal):
   theme-field, palette-field, palette-reset, accent-color, accent-hex, accent-status,
   backup-download, backup-mode-merge, backup-mode-replace, backup-file, backup-confirm,
   backup-confirm-replace, backup-confirm-cancel, backup-status, settings-card-tips,
-  settings-backup-reminders
+  settings-backup-reminders, settings-diagram-hide-all
 Also dynamic (existing): theme-<system|light|dark>, palette-<id>, nav-preset-<arrows|wasd|hjkl>.
 Repeated items (cards, rows, tiles) share one id; scope by page id. Same ids: TESTIDS in
 src/lib/testids.ts.
