@@ -6,9 +6,10 @@ import {
   retentionEstimate,
   reviewedTodayCount,
 } from '../features/stats/calibration'
+import { formatDuration, timeToFirstGradedMs } from '../lib/activation'
 import { useSeshatStore } from '../lib/store'
 import { TESTIDS } from '../lib/testids'
-import type { ConfidenceRating } from '../types'
+import type { Activation, ConfidenceRating } from '../types'
 
 const CONFIDENCE_LABELS: Record<ConfidenceRating, string> = {
   guessed: 'Guessed',
@@ -17,6 +18,30 @@ const CONFIDENCE_LABELS: Record<ConfidenceRating, string> = {
 }
 
 const formatPercent = (value: number): string => `${Math.round(value * 100)}%`
+
+const FirstWeek = ({ activation }: { readonly activation: Activation }) => {
+  const toFirstGraded = timeToFirstGradedMs(activation)
+  return (
+    <section aria-labelledby="first-week-heading" data-testid={TESTIDS.statsFirstWeek}>
+      <h2 id="first-week-heading">Your first week</h2>
+      <dl className="stats-summary">
+        <div className="stats-metric">
+          <dt>Time to first graded card</dt>
+          <dd>{toFirstGraded === null ? 'Not yet' : formatDuration(toFirstGraded)}</dd>
+        </div>
+        <div className="stats-metric">
+          <dt>Reviews so far</dt>
+          <dd>{activation.totalReviews}</dd>
+        </div>
+        <div className="stats-metric">
+          <dt>Days studied</dt>
+          <dd>{activation.daysStudied}</dd>
+        </div>
+      </dl>
+      <p>These numbers are counted on this device only. They are never sent anywhere.</p>
+    </section>
+  )
+}
 
 export const StatsPage = () => {
   const { state } = useSeshatStore()
@@ -46,6 +71,8 @@ export const StatsPage = () => {
           <dd>{retention === null ? 'Not enough data yet' : formatPercent(retention)}</dd>
         </div>
       </dl>
+
+      <FirstWeek activation={state.activation} />
 
       <h2 id="calibration-heading">Confidence calibration</h2>
       <p>

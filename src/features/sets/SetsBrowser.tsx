@@ -62,7 +62,7 @@ export const SetsBrowser = ({ title }: SetsBrowserProps) => {
     .map(({ set, cards }) => ({ set, mastery: summarizeMastery(cards, now) }))
 
   const handleLoadStarter = (exported: ExportedSet) => {
-    const set = importSet(exported)
+    const set = importSet(exported, 'sample')
     navigate(`/sets/${set.id}`)
   }
 

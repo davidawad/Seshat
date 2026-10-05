@@ -482,6 +482,25 @@ body.has-install-prompt .app-main {
   flex: 1 1 16rem;
 }
 
+/* The dismissible backup reminder (components/BackupNudge.tsx): same slot as the save error, calmer border. */
+.backup-nudge {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.75rem;
+  margin: 0.5rem 1rem;
+  padding: 0.75rem 1rem;
+  background: var(--color-bg-elevated);
+  border: 1px solid var(--color-border-strong);
+  border-radius: var(--radius-page);
+  color: var(--color-fg);
+}
+
+.backup-nudge p {
+  margin: 0;
+  flex: 1 1 16rem;
+}
+
 /* The one-time image-storage upgrade note (components/MigrationNotice.tsx): top corner, so it never sits on the install banner. */
 .install-prompt.migration-notice {
   top: 1rem;

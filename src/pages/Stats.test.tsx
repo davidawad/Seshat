@@ -4,7 +4,14 @@ import { afterEach, beforeEach, describe, expect, it } from 'vitest'
 import { saveState } from '../lib/storage'
 import { SeshatProvider } from '../lib/store'
 import { TESTIDS } from '../lib/testids'
-import { type ReviewLogEntry, cardIdSchema, createEmptyAppState, setIdSchema } from '../types'
+import {
+  type Activation,
+  type ReviewLogEntry,
+  cardIdSchema,
+  createEmptyActivation,
+  createEmptyAppState,
+  setIdSchema,
+} from '../types'
 import { StatsPage } from './Stats'
 
 afterEach(() => cleanup())
@@ -48,5 +55,40 @@ describe('StatsPage calibration with optional confidence', () => {
     renderWithLog([entry(null), entry('sure')])
     expect(screen.getByTestId(TESTIDS.statsCalibrationTable)).toBeInTheDocument()
     expect(screen.queryByTestId(TESTIDS.statsCalibrationEmpty)).not.toBeInTheDocument()
+  })
+})
+
+describe('StatsPage first week', () => {
+  const renderWith = (activation: Partial<Activation>) => {
+    saveState({ ...createEmptyAppState(), activation: { ...createEmptyActivation(), ...activation } })
+    render(
+      <SeshatProvider>
+        <MemoryRouter>
+          <StatsPage />
+        </MemoryRouter>
+      </SeshatProvider>,
+    )
+    return screen.getByTestId(TESTIDS.statsFirstWeek)
+  }
+
+  it('shows empty values and the never-leaves-the-device statement for a new learner', () => {
+    const section = renderWith({})
+    expect(section).toHaveTextContent('Your first week')
+    expect(section.textContent).toMatch(/Time to first graded cardNot yet/)
+    expect(section.textContent).toMatch(/Reviews so far0/)
+    expect(section.textContent).toMatch(/Days studied0/)
+    expect(section).toHaveTextContent('never sent anywhere')
+  })
+
+  it('shows time to first graded card, reviews and days studied', () => {
+    const section = renderWith({
+      firstSetAt: '2026-01-01T10:00:00.000Z',
+      firstGradedAt: '2026-01-01T10:05:00.000Z',
+      totalReviews: 42,
+      daysStudied: 3,
+    })
+    expect(section.textContent).toMatch(/Time to first graded card5 minutes/)
+    expect(section.textContent).toMatch(/Reviews so far42/)
+    expect(section.textContent).toMatch(/Days studied3/)
   })
 })

@@ -130,4 +130,12 @@ describe('BackupField', () => {
       FileReader.prototype.readAsText = original
     }
   })
+
+  it('stamps the last backup time on download', async () => {
+    const activation = () => JSON.parse(window.localStorage.getItem('seshat:app-state:v2') ?? '{}').activation
+    renderField()
+    expect(activation()?.lastBackupAt ?? null).toBeNull()
+    await userEvent.click(screen.getByRole('button', { name: 'Download all data (JSON)' }))
+    await waitFor(() => expect(activation()?.lastBackupAt).toEqual(expect.any(String)))
+  })
 })

@@ -9,6 +9,7 @@ import { useRouteFocus } from '../lib/routeFocus'
 import { TESTIDS } from '../lib/testids'
 import { useKeybindings } from '../lib/useKeybindings'
 import { useWebMcp } from '../lib/useWebMcp'
+import { BackupNudge } from './BackupNudge'
 import { Footer } from './Footer'
 import { SetsIcon, StatsIcon } from './icons'
 import { Modal } from './Modal'
@@ -115,6 +116,7 @@ export const Layout = () => {
         </nav>
       </header>
       <SaveErrorBanner onOpenSettings={() => setSettingsOpen(true)} />
+      <BackupNudge onOpenSettings={() => setSettingsOpen(true)} />
       <ImportFromUrl />
       <main id="main-content" ref={mainRef} className="app-main" data-testid={TESTIDS.layoutMain}>
         <Outlet />

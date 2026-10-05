@@ -282,6 +282,9 @@ export const settingsSchema = z.object({
   // The "Press [key] ..." tip on flashcard faces. On by default; each tip also retires itself
   // once the learner has done what it teaches (see lib/tipDismissal.ts).
   cardTipsEnabled: z.boolean().default(true),
+  // The dismissible "Your cards are saved on this device only. Download a backup" banner (see
+  // lib/activation.ts for when it appears).
+  backupRemindersEnabled: z.boolean().default(true),
 })
 
 export type Settings = z.infer<typeof settingsSchema>
@@ -307,6 +310,7 @@ export const DEFAULT_SETTINGS: Settings = {
   homeView: 'grid',
   installPromptEnabled: false,
   cardTipsEnabled: true,
+  backupRemindersEnabled: true,
 }
 
 // Anki/FSRS-guidance-derived presets — see research/learning-science for citations.
@@ -329,11 +333,51 @@ export const RETENTION_PRESETS: Record<Exclude<RetentionPreset, 'custom'>, numbe
 export const APP_STATE_VERSION = 2
 export const LEGACY_APP_STATE_VERSION = 1
 
+// ---------------------------------------------------------------------------
+// Activation — local-only first-week metrics and backup-reminder bookkeeping. Never sent anywhere
+// (Seshat has no network telemetry); lives in the app state so it survives reloads on this device
+// only, and is deliberately NOT part of the backup file. All logic is in lib/activation.ts.
+// ---------------------------------------------------------------------------
+
+export const firstSetSourceSchema = z.enum(['sample', 'import', 'create'])
+export type FirstSetSource = z.infer<typeof firstSetSourceSchema>
+
+export const activationSchema = z.object({
+  /** When the first set was added (any source) and how. */
+  firstSetAt: z.iso.datetime().nullable().default(null),
+  firstSetSource: firstSetSourceSchema.nullable().default(null),
+  /** When the first non-sample set was added: arms the backup reminder. */
+  firstRealSetAt: z.iso.datetime().nullable().default(null),
+  firstGradedAt: z.iso.datetime().nullable().default(null),
+  /** Lifetime graded reviews (does not shrink when sets are deleted). */
+  totalReviews: z.number().int().min(0).default(0),
+  /** Distinct local calendar days with a review, and the latest such day (YYYY-MM-DD). */
+  daysStudied: z.number().int().min(0).default(0),
+  lastStudyDay: z
+    .string()
+    .regex(/^\d{4}-\d{2}-\d{2}$/)
+    .nullable()
+    .default(null),
+  /** Reviewed on the 2nd / 7th calendar day after the first set was added (day 1 = the day it was added). */
+  day2Return: z.boolean().default(false),
+  day7Return: z.boolean().default(false),
+  /** Backup reminder anchors: the latest backup download and the latest dismissal, each with the review count then. */
+  lastBackupAt: z.iso.datetime().nullable().default(null),
+  reviewsAtLastBackup: z.number().int().min(0).default(0),
+  nudgeDismissedAt: z.iso.datetime().nullable().default(null),
+  reviewsAtNudgeDismissal: z.number().int().min(0).default(0),
+})
+
+export type Activation = z.infer<typeof activationSchema>
+
+export const createEmptyActivation = (): Activation => activationSchema.parse({})
+
 const appStateFields = {
   sets: z.array(studySetSchema),
   cards: z.array(studyCardSchema),
   reviewLog: z.array(reviewLogEntrySchema),
   settings: settingsSchema,
+  activation: activationSchema.default(createEmptyActivation),
 }
 
 export const appStateSchema = z.object({ version: z.literal(APP_STATE_VERSION), ...appStateFields })
@@ -349,6 +393,7 @@ export const createEmptyAppState = (): AppState => ({
   cards: [],
   reviewLog: [],
   settings: DEFAULT_SETTINGS,
+  activation: createEmptyActivation(),
 })
 
 // ---------------------------------------------------------------------------

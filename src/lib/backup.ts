@@ -245,6 +245,8 @@ export const applyBackup = (current: AppState, backup: Backup, mode: ImportMode)
         cards: backup.cards,
         reviewLog: backup.reviewLog,
         settings: backup.settings,
+        // Device-local, not part of a backup: a restore keeps this device's own history and reminder schedule.
+        activation: current.activation,
       },
       report: {
         mode,

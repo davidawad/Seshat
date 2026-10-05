@@ -36,7 +36,7 @@ export const SetCreatePage = () => {
       if (result.error.titleMissing) titleRef.current?.focus()
       return
     }
-    const set = importSet(result.value)
+    const set = importSet(result.value, 'create')
     discard()
     navigate(thenPractice ? `/sets/${set.id}/study` : `/sets/${set.id}`)
   }
