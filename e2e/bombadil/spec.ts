@@ -1,74 +1,57 @@
 // Bombadil specification for Seshat: property-based exploration of the built app.
-// Run via `just bombadil`. Only ever point this at the local preview server.
-import { always, actions, eventually, extract, now, next } from '@antithesishq/bombadil'
-import { registerCustomAction } from '@antithesishq/bombadil/browser'
-export * from '@antithesishq/bombadil/browser/defaults'
-
-const STORAGE_KEY = 'seshat:app-state:v2'
-const BASE = '/seshat'
-
-const readSetIds = (win: Window): string[] => {
-  try {
-    const raw = win.localStorage.getItem(STORAGE_KEY)
-    if (raw === null) return []
-    const parsed = JSON.parse(raw) as { sets?: { id: string }[] }
-    return (parsed.sets ?? []).map((s) => s.id)
-  } catch {
-    return []
-  }
-}
-
-const page = extract((state) => {
-  const win = state.window
-  // A native confirm() blocks CDP Runtime.evaluate and hangs Bombadil (observed twice); auto-accept it.
-  win.confirm = () => true
-  const doc = state.document
-  const main = doc.querySelector('main')
-  const active = doc.activeElement
-  const h1 = main?.querySelector('h1') ?? null
-  return {
-    pathname: win.location.pathname,
-    isHtml: doc.contentType === 'text/html',
-    hasHeader: doc.querySelector('header.app-header') !== null,
-    hasFooter: doc.querySelector('footer.app-footer') !== null,
-    hasMain: main !== null,
-    hasH1: h1 !== null,
-    overflow: doc.documentElement.scrollWidth - win.innerWidth,
-    modalOpen: doc.querySelector('dialog[open]') !== null,
-    focusOk: h1 !== null && main !== null && (active === h1 || main.contains(active)),
-  }
-})
-
-// Cross-reload data-loss check: remember the set ids seen at the end of the previous page load in
-// sessionStorage; on a fresh page load, every remembered id must still be in localStorage.
-const reloadLoss = extract((state) => {
-  const win = state.window
-  const loadId = String(win.performance.timeOrigin)
-  const ids = readSetIds(win)
-  let lost: string[] = []
-  try {
-    const prevLoad = win.sessionStorage.getItem('bombadil:loadId')
-    const prevIds = JSON.parse(win.sessionStorage.getItem('bombadil:ids') ?? '[]') as string[]
-    if (prevLoad !== null && prevLoad !== loadId) lost = prevIds.filter((id) => !ids.includes(id))
-    win.sessionStorage.setItem('bombadil:loadId', loadId)
-    win.sessionStorage.setItem('bombadil:ids', JSON.stringify(ids))
-  } catch {
-    // storage unavailable
-  }
-  return { lost }
-})
-
-const importMarker = extract((state) => {
-  const win = state.window
-  let pending: { before: number; name: string } | null = null
-  try {
-    const raw = win.sessionStorage.getItem('bombadil:import')
-    if (raw !== null) pending = JSON.parse(raw)
-  } catch {
-    // ignore
-  }
-  return { pending, count: readSetIds(win).length }
-})
+// Run via `just bombadil` (default 5 x 4 minute runs at 1024x768 then 5 at 390x844). Only ever point
+// this at the local preview server (`pnpm run build && pnpm exec vite preview`); never at a
+// third-party site.
+//
+// Stalls ("timed out waiting for response for Runtime.evaluate"), what is known:
+//  - A native modal (window.confirm/alert/prompt/print, a beforeunload prompt, a file chooser) blocks
+//    the renderer, which CDP Runtime.evaluate needs. The app no longer ships window.confirm (see
+//    ConfirmDialog), and `installGuards` stubs all of them (plus the File System Access pickers and
+//    clicks on <input type=file>) on every state capture, so exploration cannot open one.
+//  - The app itself is not the cause: no long tasks (max observed 705 ms; the
+//    noLongMainThreadTask property guards this), no render loop, and routeFocus.ts's
+//    MutationObserver only observes childList while its callback sets an attribute and focuses, so
+//    it cannot re-trigger itself and disconnects after 3 s.
+//  - What still happened, and what stopped it. Bombadil's own CDP calls (Runtime.evaluate, then
+//    Debugger.evaluateOnCallFrame) stopped answering, the Chrome 154 browser process spun a core,
+//    and Bombadil never reached its --time-limit (the orphaned Chrome kept spinning for hours).
+//    It always followed Bombadil's CDP key events (Enter/Escape/typing) or a click on a
+//    Study/Learn link, with no native dialog open; the renderer was idle when sampled, and the same
+//    key sequences never hang plain Playwright on Chrome 154. Measured, 2026-10-05:
+//      JS coverage instrumentation on  + CDP key events: 3 of 19 four-minute runs wedged
+//      instrumentation off             + CDP key events: 1 of 14 wedged
+//      instrumentation off + keyboard simulated in the page (below): 0 of 32
+//    So run.sh passes `--instrument-javascript=` (coverage only steers exploration, not the
+//    properties) and this spec replaces Bombadil's `inputs` generator (TypeText/PressKey) with the
+//    in-page `typeRandom` and `keyJab` flows (lib/explore.ts, lib/flows.ts). As a backstop run.sh
+//    kills the whole process tree when trace.jsonl stops growing and reports the run as wedged, not
+//    as a violation, so a wedge costs about 75 s. Upstream report: bead seshat-fde.
+//
+// --reproduce: unreliable in Bombadil 0.7.8 for this app, and not fixable from the spec. A custom
+// action never matches its own recording, even a no-argument one in a trivial spec (verified), and
+// even a defaults-only spec diverges on the second action (the recorded action is not in the
+// regenerated set). Use `bombadil browser inspect <run dir>` (trace and screenshots) and the action
+// log in target/bombadil/<run>.log instead. Action ARGUMENTS here are constants and randomness is a
+// per-session deterministic PRNG (`rand`), so a future Bombadil that matches custom actions can
+// replay them.
+//
+// Scripted flows (custom actions) assert their own outcome via `pushVerdict`, surfaced by the
+// scriptedFlowsHold property: import of valid JSON/CSV/TSV/TXT yields a set, the sample loads,
+// a filled-in create form yields a set, a saved diagram yields one card per label, cancelling a
+// delete confirmation (button or Escape) deletes nothing while accepting removes exactly the
+// target, and dismissing the backup banner sticks. `typeRandom` types long unbroken strings, emoji
+// and RTL text into fields, which is what finds phone-width overflow bugs.
+import { always, eventually, now, next } from '@antithesishq/bombadil'
+import { page, reloadLoss, verdicts } from './lib/state.ts'
+import { BASE } from './lib/support.ts'
+export {
+  noConsoleErrors,
+  noHttpErrorCodes,
+  noUncaughtExceptions,
+  noUnhandledPromiseRejections,
+} from '@antithesishq/bombadil/browser/defaults/properties'
+export { flows } from './lib/flows.ts'
+export { explore } from './lib/explore.ts'
 
 // Static files (agents.txt, schemas) are served from under BASE too but are not app pages.
 const underBase = () => page.current.pathname.startsWith(BASE) && page.current.isHtml
@@ -84,12 +67,13 @@ export const headerAndFooterAlwaysPresent = always(
 
 export const noHorizontalOverflow = always(() => page.current.overflow <= 1)
 
-// A client-side route change must move focus to the new page's h1 (or leave it inside main).
+// A client-side route change must move focus to the new page's h1 (or leave it inside main). An
+// open modal legitimately keeps focus (Back behind it changes the route but not the dialog).
 export const focusLandsOnH1AfterNavigation = always(
   now(() => {
     const before = page.current.pathname
     return next(() => page.current.pathname === before || page.current.modalOpen).or(
-      eventually(() => page.current.focusOk || !page.current.hasH1).within(2, 'seconds'),
+      eventually(() => page.current.focusOk || !page.current.hasH1 || page.current.modalOpen).within(2, 'seconds'),
     )
   }),
 )
@@ -103,55 +87,30 @@ export const noDeadRoutes = always(
 
 export const noDataLossOnReload = always(() => reloadLoss.current.lost.length === 0)
 
-export const validJsonImportYieldsSet = always(
-  now(() => importMarker.current.pending !== null).implies(
-    eventually(() => {
-      const m = importMarker.current
-      return m.pending === null || m.count > m.pending.before
-    }).within(5, 'seconds'),
+// Every visible interactive control has an accessible name.
+export const everyControlHasAccessibleName = always(
+  now(() => underBase() && page.current.unnamed.length > 0).implies(
+    // Controls can render a frame before their label; allow a short settle.
+    eventually(() => !underBase() || page.current.unnamed.length === 0).within(1, 'seconds'),
   ),
 )
 
-const importValidJson = registerCustomAction('importValidJson', async (document, window, seed: number) => {
-  const input = document.querySelector<HTMLInputElement>('input[type=file]')
-  const submit = document.querySelector<HTMLButtonElement>('[data-testid=import-paste-submit]')
-  if (input === null || submit === null) throw new Error('import form not present')
-  const name = `Bombadil set ${seed}`
-  const body = JSON.stringify({
-    name,
-    terms: [
-      { term: `t${seed}a`, definition: 'first' },
-      { term: `t${seed}b`, definition: 'second' },
-    ],
-  })
-  try {
-    const raw = window.localStorage.getItem('seshat:app-state:v2')
-    const before = raw === null ? 0 : ((JSON.parse(raw) as { sets?: unknown[] }).sets ?? []).length
-    window.sessionStorage.setItem('bombadil:import', JSON.stringify({ before, name }))
-  } catch {
-    // ignore
-  }
-  const dt = new DataTransfer()
-  dt.items.add(new File([body], 'valid.json', { type: 'application/json' }))
-  input.files = dt.files
-  input.dispatchEvent(new Event('change', { bubbles: true }))
-  await new Promise((resolve) => setTimeout(resolve, 150))
-  submit.click()
-})
+// Scripted flows record pass/fail verdicts (see flows below).
+export const scriptedFlowsHold = always(() => verdicts.current.failed.length === 0)
 
-const clearPendingImport = registerCustomAction('clearPendingImport', async (_document, window) => {
-  try {
-    window.sessionStorage.removeItem('bombadil:import')
-  } catch {
-    // ignore
-  }
-})
+// A Learn page always shows a question, a round/final summary, or an explicit empty state.
+export const learnPageNeverBlank = always(
+  now(() => page.current.learnState === 'none').implies(
+    eventually(() => page.current.learnState !== 'none').within(3, 'seconds'),
+  ),
+)
 
-export const importAndVerify = actions(() => {
-  const m = importMarker.current
-  const out = []
-  if (page.current.pathname === `${BASE}/sets/import`) out.push(importValidJson(Math.floor(Math.random() * 1e6)))
-  // Once the set count has grown the import is verified; clear the marker.
-  if (m.pending !== null && m.count > m.pending.before) out.push(clearPendingImport())
-  return out
-})
+// An open ConfirmDialog offers both choices and holds focus inside itself.
+export const confirmDialogWellFormed = always(
+  now(() => page.current.confirmOpen && !page.current.confirmHasBoth).implies(
+    eventually(() => !page.current.confirmOpen || page.current.confirmHasBoth).within(1, 'seconds'),
+  ),
+)
+
+// No single main-thread task over 4s (that is what starves CDP Runtime.evaluate).
+export const noLongMainThreadTask = always(() => page.current.longTaskMs < 4000)
