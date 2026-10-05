@@ -90,9 +90,10 @@ describe('accessibility tree: pages', () => {
     ).toEqual([])
   })
 
-  it('set edit: per-card controls have distinct names', () => {
+  it('set edit: per-card controls have distinct names', async () => {
     seed()
     const { container } = renderAt(`${base}/edit`)
+    await screen.findByTestId(TESTIDS.editPage)
     expectAccessible(container)
     expect(
       missingTestIds(container, [
@@ -126,6 +127,7 @@ describe('accessibility tree: test mode, games and reference pages', () => {
     const user = userEvent.setup()
     seed()
     const { container } = renderAt(`${base}/test`)
+    await screen.findByTestId(TESTIDS.testPage)
     expectAccessible(container)
     expect(
       missingTestIds(container, [TESTIDS.testPage, TESTIDS.testForm, TESTIDS.testQuestion, TESTIDS.testSubmit]),
@@ -208,7 +210,7 @@ describe('accessibility tree: create and import pages', () => {
     seed()
     const { container } = renderAt('/sets')
     await user.click(screen.getByRole('link', { name: 'Create' }))
-    expect(screen.getByRole('heading', { level: 1, name: 'Create a new set' })).toHaveFocus()
+    expect(await screen.findByRole('heading', { level: 1, name: 'Create a new set' })).toHaveFocus()
     expectAccessible(container)
     expect(
       missingTestIds(container, [
@@ -248,7 +250,7 @@ describe('accessibility tree: create and import pages', () => {
     seed()
     const { container } = renderAt('/sets')
     await user.click(screen.getByRole('link', { name: 'Import' }))
-    expect(screen.getByRole('heading', { level: 1, name: 'Import a set' })).toHaveFocus()
+    expect(await screen.findByRole('heading', { level: 1, name: 'Import a set' })).toHaveFocus()
     expectAccessible(container)
     expect(
       missingTestIds(container, [
