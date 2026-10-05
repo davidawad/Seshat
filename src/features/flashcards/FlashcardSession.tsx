@@ -53,6 +53,7 @@ interface FlashcardFaceProps {
   readonly front: string
   readonly back: string
   readonly image: MediaRef | undefined
+  readonly answerImage: MediaRef | undefined
   readonly imageDataUrl: string | undefined
   readonly dragX: number
   readonly onClick: () => void
@@ -72,6 +73,7 @@ const FlashcardFace = ({
   front,
   back,
   image,
+  answerImage,
   imageDataUrl,
   dragX,
   onClick,
@@ -104,7 +106,15 @@ const FlashcardFace = ({
     onPointerCancel={onPointerCancel}
     style={dragX !== 0 ? { transform: `translateX(${dragX}px)` } : undefined}
   >
-    <FlipCard front={front} back={back} image={image} imageDataUrl={imageDataUrl} flipped={flipped} tip={tip} />
+    <FlipCard
+      front={front}
+      back={back}
+      image={image}
+      answerImage={answerImage}
+      imageDataUrl={imageDataUrl}
+      flipped={flipped}
+      tip={tip}
+    />
     {badge}
   </div>
 )
@@ -148,7 +158,7 @@ export const FlashcardSession = ({
     shownAt.current = performance.now()
   }, [card.id])
 
-  const { image, imageDataUrl, ...faces } = cardFrontBack(card)
+  const { image, answerImage, imageDataUrl, ...faces } = cardFrontBack(card)
   const { front, back } = orientFaces(faces, options.front)
 
   const toggleFlip = useCallback(() => setFlipped((current) => !current), [])
@@ -233,6 +243,7 @@ export const FlashcardSession = ({
           front={front}
           back={back}
           image={image}
+          answerImage={answerImage}
           imageDataUrl={imageDataUrl}
           dragX={dragX}
           onClick={handleFaceClick}

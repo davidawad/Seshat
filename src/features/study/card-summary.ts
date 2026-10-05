@@ -14,6 +14,8 @@ export interface CardFrontBack {
   readonly back: string
   /** The card's image as a MediaRef (image-occlusion `image`, else the card's `promptImage`). Absent when it has none. */
   readonly image?: MediaRef
+  /** A short-answer card's answer-side image; shown on the back face instead of `image`. */
+  readonly answerImage?: MediaRef
   /** LEGACY inline data URL (image-occlusion cards not migrated yet). Present only when there is no `image`. */
   readonly imageDataUrl?: string
 }
@@ -27,7 +29,9 @@ const occlusionImage = (content: ImageOcclusionContent): Pick<CardFrontBack, 'im
 const contentFrontBack = (prompt: string, content: CardContent): CardFrontBack => {
   switch (content.kind) {
     case 'short-answer':
-      return { front: prompt, back: content.answer }
+      return content.answerImage === null
+        ? { front: prompt, back: content.answer }
+        : { front: prompt, back: content.answer, answerImage: content.answerImage }
     case 'cloze':
       // Unlike every other kind, `prompt` here is optional supplementary
       // context (a category-style label, e.g. "Fill in the blank") rather

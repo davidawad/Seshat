@@ -51,7 +51,7 @@ export const SetPreviewCard = ({ cards }: SetPreviewCardProps) => {
 
   if (card === undefined) return null
 
-  const { front, back, image, imageDataUrl } = cardFrontBack(card)
+  const { front, back, image, answerImage, imageDataUrl } = cardFrontBack(card)
 
   return (
     <div className="set-preview">
@@ -59,6 +59,7 @@ export const SetPreviewCard = ({ cards }: SetPreviewCardProps) => {
         front={front}
         back={back}
         image={image}
+        answerImage={answerImage}
         imageDataUrl={imageDataUrl}
         flipped={flipped}
         tip={

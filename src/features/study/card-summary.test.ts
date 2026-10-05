@@ -103,4 +103,12 @@ describe('cardFrontBack', () => {
     const content = { kind: 'image-occlusion', image: null, occlusions: [occlusion] } as ImageOcclusionContent
     expect(cardFrontBack({ ...baseCard, prompt: 'p', content })).toEqual({ front: 'p', back: 'Part' })
   })
+
+  it('exposes a short-answer answerImage separately from the prompt image', () => {
+    const answerImage = { ...ref, id: 'd'.repeat(64) }
+    const content: ShortAnswerContent = { kind: 'short-answer', answer: 'a', acceptableAnswers: [], answerImage }
+    const result = cardFrontBack({ ...baseCard, prompt: 'p', promptImage: ref, content })
+    expect(result.answerImage).toEqual(answerImage)
+    expect(result.image).toEqual(ref)
+  })
 })

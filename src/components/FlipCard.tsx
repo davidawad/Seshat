@@ -7,6 +7,8 @@ interface FlipCardProps {
   readonly front: string
   readonly back: string
   readonly image?: MediaRef | undefined
+  /** Shown on the back face in place of `image` when present. */
+  readonly answerImage?: MediaRef | undefined
   /** LEGACY inline data URL; shown only when `image` is absent. */
   readonly imageDataUrl: string | undefined
   readonly flipped: boolean
@@ -32,7 +34,7 @@ interface FlipCardProps {
  * TODO(image-cards): render the front with all regions masked and the back
  * with the asked region revealed, or ask every region. Not redesigned here.
  */
-export const FlipCard = ({ front, back, image, imageDataUrl, flipped, tip }: FlipCardProps) => (
+export const FlipCard = ({ front, back, image, answerImage, imageDataUrl, flipped, tip }: FlipCardProps) => (
   <div className="flip-card-scene">
     <div className={flipped ? 'flip-card-inner is-flipped' : 'flip-card-inner'}>
       <div className="legible illuminated-panel flip-card-face flip-card-front" aria-hidden={flipped}>
@@ -41,7 +43,12 @@ export const FlipCard = ({ front, back, image, imageDataUrl, flipped, tip }: Fli
         {tip}
       </div>
       <div className="legible illuminated-panel flip-card-face flip-card-back" aria-hidden={!flipped}>
-        <CardImage image={image} imageDataUrl={imageDataUrl} alt="" className="flip-card-image" />
+        <CardImage
+          image={answerImage ?? image}
+          imageDataUrl={answerImage ? undefined : imageDataUrl}
+          alt=""
+          className="flip-card-image"
+        />
         <p>{back}</p>
         {tip}
       </div>
