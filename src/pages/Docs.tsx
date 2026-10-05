@@ -109,9 +109,13 @@ export const DocsPage = () => (
     <section aria-labelledby="docs-schema-heading">
       <h2 id="docs-schema-heading">The set JSON format — and how to upload one that works</h2>
       <p>
-        On the <Link to="/sets">Sets</Link> page, the upload icon in the header opens a file picker that accepts either
-        of two JSON shapes below. It tries Seshat&rsquo;s own format first, then falls back to the simple
-        term/definition format — you don&rsquo;t have to tell it which one you&rsquo;re giving it.
+        The <Link to="/sets/import">Import</Link> page (reached from the empty Home, or Import on the Sets page) takes
+        Quizlet-style text first: paste it, or upload a <code>.csv</code>, <code>.tsv</code> or <code>.txt</code> file
+        with one term and definition per line, split by a tab (or a comma if the line has no tab). Quoted CSV cells and
+        a <code>term,definition</code> header row are handled, and the set name is suggested from the file name. The
+        same file box also accepts <code>.json</code>, in either of two shapes below. For JSON it tries Seshat&rsquo;s
+        own format first, then falls back to the simple term/definition format — you don&rsquo;t have to tell it which
+        one you&rsquo;re giving it.
       </p>
 
       <h3>The simple format (Quizlet-style term/definition pairs)</h3>

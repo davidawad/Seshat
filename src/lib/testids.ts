@@ -60,6 +60,12 @@ export const TESTIDS = {
   setsBrowserCreate: 'sets-browser-create',
   setsBrowserImport: 'sets-browser-import',
   setsBrowserStarterLoad: 'sets-browser-starter-load',
+  setsBrowserHero: 'sets-browser-hero',
+  setsBrowserPrivacy: 'sets-browser-privacy',
+  setsBrowserHeroImport: 'sets-browser-hero-import',
+  setsBrowserHeroCreate: 'sets-browser-hero-create',
+  setsBrowserSampleLoad: 'sets-browser-sample-load',
+  setsBrowserMoreExamples: 'sets-browser-more-examples',
   setsBrowserNewSet: 'sets-browser-new-set',
   setsBrowserViewToggle: 'sets-browser-view-toggle',
   setsBrowserViewGrid: 'sets-browser-view-grid',
@@ -101,6 +107,8 @@ export const TESTIDS = {
   importPreview: 'import-preview',
   importError: 'import-error',
   importPasteSubmit: 'import-paste-submit',
+  importQuizletGuide: 'import-quizlet-guide',
+  importAdvanced: 'import-advanced',
 
   // Set detail (hub)
   setPage: 'set-page',
@@ -156,6 +164,9 @@ export const TESTIDS = {
   studyGradeEasy: 'study-grade-easy',
   studySummary: 'study-summary',
   studyEmpty: 'study-empty',
+  studyCoach: 'study-coach',
+  studyCoachDismiss: 'study-coach-dismiss',
+  studyCoachFlip: 'study-coach-flip',
 
   // Flashcards
   flashcardsPage: 'flashcards-page',

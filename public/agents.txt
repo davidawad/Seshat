@@ -177,6 +177,8 @@ listed cards.)
 HOW TO DRIVE THE UI (browser-driving agents)
 ---------------------------------------------
 - Prefer ?import= above over clicking through the importer; it is one navigation.
+- The /sets/import file box accepts .csv, .tsv and .txt (one term and definition per line, split by a
+  tab or a comma; Quizlet's text export) as well as .json. The set name is pre-filled from the file name.
 - Routes: / (home), /sets, /sets/new (create editor), /sets/import (import page), /sets/:id, /docs, /attributions, /licensing. Study modes are launched
   from a set's page.
 - Interactive elements use native buttons, links and form controls with accessible names, so
@@ -204,7 +206,10 @@ Modals:
   flashcard-options-modal, flashcard-options-modal-close
 Sets browser (the one component behind both / "Your sets" and /sets "Sets"; identical apart from the h1):
   sets-browser, sets-browser-search, sets-browser-create (link to /sets/new),
-  sets-browser-import (link to /sets/import), sets-browser-starter-load, sets-browser-new-set,
+  sets-browser-import (link to /sets/import), sets-browser-starter-load (a button inside the
+  sets-browser-more-examples disclosure), sets-browser-new-set,
+  empty-state hero: sets-browser-hero, sets-browser-privacy, sets-browser-hero-import,
+  sets-browser-hero-create, sets-browser-sample-load (loads the 10-card sample),
   sets-browser-view-toggle, sets-browser-view-grid, sets-browser-view-table,
   sets-browser-grid, sets-browser-card, sets-browser-table, sets-browser-row,
   sets-browser-set-link, sets-browser-study-link, sets-browser-edit-link (to /sets/:id/edit)
@@ -214,10 +219,13 @@ Create a set (/sets/new):
   create-add-card, create-submit, create-submit-practice, create-draft-status, create-problems
 Import a set (/sets/import):
   import-page, import-back, import-dropzone, import-file, import-file-name, import-paste-name,
-  import-paste-text, import-preview, import-error, import-paste-submit
+  import-paste-text, import-preview, import-error, import-paste-submit, import-quizlet-guide,
+  import-advanced (disclosure holding the JSON / agent notes)
 Set detail (/sets/:id):
   set-page, set-edit-link, set-export, set-mode-study, set-mode-flashcards, set-mode-test,
   set-mode-games, set-preview-flip, set-term-list
+  (set-mode-study is the primary "Start studying" link; set-mode-games sits inside a closed "More"
+  <details> and only exists while the Games setting is on)
 Set edit (/sets/:id/edit):
   edit-page, edit-name, edit-tags, edit-description, edit-goal-date, edit-card-list,
   edit-add-term,
@@ -226,7 +234,8 @@ Study (/sets/:id/study):
   study-page, study-progress, study-answer-input, study-show-options, study-mcq-options,
   study-continue, study-confidence-guessed, study-confidence-unsure, study-confidence-sure,
   study-result, study-self-explanation, study-grade-again, study-grade-hard, study-grade-good,
-  study-grade-easy, study-summary, study-empty
+  study-grade-easy, study-summary, study-empty, study-coach (first-session banner; removed once a
+  card is graded or dismissed), study-coach-dismiss, study-coach-flip (link to /sets/:id/flashcards)
 Flashcards (/sets/:id/flashcards):
   flashcards-page, flashcard-face, flashcard-know, flashcard-still-learning, flashcard-undo,
   flashcard-shuffle, flashcard-options, flashcard-progress, flashcards-announcer,

@@ -4,8 +4,10 @@ import type { UserEvent } from '@testing-library/user-event'
 import { MemoryRouter, Route, Routes } from 'react-router-dom'
 import { afterEach, beforeEach, describe, expect, it } from 'vitest'
 import { createInitialScheduling } from '../lib/fsrs'
-import { saveState } from '../lib/storage'
+import { STORAGE_KEY, saveState } from '../lib/storage'
+import { forgetTipCacheForTests } from '../lib/tipDismissal'
 import { SeshatProvider, useSeshatStore } from '../lib/store'
+import { TESTIDS } from '../lib/testids'
 import { type CardId, type SetId, type StudyCard, cardIdSchema, createEmptyAppState, setIdSchema } from '../types'
 import { StudyPage } from './Study'
 
@@ -101,6 +103,7 @@ const answerAndGrade = async (
 describe('StudyPage', () => {
   beforeEach(() => {
     window.localStorage.clear()
+    forgetTipCacheForTests()
   })
 
   it('shows a not-found message for an invalid set id', () => {
@@ -268,5 +271,72 @@ describe('StudyPage', () => {
 
     // Fresh mount doesn't try to resume a session parked past its (now-cleared) queue.
     expect(screen.queryByText('Session complete')).not.toBeInTheDocument()
+  })
+})
+
+describe('StudyPage first-session coach', () => {
+  beforeEach(() => {
+    window.localStorage.clear()
+    forgetTipCacheForTests()
+  })
+
+  const seedTwo = () =>
+    seedCards([makeDueCard(cardId1, 'Prompt 1', 'Answer 1', 0), makeDueCard(cardId2, 'Prompt 2', 'Answer 2', 1)])
+
+  it('explains typing, self-grading and FSRS in one banner with a flip-cards escape link', () => {
+    seedTwo()
+    renderPage()
+    const coach = screen.getByTestId(TESTIDS.studyCoach)
+    expect(coach).toHaveTextContent(/type what you remember/i)
+    expect(coach).toHaveTextContent(/rate how well/i)
+    expect(coach).toHaveTextContent(/FSRS/)
+    expect(within(coach).getByRole('link', { name: 'Just flip cards' })).toHaveAttribute(
+      'href',
+      `/sets/${setId}/flashcards`,
+    )
+  })
+
+  it('dismisses with Got it and stays gone on the next visit', async () => {
+    seedTwo()
+    const user = userEvent.setup()
+    const first = renderPage()
+    await user.click(screen.getByTestId(TESTIDS.studyCoachDismiss))
+    expect(screen.queryByTestId(TESTIDS.studyCoach)).not.toBeInTheDocument()
+    first.unmount()
+    forgetTipCacheForTests()
+    renderPage()
+    expect(screen.queryByTestId(TESTIDS.studyCoach)).not.toBeInTheDocument()
+  })
+
+  it('retires the banner when you take the flip-cards escape', async () => {
+    seedTwo()
+    const user = userEvent.setup()
+    renderPage()
+    await user.click(screen.getByTestId(TESTIDS.studyCoachFlip))
+    expect(screen.queryByTestId(TESTIDS.studyCoach)).not.toBeInTheDocument()
+  })
+
+  it('retires itself once the first card is graded', async () => {
+    seedTwo()
+    const user = userEvent.setup()
+    renderPage()
+    expect(screen.getByTestId(TESTIDS.studyCoach)).toBeInTheDocument()
+    await answerAndGrade(user, 'Answer 1', 'Sure', /good/i)
+    expect(screen.queryByTestId(TESTIDS.studyCoach)).not.toBeInTheDocument()
+  })
+
+  it('stays away when card tips are turned off in settings', () => {
+    seedTwo()
+    const stored = JSON.parse(window.localStorage.getItem(STORAGE_KEY) ?? '{}') as { settings: object }
+    stored.settings = { ...stored.settings, cardTipsEnabled: false }
+    window.localStorage.setItem(STORAGE_KEY, JSON.stringify(stored))
+    renderPage()
+    expect(screen.queryByTestId(TESTIDS.studyCoach)).not.toBeInTheDocument()
+  })
+
+  it('is not shown when nothing is due', () => {
+    seedCards([])
+    renderPage()
+    expect(screen.queryByTestId(TESTIDS.studyCoach)).not.toBeInTheDocument()
   })
 })

@@ -1,4 +1,4 @@
-import { cleanup, fireEvent, render, screen, waitFor } from '@testing-library/react'
+import { cleanup, fireEvent, render, screen, waitFor, within } from '@testing-library/react'
 import userEvent from '@testing-library/user-event'
 import { MemoryRouter, Route, Routes } from 'react-router-dom'
 import { afterEach, beforeEach, describe, expect, it } from 'vitest'
@@ -111,5 +111,54 @@ describe('SetImportPage', () => {
     await user.type(screen.getByRole('textbox', { name: 'Set name' }), 'Dropped')
     await user.click(screen.getByRole('button', { name: 'Import' }))
     expect(await screen.findByText('set hub')).toBeInTheDocument()
+  })
+
+  it('names Quizlet and gives three export steps', () => {
+    renderPage()
+    const guide = screen.getByTestId('import-quizlet-guide')
+    expect(guide).toHaveTextContent('Coming from Quizlet?')
+    expect(within(guide).getAllByRole('listitem')).toHaveLength(3)
+  })
+
+  it('offers .csv/.tsv/.txt uploads and tucks JSON under Advanced / agents', () => {
+    renderPage()
+    expect(screen.getByTestId('import-dropzone')).toHaveTextContent('.csv, .tsv or .txt')
+    const accept = screen.getByTestId('import-file').getAttribute('accept') ?? ''
+    for (const extension of ['.csv', '.tsv', '.txt', '.json']) expect(accept).toContain(extension)
+    const advanced = screen.getByTestId('import-advanced')
+    expect(advanced.tagName).toBe('DETAILS')
+    expect(advanced).not.toHaveAttribute('open')
+    expect(within(advanced).getByText('Advanced / agents')).toBeInTheDocument()
+    expect(within(advanced).getByRole('link', { name: 'agent guide' })).toHaveAttribute(
+      'href',
+      expect.stringContaining('agents.txt'),
+    )
+  })
+
+  it('imports a .csv file, suggesting the set name from the file name', async () => {
+    const user = userEvent.setup()
+    renderPage()
+    await user.upload(
+      screen.getByTestId('import-file'),
+      fileOf('Term,Definition\n"Paris, FR",capital\nx,y', 'world_capitals.csv'),
+    )
+    expect(await screen.findByTestId('import-file-name')).toHaveTextContent('world_capitals.csv')
+    expect(screen.getByRole('textbox', { name: 'Set name' })).toHaveValue('World capitals')
+    expect(screen.getByTestId('import-preview')).toHaveTextContent('2 cards parsed from world_capitals.csv')
+    await user.click(screen.getByRole('button', { name: 'Import' }))
+    expect(await screen.findByText('set hub')).toBeInTheDocument()
+    expect(screen.getByRole('list', { name: 'stored sets' })).toHaveTextContent('World capitals:2')
+  })
+
+  it('imports a tab-separated .txt Quizlet export and does not overwrite a typed name', async () => {
+    const user = userEvent.setup()
+    renderPage()
+    await user.type(screen.getByRole('textbox', { name: 'Set name' }), 'Mine')
+    await user.upload(screen.getByTestId('import-file'), fileOf('a\tb\nc\td', 'quizlet.txt'))
+    await screen.findByTestId('import-file-name')
+    expect(screen.getByRole('textbox', { name: 'Set name' })).toHaveValue('Mine')
+    await user.click(screen.getByRole('button', { name: 'Import' }))
+    expect(await screen.findByText('set hub')).toBeInTheDocument()
+    expect(screen.getByRole('list', { name: 'stored sets' })).toHaveTextContent('Mine:2')
   })
 })
