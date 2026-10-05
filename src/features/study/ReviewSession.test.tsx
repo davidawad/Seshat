@@ -50,7 +50,8 @@ const makeCard = (overrides: Partial<StudyCard> = {}): StudyCard => {
     id: cardId,
     setId,
     prompt: 'What is the capital of France?',
-    content: { kind: 'short-answer', answer: 'Paris', acceptableAnswers: [] },
+    promptImage: null,
+    content: { kind: 'short-answer', answer: 'Paris', acceptableAnswers: [], answerImage: null },
     explanation: null,
     sourceRef: null,
     tags: [],
@@ -310,7 +311,7 @@ describe('ReviewSession card-change reset', () => {
     const secondCard = makeCard({
       id: cardIdSchema.parse('c2222222-2222-4222-8222-222222222222'),
       prompt: 'What is 2+2?',
-      content: { kind: 'short-answer', answer: '4', acceptableAnswers: [] },
+      content: { kind: 'short-answer', answer: '4', acceptableAnswers: [], answerImage: null },
     })
     seedStore(card)
     const onAdvance = vi.fn<(grade: string, correct: boolean) => void>()

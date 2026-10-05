@@ -8,9 +8,8 @@ export const slugify = (name: string): string => {
   return slug.length > 0 ? slug : 'set'
 }
 
-/** Triggers a browser download of `data` (serialized as pretty JSON) as `filename`. */
-export const downloadJson = (filename: string, data: unknown): void => {
-  const blob = new Blob([JSON.stringify(data, null, 2)], { type: 'application/json' })
+/** Triggers a browser download of `blob` as `filename`. */
+export const downloadBlob = (filename: string, blob: Blob): void => {
   const url = URL.createObjectURL(blob)
   try {
     const anchor = document.createElement('a')
@@ -22,4 +21,9 @@ export const downloadJson = (filename: string, data: unknown): void => {
   } finally {
     URL.revokeObjectURL(url)
   }
+}
+
+/** Triggers a browser download of `data` (serialized as pretty JSON) as `filename`. */
+export const downloadJson = (filename: string, data: unknown): void => {
+  downloadBlob(filename, new Blob([JSON.stringify(data, null, 2)], { type: 'application/json' }))
 }

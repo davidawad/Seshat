@@ -1,10 +1,11 @@
 import { matchesBinding } from '../../lib/keybindings'
-import type { FlashcardsFront } from '../../types'
+import type { CardSize, FlashcardsFront } from '../../types'
 
 /** What the Options modal controls, resolved from Settings — the one place the two settings are interpreted. */
 export interface FlashcardOptions {
   readonly trackProgress: boolean
   readonly front: FlashcardsFront
+  readonly cardSize: CardSize
 }
 
 export const FRONT_LABELS: Readonly<Record<FlashcardsFront, string>> = {
@@ -12,10 +13,21 @@ export const FRONT_LABELS: Readonly<Record<FlashcardsFront, string>> = {
   definition: 'Definition',
 }
 
+export const CARD_SIZE_LABELS: Readonly<Record<CardSize, string>> = {
+  small: 'Small',
+  medium: 'Medium',
+  large: 'Large',
+}
+
 export const resolveOptions = (settings: {
   readonly flashcardsTrackProgress: boolean
   readonly flashcardsFront: FlashcardsFront
-}): FlashcardOptions => ({ trackProgress: settings.flashcardsTrackProgress, front: settings.flashcardsFront })
+  readonly flashcardsCardSize: CardSize
+}): FlashcardOptions => ({
+  trackProgress: settings.flashcardsTrackProgress,
+  front: settings.flashcardsFront,
+  cardSize: settings.flashcardsCardSize,
+})
 
 /** Which text goes on which face: 'definition' simply swaps the card's own front/back. */
 export const orientFaces = (

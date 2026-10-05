@@ -1,3 +1,4 @@
+import { CardImage } from '../../components/CardImage'
 import { useId } from 'react'
 import { TESTIDS } from '../../lib/testids'
 import { Legible } from '../../components/Legible'
@@ -19,6 +20,7 @@ export const WrittenQuestionField = ({ question, index, value, onChange }: Writt
       <p id={promptId} className="test-question-prompt">
         {index + 1}. {question.front}
       </p>
+      <CardImage image={question.image} alt="" />
       <label htmlFor={inputId}>Your answer</label>
       <input
         id={inputId}

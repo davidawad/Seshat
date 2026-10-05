@@ -1,0 +1,273 @@
+.home-set-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(16rem, 1fr));
+  gap: 1rem;
+  margin: 1.5rem 0 0;
+  padding: 0;
+  list-style: none;
+}
+
+.set-progress-card {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  gap: 0.6rem;
+  height: 100%;
+  padding: 1rem 1.1rem;
+  background: var(--color-bg-elevated);
+  border: 1px solid var(--color-border-strong);
+  border-radius: var(--radius-page);
+}
+
+.set-progress-card-main {
+  color: inherit;
+  text-decoration: none;
+}
+
+.set-progress-card-main:hover .set-progress-card-name {
+  color: var(--color-accent);
+}
+
+.set-progress-card-name {
+  margin: 0;
+  font-size: 1.15rem;
+}
+
+.set-progress-card-description {
+  margin: 0.25rem 0 0;
+  color: var(--color-fg-muted);
+  font-size: 0.9rem;
+}
+
+.set-progress {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  margin-top: auto;
+}
+
+.set-progress-bar {
+  flex: 1;
+  block-size: 0.5rem;
+  overflow: hidden;
+  background: var(--color-border-strong);
+  border-radius: 999px;
+}
+
+.set-progress-fill {
+  display: block;
+  block-size: 100%;
+  background: var(--color-accent);
+}
+
+.set-progress-count {
+  font-family: var(--font-ui);
+  font-size: 0.9rem;
+  font-variant-numeric: tabular-nums;
+}
+
+.set-progress-card-meta {
+  margin: 0;
+  color: var(--color-fg-muted);
+  font-size: 0.85rem;
+}
+
+.set-progress-card-study {
+  padding: 0.4rem 0.9rem;
+  border-radius: var(--radius-sm);
+  text-decoration: none;
+  font-weight: 500;
+  background: var(--color-accent);
+  color: var(--color-accent-contrast);
+}
+
+/* The dashed "+ New set" tile that ends the grid: same footprint as a set card. */
+.new-set-tile {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 0.4rem;
+  height: 100%;
+  min-height: 11rem;
+  border: 2px dashed var(--color-border-strong);
+  border-radius: var(--radius-page);
+  color: var(--color-fg-muted);
+  font-family: var(--font-ui);
+  font-weight: 600;
+  text-decoration: none;
+  transition:
+    color 0.12s ease,
+    border-color 0.12s ease,
+    background 0.12s ease;
+}
+
+.new-set-tile:hover,
+.new-set-tile:focus-visible {
+  color: var(--color-accent);
+  border-color: var(--color-accent);
+  background: color-mix(in srgb, var(--color-accent) 8%, transparent);
+}
+
+.new-set-tile-plus {
+  font-size: 2.5rem;
+  line-height: 1;
+  font-weight: 400;
+}
+
+/* Cards / table switch: two equal square icon cells sharing one outline. */
+.view-toggle {
+  display: inline-grid;
+  grid-auto-flow: column;
+  grid-auto-columns: 2.75rem;
+  grid-template-rows: 1fr;
+  height: 2.75rem;
+  border: 2px solid var(--color-border-strong);
+  border-radius: var(--radius-page);
+  overflow: hidden;
+  line-height: 0;
+}
+
+/* margin: 0 — the global `label` rule adds a bottom margin that left a strip under the fill. */
+.view-toggle-option {
+  position: relative;
+  margin: 0;
+  display: grid;
+  place-items: center;
+  color: var(--color-fg-muted);
+  cursor: pointer;
+}
+
+.view-toggle-option svg {
+  display: block;
+}
+
+.view-toggle-option + .view-toggle-option {
+  border-inline-start: 2px solid var(--color-border-strong);
+}
+
+/* The radio is the hit target and focus holder; the icon is its picture. */
+.view-toggle-option input {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  margin: 0;
+  opacity: 0;
+  cursor: pointer;
+}
+
+.view-toggle-option:has(input:checked) {
+  background: var(--color-accent);
+  color: var(--color-accent-contrast);
+}
+
+.view-toggle-option:has(input:focus-visible) {
+  outline: 3px solid var(--color-focus-ring);
+  outline-offset: -3px;
+}
+
+/* Table view */
+.set-table-wrap {
+  margin-top: 1.5rem;
+  overflow-x: auto;
+}
+
+.set-table {
+  width: 100%;
+  border-collapse: collapse;
+  background: var(--color-bg-elevated);
+  border: 1px solid var(--color-border-strong);
+}
+
+.set-table th,
+.set-table td {
+  padding: 0.75rem 1rem;
+  text-align: start;
+  border-bottom: 1px solid var(--color-border);
+  vertical-align: middle;
+}
+
+.set-table thead th {
+  font-family: var(--font-ui);
+  font-size: 0.8rem;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: var(--color-fg-muted);
+}
+
+.set-table tbody th {
+  font-family: var(--font-chrome);
+  font-size: 1.05rem;
+  font-weight: 600;
+}
+
+.set-table .num {
+  text-align: end;
+  font-variant-numeric: tabular-nums;
+}
+
+.set-table-progress {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  min-width: 10rem;
+}
+
+.set-table-study {
+  display: inline-block;
+  padding: 0.3rem 0.8rem;
+  border-radius: var(--radius-sm);
+  background: var(--color-accent);
+  color: var(--color-accent-contrast);
+  text-decoration: none;
+  font-weight: 500;
+}
+
+.new-set-row {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  margin-top: 0.75rem;
+  padding: 0.9rem;
+  border: 2px dashed var(--color-border-strong);
+  border-radius: var(--radius-page);
+  color: var(--color-fg-muted);
+  font-family: var(--font-ui);
+  font-weight: 600;
+  text-decoration: none;
+}
+
+.new-set-row:hover,
+.new-set-row:focus-visible {
+  color: var(--color-accent);
+  border-color: var(--color-accent);
+}
+
+@media (max-width: 640px) {
+  .set-table th,
+  .set-table td {
+    padding: 0.6rem 0.5rem;
+  }
+
+  .set-table-progress {
+    min-width: 6rem;
+  }
+}
+
+.set-progress-card-actions,
+.set-table-actions {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+}
+
+.set-progress-card-actions {
+  justify-content: space-between;
+}
+
+.set-progress-card .tag-chips,
+.set-table .tag-chips {
+  margin: 0.25rem 0 0;
+}

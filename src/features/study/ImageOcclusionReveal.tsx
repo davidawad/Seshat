@@ -1,3 +1,4 @@
+import { CardImage } from '../../components/CardImage'
 import type { ImageOcclusionContent } from '../../types'
 import './image-occlusion.css'
 
@@ -15,8 +16,9 @@ interface ImageOcclusionRevealProps {
  */
 export const ImageOcclusionReveal = ({ prompt, content, targetRegionId }: ImageOcclusionRevealProps) => (
   <div className="occlusion-image-wrap">
-    <img
-      src={content.imageDataUrl}
+    <CardImage
+      image={content.image}
+      imageDataUrl={content.imageDataUrl}
       alt={prompt.trim() !== '' ? `Diagram for: ${prompt}` : 'Diagram'}
       className="occlusion-study-image"
     />

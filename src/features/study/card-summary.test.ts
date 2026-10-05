@@ -5,6 +5,7 @@ import { cardFrontBack } from './card-summary'
 const baseCard = {
   id: 'card-1' as StudyCard['id'],
   setId: 'set-1' as StudyCard['setId'],
+  promptImage: null,
   explanation: null,
   sourceRef: null,
   tags: [] as string[],
@@ -25,7 +26,12 @@ const baseCard = {
 
 describe('cardFrontBack', () => {
   it('reduces a short-answer card to prompt/answer', () => {
-    const content: ShortAnswerContent = { kind: 'short-answer', answer: 'Mitochondria', acceptableAnswers: [] }
+    const content: ShortAnswerContent = {
+      kind: 'short-answer',
+      answer: 'Mitochondria',
+      acceptableAnswers: [],
+      answerImage: null,
+    }
     const card: StudyCard = { ...baseCard, prompt: 'Powerhouse of the cell?', content }
     expect(cardFrontBack(card)).toEqual({ front: 'Powerhouse of the cell?', back: 'Mitochondria' })
   })
@@ -47,6 +53,7 @@ describe('cardFrontBack', () => {
   it('reduces an image-occlusion card to prompt/first-region-label plus the image', () => {
     const content: ImageOcclusionContent = {
       kind: 'image-occlusion',
+      image: null,
       imageDataUrl: 'data:image/jpeg;base64,AAAA',
       occlusions: [
         { id: 'r1', xPct: 10, yPct: 10, widthPct: 20, heightPct: 20, label: 'Nucleus' },
@@ -59,5 +66,49 @@ describe('cardFrontBack', () => {
       back: 'Nucleus',
       imageDataUrl: 'data:image/jpeg;base64,AAAA',
     })
+  })
+
+  const ref = {
+    id: 'b'.repeat(64),
+    mime: 'image/png' as const,
+    width: 5,
+    height: 4,
+    bytes: 9,
+    alt: '',
+    decorative: false,
+  }
+  const occlusion = { id: 'r1', xPct: 1, yPct: 1, widthPct: 2, heightPct: 2, label: 'Part' }
+
+  it('prefers a stored image over a legacy data URL on image-occlusion cards', () => {
+    const content: ImageOcclusionContent = {
+      kind: 'image-occlusion',
+      image: ref,
+      imageDataUrl: 'data:image/png;base64,AAAA',
+      occlusions: [occlusion],
+    }
+    const result = cardFrontBack({ ...baseCard, prompt: 'p', content })
+    expect(result.image).toEqual(ref)
+    expect(result).not.toHaveProperty('imageDataUrl')
+  })
+
+  it('exposes the prompt image of non-image cards, and never overrides an occlusion image', () => {
+    const content: ShortAnswerContent = { kind: 'short-answer', answer: 'a', acceptableAnswers: [], answerImage: null }
+    expect(cardFrontBack({ ...baseCard, prompt: 'p', promptImage: ref, content }).image).toEqual(ref)
+    const other = { ...ref, id: 'c'.repeat(64) }
+    const occ: ImageOcclusionContent = { kind: 'image-occlusion', image: other, occlusions: [occlusion] }
+    expect(cardFrontBack({ ...baseCard, prompt: 'p', promptImage: ref, content: occ }).image).toEqual(other)
+  })
+
+  it('returns no image for an occlusion card that has neither (invalid data) rather than throwing', () => {
+    const content = { kind: 'image-occlusion', image: null, occlusions: [occlusion] } as ImageOcclusionContent
+    expect(cardFrontBack({ ...baseCard, prompt: 'p', content })).toEqual({ front: 'p', back: 'Part' })
+  })
+
+  it('exposes a short-answer answerImage separately from the prompt image', () => {
+    const answerImage = { ...ref, id: 'd'.repeat(64) }
+    const content: ShortAnswerContent = { kind: 'short-answer', answer: 'a', acceptableAnswers: [], answerImage }
+    const result = cardFrontBack({ ...baseCard, prompt: 'p', promptImage: ref, content })
+    expect(result.answerImage).toEqual(answerImage)
+    expect(result.image).toEqual(ref)
   })
 })

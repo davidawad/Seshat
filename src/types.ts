@@ -1,4 +1,5 @@
 import { z } from 'zod'
+import { mediaMapSchema, mediaRefSchema } from './lib/media/types'
 
 /**
  * Single source of truth: every persisted or imported shape is defined as a
@@ -37,6 +38,9 @@ export const shortAnswerContentSchema = z.object({
   kind: z.literal('short-answer'),
   answer: z.string().min(1),
   acceptableAnswers: z.array(z.string().min(1)),
+  // Optional image shown on the answer side (a MediaRef into the IndexedDB
+  // media store). `.default(null)` so data saved before this existed parses.
+  answerImage: mediaRefSchema.nullable().default(null),
 })
 
 export const clozeContentSchema = z.object({
@@ -65,14 +69,25 @@ export const occlusionRegionSchema = z.object({
 
 export type OcclusionRegion = z.infer<typeof occlusionRegionSchema>
 
-export const imageOcclusionContentSchema = z.object({
-  kind: z.literal('image-occlusion'),
-  // A data: URL. Kept small deliberately — localStorage has no separate
-  // blob store, so the image itself is downscaled/compressed client-side
-  // before it ever reaches this field. See lib/storage.ts size guidance.
-  imageDataUrl: z.string().min(1),
-  occlusions: z.array(occlusionRegionSchema).min(1),
-})
+export const imageOcclusionContentSchema = z
+  .object({
+    kind: z.literal('image-occlusion'),
+    // LEGACY, read-only: a data: URL from before images moved to the media
+    // store. The boot migration (lib/media/migrate.ts) and backup/set import
+    // rewrite it to `image` and drop it; until that has happened (migration
+    // failed, or the data came from an old file) it is still rendered.
+    imageDataUrl: z.string().min(1).optional(),
+    // The image as a MediaRef; its bytes live in IndexedDB, keyed by sha256.
+    image: mediaRefSchema.nullable().default(null),
+    occlusions: z.array(occlusionRegionSchema).min(1),
+  })
+  // At least one image source must exist. (A refinement is not expressible in
+  // JSON Schema; z.toJSONSchema ignores it, so the published schemas simply do
+  // not state this rule — see the `hasOcclusionImage` note in agents.txt.)
+  .refine((content) => content.image !== null || content.imageDataUrl !== undefined, {
+    message: 'image-occlusion content needs an image (or a legacy imageDataUrl)',
+    path: ['image'],
+  })
 
 export type ImageOcclusionContent = z.infer<typeof imageOcclusionContentSchema>
 
@@ -118,6 +133,8 @@ export const studyCardSchema = z.object({
   id: cardIdSchema,
   setId: setIdSchema,
   prompt: z.string().min(1),
+  // Optional image on the prompt side (a MediaRef). Additive: `.default(null)`.
+  promptImage: mediaRefSchema.nullable().default(null),
   content: cardContentSchema,
   explanation: z.string().nullable(),
   sourceRef: z.string().nullable(),
@@ -208,6 +225,12 @@ export const hexColorSchema = z.string().regex(/^#[0-9a-f]{6}$/)
 export const retentionPresetSchema = z.enum(['low-workload', 'balanced', 'exam-prep', 'custom'])
 export type RetentionPreset = z.infer<typeof retentionPresetSchema>
 
+export const homeViewSchema = z.enum(['grid', 'table'])
+export type HomeView = z.infer<typeof homeViewSchema>
+
+export const cardSizeSchema = z.enum(['small', 'medium', 'large'])
+export type CardSize = z.infer<typeof cardSizeSchema>
+
 export const flashcardsFrontSchema = z.enum(['term', 'definition'])
 export type FlashcardsFront = z.infer<typeof flashcardsFrontSchema>
 
@@ -245,6 +268,10 @@ export const settingsSchema = z.object({
   // Defaults match the pre-option behavior so old saved data is unchanged.
   flashcardsTrackProgress: z.boolean().default(true),
   flashcardsFront: flashcardsFrontSchema.default('term'),
+  // How big index cards render on the flashcards page and the set-page preview.
+  flashcardsCardSize: cardSizeSchema.default('small'),
+  // How the home page lists sets: cards (grid) or a compact table.
+  homeView: homeViewSchema.default('grid'),
   // The "Install Seshat" PWA banner (components/InstallPrompt.tsx). Defaults
   // off — it's a fixed-position overlay that can sit on top of page content
   // (see index.css's `body.has-install-prompt` padding workaround), and not
@@ -252,6 +279,9 @@ export const settingsSchema = z.object({
   // own native install affordance (if any) is left alone too — see
   // InstallPrompt.tsx for why disabling this doesn't call preventDefault.
   installPromptEnabled: z.boolean().default(false),
+  // The "Press [key] ..." tip on flashcard faces. On by default; each tip also retires itself
+  // once the learner has done what it teaches (see lib/tipDismissal.ts).
+  cardTipsEnabled: z.boolean().default(true),
 })
 
 export type Settings = z.infer<typeof settingsSchema>
@@ -273,7 +303,10 @@ export const DEFAULT_SETTINGS: Settings = {
   experimentalGamesEnabled: true,
   flashcardsTrackProgress: true,
   flashcardsFront: 'term',
+  flashcardsCardSize: 'small',
+  homeView: 'grid',
   installPromptEnabled: false,
+  cardTipsEnabled: true,
 }
 
 // Anki/FSRS-guidance-derived presets — see research/learning-science for citations.
@@ -287,15 +320,26 @@ export const RETENTION_PRESETS: Record<Exclude<RetentionPreset, 'custom'>, numbe
 // Top-level persisted state
 // ---------------------------------------------------------------------------
 
-export const APP_STATE_VERSION = 1
+/**
+ * Version 2 keeps images out of the state: cards hold MediaRefs, the bytes
+ * live in IndexedDB (lib/media). Version 1 (images inline as data URLs) is
+ * still READ — by the boot migration and as a fallback when migration cannot
+ * complete — see `legacyAppStateSchema` and lib/media/migrate.ts.
+ */
+export const APP_STATE_VERSION = 2
+export const LEGACY_APP_STATE_VERSION = 1
 
-export const appStateSchema = z.object({
-  version: z.literal(APP_STATE_VERSION),
+const appStateFields = {
   sets: z.array(studySetSchema),
   cards: z.array(studyCardSchema),
   reviewLog: z.array(reviewLogEntrySchema),
   settings: settingsSchema,
-})
+}
+
+export const appStateSchema = z.object({ version: z.literal(APP_STATE_VERSION), ...appStateFields })
+
+/** The version-1 envelope. Same fields: the card schema is additive, so v1 cards (inline data URLs) parse unchanged. */
+export const legacyAppStateSchema = z.object({ version: z.literal(LEGACY_APP_STATE_VERSION), ...appStateFields })
 
 export type AppState = z.infer<typeof appStateSchema>
 
@@ -315,6 +359,7 @@ export const createEmptyAppState = (): AppState => ({
 
 export const exportedCardSchema = z.object({
   prompt: z.string().min(1),
+  promptImage: mediaRefSchema.nullable().default(null),
   content: cardContentSchema,
   explanation: z.string().nullable(),
   sourceRef: z.string().nullable(),
@@ -329,6 +374,9 @@ export const exportedSetSchema = z.object({
   description: z.string(),
   tags: z.array(z.string().min(1)),
   cards: z.array(exportedCardSchema),
+  // Bytes for every MediaRef the cards use (base64, keyed by media id). Absent in
+  // text-only exports and in v1-era exports, whose images are inline data URLs.
+  media: mediaMapSchema.optional(),
 })
 
 export type ExportedSet = z.infer<typeof exportedSetSchema>

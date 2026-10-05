@@ -33,21 +33,24 @@ const baseCard = (
 const shortAnswerCard = (id: string, prompt: string, answer: string): StudyCard => ({
   ...baseCard(id),
   prompt,
-  content: { kind: 'short-answer', answer, acceptableAnswers: [] },
+  promptImage: null,
+  content: { kind: 'short-answer', answer, acceptableAnswers: [], answerImage: null },
 })
 
 const imageOcclusionCard = (id: string, prompt: string, imageDataUrl: string, label: string): StudyCard => ({
   ...baseCard(id),
   prompt,
+  promptImage: null,
   content: {
     kind: 'image-occlusion',
+    image: null,
     imageDataUrl,
     occlusions: [{ id: 'r1', xPct: 10, yPct: 10, widthPct: 20, heightPct: 20, label }],
   },
 })
 
 describe('SetTermList', () => {
-  it('renders each card as a labeled list with its front and back text', () => {
+  it('renders each card as a table row with its front and back text', () => {
     const cards = [
       shortAnswerCard('c1', 'Capital of France', 'Paris'),
       shortAnswerCard('c2', 'Capital of Italy', 'Rome'),
@@ -55,12 +58,16 @@ describe('SetTermList', () => {
 
     render(<SetTermList cards={cards} />)
 
-    expect(screen.getByRole('list', { name: 'Terms in this set' })).toBeInTheDocument()
+    expect(screen.getByRole('table', { name: 'Terms in this set' })).toBeInTheDocument()
+    expect(screen.getByRole('columnheader', { name: 'Term' })).toBeInTheDocument()
+    expect(screen.getByRole('columnheader', { name: 'Definition' })).toBeInTheDocument()
     expect(screen.getByText('Capital of France')).toBeInTheDocument()
     expect(screen.getByText('Paris')).toBeInTheDocument()
     expect(screen.getByText('Capital of Italy')).toBeInTheDocument()
     expect(screen.getByText('Rome')).toBeInTheDocument()
     expect(screen.queryByAltText('')).not.toBeInTheDocument()
+    // No diagram in this set, so there is no Diagram column at all.
+    expect(screen.queryByRole('columnheader', { name: 'Diagram' })).not.toBeInTheDocument()
   })
 
   it('renders an inline thumbnail image for an image-occlusion card, using its own image data', () => {
@@ -87,8 +94,17 @@ describe('SetTermList', () => {
     expect(screen.getAllByAltText('')).toHaveLength(1)
   })
 
-  it('renders an empty list when there are no cards', () => {
+  it('adds the Diagram column only when the set has a diagram card', () => {
+    const cards = [
+      shortAnswerCard('c1', 'Capital of France', 'Paris'),
+      imageOcclusionCard('c2', 'Cell diagram', 'data:image/png;base64,CCCC', 'Nucleus'),
+    ]
+    render(<SetTermList cards={cards} />)
+    expect(screen.getByRole('columnheader', { name: 'Diagram' })).toBeInTheDocument()
+  })
+
+  it('renders only the header row when there are no cards', () => {
     render(<SetTermList cards={[]} />)
-    expect(screen.getByRole('list', { name: 'Terms in this set' })).toBeEmptyDOMElement()
+    expect(screen.getAllByRole('row')).toHaveLength(1)
   })
 })

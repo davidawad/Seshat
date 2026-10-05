@@ -34,6 +34,10 @@ export const DocsPage = () => (
           remaps, sets, cards and review history. Merge only adds what is missing; Replace overwrites everything.
         </li>
         <li>
+          <strong>Command menu:</strong> press <kbd>Ctrl</kbd>/<kbd>Cmd</kbd>+<kbd>K</kbd> anywhere to search and jump
+          to a page, a set, its Study or Flashcards view, or an action like Settings or Toggle theme.
+        </li>
+        <li>
           <strong>Schemas:</strong> <a href={`${import.meta.env.BASE_URL}schema/set-import.schema.json`}>set import</a>,{' '}
           <a href={`${import.meta.env.BASE_URL}schema/seshat-backup.schema.json`}>backup</a> and{' '}
           <a href={`${import.meta.env.BASE_URL}schema/seshat-settings.schema.json`}>settings</a> (JSON Schema).
@@ -95,9 +99,10 @@ export const DocsPage = () => (
         browser profile — export your sets periodically if you care about them surviving a cleared cache.
       </p>
       <p>
-        Image-occlusion cards store a downscaled, compressed copy of the image directly in that same{' '}
-        <code>localStorage</code> blob, so a set with heavy image use will run into the browser&rsquo;s storage ceiling
-        faster than a text-only set will.
+        Images are the exception: <code>localStorage</code> is too small for them (about 5MB for the whole app), so each
+        image is downscaled and re-encoded in your browser and kept in IndexedDB instead, still entirely on your device.
+        Your sets and cards only hold a small reference to it. Settings has a Storage section showing how much room
+        images use and a button to remove images nothing uses any more, and full backups include the images.
       </p>
     </section>
 
@@ -180,10 +185,11 @@ export const DocsPage = () => (
 }`}</code>
       </pre>
       <p>
-        <code>image-occlusion</code> cards additionally carry <code>imageDataUrl</code> (a <code>data:</code> URL — keep
-        it small, see the storage note above) and <code>occlusions</code>, an array of labeled regions expressed as
-        percentages of the image&rsquo;s own dimensions: <code>{'{ id, xPct, yPct, widthPct, heightPct, label }'}</code>
-        .
+        <code>image-occlusion</code> cards additionally carry <code>image</code> (a reference to an image stored in the
+        browser, with its bytes in the file&rsquo;s optional <code>media</code> map) or, in older files,{' '}
+        <code>imageDataUrl</code> (a <code>data:</code> URL, which is converted on import), and <code>occlusions</code>,
+        an array of labeled regions expressed as percentages of the image&rsquo;s own dimensions:{' '}
+        <code>{'{ id, xPct, yPct, widthPct, heightPct, label }'}</code>.
       </p>
       <p>
         Every field is validated with <a href="https://zod.dev">Zod</a> at the import boundary — a file that

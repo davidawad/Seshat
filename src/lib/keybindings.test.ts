@@ -273,3 +273,24 @@ describe('navigation presets', () => {
     expect(formatKeyLabel('Space')).toBe('Space')
   })
 })
+
+describe('global.openPalette', () => {
+  const palette = KEYBINDING_REGISTRY.find((action) => action.id === 'global.openPalette')
+
+  it('is registered in the global scope with a canonical default', () => {
+    expect(palette?.scope).toBe('global')
+    expect(canonicalizeKeyString(palette?.defaultKey ?? '')).toBe(palette?.defaultKey)
+  })
+
+  it('collides with no other global action', () => {
+    const others = KEYBINDING_REGISTRY.filter((a) => a.scope === 'global' && a.id !== 'global.openPalette')
+    expect(others.map((a) => a.defaultKey)).not.toContain(palette?.defaultKey)
+  })
+
+  it('matches both Ctrl+K and Cmd+K but not a bare K', () => {
+    const binding = palette?.defaultKey ?? ''
+    expect(matchesBinding(binding, keyEvent('k', { ctrlKey: true }))).toBe(true)
+    expect(matchesBinding(binding, keyEvent('k', { metaKey: true }))).toBe(true)
+    expect(matchesBinding(binding, keyEvent('k'))).toBe(false)
+  })
+})

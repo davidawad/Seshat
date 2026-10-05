@@ -2,7 +2,7 @@ import { readFileSync } from 'node:fs'
 import { resolve } from 'node:path'
 import type { Plugin } from 'vite'
 import { z } from 'zod'
-import { BACKUP_FORMAT, BACKUP_VERSION, backupV1Schema } from '../src/lib/backup-schema.ts'
+import { BACKUP_FORMAT, BACKUP_VERSION, backupSchema } from '../src/lib/backup-schema.ts'
 import { simpleImportSchema } from '../src/features/sets/simple-json.ts'
 import { DEFAULT_SETTINGS, exportedSetSchema, settingsSchema } from '../src/types.ts'
 
@@ -68,7 +68,7 @@ export const buildLlmsTxt = (base: string): string =>
     '## Data formats',
     '',
     `- [Set import JSON Schema](${base}${SCHEMA_PATH}): JSON Schema for the simple {name, terms} import shape and the full seshatExportVersion 1 export shape`,
-    `- [Backup JSON Schema](${base}${BACKUP_SCHEMA_PATH}): JSON Schema for the full-data backup file (format "seshat-backup", version 1) accepted by window.seshat.importAll, the WebMCP import_all tool and Settings -> Backup`,
+    `- [Backup JSON Schema](${base}${BACKUP_SCHEMA_PATH}): JSON Schema for the full-data backup file (format "seshat-backup", version 2: images travel as base64 in a media map; version 1 files still import) accepted by window.seshat.importAll, the WebMCP import_all tool and Settings -> Backup`,
     `- [Settings JSON Schema](${base}${SETTINGS_SCHEMA_PATH}): JSON Schema for the settings object (every field with its allowed values, range and default), as read by get_settings and patched by update_settings`,
     '',
     '## Docs',
@@ -97,7 +97,7 @@ export const buildImportSchema = (): Record<string, unknown> => {
     $schema,
     title: 'Seshat set import',
     description:
-      'Either the simple term/definition shape (an object {name, terms} or a bare array of term/definition pairs) or the full Seshat export (seshatExportVersion 1).',
+      'Either the simple term/definition shape (an object {name, terms} or a bare array of term/definition pairs) or the full Seshat export (seshatExportVersion 1). In the full export, images are listed in an optional `media` map (mediaId -> {mime, dataBase64, width, height}) that cards reference through MediaRefs; an image-occlusion card needs `image` (a MediaRef) or, in older exports, an inline `imageDataUrl` (the app rejects a card with neither; this schema cannot express that rule).',
     anyOf: [simpleShape, exportShape],
   }
 }
@@ -124,16 +124,13 @@ const settingsProperties = (): Record<string, Record<string, unknown>> => {
 
 /** The full backup envelope as JSON Schema: what a file may contain (input side, so settings may be partial). */
 export const buildBackupSchema = (base = '/'): Record<string, unknown> => {
-  const { $schema, ...shape } = z.toJSONSchema(backupV1Schema, { io: 'input', target: draft }) as Record<
-    string,
-    unknown
-  >
+  const { $schema, ...shape } = z.toJSONSchema(backupSchema, { io: 'input', target: draft }) as Record<string, unknown>
   const envelopeProperties = (shape['properties'] ?? {}) as Record<string, unknown>
   return {
     $schema,
     $id: `${base}${BACKUP_SCHEMA_PATH}`,
     title: 'Seshat backup',
-    description: `Full-data backup (format "${BACKUP_FORMAT}", version ${BACKUP_VERSION}): settings, keybinding overrides, sets, cards with FSRS scheduling, and review history. Settings may list only the fields to restore. Cards must reference existing sets and review-log entries existing cards; ids must be unique.`,
+    description: `Full-data backup (format "${BACKUP_FORMAT}", version ${BACKUP_VERSION}): settings, keybinding overrides, sets, cards with FSRS scheduling, review history, and a \`media\` map (mediaId = sha-256 hex of the image bytes -> {mime, dataBase64, width, height}) holding every image the cards reference through MediaRefs. Version 1 files (images inline as imageDataUrl data URLs, no media map) are still accepted and upgraded on import. An image-occlusion card needs \`image\` (a MediaRef) or a legacy \`imageDataUrl\` (the app rejects a card with neither; this schema cannot express that rule). Settings may list only the fields to restore. Cards must reference existing sets and review-log entries existing cards; ids must be unique; every media entry must be used by a card.`,
     ...shape,
     properties: {
       ...envelopeProperties,

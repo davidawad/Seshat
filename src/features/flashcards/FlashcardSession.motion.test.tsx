@@ -39,7 +39,7 @@ describe('FlashcardSession grade animation', () => {
     const card = makeCard()
     seedStore(card)
     const { animate, finish } = stubAnimate()
-    const handlers = renderSession(card, { options: { trackProgress: false, front: 'term' } })
+    const handlers = renderSession(card, { options: { trackProgress: false, front: 'term', cardSize: 'small' } })
 
     await userEvent.setup().click(screen.getByRole('button', { name: /^Know/ }))
 
@@ -60,7 +60,7 @@ describe('FlashcardSession grade animation', () => {
     const card = makeCard()
     seedStore(card)
     const { animate, finish } = stubAnimate()
-    const handlers = renderSession(card, { options: { trackProgress: false, front: 'term' } })
+    const handlers = renderSession(card, { options: { trackProgress: false, front: 'term', cardSize: 'small' } })
 
     await userEvent.setup().click(screen.getByRole('button', { name: /^Still learning/ }))
 
@@ -77,7 +77,7 @@ describe('FlashcardSession grade animation', () => {
     const card = makeCard()
     seedStore(card)
     const { animate, finish } = stubAnimate()
-    const handlers = renderSession(card, { options: { trackProgress: false, front: 'term' } })
+    const handlers = renderSession(card, { options: { trackProgress: false, front: 'term', cardSize: 'small' } })
     const user = userEvent.setup()
 
     await user.click(screen.getByRole('button', { name: /^Know/ }))
@@ -94,7 +94,7 @@ describe('FlashcardSession grade animation', () => {
     seedStore(card)
     document.documentElement.dataset['reducedMotion'] = 'true'
     const { animate } = stubAnimate()
-    const handlers = renderSession(card, { options: { trackProgress: false, front: 'term' } })
+    const handlers = renderSession(card, { options: { trackProgress: false, front: 'term', cardSize: 'small' } })
 
     await userEvent.setup().click(screen.getByRole('button', { name: /^Know/ }))
 
@@ -108,7 +108,9 @@ describe('FlashcardSession grade animation', () => {
     seedStore(card)
     const { finish } = stubAnimate()
     const handlers = makeHandlers()
-    const view = render(sessionElement(card, handlers, { options: { trackProgress: false, front: 'term' } }))
+    const view = render(
+      sessionElement(card, handlers, { options: { trackProgress: false, front: 'term', cardSize: 'small' } }),
+    )
 
     await userEvent.setup().click(screen.getByRole('button', { name: /^Know/ }))
     view.unmount()
@@ -140,7 +142,7 @@ describe('FlashcardSession grade animation robustness', () => {
     seedStore(card)
     const animate = stubAnimateNeverFinishing()
     Object.defineProperty(document, 'hidden', { configurable: true, get: () => true })
-    const handlers = renderSession(card, { options: { trackProgress: false, front: 'term' } })
+    const handlers = renderSession(card, { options: { trackProgress: false, front: 'term', cardSize: 'small' } })
 
     fireEvent.click(screen.getByRole('button', { name: /^Know/ }))
 
@@ -153,7 +155,7 @@ describe('FlashcardSession grade animation robustness', () => {
     const card = makeCard()
     seedStore(card)
     const animate = stubAnimateNeverFinishing()
-    const handlers = renderSession(card, { options: { trackProgress: false, front: 'term' } })
+    const handlers = renderSession(card, { options: { trackProgress: false, front: 'term', cardSize: 'small' } })
 
     fireEvent.click(screen.getByRole('button', { name: /^Know/ }))
     expect(animate).toHaveBeenCalledTimes(1)

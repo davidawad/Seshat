@@ -1,3 +1,4 @@
+import { CardImage } from '../../components/CardImage'
 import { useId } from 'react'
 import { Legible } from '../../components/Legible'
 import type { MultipleChoiceQuestion } from './generate-test'
@@ -23,6 +24,7 @@ export const MultipleChoiceQuestionField = ({ question, index, value, onChange }
       <p id={promptId} className="test-question-prompt">
         {index + 1}. {question.front}
       </p>
+      <CardImage image={question.image} alt="" />
       <div className="test-mc-options">
         {question.options.map((option) => (
           <label key={option}>

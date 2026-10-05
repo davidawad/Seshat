@@ -19,7 +19,8 @@ export const makeCard = (): StudyCard => {
     id: cardId,
     setId,
     prompt: 'What is the capital of France?',
-    content: { kind: 'short-answer', answer: 'Paris', acceptableAnswers: [] },
+    promptImage: null,
+    content: { kind: 'short-answer', answer: 'Paris', acceptableAnswers: [], answerImage: null },
     explanation: null,
     sourceRef: null,
     tags: [],
@@ -48,7 +49,7 @@ export const seedStore = (card: StudyCard) => {
   })
 }
 
-const defaultOptions: FlashcardOptions = { trackProgress: true, front: 'term' }
+const defaultOptions: FlashcardOptions = { trackProgress: true, front: 'term', cardSize: 'small' }
 
 export interface RenderOverrides {
   readonly options?: FlashcardOptions

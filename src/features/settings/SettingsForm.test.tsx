@@ -4,6 +4,7 @@ import { afterEach, beforeEach, describe, expect, it } from 'vitest'
 import { clearMirrors } from '../../lib/persistence'
 import { SeshatProvider } from '../../lib/store'
 import { STORAGE_KEY } from '../../lib/storage'
+import { dismissTip, isTipDismissed } from '../../lib/tipDismissal'
 import { SettingsForm } from './SettingsForm'
 
 afterEach(() => cleanup())
@@ -50,5 +51,25 @@ describe('SettingsForm study-step flags', () => {
     expect(screen.getByRole('checkbox', { name: /rate how well i recalled/i })).toHaveAccessibleDescription(
       /rowland.*rowland-2014\.md/is,
     )
+  })
+})
+
+describe('SettingsForm card tips', () => {
+  it('defaults on, persists when off, and turning it back on revives dismissed tips', async () => {
+    const user = userEvent.setup()
+    dismissTip('set-preview-flip')
+    render(
+      <SeshatProvider>
+        <SettingsForm />
+      </SeshatProvider>,
+    )
+    const tips = screen.getByRole('checkbox', { name: 'Show card tips' })
+    expect(tips).toBeChecked()
+    await user.click(tips)
+    expect(stored()).toMatchObject({ cardTipsEnabled: false })
+    expect(isTipDismissed('set-preview-flip')).toBe(true)
+    await user.click(tips)
+    expect(stored()).toMatchObject({ cardTipsEnabled: true })
+    expect(isTipDismissed('set-preview-flip')).toBe(false)
   })
 })

@@ -1,15 +1,55 @@
 .sets-header {
   display: flex;
   align-items: center;
-  justify-content: space-between;
   gap: 1rem;
   flex-wrap: wrap;
 }
 
+.sets-header h1 {
+  margin: 0;
+}
+
+.sets-header-search {
+  flex: 1 1 16rem;
+  max-width: 30rem;
+  min-width: 0;
+}
+
 .sets-header-actions {
+  margin-inline-start: auto;
   display: flex;
   align-items: center;
   gap: 0.6rem;
+  flex-wrap: wrap;
+}
+
+/* Header actions are real links styled as buttons: Create is the primary one. */
+.primary-link,
+.secondary-link {
+  display: inline-block;
+  padding: 0.55rem 1.1rem;
+  border: 2px solid var(--color-accent);
+  border-radius: var(--radius-sm);
+  font-weight: 600;
+  text-decoration: none;
+}
+
+.primary-link {
+  background: var(--color-accent);
+  color: var(--color-accent-contrast);
+}
+
+.secondary-link {
+  border-color: var(--color-border-strong);
+  color: var(--color-fg);
+}
+
+.secondary-link:hover {
+  border-color: var(--color-accent);
+}
+
+.sets-header + * {
+  margin-top: 1rem;
 }
 
 .starter-set-list {
@@ -27,102 +67,10 @@
   text-align: left;
 }
 
-/*
- * The clear, prominent "create" call to action — a solid accent-filled
- * button, not just another outlined form button, so it reads as *the*
- * primary thing to do on this page.
- */
-.create-set-button {
-  background: var(--color-accent);
-  color: var(--color-accent-contrast);
-  border: none;
-  border-radius: var(--radius-sm);
-  padding: 0.55rem 1rem;
-  font-weight: 600;
-  cursor: pointer;
-}
-
-.create-set-form {
-  display: flex;
-  align-items: flex-start;
-  gap: 0.6rem;
-  flex-wrap: wrap;
-}
-
-.create-set-field {
-  display: flex;
-  flex-direction: column;
-}
-
-.create-set-field input {
-  margin-bottom: 0;
-  min-width: 16rem;
-}
-
-.create-set-actions {
-  display: flex;
-  gap: 0.5rem;
-}
-
-.create-set-cancel {
-  background: transparent;
-}
-
 .field-error {
   color: var(--color-error);
   font-size: 0.85rem;
   margin: 0.3rem 0 0;
-}
-
-.set-list {
-  list-style: none;
-  margin: 1rem 0 0;
-  padding: 0;
-  display: flex;
-  flex-direction: column;
-  gap: 0.5rem;
-}
-
-.set-row {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  gap: 1rem;
-  padding: 0.85rem 1rem;
-  border: 1px solid var(--color-border-strong);
-  border-radius: var(--radius-sm);
-}
-
-.set-row:hover {
-  border-color: var(--color-accent);
-}
-
-.set-row-main {
-  display: flex;
-  flex-direction: column;
-  gap: 0.3rem;
-  text-decoration: none;
-  color: var(--color-fg);
-  min-width: 0;
-  flex: 1;
-}
-
-.set-row-name {
-  font-family: var(--font-display);
-  font-weight: 600;
-  font-size: 1.1rem;
-}
-
-.set-row-description {
-  color: var(--color-fg-muted);
-  font-size: 0.9rem;
-}
-
-.set-row-count {
-  font-size: 0.8rem;
-  color: var(--color-fg-muted);
-  white-space: nowrap;
-  flex-shrink: 0;
 }
 
 .set-details-fields {
@@ -260,23 +208,18 @@
   flex-direction: column;
   align-items: center;
   width: 100%;
-  max-width: 48rem;
+  max-width: var(--card-max-width);
   margin-inline: auto;
+}
+
+/* A column-flex child sizes to its contents unless told otherwise, which let a
+   long term stretch the card past its container; pin it to the container. */
+.set-preview .flip-card-scene {
+  min-width: 0;
 }
 
 .set-preview button {
   margin-top: 1.75rem;
-}
-
-.import-panel {
-  display: flex;
-  flex-direction: column;
-  gap: 1.5rem;
-  margin-top: 0.75rem;
-  padding: 1rem;
-  border: 1px solid var(--color-border);
-  border-radius: var(--radius-sm);
-  max-width: 32rem;
 }
 
 .set-mastery-summary {
@@ -293,50 +236,74 @@
 
 /* Capped height rather than dumping an entire large set inline — this is a
    "browse what's here" preview, not a replacement for the study modes. */
-.set-term-list {
-  display: flex;
-  flex-direction: column;
-  max-height: 24rem;
-  overflow-y: auto;
-  margin: 0;
-  padding: 0;
-  list-style: none;
-  border: 1px solid var(--color-border);
-  border-radius: var(--radius-sm);
+.set-term-scroll {
+  max-height: 28rem;
+  overflow: auto;
+  border: 1px solid var(--color-border-strong);
+  border-radius: var(--radius-page);
 }
 
-.set-term-row {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 1rem;
-  padding: 0.6rem 0.85rem;
+.set-term-table {
+  width: 100%;
+  border-collapse: collapse;
 }
 
-.set-term-row:not(:last-child) {
-  border-bottom: 1px solid var(--color-border);
+/* Accent header row, sticky so it stays put while the body scrolls. */
+.set-term-table thead th {
+  position: sticky;
+  top: 0;
+  z-index: 1;
+  padding: 0.65rem 0.9rem;
+  background: var(--color-accent);
+  color: var(--color-accent-contrast);
+  font-family: var(--font-ui);
+  font-size: 0.8rem;
+  letter-spacing: 0.05em;
+  text-align: start;
+  text-transform: uppercase;
+}
+
+.set-term-table td {
+  padding: 0.65rem 0.9rem;
+  vertical-align: middle;
+}
+
+/* Alternating shades from existing tokens, so every palette follows. */
+.set-term-table tbody tr:nth-child(odd) {
+  background: var(--color-bg-elevated);
+}
+
+.set-term-table tbody tr:nth-child(even) {
+  background: color-mix(in srgb, var(--color-accent) 7%, var(--color-bg-elevated));
 }
 
 .set-term-front {
-  display: flex;
-  align-items: center;
-  gap: 0.5rem;
-}
-
-.set-term-image {
-  max-width: 2.5rem;
-  max-height: 2.5rem;
-  border-radius: var(--radius-sm);
-  flex-shrink: 0;
+  width: 34%;
+  font-weight: 600;
 }
 
 .set-term-back {
   color: var(--color-fg-muted);
 }
 
-/* Two side-by-side columns don't fit a narrow phone screen — stack instead. */
+.set-term-diagram {
+  width: 6rem;
+}
+
+.set-term-image {
+  display: block;
+  max-width: 4.5rem;
+  max-height: 3.5rem;
+  border-radius: var(--radius-sm);
+}
+
 @media (max-width: 640px) {
-  .set-term-row {
-    grid-template-columns: 1fr;
-    gap: 0.2rem;
+  .set-term-table thead th,
+  .set-term-table td {
+    padding: 0.5rem 0.55rem;
+  }
+
+  .set-term-front {
+    width: 40%;
   }
 }

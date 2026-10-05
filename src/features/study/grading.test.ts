@@ -18,6 +18,7 @@ const shortAnswer: ShortAnswerContent = {
   kind: 'short-answer',
   answer: 'Mitochondria',
   acceptableAnswers: ['the mitochondria'],
+  answerImage: null,
 }
 
 const cloze: ClozeContent = {
@@ -33,6 +34,7 @@ const mcq: McqContent = {
 
 const imageOcclusion: ImageOcclusionContent = {
   kind: 'image-occlusion',
+  image: null,
   imageDataUrl: 'data:image/jpeg;base64,AAAA',
   occlusions: [
     { id: 'r1', xPct: 10, yPct: 10, widthPct: 20, heightPct: 20, label: 'Nucleus' },
@@ -194,6 +196,7 @@ describe('pickOcclusionRegion', () => {
   it('returns the only region when there is just one', () => {
     const single: ImageOcclusionContent = {
       kind: 'image-occlusion',
+      image: null,
       imageDataUrl: imageOcclusion.imageDataUrl,
       occlusions: [imageOcclusion.occlusions[0]!],
     }

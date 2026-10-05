@@ -233,6 +233,7 @@ const FlashcardRunner = ({ setId, setName, cardIds }: FlashcardRunnerProps) => {
         onClose={() => setOptionsOpen(false)}
         onTrackProgressChange={(flashcardsTrackProgress) => updateSettings({ flashcardsTrackProgress })}
         onFrontChange={(flashcardsFront) => updateSettings({ flashcardsFront })}
+        onCardSizeChange={(flashcardsCardSize) => updateSettings({ flashcardsCardSize })}
         onRestart={() => {
           restart(cardIds, orderMode)
           setOptionsOpen(false)

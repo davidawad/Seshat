@@ -136,12 +136,25 @@
   /* Card text (flashcard faces, study prompts, the set-page preview card) is
      this multiple of the body size. Phones get a smaller multiple so long
      terms still fit on one screen. */
-  --card-text-scale: 2;
+  --card-text-scale: 1.4;
+  --card-max-width: 20rem;
+}
+
+/* Card size setting (Flashcards > Options): width and text grow together. */
+[data-card-size='medium'] {
+  --card-max-width: 30rem;
+  --card-text-scale: 1.9;
+}
+
+[data-card-size='large'] {
+  --card-max-width: 40rem;
+  --card-text-scale: 2.4;
 }
 
 @media (max-width: 640px) {
-  :root {
-    --card-text-scale: 1.35;
+  :root,
+  [data-card-size] {
+    --card-text-scale: 1.25;
   }
 }
 

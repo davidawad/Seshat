@@ -1,4 +1,5 @@
 import { useId } from 'react'
+import { CardImage } from '../../components/CardImage'
 import type { ImageOcclusionContent } from '../../types'
 import './image-occlusion.css'
 
@@ -33,8 +34,9 @@ export const ImageOcclusionCard = ({
     <div className="study-card">
       <p className="study-prompt">{prompt}</p>
       <div className="occlusion-image-wrap">
-        <img
-          src={content.imageDataUrl}
+        <CardImage
+          image={content.image}
+          imageDataUrl={content.imageDataUrl}
           alt={prompt.trim() !== '' ? `Diagram for: ${prompt}` : 'Diagram'}
           className="occlusion-study-image"
         />

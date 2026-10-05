@@ -1,9 +1,12 @@
-import { createContext, useCallback, useContext, useEffect, useMemo, useReducer } from 'react'
+import { createContext, useCallback, useContext, useEffect, useMemo, useReducer, useRef, useState } from 'react'
 import type { ReactNode } from 'react'
 import { createInitialScheduling, scheduleReview } from './fsrs'
 import { newCardId, newSetId } from './id'
 import { type Backup, type ImportMode, type ImportReport, applyBackup, createBackup, parseBackup } from './backup'
 import { loadKeybindingOverrides, saveKeybindingOverrides } from './keybindingStorage'
+import { processImage } from './media/image-pipeline'
+import { prepareCardsForImport } from './media/import-prepare'
+import { useMediaStore } from './media/MediaStoreProvider'
 import { type StorageError, loadInitialState, loadState, saveState, subscribeToAppState } from './storage'
 import {
   type AppState,
@@ -24,6 +27,7 @@ import {
 
 interface NewCardInput {
   readonly prompt: StudyCard['prompt']
+  readonly promptImage?: StudyCard['promptImage']
   readonly content: StudyCard['content']
   readonly explanation: string | null
   readonly sourceRef: string | null
@@ -126,6 +130,8 @@ const reducer = (state: AppState, action: Action): AppState => {
 interface SeshatStore {
   readonly state: AppState
   readonly storageError: StorageError | null
+  /** The last failed save (quota full, storage blocked); null once a later save succeeds. */
+  readonly saveError: StorageError | null
   readonly addSet: (input: NewSetInput) => StudySet
   readonly updateSet: (id: SetId, patch: Partial<NewSetInput>) => void
   readonly deleteSet: (id: SetId) => void
@@ -143,12 +149,22 @@ interface SeshatStore {
   /** Reverses one `recordReview`: restores the card's earlier scheduling and drops the log entry stamped `reviewedAt`. */
   readonly undoReview: (cardId: CardId, previousScheduling: StudyCard['scheduling'], reviewedAt: string) => void
   readonly importSet: (exported: ExportedSet) => StudySet
+  /**
+   * Async step BEFORE `importSet` for a set that came from a file/URL: stores the export's embedded `media`, converts
+   * v1-era inline data URLs into stored images, and returns the export ready for `importSet`.
+   */
+  readonly prepareSetImport: (exported: ExportedSet) => Promise<Result<ExportedSet, string>>
   readonly exportSet: (setId: SetId) => ExportedSet | null
   readonly updateSettings: (patch: Partial<Settings>) => void
   /** The whole app (settings, keybindings, sets, cards, review history) as one backup object. */
   readonly exportAll: () => Backup
-  /** Restores a backup (a raw JSON string is parsed strictly first). Replace swaps everything; merge only adds missing sets/cards. */
-  readonly importAll: (input: string | Backup, mode: ImportMode) => Result<ImportReport, string>
+  /**
+   * Restores a backup (a raw JSON string is parsed strictly first). Replace swaps everything; merge only adds missing
+   * sets/cards. Async because the backup's images are stored (and verified) BEFORE any state changes.
+   */
+  readonly importAll: (input: string | Backup, mode: ImportMode) => Promise<Result<ImportReport, string>>
+  /** Swaps the whole in-memory state (used by "Restore previous version", which has already persisted it). */
+  readonly replaceState: (state: AppState) => void
   readonly resetAll: () => void
 }
 
@@ -156,6 +172,7 @@ const SeshatContext = createContext<SeshatStore | null>(null)
 
 const toExportedCard = (card: StudyCard): ExportedCard => ({
   prompt: card.prompt,
+  promptImage: card.promptImage,
   content: card.content,
   explanation: card.explanation,
   sourceRef: card.sourceRef,
@@ -164,13 +181,23 @@ const toExportedCard = (card: StudyCard): ExportedCard => ({
 
 export const SeshatProvider = ({ children }: { readonly children: ReactNode }) => {
   const [state, dispatch] = useReducer(reducer, undefined, loadInitialState)
+  const media = useMediaStore()
+  const ingestDeps = useMemo(() => ({ store: media, process: (blob: Blob) => processImage(blob) }), [media])
+  // Imports await image I/O before dispatching, so they must apply to the state as it is AFTER that wait.
+  const stateRef = useRef(state)
+  useEffect(() => {
+    stateRef.current = state
+  })
   const storageError = useMemo(() => {
     const result = loadState()
     return result.ok ? null : result.error
   }, [])
 
+  const [saveError, setSaveError] = useState<StorageError | null>(null)
+
   useEffect(() => {
-    saveState(state)
+    const result = saveState(state)
+    setSaveError(result.ok ? null : result.error)
   }, [state])
 
   // Other tabs (and window.seshat) write straight to storage; pull their
@@ -202,6 +229,7 @@ export const SeshatProvider = ({ children }: { readonly children: ReactNode }) =
       createdAt: now,
       updatedAt: now,
       scheduling: createInitialScheduling(new Date()),
+      promptImage: null,
       ...input,
     }
     dispatch({ type: 'add-card', card })
@@ -285,6 +313,16 @@ export const SeshatProvider = ({ children }: { readonly children: ReactNode }) =
     return set
   }, [])
 
+  const prepareSetImport = useCallback(
+    async (exported: ExportedSet): Promise<Result<ExportedSet, string>> => {
+      const prepared = await prepareCardsForImport(exported.cards, exported.media, ingestDeps)
+      if (!prepared.ok) return err(prepared.error)
+      const { media: _embedded, ...rest } = exported
+      return ok({ ...rest, cards: prepared.value.cards })
+    },
+    [ingestDeps],
+  )
+
   const exportSet = useCallback(
     (setId: SetId): ExportedSet | null => {
       const set = state.sets.find((candidate) => candidate.id === setId)
@@ -307,17 +345,27 @@ export const SeshatProvider = ({ children }: { readonly children: ReactNode }) =
   const exportAll = useCallback((): Backup => createBackup(state, loadKeybindingOverrides(), new Date()), [state])
 
   const importAll = useCallback(
-    (input: string | Backup, mode: ImportMode): Result<ImportReport, string> => {
+    async (input: string | Backup, mode: ImportMode): Promise<Result<ImportReport, string>> => {
       const backup = typeof input === 'string' ? parseBackup(input) : ok(input)
       if (!backup.ok) return err(backup.error)
-      const { state: next, report } = applyBackup(state, backup.value, mode)
+      const prepared = await prepareCardsForImport(backup.value.cards, backup.value.media, ingestDeps)
+      if (!prepared.ok) return err(prepared.error)
+      const { state: next, report } = applyBackup(
+        stateRef.current,
+        { ...backup.value, cards: prepared.value.cards, media: {} },
+        mode,
+      )
       dispatch({ type: 'hydrate', state: next })
       // Keybinding overrides live outside AppState (see keybindingStorage.ts).
       if (report.keybindings !== null) saveKeybindingOverrides(report.keybindings)
-      return ok(report)
+      return ok({ ...report, imagesMissing: prepared.value.missing, imagesNotConverted: prepared.value.notConverted })
     },
-    [state],
+    [ingestDeps],
   )
+
+  const replaceState = useCallback((next: AppState) => {
+    dispatch({ type: 'hydrate', state: next })
+  }, [])
 
   const resetAll = useCallback(() => {
     dispatch({ type: 'reset' })
@@ -327,6 +375,7 @@ export const SeshatProvider = ({ children }: { readonly children: ReactNode }) =
     () => ({
       state,
       storageError,
+      saveError,
       addSet,
       updateSet,
       deleteSet,
@@ -336,15 +385,18 @@ export const SeshatProvider = ({ children }: { readonly children: ReactNode }) =
       recordReview,
       undoReview,
       importSet,
+      prepareSetImport,
       exportSet,
       updateSettings,
       exportAll,
       importAll,
+      replaceState,
       resetAll,
     }),
     [
       state,
       storageError,
+      saveError,
       addSet,
       updateSet,
       deleteSet,
@@ -354,10 +406,12 @@ export const SeshatProvider = ({ children }: { readonly children: ReactNode }) =
       recordReview,
       undoReview,
       importSet,
+      prepareSetImport,
       exportSet,
       updateSettings,
       exportAll,
       importAll,
+      replaceState,
       resetAll,
     ],
   )

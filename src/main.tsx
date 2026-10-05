@@ -3,6 +3,10 @@ import { createRoot } from 'react-dom/client'
 import { BrowserRouter } from 'react-router-dom'
 import { App } from './App.tsx'
 import { InstallPrompt } from './components/InstallPrompt.tsx'
+import { MigrationNotice } from './components/MigrationNotice.tsx'
+import { bootMigration } from './lib/media/boot.ts'
+import { MediaStoreProvider } from './lib/media/MediaStoreProvider.tsx'
+import { migrationPending } from './lib/media/migrate.ts'
 import { SeshatProvider } from './lib/store.tsx'
 import { seshatWindowApi } from './lib/window-api.ts'
 import './index.css'
@@ -31,15 +35,43 @@ if (import.meta.env.PROD && 'serviceWorker' in navigator) {
   })
 }
 
-createRoot(rootElement).render(
-  <StrictMode>
-    <SeshatProvider>
-      <BrowserRouter basename={import.meta.env.BASE_URL}>
-        <App />
-      </BrowserRouter>
-      {/* App-level chrome, deliberately outside <Layout> — it's a one-off
-          banner about the app itself, not per-page navigation/content. */}
-      <InstallPrompt />
-    </SeshatProvider>
-  </StrictMode>,
-)
+const mount = (root: HTMLElement): void => {
+  createRoot(root).render(
+    <StrictMode>
+      <MediaStoreProvider>
+        <SeshatProvider>
+          <BrowserRouter basename={import.meta.env.BASE_URL}>
+            <App />
+          </BrowserRouter>
+          {/* App-level chrome, deliberately outside <Layout> — one-off banners about the
+              app itself, not per-page navigation/content. */}
+          <InstallPrompt />
+          <MigrationNotice />
+        </SeshatProvider>
+      </MediaStoreProvider>
+    </StrictMode>,
+  )
+}
+
+/**
+ * The one-time v1 -> v2 image-storage migration must finish BEFORE the store
+ * reads its state (otherwise the first save would overwrite it). Only a user
+ * who still has a v1 blob waits at all; everyone else mounts immediately.
+ * `bootMigration` never rejects, and a failure just means the app runs on the
+ * v1 data (storage.ts) — so no outcome can keep the app from rendering.
+ */
+if (migrationPending()) {
+  rootElement.textContent =
+    'Upgrading how your images are stored. This takes a moment and your data is not changed until it succeeds.'
+  rootElement.setAttribute('role', 'status')
+  void bootMigration()
+    .catch(() => undefined)
+    .finally(() => {
+      rootElement.removeAttribute('role')
+      rootElement.textContent = ''
+      mount(rootElement)
+    })
+} else {
+  void bootMigration().catch(() => undefined) // stale-v1 cleanup only; never blocks
+  mount(rootElement)
+}

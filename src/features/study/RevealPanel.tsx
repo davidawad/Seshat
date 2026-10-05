@@ -1,4 +1,5 @@
 import { useCallback, useId, useRef, useState } from 'react'
+import { CardImage } from '../../components/CardImage'
 import { Legible } from '../../components/Legible'
 import { TESTIDS } from '../../lib/testids'
 import { useKeybindings } from '../../lib/useKeybindings'
@@ -97,6 +98,9 @@ export const RevealPanel = ({
         )}
         {!correct && yourAnswer !== '' && <p className="review-your-answer">Your answer: {yourAnswer}</p>}
         <p className="review-correct-answer">Correct answer: {correctAnswer}</p>
+        {card.content.kind === 'short-answer' && (
+          <CardImage image={card.content.answerImage} alt="" className="review-answer-image" />
+        )}
         {card.explanation !== null && <p className="review-explanation">{card.explanation}</p>}
         {card.sourceRef !== null && <p className="review-source">Source: {card.sourceRef}</p>}
         {selfExplanation !== null && (

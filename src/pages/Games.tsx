@@ -1,6 +1,8 @@
 import { useRef, useState } from 'react'
 import { Link, useNavigate, useParams } from 'react-router-dom'
+import { GamePreview } from '../features/games/GamePreview'
 import { GAMES } from '../features/games/registry'
+import { imageCardCount, imageCardsNote, textCards } from '../features/study/text-cards'
 import { useSeshatStore } from '../lib/store'
 import { OptionAnnouncer } from '../lib/OptionAnnouncer'
 import { TESTIDS } from '../lib/testids'
@@ -40,8 +42,9 @@ const useSetContext = () => {
   const set = state.sets.find((candidate) => candidate.id === setId)
   if (set === undefined) return null
 
-  const cards = state.cards.filter((card) => card.setId === setId)
-  return { setId, set, cards }
+  const setCards = state.cards.filter((card) => card.setId === setId)
+  // Games only use text-answerable cards; image-occlusion cards stay in Study/Flashcards.
+  return { setId, set, cards: textCards(setCards), imageCount: imageCardCount(setCards) }
 }
 
 /** `/sets/:id/games` — picks among GAMES, disabling ones the set doesn't have enough cards for yet. */
@@ -81,7 +84,8 @@ export const GamesListPage = () => {
   })
 
   if (context === null) return <NotFound message="This set may have been deleted." />
-  const { setId, set, cards } = context
+  const { setId, set, cards, imageCount } = context
+  const note = imageCardsNote(imageCount)
 
   return (
     <section aria-labelledby="games-heading" data-testid={TESTIDS.gamesPage}>
@@ -90,6 +94,7 @@ export const GamesListPage = () => {
       </p>
       <h1 id="games-heading">Games: {set.name}</h1>
       <p>Ungraded, arcade-style practice — these don't feed your Study schedule.</p>
+      {note !== null && <p data-testid={TESTIDS.gamesImageNote}>{note}</p>}
       <nav ref={navRef} aria-label="Games" className="mode-grid">
         {GAMES.map((game, index) => {
           const playable = cards.length >= game.minCards
@@ -104,6 +109,7 @@ export const GamesListPage = () => {
             >
               <span className="mode-button-label">{game.label}</span>
               <span className="mode-button-hint">{game.description}</span>
+              <GamePreview gameId={game.id} />
             </Link>
           ) : (
             <div
@@ -114,7 +120,7 @@ export const GamesListPage = () => {
             >
               <span className="mode-button-label">{game.label}</span>
               <span className="mode-button-hint">
-                Needs at least {game.minCards} card{game.minCards === 1 ? '' : 's'} — this set has {cards.length}.
+                Needs at least {game.minCards} text card{game.minCards === 1 ? '' : 's'} — this set has {cards.length}.
               </span>
             </div>
           )
@@ -130,7 +136,8 @@ export const GameSessionPage = () => {
   const { gameId } = useParams<{ gameId: string }>()
   const context = useSetContext()
   if (context === null) return <NotFound message="This set may have been deleted." />
-  const { setId, set, cards } = context
+  const { setId, set, cards, imageCount } = context
+  const note = imageCardsNote(imageCount)
 
   const game = GAMES.find((candidate) => candidate.id === gameId)
   if (game === undefined) return <NotFound message="This game doesn't exist." />
@@ -145,12 +152,13 @@ export const GameSessionPage = () => {
       </h1>
       {cards.length < game.minCards ? (
         <p>
-          {game.label} needs at least {game.minCards} card{game.minCards === 1 ? '' : 's'} to build a round — this set
-          has {cards.length}. Add a few more cards to this set, then come back.
+          {game.label} needs at least {game.minCards} text card{game.minCards === 1 ? '' : 's'} to build a round — this
+          set has {cards.length}. Add a few more cards to this set, then come back.
         </p>
       ) : (
         <game.Component key={setId} setId={setId} setName={set.name} cards={cards} />
       )}
+      {note !== null && <p data-testid={TESTIDS.gamesImageNote}>{note}</p>}
     </section>
   )
 }

@@ -1,9 +1,12 @@
 import { z } from 'zod'
 import { summarizeMastery } from '../features/sets/set-summary'
 import { parseImportParam } from '../features/sets/url-import'
-import { type Result, err, ok, setIdSchema } from '../types'
+import { type Result, type StudyCard, err, ok, setIdSchema } from '../types'
 import { SETTING_KEYS, parseSettingsPatch } from './settings-patch'
-import { MAX_BACKUP_CHARS } from './backup'
+import { MAX_BACKUP_CHARS, attachBackupMedia } from './backup'
+import { loadMediaMap } from './media/export'
+import type { MediaStore } from './media/store'
+import { collectMediaRefs, mediaSummary } from './media/refs'
 import type { useSeshatStore } from './store'
 
 /**
@@ -79,7 +82,12 @@ export const detectModelContext = (doc: Document = document, nav: Navigator = na
 type Store = ReturnType<typeof useSeshatStore>
 
 export interface WebMcpDeps {
-  readonly store: Pick<Store, 'state' | 'importSet' | 'exportSet' | 'updateSettings' | 'exportAll' | 'importAll'>
+  readonly store: Pick<
+    Store,
+    'state' | 'importSet' | 'prepareSetImport' | 'exportSet' | 'updateSettings' | 'exportAll' | 'importAll'
+  >
+  /** The image store: export_set / export_all embed the images' bytes from here. */
+  readonly media: MediaStore
   readonly navigate: (path: string) => void
   readonly now: () => Date
 }
@@ -108,13 +116,15 @@ const settingsPatch = z
 
 // A call's outcome: a value to report, or an error message to hand back as a structured error.
 type Outcome = Result<unknown, string>
+// Tools that touch image storage are async; the rest return synchronously.
+type MaybeAsyncOutcome = Outcome | Promise<Outcome>
 
 interface ToolSpec<S extends z.ZodType> {
   readonly name: string
   readonly description: string
   readonly schema: S
   readonly annotations: WebMcpAnnotations
-  readonly run: (args: z.output<S>, deps: WebMcpDeps, raw: unknown) => Outcome
+  readonly run: (args: z.output<S>, deps: WebMcpDeps, raw: unknown) => MaybeAsyncOutcome
 }
 
 const defineTool =
@@ -125,22 +135,43 @@ const defineTool =
     // `input`: transforms/defaults describe what the agent SENDS, not what we parse it into.
     inputSchema: z.toJSONSchema(spec.schema, { io: 'input', unrepresentable: 'any' }),
     annotations: spec.annotations,
-    execute: (input) => {
+    execute: async (input) => {
       const parsed = spec.schema.safeParse(input ?? {})
       if (!parsed.success) {
         const issues = parsed.error.issues.map((issue) => `${issue.path.join('.') || 'input'}: ${issue.message}`)
-        return Promise.resolve(failure(`Invalid arguments. ${issues.slice(0, 5).join('; ')}`))
+        return failure(`Invalid arguments. ${issues.slice(0, 5).join('; ')}`)
       }
       try {
-        const outcome = spec.run(parsed.data, getDeps(), input)
-        return Promise.resolve(outcome.ok ? text(outcome.value) : failure(outcome.error))
+        const outcome = await spec.run(parsed.data, getDeps(), input)
+        return outcome.ok ? text(outcome.value) : failure(outcome.error)
       } catch (error) {
-        return Promise.resolve(failure(error instanceof Error ? error.message : 'Unexpected error.'))
+        return failure(error instanceof Error ? error.message : 'Unexpected error.')
       }
     },
   })
 
 const READ = { readOnlyHint: true, untrustedContentHint: true } as const
+
+/**
+ * Card content as list_cards shows it. Stored images (MediaRefs) are reduced
+ * to {id, alt, width, height}; a LEGACY inline data URL (easily hundreds of
+ * KB, present until the boot migration has run) is swapped for a short
+ * descriptor, so an agent's context is never flooded. Everything else
+ * (regions, labels, text) is kept. export_set and export_all are the explicit
+ * way to get the full data.
+ */
+export const stripImageBytes = (content: StudyCard['content']) => {
+  if (content.kind === 'short-answer') {
+    return content.answerImage ? { ...content, answerImage: mediaSummary(content.answerImage) } : content
+  }
+  if (content.kind !== 'image-occlusion') return content
+  const { imageDataUrl, image, ...rest } = content
+  if (image) return { ...rest, image: mediaSummary(image) }
+  if (imageDataUrl === undefined) return { ...rest, image: null }
+  const mime = /^data:([^;,]+)/.exec(imageDataUrl)?.[1] ?? 'unknown'
+  const base64 = imageDataUrl.slice(imageDataUrl.indexOf(',') + 1)
+  return { ...rest, image: { hasImage: true, approxBytes: Math.floor((base64.length * 3) / 4), mime } }
+}
 
 export const TOOL_FACTORIES = [
   defineTool({
@@ -168,7 +199,8 @@ export const TOOL_FACTORIES = [
   }),
   defineTool({
     name: 'list_cards',
-    description: 'List the cards in one study set (prompt, content, tags and review state).',
+    description:
+      'List the cards in one study set (prompt, content, tags and review state). Images are never inlined: a stored image shows as {id, alt, width, height} (card promptImage, short-answer answerImage, image-occlusion content.image); a legacy not-yet-migrated data URL shows as image {hasImage, approxBytes, mime} (use export_set for the full data).',
     schema: setArgs,
     annotations: READ,
     run: ({ setId }, { store }) =>
@@ -176,10 +208,11 @@ export const TOOL_FACTORIES = [
         ? ok(
             store.state.cards
               .filter((card) => card.setId === setId)
-              .map(({ id, prompt, content, explanation, tags, scheduling }) => ({
+              .map(({ id, prompt, promptImage, content, explanation, tags, scheduling }) => ({
                 id,
                 prompt,
-                content,
+                promptImage: mediaSummary(promptImage),
+                content: stripImageBytes(content),
                 explanation,
                 tags,
                 state: scheduling.state,
@@ -215,29 +248,35 @@ export const TOOL_FACTORIES = [
       'Import one study set from a JSON string: either {"name": string, "terms": [{"term", "definition"}]} or a full Seshat set export (seshatExportVersion 1). Adds a new set; existing sets are untouched.',
     schema: z.strictObject({ json: jsonText.describe('The set JSON, as a string.') }),
     annotations: {},
-    run: ({ json }, { store }) => {
+    run: async ({ json }, { store }) => {
       const parsed = parseImportParam(json)
       if (parsed === null || !parsed.ok) return err(parsed === null ? 'Nothing to import.' : parsed.error)
-      const set = store.importSet(parsed.value)
-      return ok({ id: set.id, name: set.name, cardCount: parsed.value.cards.length })
+      const prepared = await store.prepareSetImport(parsed.value)
+      if (!prepared.ok) return err(prepared.error)
+      const set = store.importSet(prepared.value)
+      return ok({ id: set.id, name: set.name, cardCount: prepared.value.cards.length })
     },
   }),
   defineTool({
     name: 'export_set',
-    description: 'Export one study set as Seshat set-export JSON (no review history).',
+    description:
+      'Export one study set as Seshat set-export JSON (no review history). Full data: images are embedded as base64 in a media map keyed by image id.',
     schema: setArgs,
     annotations: READ,
-    run: ({ setId }, { store }) => {
+    run: async ({ setId }, { store, media }) => {
       const exported = store.exportSet(setId)
-      return exported === null ? err(`No set with id ${setId}.`) : ok(exported)
+      if (exported === null) return err(`No set with id ${setId}.`)
+      const { value } = await loadMediaMap(media, collectMediaRefs(exported.cards))
+      return ok({ ...exported, media: value })
     },
   }),
   defineTool({
     name: 'export_all',
-    description: 'Export everything (settings, keybindings, all sets, cards and review history) as one backup object.',
+    description:
+      'Export everything (settings, keybindings, all sets, cards and review history) as one backup object. Full data: images are embedded as base64 in a media map keyed by image id (can be very large).',
     schema: noArgs,
     annotations: READ,
-    run: (_args, { store }) => ok(store.exportAll()),
+    run: async (_args, { store, media }) => ok((await attachBackupMedia(store.exportAll(), media)).value),
   }),
   defineTool({
     name: 'import_all',
@@ -248,8 +287,8 @@ export const TOOL_FACTORIES = [
       mode: z.enum(['merge', 'replace']).default('merge'),
     }),
     annotations: { consequentialHint: true },
-    run: ({ json, mode }, { store }) => {
-      const result = store.importAll(json, mode)
+    run: async ({ json, mode }, { store }) => {
+      const result = await store.importAll(json, mode)
       return result.ok ? ok(result.value) : err(result.error)
     },
   }),

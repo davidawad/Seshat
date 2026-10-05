@@ -10,7 +10,8 @@ beforeAll(async () => {
   script = await buildBootScript()
 }, 60_000)
 
-const STATE_KEY = 'seshat:app-state:v1'
+const STATE_KEY = 'seshat:app-state:v2'
+const LEGACY_STATE_KEY = 'seshat:app-state:v1'
 
 const setSystemLight = (light: boolean) => {
   window.matchMedia = ((query: string) => ({ matches: light && query.includes('light') })) as typeof window.matchMedia
@@ -68,7 +69,7 @@ describe('boot script vs useApplyTheme resolution', () => {
 
             // Boot path: the generated script reading persisted state.
             setSystemLight(mode === 'light')
-            window.localStorage.setItem(STATE_KEY, JSON.stringify({ version: 1, sets: [], cards: [], settings }))
+            window.localStorage.setItem(STATE_KEY, JSON.stringify({ version: 2, sets: [], cards: [], settings }))
             runBootScript()
             expect(snapshot()).toEqual(runtime)
             expect(runtime.metas).toEqual([PALETTES[palette][mode]['--color-bg']])
@@ -93,7 +94,25 @@ describe('boot script persistence handling', () => {
 
   it('prefers localStorage over the cookie', () => {
     document.cookie = `seshat_settings=${encodeURIComponent(JSON.stringify({ palette: 'slate' }))}; Path=/`
-    window.localStorage.setItem(STATE_KEY, JSON.stringify({ version: 1, settings: rose }))
+    window.localStorage.setItem(STATE_KEY, JSON.stringify({ version: 2, settings: rose }))
+    runBootScript()
+    expect(document.documentElement.dataset['palette']).toBe('rose')
+  })
+
+  it('reads the not-yet-migrated v1 key when v2 is absent, and prefers v2 when both exist', () => {
+    window.localStorage.setItem(LEGACY_STATE_KEY, JSON.stringify({ version: 1, settings: rose }))
+    runBootScript()
+    expect(document.documentElement.dataset['palette']).toBe('rose')
+    reset()
+    const slate: Settings = { ...DEFAULT_SETTINGS, palette: 'slate' }
+    window.localStorage.setItem(STATE_KEY, JSON.stringify({ version: 2, settings: slate }))
+    runBootScript()
+    expect(document.documentElement.dataset['palette']).toBe('slate')
+  })
+
+  it('falls through a corrupt v2 to a valid v1, then to the cookie', () => {
+    window.localStorage.setItem(STATE_KEY, '{not json')
+    window.localStorage.setItem(LEGACY_STATE_KEY, JSON.stringify({ version: 1, settings: rose }))
     runBootScript()
     expect(document.documentElement.dataset['palette']).toBe('rose')
   })
@@ -130,7 +149,7 @@ describe('boot script persistence handling', () => {
 
   it('updates an existing theme-color meta instead of adding a second', () => {
     document.head.insertAdjacentHTML('beforeend', '<meta name="theme-color" content="#5B3DF5">')
-    window.localStorage.setItem(STATE_KEY, JSON.stringify({ version: 1, settings: rose }))
+    window.localStorage.setItem(STATE_KEY, JSON.stringify({ version: 2, settings: rose }))
     runBootScript()
     expect(snapshot().metas).toEqual([PALETTES.rose.light['--color-bg']])
   })

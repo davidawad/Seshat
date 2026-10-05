@@ -1,0 +1,152 @@
+/* Game-card previews: hidden until the card is hovered or focused. Touch
+   devices (no hover) reveal on focus/active only. Under reduced motion
+   (prefers-reduced-motion or [data-reduced-motion]) every animation is
+   removed, leaving the static frame defined by the base styles. */
+.game-preview {
+  display: none;
+  margin-top: 0.5rem;
+  pointer-events: none;
+}
+
+.mode-button:focus .game-preview,
+.mode-button:active .game-preview {
+  display: block;
+}
+
+@media (hover: hover) {
+  .mode-button:hover .game-preview {
+    display: block;
+  }
+}
+
+.game-preview-art {
+  display: block;
+  width: 100%;
+  height: auto;
+  max-height: 4.5rem;
+}
+
+.game-preview-art * {
+  transform-box: fill-box;
+  transform-origin: center;
+}
+
+.pv-tile,
+.pv-cell,
+.pv-rock {
+  fill: var(--color-bg-elevated-2);
+  stroke: var(--color-border-strong);
+  stroke-width: 1;
+}
+
+/* Static frames */
+.pv-pair-a,
+.pv-cell-lit,
+.pv-rock-hit {
+  fill: var(--color-accent);
+  stroke: var(--color-accent);
+}
+
+.pv-ring {
+  fill: none;
+  stroke: var(--color-success);
+  stroke-width: 2;
+  opacity: 0.8;
+}
+
+/* Motion */
+@media (prefers-reduced-motion: no-preference) {
+  :root:not([data-reduced-motion='true']) .pv-pair-a,
+  :root:not([data-reduced-motion='true']) .pv-pair-b {
+    animation: pv-flip 4s ease-in-out infinite;
+  }
+
+  :root:not([data-reduced-motion='true']) .pv-pair-b {
+    animation-delay: -2s;
+  }
+
+  :root:not([data-reduced-motion='true']) .pv-bob {
+    animation: pv-bob 1.6s ease-in-out infinite;
+  }
+
+  :root:not([data-reduced-motion='true']) .pv-rock-hit {
+    animation: pv-hit 2.4s ease-out infinite;
+  }
+
+  :root:not([data-reduced-motion='true']) .pv-ring {
+    animation: pv-ring 2.4s ease-out infinite;
+  }
+
+  :root:not([data-reduced-motion='true']) .pv-cell-lit {
+    animation: pv-light 2.4s ease-in-out infinite;
+  }
+}
+
+@keyframes pv-flip {
+  0%,
+  15% {
+    transform: scaleX(1);
+    fill: var(--color-bg-elevated-2);
+  }
+  25% {
+    transform: scaleX(0.05);
+  }
+  35%,
+  70% {
+    transform: scaleX(1);
+    fill: var(--color-accent);
+  }
+  85%,
+  100% {
+    transform: scaleX(1);
+    fill: var(--color-bg-elevated-2);
+  }
+}
+
+@keyframes pv-bob {
+  50% {
+    transform: translateY(-3px);
+  }
+}
+
+@keyframes pv-hit {
+  0%,
+  35% {
+    opacity: 1;
+    transform: scale(1);
+  }
+  55%,
+  100% {
+    opacity: 0;
+    transform: scale(0.6);
+  }
+}
+
+@keyframes pv-ring {
+  0%,
+  30% {
+    opacity: 0;
+    transform: scale(0.5);
+  }
+  35% {
+    opacity: 1;
+  }
+  75%,
+  100% {
+    opacity: 0;
+    transform: scale(1.9);
+  }
+}
+
+@keyframes pv-light {
+  0%,
+  100% {
+    fill: var(--color-bg-elevated-2);
+    stroke: var(--color-border-strong);
+  }
+  30%,
+  60% {
+    fill: var(--color-accent);
+    stroke: var(--color-accent);
+  }
+}

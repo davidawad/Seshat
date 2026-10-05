@@ -40,7 +40,8 @@ const makeCard = (id: CardId, index: number, forSetId: SetId = setId): StudyCard
     id,
     setId: forSetId,
     prompt: `Prompt ${index}`,
-    content: { kind: 'short-answer', answer: `Answer ${index}`, acceptableAnswers: [] },
+    promptImage: null,
+    content: { kind: 'short-answer', answer: `Answer ${index}`, acceptableAnswers: [], answerImage: null },
     explanation: null,
     sourceRef: null,
     tags: [],
@@ -409,7 +410,7 @@ describe('FlashcardsPage options modal', () => {
     await user.selectOptions(within(optionsDialog()).getByLabelText('Front'), 'definition')
 
     expect(store().state.settings.flashcardsFront).toBe('definition')
-    const faces = document.querySelectorAll('.flip-card-face p')
+    const faces = document.querySelectorAll('.flip-card-face > p:not(.card-tip)')
     expect(faces[0]).toHaveTextContent('Answer 1')
     expect(faces[1]).toHaveTextContent('Prompt 1')
   })

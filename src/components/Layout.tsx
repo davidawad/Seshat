@@ -1,9 +1,11 @@
-import { useEffect, useId, useRef, useState } from 'react'
+import { lazy, Suspense, useEffect, useId, useRef, useState } from 'react'
 import { Link, NavLink, Outlet, useLocation } from 'react-router-dom'
 import { ImportFromUrl } from '../features/sets/ImportFromUrl'
+import { isMacPlatform, paletteKeyHint } from '../features/palette/palette-items'
 import { SettingsForm } from '../features/settings/SettingsForm'
+import { useApplyCardSize } from '../features/flashcards/useCardSize'
 import { useApplyTheme } from '../features/settings/theme'
-import { matchesBinding } from '../lib/keybindings'
+import { formatKeyLabel, matchesBinding } from '../lib/keybindings'
 import { useRouteFocus } from '../lib/routeFocus'
 import { TESTIDS } from '../lib/testids'
 import { useKeybindings } from '../lib/useKeybindings'
@@ -11,7 +13,14 @@ import { useWebMcp } from '../lib/useWebMcp'
 import { Footer } from './Footer'
 import { SetsIcon, StatsIcon } from './icons'
 import { Modal } from './Modal'
+import { SaveErrorBanner } from './SaveErrorBanner'
 import { ShortcutsModal } from './ShortcutsModal'
+
+// cmdk (and the Radix pieces it pulls in) only loads the first time the
+// command menu is opened, so it stays out of the main bundle.
+const CommandPalette = lazy(() =>
+  import('../features/palette/CommandPalette').then((module) => ({ default: module.CommandPalette })),
+)
 
 // Docs/Attributions/License all live in the footer (see Footer.tsx)
 // alongside Settings, not up here — they're reference material you'd look
@@ -41,9 +50,13 @@ const SeshatMark = () => (
 
 export const Layout = () => {
   useApplyTheme()
+  useApplyCardSize()
   useWebMcp()
   const [settingsOpen, setSettingsOpen] = useState(false)
   const [shortcutsOpen, setShortcutsOpen] = useState(false)
+  const [paletteOpen, setPaletteOpen] = useState(false)
+  // Stays false until the first open so the lazy chunk is never fetched for nothing.
+  const [paletteWanted, setPaletteWanted] = useState(false)
   const settingsTitleId = useId()
   const shortcutsTitleId = useId()
   const { key: keyFor } = useKeybindings()
@@ -65,6 +78,24 @@ export const Layout = () => {
     window.addEventListener('keydown', handler)
     return () => window.removeEventListener('keydown', handler)
   }, [settingsOpen, keyFor])
+
+  // Global command-menu shortcut (default Ctrl+K; matchesBinding also accepts
+  // Cmd+K). Unlike '?', it works from inside text fields, and it toggles.
+  useEffect(() => {
+    const handler = (event: KeyboardEvent) => {
+      if (event.repeat || !matchesBinding(keyFor('global.openPalette'), event)) return
+      event.preventDefault()
+      setPaletteWanted(true)
+      setPaletteOpen((open) => !open)
+    }
+    window.addEventListener('keydown', handler)
+    return () => window.removeEventListener('keydown', handler)
+  }, [keyFor])
+
+  const openPalette = () => {
+    setPaletteWanted(true)
+    setPaletteOpen(true)
+  }
 
   return (
     <div className="app-shell">
@@ -88,11 +119,29 @@ export const Layout = () => {
           </ul>
         </nav>
       </header>
+      <SaveErrorBanner onOpenSettings={() => setSettingsOpen(true)} />
       <ImportFromUrl />
       <main id="main-content" ref={mainRef} className="app-main" data-testid={TESTIDS.layoutMain}>
         <Outlet />
       </main>
-      <Footer onOpenSettings={() => setSettingsOpen(true)} onOpenShortcuts={() => setShortcutsOpen(true)} />
+      <Footer
+        onOpenSettings={() => setSettingsOpen(true)}
+        onOpenShortcuts={() => setShortcutsOpen(true)}
+        onOpenPalette={openPalette}
+        paletteKeyHint={paletteKeyHint(formatKeyLabel(keyFor('global.openPalette')), isMacPlatform())}
+      />
+      {/* Before the Settings/Shortcuts modals: when a palette action opens one, the
+          palette must close (and restore focus) first. */}
+      {paletteWanted && (
+        <Suspense fallback={null}>
+          <CommandPalette
+            open={paletteOpen}
+            onClose={() => setPaletteOpen(false)}
+            onOpenSettings={() => setSettingsOpen(true)}
+            onOpenShortcuts={() => setShortcutsOpen(true)}
+          />
+        </Suspense>
+      )}
       <Modal
         open={settingsOpen}
         onClose={() => setSettingsOpen(false)}

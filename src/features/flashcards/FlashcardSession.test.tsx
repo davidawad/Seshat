@@ -55,8 +55,9 @@ describe('FlashcardSession', () => {
     const card = makeCard()
     seedStore(card)
     renderSession(card)
-    expect(screen.getByText(/Press/)).toHaveTextContent('Press ← to study again or → if you know the answer')
-    expect(screen.getByText('Shortcut')).toBeInTheDocument()
+    const tips = screen.getAllByText(/Press/)
+    expect(tips).toHaveLength(2) // one per face; only the visible one is exposed
+    for (const tip of tips) expect(tip).toHaveTextContent('Press ← to study again or → if you know the answer')
   })
 
   it('flips on card click and on Space, and flips back on a second one', async () => {
@@ -141,7 +142,7 @@ describe('FlashcardSession', () => {
           card={card}
           position={0}
           total={3}
-          options={{ trackProgress: false, front: 'term' }}
+          options={{ trackProgress: false, front: 'term', cardSize: 'small' }}
           shortcutsEnabled
           knownCount={4}
           unknownCount={2}
@@ -170,8 +171,8 @@ describe('FlashcardSession', () => {
   it('shows the definition first when Front is Definition', () => {
     const card = makeCard()
     seedStore(card)
-    renderSession(card, { options: { trackProgress: true, front: 'definition' } })
-    const faces = document.querySelectorAll('.flip-card-face p')
+    renderSession(card, { options: { trackProgress: true, front: 'definition', cardSize: 'small' } })
+    const faces = document.querySelectorAll('.flip-card-face > p:not(.card-tip)')
     expect(faces[0]).toHaveTextContent('Paris')
     expect(faces[1]).toHaveTextContent('What is the capital of France?')
   })
@@ -261,7 +262,7 @@ describe('FlashcardSession shortcuts and options', () => {
       ...card,
       id: cardIdSchema.parse('c2222222-2222-4222-8222-222222222222'),
       prompt: 'What is 2+2?',
-      content: { kind: 'short-answer', answer: '4', acceptableAnswers: [] },
+      content: { kind: 'short-answer', answer: '4', acceptableAnswers: [], answerImage: null },
     }
     seedStore(card)
     const handlers = makeHandlers()

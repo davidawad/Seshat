@@ -171,6 +171,16 @@ body.has-install-prompt .app-main {
   background: transparent;
 }
 
+/* The key hint inside the footer's command-menu button (components/Footer.tsx). */
+.app-footer-hint {
+  margin-left: 0.4rem;
+  padding: 0.05rem 0.4rem;
+  border: 1px solid var(--color-border-strong);
+  border-radius: var(--radius-sm);
+  font-family: var(--font-ui);
+  font-size: 0.75rem;
+}
+
 /*
  * The Settings modal — large by design (it's the whole legibility control
  * panel, not a quick toggle), built on the native <dialog> element.
@@ -434,4 +444,29 @@ body.has-install-prompt .app-main {
   .modal-body {
     max-height: calc(100dvh - 4.5rem);
   }
+}
+
+/* Persistent banner while the last save failed (components/SaveErrorBanner.tsx). */
+.save-error-banner {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.75rem;
+  margin: 0.5rem 1rem;
+  padding: 0.75rem 1rem;
+  background: var(--color-bg-elevated);
+  border: 2px solid var(--color-error);
+  border-radius: var(--radius-page);
+  color: var(--color-fg);
+}
+
+.save-error-banner p {
+  margin: 0;
+  flex: 1 1 16rem;
+}
+
+/* The one-time image-storage upgrade note (components/MigrationNotice.tsx): top corner, so it never sits on the install banner. */
+.install-prompt.migration-notice {
+  top: 1rem;
+  bottom: auto;
 }

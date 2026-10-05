@@ -1,12 +1,21 @@
 import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest'
 import { DEFAULT_SETTINGS, createEmptyAppState } from '../types'
 import { clearMirrors, resetPersistenceRequestForTests } from './persistence'
-import { STORAGE_KEY, clearState, loadInitialState, loadState, saveState, subscribeToAppState } from './storage'
+import {
+  STORAGE_KEY,
+  clearState,
+  loadInitialState,
+  loadState,
+  resetStorageSourceForTests,
+  saveState,
+  subscribeToAppState,
+} from './storage'
 
 describe('storage', () => {
   beforeEach(() => {
     window.localStorage.clear()
     clearMirrors()
+    resetStorageSourceForTests()
   })
 
   afterEach(() => {

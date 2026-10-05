@@ -8,7 +8,11 @@ import {
   ok,
   settingsSchema,
 } from '../types'
-import { BACKUP_FORMAT, BACKUP_VERSION, backupV1Schema } from './backup-schema'
+import { BACKUP_FORMAT, BACKUP_VERSION, backupSchema } from './backup-schema'
+import { type MediaExport, loadMediaMap, toJsonBlobWithMedia } from './media/export'
+import { collectMediaRefs } from './media/refs'
+import type { MediaStore } from './media/store'
+import type { MediaMap } from './media/types'
 import { type KeybindingOverrides, sanitizeOverrides } from './keybindings'
 import { parseSettingsPatch } from './settings-patch'
 
@@ -32,6 +36,18 @@ export { BACKUP_FORMAT, BACKUP_VERSION }
 
 /** Rejects absurd inputs before JSON.parse allocates for them. (Characters, not bytes — close enough for a sanity cap.) */
 export const MAX_BACKUP_CHARS = 25 * 1024 * 1024
+/**
+ * Hard ceiling for a file that DECLARES media (a non-empty `"media":{"<id>":...` map): images are base64 and
+ * legitimately large. Still bounded, so a hostile file cannot make JSON.parse allocate without limit.
+ */
+export const MAX_BACKUP_WITH_MEDIA_CHARS = 256 * 1024 * 1024
+const DECLARES_MEDIA = /"media"\s*:\s*\{\s*"/
+
+/** Size-aware cap: the plain cap, or the larger media cap for a file that declares images. */
+const exceedsSizeCap = (raw: string): boolean => {
+  if (raw.length <= MAX_BACKUP_CHARS) return false
+  return raw.length > MAX_BACKUP_WITH_MEDIA_CHARS || !DECLARES_MEDIA.test(raw)
+}
 
 // Informational only (never gates an import — `version` does). Set VITE_APP_VERSION at build time to stamp it.
 const envAppVersion: unknown = import.meta.env['VITE_APP_VERSION']
@@ -47,6 +63,8 @@ export interface Backup {
   readonly sets: AppState['sets']
   readonly cards: AppState['cards']
   readonly reviewLog: AppState['reviewLog']
+  /** mediaId -> image bytes for every image the cards reference. `{}` for a text-only backup. */
+  readonly media: MediaMap
 }
 
 export const createBackup = (state: AppState, keybindings: KeybindingOverrides, now: Date): Backup => ({
@@ -59,7 +77,20 @@ export const createBackup = (state: AppState, keybindings: KeybindingOverrides, 
   sets: state.sets,
   cards: state.cards,
   reviewLog: state.reviewLog,
+  media: {},
 })
+
+/** A backup with the bytes of every referenced image attached (held in memory; see `buildBackupBlob` for files). */
+export const attachBackupMedia = async (backup: Backup, store: MediaStore): Promise<MediaExport<Backup>> => {
+  const { value, missing } = await loadMediaMap(store, collectMediaRefs(backup.cards))
+  return { value: { ...backup, media: value }, missing }
+}
+
+/** The backup as a downloadable Blob built from parts (images streamed in one at a time), plus ids whose blobs were missing. */
+export const buildBackupBlob = (backup: Backup, store: MediaStore): Promise<MediaExport<Blob>> => {
+  const { media: _text, ...doc } = backup
+  return toJsonBlobWithMedia(doc, store, collectMediaRefs(backup.cards))
+}
 
 /** `seshat-backup-2026-10-03.json` — the date, not a timestamp, so repeated exports sort and stay readable. */
 export const backupFilename = (now: Date): string => `seshat-backup-${now.toISOString().slice(0, 10)}.json`
@@ -70,12 +101,16 @@ export const backupFilename = (now: Date): string => `seshat-backup-${now.toISOS
 
 type RawEnvelope = Readonly<Record<string, unknown>>
 
-/** `MIGRATIONS[n]` upgrades a version-n envelope to version n+1. Empty today (v1 is the only version). */
+/** `MIGRATIONS[n]` upgrades a version-n envelope to version n+1. */
 export type MigrationChain = Readonly<Record<number, (raw: RawEnvelope) => RawEnvelope>>
 
-export const MIGRATIONS: MigrationChain = {}
+export const MIGRATIONS: MigrationChain = {
+  // v1 -> v2: images used to be inline data URLs in the cards (kept as-is here, converted into the media
+  // store at import time by prepareCardsForImport); v2 adds the `media` map, empty for a v1 file.
+  1: (raw) => ({ ...raw, version: 2, media: {} }),
+}
 
-/** Walks a raw envelope forward, one version at a time, to `target`. Injectable so the hook is testable before a v2 exists. */
+/** Walks a raw envelope forward, one version at a time, to `target`. Injectable so the chain is testable on its own. */
 export const migrateEnvelope = (
   raw: RawEnvelope,
   migrations: MigrationChain = MIGRATIONS,
@@ -107,7 +142,14 @@ export const migrateEnvelope = (
 const duplicates = (ids: readonly string[]): boolean => new Set(ids).size !== ids.length
 
 /** Referential checks the per-field schemas can't express. Returns an error message, or `null` when consistent. */
+const mediaIntegrityError = (backup: Backup): string | null => {
+  const used = collectMediaRefs(backup.cards)
+  return Object.keys(backup.media).some((id) => !used.has(id)) ? 'This backup contains images that no card uses.' : null
+}
+
 const integrityError = (backup: Backup): string | null => {
+  const mediaProblem = mediaIntegrityError(backup)
+  if (mediaProblem !== null) return mediaProblem
   if (duplicates(backup.sets.map((set) => set.id))) return 'This backup contains duplicate set ids.'
   if (duplicates(backup.cards.map((card) => card.id))) return 'This backup contains duplicate card ids.'
   const setIds = new Set<string>(backup.sets.map((set) => set.id))
@@ -123,7 +165,7 @@ const isRecord = (value: unknown): value is RawEnvelope =>
   typeof value === 'object' && value !== null && !Array.isArray(value)
 
 export const parseBackup = (raw: string): Result<Backup, string> => {
-  if (raw.length > MAX_BACKUP_CHARS) return err('That file is too large to be a Seshat backup.')
+  if (exceedsSizeCap(raw)) return err('That file is too large to be a Seshat backup.')
 
   let json: unknown
   try {
@@ -136,7 +178,7 @@ export const parseBackup = (raw: string): Result<Backup, string> => {
   const migrated = migrateEnvelope(json)
   if (!migrated.ok) return migrated
 
-  const parsed = backupV1Schema.safeParse(migrated.value)
+  const parsed = backupSchema.safeParse(migrated.value)
   if (!parsed.success) {
     return err(
       `That backup is damaged or has unexpected content: ${parsed.error.issues
@@ -174,6 +216,10 @@ export interface ImportReport {
   readonly cardsSkipped: number
   readonly reviewsAdded: number
   readonly reviewsSkipped: number
+  /** Images the backup's cards use that are neither in the file nor on this device (shown as unavailable). Filled by the importer. */
+  readonly imagesMissing: number
+  /** Cards whose embedded v1 image could not be converted; they keep working from the inline data URL. Filled by the importer. */
+  readonly imagesNotConverted: number
   /** Keybinding overrides the caller must now persist/apply; `null` = leave the current ones (merge never touches settings or keybindings). */
   readonly keybindings: KeybindingOverrides | null
 }
@@ -208,6 +254,8 @@ export const applyBackup = (current: AppState, backup: Backup, mode: ImportMode)
         cardsSkipped: 0,
         reviewsAdded: backup.reviewLog.length,
         reviewsSkipped: 0,
+        imagesMissing: 0,
+        imagesNotConverted: 0,
         keybindings: backup.keybindings,
       },
     }
@@ -235,6 +283,8 @@ export const applyBackup = (current: AppState, backup: Backup, mode: ImportMode)
       cardsSkipped: backup.cards.length - newCards.length,
       reviewsAdded: newReviews.length,
       reviewsSkipped: backup.reviewLog.length - newReviews.length,
+      imagesMissing: 0,
+      imagesNotConverted: 0,
       keybindings: null,
     },
   }
@@ -244,7 +294,13 @@ export const applyBackup = (current: AppState, backup: Backup, mode: ImportMode)
 export const describeImport = (report: ImportReport): string => {
   const plural = (count: number, noun: string) => `${count} ${noun}${count === 1 ? '' : 's'}`
   const added = `${plural(report.setsAdded, 'set')}, ${plural(report.cardsAdded, 'card')} and ${plural(report.reviewsAdded, 'review')}`
-  if (report.mode === 'replace') return `Replaced everything with the backup: ${added}.`
-  const skipped = `${plural(report.setsSkipped, 'set')} and ${plural(report.cardsSkipped, 'card')} already present`
-  return `Merged ${added} from the backup; skipped ${skipped}.`
+  const base =
+    report.mode === 'replace'
+      ? `Replaced everything with the backup: ${added}.`
+      : `Merged ${added} from the backup; skipped ${plural(report.setsSkipped, 'set')} and ${plural(report.cardsSkipped, 'card')} already present.`
+  const notes = [
+    report.imagesMissing > 0 ? `${plural(report.imagesMissing, 'image')} could not be restored (not in the file).` : '',
+    report.imagesNotConverted > 0 ? `${plural(report.imagesNotConverted, 'image')} kept in the old inline format.` : '',
+  ].filter((note) => note !== '')
+  return [base, ...notes].join(' ')
 }

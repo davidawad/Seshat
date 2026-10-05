@@ -11,7 +11,9 @@ import {
 import { matchesBinding } from '../../lib/keybindings'
 import { useSeshatStore } from '../../lib/store'
 import { TESTIDS } from '../../lib/testids'
+import { useCardTip } from '../../lib/useCardTip'
 import { useKeybindings } from '../../lib/useKeybindings'
+import type { MediaRef } from '../../lib/media/types'
 import type { StudyCard } from '../../types'
 import { cardFrontBack } from '../study/card-summary'
 import { FlipCard } from '../../components/FlipCard'
@@ -45,9 +47,13 @@ interface FlashcardFaceProps {
   readonly ref: Ref<HTMLDivElement>
   /** Shown on top of the card, travelling with it (the Know / Still learning badge). */
   readonly badge: ReactNode
+  /** Footer inside both card faces (the grade-keys hint). */
+  readonly tip: ReactNode
   readonly flipped: boolean
   readonly front: string
   readonly back: string
+  readonly image: MediaRef | undefined
+  readonly answerImage: MediaRef | undefined
   readonly imageDataUrl: string | undefined
   readonly dragX: number
   readonly onClick: () => void
@@ -62,9 +68,12 @@ interface FlashcardFaceProps {
 const FlashcardFace = ({
   ref,
   badge,
+  tip,
   flipped,
   front,
   back,
+  image,
+  answerImage,
   imageDataUrl,
   dragX,
   onClick,
@@ -97,7 +106,15 @@ const FlashcardFace = ({
     onPointerCancel={onPointerCancel}
     style={dragX !== 0 ? { transform: `translateX(${dragX}px)` } : undefined}
   >
-    <FlipCard front={front} back={back} imageDataUrl={imageDataUrl} flipped={flipped} />
+    <FlipCard
+      front={front}
+      back={back}
+      image={image}
+      answerImage={answerImage}
+      imageDataUrl={imageDataUrl}
+      flipped={flipped}
+      tip={tip}
+    />
     {badge}
   </div>
 )
@@ -131,6 +148,9 @@ export const FlashcardSession = ({
   const [flipped, setFlipped] = useState(false)
   const faceRef = useRef<HTMLDivElement>(null)
   const shownAt = useRef(performance.now())
+  // The hint teaches grading, so the learner's first grade (key, button or swipe) retires it.
+  const tip = useCardTip('flashcards-grade')
+  const { dismiss: dismissTip } = tip
 
   // Reset per-card state whenever a new card is shown.
   useEffect(() => {
@@ -138,7 +158,7 @@ export const FlashcardSession = ({
     shownAt.current = performance.now()
   }, [card.id])
 
-  const { imageDataUrl, ...faces } = cardFrontBack(card)
+  const { image, answerImage, imageDataUrl, ...faces } = cardFrontBack(card)
   const { front, back } = orientFaces(faces, options.front)
 
   const toggleFlip = useCallback(() => setFlipped((current) => !current), [])
@@ -146,6 +166,7 @@ export const FlashcardSession = ({
   const commitGrade = useCallback(
     (known: boolean) => {
       const elapsedMs = performance.now() - shownAt.current
+      dismissTip()
       const reviewedAt = options.trackProgress
         ? recordReview(card.id, known ? 'good' : 'again', null, known, elapsedMs)
         : null
@@ -156,7 +177,7 @@ export const FlashcardSession = ({
         reviewedAt,
       })
     },
-    [card.id, card.scheduling, onGrade, options.trackProgress, recordReview],
+    [card.id, card.scheduling, dismissTip, onGrade, options.trackProgress, recordReview],
   )
 
   const { leaving, handleGrade } = useGradeMotion(faceRef, commitGrade)
@@ -217,16 +238,18 @@ export const FlashcardSession = ({
               </span>
             )
           }
+          tip={<FlashcardHint leftKey={keyFor('nav.left')} rightKey={keyFor('nav.right')} open={tip.open} />}
           flipped={flipped}
           front={front}
           back={back}
+          image={image}
+          answerImage={answerImage}
           imageDataUrl={imageDataUrl}
           dragX={dragX}
           onClick={handleFaceClick}
           onKeyDown={handleFaceKeyDown}
           {...pointerHandlers}
         />
-        <FlashcardHint leftKey={keyFor('nav.left')} rightKey={keyFor('nav.right')} />
       </div>
 
       <FlashcardControls

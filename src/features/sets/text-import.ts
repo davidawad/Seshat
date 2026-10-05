@@ -26,7 +26,8 @@ export const parseTermDefinitionText = (raw: string): Result<ExportedCard[], str
 
     cards.push({
       prompt: term,
-      content: { kind: 'short-answer', answer: definition, acceptableAnswers: [] },
+      promptImage: null,
+      content: { kind: 'short-answer', answer: definition, acceptableAnswers: [], answerImage: null },
       explanation: null,
       sourceRef: null,
       tags: [],

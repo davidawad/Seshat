@@ -1,10 +1,11 @@
 /**
- * Client-side image downscale/compression for image-occlusion cards. There
- * is no blob store — the image lives as a `data:` URL inside the same
- * single localStorage blob as everything else (see lib/storage.ts), which
- * has a hard ~5-10MB-per-origin ceiling shared across the whole app. An
- * uploaded image is downscaled and re-compressed before it's ever assigned
- * to `imageDataUrl`, instead of being stored at its original resolution.
+ * LEGACY client-side image downscale for image-occlusion cards: it produces an
+ * inline `data:` URL (`imageDataUrl`), the pre-v2 storage format. New images
+ * belong in the IndexedDB media store through lib/media's `processImage` +
+ * `MediaStore.put`, which return a small MediaRef instead; existing inline
+ * images are converted once at boot by lib/media/migrate.ts. This module stays
+ * for the not-yet-migrated path (and its size warning), because a data URL
+ * counts against the same ~5MB localStorage quota as all the text state.
  */
 
 /** Longest edge, in px, an uploaded image is downscaled to before compression. Diagrams stay legible well below this. */
@@ -15,6 +16,18 @@ export const IMAGE_JPEG_QUALITY = 0.82
 
 /** Above this, warn the user inline (not a hard block) that the image is eating into the shared localStorage budget. */
 export const IMAGE_SIZE_WARNING_BYTES = 500 * 1024
+
+/** The format every processed image is encoded as. */
+export const OUTPUT_MIME = 'image/jpeg'
+
+/**
+ * JPEG has no alpha channel, so transparent pixels would be encoded as black.
+ * Returns the opaque colour to fill the canvas with before drawing when the
+ * output format needs it (JPEG: white), or null when alpha is preserved.
+ * A fixed neutral matte, deliberately not a themed colour: the stored image
+ * must not change when the palette does.
+ */
+export const matteColorFor = (outputMime: string): string | null => (outputMime === 'image/jpeg' ? 'white' : null)
 
 /**
  * Scales `(sourceWidth, sourceHeight)` down so its longest edge is at most
@@ -76,8 +89,13 @@ export const downscaleImageFile = (file: File): Promise<string> =>
           reject(new Error('This browser does not support the canvas API needed to process images.'))
           return
         }
+        const matte = matteColorFor(OUTPUT_MIME)
+        if (matte !== null) {
+          context.fillStyle = matte
+          context.fillRect(0, 0, width, height)
+        }
         context.drawImage(image, 0, 0, width, height)
-        resolve(canvas.toDataURL('image/jpeg', IMAGE_JPEG_QUALITY))
+        resolve(canvas.toDataURL(OUTPUT_MIME, IMAGE_JPEG_QUALITY))
       }
       image.src = sourceDataUrl
     }

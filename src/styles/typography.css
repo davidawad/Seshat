@@ -167,7 +167,10 @@ button {
   margin-bottom: 0.75rem;
 }
 
+/* Buttons are laid out by their container (toolbars, segmented pills, tiles);
+   a default bottom margin leaves a stray strip under every pill group. */
 button {
+  margin-bottom: 0;
   cursor: pointer;
   font-weight: 500;
   letter-spacing: 0.01em;

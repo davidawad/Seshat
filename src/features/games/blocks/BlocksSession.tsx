@@ -290,13 +290,17 @@ export const BlocksSession = ({ setId, cards }: BlocksSessionProps) => {
         {feedback}
       </p>
 
-      {!isComplete && <BlocksGrid columns={columns} />}
-
-      {phase === 'question' && currentQuestion && (
-        <BlocksQuestionView key={questionIndex} question={currentQuestion} onAnswer={handleAnswer} />
+      {!isComplete && (
+        <div className="blocks-board" data-testid={TESTIDS.blocksBoard}>
+          <BlocksGrid columns={columns} />
+          <div className="blocks-panel">
+            {phase === 'question' && currentQuestion && (
+              <BlocksQuestionView key={questionIndex} question={currentQuestion} onAnswer={handleAnswer} />
+            )}
+            {phase === 'placing' && <BlocksPlacingView columns={columns} onPlace={handlePlace} />}
+          </div>
+        </div>
       )}
-
-      {phase === 'placing' && <BlocksPlacingView columns={columns} onPlace={handlePlace} />}
 
       {isComplete && (
         <div className="illuminated-panel blocks-complete" role="status">

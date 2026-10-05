@@ -4,10 +4,13 @@ import { TESTIDS } from '../lib/testids'
 interface FooterProps {
   readonly onOpenSettings: () => void
   readonly onOpenShortcuts: () => void
+  readonly onOpenPalette: () => void
+  /** The command-menu key as it should read on a key cap (e.g. '⌘K'). */
+  readonly paletteKeyHint: string
 }
 
-/** The app-wide footer: a copyright notice on the left, reference/config links (About, Agents, Docs, Attributions, License) plus the Keyboard shortcuts and Settings buttons grouped on the right. */
-export const Footer = ({ onOpenSettings, onOpenShortcuts }: FooterProps) => (
+/** The app-wide footer: a copyright notice on the left, reference/config links (About, Agents, Docs, Attributions, License) plus the Search / jump to (command menu), Keyboard shortcuts and Settings buttons grouped on the right. */
+export const Footer = ({ onOpenSettings, onOpenShortcuts, onOpenPalette, paletteKeyHint }: FooterProps) => (
   <footer className="app-footer">
     <span className="app-footer-copyright">&copy; {new Date().getFullYear()} David Awad — free &amp; open source</span>
     <nav aria-label="Footer" className="app-footer-actions">
@@ -26,6 +29,9 @@ export const Footer = ({ onOpenSettings, onOpenShortcuts }: FooterProps) => (
       <Link to="/licensing" className="app-footer-link" data-testid={TESTIDS.footerLicense}>
         License
       </Link>
+      <button type="button" className="app-footer-settings" data-testid={TESTIDS.paletteOpen} onClick={onOpenPalette}>
+        Search / jump to…<kbd className="app-footer-hint">{paletteKeyHint}</kbd>
+      </button>
       <button
         type="button"
         className="app-footer-settings"
