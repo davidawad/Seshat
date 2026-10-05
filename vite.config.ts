@@ -3,6 +3,7 @@ import react from '@vitejs/plugin-react'
 import { defineConfig } from 'vitest/config'
 import packageJson from './package.json' with { type: 'json' }
 import { agentFiles } from './vite-plugins/agent-files.ts'
+import { releaseNotes } from './vite-plugins/release-notes.ts'
 import { themeBoot } from './vite-plugins/theme-boot.ts'
 
 // GitLab Pages serves this project (no custom domain) at
@@ -40,7 +41,8 @@ export default defineConfig(({ command, isPreview }) => ({
   // '/', 404s straight into the SPA fallback, and silently renders a blank
   // page.
   base: command === 'build' || isPreview ? GITLAB_PAGES_BASE : '/',
-  plugins: [react(), agentFiles(), themeBoot()],
+  plugins: [react(), agentFiles(), releaseNotes(), themeBoot()],
+  define: { 'import.meta.env.VITE_APP_VERSION': JSON.stringify(packageJson.version) },
   server: {
     fs: {
       allow: ['.', NODE_MODULES_REAL_PATH],

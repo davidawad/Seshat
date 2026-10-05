@@ -36,6 +36,11 @@ test-gate:
     pnpm install --frozen-lockfile
     pnpm run ci
 
+# Cut a release: bump package.json, prepend a CHANGELOG.md entry, commit, and create an annotated
+# tag vX.Y.Z. Never pushes. `just release patch --dry-run` previews. See docs/releasing.md.
+release kind *flags:
+    node scripts/release.ts {{kind}} {{flags}}
+
 # Real-browser accessibility + WebMCP check (Playwright bundled Chromium, axe-core).
 # Not part of `ci`: needs a browser. One-time: pnpm exec playwright-core install chromium
 e2e:

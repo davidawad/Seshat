@@ -194,7 +194,7 @@ HOW TO DRIVE THE UI (browser-driving agents)
 - Prefer ?import= above over clicking through the importer; it is one navigation.
 - The /sets/import file box accepts .csv, .tsv and .txt (one term and definition per line, split by a
   tab or a comma; Quizlet's text export) as well as .json. The set name is pre-filled from the file name.
-- Routes: / (home), /sets, /sets/new (create editor), /sets/import (import page), /sets/:id, /docs, /attributions, /licensing. Study modes (study, flashcards,
+- Routes: / (home), /sets, /sets/new (create editor), /sets/import (import page), /sets/:id, /docs, /releases (release notes), /attributions, /licensing. Study modes (study, flashcards,
   test, learn, games) are launched from a set's page at /sets/:id/<mode>.
 - Interactive elements use native buttons, links and form controls with accessible names, so
   role + label locators (e.g. getByRole('button', { name: ... })) are stable. Prefer those over CSS
@@ -205,6 +205,8 @@ HOW TO DRIVE THE UI (browser-driving agents)
 
 MORE
 ----
+Release notes (generated from the commit history at build time, Unreleased first): releases.txt
+(plain text) and CHANGELOG.md (Markdown, commit links) next to this file; in-app at /releases.
 Machine-readable index: llms.txt (and llms-full.txt, a single-file concatenation of the docs) next
 to this file. Repo-level docs for coding agents with source access: AGENTS.md next to this file
 (also in the project source). Human-facing docs: /docs and /attributions in this app.
@@ -214,7 +216,7 @@ STABLE SELECTORS (data-testid)
 Layout / nav / footer:
   layout-main, layout-save-error (alert shown when the last save failed), layout-save-error-settings,
   nav-home, nav-sets, nav-stats, footer-about, footer-agents, footer-docs,
-  footer-attributions, footer-license, shortcuts-open, settings-open
+  footer-releases, footer-version ("v<semver>" from package.json), footer-attributions, footer-license, shortcuts-open, settings-open
 Modals:
   settings-modal, settings-modal-close, shortcuts-modal, shortcuts-modal-close, shortcuts-preset-group,
   modal-close (dialogs without their own),
@@ -283,6 +285,10 @@ Games (/sets/:id/games, needs the Games setting on):
 Stats and reference pages:
   stats-page, stats-summary, stats-first-week, stats-calibration-table, stats-calibration-empty, docs-page, about-page, attributions-page,
   license-page
+Release notes (/releases):
+  releases-page, releases-version (the current app version), releases-notice (shown when history is
+  missing or shallow, or no v*.*.* tag exists yet), releases-release (one per release, Unreleased
+  first), releases-entry (one per change)
 Command menu (Cmd/Ctrl+K):
   palette, palette-input, palette-list, palette-item, palette-empty, palette-status
 Settings (inside the Settings modal):
