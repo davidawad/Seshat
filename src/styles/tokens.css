@@ -147,6 +147,23 @@
   --card-text-scale: 1.9;
 }
 
+[data-card-size='xlarge'] {
+  --card-max-width: 52rem;
+  --card-text-scale: 3;
+}
+
+[data-card-size='xxlarge'] {
+  --card-max-width: 64rem;
+  --card-text-scale: 3.6;
+}
+
+/* Quizlet's own flashcard: a 64rem-wide column (1024px at a 1456px viewport),
+   about 1.7:1, with 32px term text. Measured on their flashcards page. */
+[data-card-size='quizlet'] {
+  --card-max-width: 64rem;
+  --card-text-scale: 2;
+}
+
 [data-card-size='small'] {
   --card-max-width: 20rem;
   --card-text-scale: 1.4;

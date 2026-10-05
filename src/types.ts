@@ -228,7 +228,7 @@ export type RetentionPreset = z.infer<typeof retentionPresetSchema>
 export const homeViewSchema = z.enum(['grid', 'table'])
 export type HomeView = z.infer<typeof homeViewSchema>
 
-export const cardSizeSchema = z.enum(['small', 'medium', 'large'])
+export const cardSizeSchema = z.enum(['small', 'medium', 'large', 'xlarge', 'xxlarge', 'quizlet'])
 export type CardSize = z.infer<typeof cardSizeSchema>
 
 export const flashcardsFrontSchema = z.enum(['term', 'definition'])

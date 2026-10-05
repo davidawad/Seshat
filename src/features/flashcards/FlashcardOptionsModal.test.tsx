@@ -17,7 +17,7 @@ beforeAll(() => {
 })
 
 describe('FlashcardOptionsModal card size', () => {
-  it('offers Small, Medium and Large, shows the saved one, and reports a change', async () => {
+  it('offers every size, shows the saved one, and reports a change', async () => {
     const onCardSizeChange = vi.fn()
     render(
       <FlashcardOptionsModal
@@ -36,6 +36,9 @@ describe('FlashcardOptionsModal card size', () => {
       'Small',
       'Medium',
       'Large',
+      'Extra large',
+      'Extra extra large',
+      'Quizlet',
     ])
     await userEvent.setup().selectOptions(select, 'large')
     expect(onCardSizeChange).toHaveBeenCalledWith('large')
