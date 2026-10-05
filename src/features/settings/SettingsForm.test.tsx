@@ -91,3 +91,19 @@ describe('SettingsForm backup reminders', () => {
     expect(stored()).toMatchObject({ backupRemindersEnabled: true })
   })
 })
+
+describe('SettingsForm diagram labels', () => {
+  it('defaults off (only the asked label is hidden) and persists when turned on', async () => {
+    const user = userEvent.setup()
+    render(
+      <SeshatProvider>
+        <SettingsForm />
+      </SeshatProvider>,
+    )
+    const hideAll = screen.getByRole('checkbox', { name: 'Hide all labels on diagrams' })
+    expect(hideAll).not.toBeChecked()
+    expect(hideAll).toHaveAccessibleDescription(/only that label/i)
+    await user.click(hideAll)
+    expect(stored()).toMatchObject({ diagramHideAllLabels: true })
+  })
+})

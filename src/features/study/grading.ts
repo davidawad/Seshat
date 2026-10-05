@@ -35,6 +35,9 @@ export type Attempt =
  * reviews instead of always asking about the same one.
  */
 export const pickOcclusionRegion = (content: ImageOcclusionContent): OcclusionRegion => {
+  // A one-card-per-label diagram card names its own region: always that one.
+  const own = content.occlusions.find((region) => region.id === content.askedRegionId)
+  if (own !== undefined) return own
   const index = Math.floor(Math.random() * content.occlusions.length)
   // `occlusions` is schema-guaranteed non-empty (`.min(1)`) and `index` is
   // always in range, so this indexed access always resolves.

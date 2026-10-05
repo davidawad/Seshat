@@ -3,6 +3,7 @@ import { Legible } from '../../components/Legible'
 import { MediaImage } from '../../lib/media'
 import { TESTIDS } from '../../lib/testids'
 import type { StudyCard } from '../../types'
+import { DiagramView } from '../../components/DiagramView'
 import { cardFrontBack } from '../study/card-summary'
 
 interface SetTermListProps {
@@ -29,6 +30,7 @@ export const SetTermList = ({ cards }: SetTermListProps) => {
       definitionImage: faces.answerImage,
       image: isDiagram ? faces.image : undefined,
       imageDataUrl: faces.imageDataUrl,
+      diagram: faces.diagram,
     }
   })
   const hasDiagrams = rows.some((row) => Boolean(row.image) || row.imageDataUrl !== undefined)
@@ -44,7 +46,7 @@ export const SetTermList = ({ cards }: SetTermListProps) => {
           </tr>
         </thead>
         <tbody>
-          {rows.map(({ card, front, back, termImage, definitionImage, image, imageDataUrl }) => (
+          {rows.map(({ card, front, back, termImage, definitionImage, image, imageDataUrl, diagram }) => (
             <tr key={card.id}>
               <td className="set-term-front">
                 <Legible as="span" measure={false}>
@@ -68,7 +70,21 @@ export const SetTermList = ({ cards }: SetTermListProps) => {
               </td>
               {hasDiagrams && (
                 <td className="set-term-diagram">
-                  <CardImage image={image} imageDataUrl={imageDataUrl} alt="" className="set-term-image" />
+                  {diagram === undefined ? (
+                    <CardImage image={image} imageDataUrl={imageDataUrl} alt="" className="set-term-image" />
+                  ) : (
+                    <span data-testid={TESTIDS.setDiagramThumb}>
+                      <DiagramView
+                        image={image}
+                        imageDataUrl={imageDataUrl}
+                        alt=""
+                        regions={diagram.regions}
+                        askedId={diagram.askedId}
+                        mode="thumb"
+                        className="set-term-diagram-thumb"
+                      />
+                    </span>
+                  )}
                 </td>
               )}
             </tr>

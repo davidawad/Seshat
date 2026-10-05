@@ -1,6 +1,6 @@
-import { CardImage } from '../../components/CardImage'
+import { DiagramView } from '../../components/DiagramView'
+import { diagramAlt } from '../../lib/diagram'
 import type { ImageOcclusionContent } from '../../types'
-import './image-occlusion.css'
 
 interface ImageOcclusionRevealProps {
   readonly prompt: string
@@ -8,33 +8,14 @@ interface ImageOcclusionRevealProps {
   readonly targetRegionId: string
 }
 
-/**
- * Reveal-time view of an image-occlusion card: every region's label is
- * shown as a caption over the image (rather than a solid cover), and the
- * region this review actually tested is marked distinctly so the learner
- * can see exactly what they were being asked about.
- */
+/** Reveal-time view of a diagram card: the asked region outlined and captioned with its label. */
 export const ImageOcclusionReveal = ({ prompt, content, targetRegionId }: ImageOcclusionRevealProps) => (
-  <div className="occlusion-image-wrap">
-    <CardImage
-      image={content.image}
-      imageDataUrl={content.imageDataUrl}
-      alt={prompt.trim() !== '' ? `Diagram for: ${prompt}` : 'Diagram'}
-      className="occlusion-study-image"
-    />
-    {content.occlusions.map((region) => (
-      <span
-        key={region.id}
-        className={region.id === targetRegionId ? 'occlusion-box is-revealed is-target' : 'occlusion-box is-revealed'}
-        style={{
-          left: `${region.xPct}%`,
-          top: `${region.yPct}%`,
-          width: `${region.widthPct}%`,
-          height: `${region.heightPct}%`,
-        }}
-      >
-        {region.label}
-      </span>
-    ))}
-  </div>
+  <DiagramView
+    image={content.image}
+    imageDataUrl={content.imageDataUrl}
+    alt={diagramAlt(content.image?.alt, prompt)}
+    regions={content.occlusions}
+    askedId={targetRegionId}
+    mode="answer"
+  />
 )

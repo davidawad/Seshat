@@ -2,18 +2,17 @@ import { type FormEvent, useId, useState } from 'react'
 import { Combobox } from '../../components/Combobox'
 import { Legible } from '../../components/Legible'
 import { useSeshatStore } from '../../lib/store'
-import { type CardContent, type OcclusionRegion, type SetId, type StudyCard, cardContentSchema } from '../../types'
+import { type CardContent, type SetId, type StudyCard, cardContentSchema } from '../../types'
 import { CardImageSlot } from './CardImageSlot'
-import { ImageOcclusionEditor } from './ImageOcclusionEditor'
 import { parseTagsInput } from './tags'
 
-type ContentKind = CardContent['kind']
+// Diagrams (image-occlusion) have their own editor (DiagramEditor), not this form.
+type ContentKind = Exclude<CardContent['kind'], 'image-occlusion'>
 
 const KIND_OPTIONS: readonly { readonly value: ContentKind; readonly label: string }[] = [
   { value: 'short-answer', label: 'Short answer' },
   { value: 'cloze', label: 'Cloze (fill in the blank)' },
   { value: 'mcq', label: 'Multiple choice' },
-  { value: 'image-occlusion', label: 'Image occlusion' },
 ]
 
 interface CardFormProps {
@@ -30,17 +29,13 @@ const splitLines = (raw: string): string[] =>
     .filter((line) => line.length > 0)
 
 const draftFromContent = (content: CardContent | null) => ({
-  kind: (content?.kind ?? 'short-answer') as ContentKind,
+  kind: (content === null || content.kind === 'image-occlusion' ? 'short-answer' : content.kind) as ContentKind,
   answer: content?.kind === 'short-answer' ? content.answer : '',
   acceptableAnswersText: content?.kind === 'short-answer' ? content.acceptableAnswers.join('\n') : '',
   clozeText: content?.kind === 'cloze' ? content.text : '',
   options: content?.kind === 'mcq' ? content.options : ['', ''],
   correctIndex: content?.kind === 'mcq' ? content.correctIndex : 0,
-  imageDataUrl: content?.kind === 'image-occlusion' ? (content.imageDataUrl ?? '') : '',
-  // Stored images are carried through an edit untouched unless the user uploads a replacement.
-  image: content?.kind === 'image-occlusion' ? content.image : null,
   answerImage: content?.kind === 'short-answer' ? content.answerImage : null,
-  occlusions: (content?.kind === 'image-occlusion' ? content.occlusions : []) as OcclusionRegion[],
 })
 
 export const CardForm = ({ setId, editingCard, onDone }: CardFormProps) => {
@@ -100,13 +95,6 @@ export const CardForm = ({ setId, editingCard, onDone }: CardFormProps) => {
           kind: 'mcq',
           options: draft.options.map((option) => option.trim()),
           correctIndex: draft.correctIndex,
-        }
-      case 'image-occlusion':
-        return {
-          kind: 'image-occlusion',
-          image: draft.image,
-          ...(draft.imageDataUrl === '' ? {} : { imageDataUrl: draft.imageDataUrl }),
-          occlusions: draft.occlusions,
         }
     }
   }
@@ -272,18 +260,6 @@ export const CardForm = ({ setId, editingCard, onDone }: CardFormProps) => {
           <button type="button" onClick={addOption}>
             Add option
           </button>
-        </fieldset>
-      )}
-
-      {draft.kind === 'image-occlusion' && (
-        <fieldset>
-          <legend>Image and regions</legend>
-          <ImageOcclusionEditor
-            value={{ imageDataUrl: draft.imageDataUrl, image: draft.image, occlusions: draft.occlusions }}
-            onChange={({ imageDataUrl, image, occlusions }) =>
-              setDraft((prev) => ({ ...prev, imageDataUrl, image, occlusions }))
-            }
-          />
         </fieldset>
       )}
 

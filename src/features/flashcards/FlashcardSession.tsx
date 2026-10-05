@@ -5,6 +5,7 @@ import {
   type Ref,
   useCallback,
   useEffect,
+  useMemo,
   useRef,
   useState,
 } from 'react'
@@ -15,7 +16,8 @@ import { useCardTip } from '../../lib/useCardTip'
 import { useKeybindings } from '../../lib/useKeybindings'
 import type { MediaRef } from '../../lib/media/types'
 import type { StudyCard } from '../../types'
-import { cardFrontBack } from '../study/card-summary'
+import { type CardFrontBack, cardFrontBack } from '../study/card-summary'
+import { pickOcclusionRegion } from '../study/grading'
 import { FlipCard } from '../../components/FlipCard'
 import { FlashcardControls, FlashcardHint, FlashcardTally } from './FlashcardControls'
 import { type FlashcardOptions, gradeForKey, orientFaces } from './options'
@@ -55,6 +57,9 @@ interface FlashcardFaceProps {
   readonly image: MediaRef | undefined
   readonly answerImage: MediaRef | undefined
   readonly imageDataUrl: string | undefined
+  readonly diagram: CardFrontBack['diagram']
+  readonly hideAllLabels: boolean
+  readonly diagramSwapped: boolean
   readonly dragX: number
   readonly onClick: () => void
   readonly onKeyDown: (event: ReactKeyboardEvent<HTMLDivElement>) => void
@@ -75,6 +80,9 @@ const FlashcardFace = ({
   image,
   answerImage,
   imageDataUrl,
+  diagram,
+  hideAllLabels,
+  diagramSwapped,
   dragX,
   onClick,
   onKeyDown,
@@ -112,6 +120,9 @@ const FlashcardFace = ({
       image={image}
       answerImage={answerImage}
       imageDataUrl={imageDataUrl}
+      diagram={diagram}
+      hideAllLabels={hideAllLabels}
+      diagramSwapped={diagramSwapped}
       flipped={flipped}
       tip={tip}
     />
@@ -143,7 +154,7 @@ export const FlashcardSession = ({
   onToggleShuffle,
   onOpenOptions,
 }: FlashcardSessionProps) => {
-  const { recordReview } = useSeshatStore()
+  const { recordReview, state } = useSeshatStore()
   const { key: keyFor } = useKeybindings()
   const [flipped, setFlipped] = useState(false)
   const faceRef = useRef<HTMLDivElement>(null)
@@ -158,7 +169,13 @@ export const FlashcardSession = ({
     shownAt.current = performance.now()
   }, [card.id])
 
-  const { image, answerImage, imageDataUrl, ...faces } = cardFrontBack(card)
+  // A legacy multi-region diagram card asks one random region per showing (fixed while it is on screen).
+  const regionId = useMemo(
+    () => (card.content.kind === 'image-occlusion' ? pickOcclusionRegion(card.content).id : undefined),
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+    [card.id],
+  )
+  const { image, answerImage, imageDataUrl, diagram, ...faces } = cardFrontBack(card, regionId)
   const { front, back } = orientFaces(faces, options.front)
 
   const toggleFlip = useCallback(() => setFlipped((current) => !current), [])
@@ -245,6 +262,9 @@ export const FlashcardSession = ({
           image={image}
           answerImage={answerImage}
           imageDataUrl={imageDataUrl}
+          diagram={diagram}
+          hideAllLabels={state.settings.diagramHideAllLabels}
+          diagramSwapped={options.front === 'definition'}
           dragX={dragX}
           onClick={handleFaceClick}
           onKeyDown={handleFaceKeyDown}

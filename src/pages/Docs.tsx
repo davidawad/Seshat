@@ -204,7 +204,9 @@ export const DocsPage = () => (
         browser, with its bytes in the file&rsquo;s optional <code>media</code> map) or, in older files,{' '}
         <code>imageDataUrl</code> (a <code>data:</code> URL, which is converted on import), and <code>occlusions</code>,
         an array of labeled regions expressed as percentages of the image&rsquo;s own dimensions:{' '}
-        <code>{'{ id, xPct, yPct, widthPct, heightPct, label }'}</code>.
+        <code>{'{ id, xPct, yPct, widthPct, heightPct, label }'}</code>. A labeled diagram is one such card per label:
+        each carries all the regions plus <code>askedRegionId</code> (the region it asks about) and{' '}
+        <code>diagramId</code> (shared by the diagram&rsquo;s cards), both optional so older files still import.
       </p>
       <p>
         Every field is validated with <a href="https://zod.dev">Zod</a> at the import boundary — a file that
