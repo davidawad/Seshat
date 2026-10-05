@@ -1,5 +1,12 @@
 import { describe, expect, it } from 'vitest'
-import { countPastedCards, parseImportFile, parsePastedSet } from './file-import'
+import {
+  countPastedCards,
+  isTextFile,
+  parseImportFile,
+  parsePastedSet,
+  parseUploadedFile,
+  suggestSetName,
+} from './file-import'
 
 const richExport = {
   seshatExportVersion: 1,
@@ -62,5 +69,38 @@ describe('parsePastedSet / countPastedCards', () => {
     expect(countPastedCards('a\tb\nc,d\n\nbad')).toBe(2)
     expect(countPastedCards('')).toBe(0)
     expect(countPastedCards('nothing here')).toBe(0)
+  })
+})
+
+describe('parseUploadedFile', () => {
+  it.each(['cards.csv', 'cards.tsv', 'CARDS.TXT'])('parses %s as delimited text under the fallback name', (name) => {
+    const result = parseUploadedFile(name, 'a\tb\nc\td', 'My set')
+    expect(result).toMatchObject({ ok: true, value: { name: 'My set' } })
+    if (result.ok) expect(result.value.cards).toHaveLength(2)
+  })
+
+  it('still routes .json files to the JSON parsers', () => {
+    expect(parseUploadedFile('x.json', JSON.stringify(richExport), '')).toMatchObject({
+      ok: true,
+      value: { name: 'Rich' },
+    })
+    expect(parseUploadedFile('x.json', 'a,b', 'n')).toMatchObject({ ok: false })
+  })
+
+  it('sniffs JSON when the extension says nothing', () => {
+    expect(isTextFile('export', '[{"term":"a","definition":"b"}]')).toBe(false)
+    expect(isTextFile('export', 'a,b')).toBe(true)
+  })
+
+  it('needs a name for text files', () => {
+    expect(parseUploadedFile('a.csv', 'a,b', ' ')).toEqual({ ok: false, error: 'Enter a set name.' })
+  })
+})
+
+describe('suggestSetName', () => {
+  it('turns a file name into a readable set name', () => {
+    expect(suggestSetName('quizlet_biology-ch3.csv')).toBe('Quizlet biology ch3')
+    expect(suggestSetName('My Set.final.txt')).toBe('My Set.final')
+    expect(suggestSetName('')).toBe('')
   })
 })

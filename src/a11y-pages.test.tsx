@@ -264,7 +264,7 @@ describe('accessibility tree: create and import pages', () => {
         TESTIDS.importPasteSubmit,
       ]),
     ).toEqual([])
-    expect(screen.getByLabelText(/Upload a \.json file/)).toBeInTheDocument()
+    expect(screen.getByLabelText(/upload a \.csv, \.tsv or \.txt file/i)).toBeInTheDocument()
     expect(screen.getByRole('textbox', { name: 'Paste terms and definitions' })).toBeInTheDocument()
     expect(screen.getByRole('textbox', { name: 'Set name' })).toBeInTheDocument()
     expect(screen.getByRole('button', { name: 'Import' })).toBeInTheDocument()

@@ -107,6 +107,8 @@ export const TESTIDS = {
   importPreview: 'import-preview',
   importError: 'import-error',
   importPasteSubmit: 'import-paste-submit',
+  importQuizletGuide: 'import-quizlet-guide',
+  importAdvanced: 'import-advanced',
 
   // Set detail (hub)
   setPage: 'set-page',
