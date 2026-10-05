@@ -26,7 +26,31 @@ export const useRouteFocus = (pathname: string, mainRef: RefObject<HTMLElement |
   useEffect(() => {
     if (previous.current === pathname) return
     previous.current = pathname
-    focusPageHeading(mainRef.current, document.activeElement)
+    const main = mainRef.current
+    if (main === null) return undefined
+    // Lazy routes can mount their h1 after this effect runs: wait for it, then
+    // move focus unless the user has already put it somewhere inside the page.
+    if (main.querySelector('h1') !== null) {
+      focusPageHeading(main, document.activeElement)
+      return undefined
+    }
+    focusPageHeading(main, document.activeElement)
+    const observer = new MutationObserver(() => {
+      const heading = main.querySelector<HTMLElement>('h1')
+      if (heading === null) return
+      observer.disconnect()
+      const active = document.activeElement
+      if (active === null || active === document.body || active === main) {
+        heading.setAttribute('tabindex', '-1')
+        heading.focus()
+      }
+    })
+    observer.observe(main, { childList: true, subtree: true })
+    const stop = window.setTimeout(() => observer.disconnect(), 10_000)
+    return () => {
+      observer.disconnect()
+      window.clearTimeout(stop)
+    }
   }, [pathname, mainRef])
 }
 
