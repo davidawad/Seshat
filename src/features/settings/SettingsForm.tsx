@@ -3,6 +3,7 @@ import { Combobox } from '../../components/Combobox'
 import './settings.css'
 import { BackupField } from './BackupField'
 import { BackupRemindersField } from './BackupRemindersField'
+import { DiagramHideAllField } from './DiagramHideAllField'
 import { useSeshatStore } from '../../lib/store'
 import { TESTIDS } from '../../lib/testids'
 import { resetDismissedTips } from '../../lib/tipDismissal'
@@ -413,6 +414,7 @@ export const SettingsForm = () => {
         <SelfExplanationField {...fieldProps} />
         <ExperimentalGamesField {...fieldProps} />
         <CardTipsField {...fieldProps} />
+        <DiagramHideAllField {...fieldProps} />
         <BackupRemindersField {...fieldProps} />
         <InstallPromptField {...fieldProps} />
         <BackupField />

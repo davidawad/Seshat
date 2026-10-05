@@ -65,7 +65,12 @@ describe('cardFrontBack', () => {
       front: 'Label the diagram',
       back: 'Nucleus',
       imageDataUrl: 'data:image/jpeg;base64,AAAA',
+      diagram: { regions: content.occlusions, askedId: 'r1', alt: '' },
     })
+    // A per-label card asks its own region; a per-review pick overrides it (legacy multi-region cards).
+    const own: StudyCard = { ...card, content: { ...content, askedRegionId: 'r2' } }
+    expect(cardFrontBack(own)).toMatchObject({ back: 'Mitochondria', diagram: { askedId: 'r2' } })
+    expect(cardFrontBack(card, 'r2')).toMatchObject({ back: 'Mitochondria' })
   })
 
   const ref = {
@@ -101,7 +106,7 @@ describe('cardFrontBack', () => {
 
   it('returns no image for an occlusion card that has neither (invalid data) rather than throwing', () => {
     const content = { kind: 'image-occlusion', image: null, occlusions: [occlusion] } as ImageOcclusionContent
-    expect(cardFrontBack({ ...baseCard, prompt: 'p', content })).toEqual({ front: 'p', back: 'Part' })
+    expect(cardFrontBack({ ...baseCard, prompt: 'p', content })).toMatchObject({ front: 'p', back: 'Part' })
   })
 
   it('exposes a short-answer answerImage separately from the prompt image', () => {

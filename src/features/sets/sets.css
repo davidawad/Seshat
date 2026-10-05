@@ -336,6 +336,13 @@
   margin-top: 0.35rem;
 }
 
+.set-term-diagram-thumb .occlusion-study-image {
+  max-width: 6rem;
+  max-height: 4.5rem;
+  width: auto;
+  border-radius: var(--radius-sm);
+}
+
 .set-term-image {
   display: block;
   max-width: 4.5rem;

@@ -12,7 +12,7 @@ type PointerHandler = (event: ReactPointerEvent<HTMLDivElement>) => void
 /**
  * Swipe navigation, additive to tap/Space/grade buttons/keys. Follows the
  * pointer-capture + threshold-on-release pattern used by the occlusion-region
- * drag in ImageOcclusionEditor.tsx. A swipe commits a grade and advances —
+ * drag in DiagramEditor.tsx. A swipe commits a grade and advances —
  * left mirrors "still learning", right mirrors "know" — same as the
  * buttons/keys, just gestural. `resetKey` clears any gesture in progress when
  * a new card is shown.

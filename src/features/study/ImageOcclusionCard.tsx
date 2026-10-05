@@ -1,7 +1,8 @@
 import { useId } from 'react'
-import { CardImage } from '../../components/CardImage'
+import { DiagramView } from '../../components/DiagramView'
+import { diagramAlt } from '../../lib/diagram'
+import { useSeshatStore } from '../../lib/store'
 import type { ImageOcclusionContent } from '../../types'
-import './image-occlusion.css'
 
 interface ImageOcclusionCardProps {
   readonly prompt: string
@@ -14,11 +15,9 @@ interface ImageOcclusionCardProps {
 }
 
 /**
- * Study-time view of an image-occlusion card. Every region on the image is
- * covered so the learner can't peek at labels that aren't in play; the
- * region actually being tested this review is marked distinctly (solid
- * accent box) so there's exactly one unambiguous thing to recall, matching
- * every other card kind's "one clear question" pattern.
+ * Study-time view of a diagram card. Only the region being asked about is
+ * masked (the others stay visible) unless the "Hide all labels" setting is
+ * on, in which case every region is masked and the asked one is marked.
  */
 export const ImageOcclusionCard = ({
   prompt,
@@ -29,38 +28,22 @@ export const ImageOcclusionCard = ({
   disabled,
 }: ImageOcclusionCardProps) => {
   const inputId = useId()
+  const { state } = useSeshatStore()
 
   return (
     <div className="study-card">
       <p className="study-prompt">{prompt}</p>
-      <div className="occlusion-image-wrap">
-        <CardImage
-          image={content.image}
-          imageDataUrl={content.imageDataUrl}
-          alt={prompt.trim() !== '' ? `Diagram for: ${prompt}` : 'Diagram'}
-          className="occlusion-study-image"
-        />
-        {content.occlusions.map((region) => {
-          const isTarget = region.id === targetRegionId
-          return (
-            <span
-              key={region.id}
-              aria-hidden="true"
-              className={isTarget ? 'occlusion-box is-target' : 'occlusion-box'}
-              style={{
-                left: `${region.xPct}%`,
-                top: `${region.yPct}%`,
-                width: `${region.widthPct}%`,
-                height: `${region.heightPct}%`,
-              }}
-            >
-              {isTarget ? '?' : ''}
-            </span>
-          )
-        })}
-      </div>
+      <DiagramView
+        image={content.image}
+        imageDataUrl={content.imageDataUrl}
+        alt={diagramAlt(content.image?.alt, prompt)}
+        regions={content.occlusions}
+        askedId={targetRegionId}
+        mode="question"
+        hideAll={state.settings.diagramHideAllLabels}
+      />
       <div className="study-field">
-        <label htmlFor={inputId}>What&rsquo;s hidden in the highlighted region?</label>
+        <label htmlFor={inputId}>What&rsquo;s hidden in the marked region?</label>
         <input
           id={inputId}
           type="text"

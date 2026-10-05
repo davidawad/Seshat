@@ -1,0 +1,161 @@
+/*
+ * Layout for the diagram editor (DiagramEditor.tsx). Colours come from the
+ * shared tokens. Nothing animates, so reduced-motion needs no special case.
+ */
+
+.diagram-editor {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+
+.diagram-editor-field {
+  display: flex;
+  flex-direction: column;
+  gap: 0.4rem;
+}
+
+.diagram-editor-toolbar,
+.diagram-editor-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+}
+
+.diagram-editor-error {
+  color: var(--color-fg);
+  font-weight: 700;
+}
+
+.diagram-canvas {
+  position: relative;
+  display: inline-block;
+  max-width: 100%;
+  align-self: flex-start;
+  touch-action: none;
+  cursor: crosshair;
+  user-select: none;
+  -webkit-user-select: none;
+}
+
+.diagram-canvas-image {
+  display: block;
+  max-width: 100%;
+  max-height: 70vh;
+  width: auto;
+  height: auto;
+  pointer-events: none;
+}
+
+.diagram-region {
+  position: absolute;
+  box-sizing: border-box;
+  border: 2px dashed var(--color-accent);
+  background: color-mix(in srgb, var(--color-accent) 18%, transparent);
+  cursor: move;
+}
+
+/* Selection is shown by a solid, thicker border and the corner handles, never colour alone. */
+.diagram-region.is-selected {
+  border: 3px solid var(--color-accent);
+}
+
+.diagram-region:focus-visible {
+  outline: 3px solid var(--color-fg);
+  outline-offset: 2px;
+}
+
+.diagram-region-badge {
+  position: absolute;
+  top: 0;
+  left: 0;
+  max-width: 100%;
+  padding: 0 0.3em;
+  background: var(--color-bg);
+  color: var(--color-fg);
+  border: 1px solid var(--color-accent);
+  font-size: 0.75rem;
+  font-weight: 700;
+  line-height: 1.4;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  pointer-events: none;
+}
+
+.diagram-handle {
+  position: absolute;
+  width: 0.9rem;
+  height: 0.9rem;
+  background: var(--color-bg);
+  border: 2px solid var(--color-accent);
+  box-sizing: border-box;
+}
+
+.diagram-handle.is-nw {
+  left: -0.5rem;
+  top: -0.5rem;
+  cursor: nwse-resize;
+}
+
+.diagram-handle.is-ne {
+  right: -0.5rem;
+  top: -0.5rem;
+  cursor: nesw-resize;
+}
+
+.diagram-handle.is-sw {
+  left: -0.5rem;
+  bottom: -0.5rem;
+  cursor: nesw-resize;
+}
+
+.diagram-handle.is-se {
+  right: -0.5rem;
+  bottom: -0.5rem;
+  cursor: nwse-resize;
+}
+
+.diagram-draft {
+  position: absolute;
+  border: 2px dashed var(--color-fg);
+  background: color-mix(in srgb, var(--color-accent) 10%, transparent);
+  pointer-events: none;
+}
+
+.diagram-region-list {
+  margin: 0;
+  padding: 0;
+  list-style-position: inside;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.diagram-region-item {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.diagram-previews {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+}
+
+.diagram-previews figure {
+  margin: 0;
+  max-width: 100%;
+}
+
+.diagram-previews figcaption {
+  font-weight: 700;
+  margin-bottom: 0.25rem;
+}
+
+.diagram-previews .occlusion-study-image {
+  max-height: 14rem;
+  width: auto;
+}

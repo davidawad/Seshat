@@ -58,3 +58,11 @@
   object-fit: contain;
   border-radius: var(--radius-page);
 }
+
+/* A diagram face: the image is capped like any card picture; the wrap hugs the
+   image so the percentage-positioned masks stay aligned with it. */
+.flip-card-diagram .occlusion-study-image {
+  max-height: 20rem;
+  width: auto;
+  border-radius: var(--radius-page);
+}

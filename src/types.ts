@@ -80,6 +80,13 @@ export const imageOcclusionContentSchema = z
     // The image as a MediaRef; its bytes live in IndexedDB, keyed by sha256.
     image: mediaRefSchema.nullable().default(null),
     occlusions: z.array(occlusionRegionSchema).min(1),
+    // Diagram cards (one FSRS card per label): the id of the one region this
+    // card asks about. Absent on older cards, which then quiz one random
+    // region per review. A stale id (no such region) falls back the same way.
+    askedRegionId: z.string().min(1).optional(),
+    // Groups the sibling cards generated from one diagram, so editing the
+    // diagram can add/update/remove the per-label cards together.
+    diagramId: z.string().min(1).optional(),
   })
   // At least one image source must exist. (A refinement is not expressible in
   // JSON Schema; z.toJSONSchema ignores it, so the published schemas simply do
@@ -285,6 +292,9 @@ export const settingsSchema = z.object({
   // The dismissible "Your cards are saved on this device only. Download a backup" banner (see
   // lib/activation.ts for when it appears).
   backupRemindersEnabled: z.boolean().default(true),
+  // Diagram (image-occlusion) study: off = only the asked label's region is
+  // masked and the other regions stay visible; on = every region is masked.
+  diagramHideAllLabels: z.boolean().default(false),
 })
 
 export type Settings = z.infer<typeof settingsSchema>
@@ -311,6 +321,7 @@ export const DEFAULT_SETTINGS: Settings = {
   installPromptEnabled: false,
   cardTipsEnabled: true,
   backupRemindersEnabled: true,
+  diagramHideAllLabels: false,
 }
 
 // Anki/FSRS-guidance-derived presets — see research/learning-science for citations.

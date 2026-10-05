@@ -36,7 +36,7 @@
   -webkit-user-select: none;
   user-select: none;
   /* Claim horizontal drags for the swipe gesture below but leave vertical
-     panning to the browser, unlike ImageOcclusionEditor's `touch-action:
+     panning to the browser, unlike the diagram editor's `touch-action:
      none` — that gesture needs both axes, this one only needs the X axis. */
   touch-action: pan-y;
   /* Drag-follow (swipe) is a plain inline transform set/cleared in JS on

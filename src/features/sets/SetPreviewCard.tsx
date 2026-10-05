@@ -2,6 +2,7 @@ import { useCallback, useEffect, useMemo, useState } from 'react'
 import { CardTip } from '../../components/CardTip'
 import { FlipCard } from '../../components/FlipCard'
 import { formatKeyLabel, matchesBinding } from '../../lib/keybindings'
+import { useSeshatStore } from '../../lib/store'
 import { TESTIDS } from '../../lib/testids'
 import { useCardTip } from '../../lib/useCardTip'
 import { useKeybindings } from '../../lib/useKeybindings'
@@ -26,6 +27,7 @@ const ownsSpace = (target: EventTarget | null): boolean =>
 export const SetPreviewCard = ({ cards }: SetPreviewCardProps) => {
   const [flipped, setFlipped] = useState(false)
   const { key: keyFor } = useKeybindings()
+  const { state } = useSeshatStore()
   const flipKey = keyFor('flashcards.flip')
   // Fixed for the life of this page view — re-picking on every render would
   // make the card unreadable as you flip it.
@@ -51,7 +53,7 @@ export const SetPreviewCard = ({ cards }: SetPreviewCardProps) => {
 
   if (card === undefined) return null
 
-  const { front, back, image, answerImage, imageDataUrl } = cardFrontBack(card)
+  const { front, back, image, answerImage, imageDataUrl, diagram } = cardFrontBack(card)
 
   return (
     <div className="set-preview">
@@ -61,6 +63,8 @@ export const SetPreviewCard = ({ cards }: SetPreviewCardProps) => {
         image={image}
         answerImage={answerImage}
         imageDataUrl={imageDataUrl}
+        diagram={diagram}
+        hideAllLabels={state.settings.diagramHideAllLabels}
         flipped={flipped}
         tip={
           <CardTip label="Tip" open={tip.open}>

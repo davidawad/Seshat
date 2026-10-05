@@ -2,6 +2,7 @@ import { cleanup, render, screen } from '@testing-library/react'
 import { afterEach, describe, expect, it } from 'vitest'
 import { createInitialScheduling } from '../../lib/fsrs'
 import { MediaStoreProvider, createMemoryMediaStore } from '../../lib/media'
+import { TESTIDS } from '../../lib/testids'
 import type { CardId, SetId, StudyCard } from '../../types'
 import { SetTermList } from './SetTermList'
 
@@ -133,5 +134,28 @@ describe('SetTermList', () => {
   it('renders only the header row when there are no cards', () => {
     render(<SetTermList cards={[]} />)
     expect(screen.getAllByRole('row')).toHaveLength(1)
+  })
+
+  it('shows a small masked thumbnail (only the asked region) of a per-label diagram card in the Diagram column', () => {
+    const card = {
+      ...imageOcclusionCard('c1', 'Heart', 'data:image/png;base64,AAAA', 'Atrium'),
+      content: {
+        kind: 'image-occlusion' as const,
+        image: null,
+        imageDataUrl: 'data:image/png;base64,AAAA',
+        occlusions: [
+          { id: 'r1', xPct: 10, yPct: 10, widthPct: 20, heightPct: 20, label: 'Aorta' },
+          { id: 'r2', xPct: 60, yPct: 60, widthPct: 20, heightPct: 20, label: 'Atrium' },
+        ],
+        askedRegionId: 'r2',
+      },
+    }
+    const { container } = render(<SetTermList cards={[card]} />)
+    const thumb = screen.getByTestId(TESTIDS.setDiagramThumb)
+    expect(thumb.querySelectorAll('.occlusion-box')).toHaveLength(1)
+    expect(thumb.querySelector('.occlusion-box')).toHaveAttribute('data-region', 'r2')
+    // The definition column carries the asked label; the thumbnail itself never spells it out.
+    expect(container.querySelector('.set-term-back')).toHaveTextContent('Atrium')
+    expect(thumb).not.toHaveTextContent('Atrium')
   })
 })

@@ -129,6 +129,21 @@ export const TESTIDS = {
   setTermList: 'set-term-list',
   setTermImage: 'set-term-image',
   setDefinitionImage: 'set-definition-image',
+  setDiagramThumb: 'set-diagram-thumb',
+
+  // Diagram editor (labeled regions on an image; one card per label)
+  diagramEditor: 'diagram-editor',
+  diagramCanvas: 'diagram-canvas',
+  diagramPreview: 'diagram-preview',
+  diagramAddRegion: 'diagram-add-region',
+  diagramRegion: 'diagram-region',
+  diagramRegionLabel: 'diagram-region-label',
+  diagramRegionDelete: 'diagram-region-delete',
+  diagramUndo: 'diagram-undo',
+  diagramRedo: 'diagram-redo',
+  diagramSave: 'diagram-save',
+  diagramCancel: 'diagram-cancel',
+  diagramCardCount: 'diagram-card-count',
 
   // Card image slots (term / definition images in the editors)
   imageSlot: 'image-slot',
@@ -149,6 +164,7 @@ export const TESTIDS = {
   editAddTerm: 'edit-add-term',
   editAddDefinition: 'edit-add-definition',
   editAddOtherKind: 'edit-add-other-kind',
+  editAddDiagram: 'edit-add-diagram',
   editCardEdit: 'edit-card-edit',
   editCardDelete: 'edit-card-delete',
   editDeleteSet: 'edit-delete-set',
@@ -191,6 +207,7 @@ export const TESTIDS = {
   cardTip: 'card-tip',
   settingsCardTips: 'settings-card-tips',
   settingsBackupReminders: 'settings-backup-reminders',
+  settingsDiagramHideAll: 'settings-diagram-hide-all',
   flashcardsAnnouncer: 'flashcards-announcer',
   flashcardTrackProgress: 'flashcard-track-progress',
   flashcardFront: 'flashcard-front',

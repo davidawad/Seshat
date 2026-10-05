@@ -1,12 +1,14 @@
-import { useId, useState } from 'react'
+import { Suspense, useId, useState } from 'react'
 import { Link, useNavigate, useParams } from 'react-router-dom'
 import { ConfirmDialog } from '../../components/ConfirmDialog'
+import { groupDiagramCards } from '../../lib/diagram'
 import { useSeshatStore } from '../../lib/store'
 import { TESTIDS } from '../../lib/testids'
 import { type StudySet, setIdSchema } from '../../types'
 import { AddTermRow } from './AddTermRow'
 import { CardForm } from './CardForm'
 import { CardListItem } from './CardListItem'
+import { DiagramListItem, LazyDiagramEditor } from './DiagramListItem'
 import { parseTagsInput } from './tags'
 
 const MS_PER_DAY = 24 * 60 * 60 * 1000
@@ -131,6 +133,7 @@ export const SetEditPage = () => {
   const { state, deleteSet } = useSeshatStore()
   const navigate = useNavigate()
   const [isAdding, setIsAdding] = useState(false)
+  const [isAddingDiagram, setIsAddingDiagram] = useState(false)
   const [confirmingDelete, setConfirmingDelete] = useState(false)
   const confirmTitleId = useId()
 
@@ -181,9 +184,13 @@ export const SetEditPage = () => {
 
       <h2>Cards ({cards.length})</h2>
       <ul className="card-list" data-testid={TESTIDS.editCardList}>
-        {cards.map((card) => (
-          <CardListItem key={card.id} card={card} />
-        ))}
+        {groupDiagramCards(cards).map((entry) =>
+          entry.kind === 'card' ? (
+            <CardListItem key={entry.card.id} card={entry.card} />
+          ) : (
+            <DiagramListItem key={entry.key} setId={setId} cards={entry.cards} />
+          ),
+        )}
         <AddTermRow setId={setId} />
       </ul>
 
@@ -196,7 +203,22 @@ export const SetEditPage = () => {
           data-testid={TESTIDS.editAddOtherKind}
           onClick={() => setIsAdding(true)}
         >
-          Add a cloze, multiple choice, or image-occlusion card
+          Add a cloze or multiple choice card
+        </button>
+      )}
+
+      {isAddingDiagram ? (
+        <Suspense fallback={<p role="status">Loading the diagram editor...</p>}>
+          <LazyDiagramEditor setId={setId} cards={[]} onDone={() => setIsAddingDiagram(false)} />
+        </Suspense>
+      ) : (
+        <button
+          type="button"
+          className="card-add-other-kind"
+          data-testid={TESTIDS.editAddDiagram}
+          onClick={() => setIsAddingDiagram(true)}
+        >
+          Add a labeled diagram
         </button>
       )}
 

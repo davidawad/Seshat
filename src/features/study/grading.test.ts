@@ -193,6 +193,12 @@ describe('pickOcclusionRegion', () => {
     }
   })
 
+  it('always returns the card own region when it names one (one card per label)', () => {
+    const own: ImageOcclusionContent = { ...imageOcclusion, askedRegionId: 'r2' }
+    for (let i = 0; i < 20; i++) expect(pickOcclusionRegion(own).id).toBe('r2')
+    expect(initialAttempt(own)).toMatchObject({ targetRegionId: 'r2' })
+  })
+
   it('returns the only region when there is just one', () => {
     const single: ImageOcclusionContent = {
       kind: 'image-occlusion',
