@@ -126,6 +126,19 @@ body {
   overflow-wrap: anywhere;
 }
 
+/* Text the learner typed is echoed back in paragraphs (the sets search's "No sets match ..."): a
+   long unbroken string widened the page by 450px at 390px. `break-word` leaves the paragraph's
+   min-content size alone, unlike `anywhere`, so table cells and flex items keep their layout. */
+.app-main p {
+  overflow-wrap: break-word;
+}
+
+/* Page headings carry the learner's own set name, which may be one long unbroken string (a pasted
+   URL): at 390px it widened study, test, learn, games and the set page by up to 1800px. */
+.app-main :is(h1, h2, h3, h4) {
+  overflow-wrap: anywhere;
+}
+
 /* Reserves room for the fixed-position install banner (see InstallPrompt.tsx
    and .install-prompt below) so it floats below the page's own content
    instead of covering the tail end of it — only while the banner is
@@ -369,6 +382,10 @@ body.has-install-prompt .app-main {
 }
 
 .tag-chips li {
+  /* A long unbroken tag (a pasted URL) wraps inside its pill instead of widening the page. */
+  min-width: 0;
+  max-width: 100%;
+  overflow-wrap: anywhere;
   border: 1px solid var(--color-border);
   border-radius: 999px;
   padding: 0.15rem 0.65rem;

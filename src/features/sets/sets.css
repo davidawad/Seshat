@@ -159,6 +159,12 @@
   gap: 1rem;
 }
 
+/* The title/description column shrinks below its content's min-width, so a pasted URL as the
+   description wraps (via `.app-main p`) instead of pushing the action buttons off the page. */
+.set-detail-header > :first-child {
+  min-width: 0;
+}
+
 .set-detail-actions {
   display: flex;
   gap: 0.5rem;
