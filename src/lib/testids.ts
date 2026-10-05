@@ -52,6 +52,10 @@ export const TESTIDS = {
   settingsModalClose: 'settings-modal-close',
   shortcutsModalClose: 'shortcuts-modal-close',
   flashcardOptionsModalClose: 'flashcard-options-modal-close',
+  confirmDialog: 'confirm-dialog',
+  confirmDialogClose: 'confirm-dialog-close',
+  confirmDialogAccept: 'confirm-dialog-accept',
+  confirmDialogCancel: 'confirm-dialog-cancel',
   shortcutsPresetGroup: 'shortcuts-preset-group',
 
   // Sets browser: the one component behind both `/` and `/sets`

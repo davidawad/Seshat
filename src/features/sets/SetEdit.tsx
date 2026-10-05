@@ -1,5 +1,6 @@
 import { useId, useState } from 'react'
 import { Link, useNavigate, useParams } from 'react-router-dom'
+import { ConfirmDialog } from '../../components/ConfirmDialog'
 import { useSeshatStore } from '../../lib/store'
 import { TESTIDS } from '../../lib/testids'
 import { type StudySet, setIdSchema } from '../../types'
@@ -130,6 +131,8 @@ export const SetEditPage = () => {
   const { state, deleteSet } = useSeshatStore()
   const navigate = useNavigate()
   const [isAdding, setIsAdding] = useState(false)
+  const [confirmingDelete, setConfirmingDelete] = useState(false)
+  const confirmTitleId = useId()
 
   const parsedId = setIdSchema.safeParse(id ?? '')
 
@@ -162,10 +165,6 @@ export const SetEditPage = () => {
   const cards = state.cards.filter((card) => card.setId === setId)
 
   const handleDelete = () => {
-    const confirmed = window.confirm(
-      `Delete "${set.name}"? This permanently removes its ${cards.length} card(s) and all review history. This cannot be undone.`,
-    )
-    if (!confirmed) return
     deleteSet(setId)
     navigate('/sets')
   }
@@ -202,10 +201,22 @@ export const SetEditPage = () => {
       )}
 
       <p className="set-danger-zone">
-        <button type="button" data-testid={TESTIDS.editDeleteSet} onClick={handleDelete}>
+        <button type="button" data-testid={TESTIDS.editDeleteSet} onClick={() => setConfirmingDelete(true)}>
           Delete this set
         </button>
       </p>
+      {confirmingDelete && (
+        <ConfirmDialog
+          open
+          titleId={confirmTitleId}
+          title="Delete this set?"
+          message={`This permanently removes its ${cards.length} card${cards.length === 1 ? '' : 's'} and all review history. This cannot be undone.`}
+          detail={set.name}
+          confirmLabel="Delete set"
+          onConfirm={handleDelete}
+          onCancel={() => setConfirmingDelete(false)}
+        />
+      )}
     </section>
   )
 }
