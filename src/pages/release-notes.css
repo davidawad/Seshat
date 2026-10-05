@@ -1,0 +1,71 @@
+.release {
+  margin-top: 2rem;
+  padding-top: 1rem;
+  border-top: 1px solid var(--color-border);
+  /* Anchor links land with the heading clear of the sticky chrome. */
+  scroll-margin-top: 1rem;
+}
+
+.release-date {
+  font-size: 0.9rem;
+  font-weight: 400;
+  color: var(--color-fg-muted);
+}
+
+.release-anchor {
+  font-size: 0.9rem;
+  font-weight: 400;
+  color: var(--color-fg-muted);
+  text-decoration: none;
+}
+
+.release-anchor:hover,
+.release-anchor:focus-visible {
+  color: var(--color-accent);
+  text-decoration: underline;
+}
+
+.release-list {
+  padding-left: 1.25rem;
+}
+
+.release-entry {
+  margin: 0.35rem 0;
+  overflow-wrap: anywhere;
+}
+
+.release-scope {
+  display: inline-block;
+  margin-right: 0.4rem;
+  padding: 0 0.4rem;
+  border: 1px solid var(--color-border-strong);
+  border-radius: var(--radius-page);
+  font-size: 0.75rem;
+  color: var(--color-fg-muted);
+}
+
+.release-breaking {
+  color: var(--color-error);
+}
+
+.release-commit {
+  font-family: var(--font-mono);
+  font-size: 0.8rem;
+  color: var(--color-fg-muted);
+}
+
+.release-maintenance {
+  margin: 1rem 0;
+}
+
+.release-maintenance summary {
+  cursor: pointer;
+  color: var(--color-fg-muted);
+}
+
+.release-note {
+  padding: 0.75rem 1rem;
+  border: 1px solid var(--color-border-strong);
+  border-radius: var(--radius-page);
+  background: var(--color-bg-elevated);
+}
