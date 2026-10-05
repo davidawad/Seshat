@@ -232,7 +232,8 @@ Study (/sets/:id/study):
   study-page, study-progress, study-answer-input, study-show-options, study-mcq-options,
   study-continue, study-confidence-guessed, study-confidence-unsure, study-confidence-sure,
   study-result, study-self-explanation, study-grade-again, study-grade-hard, study-grade-good,
-  study-grade-easy, study-summary, study-empty
+  study-grade-easy, study-summary, study-empty, study-coach (first-session banner; removed once a
+  card is graded or dismissed), study-coach-dismiss, study-coach-flip (link to /sets/:id/flashcards)
 Flashcards (/sets/:id/flashcards):
   flashcards-page, flashcard-face, flashcard-know, flashcard-still-learning, flashcard-undo,
   flashcard-shuffle, flashcard-options, flashcard-progress, flashcards-announcer,

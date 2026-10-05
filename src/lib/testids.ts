@@ -164,6 +164,9 @@ export const TESTIDS = {
   studyGradeEasy: 'study-grade-easy',
   studySummary: 'study-summary',
   studyEmpty: 'study-empty',
+  studyCoach: 'study-coach',
+  studyCoachDismiss: 'study-coach-dismiss',
+  studyCoachFlip: 'study-coach-flip',
 
   // Flashcards
   flashcardsPage: 'flashcards-page',
