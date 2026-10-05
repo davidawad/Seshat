@@ -10,6 +10,9 @@
    taller instead of clipping longer answers. */
 .flip-card-inner {
   display: grid;
+  /* A bare auto track grows to the widest unbroken word (and the 5/3 ratio then widens the face
+     past a phone viewport); a definite track keeps both faces at the scene's width. */
+  grid-template-columns: minmax(0, 1fr);
   transform-style: preserve-3d;
   transition: transform 0.4s cubic-bezier(0.45, 0.05, 0.55, 0.95);
 }
@@ -22,6 +25,8 @@
    The scene prefix out-ranks `.legible`'s own font-size. */
 .flip-card-scene .flip-card-face {
   grid-area: 1 / 1;
+  min-width: 0;
+  max-width: 100%;
   position: relative; /* anchors the absolutely positioned card tip */
   /* A 3x5 index card: five wide for every three tall. Long text can still grow it. */
   aspect-ratio: 5 / 3;
@@ -38,6 +43,8 @@
 }
 
 .flip-card-face p {
+  min-width: 0;
+  max-width: 100%;
   margin: 0;
 }
 
@@ -48,5 +55,6 @@
 .flip-card-image {
   max-width: 100%;
   max-height: 20rem;
+  object-fit: contain;
   border-radius: var(--radius-page);
 }
