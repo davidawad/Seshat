@@ -62,6 +62,16 @@ export const Layout = () => {
   const { key: keyFor } = useKeybindings()
   const { pathname, key } = useLocation()
   const navigationType = useNavigationType()
+  // Navigation (notably browser Back/Forward) dismisses transient dialogs. Done during render, not
+  // in an effect, so the dialogs' own effects close them before useRouteFocus below moves focus
+  // (child effects run first); a modal left open would keep the new page inert and unfocusable.
+  const [dismissedAt, setDismissedAt] = useState(key)
+  if (dismissedAt !== key) {
+    setDismissedAt(key)
+    setSettingsOpen(false)
+    setShortcutsOpen(false)
+    setPaletteOpen(false)
+  }
   const mainRef = useRef<HTMLElement>(null)
   // After a route change, put focus on the new page's h1 (see lib/routeFocus.ts).
   useRouteFocus({ pathname, key, type: navigationType }, mainRef)

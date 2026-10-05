@@ -67,13 +67,13 @@ export const headerAndFooterAlwaysPresent = always(
 
 export const noHorizontalOverflow = always(() => page.current.overflow <= 1)
 
-// A client-side route change must move focus to the new page's h1 (or leave it inside main). An
-// open modal legitimately keeps focus (Back behind it changes the route but not the dialog).
+// A client-side route change must move focus to the new page's h1 (or leave it inside main).
+// Layout closes open modals on navigation, so there is no modal exemption here.
 export const focusLandsOnH1AfterNavigation = always(
   now(() => {
     const before = page.current.pathname
-    return next(() => page.current.pathname === before || page.current.modalOpen).or(
-      eventually(() => page.current.focusOk || !page.current.hasH1 || page.current.modalOpen).within(2, 'seconds'),
+    return next(() => page.current.pathname === before).or(
+      eventually(() => page.current.focusOk || !page.current.hasH1).within(2, 'seconds'),
     )
   }),
 )
