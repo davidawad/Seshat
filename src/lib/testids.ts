@@ -38,6 +38,7 @@ export const TESTIDS = {
   footerVersion: 'footer-version',
   footerAttributions: 'footer-attributions',
   footerLicense: 'footer-license',
+  footerThoth: 'footer-thoth',
   shortcutsOpen: 'shortcuts-open',
   settingsOpen: 'settings-open',
 
