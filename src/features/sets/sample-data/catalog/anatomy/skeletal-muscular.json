@@ -1,0 +1,466 @@
+{
+ "seshatExportVersion": 1,
+ "name": "Skeletal and Muscular Systems",
+ "description": "Major bones, joints, muscles and muscle physiology.",
+ "tags": [
+  "anatomy",
+  "musculoskeletal"
+ ],
+ "cards": [
+  {
+   "prompt": "Number of bones in the adult human skeleton",
+   "content": {
+    "kind": "short-answer",
+    "answer": "206",
+    "acceptableAnswers": []
+   },
+   "explanation": null,
+   "sourceRef": "Gray's Anatomy for Students (Elsevier); Tortora, Principles of Anatomy and Physiology (Wiley)",
+   "tags": [
+    "anatomy"
+   ]
+  },
+  {
+   "prompt": "Longest bone in the body",
+   "content": {
+    "kind": "short-answer",
+    "answer": "Femur",
+    "acceptableAnswers": []
+   },
+   "explanation": null,
+   "sourceRef": "Gray's Anatomy for Students (Elsevier); Tortora, Principles of Anatomy and Physiology (Wiley)",
+   "tags": [
+    "anatomy"
+   ]
+  },
+  {
+   "prompt": "Bones of the forearm",
+   "content": {
+    "kind": "short-answer",
+    "answer": "Radius (lateral, thumb side) and ulna (medial)",
+    "acceptableAnswers": []
+   },
+   "explanation": null,
+   "sourceRef": "Gray's Anatomy for Students (Elsevier); Tortora, Principles of Anatomy and Physiology (Wiley)",
+   "tags": [
+    "anatomy"
+   ]
+  },
+  {
+   "prompt": "Bones of the lower leg",
+   "content": {
+    "kind": "short-answer",
+    "answer": "Tibia (medial, weight-bearing) and fibula (lateral)",
+    "acceptableAnswers": []
+   },
+   "explanation": null,
+   "sourceRef": "Gray's Anatomy for Students (Elsevier); Tortora, Principles of Anatomy and Physiology (Wiley)",
+   "tags": [
+    "anatomy"
+   ]
+  },
+  {
+   "prompt": "Number of cervical, thoracic, lumbar vertebrae",
+   "content": {
+    "kind": "short-answer",
+    "answer": "7, 12, 5",
+    "acceptableAnswers": []
+   },
+   "explanation": null,
+   "sourceRef": "Gray's Anatomy for Students (Elsevier); Tortora, Principles of Anatomy and Physiology (Wiley)",
+   "tags": [
+    "anatomy"
+   ]
+  },
+  {
+   "prompt": "Atlas (C1) and axis (C2)",
+   "content": {
+    "kind": "short-answer",
+    "answer": "C1 supports the skull (nodding); C2 has the dens, allowing head rotation.",
+    "acceptableAnswers": []
+   },
+   "explanation": null,
+   "sourceRef": "Gray's Anatomy for Students (Elsevier); Tortora, Principles of Anatomy and Physiology (Wiley)",
+   "tags": [
+    "anatomy"
+   ]
+  },
+  {
+   "prompt": "Bones of the shoulder girdle",
+   "content": {
+    "kind": "short-answer",
+    "answer": "Clavicle and scapula",
+    "acceptableAnswers": []
+   },
+   "explanation": null,
+   "sourceRef": "Gray's Anatomy for Students (Elsevier); Tortora, Principles of Anatomy and Physiology (Wiley)",
+   "tags": [
+    "anatomy"
+   ]
+  },
+  {
+   "prompt": "Carpal bones count",
+   "content": {
+    "kind": "short-answer",
+    "answer": "8",
+    "acceptableAnswers": []
+   },
+   "explanation": null,
+   "sourceRef": "Gray's Anatomy for Students (Elsevier); Tortora, Principles of Anatomy and Physiology (Wiley)",
+   "tags": [
+    "anatomy"
+   ]
+  },
+  {
+   "prompt": "Tarsal bones count",
+   "content": {
+    "kind": "short-answer",
+    "answer": "7",
+    "acceptableAnswers": []
+   },
+   "explanation": null,
+   "sourceRef": "Gray's Anatomy for Students (Elsevier); Tortora, Principles of Anatomy and Physiology (Wiley)",
+   "tags": [
+    "anatomy"
+   ]
+  },
+  {
+   "prompt": "Smallest bone in the body",
+   "content": {
+    "kind": "short-answer",
+    "answer": "The stapes in the middle ear.",
+    "acceptableAnswers": []
+   },
+   "explanation": null,
+   "sourceRef": "Gray's Anatomy for Students (Elsevier); Tortora, Principles of Anatomy and Physiology (Wiley)",
+   "tags": [
+    "anatomy"
+   ]
+  },
+  {
+   "prompt": "Three auditory ossicles",
+   "content": {
+    "kind": "short-answer",
+    "answer": "Malleus, incus, stapes",
+    "acceptableAnswers": []
+   },
+   "explanation": null,
+   "sourceRef": "Gray's Anatomy for Students (Elsevier); Tortora, Principles of Anatomy and Physiology (Wiley)",
+   "tags": [
+    "anatomy"
+   ]
+  },
+  {
+   "prompt": "Joint type of the hip and shoulder",
+   "content": {
+    "kind": "short-answer",
+    "answer": "Ball-and-socket synovial joints",
+    "acceptableAnswers": []
+   },
+   "explanation": null,
+   "sourceRef": "Gray's Anatomy for Students (Elsevier); Tortora, Principles of Anatomy and Physiology (Wiley)",
+   "tags": [
+    "anatomy"
+   ]
+  },
+  {
+   "prompt": "Joint type of the elbow and knee",
+   "content": {
+    "kind": "short-answer",
+    "answer": "Hinge joints (knee is a modified hinge)",
+    "acceptableAnswers": []
+   },
+   "explanation": null,
+   "sourceRef": "Gray's Anatomy for Students (Elsevier); Tortora, Principles of Anatomy and Physiology (Wiley)",
+   "tags": [
+    "anatomy"
+   ]
+  },
+  {
+   "prompt": "Structure that connects bone to bone",
+   "content": {
+    "kind": "short-answer",
+    "answer": "Ligament",
+    "acceptableAnswers": []
+   },
+   "explanation": null,
+   "sourceRef": "Gray's Anatomy for Students (Elsevier); Tortora, Principles of Anatomy and Physiology (Wiley)",
+   "tags": [
+    "anatomy"
+   ]
+  },
+  {
+   "prompt": "Structure that connects muscle to bone",
+   "content": {
+    "kind": "short-answer",
+    "answer": "Tendon",
+    "acceptableAnswers": []
+   },
+   "explanation": null,
+   "sourceRef": "Gray's Anatomy for Students (Elsevier); Tortora, Principles of Anatomy and Physiology (Wiley)",
+   "tags": [
+    "anatomy"
+   ]
+  },
+  {
+   "prompt": "Anterior cruciate ligament (ACL) prevents",
+   "content": {
+    "kind": "short-answer",
+    "answer": "Anterior translation of the tibia on the femur.",
+    "acceptableAnswers": []
+   },
+   "explanation": null,
+   "sourceRef": "Gray's Anatomy for Students (Elsevier); Tortora, Principles of Anatomy and Physiology (Wiley)",
+   "tags": [
+    "anatomy"
+   ]
+  },
+  {
+   "prompt": "Rotator cuff muscles",
+   "content": {
+    "kind": "short-answer",
+    "answer": "Supraspinatus, infraspinatus, teres minor, subscapularis",
+    "acceptableAnswers": []
+   },
+   "explanation": null,
+   "sourceRef": "Gray's Anatomy for Students (Elsevier); Tortora, Principles of Anatomy and Physiology (Wiley)",
+   "tags": [
+    "anatomy"
+   ]
+  },
+  {
+   "prompt": "Main muscle that abducts the arm to the first 15 degrees",
+   "content": {
+    "kind": "short-answer",
+    "answer": "Supraspinatus (the deltoid takes over after that).",
+    "acceptableAnswers": []
+   },
+   "explanation": null,
+   "sourceRef": "Gray's Anatomy for Students (Elsevier); Tortora, Principles of Anatomy and Physiology (Wiley)",
+   "tags": [
+    "anatomy"
+   ]
+  },
+  {
+   "prompt": "Quadriceps group",
+   "content": {
+    "kind": "short-answer",
+    "answer": "Rectus femoris, vastus lateralis, vastus medialis, vastus intermedius; extend the knee.",
+    "acceptableAnswers": []
+   },
+   "explanation": null,
+   "sourceRef": "Gray's Anatomy for Students (Elsevier); Tortora, Principles of Anatomy and Physiology (Wiley)",
+   "tags": [
+    "anatomy"
+   ]
+  },
+  {
+   "prompt": "Hamstrings",
+   "content": {
+    "kind": "short-answer",
+    "answer": "Biceps femoris, semitendinosus, semimembranosus; flex the knee and extend the hip.",
+    "acceptableAnswers": []
+   },
+   "explanation": null,
+   "sourceRef": "Gray's Anatomy for Students (Elsevier); Tortora, Principles of Anatomy and Physiology (Wiley)",
+   "tags": [
+    "anatomy"
+   ]
+  },
+  {
+   "prompt": "Largest muscle in the body",
+   "content": {
+    "kind": "short-answer",
+    "answer": "Gluteus maximus",
+    "acceptableAnswers": []
+   },
+   "explanation": null,
+   "sourceRef": "Gray's Anatomy for Students (Elsevier); Tortora, Principles of Anatomy and Physiology (Wiley)",
+   "tags": [
+    "anatomy"
+   ]
+  },
+  {
+   "prompt": "Primary muscle of respiration",
+   "content": {
+    "kind": "short-answer",
+    "answer": "Diaphragm (innervated by the phrenic nerve, C3-C5).",
+    "acceptableAnswers": []
+   },
+   "explanation": null,
+   "sourceRef": "Gray's Anatomy for Students (Elsevier); Tortora, Principles of Anatomy and Physiology (Wiley)",
+   "tags": [
+    "anatomy"
+   ]
+  },
+  {
+   "prompt": "Biceps brachii main actions",
+   "content": {
+    "kind": "short-answer",
+    "answer": "Flexes the elbow and supinates the forearm.",
+    "acceptableAnswers": []
+   },
+   "explanation": null,
+   "sourceRef": "Gray's Anatomy for Students (Elsevier); Tortora, Principles of Anatomy and Physiology (Wiley)",
+   "tags": [
+    "anatomy"
+   ]
+  },
+  {
+   "prompt": "Sarcomere",
+   "content": {
+    "kind": "short-answer",
+    "answer": "The contractile unit of striated muscle, from Z-line to Z-line.",
+    "acceptableAnswers": []
+   },
+   "explanation": null,
+   "sourceRef": "Gray's Anatomy for Students (Elsevier); Tortora, Principles of Anatomy and Physiology (Wiley)",
+   "tags": [
+    "anatomy"
+   ]
+  },
+  {
+   "prompt": "Thin and thick filaments",
+   "content": {
+    "kind": "short-answer",
+    "answer": "Actin (thin) and myosin (thick).",
+    "acceptableAnswers": []
+   },
+   "explanation": null,
+   "sourceRef": "Gray's Anatomy for Students (Elsevier); Tortora, Principles of Anatomy and Physiology (Wiley)",
+   "tags": [
+    "anatomy"
+   ]
+  },
+  {
+   "prompt": "Sliding filament theory",
+   "content": {
+    "kind": "short-answer",
+    "answer": "Myosin heads bind actin and pull thin filaments past thick ones, shortening the sarcomere.",
+    "acceptableAnswers": []
+   },
+   "explanation": null,
+   "sourceRef": "Gray's Anatomy for Students (Elsevier); Tortora, Principles of Anatomy and Physiology (Wiley)",
+   "tags": [
+    "anatomy"
+   ]
+  },
+  {
+   "prompt": "Role of calcium in skeletal muscle contraction",
+   "content": {
+    "kind": "short-answer",
+    "answer": "Ca2+ binds troponin, moving tropomyosin off the myosin-binding sites on actin.",
+    "acceptableAnswers": []
+   },
+   "explanation": null,
+   "sourceRef": "Gray's Anatomy for Students (Elsevier); Tortora, Principles of Anatomy and Physiology (Wiley)",
+   "tags": [
+    "anatomy"
+   ]
+  },
+  {
+   "prompt": "Neurotransmitter at the neuromuscular junction",
+   "content": {
+    "kind": "short-answer",
+    "answer": "Acetylcholine",
+    "acceptableAnswers": []
+   },
+   "explanation": null,
+   "sourceRef": "Gray's Anatomy for Students (Elsevier); Tortora, Principles of Anatomy and Physiology (Wiley)",
+   "tags": [
+    "anatomy"
+   ]
+  },
+  {
+   "prompt": "What detaches the myosin head from actin",
+   "content": {
+    "kind": "short-answer",
+    "answer": "Binding of a new ATP molecule.",
+    "acceptableAnswers": []
+   },
+   "explanation": null,
+   "sourceRef": "Gray's Anatomy for Students (Elsevier); Tortora, Principles of Anatomy and Physiology (Wiley)",
+   "tags": [
+    "anatomy"
+   ]
+  },
+  {
+   "prompt": "Type I vs type II muscle fibers",
+   "content": {
+    "kind": "short-answer",
+    "answer": "Type I: slow-twitch, oxidative, fatigue-resistant. Type II: fast-twitch, more glycolytic, fatigue faster.",
+    "acceptableAnswers": []
+   },
+   "explanation": null,
+   "sourceRef": "Gray's Anatomy for Students (Elsevier); Tortora, Principles of Anatomy and Physiology (Wiley)",
+   "tags": [
+    "anatomy"
+   ]
+  },
+  {
+   "prompt": "Osteoblasts, osteoclasts, osteocytes",
+   "content": {
+    "kind": "short-answer",
+    "answer": "Bone-forming cells; bone-resorbing cells; mature bone cells maintaining the matrix.",
+    "acceptableAnswers": []
+   },
+   "explanation": null,
+   "sourceRef": "Gray's Anatomy for Students (Elsevier); Tortora, Principles of Anatomy and Physiology (Wiley)",
+   "tags": [
+    "anatomy"
+   ]
+  },
+  {
+   "prompt": "Hormone that raises blood calcium by acting on bone, kidney and gut",
+   "content": {
+    "kind": "short-answer",
+    "answer": "Parathyroid hormone (with vitamin D); calcitonin lowers it.",
+    "acceptableAnswers": []
+   },
+   "explanation": null,
+   "sourceRef": "Gray's Anatomy for Students (Elsevier); Tortora, Principles of Anatomy and Physiology (Wiley)",
+   "tags": [
+    "anatomy"
+   ]
+  },
+  {
+   "prompt": "Axial vs appendicular skeleton",
+   "content": {
+    "kind": "short-answer",
+    "answer": "Axial: skull, vertebral column, ribs, sternum. Appendicular: limbs and girdles.",
+    "acceptableAnswers": []
+   },
+   "explanation": null,
+   "sourceRef": "Gray's Anatomy for Students (Elsevier); Tortora, Principles of Anatomy and Physiology (Wiley)",
+   "tags": [
+    "anatomy"
+   ]
+  },
+  {
+   "prompt": "Anatomical position",
+   "content": {
+    "kind": "short-answer",
+    "answer": "Standing upright, facing forward, arms at the sides, palms forward.",
+    "acceptableAnswers": []
+   },
+   "explanation": null,
+   "sourceRef": "Gray's Anatomy for Students (Elsevier); Tortora, Principles of Anatomy and Physiology (Wiley)",
+   "tags": [
+    "anatomy"
+   ]
+  },
+  {
+   "prompt": "Sagittal, coronal, transverse planes",
+   "content": {
+    "kind": "short-answer",
+    "answer": "Left/right; front/back; upper/lower.",
+    "acceptableAnswers": []
+   },
+   "explanation": null,
+   "sourceRef": "Gray's Anatomy for Students (Elsevier); Tortora, Principles of Anatomy and Physiology (Wiley)",
+   "tags": [
+    "anatomy"
+   ]
+  }
+ ]
+}

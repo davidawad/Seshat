@@ -1,0 +1,427 @@
+{
+ "seshatExportVersion": 1,
+ "name": "Cardiovascular and Respiratory Systems",
+ "description": "Heart anatomy, circulation, blood and breathing.",
+ "tags": [
+  "anatomy",
+  "physiology"
+ ],
+ "cards": [
+  {
+   "prompt": "Chambers of the heart",
+   "content": {
+    "kind": "short-answer",
+    "answer": "Right atrium, right ventricle, left atrium, left ventricle",
+    "acceptableAnswers": []
+   },
+   "explanation": null,
+   "sourceRef": "Guyton & Hall, Textbook of Medical Physiology (Elsevier); Gray's Anatomy for Students",
+   "tags": [
+    "anatomy"
+   ]
+  },
+  {
+   "prompt": "Path of blood through the heart (starting at the right atrium)",
+   "content": {
+    "kind": "short-answer",
+    "answer": "Right atrium → tricuspid valve → right ventricle → pulmonary valve → lungs → left atrium → mitral valve → left ventricle → aortic valve → aorta.",
+    "acceptableAnswers": []
+   },
+   "explanation": null,
+   "sourceRef": "Guyton & Hall, Textbook of Medical Physiology (Elsevier); Gray's Anatomy for Students",
+   "tags": [
+    "anatomy"
+   ]
+  },
+  {
+   "prompt": "Valve between left atrium and left ventricle",
+   "content": {
+    "kind": "short-answer",
+    "answer": "Mitral (bicuspid) valve",
+    "acceptableAnswers": []
+   },
+   "explanation": null,
+   "sourceRef": "Guyton & Hall, Textbook of Medical Physiology (Elsevier); Gray's Anatomy for Students",
+   "tags": [
+    "anatomy"
+   ]
+  },
+  {
+   "prompt": "Valve between right atrium and right ventricle",
+   "content": {
+    "kind": "short-answer",
+    "answer": "Tricuspid valve",
+    "acceptableAnswers": []
+   },
+   "explanation": null,
+   "sourceRef": "Guyton & Hall, Textbook of Medical Physiology (Elsevier); Gray's Anatomy for Students",
+   "tags": [
+    "anatomy"
+   ]
+  },
+  {
+   "prompt": "Which side of the heart pumps to the lungs",
+   "content": {
+    "kind": "short-answer",
+    "answer": "The right side (pulmonary circulation).",
+    "acceptableAnswers": []
+   },
+   "explanation": null,
+   "sourceRef": "Guyton & Hall, Textbook of Medical Physiology (Elsevier); Gray's Anatomy for Students",
+   "tags": [
+    "anatomy"
+   ]
+  },
+  {
+   "prompt": "Cardiac conduction pathway",
+   "content": {
+    "kind": "short-answer",
+    "answer": "SA node → AV node → bundle of His → bundle branches → Purkinje fibers.",
+    "acceptableAnswers": []
+   },
+   "explanation": null,
+   "sourceRef": "Guyton & Hall, Textbook of Medical Physiology (Elsevier); Gray's Anatomy for Students",
+   "tags": [
+    "anatomy"
+   ]
+  },
+  {
+   "prompt": "Natural pacemaker of the heart",
+   "content": {
+    "kind": "short-answer",
+    "answer": "Sinoatrial (SA) node",
+    "acceptableAnswers": []
+   },
+   "explanation": null,
+   "sourceRef": "Guyton & Hall, Textbook of Medical Physiology (Elsevier); Gray's Anatomy for Students",
+   "tags": [
+    "anatomy"
+   ]
+  },
+  {
+   "prompt": "P wave, QRS complex, T wave on an ECG",
+   "content": {
+    "kind": "short-answer",
+    "answer": "Atrial depolarization; ventricular depolarization; ventricular repolarization.",
+    "acceptableAnswers": []
+   },
+   "explanation": null,
+   "sourceRef": "Guyton & Hall, Textbook of Medical Physiology (Elsevier); Gray's Anatomy for Students",
+   "tags": [
+    "anatomy"
+   ]
+  },
+  {
+   "prompt": "Cardiac output",
+   "content": {
+    "kind": "short-answer",
+    "answer": "Heart rate × stroke volume",
+    "acceptableAnswers": []
+   },
+   "explanation": null,
+   "sourceRef": "Guyton & Hall, Textbook of Medical Physiology (Elsevier); Gray's Anatomy for Students",
+   "tags": [
+    "anatomy"
+   ]
+  },
+  {
+   "prompt": "Typical resting adult heart rate",
+   "content": {
+    "kind": "short-answer",
+    "answer": "About 60-100 beats/min",
+    "acceptableAnswers": []
+   },
+   "explanation": null,
+   "sourceRef": "Guyton & Hall, Textbook of Medical Physiology (Elsevier); Gray's Anatomy for Students",
+   "tags": [
+    "anatomy"
+   ]
+  },
+  {
+   "prompt": "Typical normal adult blood pressure",
+   "content": {
+    "kind": "short-answer",
+    "answer": "Around 120/80 mmHg",
+    "acceptableAnswers": []
+   },
+   "explanation": null,
+   "sourceRef": "Guyton & Hall, Textbook of Medical Physiology (Elsevier); Gray's Anatomy for Students",
+   "tags": [
+    "anatomy"
+   ]
+  },
+  {
+   "prompt": "Vessels that carry blood away from the heart",
+   "content": {
+    "kind": "short-answer",
+    "answer": "Arteries (they are thick-walled and elastic).",
+    "acceptableAnswers": []
+   },
+   "explanation": null,
+   "sourceRef": "Guyton & Hall, Textbook of Medical Physiology (Elsevier); Gray's Anatomy for Students",
+   "tags": [
+    "anatomy"
+   ]
+  },
+  {
+   "prompt": "Exchange of gases and nutrients occurs in",
+   "content": {
+    "kind": "short-answer",
+    "answer": "Capillaries",
+    "acceptableAnswers": []
+   },
+   "explanation": null,
+   "sourceRef": "Guyton & Hall, Textbook of Medical Physiology (Elsevier); Gray's Anatomy for Students",
+   "tags": [
+    "anatomy"
+   ]
+  },
+  {
+   "prompt": "Coronary arteries arise from",
+   "content": {
+    "kind": "short-answer",
+    "answer": "The aortic root, just above the aortic valve.",
+    "acceptableAnswers": []
+   },
+   "explanation": null,
+   "sourceRef": "Guyton & Hall, Textbook of Medical Physiology (Elsevier); Gray's Anatomy for Students",
+   "tags": [
+    "anatomy"
+   ]
+  },
+  {
+   "prompt": "Veins that carry oxygenated blood",
+   "content": {
+    "kind": "short-answer",
+    "answer": "Pulmonary veins (carry oxygenated blood from lungs to left atrium).",
+    "acceptableAnswers": []
+   },
+   "explanation": null,
+   "sourceRef": "Guyton & Hall, Textbook of Medical Physiology (Elsevier); Gray's Anatomy for Students",
+   "tags": [
+    "anatomy"
+   ]
+  },
+  {
+   "prompt": "Largest artery",
+   "content": {
+    "kind": "short-answer",
+    "answer": "Aorta",
+    "acceptableAnswers": []
+   },
+   "explanation": null,
+   "sourceRef": "Guyton & Hall, Textbook of Medical Physiology (Elsevier); Gray's Anatomy for Students",
+   "tags": [
+    "anatomy"
+   ]
+  },
+  {
+   "prompt": "Starling's law of the heart",
+   "content": {
+    "kind": "short-answer",
+    "answer": "Greater ventricular filling (stretch) increases the force of contraction and stroke volume.",
+    "acceptableAnswers": []
+   },
+   "explanation": null,
+   "sourceRef": "Guyton & Hall, Textbook of Medical Physiology (Elsevier); Gray's Anatomy for Students",
+   "tags": [
+    "anatomy"
+   ]
+  },
+  {
+   "prompt": "Parasympathetic effect on heart rate",
+   "content": {
+    "kind": "short-answer",
+    "answer": "Slows it, via the vagus nerve.",
+    "acceptableAnswers": []
+   },
+   "explanation": null,
+   "sourceRef": "Guyton & Hall, Textbook of Medical Physiology (Elsevier); Gray's Anatomy for Students",
+   "tags": [
+    "anatomy"
+   ]
+  },
+  {
+   "prompt": "Sympathetic effect on heart rate",
+   "content": {
+    "kind": "short-answer",
+    "answer": "Increases it and the force of contraction (beta-1 receptors).",
+    "acceptableAnswers": []
+   },
+   "explanation": null,
+   "sourceRef": "Guyton & Hall, Textbook of Medical Physiology (Elsevier); Gray's Anatomy for Students",
+   "tags": [
+    "anatomy"
+   ]
+  },
+  {
+   "prompt": "Most abundant blood cell",
+   "content": {
+    "kind": "short-answer",
+    "answer": "Red blood cells (erythrocytes), carrying hemoglobin.",
+    "acceptableAnswers": []
+   },
+   "explanation": null,
+   "sourceRef": "Guyton & Hall, Textbook of Medical Physiology (Elsevier); Gray's Anatomy for Students",
+   "tags": [
+    "anatomy"
+   ]
+  },
+  {
+   "prompt": "Platelets",
+   "content": {
+    "kind": "short-answer",
+    "answer": "Cell fragments (from megakaryocytes) essential for clotting.",
+    "acceptableAnswers": []
+   },
+   "explanation": null,
+   "sourceRef": "Guyton & Hall, Textbook of Medical Physiology (Elsevier); Gray's Anatomy for Students",
+   "tags": [
+    "anatomy"
+   ]
+  },
+  {
+   "prompt": "Normal arterial blood pH",
+   "content": {
+    "kind": "short-answer",
+    "answer": "About 7.35-7.45",
+    "acceptableAnswers": []
+   },
+   "explanation": null,
+   "sourceRef": "Guyton & Hall, Textbook of Medical Physiology (Elsevier); Gray's Anatomy for Students",
+   "tags": [
+    "anatomy"
+   ]
+  },
+  {
+   "prompt": "Hemoglobin binds oxygen at",
+   "content": {
+    "kind": "short-answer",
+    "answer": "Heme iron; each hemoglobin molecule can carry 4 O2.",
+    "acceptableAnswers": []
+   },
+   "explanation": null,
+   "sourceRef": "Guyton & Hall, Textbook of Medical Physiology (Elsevier); Gray's Anatomy for Students",
+   "tags": [
+    "anatomy"
+   ]
+  },
+  {
+   "prompt": "Conducting vs respiratory zones of the airway",
+   "content": {
+    "kind": "short-answer",
+    "answer": "Conducting: nose to terminal bronchioles. Respiratory: respiratory bronchioles and alveoli, where gas exchange occurs.",
+    "acceptableAnswers": []
+   },
+   "explanation": null,
+   "sourceRef": "Guyton & Hall, Textbook of Medical Physiology (Elsevier); Gray's Anatomy for Students",
+   "tags": [
+    "anatomy"
+   ]
+  },
+  {
+   "prompt": "Alveolar cell producing surfactant",
+   "content": {
+    "kind": "short-answer",
+    "answer": "Type II pneumocytes; surfactant reduces surface tension.",
+    "acceptableAnswers": []
+   },
+   "explanation": null,
+   "sourceRef": "Guyton & Hall, Textbook of Medical Physiology (Elsevier); Gray's Anatomy for Students",
+   "tags": [
+    "anatomy"
+   ]
+  },
+  {
+   "prompt": "Muscles of quiet inspiration",
+   "content": {
+    "kind": "short-answer",
+    "answer": "Diaphragm and external intercostals",
+    "acceptableAnswers": []
+   },
+   "explanation": null,
+   "sourceRef": "Guyton & Hall, Textbook of Medical Physiology (Elsevier); Gray's Anatomy for Students",
+   "tags": [
+    "anatomy"
+   ]
+  },
+  {
+   "prompt": "Quiet expiration is",
+   "content": {
+    "kind": "short-answer",
+    "answer": "Passive, from elastic recoil of the lungs.",
+    "acceptableAnswers": []
+   },
+   "explanation": null,
+   "sourceRef": "Guyton & Hall, Textbook of Medical Physiology (Elsevier); Gray's Anatomy for Students",
+   "tags": [
+    "anatomy"
+   ]
+  },
+  {
+   "prompt": "Tidal volume (adult, approx.)",
+   "content": {
+    "kind": "short-answer",
+    "answer": "About 500 mL per breath.",
+    "acceptableAnswers": []
+   },
+   "explanation": null,
+   "sourceRef": "Guyton & Hall, Textbook of Medical Physiology (Elsevier); Gray's Anatomy for Students",
+   "tags": [
+    "anatomy"
+   ]
+  },
+  {
+   "prompt": "Main chemical driver of the respiratory rate",
+   "content": {
+    "kind": "short-answer",
+    "answer": "Arterial CO2 (via pH) sensed by central chemoreceptors in the medulla.",
+    "acceptableAnswers": []
+   },
+   "explanation": null,
+   "sourceRef": "Guyton & Hall, Textbook of Medical Physiology (Elsevier); Gray's Anatomy for Students",
+   "tags": [
+    "anatomy"
+   ]
+  },
+  {
+   "prompt": "Right lung vs left lung lobes",
+   "content": {
+    "kind": "short-answer",
+    "answer": "Right: three lobes; left: two lobes (with the cardiac notch).",
+    "acceptableAnswers": []
+   },
+   "explanation": null,
+   "sourceRef": "Guyton & Hall, Textbook of Medical Physiology (Elsevier); Gray's Anatomy for Students",
+   "tags": [
+    "anatomy"
+   ]
+  },
+  {
+   "prompt": "Oxygen–hemoglobin curve shifts right when",
+   "content": {
+    "kind": "short-answer",
+    "answer": "Increased CO2, H+, temperature or 2,3-BPG (Bohr effect): hemoglobin releases O2 more easily.",
+    "acceptableAnswers": []
+   },
+   "explanation": null,
+   "sourceRef": "Guyton & Hall, Textbook of Medical Physiology (Elsevier); Gray's Anatomy for Students",
+   "tags": [
+    "anatomy"
+   ]
+  },
+  {
+   "prompt": "Bulk of CO2 transport in blood",
+   "content": {
+    "kind": "short-answer",
+    "answer": "As bicarbonate (HCO3-), about 70%.",
+    "acceptableAnswers": []
+   },
+   "explanation": null,
+   "sourceRef": "Guyton & Hall, Textbook of Medical Physiology (Elsevier); Gray's Anatomy for Students",
+   "tags": [
+    "anatomy"
+   ]
+  }
+ ]
+}

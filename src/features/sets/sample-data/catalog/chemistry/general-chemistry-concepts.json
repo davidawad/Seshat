@@ -1,0 +1,440 @@
+{
+ "seshatExportVersion": 1,
+ "name": "General Chemistry Concepts",
+ "description": "Bonding, stoichiometry, equilibrium, acids and bases, and thermodynamics.",
+ "tags": [
+  "chemistry",
+  "general-chemistry"
+ ],
+ "cards": [
+  {
+   "prompt": "Ionic vs covalent bond",
+   "content": {
+    "kind": "short-answer",
+    "answer": "Ionic: transfer of electrons between atoms; covalent: sharing of electrons.",
+    "acceptableAnswers": []
+   },
+   "explanation": null,
+   "sourceRef": "Zumdahl, Chemistry (Cengage); Atkins, Physical Chemistry (Oxford)",
+   "tags": [
+    "chemistry"
+   ]
+  },
+  {
+   "prompt": "Octet rule",
+   "content": {
+    "kind": "short-answer",
+    "answer": "Atoms tend to gain, lose or share electrons to have eight valence electrons.",
+    "acceptableAnswers": []
+   },
+   "explanation": null,
+   "sourceRef": "Zumdahl, Chemistry (Cengage); Atkins, Physical Chemistry (Oxford)",
+   "tags": [
+    "chemistry"
+   ]
+  },
+  {
+   "prompt": "VSEPR geometry of CH4",
+   "content": {
+    "kind": "short-answer",
+    "answer": "Tetrahedral, bond angle about 109.5°.",
+    "acceptableAnswers": []
+   },
+   "explanation": null,
+   "sourceRef": "Zumdahl, Chemistry (Cengage); Atkins, Physical Chemistry (Oxford)",
+   "tags": [
+    "chemistry"
+   ]
+  },
+  {
+   "prompt": "VSEPR geometry of H2O",
+   "content": {
+    "kind": "short-answer",
+    "answer": "Bent, bond angle about 104.5°.",
+    "acceptableAnswers": []
+   },
+   "explanation": null,
+   "sourceRef": "Zumdahl, Chemistry (Cengage); Atkins, Physical Chemistry (Oxford)",
+   "tags": [
+    "chemistry"
+   ]
+  },
+  {
+   "prompt": "VSEPR geometry of CO2",
+   "content": {
+    "kind": "short-answer",
+    "answer": "Linear, 180°.",
+    "acceptableAnswers": []
+   },
+   "explanation": null,
+   "sourceRef": "Zumdahl, Chemistry (Cengage); Atkins, Physical Chemistry (Oxford)",
+   "tags": [
+    "chemistry"
+   ]
+  },
+  {
+   "prompt": "Molarity",
+   "content": {
+    "kind": "short-answer",
+    "answer": "Moles of solute per liter of solution.",
+    "acceptableAnswers": []
+   },
+   "explanation": null,
+   "sourceRef": "Zumdahl, Chemistry (Cengage); Atkins, Physical Chemistry (Oxford)",
+   "tags": [
+    "chemistry"
+   ]
+  },
+  {
+   "prompt": "Molality",
+   "content": {
+    "kind": "short-answer",
+    "answer": "Moles of solute per kilogram of solvent.",
+    "acceptableAnswers": []
+   },
+   "explanation": null,
+   "sourceRef": "Zumdahl, Chemistry (Cengage); Atkins, Physical Chemistry (Oxford)",
+   "tags": [
+    "chemistry"
+   ]
+  },
+  {
+   "prompt": "Limiting reagent",
+   "content": {
+    "kind": "short-answer",
+    "answer": "The reactant that is consumed first and limits the amount of product formed.",
+    "acceptableAnswers": []
+   },
+   "explanation": null,
+   "sourceRef": "Zumdahl, Chemistry (Cengage); Atkins, Physical Chemistry (Oxford)",
+   "tags": [
+    "chemistry"
+   ]
+  },
+  {
+   "prompt": "Percent yield",
+   "content": {
+    "kind": "short-answer",
+    "answer": "(Actual yield / theoretical yield) × 100",
+    "acceptableAnswers": []
+   },
+   "explanation": null,
+   "sourceRef": "Zumdahl, Chemistry (Cengage); Atkins, Physical Chemistry (Oxford)",
+   "tags": [
+    "chemistry"
+   ]
+  },
+  {
+   "prompt": "Ideal gas law",
+   "content": {
+    "kind": "short-answer",
+    "answer": "PV = nRT; R = 0.08206 L·atm/(mol·K)",
+    "acceptableAnswers": []
+   },
+   "explanation": null,
+   "sourceRef": "Zumdahl, Chemistry (Cengage); Atkins, Physical Chemistry (Oxford)",
+   "tags": [
+    "chemistry"
+   ]
+  },
+  {
+   "prompt": "Standard molar volume of an ideal gas at STP (0 °C, 1 atm)",
+   "content": {
+    "kind": "short-answer",
+    "answer": "22.4 L/mol (22.414 L)",
+    "acceptableAnswers": []
+   },
+   "explanation": null,
+   "sourceRef": "Zumdahl, Chemistry (Cengage); Atkins, Physical Chemistry (Oxford)",
+   "tags": [
+    "chemistry"
+   ]
+  },
+  {
+   "prompt": "Boyle's law",
+   "content": {
+    "kind": "short-answer",
+    "answer": "At constant T, P V is constant (P1 V1 = P2 V2).",
+    "acceptableAnswers": []
+   },
+   "explanation": null,
+   "sourceRef": "Zumdahl, Chemistry (Cengage); Atkins, Physical Chemistry (Oxford)",
+   "tags": [
+    "chemistry"
+   ]
+  },
+  {
+   "prompt": "Charles's law",
+   "content": {
+    "kind": "short-answer",
+    "answer": "At constant P, V/T is constant (T in kelvin).",
+    "acceptableAnswers": []
+   },
+   "explanation": null,
+   "sourceRef": "Zumdahl, Chemistry (Cengage); Atkins, Physical Chemistry (Oxford)",
+   "tags": [
+    "chemistry"
+   ]
+  },
+  {
+   "prompt": "Dalton's law of partial pressures",
+   "content": {
+    "kind": "short-answer",
+    "answer": "Total pressure is the sum of the partial pressures of the component gases.",
+    "acceptableAnswers": []
+   },
+   "explanation": null,
+   "sourceRef": "Zumdahl, Chemistry (Cengage); Atkins, Physical Chemistry (Oxford)",
+   "tags": [
+    "chemistry"
+   ]
+  },
+  {
+   "prompt": "Le Chatelier's principle",
+   "content": {
+    "kind": "short-answer",
+    "answer": "A system at equilibrium shifts to counteract an imposed change.",
+    "acceptableAnswers": []
+   },
+   "explanation": null,
+   "sourceRef": "Zumdahl, Chemistry (Cengage); Atkins, Physical Chemistry (Oxford)",
+   "tags": [
+    "chemistry"
+   ]
+  },
+  {
+   "prompt": "Equilibrium constant Kc for aA + bB ⇌ cC + dD",
+   "content": {
+    "kind": "short-answer",
+    "answer": "Kc = [C]^c [D]^d / ([A]^a [B]^b)",
+    "acceptableAnswers": []
+   },
+   "explanation": null,
+   "sourceRef": "Zumdahl, Chemistry (Cengage); Atkins, Physical Chemistry (Oxford)",
+   "tags": [
+    "chemistry"
+   ]
+  },
+  {
+   "prompt": "pH definition",
+   "content": {
+    "kind": "short-answer",
+    "answer": "pH = -log10 [H+]",
+    "acceptableAnswers": []
+   },
+   "explanation": null,
+   "sourceRef": "Zumdahl, Chemistry (Cengage); Atkins, Physical Chemistry (Oxford)",
+   "tags": [
+    "chemistry"
+   ]
+  },
+  {
+   "prompt": "Water autoionization constant at 25 °C",
+   "content": {
+    "kind": "short-answer",
+    "answer": "Kw = [H+][OH-] = 1.0 × 10^-14; pH + pOH = 14.",
+    "acceptableAnswers": []
+   },
+   "explanation": null,
+   "sourceRef": "Zumdahl, Chemistry (Cengage); Atkins, Physical Chemistry (Oxford)",
+   "tags": [
+    "chemistry"
+   ]
+  },
+  {
+   "prompt": "Strong acids (common list)",
+   "content": {
+    "kind": "short-answer",
+    "answer": "HCl, HBr, HI, HNO3, H2SO4, HClO4 (and HClO3).",
+    "acceptableAnswers": []
+   },
+   "explanation": null,
+   "sourceRef": "Zumdahl, Chemistry (Cengage); Atkins, Physical Chemistry (Oxford)",
+   "tags": [
+    "chemistry"
+   ]
+  },
+  {
+   "prompt": "Henderson–Hasselbalch equation",
+   "content": {
+    "kind": "short-answer",
+    "answer": "pH = pKa + log([A-]/[HA])",
+    "acceptableAnswers": []
+   },
+   "explanation": null,
+   "sourceRef": "Zumdahl, Chemistry (Cengage); Atkins, Physical Chemistry (Oxford)",
+   "tags": [
+    "chemistry"
+   ]
+  },
+  {
+   "prompt": "Buffer",
+   "content": {
+    "kind": "short-answer",
+    "answer": "A solution of a weak acid and its conjugate base (or vice versa) that resists pH change.",
+    "acceptableAnswers": []
+   },
+   "explanation": null,
+   "sourceRef": "Zumdahl, Chemistry (Cengage); Atkins, Physical Chemistry (Oxford)",
+   "tags": [
+    "chemistry"
+   ]
+  },
+  {
+   "prompt": "Oxidation vs reduction",
+   "content": {
+    "kind": "short-answer",
+    "answer": "Oxidation is loss of electrons; reduction is gain of electrons (OIL RIG).",
+    "acceptableAnswers": []
+   },
+   "explanation": null,
+   "sourceRef": "Zumdahl, Chemistry (Cengage); Atkins, Physical Chemistry (Oxford)",
+   "tags": [
+    "chemistry"
+   ]
+  },
+  {
+   "prompt": "Enthalpy change sign for an exothermic reaction",
+   "content": {
+    "kind": "short-answer",
+    "answer": "Negative (ΔH < 0).",
+    "acceptableAnswers": []
+   },
+   "explanation": null,
+   "sourceRef": "Zumdahl, Chemistry (Cengage); Atkins, Physical Chemistry (Oxford)",
+   "tags": [
+    "chemistry"
+   ]
+  },
+  {
+   "prompt": "Gibbs free energy and spontaneity",
+   "content": {
+    "kind": "short-answer",
+    "answer": "ΔG = ΔH - TΔS; a reaction is spontaneous at constant T and P when ΔG < 0.",
+    "acceptableAnswers": []
+   },
+   "explanation": null,
+   "sourceRef": "Zumdahl, Chemistry (Cengage); Atkins, Physical Chemistry (Oxford)",
+   "tags": [
+    "chemistry"
+   ]
+  },
+  {
+   "prompt": "Relation of ΔG° to K",
+   "content": {
+    "kind": "short-answer",
+    "answer": "ΔG° = -RT ln K",
+    "acceptableAnswers": []
+   },
+   "explanation": null,
+   "sourceRef": "Zumdahl, Chemistry (Cengage); Atkins, Physical Chemistry (Oxford)",
+   "tags": [
+    "chemistry"
+   ]
+  },
+  {
+   "prompt": "Rate law (general form)",
+   "content": {
+    "kind": "short-answer",
+    "answer": "rate = k [A]^m [B]^n, with orders found experimentally.",
+    "acceptableAnswers": []
+   },
+   "explanation": null,
+   "sourceRef": "Zumdahl, Chemistry (Cengage); Atkins, Physical Chemistry (Oxford)",
+   "tags": [
+    "chemistry"
+   ]
+  },
+  {
+   "prompt": "Half-life of a first-order reaction",
+   "content": {
+    "kind": "short-answer",
+    "answer": "t½ = 0.693 / k",
+    "acceptableAnswers": []
+   },
+   "explanation": null,
+   "sourceRef": "Zumdahl, Chemistry (Cengage); Atkins, Physical Chemistry (Oxford)",
+   "tags": [
+    "chemistry"
+   ]
+  },
+  {
+   "prompt": "Activation energy and rate: Arrhenius equation",
+   "content": {
+    "kind": "short-answer",
+    "answer": "k = A e^(-Ea/RT)",
+    "acceptableAnswers": []
+   },
+   "explanation": null,
+   "sourceRef": "Zumdahl, Chemistry (Cengage); Atkins, Physical Chemistry (Oxford)",
+   "tags": [
+    "chemistry"
+   ]
+  },
+  {
+   "prompt": "Catalyst effect",
+   "content": {
+    "kind": "short-answer",
+    "answer": "Lowers the activation energy and speeds the reaction without being consumed; it does not change K.",
+    "acceptableAnswers": []
+   },
+   "explanation": null,
+   "sourceRef": "Zumdahl, Chemistry (Cengage); Atkins, Physical Chemistry (Oxford)",
+   "tags": [
+    "chemistry"
+   ]
+  },
+  {
+   "prompt": "Hess's law",
+   "content": {
+    "kind": "short-answer",
+    "answer": "Total enthalpy change is the sum of the steps, independent of path.",
+    "acceptableAnswers": []
+   },
+   "explanation": null,
+   "sourceRef": "Zumdahl, Chemistry (Cengage); Atkins, Physical Chemistry (Oxford)",
+   "tags": [
+    "chemistry"
+   ]
+  },
+  {
+   "prompt": "Nernst equation at 25 °C",
+   "content": {
+    "kind": "short-answer",
+    "answer": "E = E° - (0.0592/n) log Q",
+    "acceptableAnswers": []
+   },
+   "explanation": null,
+   "sourceRef": "Zumdahl, Chemistry (Cengage); Atkins, Physical Chemistry (Oxford)",
+   "tags": [
+    "chemistry"
+   ]
+  },
+  {
+   "prompt": "Hydrogen bonding requires H bonded to",
+   "content": {
+    "kind": "short-answer",
+    "answer": "N, O or F (and an electronegative atom with a lone pair on a neighboring molecule).",
+    "acceptableAnswers": []
+   },
+   "explanation": null,
+   "sourceRef": "Zumdahl, Chemistry (Cengage); Atkins, Physical Chemistry (Oxford)",
+   "tags": [
+    "chemistry"
+   ]
+  },
+  {
+   "prompt": "Intermolecular forces, weakest to strongest",
+   "content": {
+    "kind": "short-answer",
+    "answer": "London dispersion, dipole–dipole, hydrogen bonding (roughly).",
+    "acceptableAnswers": []
+   },
+   "explanation": null,
+   "sourceRef": "Zumdahl, Chemistry (Cengage); Atkins, Physical Chemistry (Oxford)",
+   "tags": [
+    "chemistry"
+   ]
+  }
+ ]
+}

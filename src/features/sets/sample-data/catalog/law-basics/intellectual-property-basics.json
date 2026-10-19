@@ -1,0 +1,336 @@
+{
+ "seshatExportVersion": 1,
+ "name": "Intellectual Property Basics",
+ "description": "Patents, copyrights, trademarks and trade secrets under US law.",
+ "tags": [
+  "law",
+  "intellectual-property"
+ ],
+ "cards": [
+  {
+   "prompt": "Utility patent term",
+   "content": {
+    "kind": "short-answer",
+    "answer": "20 years from the earliest effective non-provisional filing date (35 U.S.C. 154).",
+    "acceptableAnswers": []
+   },
+   "explanation": null,
+   "sourceRef": "17 U.S.C.; 35 U.S.C.; 15 U.S.C. (Lanham Act); Merges & Duffy, Patent Law and Policy",
+   "tags": [
+    "law"
+   ]
+  },
+  {
+   "prompt": "Design patent term (filed after May 13, 2015)",
+   "content": {
+    "kind": "short-answer",
+    "answer": "15 years from grant.",
+    "acceptableAnswers": []
+   },
+   "explanation": null,
+   "sourceRef": "17 U.S.C.; 35 U.S.C.; 15 U.S.C. (Lanham Act); Merges & Duffy, Patent Law and Policy",
+   "tags": [
+    "law"
+   ]
+  },
+  {
+   "prompt": "Patentable subject matter",
+   "content": {
+    "kind": "short-answer",
+    "answer": "Process, machine, manufacture, or composition of matter (35 U.S.C. 101); laws of nature, abstract ideas and natural phenomena are excluded.",
+    "acceptableAnswers": []
+   },
+   "explanation": null,
+   "sourceRef": "17 U.S.C.; 35 U.S.C.; 15 U.S.C. (Lanham Act); Merges & Duffy, Patent Law and Policy",
+   "tags": [
+    "law"
+   ]
+  },
+  {
+   "prompt": "Requirements for patentability",
+   "content": {
+    "kind": "short-answer",
+    "answer": "Eligible subject matter, utility, novelty (102), non-obviousness (103), and adequate disclosure (112).",
+    "acceptableAnswers": []
+   },
+   "explanation": null,
+   "sourceRef": "17 U.S.C.; 35 U.S.C.; 15 U.S.C. (Lanham Act); Merges & Duffy, Patent Law and Policy",
+   "tags": [
+    "law"
+   ]
+  },
+  {
+   "prompt": "Novelty under 35 U.S.C. 102",
+   "content": {
+    "kind": "short-answer",
+    "answer": "The claimed invention must not be anticipated by prior art (first inventor to file under the AIA).",
+    "acceptableAnswers": []
+   },
+   "explanation": null,
+   "sourceRef": "17 U.S.C.; 35 U.S.C.; 15 U.S.C. (Lanham Act); Merges & Duffy, Patent Law and Policy",
+   "tags": [
+    "law"
+   ]
+  },
+  {
+   "prompt": "Non-obviousness",
+   "content": {
+    "kind": "short-answer",
+    "answer": "The invention would not have been obvious to a person having ordinary skill in the art (35 U.S.C. 103).",
+    "acceptableAnswers": []
+   },
+   "explanation": null,
+   "sourceRef": "17 U.S.C.; 35 U.S.C.; 15 U.S.C. (Lanham Act); Merges & Duffy, Patent Law and Policy",
+   "tags": [
+    "law"
+   ]
+  },
+  {
+   "prompt": "Written description, enablement, best mode",
+   "content": {
+    "kind": "short-answer",
+    "answer": "Section 112 requirements; best mode remains a requirement but is not a basis for invalidity after the AIA.",
+    "acceptableAnswers": []
+   },
+   "explanation": null,
+   "sourceRef": "17 U.S.C.; 35 U.S.C.; 15 U.S.C. (Lanham Act); Merges & Duffy, Patent Law and Policy",
+   "tags": [
+    "law"
+   ]
+  },
+  {
+   "prompt": "Provisional patent application",
+   "content": {
+    "kind": "short-answer",
+    "answer": "Establishes an early filing date for 12 months; never examined; non-provisional must follow within 12 months.",
+    "acceptableAnswers": []
+   },
+   "explanation": null,
+   "sourceRef": "17 U.S.C.; 35 U.S.C.; 15 U.S.C. (Lanham Act); Merges & Duffy, Patent Law and Policy",
+   "tags": [
+    "law"
+   ]
+  },
+  {
+   "prompt": "Copyright duration (works created after 1977)",
+   "content": {
+    "kind": "short-answer",
+    "answer": "Life of the author plus 70 years; works for hire: 95 years from publication or 120 from creation.",
+    "acceptableAnswers": []
+   },
+   "explanation": null,
+   "sourceRef": "17 U.S.C.; 35 U.S.C.; 15 U.S.C. (Lanham Act); Merges & Duffy, Patent Law and Policy",
+   "tags": [
+    "law"
+   ]
+  },
+  {
+   "prompt": "Copyright protects",
+   "content": {
+    "kind": "short-answer",
+    "answer": "Original works of authorship fixed in a tangible medium; not ideas, facts or methods (17 U.S.C. 102).",
+    "acceptableAnswers": []
+   },
+   "explanation": null,
+   "sourceRef": "17 U.S.C.; 35 U.S.C.; 15 U.S.C. (Lanham Act); Merges & Duffy, Patent Law and Policy",
+   "tags": [
+    "law"
+   ]
+  },
+  {
+   "prompt": "Fair use factors",
+   "content": {
+    "kind": "short-answer",
+    "answer": "Purpose and character, nature of the work, amount used, and effect on the market (17 U.S.C. 107).",
+    "acceptableAnswers": []
+   },
+   "explanation": null,
+   "sourceRef": "17 U.S.C.; 35 U.S.C.; 15 U.S.C. (Lanham Act); Merges & Duffy, Patent Law and Policy",
+   "tags": [
+    "law"
+   ]
+  },
+  {
+   "prompt": "Copyright registration",
+   "content": {
+    "kind": "short-answer",
+    "answer": "Required before suing for infringement of a US work; also required for statutory damages and fees in most cases.",
+    "acceptableAnswers": []
+   },
+   "explanation": null,
+   "sourceRef": "17 U.S.C.; 35 U.S.C.; 15 U.S.C. (Lanham Act); Merges & Duffy, Patent Law and Policy",
+   "tags": [
+    "law"
+   ]
+  },
+  {
+   "prompt": "Trademark",
+   "content": {
+    "kind": "short-answer",
+    "answer": "A word, name, symbol or design identifying the source of goods or services.",
+    "acceptableAnswers": []
+   },
+   "explanation": null,
+   "sourceRef": "17 U.S.C.; 35 U.S.C.; 15 U.S.C. (Lanham Act); Merges & Duffy, Patent Law and Policy",
+   "tags": [
+    "law"
+   ]
+  },
+  {
+   "prompt": "Trademark distinctiveness spectrum",
+   "content": {
+    "kind": "short-answer",
+    "answer": "Fanciful, arbitrary, suggestive, descriptive (needs secondary meaning), generic (unprotectable).",
+    "acceptableAnswers": []
+   },
+   "explanation": null,
+   "sourceRef": "17 U.S.C.; 35 U.S.C.; 15 U.S.C. (Lanham Act); Merges & Duffy, Patent Law and Policy",
+   "tags": [
+    "law"
+   ]
+  },
+  {
+   "prompt": "Trademark duration",
+   "content": {
+    "kind": "short-answer",
+    "answer": "Renewable indefinitely so long as it is used in commerce; registration renewals every 10 years.",
+    "acceptableAnswers": []
+   },
+   "explanation": null,
+   "sourceRef": "17 U.S.C.; 35 U.S.C.; 15 U.S.C. (Lanham Act); Merges & Duffy, Patent Law and Policy",
+   "tags": [
+    "law"
+   ]
+  },
+  {
+   "prompt": "Likelihood of confusion",
+   "content": {
+    "kind": "short-answer",
+    "answer": "Core test of trademark infringement, often using the multi-factor Polaroid or Sleekcraft tests.",
+    "acceptableAnswers": []
+   },
+   "explanation": null,
+   "sourceRef": "17 U.S.C.; 35 U.S.C.; 15 U.S.C. (Lanham Act); Merges & Duffy, Patent Law and Policy",
+   "tags": [
+    "law"
+   ]
+  },
+  {
+   "prompt": "Trade secret",
+   "content": {
+    "kind": "short-answer",
+    "answer": "Information that derives value from being secret and is subject to reasonable secrecy measures (Defend Trade Secrets Act; UTSA).",
+    "acceptableAnswers": []
+   },
+   "explanation": null,
+   "sourceRef": "17 U.S.C.; 35 U.S.C.; 15 U.S.C. (Lanham Act); Merges & Duffy, Patent Law and Policy",
+   "tags": [
+    "law"
+   ]
+  },
+  {
+   "prompt": "Doctrine of equivalents",
+   "content": {
+    "kind": "short-answer",
+    "answer": "A product can infringe a patent if it performs substantially the same function in substantially the same way to achieve the same result.",
+    "acceptableAnswers": []
+   },
+   "explanation": null,
+   "sourceRef": "17 U.S.C.; 35 U.S.C.; 15 U.S.C. (Lanham Act); Merges & Duffy, Patent Law and Policy",
+   "tags": [
+    "law"
+   ]
+  },
+  {
+   "prompt": "First sale doctrine",
+   "content": {
+    "kind": "short-answer",
+    "answer": "The owner of a lawfully made copy may resell it without the copyright owner's permission.",
+    "acceptableAnswers": []
+   },
+   "explanation": null,
+   "sourceRef": "17 U.S.C.; 35 U.S.C.; 15 U.S.C. (Lanham Act); Merges & Duffy, Patent Law and Policy",
+   "tags": [
+    "law"
+   ]
+  },
+  {
+   "prompt": "DMCA safe harbor (section 512)",
+   "content": {
+    "kind": "short-answer",
+    "answer": "Online service providers avoid liability for user infringement if they follow notice-and-takedown procedures.",
+    "acceptableAnswers": []
+   },
+   "explanation": null,
+   "sourceRef": "17 U.S.C.; 35 U.S.C.; 15 U.S.C. (Lanham Act); Merges & Duffy, Patent Law and Policy",
+   "tags": [
+    "law"
+   ]
+  },
+  {
+   "prompt": "Alice/Mayo test",
+   "content": {
+    "kind": "short-answer",
+    "answer": "Two steps: is the claim directed to a judicial exception (law of nature, abstract idea), and if so, does it add an inventive concept?",
+    "acceptableAnswers": []
+   },
+   "explanation": null,
+   "sourceRef": "17 U.S.C.; 35 U.S.C.; 15 U.S.C. (Lanham Act); Merges & Duffy, Patent Law and Policy",
+   "tags": [
+    "law"
+   ]
+  },
+  {
+   "prompt": "Inter partes review",
+   "content": {
+    "kind": "short-answer",
+    "answer": "A USPTO proceeding to challenge patent validity on novelty or obviousness grounds based on patents and printed publications.",
+    "acceptableAnswers": []
+   },
+   "explanation": null,
+   "sourceRef": "17 U.S.C.; 35 U.S.C.; 15 U.S.C. (Lanham Act); Merges & Duffy, Patent Law and Policy",
+   "tags": [
+    "law"
+   ]
+  },
+  {
+   "prompt": "Patent infringement types",
+   "content": {
+    "kind": "short-answer",
+    "answer": "Direct (35 U.S.C. 271(a)), induced (271(b)), and contributory (271(c)).",
+    "acceptableAnswers": []
+   },
+   "explanation": null,
+   "sourceRef": "17 U.S.C.; 35 U.S.C.; 15 U.S.C. (Lanham Act); Merges & Duffy, Patent Law and Policy",
+   "tags": [
+    "law"
+   ]
+  },
+  {
+   "prompt": "Work made for hire",
+   "content": {
+    "kind": "short-answer",
+    "answer": "Copyright vests in the employer for works created within the scope of employment, or certain commissioned works with a written agreement.",
+    "acceptableAnswers": []
+   },
+   "explanation": null,
+   "sourceRef": "17 U.S.C.; 35 U.S.C.; 15 U.S.C. (Lanham Act); Merges & Duffy, Patent Law and Policy",
+   "tags": [
+    "law"
+   ]
+  },
+  {
+   "prompt": "Moral rights (VARA)",
+   "content": {
+    "kind": "short-answer",
+    "answer": "US Visual Artists Rights Act gives limited attribution and integrity rights to authors of works of visual art.",
+    "acceptableAnswers": []
+   },
+   "explanation": null,
+   "sourceRef": "17 U.S.C.; 35 U.S.C.; 15 U.S.C. (Lanham Act); Merges & Duffy, Patent Law and Policy",
+   "tags": [
+    "law"
+   ]
+  }
+ ]
+}

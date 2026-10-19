@@ -1,0 +1,466 @@
+{
+ "seshatExportVersion": 1,
+ "name": "Elements and the Periodic Table",
+ "description": "Element symbols, groups and periodic trends.",
+ "tags": [
+  "chemistry",
+  "periodic-table"
+ ],
+ "cards": [
+  {
+   "prompt": "Symbol for sodium",
+   "content": {
+    "kind": "short-answer",
+    "answer": "Na (from natrium)",
+    "acceptableAnswers": []
+   },
+   "explanation": null,
+   "sourceRef": "Zumdahl, Chemistry (Cengage); IUPAC periodic table",
+   "tags": [
+    "chemistry"
+   ]
+  },
+  {
+   "prompt": "Symbol for potassium",
+   "content": {
+    "kind": "short-answer",
+    "answer": "K (from kalium)",
+    "acceptableAnswers": []
+   },
+   "explanation": null,
+   "sourceRef": "Zumdahl, Chemistry (Cengage); IUPAC periodic table",
+   "tags": [
+    "chemistry"
+   ]
+  },
+  {
+   "prompt": "Symbol for iron",
+   "content": {
+    "kind": "short-answer",
+    "answer": "Fe (from ferrum)",
+    "acceptableAnswers": []
+   },
+   "explanation": null,
+   "sourceRef": "Zumdahl, Chemistry (Cengage); IUPAC periodic table",
+   "tags": [
+    "chemistry"
+   ]
+  },
+  {
+   "prompt": "Symbol for gold",
+   "content": {
+    "kind": "short-answer",
+    "answer": "Au (from aurum)",
+    "acceptableAnswers": []
+   },
+   "explanation": null,
+   "sourceRef": "Zumdahl, Chemistry (Cengage); IUPAC periodic table",
+   "tags": [
+    "chemistry"
+   ]
+  },
+  {
+   "prompt": "Symbol for silver",
+   "content": {
+    "kind": "short-answer",
+    "answer": "Ag (from argentum)",
+    "acceptableAnswers": []
+   },
+   "explanation": null,
+   "sourceRef": "Zumdahl, Chemistry (Cengage); IUPAC periodic table",
+   "tags": [
+    "chemistry"
+   ]
+  },
+  {
+   "prompt": "Symbol for lead",
+   "content": {
+    "kind": "short-answer",
+    "answer": "Pb (from plumbum)",
+    "acceptableAnswers": []
+   },
+   "explanation": null,
+   "sourceRef": "Zumdahl, Chemistry (Cengage); IUPAC periodic table",
+   "tags": [
+    "chemistry"
+   ]
+  },
+  {
+   "prompt": "Symbol for tin",
+   "content": {
+    "kind": "short-answer",
+    "answer": "Sn (from stannum)",
+    "acceptableAnswers": []
+   },
+   "explanation": null,
+   "sourceRef": "Zumdahl, Chemistry (Cengage); IUPAC periodic table",
+   "tags": [
+    "chemistry"
+   ]
+  },
+  {
+   "prompt": "Symbol for mercury",
+   "content": {
+    "kind": "short-answer",
+    "answer": "Hg (from hydrargyrum)",
+    "acceptableAnswers": []
+   },
+   "explanation": null,
+   "sourceRef": "Zumdahl, Chemistry (Cengage); IUPAC periodic table",
+   "tags": [
+    "chemistry"
+   ]
+  },
+  {
+   "prompt": "Symbol for tungsten",
+   "content": {
+    "kind": "short-answer",
+    "answer": "W (from wolfram)",
+    "acceptableAnswers": []
+   },
+   "explanation": null,
+   "sourceRef": "Zumdahl, Chemistry (Cengage); IUPAC periodic table",
+   "tags": [
+    "chemistry"
+   ]
+  },
+  {
+   "prompt": "Symbol for copper",
+   "content": {
+    "kind": "short-answer",
+    "answer": "Cu (from cuprum)",
+    "acceptableAnswers": []
+   },
+   "explanation": null,
+   "sourceRef": "Zumdahl, Chemistry (Cengage); IUPAC periodic table",
+   "tags": [
+    "chemistry"
+   ]
+  },
+  {
+   "prompt": "Atomic number",
+   "content": {
+    "kind": "short-answer",
+    "answer": "The number of protons in an atom's nucleus; it defines the element.",
+    "acceptableAnswers": []
+   },
+   "explanation": null,
+   "sourceRef": "Zumdahl, Chemistry (Cengage); IUPAC periodic table",
+   "tags": [
+    "chemistry"
+   ]
+  },
+  {
+   "prompt": "Atomic numbers of H, He, C, N, O",
+   "content": {
+    "kind": "short-answer",
+    "answer": "1, 2, 6, 7, 8",
+    "acceptableAnswers": []
+   },
+   "explanation": null,
+   "sourceRef": "Zumdahl, Chemistry (Cengage); IUPAC periodic table",
+   "tags": [
+    "chemistry"
+   ]
+  },
+  {
+   "prompt": "Atomic numbers of Na, Mg, Al, Si, Cl",
+   "content": {
+    "kind": "short-answer",
+    "answer": "11, 12, 13, 14, 17",
+    "acceptableAnswers": []
+   },
+   "explanation": null,
+   "sourceRef": "Zumdahl, Chemistry (Cengage); IUPAC periodic table",
+   "tags": [
+    "chemistry"
+   ]
+  },
+  {
+   "prompt": "Group 1 elements",
+   "content": {
+    "kind": "short-answer",
+    "answer": "Alkali metals: Li, Na, K, Rb, Cs, Fr (one valence electron, highly reactive).",
+    "acceptableAnswers": []
+   },
+   "explanation": null,
+   "sourceRef": "Zumdahl, Chemistry (Cengage); IUPAC periodic table",
+   "tags": [
+    "chemistry"
+   ]
+  },
+  {
+   "prompt": "Group 2 elements",
+   "content": {
+    "kind": "short-answer",
+    "answer": "Alkaline earth metals: Be, Mg, Ca, Sr, Ba, Ra.",
+    "acceptableAnswers": []
+   },
+   "explanation": null,
+   "sourceRef": "Zumdahl, Chemistry (Cengage); IUPAC periodic table",
+   "tags": [
+    "chemistry"
+   ]
+  },
+  {
+   "prompt": "Group 17 elements",
+   "content": {
+    "kind": "short-answer",
+    "answer": "Halogens: F, Cl, Br, I, At.",
+    "acceptableAnswers": []
+   },
+   "explanation": null,
+   "sourceRef": "Zumdahl, Chemistry (Cengage); IUPAC periodic table",
+   "tags": [
+    "chemistry"
+   ]
+  },
+  {
+   "prompt": "Group 18 elements",
+   "content": {
+    "kind": "short-answer",
+    "answer": "Noble gases: He, Ne, Ar, Kr, Xe, Rn (full valence shells).",
+    "acceptableAnswers": []
+   },
+   "explanation": null,
+   "sourceRef": "Zumdahl, Chemistry (Cengage); IUPAC periodic table",
+   "tags": [
+    "chemistry"
+   ]
+  },
+  {
+   "prompt": "Most electronegative element",
+   "content": {
+    "kind": "short-answer",
+    "answer": "Fluorine (3.98 on the Pauling scale).",
+    "acceptableAnswers": []
+   },
+   "explanation": null,
+   "sourceRef": "Zumdahl, Chemistry (Cengage); IUPAC periodic table",
+   "tags": [
+    "chemistry"
+   ]
+  },
+  {
+   "prompt": "Electronegativity trend",
+   "content": {
+    "kind": "short-answer",
+    "answer": "Increases across a period (left to right) and decreases down a group.",
+    "acceptableAnswers": []
+   },
+   "explanation": null,
+   "sourceRef": "Zumdahl, Chemistry (Cengage); IUPAC periodic table",
+   "tags": [
+    "chemistry"
+   ]
+  },
+  {
+   "prompt": "Atomic radius trend",
+   "content": {
+    "kind": "short-answer",
+    "answer": "Decreases across a period and increases down a group.",
+    "acceptableAnswers": []
+   },
+   "explanation": null,
+   "sourceRef": "Zumdahl, Chemistry (Cengage); IUPAC periodic table",
+   "tags": [
+    "chemistry"
+   ]
+  },
+  {
+   "prompt": "First ionization energy trend",
+   "content": {
+    "kind": "short-answer",
+    "answer": "Generally increases across a period and decreases down a group.",
+    "acceptableAnswers": []
+   },
+   "explanation": null,
+   "sourceRef": "Zumdahl, Chemistry (Cengage); IUPAC periodic table",
+   "tags": [
+    "chemistry"
+   ]
+  },
+  {
+   "prompt": "Isotopes",
+   "content": {
+    "kind": "short-answer",
+    "answer": "Atoms of the same element with different numbers of neutrons.",
+    "acceptableAnswers": []
+   },
+   "explanation": null,
+   "sourceRef": "Zumdahl, Chemistry (Cengage); IUPAC periodic table",
+   "tags": [
+    "chemistry"
+   ]
+  },
+  {
+   "prompt": "Mass number",
+   "content": {
+    "kind": "short-answer",
+    "answer": "Protons + neutrons.",
+    "acceptableAnswers": []
+   },
+   "explanation": null,
+   "sourceRef": "Zumdahl, Chemistry (Cengage); IUPAC periodic table",
+   "tags": [
+    "chemistry"
+   ]
+  },
+  {
+   "prompt": "Most abundant element in the universe",
+   "content": {
+    "kind": "short-answer",
+    "answer": "Hydrogen",
+    "acceptableAnswers": []
+   },
+   "explanation": null,
+   "sourceRef": "Zumdahl, Chemistry (Cengage); IUPAC periodic table",
+   "tags": [
+    "chemistry"
+   ]
+  },
+  {
+   "prompt": "Most abundant element in Earth's crust by mass",
+   "content": {
+    "kind": "short-answer",
+    "answer": "Oxygen (about 46%), then silicon.",
+    "acceptableAnswers": []
+   },
+   "explanation": null,
+   "sourceRef": "Zumdahl, Chemistry (Cengage); IUPAC periodic table",
+   "tags": [
+    "chemistry"
+   ]
+  },
+  {
+   "prompt": "Only liquid metal at room temperature (standard conditions)",
+   "content": {
+    "kind": "short-answer",
+    "answer": "Mercury (bromine is the only liquid nonmetal).",
+    "acceptableAnswers": []
+   },
+   "explanation": null,
+   "sourceRef": "Zumdahl, Chemistry (Cengage); IUPAC periodic table",
+   "tags": [
+    "chemistry"
+   ]
+  },
+  {
+   "prompt": "Transition metals",
+   "content": {
+    "kind": "short-answer",
+    "answer": "Elements in groups 3-12 (the d-block).",
+    "acceptableAnswers": []
+   },
+   "explanation": null,
+   "sourceRef": "Zumdahl, Chemistry (Cengage); IUPAC periodic table",
+   "tags": [
+    "chemistry"
+   ]
+  },
+  {
+   "prompt": "Metalloids (typical list)",
+   "content": {
+    "kind": "short-answer",
+    "answer": "B, Si, Ge, As, Sb, Te",
+    "acceptableAnswers": []
+   },
+   "explanation": null,
+   "sourceRef": "Zumdahl, Chemistry (Cengage); IUPAC periodic table",
+   "tags": [
+    "chemistry"
+   ]
+  },
+  {
+   "prompt": "Allotropes of carbon",
+   "content": {
+    "kind": "short-answer",
+    "answer": "Diamond, graphite, graphene, fullerenes.",
+    "acceptableAnswers": []
+   },
+   "explanation": null,
+   "sourceRef": "Zumdahl, Chemistry (Cengage); IUPAC periodic table",
+   "tags": [
+    "chemistry"
+   ]
+  },
+  {
+   "prompt": "Avogadro's number",
+   "content": {
+    "kind": "short-answer",
+    "answer": "6.022 × 10^23 per mole",
+    "acceptableAnswers": []
+   },
+   "explanation": null,
+   "sourceRef": "Zumdahl, Chemistry (Cengage); IUPAC periodic table",
+   "tags": [
+    "chemistry"
+   ]
+  },
+  {
+   "prompt": "Electron configuration of neon",
+   "content": {
+    "kind": "short-answer",
+    "answer": "1s2 2s2 2p6",
+    "acceptableAnswers": []
+   },
+   "explanation": null,
+   "sourceRef": "Zumdahl, Chemistry (Cengage); IUPAC periodic table",
+   "tags": [
+    "chemistry"
+   ]
+  },
+  {
+   "prompt": "Aufbau principle",
+   "content": {
+    "kind": "short-answer",
+    "answer": "Electrons fill the lowest-energy orbitals first.",
+    "acceptableAnswers": []
+   },
+   "explanation": null,
+   "sourceRef": "Zumdahl, Chemistry (Cengage); IUPAC periodic table",
+   "tags": [
+    "chemistry"
+   ]
+  },
+  {
+   "prompt": "Hund's rule",
+   "content": {
+    "kind": "short-answer",
+    "answer": "Electrons occupy degenerate orbitals singly with parallel spins before pairing.",
+    "acceptableAnswers": []
+   },
+   "explanation": null,
+   "sourceRef": "Zumdahl, Chemistry (Cengage); IUPAC periodic table",
+   "tags": [
+    "chemistry"
+   ]
+  },
+  {
+   "prompt": "Pauli exclusion principle (chemistry form)",
+   "content": {
+    "kind": "short-answer",
+    "answer": "No two electrons in an atom share all four quantum numbers.",
+    "acceptableAnswers": []
+   },
+   "explanation": null,
+   "sourceRef": "Zumdahl, Chemistry (Cengage); IUPAC periodic table",
+   "tags": [
+    "chemistry"
+   ]
+  },
+  {
+   "prompt": "Orbital capacity of s, p, d, f subshells",
+   "content": {
+    "kind": "short-answer",
+    "answer": "2, 6, 10, 14 electrons",
+    "acceptableAnswers": []
+   },
+   "explanation": null,
+   "sourceRef": "Zumdahl, Chemistry (Cengage); IUPAC periodic table",
+   "tags": [
+    "chemistry"
+   ]
+  }
+ ]
+}

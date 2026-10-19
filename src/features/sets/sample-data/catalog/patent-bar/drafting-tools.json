@@ -1,0 +1,97 @@
+{
+ "name": "Patent Drafting Tools",
+ "terms": [
+  {
+   "term": "DeepIP",
+   "definition": "Automated patent drafting software (formerly Davinci) (https://www.deepip.ai/)"
+  },
+  {
+   "term": "Power Patent",
+   "definition": "Automated solution for generating patent application drafts (https://powerpatent.com/)"
+  },
+  {
+   "term": "Edge",
+   "definition": "AI-powered patent drafting assistance tool (https://withedge.com/)"
+  },
+  {
+   "term": "Patent Engine (designtoIP)",
+   "definition": "Automated patent document generation platform (https://www.designtoip.de/)"
+  },
+  {
+   "term": "Fenix.ai",
+   "definition": "Machine learning-based patent drafting technology (https://www.fenix.ai/)"
+  },
+  {
+   "term": "PatentPal",
+   "definition": "Intelligent system for creating patent specifications (https://patentpal.com/)"
+  },
+  {
+   "term": "Claim Master",
+   "definition": "Specialized tool for automated claim drafting (https://www.patentclaimmaster.com/)"
+  },
+  {
+   "term": "Paximal",
+   "definition": "Patent drafting software (previously called Specifo) (https://www.paximal.com/)"
+  },
+  {
+   "term": "Dolcera / IP Author",
+   "definition": "Automated intellectual property document creation (https://ipauthor.com/)"
+  },
+  {
+   "term": "Qatent",
+   "definition": "AI-assisted patent application development platform (https://qatent.com/)"
+  },
+  {
+   "term": "Patent Pioneer",
+   "definition": "Automated patent drafting tool from Harrity LLP (formerly Patent Draftr) (https://software.harrityllp.com/pioneer/)"
+  },
+  {
+   "term": "Clarivate Rowan",
+   "definition": "Patent drafting tool (previously Turbo Patent) (https://rowanpatents.com/drafting/)"
+  },
+  {
+   "term": "Solve Intelligence",
+   "definition": "AI-assisted patent drafting solution (https://www.solveintelligence.com/)"
+  },
+  {
+   "term": "Patent Bots",
+   "definition": "Robotic/automated patent application preparation system (https://www.patentbots.com/)"
+  },
+  {
+   "term": "Patent Optimizer (LexisNexis)",
+   "definition": "Enterprise patent drafting optimization tool (https://www.lexisnexisip.com/solutions/patent-drafting/patentoptimizer/)"
+  },
+  {
+   "term": "Lightbringer",
+   "definition": "Patent document automation software (https://www.lightbringer.com/)"
+  },
+  {
+   "term": "PatentAssist",
+   "definition": "AI-driven patent drafting assistance (http://patentassist.ai/)"
+  },
+  {
+   "term": "Patently (Onardo)",
+   "definition": "Collaborative patent application platform (https://patently.com/)"
+  },
+  {
+   "term": "IPRally",
+   "definition": "Integrated patent management and drafting system (https://www.iprally.com/)"
+  },
+  {
+   "term": "PatentMaker",
+   "definition": "AI patent drafting/prosecution platform from PatentMaker Software GmbH (Munich); blocks plain curl but loads fine in browser (https://patentmaker.eu/)"
+  },
+  {
+   "term": "XLScout",
+   "definition": "Patent research and drafting integration platform (https://xlscout.ai/)"
+  },
+  {
+   "term": "InCatalyst",
+   "definition": "Patent drafting catalyst system (https://www.in-catalyst.com/)"
+  },
+  {
+   "term": "Philipa",
+   "definition": "German-language patent drafting automation tool (https://philipa.de/)"
+  }
+ ]
+}

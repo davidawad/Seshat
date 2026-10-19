@@ -1,0 +1,440 @@
+{
+ "seshatExportVersion": 1,
+ "name": "Classical Mechanics Formulas",
+ "description": "Kinematics, Newton's laws, energy, momentum and rotation.",
+ "tags": [
+  "physics",
+  "mechanics"
+ ],
+ "cards": [
+  {
+   "prompt": "Constant-acceleration kinematics: v after time t",
+   "content": {
+    "kind": "short-answer",
+    "answer": "v = v0 + a t",
+    "acceptableAnswers": []
+   },
+   "explanation": null,
+   "sourceRef": "Halliday, Resnick & Walker, Fundamentals of Physics (Wiley)",
+   "tags": [
+    "physics"
+   ]
+  },
+  {
+   "prompt": "Constant-acceleration kinematics: displacement",
+   "content": {
+    "kind": "short-answer",
+    "answer": "x = x0 + v0 t + (1/2) a t^2",
+    "acceptableAnswers": []
+   },
+   "explanation": null,
+   "sourceRef": "Halliday, Resnick & Walker, Fundamentals of Physics (Wiley)",
+   "tags": [
+    "physics"
+   ]
+  },
+  {
+   "prompt": "Constant-acceleration kinematics without time",
+   "content": {
+    "kind": "short-answer",
+    "answer": "v^2 = v0^2 + 2 a Δx",
+    "acceptableAnswers": []
+   },
+   "explanation": null,
+   "sourceRef": "Halliday, Resnick & Walker, Fundamentals of Physics (Wiley)",
+   "tags": [
+    "physics"
+   ]
+  },
+  {
+   "prompt": "Newton's second law",
+   "content": {
+    "kind": "short-answer",
+    "answer": "F_net = m a (equivalently F = dp/dt)",
+    "acceptableAnswers": []
+   },
+   "explanation": null,
+   "sourceRef": "Halliday, Resnick & Walker, Fundamentals of Physics (Wiley)",
+   "tags": [
+    "physics"
+   ]
+  },
+  {
+   "prompt": "Newton's third law",
+   "content": {
+    "kind": "short-answer",
+    "answer": "Forces between two bodies are equal in magnitude and opposite in direction.",
+    "acceptableAnswers": []
+   },
+   "explanation": null,
+   "sourceRef": "Halliday, Resnick & Walker, Fundamentals of Physics (Wiley)",
+   "tags": [
+    "physics"
+   ]
+  },
+  {
+   "prompt": "Weight near Earth's surface",
+   "content": {
+    "kind": "short-answer",
+    "answer": "W = m g, with g ≈ 9.81 m/s^2",
+    "acceptableAnswers": []
+   },
+   "explanation": null,
+   "sourceRef": "Halliday, Resnick & Walker, Fundamentals of Physics (Wiley)",
+   "tags": [
+    "physics"
+   ]
+  },
+  {
+   "prompt": "Kinetic friction force",
+   "content": {
+    "kind": "short-answer",
+    "answer": "f_k = μ_k N",
+    "acceptableAnswers": []
+   },
+   "explanation": null,
+   "sourceRef": "Halliday, Resnick & Walker, Fundamentals of Physics (Wiley)",
+   "tags": [
+    "physics"
+   ]
+  },
+  {
+   "prompt": "Maximum static friction",
+   "content": {
+    "kind": "short-answer",
+    "answer": "f_s,max = μ_s N",
+    "acceptableAnswers": []
+   },
+   "explanation": null,
+   "sourceRef": "Halliday, Resnick & Walker, Fundamentals of Physics (Wiley)",
+   "tags": [
+    "physics"
+   ]
+  },
+  {
+   "prompt": "Hooke's law",
+   "content": {
+    "kind": "short-answer",
+    "answer": "F = -k x",
+    "acceptableAnswers": []
+   },
+   "explanation": null,
+   "sourceRef": "Halliday, Resnick & Walker, Fundamentals of Physics (Wiley)",
+   "tags": [
+    "physics"
+   ]
+  },
+  {
+   "prompt": "Work done by a constant force",
+   "content": {
+    "kind": "short-answer",
+    "answer": "W = F d cos θ",
+    "acceptableAnswers": []
+   },
+   "explanation": null,
+   "sourceRef": "Halliday, Resnick & Walker, Fundamentals of Physics (Wiley)",
+   "tags": [
+    "physics"
+   ]
+  },
+  {
+   "prompt": "Work–energy theorem",
+   "content": {
+    "kind": "short-answer",
+    "answer": "W_net = ΔK = (1/2) m v_f^2 - (1/2) m v_i^2",
+    "acceptableAnswers": []
+   },
+   "explanation": null,
+   "sourceRef": "Halliday, Resnick & Walker, Fundamentals of Physics (Wiley)",
+   "tags": [
+    "physics"
+   ]
+  },
+  {
+   "prompt": "Gravitational potential energy near the surface",
+   "content": {
+    "kind": "short-answer",
+    "answer": "U = m g h",
+    "acceptableAnswers": []
+   },
+   "explanation": null,
+   "sourceRef": "Halliday, Resnick & Walker, Fundamentals of Physics (Wiley)",
+   "tags": [
+    "physics"
+   ]
+  },
+  {
+   "prompt": "Spring potential energy",
+   "content": {
+    "kind": "short-answer",
+    "answer": "U = (1/2) k x^2",
+    "acceptableAnswers": []
+   },
+   "explanation": null,
+   "sourceRef": "Halliday, Resnick & Walker, Fundamentals of Physics (Wiley)",
+   "tags": [
+    "physics"
+   ]
+  },
+  {
+   "prompt": "Power",
+   "content": {
+    "kind": "short-answer",
+    "answer": "P = dW/dt = F · v",
+    "acceptableAnswers": []
+   },
+   "explanation": null,
+   "sourceRef": "Halliday, Resnick & Walker, Fundamentals of Physics (Wiley)",
+   "tags": [
+    "physics"
+   ]
+  },
+  {
+   "prompt": "Linear momentum and impulse",
+   "content": {
+    "kind": "short-answer",
+    "answer": "p = m v; impulse J = F Δt = Δp",
+    "acceptableAnswers": []
+   },
+   "explanation": null,
+   "sourceRef": "Halliday, Resnick & Walker, Fundamentals of Physics (Wiley)",
+   "tags": [
+    "physics"
+   ]
+  },
+  {
+   "prompt": "Conservation of momentum applies when",
+   "content": {
+    "kind": "short-answer",
+    "answer": "The net external force on the system is zero.",
+    "acceptableAnswers": []
+   },
+   "explanation": null,
+   "sourceRef": "Halliday, Resnick & Walker, Fundamentals of Physics (Wiley)",
+   "tags": [
+    "physics"
+   ]
+  },
+  {
+   "prompt": "Perfectly elastic collision conserves",
+   "content": {
+    "kind": "short-answer",
+    "answer": "Both momentum and kinetic energy.",
+    "acceptableAnswers": []
+   },
+   "explanation": null,
+   "sourceRef": "Halliday, Resnick & Walker, Fundamentals of Physics (Wiley)",
+   "tags": [
+    "physics"
+   ]
+  },
+  {
+   "prompt": "Centripetal acceleration for circular motion",
+   "content": {
+    "kind": "short-answer",
+    "answer": "a = v^2 / r = ω^2 r",
+    "acceptableAnswers": []
+   },
+   "explanation": null,
+   "sourceRef": "Halliday, Resnick & Walker, Fundamentals of Physics (Wiley)",
+   "tags": [
+    "physics"
+   ]
+  },
+  {
+   "prompt": "Torque",
+   "content": {
+    "kind": "short-answer",
+    "answer": "τ = r × F; magnitude r F sin θ",
+    "acceptableAnswers": []
+   },
+   "explanation": null,
+   "sourceRef": "Halliday, Resnick & Walker, Fundamentals of Physics (Wiley)",
+   "tags": [
+    "physics"
+   ]
+  },
+  {
+   "prompt": "Rotational analog of F = ma",
+   "content": {
+    "kind": "short-answer",
+    "answer": "τ_net = I α",
+    "acceptableAnswers": []
+   },
+   "explanation": null,
+   "sourceRef": "Halliday, Resnick & Walker, Fundamentals of Physics (Wiley)",
+   "tags": [
+    "physics"
+   ]
+  },
+  {
+   "prompt": "Moment of inertia of a solid disk about its axis",
+   "content": {
+    "kind": "short-answer",
+    "answer": "(1/2) M R^2",
+    "acceptableAnswers": []
+   },
+   "explanation": null,
+   "sourceRef": "Halliday, Resnick & Walker, Fundamentals of Physics (Wiley)",
+   "tags": [
+    "physics"
+   ]
+  },
+  {
+   "prompt": "Moment of inertia of a point mass at radius r",
+   "content": {
+    "kind": "short-answer",
+    "answer": "m r^2",
+    "acceptableAnswers": []
+   },
+   "explanation": null,
+   "sourceRef": "Halliday, Resnick & Walker, Fundamentals of Physics (Wiley)",
+   "tags": [
+    "physics"
+   ]
+  },
+  {
+   "prompt": "Rotational kinetic energy",
+   "content": {
+    "kind": "short-answer",
+    "answer": "K = (1/2) I ω^2",
+    "acceptableAnswers": []
+   },
+   "explanation": null,
+   "sourceRef": "Halliday, Resnick & Walker, Fundamentals of Physics (Wiley)",
+   "tags": [
+    "physics"
+   ]
+  },
+  {
+   "prompt": "Angular momentum of a rotating rigid body",
+   "content": {
+    "kind": "short-answer",
+    "answer": "L = I ω",
+    "acceptableAnswers": []
+   },
+   "explanation": null,
+   "sourceRef": "Halliday, Resnick & Walker, Fundamentals of Physics (Wiley)",
+   "tags": [
+    "physics"
+   ]
+  },
+  {
+   "prompt": "Newton's law of universal gravitation",
+   "content": {
+    "kind": "short-answer",
+    "answer": "F = G m1 m2 / r^2",
+    "acceptableAnswers": []
+   },
+   "explanation": null,
+   "sourceRef": "Halliday, Resnick & Walker, Fundamentals of Physics (Wiley)",
+   "tags": [
+    "physics"
+   ]
+  },
+  {
+   "prompt": "Gravitational constant G",
+   "content": {
+    "kind": "short-answer",
+    "answer": "6.674 × 10^-11 N·m^2/kg^2 (CODATA: 6.67430 × 10^-11)",
+    "acceptableAnswers": []
+   },
+   "explanation": null,
+   "sourceRef": "Halliday, Resnick & Walker, Fundamentals of Physics (Wiley)",
+   "tags": [
+    "physics"
+   ]
+  },
+  {
+   "prompt": "Escape velocity from radius r of a mass M",
+   "content": {
+    "kind": "short-answer",
+    "answer": "v = sqrt(2 G M / r)",
+    "acceptableAnswers": []
+   },
+   "explanation": null,
+   "sourceRef": "Halliday, Resnick & Walker, Fundamentals of Physics (Wiley)",
+   "tags": [
+    "physics"
+   ]
+  },
+  {
+   "prompt": "Kepler's third law",
+   "content": {
+    "kind": "short-answer",
+    "answer": "T^2 is proportional to a^3 (semi-major axis); for a circular orbit T^2 = 4π^2 r^3 / (G M).",
+    "acceptableAnswers": []
+   },
+   "explanation": null,
+   "sourceRef": "Halliday, Resnick & Walker, Fundamentals of Physics (Wiley)",
+   "tags": [
+    "physics"
+   ]
+  },
+  {
+   "prompt": "Period of a simple pendulum (small angle)",
+   "content": {
+    "kind": "short-answer",
+    "answer": "T = 2π sqrt(L / g)",
+    "acceptableAnswers": []
+   },
+   "explanation": null,
+   "sourceRef": "Halliday, Resnick & Walker, Fundamentals of Physics (Wiley)",
+   "tags": [
+    "physics"
+   ]
+  },
+  {
+   "prompt": "Period of a mass–spring oscillator",
+   "content": {
+    "kind": "short-answer",
+    "answer": "T = 2π sqrt(m / k)",
+    "acceptableAnswers": []
+   },
+   "explanation": null,
+   "sourceRef": "Halliday, Resnick & Walker, Fundamentals of Physics (Wiley)",
+   "tags": [
+    "physics"
+   ]
+  },
+  {
+   "prompt": "Terminal velocity occurs when",
+   "content": {
+    "kind": "short-answer",
+    "answer": "Drag force equals weight, so net force and acceleration are zero.",
+    "acceptableAnswers": []
+   },
+   "explanation": null,
+   "sourceRef": "Halliday, Resnick & Walker, Fundamentals of Physics (Wiley)",
+   "tags": [
+    "physics"
+   ]
+  },
+  {
+   "prompt": "Range of a projectile on level ground, launch angle θ",
+   "content": {
+    "kind": "short-answer",
+    "answer": "R = v0^2 sin(2θ) / g (maximum at 45° ignoring drag)",
+    "acceptableAnswers": []
+   },
+   "explanation": null,
+   "sourceRef": "Halliday, Resnick & Walker, Fundamentals of Physics (Wiley)",
+   "tags": [
+    "physics"
+   ]
+  },
+  {
+   "prompt": "Coefficient of restitution e",
+   "content": {
+    "kind": "short-answer",
+    "answer": "Relative speed of separation / relative speed of approach (1 elastic, 0 perfectly inelastic).",
+    "acceptableAnswers": []
+   },
+   "explanation": null,
+   "sourceRef": "Halliday, Resnick & Walker, Fundamentals of Physics (Wiley)",
+   "tags": [
+    "physics"
+   ]
+  }
+ ]
+}

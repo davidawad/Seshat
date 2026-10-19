@@ -1,0 +1,822 @@
+{
+ "seshatExportVersion": 1,
+ "name": "Investments and Economics Practice Questions",
+ "description": "Original practice questions on bonds, options, portfolio theory and economics (authored from public textbook concepts, not a vendor bank).",
+ "tags": [
+  "series-65",
+  "investments",
+  "mcq"
+ ],
+ "cards": [
+  {
+   "prompt": "When market interest rates rise, the price of an existing fixed-rate bond generally:",
+   "content": {
+    "kind": "mcq",
+    "options": [
+     "Rises",
+     "Falls",
+     "Stays unchanged",
+     "Doubles"
+    ],
+    "correctIndex": 1
+   },
+   "explanation": "Bond prices and yields move inversely: a fixed coupon becomes less attractive when new bonds pay more.",
+   "sourceRef": "CFA Institute, Investments curriculum; Bodie, Kane & Marcus, Investments (McGraw-Hill); NASAA Series 65 content outline",
+   "tags": [
+    "series-65"
+   ]
+  },
+  {
+   "prompt": "A bond with a $1,000 par value and a 5% coupon is trading at $950. Its current yield is closest to:",
+   "content": {
+    "kind": "mcq",
+    "options": [
+     "5.00%",
+     "5.26%",
+     "4.75%",
+     "5.50%"
+    ],
+    "correctIndex": 1
+   },
+   "explanation": "Current yield = annual interest / price = $50 / $950 = 5.26%.",
+   "sourceRef": "CFA Institute, Investments curriculum; Bodie, Kane & Marcus, Investments (McGraw-Hill); NASAA Series 65 content outline",
+   "tags": [
+    "series-65"
+   ]
+  },
+  {
+   "prompt": "A bond selling at a discount has a yield to maturity that is:",
+   "content": {
+    "kind": "mcq",
+    "options": [
+     "Less than the coupon rate",
+     "Equal to the coupon rate",
+     "Greater than the coupon rate",
+     "Unrelated to the coupon rate"
+    ],
+    "correctIndex": 2
+   },
+   "explanation": "At a discount, YTM > current yield > coupon rate. At a premium, YTM < current yield < coupon rate.",
+   "sourceRef": "CFA Institute, Investments curriculum; Bodie, Kane & Marcus, Investments (McGraw-Hill); NASAA Series 65 content outline",
+   "tags": [
+    "series-65"
+   ]
+  },
+  {
+   "prompt": "Which bond is most sensitive to a change in interest rates?",
+   "content": {
+    "kind": "mcq",
+    "options": [
+     "Short maturity, high coupon",
+     "Long maturity, low coupon",
+     "Short maturity, low coupon",
+     "Long maturity, high coupon"
+    ],
+    "correctIndex": 1
+   },
+   "explanation": "Duration (price sensitivity) is higher for longer maturities and lower coupons (zero-coupon bonds have the greatest sensitivity).",
+   "sourceRef": "CFA Institute, Investments curriculum; Bodie, Kane & Marcus, Investments (McGraw-Hill); NASAA Series 65 content outline",
+   "tags": [
+    "series-65"
+   ]
+  },
+  {
+   "prompt": "Duration of 5 means a bond's price changes by approximately what for a 1% change in yields?",
+   "content": {
+    "kind": "mcq",
+    "options": [
+     "0.5%",
+     "5%",
+     "1%",
+     "50%"
+    ],
+    "correctIndex": 1
+   },
+   "explanation": "Modified duration estimates percentage price change per 1% (100 bp) yield change, inversely.",
+   "sourceRef": "CFA Institute, Investments curriculum; Bodie, Kane & Marcus, Investments (McGraw-Hill); NASAA Series 65 content outline",
+   "tags": [
+    "series-65"
+   ]
+  },
+  {
+   "prompt": "Which risk is most associated with long-term bonds when inflation rises?",
+   "content": {
+    "kind": "mcq",
+    "options": [
+     "Purchasing power risk",
+     "Credit risk only",
+     "Liquidity risk only",
+     "Currency risk"
+    ],
+    "correctIndex": 0
+   },
+   "explanation": "Inflation erodes the real value of fixed payments, so purchasing power (inflation) risk is greater on long fixed-rate bonds.",
+   "sourceRef": "CFA Institute, Investments curriculum; Bodie, Kane & Marcus, Investments (McGraw-Hill); NASAA Series 65 content outline",
+   "tags": [
+    "series-65"
+   ]
+  },
+  {
+   "prompt": "Treasury Inflation-Protected Securities (TIPS) adjust which of the following with CPI?",
+   "content": {
+    "kind": "mcq",
+    "options": [
+     "The coupon rate",
+     "The principal",
+     "The maturity date",
+     "The credit rating"
+    ],
+    "correctIndex": 1
+   },
+   "explanation": "TIPS principal adjusts with CPI; the fixed coupon rate is applied to the adjusted principal, so interest rises or falls with it.",
+   "sourceRef": "CFA Institute, Investments curriculum; Bodie, Kane & Marcus, Investments (McGraw-Hill); NASAA Series 65 content outline",
+   "tags": [
+    "series-65"
+   ]
+  },
+  {
+   "prompt": "General obligation municipal bonds are backed by:",
+   "content": {
+    "kind": "mcq",
+    "options": [
+     "Revenue from a specific project",
+     "The taxing power of the issuer",
+     "A federal guarantee",
+     "Collateral of mortgages"
+    ],
+    "correctIndex": 1
+   },
+   "explanation": "GO bonds rely on the issuer's taxing power; revenue bonds rely on project revenues.",
+   "sourceRef": "CFA Institute, Investments curriculum; Bodie, Kane & Marcus, Investments (McGraw-Hill); NASAA Series 65 content outline",
+   "tags": [
+    "series-65"
+   ]
+  },
+  {
+   "prompt": "An investor in the 30% federal tax bracket compares a 4% tax-free municipal bond to a taxable bond. The taxable-equivalent yield is closest to:",
+   "content": {
+    "kind": "mcq",
+    "options": [
+     "5.2%",
+     "5.7%",
+     "6.0%",
+     "2.8%"
+    ],
+    "correctIndex": 1
+   },
+   "explanation": "Taxable-equivalent yield = tax-free yield / (1 - tax rate) = 4% / 0.70 = 5.71%.",
+   "sourceRef": "CFA Institute, Investments curriculum; Bodie, Kane & Marcus, Investments (McGraw-Hill); NASAA Series 65 content outline",
+   "tags": [
+    "series-65"
+   ]
+  },
+  {
+   "prompt": "An inverted yield curve means:",
+   "content": {
+    "kind": "mcq",
+    "options": [
+     "Short-term yields are higher than long-term yields",
+     "Long-term yields are much higher than short-term yields",
+     "All yields are equal",
+     "Yields are negative"
+    ],
+    "correctIndex": 0
+   },
+   "explanation": "An inverted curve has short-term rates above long-term rates and has often preceded recessions.",
+   "sourceRef": "CFA Institute, Investments curriculum; Bodie, Kane & Marcus, Investments (McGraw-Hill); NASAA Series 65 content outline",
+   "tags": [
+    "series-65"
+   ]
+  },
+  {
+   "prompt": "Which tool of monetary policy involves buying and selling Treasury securities?",
+   "content": {
+    "kind": "mcq",
+    "options": [
+     "Reserve requirements",
+     "Open market operations",
+     "Discount rate changes",
+     "Fiscal stimulus"
+    ],
+    "correctIndex": 1
+   },
+   "explanation": "Open market operations are the Federal Reserve's primary tool; buying securities adds reserves and lowers rates.",
+   "sourceRef": "CFA Institute, Investments curriculum; Bodie, Kane & Marcus, Investments (McGraw-Hill); NASAA Series 65 content outline",
+   "tags": [
+    "series-65"
+   ]
+  },
+  {
+   "prompt": "Fiscal policy is set by:",
+   "content": {
+    "kind": "mcq",
+    "options": [
+     "The Federal Reserve",
+     "Congress and the President",
+     "The SEC",
+     "The Treasury alone without Congress"
+    ],
+    "correctIndex": 1
+   },
+   "explanation": "Fiscal policy is taxation and government spending, decided by Congress and the President. Monetary policy is the Fed's.",
+   "sourceRef": "CFA Institute, Investments curriculum; Bodie, Kane & Marcus, Investments (McGraw-Hill); NASAA Series 65 content outline",
+   "tags": [
+    "series-65"
+   ]
+  },
+  {
+   "prompt": "Which of the following is a leading economic indicator?",
+   "content": {
+    "kind": "mcq",
+    "options": [
+     "Unemployment rate",
+     "Building permits",
+     "Corporate profits",
+     "CPI"
+    ],
+    "correctIndex": 1
+   },
+   "explanation": "Leading indicators (stock prices, building permits, new orders, yield spread) turn before the economy. Unemployment is lagging, CPI lagging, and GDP is coincident.",
+   "sourceRef": "CFA Institute, Investments curriculum; Bodie, Kane & Marcus, Investments (McGraw-Hill); NASAA Series 65 content outline",
+   "tags": [
+    "series-65"
+   ]
+  },
+  {
+   "prompt": "Stagflation refers to:",
+   "content": {
+    "kind": "mcq",
+    "options": [
+     "High growth and low inflation",
+     "Stagnant growth with high inflation and unemployment",
+     "Deflation with high growth",
+     "Zero interest rates"
+    ],
+    "correctIndex": 1
+   },
+   "explanation": "Stagflation combines slow growth, high unemployment and high inflation.",
+   "sourceRef": "CFA Institute, Investments curriculum; Bodie, Kane & Marcus, Investments (McGraw-Hill); NASAA Series 65 content outline",
+   "tags": [
+    "series-65"
+   ]
+  },
+  {
+   "prompt": "Gross Domestic Product measures:",
+   "content": {
+    "kind": "mcq",
+    "options": [
+     "Total value of goods and services produced within a country in a period",
+     "Total household income",
+     "The government's budget deficit",
+     "Net exports only"
+    ],
+    "correctIndex": 0
+   },
+   "explanation": "GDP = C + I + G + (X - M).",
+   "sourceRef": "CFA Institute, Investments curriculum; Bodie, Kane & Marcus, Investments (McGraw-Hill); NASAA Series 65 content outline",
+   "tags": [
+    "series-65"
+   ]
+  },
+  {
+   "prompt": "If the dollar strengthens against foreign currencies, US exports generally become:",
+   "content": {
+    "kind": "mcq",
+    "options": [
+     "Cheaper abroad",
+     "More expensive abroad",
+     "Unaffected",
+     "Tax-exempt"
+    ],
+    "correctIndex": 1
+   },
+   "explanation": "A stronger dollar raises the foreign-currency price of US goods, which tends to reduce exports.",
+   "sourceRef": "CFA Institute, Investments curriculum; Bodie, Kane & Marcus, Investments (McGraw-Hill); NASAA Series 65 content outline",
+   "tags": [
+    "series-65"
+   ]
+  },
+  {
+   "prompt": "Systematic risk can be reduced by:",
+   "content": {
+    "kind": "mcq",
+    "options": [
+     "Diversification across many stocks",
+     "Hedging or changing asset allocation; it cannot be diversified away",
+     "Buying more stocks of the same industry",
+     "Buying a single large cap"
+    ],
+    "correctIndex": 1
+   },
+   "explanation": "Systematic (market) risk affects all securities and is not diversifiable; unsystematic risk is reduced through diversification.",
+   "sourceRef": "CFA Institute, Investments curriculum; Bodie, Kane & Marcus, Investments (McGraw-Hill); NASAA Series 65 content outline",
+   "tags": [
+    "series-65"
+   ]
+  },
+  {
+   "prompt": "Beta measures a security's:",
+   "content": {
+    "kind": "mcq",
+    "options": [
+     "Total risk",
+     "Sensitivity to market movements",
+     "Dividend rate",
+     "Liquidity"
+    ],
+    "correctIndex": 1
+   },
+   "explanation": "Beta measures systematic risk relative to the market; the market has a beta of 1.",
+   "sourceRef": "CFA Institute, Investments curriculum; Bodie, Kane & Marcus, Investments (McGraw-Hill); NASAA Series 65 content outline",
+   "tags": [
+    "series-65"
+   ]
+  },
+  {
+   "prompt": "A stock has a beta of 1.5. If the market rises 10%, the stock is expected to rise about:",
+   "content": {
+    "kind": "mcq",
+    "options": [
+     "6.7%",
+     "10%",
+     "15%",
+     "1.5%"
+    ],
+    "correctIndex": 2
+   },
+   "explanation": "Expected move = beta × market move = 1.5 × 10% = 15%.",
+   "sourceRef": "CFA Institute, Investments curriculum; Bodie, Kane & Marcus, Investments (McGraw-Hill); NASAA Series 65 content outline",
+   "tags": [
+    "series-65"
+   ]
+  },
+  {
+   "prompt": "Under CAPM, the expected return equals:",
+   "content": {
+    "kind": "mcq",
+    "options": [
+     "Rf + beta × (Rm - Rf)",
+     "Rf + beta × Rm",
+     "Rm - Rf",
+     "beta × Rf"
+    ],
+    "correctIndex": 0
+   },
+   "explanation": "CAPM: E(R) = Rf + β(E(Rm) - Rf). With Rf 3%, beta 1.2 and market return 8%: 3 + 1.2×5 = 9%.",
+   "sourceRef": "CFA Institute, Investments curriculum; Bodie, Kane & Marcus, Investments (McGraw-Hill); NASAA Series 65 content outline",
+   "tags": [
+    "series-65"
+   ]
+  },
+  {
+   "prompt": "The Sharpe ratio measures:",
+   "content": {
+    "kind": "mcq",
+    "options": [
+     "Return per unit of systematic risk",
+     "Excess return per unit of total risk (standard deviation)",
+     "Alpha",
+     "Dividend yield"
+    ],
+    "correctIndex": 1
+   },
+   "explanation": "Sharpe = (Rp - Rf) / σp. Treynor uses beta instead of standard deviation.",
+   "sourceRef": "CFA Institute, Investments curriculum; Bodie, Kane & Marcus, Investments (McGraw-Hill); NASAA Series 65 content outline",
+   "tags": [
+    "series-65"
+   ]
+  },
+  {
+   "prompt": "The Treynor ratio uses which risk measure in its denominator?",
+   "content": {
+    "kind": "mcq",
+    "options": [
+     "Standard deviation",
+     "Beta",
+     "Variance",
+     "Alpha"
+    ],
+    "correctIndex": 1
+   },
+   "explanation": "Treynor = (Rp - Rf) / β.",
+   "sourceRef": "CFA Institute, Investments curriculum; Bodie, Kane & Marcus, Investments (McGraw-Hill); NASAA Series 65 content outline",
+   "tags": [
+    "series-65"
+   ]
+  },
+  {
+   "prompt": "Alpha (Jensen's) represents:",
+   "content": {
+    "kind": "mcq",
+    "options": [
+     "Return in excess of that predicted by CAPM",
+     "Total return",
+     "Market return",
+     "Inflation"
+    ],
+    "correctIndex": 0
+   },
+   "explanation": "Positive alpha means the portfolio earned more than its risk (beta) warranted.",
+   "sourceRef": "CFA Institute, Investments curriculum; Bodie, Kane & Marcus, Investments (McGraw-Hill); NASAA Series 65 content outline",
+   "tags": [
+    "series-65"
+   ]
+  },
+  {
+   "prompt": "Two assets with a correlation of +1 provide:",
+   "content": {
+    "kind": "mcq",
+    "options": [
+     "Maximum diversification",
+     "No diversification benefit",
+     "Negative returns",
+     "Zero standard deviation"
+    ],
+    "correctIndex": 1
+   },
+   "explanation": "Diversification benefits increase as correlation falls; at -1, risk can be eliminated.",
+   "sourceRef": "CFA Institute, Investments curriculum; Bodie, Kane & Marcus, Investments (McGraw-Hill); NASAA Series 65 content outline",
+   "tags": [
+    "series-65"
+   ]
+  },
+  {
+   "prompt": "The efficient frontier shows:",
+   "content": {
+    "kind": "mcq",
+    "options": [
+     "Portfolios with the highest return for each level of risk",
+     "Only the riskiest portfolios",
+     "A single optimal portfolio for everyone",
+     "Tax-efficient portfolios"
+    ],
+    "correctIndex": 0
+   },
+   "explanation": "Markowitz's frontier plots the highest expected return available for each level of risk; the best point for an investor depends on risk tolerance.",
+   "sourceRef": "CFA Institute, Investments curriculum; Bodie, Kane & Marcus, Investments (McGraw-Hill); NASAA Series 65 content outline",
+   "tags": [
+    "series-65"
+   ]
+  },
+  {
+   "prompt": "A weak-form efficient market implies that:",
+   "content": {
+    "kind": "mcq",
+    "options": [
+     "Past price data cannot be used to earn excess returns",
+     "Insider information can be used to earn excess returns",
+     "No one can earn any return",
+     "Prices never change"
+    ],
+    "correctIndex": 0
+   },
+   "explanation": "Weak form: prices reflect past price data (technical analysis fails). Semi-strong: all public information (fundamental analysis fails). Strong: all information including private.",
+   "sourceRef": "CFA Institute, Investments curriculum; Bodie, Kane & Marcus, Investments (McGraw-Hill); NASAA Series 65 content outline",
+   "tags": [
+    "series-65"
+   ]
+  },
+  {
+   "prompt": "An investor buys a call option at a $50 strike for a $3 premium. The breakeven at expiration is:",
+   "content": {
+    "kind": "mcq",
+    "options": [
+     "$47",
+     "$50",
+     "$53",
+     "$3"
+    ],
+    "correctIndex": 2
+   },
+   "explanation": "Long call breakeven = strike + premium = $53. Maximum loss is the premium.",
+   "sourceRef": "CFA Institute, Investments curriculum; Bodie, Kane & Marcus, Investments (McGraw-Hill); NASAA Series 65 content outline",
+   "tags": [
+    "series-65"
+   ]
+  },
+  {
+   "prompt": "An investor buys a put option at a $40 strike for a $2 premium. The breakeven at expiration is:",
+   "content": {
+    "kind": "mcq",
+    "options": [
+     "$42",
+     "$38",
+     "$40",
+     "$2"
+    ],
+    "correctIndex": 1
+   },
+   "explanation": "Long put breakeven = strike - premium = $38.",
+   "sourceRef": "CFA Institute, Investments curriculum; Bodie, Kane & Marcus, Investments (McGraw-Hill); NASAA Series 65 content outline",
+   "tags": [
+    "series-65"
+   ]
+  },
+  {
+   "prompt": "The maximum loss of an investor who writes (sells) an uncovered call is:",
+   "content": {
+    "kind": "mcq",
+    "options": [
+     "The premium received",
+     "Unlimited",
+     "The strike price",
+     "Zero"
+    ],
+    "correctIndex": 1
+   },
+   "explanation": "A naked call writer faces theoretically unlimited losses because the underlying price can rise without limit.",
+   "sourceRef": "CFA Institute, Investments curriculum; Bodie, Kane & Marcus, Investments (McGraw-Hill); NASAA Series 65 content outline",
+   "tags": [
+    "series-65"
+   ]
+  },
+  {
+   "prompt": "Selling a covered call on shares you own primarily:",
+   "content": {
+    "kind": "mcq",
+    "options": [
+     "Hedges against a large price drop",
+     "Generates income but caps upside",
+     "Eliminates all risk",
+     "Increases leverage"
+    ],
+    "correctIndex": 1
+   },
+   "explanation": "A covered call earns the premium but forgoes gains above the strike, offering only a small cushion against declines.",
+   "sourceRef": "CFA Institute, Investments curriculum; Bodie, Kane & Marcus, Investments (McGraw-Hill); NASAA Series 65 content outline",
+   "tags": [
+    "series-65"
+   ]
+  },
+  {
+   "prompt": "A protective put:",
+   "content": {
+    "kind": "mcq",
+    "options": [
+     "Locks in a minimum selling price for stock held",
+     "Increases the dividend",
+     "Is sold by a short seller",
+     "Has unlimited loss"
+    ],
+    "correctIndex": 0
+   },
+   "explanation": "Buying a put against a long stock position sets a floor at the strike (less the premium cost).",
+   "sourceRef": "CFA Institute, Investments curriculum; Bodie, Kane & Marcus, Investments (McGraw-Hill); NASAA Series 65 content outline",
+   "tags": [
+    "series-65"
+   ]
+  },
+  {
+   "prompt": "An option is \"in the money\" when:",
+   "content": {
+    "kind": "mcq",
+    "options": [
+     "A call's strike is above the market price",
+     "A call's market price is above its strike",
+     "A put's strike is below the market price",
+     "The premium is zero"
+    ],
+    "correctIndex": 1
+   },
+   "explanation": "In-the-money calls have market price > strike; in-the-money puts have market price < strike.",
+   "sourceRef": "CFA Institute, Investments curriculum; Bodie, Kane & Marcus, Investments (McGraw-Hill); NASAA Series 65 content outline",
+   "tags": [
+    "series-65"
+   ]
+  },
+  {
+   "prompt": "The two components of an option's premium are:",
+   "content": {
+    "kind": "mcq",
+    "options": [
+     "Intrinsic value and time value",
+     "Beta and alpha",
+     "Par and coupon",
+     "Bid and ask"
+    ],
+    "correctIndex": 0
+   },
+   "explanation": "Premium = intrinsic value + time (extrinsic) value.",
+   "sourceRef": "CFA Institute, Investments curriculum; Bodie, Kane & Marcus, Investments (McGraw-Hill); NASAA Series 65 content outline",
+   "tags": [
+    "series-65"
+   ]
+  },
+  {
+   "prompt": "Open-end mutual funds redeem shares at:",
+   "content": {
+    "kind": "mcq",
+    "options": [
+     "The market price on the exchange",
+     "NAV (net asset value) computed after the market close",
+     "The offering price at the time of the order",
+     "Par value"
+    ],
+    "correctIndex": 1
+   },
+   "explanation": "Mutual funds forward-price at the next computed NAV; closed-end funds trade on exchanges at market prices (premium or discount to NAV).",
+   "sourceRef": "CFA Institute, Investments curriculum; Bodie, Kane & Marcus, Investments (McGraw-Hill); NASAA Series 65 content outline",
+   "tags": [
+    "series-65"
+   ]
+  },
+  {
+   "prompt": "A 12b-1 fee in a mutual fund pays for:",
+   "content": {
+    "kind": "mcq",
+    "options": [
+     "Management salaries only",
+     "Distribution and marketing and shareholder services",
+     "Custody only",
+     "Taxes"
+    ],
+    "correctIndex": 1
+   },
+   "explanation": "12b-1 fees are included in the fund's annual expenses; the SEC/FINRA caps asset-based sales charges.",
+   "sourceRef": "CFA Institute, Investments curriculum; Bodie, Kane & Marcus, Investments (McGraw-Hill); NASAA Series 65 content outline",
+   "tags": [
+    "series-65"
+   ]
+  },
+  {
+   "prompt": "Which share class of a mutual fund typically charges an upfront sales load?",
+   "content": {
+    "kind": "mcq",
+    "options": [
+     "Class A",
+     "Class B (back-end)",
+     "Class C level-load only",
+     "Class I (institutional)"
+    ],
+    "correctIndex": 0
+   },
+   "explanation": "Class A shares have a front-end load (with breakpoints); Class B had a contingent deferred sales charge; Class C has a level load.",
+   "sourceRef": "CFA Institute, Investments curriculum; Bodie, Kane & Marcus, Investments (McGraw-Hill); NASAA Series 65 content outline",
+   "tags": [
+    "series-65"
+   ]
+  },
+  {
+   "prompt": "A REIT must distribute at least what share of taxable income to maintain its tax status?",
+   "content": {
+    "kind": "mcq",
+    "options": [
+     "25%",
+     "50%",
+     "90%",
+     "100%"
+    ],
+    "correctIndex": 2
+   },
+   "explanation": "REITs must distribute at least 90% of taxable income to shareholders, among other qualification tests.",
+   "sourceRef": "CFA Institute, Investments curriculum; Bodie, Kane & Marcus, Investments (McGraw-Hill); NASAA Series 65 content outline",
+   "tags": [
+    "series-65"
+   ]
+  },
+  {
+   "prompt": "The wash sale rule disallows a loss if the investor buys a substantially identical security within:",
+   "content": {
+    "kind": "mcq",
+    "options": [
+     "10 days before or after",
+     "30 days before or after the sale",
+     "60 days",
+     "1 year"
+    ],
+    "correctIndex": 1
+   },
+   "explanation": "The 61-day window (30 days before through 30 days after) applies; the disallowed loss adds to the replacement shares' basis.",
+   "sourceRef": "CFA Institute, Investments curriculum; Bodie, Kane & Marcus, Investments (McGraw-Hill); NASAA Series 65 content outline",
+   "tags": [
+    "series-65"
+   ]
+  },
+  {
+   "prompt": "A security held for more than how long qualifies for long-term capital gains treatment?",
+   "content": {
+    "kind": "mcq",
+    "options": [
+     "6 months",
+     "1 year",
+     "2 years",
+     "5 years"
+    ],
+    "correctIndex": 1
+   },
+   "explanation": "More than one year of holding gives long-term capital gains rates; one year or less is short-term.",
+   "sourceRef": "CFA Institute, Investments curriculum; Bodie, Kane & Marcus, Investments (McGraw-Hill); NASAA Series 65 content outline",
+   "tags": [
+    "series-65"
+   ]
+  },
+  {
+   "prompt": "Beneficiaries of an inherited asset generally receive:",
+   "content": {
+    "kind": "mcq",
+    "options": [
+     "A carryover basis",
+     "A stepped-up basis to fair market value at death",
+     "A zero basis",
+     "No basis"
+    ],
+    "correctIndex": 1
+   },
+   "explanation": "IRC section 1014 gives inherited property a basis equal to date-of-death fair market value (in most cases).",
+   "sourceRef": "CFA Institute, Investments curriculum; Bodie, Kane & Marcus, Investments (McGraw-Hill); NASAA Series 65 content outline",
+   "tags": [
+    "series-65"
+   ]
+  },
+  {
+   "prompt": "Roth IRA qualified distributions require:",
+   "content": {
+    "kind": "mcq",
+    "options": [
+     "Age 59½ and a 5-year holding period",
+     "Only age 50",
+     "Only a 1-year period",
+     "Employer match"
+    ],
+    "correctIndex": 0
+   },
+   "explanation": "Qualified Roth distributions are tax-free when the account has been open 5 years and the owner is 59½ or older (or disabled, deceased, or first-home exception up to $10,000).",
+   "sourceRef": "CFA Institute, Investments curriculum; Bodie, Kane & Marcus, Investments (McGraw-Hill); NASAA Series 65 content outline",
+   "tags": [
+    "series-65"
+   ]
+  },
+  {
+   "prompt": "Under SECURE 2.0, required minimum distributions from traditional IRAs begin at age:",
+   "content": {
+    "kind": "mcq",
+    "options": [
+     "59½",
+     "65",
+     "73",
+     "75 for all"
+    ],
+    "correctIndex": 2
+   },
+   "explanation": "RMDs begin at 73 for those reaching 72 after 2022 (rising to 75 in 2033).",
+   "sourceRef": "CFA Institute, Investments curriculum; Bodie, Kane & Marcus, Investments (McGraw-Hill); NASAA Series 65 content outline",
+   "tags": [
+    "series-65"
+   ]
+  },
+  {
+   "prompt": "An ERISA 404(c) plan must offer participants at least how many diversified investment options with materially different risk/return characteristics?",
+   "content": {
+    "kind": "mcq",
+    "options": [
+     "1",
+     "3",
+     "5",
+     "10"
+    ],
+    "correctIndex": 1
+   },
+   "explanation": "Section 404(c) requires at least three diversified options to shift fiduciary liability to the participant.",
+   "sourceRef": "CFA Institute, Investments curriculum; Bodie, Kane & Marcus, Investments (McGraw-Hill); NASAA Series 65 content outline",
+   "tags": [
+    "series-65"
+   ]
+  },
+  {
+   "prompt": "SIPC protects customers of failed broker-dealers up to:",
+   "content": {
+    "kind": "mcq",
+    "options": [
+     "$100,000",
+     "$250,000",
+     "$500,000 including up to $250,000 cash",
+     "$1 million"
+    ],
+    "correctIndex": 2
+   },
+   "explanation": "SIPC covers up to $500,000 per customer per capacity, of which up to $250,000 may be cash. It does not protect against market loss.",
+   "sourceRef": "CFA Institute, Investments curriculum; Bodie, Kane & Marcus, Investments (McGraw-Hill); NASAA Series 65 content outline",
+   "tags": [
+    "series-65"
+   ]
+  },
+  {
+   "prompt": "FDIC deposit insurance covers up to:",
+   "content": {
+    "kind": "mcq",
+    "options": [
+     "$100,000",
+     "$250,000 per depositor, per insured bank, per ownership category",
+     "$500,000",
+     "Unlimited"
+    ],
+    "correctIndex": 1
+   },
+   "explanation": "The standard FDIC insurance amount is $250,000 per depositor per bank per ownership category.",
+   "sourceRef": "CFA Institute, Investments curriculum; Bodie, Kane & Marcus, Investments (McGraw-Hill); NASAA Series 65 content outline",
+   "tags": [
+    "series-65"
+   ]
+  }
+ ]
+}

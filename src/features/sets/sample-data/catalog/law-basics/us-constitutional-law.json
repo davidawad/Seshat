@@ -1,0 +1,414 @@
+{
+ "seshatExportVersion": 1,
+ "name": "US Constitution and Constitutional Law",
+ "description": "Constitutional structure, amendments and landmark Supreme Court cases.",
+ "tags": [
+  "law",
+  "constitution"
+ ],
+ "cards": [
+  {
+   "prompt": "Article I",
+   "content": {
+    "kind": "short-answer",
+    "answer": "The legislative branch (Congress).",
+    "acceptableAnswers": []
+   },
+   "explanation": null,
+   "sourceRef": "U.S. Constitution (archives.gov); Chemerinsky, Constitutional Law (Wolters Kluwer)",
+   "tags": [
+    "law"
+   ]
+  },
+  {
+   "prompt": "Article II",
+   "content": {
+    "kind": "short-answer",
+    "answer": "The executive branch (President).",
+    "acceptableAnswers": []
+   },
+   "explanation": null,
+   "sourceRef": "U.S. Constitution (archives.gov); Chemerinsky, Constitutional Law (Wolters Kluwer)",
+   "tags": [
+    "law"
+   ]
+  },
+  {
+   "prompt": "Article III",
+   "content": {
+    "kind": "short-answer",
+    "answer": "The judicial branch (Supreme Court and inferior courts).",
+    "acceptableAnswers": []
+   },
+   "explanation": null,
+   "sourceRef": "U.S. Constitution (archives.gov); Chemerinsky, Constitutional Law (Wolters Kluwer)",
+   "tags": [
+    "law"
+   ]
+  },
+  {
+   "prompt": "Article VI Supremacy Clause",
+   "content": {
+    "kind": "short-answer",
+    "answer": "The Constitution, federal statutes and treaties are the supreme law of the land.",
+    "acceptableAnswers": []
+   },
+   "explanation": null,
+   "sourceRef": "U.S. Constitution (archives.gov); Chemerinsky, Constitutional Law (Wolters Kluwer)",
+   "tags": [
+    "law"
+   ]
+  },
+  {
+   "prompt": "First Amendment",
+   "content": {
+    "kind": "short-answer",
+    "answer": "Protects religion, speech, press, assembly and petition.",
+    "acceptableAnswers": []
+   },
+   "explanation": null,
+   "sourceRef": "U.S. Constitution (archives.gov); Chemerinsky, Constitutional Law (Wolters Kluwer)",
+   "tags": [
+    "law"
+   ]
+  },
+  {
+   "prompt": "Second Amendment",
+   "content": {
+    "kind": "short-answer",
+    "answer": "Right to keep and bear arms.",
+    "acceptableAnswers": []
+   },
+   "explanation": null,
+   "sourceRef": "U.S. Constitution (archives.gov); Chemerinsky, Constitutional Law (Wolters Kluwer)",
+   "tags": [
+    "law"
+   ]
+  },
+  {
+   "prompt": "Fourth Amendment",
+   "content": {
+    "kind": "short-answer",
+    "answer": "Protects against unreasonable searches and seizures; warrants require probable cause.",
+    "acceptableAnswers": []
+   },
+   "explanation": null,
+   "sourceRef": "U.S. Constitution (archives.gov); Chemerinsky, Constitutional Law (Wolters Kluwer)",
+   "tags": [
+    "law"
+   ]
+  },
+  {
+   "prompt": "Fifth Amendment",
+   "content": {
+    "kind": "short-answer",
+    "answer": "Grand jury, double jeopardy, self-incrimination, due process, takings clause.",
+    "acceptableAnswers": []
+   },
+   "explanation": null,
+   "sourceRef": "U.S. Constitution (archives.gov); Chemerinsky, Constitutional Law (Wolters Kluwer)",
+   "tags": [
+    "law"
+   ]
+  },
+  {
+   "prompt": "Sixth Amendment",
+   "content": {
+    "kind": "short-answer",
+    "answer": "Speedy public trial, impartial jury, counsel, confrontation of witnesses.",
+    "acceptableAnswers": []
+   },
+   "explanation": null,
+   "sourceRef": "U.S. Constitution (archives.gov); Chemerinsky, Constitutional Law (Wolters Kluwer)",
+   "tags": [
+    "law"
+   ]
+  },
+  {
+   "prompt": "Eighth Amendment",
+   "content": {
+    "kind": "short-answer",
+    "answer": "Bans excessive bail and fines and cruel and unusual punishment.",
+    "acceptableAnswers": []
+   },
+   "explanation": null,
+   "sourceRef": "U.S. Constitution (archives.gov); Chemerinsky, Constitutional Law (Wolters Kluwer)",
+   "tags": [
+    "law"
+   ]
+  },
+  {
+   "prompt": "Tenth Amendment",
+   "content": {
+    "kind": "short-answer",
+    "answer": "Powers not delegated to the federal government are reserved to the states or the people.",
+    "acceptableAnswers": []
+   },
+   "explanation": null,
+   "sourceRef": "U.S. Constitution (archives.gov); Chemerinsky, Constitutional Law (Wolters Kluwer)",
+   "tags": [
+    "law"
+   ]
+  },
+  {
+   "prompt": "Fourteenth Amendment",
+   "content": {
+    "kind": "short-answer",
+    "answer": "Citizenship, due process and equal protection applied to the states.",
+    "acceptableAnswers": []
+   },
+   "explanation": null,
+   "sourceRef": "U.S. Constitution (archives.gov); Chemerinsky, Constitutional Law (Wolters Kluwer)",
+   "tags": [
+    "law"
+   ]
+  },
+  {
+   "prompt": "Commerce Clause",
+   "content": {
+    "kind": "short-answer",
+    "answer": "Gives Congress power to regulate commerce among the states (Art. I, section 8).",
+    "acceptableAnswers": []
+   },
+   "explanation": null,
+   "sourceRef": "U.S. Constitution (archives.gov); Chemerinsky, Constitutional Law (Wolters Kluwer)",
+   "tags": [
+    "law"
+   ]
+  },
+  {
+   "prompt": "Marbury v. Madison (1803)",
+   "content": {
+    "kind": "short-answer",
+    "answer": "Established judicial review.",
+    "acceptableAnswers": []
+   },
+   "explanation": null,
+   "sourceRef": "U.S. Constitution (archives.gov); Chemerinsky, Constitutional Law (Wolters Kluwer)",
+   "tags": [
+    "law"
+   ]
+  },
+  {
+   "prompt": "McCulloch v. Maryland (1819)",
+   "content": {
+    "kind": "short-answer",
+    "answer": "Upheld implied powers (Necessary and Proper Clause) and federal supremacy over state taxation.",
+    "acceptableAnswers": []
+   },
+   "explanation": null,
+   "sourceRef": "U.S. Constitution (archives.gov); Chemerinsky, Constitutional Law (Wolters Kluwer)",
+   "tags": [
+    "law"
+   ]
+  },
+  {
+   "prompt": "Gibbons v. Ogden (1824)",
+   "content": {
+    "kind": "short-answer",
+    "answer": "Broad reading of congressional commerce power.",
+    "acceptableAnswers": []
+   },
+   "explanation": null,
+   "sourceRef": "U.S. Constitution (archives.gov); Chemerinsky, Constitutional Law (Wolters Kluwer)",
+   "tags": [
+    "law"
+   ]
+  },
+  {
+   "prompt": "Brown v. Board of Education (1954)",
+   "content": {
+    "kind": "short-answer",
+    "answer": "Segregated public schools violate Equal Protection.",
+    "acceptableAnswers": []
+   },
+   "explanation": null,
+   "sourceRef": "U.S. Constitution (archives.gov); Chemerinsky, Constitutional Law (Wolters Kluwer)",
+   "tags": [
+    "law"
+   ]
+  },
+  {
+   "prompt": "Miranda v. Arizona (1966)",
+   "content": {
+    "kind": "short-answer",
+    "answer": "Suspects in custody must be warned of rights before interrogation.",
+    "acceptableAnswers": []
+   },
+   "explanation": null,
+   "sourceRef": "U.S. Constitution (archives.gov); Chemerinsky, Constitutional Law (Wolters Kluwer)",
+   "tags": [
+    "law"
+   ]
+  },
+  {
+   "prompt": "Gideon v. Wainwright (1963)",
+   "content": {
+    "kind": "short-answer",
+    "answer": "Right to appointed counsel for indigent felony defendants.",
+    "acceptableAnswers": []
+   },
+   "explanation": null,
+   "sourceRef": "U.S. Constitution (archives.gov); Chemerinsky, Constitutional Law (Wolters Kluwer)",
+   "tags": [
+    "law"
+   ]
+  },
+  {
+   "prompt": "Mapp v. Ohio (1961)",
+   "content": {
+    "kind": "short-answer",
+    "answer": "Exclusionary rule applies to the states.",
+    "acceptableAnswers": []
+   },
+   "explanation": null,
+   "sourceRef": "U.S. Constitution (archives.gov); Chemerinsky, Constitutional Law (Wolters Kluwer)",
+   "tags": [
+    "law"
+   ]
+  },
+  {
+   "prompt": "New York Times v. Sullivan (1964)",
+   "content": {
+    "kind": "short-answer",
+    "answer": "Public-official defamation requires actual malice.",
+    "acceptableAnswers": []
+   },
+   "explanation": null,
+   "sourceRef": "U.S. Constitution (archives.gov); Chemerinsky, Constitutional Law (Wolters Kluwer)",
+   "tags": [
+    "law"
+   ]
+  },
+  {
+   "prompt": "Tinker v. Des Moines (1969)",
+   "content": {
+    "kind": "short-answer",
+    "answer": "Students do not shed free speech rights at school absent substantial disruption.",
+    "acceptableAnswers": []
+   },
+   "explanation": null,
+   "sourceRef": "U.S. Constitution (archives.gov); Chemerinsky, Constitutional Law (Wolters Kluwer)",
+   "tags": [
+    "law"
+   ]
+  },
+  {
+   "prompt": "Roe v. Wade and Dobbs",
+   "content": {
+    "kind": "short-answer",
+    "answer": "Roe (1973) recognized a constitutional abortion right; Dobbs v. Jackson (2022) overruled it.",
+    "acceptableAnswers": []
+   },
+   "explanation": null,
+   "sourceRef": "U.S. Constitution (archives.gov); Chemerinsky, Constitutional Law (Wolters Kluwer)",
+   "tags": [
+    "law"
+   ]
+  },
+  {
+   "prompt": "Obergefell v. Hodges (2015)",
+   "content": {
+    "kind": "short-answer",
+    "answer": "The Fourteenth Amendment protects same-sex marriage.",
+    "acceptableAnswers": []
+   },
+   "explanation": null,
+   "sourceRef": "U.S. Constitution (archives.gov); Chemerinsky, Constitutional Law (Wolters Kluwer)",
+   "tags": [
+    "law"
+   ]
+  },
+  {
+   "prompt": "Strict scrutiny",
+   "content": {
+    "kind": "short-answer",
+    "answer": "Law must serve a compelling interest and be narrowly tailored; applies to fundamental rights and suspect classifications.",
+    "acceptableAnswers": []
+   },
+   "explanation": null,
+   "sourceRef": "U.S. Constitution (archives.gov); Chemerinsky, Constitutional Law (Wolters Kluwer)",
+   "tags": [
+    "law"
+   ]
+  },
+  {
+   "prompt": "Rational basis review",
+   "content": {
+    "kind": "short-answer",
+    "answer": "Law must be rationally related to a legitimate government interest; the default standard.",
+    "acceptableAnswers": []
+   },
+   "explanation": null,
+   "sourceRef": "U.S. Constitution (archives.gov); Chemerinsky, Constitutional Law (Wolters Kluwer)",
+   "tags": [
+    "law"
+   ]
+  },
+  {
+   "prompt": "Standing requirements",
+   "content": {
+    "kind": "short-answer",
+    "answer": "Injury in fact, causation, and redressability.",
+    "acceptableAnswers": []
+   },
+   "explanation": null,
+   "sourceRef": "U.S. Constitution (archives.gov); Chemerinsky, Constitutional Law (Wolters Kluwer)",
+   "tags": [
+    "law"
+   ]
+  },
+  {
+   "prompt": "Presidential eligibility",
+   "content": {
+    "kind": "short-answer",
+    "answer": "Natural-born citizen, age 35, and 14 years a resident (Art. II).",
+    "acceptableAnswers": []
+   },
+   "explanation": null,
+   "sourceRef": "U.S. Constitution (archives.gov); Chemerinsky, Constitutional Law (Wolters Kluwer)",
+   "tags": [
+    "law"
+   ]
+  },
+  {
+   "prompt": "Amendment process",
+   "content": {
+    "kind": "short-answer",
+    "answer": "Proposed by two-thirds of both houses (or a convention); ratified by three-fourths of states.",
+    "acceptableAnswers": []
+   },
+   "explanation": null,
+   "sourceRef": "U.S. Constitution (archives.gov); Chemerinsky, Constitutional Law (Wolters Kluwer)",
+   "tags": [
+    "law"
+   ]
+  },
+  {
+   "prompt": "Senate and House terms",
+   "content": {
+    "kind": "short-answer",
+    "answer": "Senators serve 6 years; Representatives serve 2 years.",
+    "acceptableAnswers": []
+   },
+   "explanation": null,
+   "sourceRef": "U.S. Constitution (archives.gov); Chemerinsky, Constitutional Law (Wolters Kluwer)",
+   "tags": [
+    "law"
+   ]
+  },
+  {
+   "prompt": "Impeachment",
+   "content": {
+    "kind": "short-answer",
+    "answer": "The House impeaches by majority vote; the Senate tries with a two-thirds vote to convict.",
+    "acceptableAnswers": []
+   },
+   "explanation": null,
+   "sourceRef": "U.S. Constitution (archives.gov); Chemerinsky, Constitutional Law (Wolters Kluwer)",
+   "tags": [
+    "law"
+   ]
+  }
+ ]
+}

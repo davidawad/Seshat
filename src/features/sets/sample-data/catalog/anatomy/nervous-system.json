@@ -1,0 +1,453 @@
+{
+ "seshatExportVersion": 1,
+ "name": "Nervous System",
+ "description": "Brain regions, cranial nerves and neuron physiology.",
+ "tags": [
+  "anatomy",
+  "neuroscience"
+ ],
+ "cards": [
+  {
+   "prompt": "Two divisions of the nervous system",
+   "content": {
+    "kind": "short-answer",
+    "answer": "Central (brain and spinal cord) and peripheral.",
+    "acceptableAnswers": []
+   },
+   "explanation": null,
+   "sourceRef": "Kandel et al., Principles of Neural Science (McGraw-Hill); Gray's Anatomy for Students",
+   "tags": [
+    "anatomy"
+   ]
+  },
+  {
+   "prompt": "Four lobes of the cerebral cortex",
+   "content": {
+    "kind": "short-answer",
+    "answer": "Frontal, parietal, temporal, occipital",
+    "acceptableAnswers": []
+   },
+   "explanation": null,
+   "sourceRef": "Kandel et al., Principles of Neural Science (McGraw-Hill); Gray's Anatomy for Students",
+   "tags": [
+    "anatomy"
+   ]
+  },
+  {
+   "prompt": "Primary motor cortex location",
+   "content": {
+    "kind": "short-answer",
+    "answer": "Precentral gyrus of the frontal lobe.",
+    "acceptableAnswers": []
+   },
+   "explanation": null,
+   "sourceRef": "Kandel et al., Principles of Neural Science (McGraw-Hill); Gray's Anatomy for Students",
+   "tags": [
+    "anatomy"
+   ]
+  },
+  {
+   "prompt": "Primary somatosensory cortex location",
+   "content": {
+    "kind": "short-answer",
+    "answer": "Postcentral gyrus of the parietal lobe.",
+    "acceptableAnswers": []
+   },
+   "explanation": null,
+   "sourceRef": "Kandel et al., Principles of Neural Science (McGraw-Hill); Gray's Anatomy for Students",
+   "tags": [
+    "anatomy"
+   ]
+  },
+  {
+   "prompt": "Broca's area",
+   "content": {
+    "kind": "short-answer",
+    "answer": "Inferior frontal gyrus (usually left); speech production.",
+    "acceptableAnswers": []
+   },
+   "explanation": null,
+   "sourceRef": "Kandel et al., Principles of Neural Science (McGraw-Hill); Gray's Anatomy for Students",
+   "tags": [
+    "anatomy"
+   ]
+  },
+  {
+   "prompt": "Wernicke's area",
+   "content": {
+    "kind": "short-answer",
+    "answer": "Posterior superior temporal gyrus (usually left); language comprehension.",
+    "acceptableAnswers": []
+   },
+   "explanation": null,
+   "sourceRef": "Kandel et al., Principles of Neural Science (McGraw-Hill); Gray's Anatomy for Students",
+   "tags": [
+    "anatomy"
+   ]
+  },
+  {
+   "prompt": "Primary visual cortex",
+   "content": {
+    "kind": "short-answer",
+    "answer": "Occipital lobe",
+    "acceptableAnswers": []
+   },
+   "explanation": null,
+   "sourceRef": "Kandel et al., Principles of Neural Science (McGraw-Hill); Gray's Anatomy for Students",
+   "tags": [
+    "anatomy"
+   ]
+  },
+  {
+   "prompt": "Cerebellum functions",
+   "content": {
+    "kind": "short-answer",
+    "answer": "Coordination, balance, motor learning.",
+    "acceptableAnswers": []
+   },
+   "explanation": null,
+   "sourceRef": "Kandel et al., Principles of Neural Science (McGraw-Hill); Gray's Anatomy for Students",
+   "tags": [
+    "anatomy"
+   ]
+  },
+  {
+   "prompt": "Hypothalamus functions",
+   "content": {
+    "kind": "short-answer",
+    "answer": "Homeostasis: temperature, hunger, thirst, circadian rhythm; controls the pituitary.",
+    "acceptableAnswers": []
+   },
+   "explanation": null,
+   "sourceRef": "Kandel et al., Principles of Neural Science (McGraw-Hill); Gray's Anatomy for Students",
+   "tags": [
+    "anatomy"
+   ]
+  },
+  {
+   "prompt": "Hippocampus function",
+   "content": {
+    "kind": "short-answer",
+    "answer": "Formation of new declarative memories.",
+    "acceptableAnswers": []
+   },
+   "explanation": null,
+   "sourceRef": "Kandel et al., Principles of Neural Science (McGraw-Hill); Gray's Anatomy for Students",
+   "tags": [
+    "anatomy"
+   ]
+  },
+  {
+   "prompt": "Amygdala function",
+   "content": {
+    "kind": "short-answer",
+    "answer": "Emotional processing, especially fear.",
+    "acceptableAnswers": []
+   },
+   "explanation": null,
+   "sourceRef": "Kandel et al., Principles of Neural Science (McGraw-Hill); Gray's Anatomy for Students",
+   "tags": [
+    "anatomy"
+   ]
+  },
+  {
+   "prompt": "Thalamus function",
+   "content": {
+    "kind": "short-answer",
+    "answer": "Relay station for sensory input (except smell) to the cortex.",
+    "acceptableAnswers": []
+   },
+   "explanation": null,
+   "sourceRef": "Kandel et al., Principles of Neural Science (McGraw-Hill); Gray's Anatomy for Students",
+   "tags": [
+    "anatomy"
+   ]
+  },
+  {
+   "prompt": "Parts of the brainstem",
+   "content": {
+    "kind": "short-answer",
+    "answer": "Midbrain, pons, medulla oblongata",
+    "acceptableAnswers": []
+   },
+   "explanation": null,
+   "sourceRef": "Kandel et al., Principles of Neural Science (McGraw-Hill); Gray's Anatomy for Students",
+   "tags": [
+    "anatomy"
+   ]
+  },
+  {
+   "prompt": "Number of pairs of cranial nerves",
+   "content": {
+    "kind": "short-answer",
+    "answer": "12",
+    "acceptableAnswers": []
+   },
+   "explanation": null,
+   "sourceRef": "Kandel et al., Principles of Neural Science (McGraw-Hill); Gray's Anatomy for Students",
+   "tags": [
+    "anatomy"
+   ]
+  },
+  {
+   "prompt": "Cranial nerve I and II",
+   "content": {
+    "kind": "short-answer",
+    "answer": "Olfactory; optic",
+    "acceptableAnswers": []
+   },
+   "explanation": null,
+   "sourceRef": "Kandel et al., Principles of Neural Science (McGraw-Hill); Gray's Anatomy for Students",
+   "tags": [
+    "anatomy"
+   ]
+  },
+  {
+   "prompt": "Cranial nerves III, IV, VI",
+   "content": {
+    "kind": "short-answer",
+    "answer": "Oculomotor, trochlear, abducens (eye movement).",
+    "acceptableAnswers": []
+   },
+   "explanation": null,
+   "sourceRef": "Kandel et al., Principles of Neural Science (McGraw-Hill); Gray's Anatomy for Students",
+   "tags": [
+    "anatomy"
+   ]
+  },
+  {
+   "prompt": "Cranial nerve V",
+   "content": {
+    "kind": "short-answer",
+    "answer": "Trigeminal (facial sensation, chewing muscles).",
+    "acceptableAnswers": []
+   },
+   "explanation": null,
+   "sourceRef": "Kandel et al., Principles of Neural Science (McGraw-Hill); Gray's Anatomy for Students",
+   "tags": [
+    "anatomy"
+   ]
+  },
+  {
+   "prompt": "Cranial nerve VII",
+   "content": {
+    "kind": "short-answer",
+    "answer": "Facial (facial expression, taste from anterior two-thirds of tongue).",
+    "acceptableAnswers": []
+   },
+   "explanation": null,
+   "sourceRef": "Kandel et al., Principles of Neural Science (McGraw-Hill); Gray's Anatomy for Students",
+   "tags": [
+    "anatomy"
+   ]
+  },
+  {
+   "prompt": "Cranial nerve VIII",
+   "content": {
+    "kind": "short-answer",
+    "answer": "Vestibulocochlear (hearing and balance).",
+    "acceptableAnswers": []
+   },
+   "explanation": null,
+   "sourceRef": "Kandel et al., Principles of Neural Science (McGraw-Hill); Gray's Anatomy for Students",
+   "tags": [
+    "anatomy"
+   ]
+  },
+  {
+   "prompt": "Cranial nerve X",
+   "content": {
+    "kind": "short-answer",
+    "answer": "Vagus (parasympathetic to thorax and abdomen).",
+    "acceptableAnswers": []
+   },
+   "explanation": null,
+   "sourceRef": "Kandel et al., Principles of Neural Science (McGraw-Hill); Gray's Anatomy for Students",
+   "tags": [
+    "anatomy"
+   ]
+  },
+  {
+   "prompt": "Parts of a neuron",
+   "content": {
+    "kind": "short-answer",
+    "answer": "Dendrites receive, soma integrates, axon conducts, terminals release neurotransmitter.",
+    "acceptableAnswers": []
+   },
+   "explanation": null,
+   "sourceRef": "Kandel et al., Principles of Neural Science (McGraw-Hill); Gray's Anatomy for Students",
+   "tags": [
+    "anatomy"
+   ]
+  },
+  {
+   "prompt": "Resting membrane potential of a neuron",
+   "content": {
+    "kind": "short-answer",
+    "answer": "About -70 mV",
+    "acceptableAnswers": []
+   },
+   "explanation": null,
+   "sourceRef": "Kandel et al., Principles of Neural Science (McGraw-Hill); Gray's Anatomy for Students",
+   "tags": [
+    "anatomy"
+   ]
+  },
+  {
+   "prompt": "Action potential phases",
+   "content": {
+    "kind": "short-answer",
+    "answer": "Depolarization (Na+ in), repolarization (K+ out), hyperpolarization, return to rest.",
+    "acceptableAnswers": []
+   },
+   "explanation": null,
+   "sourceRef": "Kandel et al., Principles of Neural Science (McGraw-Hill); Gray's Anatomy for Students",
+   "tags": [
+    "anatomy"
+   ]
+  },
+  {
+   "prompt": "Myelin function",
+   "content": {
+    "kind": "short-answer",
+    "answer": "Insulates axons and speeds conduction (saltatory conduction at nodes of Ranvier).",
+    "acceptableAnswers": []
+   },
+   "explanation": null,
+   "sourceRef": "Kandel et al., Principles of Neural Science (McGraw-Hill); Gray's Anatomy for Students",
+   "tags": [
+    "anatomy"
+   ]
+  },
+  {
+   "prompt": "Myelin-forming cells",
+   "content": {
+    "kind": "short-answer",
+    "answer": "Oligodendrocytes in the CNS; Schwann cells in the PNS.",
+    "acceptableAnswers": []
+   },
+   "explanation": null,
+   "sourceRef": "Kandel et al., Principles of Neural Science (McGraw-Hill); Gray's Anatomy for Students",
+   "tags": [
+    "anatomy"
+   ]
+  },
+  {
+   "prompt": "Excitatory neurotransmitter most common in the CNS",
+   "content": {
+    "kind": "short-answer",
+    "answer": "Glutamate",
+    "acceptableAnswers": []
+   },
+   "explanation": null,
+   "sourceRef": "Kandel et al., Principles of Neural Science (McGraw-Hill); Gray's Anatomy for Students",
+   "tags": [
+    "anatomy"
+   ]
+  },
+  {
+   "prompt": "Main inhibitory neurotransmitter in the brain",
+   "content": {
+    "kind": "short-answer",
+    "answer": "GABA (glycine in the spinal cord).",
+    "acceptableAnswers": []
+   },
+   "explanation": null,
+   "sourceRef": "Kandel et al., Principles of Neural Science (McGraw-Hill); Gray's Anatomy for Students",
+   "tags": [
+    "anatomy"
+   ]
+  },
+  {
+   "prompt": "Autonomic nervous system divisions",
+   "content": {
+    "kind": "short-answer",
+    "answer": "Sympathetic (fight or flight) and parasympathetic (rest and digest); also enteric.",
+    "acceptableAnswers": []
+   },
+   "explanation": null,
+   "sourceRef": "Kandel et al., Principles of Neural Science (McGraw-Hill); Gray's Anatomy for Students",
+   "tags": [
+    "anatomy"
+   ]
+  },
+  {
+   "prompt": "Meninges, outer to inner",
+   "content": {
+    "kind": "short-answer",
+    "answer": "Dura mater, arachnoid mater, pia mater",
+    "acceptableAnswers": []
+   },
+   "explanation": null,
+   "sourceRef": "Kandel et al., Principles of Neural Science (McGraw-Hill); Gray's Anatomy for Students",
+   "tags": [
+    "anatomy"
+   ]
+  },
+  {
+   "prompt": "Cerebrospinal fluid is made by",
+   "content": {
+    "kind": "short-answer",
+    "answer": "The choroid plexus in the ventricles.",
+    "acceptableAnswers": []
+   },
+   "explanation": null,
+   "sourceRef": "Kandel et al., Principles of Neural Science (McGraw-Hill); Gray's Anatomy for Students",
+   "tags": [
+    "anatomy"
+   ]
+  },
+  {
+   "prompt": "Spinal cord ends (adult) at about",
+   "content": {
+    "kind": "short-answer",
+    "answer": "L1-L2 (the conus medullaris).",
+    "acceptableAnswers": []
+   },
+   "explanation": null,
+   "sourceRef": "Kandel et al., Principles of Neural Science (McGraw-Hill); Gray's Anatomy for Students",
+   "tags": [
+    "anatomy"
+   ]
+  },
+  {
+   "prompt": "Spinal nerve pairs",
+   "content": {
+    "kind": "short-answer",
+    "answer": "31 (8 cervical, 12 thoracic, 5 lumbar, 5 sacral, 1 coccygeal).",
+    "acceptableAnswers": []
+   },
+   "explanation": null,
+   "sourceRef": "Kandel et al., Principles of Neural Science (McGraw-Hill); Gray's Anatomy for Students",
+   "tags": [
+    "anatomy"
+   ]
+  },
+  {
+   "prompt": "Reflex arc components",
+   "content": {
+    "kind": "short-answer",
+    "answer": "Receptor, sensory neuron, integration center, motor neuron, effector.",
+    "acceptableAnswers": []
+   },
+   "explanation": null,
+   "sourceRef": "Kandel et al., Principles of Neural Science (McGraw-Hill); Gray's Anatomy for Students",
+   "tags": [
+    "anatomy"
+   ]
+  },
+  {
+   "prompt": "Blood–brain barrier",
+   "content": {
+    "kind": "short-answer",
+    "answer": "Tight endothelial junctions (supported by astrocytes) restricting entry of substances into the brain.",
+    "acceptableAnswers": []
+   },
+   "explanation": null,
+   "sourceRef": "Kandel et al., Principles of Neural Science (McGraw-Hill); Gray's Anatomy for Students",
+   "tags": [
+    "anatomy"
+   ]
+  }
+ ]
+}
