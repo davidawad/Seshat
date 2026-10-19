@@ -1,8 +1,10 @@
 import { Link } from 'react-router-dom'
 import { TESTIDS } from '../../lib/testids'
 import { type StarterSet, STARTER_SETS } from './starter-sets'
+import { useCatalog } from './useCatalog'
 import { TRY_SAMPLE_SET } from './try-sample'
 import './first-run-hero.css'
+import './browse.css'
 
 interface FirstRunHeroProps {
   /** Called with the set to add (the neutral sample, or one of the "More examples"). */
@@ -14,6 +16,37 @@ interface FirstRunHeroProps {
  * set (import from Quizlet, create one, or try a bundled 10-card sample). The niche
  * example decks sit behind a disclosure so they do not read as the product.
  */
+const HERO_CATEGORIES = 6
+
+/** A few catalog categories as cards linking into the browse page; renders nothing until loaded or if empty. */
+const BrowseCategories = () => {
+  const catalog = useCatalog()
+  if (catalog === null || catalog.categories.length === 0) return null
+  return (
+    <section aria-labelledby="first-run-browse-heading" data-testid={TESTIDS.browseHeroCategories}>
+      <h2 id="first-run-browse-heading">Or start from a ready-made set</h2>
+      <div className="first-run-actions">
+        {catalog.categories.slice(0, HERO_CATEGORIES).map((category) => (
+          <Link
+            key={category.slug}
+            to={`/sets/browse?category=${encodeURIComponent(category.slug)}`}
+            className="first-run-cta"
+            data-testid={TESTIDS.browseHeroCategory}
+          >
+            <span className="first-run-cta-title">{category.label}</span>
+            <span className="first-run-cta-hint">
+              {category.blurb || `${category.count} ${category.count === 1 ? 'set' : 'sets'}`}
+            </span>
+          </Link>
+        ))}
+      </div>
+      <p>
+        <Link to="/sets/browse">Browse all sets</Link>
+      </p>
+    </section>
+  )
+}
+
 export const FirstRunHero = ({ onLoad }: FirstRunHeroProps) => (
   <div className="first-run" data-testid={TESTIDS.setsBrowserHero}>
     <p className="first-run-promise">Research-backed spaced repetition. Your cards stay on this device.</p>
@@ -40,6 +73,7 @@ export const FirstRunHero = ({ onLoad }: FirstRunHeroProps) => (
         <span className="first-run-cta-hint">General knowledge, ready to study</span>
       </button>
     </div>
+    <BrowseCategories />
     <details className="first-run-more" data-testid={TESTIDS.setsBrowserMoreExamples}>
       <summary>More examples</summary>
       <ul className="starter-set-list">

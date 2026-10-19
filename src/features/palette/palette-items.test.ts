@@ -49,6 +49,7 @@ describe('buildPaletteItems', () => {
       'Sets',
       'Create a set',
       'Import a set',
+      'Browse sets',
       'Stats',
       'About',
       'Docs',

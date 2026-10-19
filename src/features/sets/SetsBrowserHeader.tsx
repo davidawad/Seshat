@@ -42,6 +42,9 @@ export const SetsHeader = ({
       <Link to="/sets/new" className="primary-link" data-testid={TESTIDS.setsBrowserCreate}>
         Create
       </Link>
+      <Link to="/sets/browse" className="secondary-link" data-testid={TESTIDS.browseLink}>
+        Browse
+      </Link>
       <Link to="/sets/import" className="secondary-link" data-testid={TESTIDS.setsBrowserImport}>
         Import
       </Link>

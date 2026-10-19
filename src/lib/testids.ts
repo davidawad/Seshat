@@ -105,6 +105,19 @@ export const TESTIDS = {
   createDraftStatus: 'create-draft-status',
   createProblems: 'create-problems',
 
+  // Browse sets (/sets/browse)
+  browsePage: 'browse-page',
+  browseLink: 'browse-link',
+  browseChips: 'browse-chips',
+  browseChip: 'browse-chip',
+  browseCard: 'browse-card',
+  browseAdd: 'browse-add',
+  browseOpen: 'browse-open',
+  browseEmpty: 'browse-empty',
+  browseErrors: 'browse-errors',
+  browseHeroCategories: 'browse-hero-categories',
+  browseHeroCategory: 'browse-hero-category',
+
   // Import a set (/sets/import)
   importPage: 'import-page',
   importBack: 'import-back',
