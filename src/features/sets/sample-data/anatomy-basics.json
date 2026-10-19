@@ -1,0 +1,121 @@
+{
+  "name": "Anatomy Basics",
+  "terms": [
+    {
+      "term": "Anatomical position",
+      "definition": "Standing upright, facing forward, feet flat and parallel, arms at the sides with palms facing forward; the reference posture for all directional terms."
+    },
+    {
+      "term": "Superior vs. inferior",
+      "definition": "Superior means toward the head (above); inferior means toward the feet (below)."
+    },
+    {
+      "term": "Anterior vs. posterior",
+      "definition": "Anterior (ventral) means toward the front of the body; posterior (dorsal) means toward the back."
+    },
+    {
+      "term": "Medial vs. lateral",
+      "definition": "Medial means toward the midline of the body; lateral means away from the midline."
+    },
+    {
+      "term": "Proximal vs. distal",
+      "definition": "Proximal means closer to the point of attachment or origin (the trunk, for a limb); distal means farther from it."
+    },
+    {
+      "term": "Sagittal plane",
+      "definition": "A vertical plane dividing the body into left and right parts; the midsagittal plane divides it into equal halves."
+    },
+    {
+      "term": "Coronal (frontal) plane",
+      "definition": "A vertical plane dividing the body into anterior and posterior parts."
+    },
+    {
+      "term": "Transverse (horizontal) plane",
+      "definition": "A horizontal plane dividing the body into superior and inferior parts."
+    },
+    {
+      "term": "Four tissue types",
+      "definition": "Epithelial, connective, muscle, and nervous tissue."
+    },
+    {
+      "term": "Organ systems (11)",
+      "definition": "Integumentary, skeletal, muscular, nervous, endocrine, cardiovascular, lymphatic/immune, respiratory, digestive, urinary, and reproductive."
+    },
+    {
+      "term": "Axial skeleton",
+      "definition": "The skull, vertebral column, and thoracic cage (ribs and sternum); an adult has 80 bones in the axial skeleton."
+    },
+    {
+      "term": "Appendicular skeleton",
+      "definition": "The bones of the limbs plus the pectoral and pelvic girdles; an adult has 126 bones in the appendicular skeleton."
+    },
+    {
+      "term": "Number of bones in the adult human skeleton",
+      "definition": "206."
+    },
+    {
+      "term": "Femur",
+      "definition": "The thigh bone; the longest and strongest bone in the body."
+    },
+    {
+      "term": "Cervical, thoracic, lumbar vertebrae",
+      "definition": "The vertebral column has 7 cervical, 12 thoracic, and 5 lumbar vertebrae, followed by the sacrum and coccyx."
+    },
+    {
+      "term": "Three types of muscle tissue",
+      "definition": "Skeletal (voluntary, striated), cardiac (involuntary, striated), and smooth (involuntary, non-striated)."
+    },
+    {
+      "term": "Agonist vs. antagonist muscle",
+      "definition": "The agonist (prime mover) produces a movement; the antagonist opposes it, as the triceps opposes the biceps at the elbow."
+    },
+    {
+      "term": "Tendon vs. ligament",
+      "definition": "A tendon connects muscle to bone; a ligament connects bone to bone."
+    },
+    {
+      "term": "Four chambers of the heart",
+      "definition": "Right atrium, right ventricle, left atrium, and left ventricle."
+    },
+    {
+      "term": "Path of blood through the heart",
+      "definition": "Body to right atrium, right ventricle, lungs via the pulmonary arteries, left atrium, left ventricle, then out to the body via the aorta."
+    },
+    {
+      "term": "Arteries vs. veins",
+      "definition": "Arteries carry blood away from the heart; veins carry blood toward the heart."
+    },
+    {
+      "term": "Diaphragm",
+      "definition": "The dome-shaped skeletal muscle beneath the lungs whose contraction drives inspiration."
+    },
+    {
+      "term": "Alveoli",
+      "definition": "Tiny air sacs in the lungs where gas exchange between air and blood occurs."
+    },
+    {
+      "term": "Central vs. peripheral nervous system",
+      "definition": "The central nervous system is the brain and spinal cord; the peripheral nervous system is all the nerves outside them."
+    },
+    {
+      "term": "Neuron",
+      "definition": "A nerve cell, made up of a cell body (soma), dendrites that receive signals, and an axon that transmits them."
+    },
+    {
+      "term": "Four lobes of the cerebrum",
+      "definition": "Frontal, parietal, temporal, and occipital."
+    },
+    {
+      "term": "Small intestine: three sections",
+      "definition": "Duodenum, jejunum, and ileum."
+    },
+    {
+      "term": "Kidney's functional unit",
+      "definition": "The nephron; each kidney contains roughly one million of them."
+    },
+    {
+      "term": "Largest organ of the body",
+      "definition": "The skin (integumentary system)."
+    }
+  ]
+}

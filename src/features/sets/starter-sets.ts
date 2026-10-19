@@ -1,6 +1,8 @@
 import type { ExportedSet } from '../../types'
 import { SAMPLE_SET } from './sample-set'
 import { parseSimpleJson } from './simple-json'
+import anatomyBasicsRaw from './sample-data/anatomy-basics.json?raw'
+import patentProcessRaw from './sample-data/patent-process.json?raw'
 import mpepChaptersRaw from './sample-data/mpep-chapters.json?raw'
 import patentBarTermsRaw from './sample-data/patent-bar-terms.json?raw'
 
@@ -30,6 +32,16 @@ const fromSimpleJson = (raw: string, tags: readonly string[]): ExportedSet => {
 
 export const STARTER_SETS: readonly StarterSet[] = [
   { id: 'learning-science', label: SAMPLE_SET.name, set: SAMPLE_SET },
+  {
+    id: 'anatomy-basics',
+    label: 'Anatomy Basics (29 terms)',
+    set: fromSimpleJson(anatomyBasicsRaw, ['anatomy']),
+  },
+  {
+    id: 'patent-process',
+    label: 'The Patent Process (29 terms)',
+    set: fromSimpleJson(patentProcessRaw, ['patents']),
+  },
   {
     id: 'patent-bar-terms',
     label: 'Patent Bar Key Terms (113 terms)',

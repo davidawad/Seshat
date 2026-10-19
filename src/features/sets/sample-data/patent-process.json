@@ -1,0 +1,121 @@
+{
+  "name": "The Patent Process",
+  "terms": [
+    {
+      "term": "Patentable subject matter (35 U.S.C. 101)",
+      "definition": "A new and useful process, machine, manufacture, or composition of matter, or an improvement thereof. Laws of nature, natural phenomena, and abstract ideas are judicial exceptions."
+    },
+    {
+      "term": "Utility requirement",
+      "definition": "The invention must have a specific, substantial, and credible utility (35 U.S.C. 101)."
+    },
+    {
+      "term": "Novelty (35 U.S.C. 102)",
+      "definition": "A claim is anticipated, and unpatentable, if a single prior art reference discloses every element of it, expressly or inherently."
+    },
+    {
+      "term": "Nonobviousness (35 U.S.C. 103)",
+      "definition": "A claim is unpatentable if the claimed invention as a whole would have been obvious to a person having ordinary skill in the art before the effective filing date. Graham v. John Deere sets the factual inquiries."
+    },
+    {
+      "term": "Graham factors",
+      "definition": "Scope and content of the prior art; differences between the prior art and the claims; level of ordinary skill in the art; and objective indicia of nonobviousness (secondary considerations)."
+    },
+    {
+      "term": "Written description and enablement (35 U.S.C. 112(a))",
+      "definition": "The specification must describe the invention, and enable a person skilled in the art to make and use it, and set forth the best mode contemplated by the inventor."
+    },
+    {
+      "term": "Definiteness (35 U.S.C. 112(b))",
+      "definition": "The claims must particularly point out and distinctly claim the subject matter the inventor regards as the invention."
+    },
+    {
+      "term": "Provisional application",
+      "definition": "A cheap, never-examined application that secures a filing date; it lapses after 12 months unless a non-provisional claiming its benefit is filed."
+    },
+    {
+      "term": "Non-provisional utility application",
+      "definition": "The standard application that is examined; it requires a specification, at least one claim, drawings where necessary, and an oath or declaration."
+    },
+    {
+      "term": "Parts of a specification",
+      "definition": "Title, cross-references, background, summary, brief description of drawings, detailed description, claims, and abstract."
+    },
+    {
+      "term": "Independent vs. dependent claim",
+      "definition": "An independent claim stands on its own; a dependent claim refers to and further limits an earlier claim."
+    },
+    {
+      "term": "Patent term (utility)",
+      "definition": "20 years from the earliest effective non-provisional filing date, subject to patent term adjustment and maintenance fees."
+    },
+    {
+      "term": "Design patent term",
+      "definition": "15 years from grant for applications filed on or after May 13, 2015."
+    },
+    {
+      "term": "Request for continued examination (RCE)",
+      "definition": "A filing that, with a fee, reopens prosecution after a final rejection so new arguments or amendments can be considered."
+    },
+    {
+      "term": "Non-final vs. final Office action",
+      "definition": "A non-final action is the first or later rejection allowing full response with new amendments; a final action closes prosecution, limiting further amendments as of right."
+    },
+    {
+      "term": "Response period to an Office action",
+      "definition": "Usually a 3-month shortened statutory period, extendable by fee to a maximum of 6 months."
+    },
+    {
+      "term": "Information Disclosure Statement (IDS)",
+      "definition": "A submission in which applicants disclose known material prior art, in satisfaction of the duty of candor under 37 CFR 1.56."
+    },
+    {
+      "term": "Restriction requirement",
+      "definition": "The examiner's requirement that an application be limited to one of several independent or distinct inventions."
+    },
+    {
+      "term": "Continuation",
+      "definition": "A new application claiming the same disclosure as a parent, filed while the parent is pending, with the same inventors in common; it gets the parent's filing date."
+    },
+    {
+      "term": "Continuation-in-part (CIP)",
+      "definition": "A new application that repeats part of a parent's disclosure and adds new matter; only the shared subject matter gets the parent's date."
+    },
+    {
+      "term": "Divisional",
+      "definition": "An application filed for an invention that was restricted out of a parent application."
+    },
+    {
+      "term": "Paris Convention priority",
+      "definition": "An applicant may claim priority to an earlier first filing in a member country if the later application is filed within 12 months (6 months for designs)."
+    },
+    {
+      "term": "Patent Cooperation Treaty (PCT)",
+      "definition": "A treaty providing a single international application, with national phase entry generally at 30 months from the priority date."
+    },
+    {
+      "term": "Pre-AIA vs. AIA first inventor to file",
+      "definition": "Applications with an effective filing date on or after March 16, 2013 follow first-inventor-to-file rules; earlier ones follow first-to-invent."
+    },
+    {
+      "term": "AIA grace period",
+      "definition": "A disclosure by the inventor made 1 year or less before the effective filing date is not prior art under the 102(b)(1) exceptions."
+    },
+    {
+      "term": "Maintenance fees",
+      "definition": "Due at 3.5, 7.5, and 11.5 years after grant; each can be paid in a 6-month grace period with a surcharge."
+    },
+    {
+      "term": "Inter partes review (IPR)",
+      "definition": "A PTAB trial challenging patent claims as unpatentable under 102 or 103 based on patents and printed publications."
+    },
+    {
+      "term": "Duty of candor (37 CFR 1.56)",
+      "definition": "Each individual associated with filing and prosecuting an application must disclose information material to patentability."
+    },
+    {
+      "term": "Governing texts for practice",
+      "definition": "35 U.S.C. (statute), 37 C.F.R. (rules), and the MPEP (the Manual of Patent Examining Procedure, the examiners' and practitioners' guide)."
+    }
+  ]
+}
