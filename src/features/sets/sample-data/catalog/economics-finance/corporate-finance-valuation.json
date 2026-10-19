@@ -1,401 +1,338 @@
 {
- "seshatExportVersion": 1,
- "name": "Corporate Finance and Valuation",
- "description": "Time value of money, valuation and capital structure basics.",
- "tags": [
-  "finance",
-  "valuation"
- ],
- "cards": [
-  {
-   "prompt": "Present value of a single future cash flow",
-   "content": {
-    "kind": "short-answer",
-    "answer": "PV = FV / (1 + r)^n",
-    "acceptableAnswers": []
-   },
-   "explanation": null,
-   "sourceRef": "Brealey, Myers & Allen, Principles of Corporate Finance (McGraw-Hill); Graham & Dodd, Security Analysis",
-   "tags": [
-    "finance"
-   ]
-  },
-  {
-   "prompt": "Future value with compounding",
-   "content": {
-    "kind": "short-answer",
-    "answer": "FV = PV (1 + r)^n",
-    "acceptableAnswers": []
-   },
-   "explanation": null,
-   "sourceRef": "Brealey, Myers & Allen, Principles of Corporate Finance (McGraw-Hill); Graham & Dodd, Security Analysis",
-   "tags": [
-    "finance"
-   ]
-  },
-  {
-   "prompt": "Present value of a perpetuity",
-   "content": {
-    "kind": "short-answer",
-    "answer": "PV = C / r",
-    "acceptableAnswers": []
-   },
-   "explanation": null,
-   "sourceRef": "Brealey, Myers & Allen, Principles of Corporate Finance (McGraw-Hill); Graham & Dodd, Security Analysis",
-   "tags": [
-    "finance"
-   ]
-  },
-  {
-   "prompt": "Present value of a growing perpetuity",
-   "content": {
-    "kind": "short-answer",
-    "answer": "PV = C1 / (r - g)",
-    "acceptableAnswers": []
-   },
-   "explanation": null,
-   "sourceRef": "Brealey, Myers & Allen, Principles of Corporate Finance (McGraw-Hill); Graham & Dodd, Security Analysis",
-   "tags": [
-    "finance"
-   ]
-  },
-  {
-   "prompt": "Present value of an ordinary annuity",
-   "content": {
-    "kind": "short-answer",
-    "answer": "PV = C [1 - (1 + r)^-n] / r",
-    "acceptableAnswers": []
-   },
-   "explanation": null,
-   "sourceRef": "Brealey, Myers & Allen, Principles of Corporate Finance (McGraw-Hill); Graham & Dodd, Security Analysis",
-   "tags": [
-    "finance"
-   ]
-  },
-  {
-   "prompt": "Net present value rule",
-   "content": {
-    "kind": "short-answer",
-    "answer": "Accept projects with NPV > 0.",
-    "acceptableAnswers": []
-   },
-   "explanation": null,
-   "sourceRef": "Brealey, Myers & Allen, Principles of Corporate Finance (McGraw-Hill); Graham & Dodd, Security Analysis",
-   "tags": [
-    "finance"
-   ]
-  },
-  {
-   "prompt": "Internal rate of return",
-   "content": {
-    "kind": "short-answer",
-    "answer": "The discount rate that sets NPV to zero.",
-    "acceptableAnswers": []
-   },
-   "explanation": null,
-   "sourceRef": "Brealey, Myers & Allen, Principles of Corporate Finance (McGraw-Hill); Graham & Dodd, Security Analysis",
-   "tags": [
-    "finance"
-   ]
-  },
-  {
-   "prompt": "Payback period",
-   "content": {
-    "kind": "short-answer",
-    "answer": "Time required to recover the initial investment (ignores time value and later cash flows).",
-    "acceptableAnswers": []
-   },
-   "explanation": null,
-   "sourceRef": "Brealey, Myers & Allen, Principles of Corporate Finance (McGraw-Hill); Graham & Dodd, Security Analysis",
-   "tags": [
-    "finance"
-   ]
-  },
-  {
-   "prompt": "Effective annual rate from nominal rate r compounded m times",
-   "content": {
-    "kind": "short-answer",
-    "answer": "(1 + r/m)^m - 1",
-    "acceptableAnswers": []
-   },
-   "explanation": null,
-   "sourceRef": "Brealey, Myers & Allen, Principles of Corporate Finance (McGraw-Hill); Graham & Dodd, Security Analysis",
-   "tags": [
-    "finance"
-   ]
-  },
-  {
-   "prompt": "WACC",
-   "content": {
-    "kind": "short-answer",
-    "answer": "E/V × Re + D/V × Rd × (1 - Tc)",
-    "acceptableAnswers": []
-   },
-   "explanation": null,
-   "sourceRef": "Brealey, Myers & Allen, Principles of Corporate Finance (McGraw-Hill); Graham & Dodd, Security Analysis",
-   "tags": [
-    "finance"
-   ]
-  },
-  {
-   "prompt": "Gordon growth model",
-   "content": {
-    "kind": "short-answer",
-    "answer": "P0 = D1 / (r - g)",
-    "acceptableAnswers": []
-   },
-   "explanation": null,
-   "sourceRef": "Brealey, Myers & Allen, Principles of Corporate Finance (McGraw-Hill); Graham & Dodd, Security Analysis",
-   "tags": [
-    "finance"
-   ]
-  },
-  {
-   "prompt": "Dividend discount model",
-   "content": {
-    "kind": "short-answer",
-    "answer": "Value of a stock = present value of its expected dividends.",
-    "acceptableAnswers": []
-   },
-   "explanation": null,
-   "sourceRef": "Brealey, Myers & Allen, Principles of Corporate Finance (McGraw-Hill); Graham & Dodd, Security Analysis",
-   "tags": [
-    "finance"
-   ]
-  },
-  {
-   "prompt": "Free cash flow to the firm (concept)",
-   "content": {
-    "kind": "short-answer",
-    "answer": "NOPAT + depreciation - capex - change in working capital.",
-    "acceptableAnswers": []
-   },
-   "explanation": null,
-   "sourceRef": "Brealey, Myers & Allen, Principles of Corporate Finance (McGraw-Hill); Graham & Dodd, Security Analysis",
-   "tags": [
-    "finance"
-   ]
-  },
-  {
-   "prompt": "Enterprise value",
-   "content": {
-    "kind": "short-answer",
-    "answer": "Market cap + debt - cash (plus preferred stock and minority interest).",
-    "acceptableAnswers": []
-   },
-   "explanation": null,
-   "sourceRef": "Brealey, Myers & Allen, Principles of Corporate Finance (McGraw-Hill); Graham & Dodd, Security Analysis",
-   "tags": [
-    "finance"
-   ]
-  },
-  {
-   "prompt": "EBITDA",
-   "content": {
-    "kind": "short-answer",
-    "answer": "Earnings before interest, taxes, depreciation and amortization.",
-    "acceptableAnswers": []
-   },
-   "explanation": null,
-   "sourceRef": "Brealey, Myers & Allen, Principles of Corporate Finance (McGraw-Hill); Graham & Dodd, Security Analysis",
-   "tags": [
-    "finance"
-   ]
-  },
-  {
-   "prompt": "Modigliani–Miller (no taxes)",
-   "content": {
-    "kind": "short-answer",
-    "answer": "Firm value is independent of capital structure in perfect markets.",
-    "acceptableAnswers": []
-   },
-   "explanation": null,
-   "sourceRef": "Brealey, Myers & Allen, Principles of Corporate Finance (McGraw-Hill); Graham & Dodd, Security Analysis",
-   "tags": [
-    "finance"
-   ]
-  },
-  {
-   "prompt": "Tax shield of debt",
-   "content": {
-    "kind": "short-answer",
-    "answer": "Interest is tax deductible, so debt reduces taxes by interest × tax rate.",
-    "acceptableAnswers": []
-   },
-   "explanation": null,
-   "sourceRef": "Brealey, Myers & Allen, Principles of Corporate Finance (McGraw-Hill); Graham & Dodd, Security Analysis",
-   "tags": [
-    "finance"
-   ]
-  },
-  {
-   "prompt": "P/E ratio",
-   "content": {
-    "kind": "short-answer",
-    "answer": "Price per share / earnings per share.",
-    "acceptableAnswers": []
-   },
-   "explanation": null,
-   "sourceRef": "Brealey, Myers & Allen, Principles of Corporate Finance (McGraw-Hill); Graham & Dodd, Security Analysis",
-   "tags": [
-    "finance"
-   ]
-  },
-  {
-   "prompt": "EV/EBITDA use",
-   "content": {
-    "kind": "short-answer",
-    "answer": "A capital-structure-neutral multiple for comparing companies.",
-    "acceptableAnswers": []
-   },
-   "explanation": null,
-   "sourceRef": "Brealey, Myers & Allen, Principles of Corporate Finance (McGraw-Hill); Graham & Dodd, Security Analysis",
-   "tags": [
-    "finance"
-   ]
-  },
-  {
-   "prompt": "Operating leverage",
-   "content": {
-    "kind": "short-answer",
-    "answer": "Sensitivity of operating income to sales; higher fixed costs mean higher operating leverage.",
-    "acceptableAnswers": []
-   },
-   "explanation": null,
-   "sourceRef": "Brealey, Myers & Allen, Principles of Corporate Finance (McGraw-Hill); Graham & Dodd, Security Analysis",
-   "tags": [
-    "finance"
-   ]
-  },
-  {
-   "prompt": "Financial leverage",
-   "content": {
-    "kind": "short-answer",
-    "answer": "The use of debt, magnifying returns to equity (and risk).",
-    "acceptableAnswers": []
-   },
-   "explanation": null,
-   "sourceRef": "Brealey, Myers & Allen, Principles of Corporate Finance (McGraw-Hill); Graham & Dodd, Security Analysis",
-   "tags": [
-    "finance"
-   ]
-  },
-  {
-   "prompt": "DuPont identity",
-   "content": {
-    "kind": "short-answer",
-    "answer": "ROE = net margin × asset turnover × equity multiplier.",
-    "acceptableAnswers": []
-   },
-   "explanation": null,
-   "sourceRef": "Brealey, Myers & Allen, Principles of Corporate Finance (McGraw-Hill); Graham & Dodd, Security Analysis",
-   "tags": [
-    "finance"
-   ]
-  },
-  {
-   "prompt": "Three financial statements",
-   "content": {
-    "kind": "short-answer",
-    "answer": "Income statement, balance sheet, cash flow statement.",
-    "acceptableAnswers": []
-   },
-   "explanation": null,
-   "sourceRef": "Brealey, Myers & Allen, Principles of Corporate Finance (McGraw-Hill); Graham & Dodd, Security Analysis",
-   "tags": [
-    "finance"
-   ]
-  },
-  {
-   "prompt": "Accounting identity",
-   "content": {
-    "kind": "short-answer",
-    "answer": "Assets = liabilities + equity",
-    "acceptableAnswers": []
-   },
-   "explanation": null,
-   "sourceRef": "Brealey, Myers & Allen, Principles of Corporate Finance (McGraw-Hill); Graham & Dodd, Security Analysis",
-   "tags": [
-    "finance"
-   ]
-  },
-  {
-   "prompt": "Accrual vs cash accounting",
-   "content": {
-    "kind": "short-answer",
-    "answer": "Accrual records revenue/expenses when earned/incurred; cash records when cash moves.",
-    "acceptableAnswers": []
-   },
-   "explanation": null,
-   "sourceRef": "Brealey, Myers & Allen, Principles of Corporate Finance (McGraw-Hill); Graham & Dodd, Security Analysis",
-   "tags": [
-    "finance"
-   ]
-  },
-  {
-   "prompt": "Working capital",
-   "content": {
-    "kind": "short-answer",
-    "answer": "Current assets - current liabilities.",
-    "acceptableAnswers": []
-   },
-   "explanation": null,
-   "sourceRef": "Brealey, Myers & Allen, Principles of Corporate Finance (McGraw-Hill); Graham & Dodd, Security Analysis",
-   "tags": [
-    "finance"
-   ]
-  },
-  {
-   "prompt": "Weighted average cost of debt: after-tax",
-   "content": {
-    "kind": "short-answer",
-    "answer": "Rd × (1 - tax rate)",
-    "acceptableAnswers": []
-   },
-   "explanation": null,
-   "sourceRef": "Brealey, Myers & Allen, Principles of Corporate Finance (McGraw-Hill); Graham & Dodd, Security Analysis",
-   "tags": [
-    "finance"
-   ]
-  },
-  {
-   "prompt": "Black–Scholes inputs",
-   "content": {
-    "kind": "short-answer",
-    "answer": "Spot price, strike, time to expiry, volatility, risk-free rate (and dividends).",
-    "acceptableAnswers": []
-   },
-   "explanation": null,
-   "sourceRef": "Brealey, Myers & Allen, Principles of Corporate Finance (McGraw-Hill); Graham & Dodd, Security Analysis",
-   "tags": [
-    "finance"
-   ]
-  },
-  {
-   "prompt": "Put–call parity (European, no dividends)",
-   "content": {
-    "kind": "short-answer",
-    "answer": "C - P = S - K e^(-rT)",
-    "acceptableAnswers": []
-   },
-   "explanation": null,
-   "sourceRef": "Brealey, Myers & Allen, Principles of Corporate Finance (McGraw-Hill); Graham & Dodd, Security Analysis",
-   "tags": [
-    "finance"
-   ]
-  },
-  {
-   "prompt": "Capital asset pricing model",
-   "content": {
-    "kind": "short-answer",
-    "answer": "E(R) = Rf + β (E(Rm) - Rf)",
-    "acceptableAnswers": []
-   },
-   "explanation": null,
-   "sourceRef": "Brealey, Myers & Allen, Principles of Corporate Finance (McGraw-Hill); Graham & Dodd, Security Analysis",
-   "tags": [
-    "finance"
-   ]
-  }
- ]
+  "seshatExportVersion": 1,
+  "name": "Corporate Finance and Valuation",
+  "description": "Time value of money, valuation and capital structure basics.",
+  "tags": ["finance", "valuation"],
+  "cards": [
+    {
+      "prompt": "Present value of a single future cash flow",
+      "content": {
+        "kind": "short-answer",
+        "answer": "PV = FV / (1 + r)^n",
+        "acceptableAnswers": []
+      },
+      "explanation": null,
+      "sourceRef": "Brealey, Myers & Allen, Principles of Corporate Finance (McGraw-Hill); Graham & Dodd, Security Analysis",
+      "tags": ["finance"]
+    },
+    {
+      "prompt": "Future value with compounding",
+      "content": {
+        "kind": "short-answer",
+        "answer": "FV = PV (1 + r)^n",
+        "acceptableAnswers": []
+      },
+      "explanation": null,
+      "sourceRef": "Brealey, Myers & Allen, Principles of Corporate Finance (McGraw-Hill); Graham & Dodd, Security Analysis",
+      "tags": ["finance"]
+    },
+    {
+      "prompt": "Present value of a perpetuity",
+      "content": {
+        "kind": "short-answer",
+        "answer": "PV = C / r",
+        "acceptableAnswers": []
+      },
+      "explanation": null,
+      "sourceRef": "Brealey, Myers & Allen, Principles of Corporate Finance (McGraw-Hill); Graham & Dodd, Security Analysis",
+      "tags": ["finance"]
+    },
+    {
+      "prompt": "Present value of a growing perpetuity",
+      "content": {
+        "kind": "short-answer",
+        "answer": "PV = C1 / (r - g)",
+        "acceptableAnswers": []
+      },
+      "explanation": null,
+      "sourceRef": "Brealey, Myers & Allen, Principles of Corporate Finance (McGraw-Hill); Graham & Dodd, Security Analysis",
+      "tags": ["finance"]
+    },
+    {
+      "prompt": "Present value of an ordinary annuity",
+      "content": {
+        "kind": "short-answer",
+        "answer": "PV = C [1 - (1 + r)^-n] / r",
+        "acceptableAnswers": []
+      },
+      "explanation": null,
+      "sourceRef": "Brealey, Myers & Allen, Principles of Corporate Finance (McGraw-Hill); Graham & Dodd, Security Analysis",
+      "tags": ["finance"]
+    },
+    {
+      "prompt": "Net present value rule",
+      "content": {
+        "kind": "short-answer",
+        "answer": "Accept projects with NPV > 0.",
+        "acceptableAnswers": []
+      },
+      "explanation": null,
+      "sourceRef": "Brealey, Myers & Allen, Principles of Corporate Finance (McGraw-Hill); Graham & Dodd, Security Analysis",
+      "tags": ["finance"]
+    },
+    {
+      "prompt": "Internal rate of return",
+      "content": {
+        "kind": "short-answer",
+        "answer": "The discount rate that sets NPV to zero.",
+        "acceptableAnswers": []
+      },
+      "explanation": null,
+      "sourceRef": "Brealey, Myers & Allen, Principles of Corporate Finance (McGraw-Hill); Graham & Dodd, Security Analysis",
+      "tags": ["finance"]
+    },
+    {
+      "prompt": "Payback period",
+      "content": {
+        "kind": "short-answer",
+        "answer": "Time required to recover the initial investment (ignores time value and later cash flows).",
+        "acceptableAnswers": []
+      },
+      "explanation": null,
+      "sourceRef": "Brealey, Myers & Allen, Principles of Corporate Finance (McGraw-Hill); Graham & Dodd, Security Analysis",
+      "tags": ["finance"]
+    },
+    {
+      "prompt": "Effective annual rate from nominal rate r compounded m times",
+      "content": {
+        "kind": "short-answer",
+        "answer": "(1 + r/m)^m - 1",
+        "acceptableAnswers": []
+      },
+      "explanation": null,
+      "sourceRef": "Brealey, Myers & Allen, Principles of Corporate Finance (McGraw-Hill); Graham & Dodd, Security Analysis",
+      "tags": ["finance"]
+    },
+    {
+      "prompt": "WACC",
+      "content": {
+        "kind": "short-answer",
+        "answer": "E/V × Re + D/V × Rd × (1 - Tc)",
+        "acceptableAnswers": []
+      },
+      "explanation": null,
+      "sourceRef": "Brealey, Myers & Allen, Principles of Corporate Finance (McGraw-Hill); Graham & Dodd, Security Analysis",
+      "tags": ["finance"]
+    },
+    {
+      "prompt": "Gordon growth model",
+      "content": {
+        "kind": "short-answer",
+        "answer": "P0 = D1 / (r - g)",
+        "acceptableAnswers": []
+      },
+      "explanation": null,
+      "sourceRef": "Brealey, Myers & Allen, Principles of Corporate Finance (McGraw-Hill); Graham & Dodd, Security Analysis",
+      "tags": ["finance"]
+    },
+    {
+      "prompt": "Dividend discount model",
+      "content": {
+        "kind": "short-answer",
+        "answer": "Value of a stock = present value of its expected dividends.",
+        "acceptableAnswers": []
+      },
+      "explanation": null,
+      "sourceRef": "Brealey, Myers & Allen, Principles of Corporate Finance (McGraw-Hill); Graham & Dodd, Security Analysis",
+      "tags": ["finance"]
+    },
+    {
+      "prompt": "Free cash flow to the firm (concept)",
+      "content": {
+        "kind": "short-answer",
+        "answer": "NOPAT + depreciation - capex - change in working capital.",
+        "acceptableAnswers": []
+      },
+      "explanation": null,
+      "sourceRef": "Brealey, Myers & Allen, Principles of Corporate Finance (McGraw-Hill); Graham & Dodd, Security Analysis",
+      "tags": ["finance"]
+    },
+    {
+      "prompt": "Enterprise value",
+      "content": {
+        "kind": "short-answer",
+        "answer": "Market cap + debt - cash (plus preferred stock and minority interest).",
+        "acceptableAnswers": []
+      },
+      "explanation": null,
+      "sourceRef": "Brealey, Myers & Allen, Principles of Corporate Finance (McGraw-Hill); Graham & Dodd, Security Analysis",
+      "tags": ["finance"]
+    },
+    {
+      "prompt": "EBITDA",
+      "content": {
+        "kind": "short-answer",
+        "answer": "Earnings before interest, taxes, depreciation and amortization.",
+        "acceptableAnswers": []
+      },
+      "explanation": null,
+      "sourceRef": "Brealey, Myers & Allen, Principles of Corporate Finance (McGraw-Hill); Graham & Dodd, Security Analysis",
+      "tags": ["finance"]
+    },
+    {
+      "prompt": "Modigliani–Miller (no taxes)",
+      "content": {
+        "kind": "short-answer",
+        "answer": "Firm value is independent of capital structure in perfect markets.",
+        "acceptableAnswers": []
+      },
+      "explanation": null,
+      "sourceRef": "Brealey, Myers & Allen, Principles of Corporate Finance (McGraw-Hill); Graham & Dodd, Security Analysis",
+      "tags": ["finance"]
+    },
+    {
+      "prompt": "Tax shield of debt",
+      "content": {
+        "kind": "short-answer",
+        "answer": "Interest is tax deductible, so debt reduces taxes by interest × tax rate.",
+        "acceptableAnswers": []
+      },
+      "explanation": null,
+      "sourceRef": "Brealey, Myers & Allen, Principles of Corporate Finance (McGraw-Hill); Graham & Dodd, Security Analysis",
+      "tags": ["finance"]
+    },
+    {
+      "prompt": "P/E ratio",
+      "content": {
+        "kind": "short-answer",
+        "answer": "Price per share / earnings per share.",
+        "acceptableAnswers": []
+      },
+      "explanation": null,
+      "sourceRef": "Brealey, Myers & Allen, Principles of Corporate Finance (McGraw-Hill); Graham & Dodd, Security Analysis",
+      "tags": ["finance"]
+    },
+    {
+      "prompt": "EV/EBITDA use",
+      "content": {
+        "kind": "short-answer",
+        "answer": "A capital-structure-neutral multiple for comparing companies.",
+        "acceptableAnswers": []
+      },
+      "explanation": null,
+      "sourceRef": "Brealey, Myers & Allen, Principles of Corporate Finance (McGraw-Hill); Graham & Dodd, Security Analysis",
+      "tags": ["finance"]
+    },
+    {
+      "prompt": "Operating leverage",
+      "content": {
+        "kind": "short-answer",
+        "answer": "Sensitivity of operating income to sales; higher fixed costs mean higher operating leverage.",
+        "acceptableAnswers": []
+      },
+      "explanation": null,
+      "sourceRef": "Brealey, Myers & Allen, Principles of Corporate Finance (McGraw-Hill); Graham & Dodd, Security Analysis",
+      "tags": ["finance"]
+    },
+    {
+      "prompt": "Financial leverage",
+      "content": {
+        "kind": "short-answer",
+        "answer": "The use of debt, magnifying returns to equity (and risk).",
+        "acceptableAnswers": []
+      },
+      "explanation": null,
+      "sourceRef": "Brealey, Myers & Allen, Principles of Corporate Finance (McGraw-Hill); Graham & Dodd, Security Analysis",
+      "tags": ["finance"]
+    },
+    {
+      "prompt": "DuPont identity",
+      "content": {
+        "kind": "short-answer",
+        "answer": "ROE = net margin × asset turnover × equity multiplier.",
+        "acceptableAnswers": []
+      },
+      "explanation": null,
+      "sourceRef": "Brealey, Myers & Allen, Principles of Corporate Finance (McGraw-Hill); Graham & Dodd, Security Analysis",
+      "tags": ["finance"]
+    },
+    {
+      "prompt": "Three financial statements",
+      "content": {
+        "kind": "short-answer",
+        "answer": "Income statement, balance sheet, cash flow statement.",
+        "acceptableAnswers": []
+      },
+      "explanation": null,
+      "sourceRef": "Brealey, Myers & Allen, Principles of Corporate Finance (McGraw-Hill); Graham & Dodd, Security Analysis",
+      "tags": ["finance"]
+    },
+    {
+      "prompt": "Accounting identity",
+      "content": {
+        "kind": "short-answer",
+        "answer": "Assets = liabilities + equity",
+        "acceptableAnswers": []
+      },
+      "explanation": null,
+      "sourceRef": "Brealey, Myers & Allen, Principles of Corporate Finance (McGraw-Hill); Graham & Dodd, Security Analysis",
+      "tags": ["finance"]
+    },
+    {
+      "prompt": "Accrual vs cash accounting",
+      "content": {
+        "kind": "short-answer",
+        "answer": "Accrual records revenue/expenses when earned/incurred; cash records when cash moves.",
+        "acceptableAnswers": []
+      },
+      "explanation": null,
+      "sourceRef": "Brealey, Myers & Allen, Principles of Corporate Finance (McGraw-Hill); Graham & Dodd, Security Analysis",
+      "tags": ["finance"]
+    },
+    {
+      "prompt": "Working capital",
+      "content": {
+        "kind": "short-answer",
+        "answer": "Current assets - current liabilities.",
+        "acceptableAnswers": []
+      },
+      "explanation": null,
+      "sourceRef": "Brealey, Myers & Allen, Principles of Corporate Finance (McGraw-Hill); Graham & Dodd, Security Analysis",
+      "tags": ["finance"]
+    },
+    {
+      "prompt": "Weighted average cost of debt: after-tax",
+      "content": {
+        "kind": "short-answer",
+        "answer": "Rd × (1 - tax rate)",
+        "acceptableAnswers": []
+      },
+      "explanation": null,
+      "sourceRef": "Brealey, Myers & Allen, Principles of Corporate Finance (McGraw-Hill); Graham & Dodd, Security Analysis",
+      "tags": ["finance"]
+    },
+    {
+      "prompt": "Black–Scholes inputs",
+      "content": {
+        "kind": "short-answer",
+        "answer": "Spot price, strike, time to expiry, volatility, risk-free rate (and dividends).",
+        "acceptableAnswers": []
+      },
+      "explanation": null,
+      "sourceRef": "Brealey, Myers & Allen, Principles of Corporate Finance (McGraw-Hill); Graham & Dodd, Security Analysis",
+      "tags": ["finance"]
+    },
+    {
+      "prompt": "Put–call parity (European, no dividends)",
+      "content": {
+        "kind": "short-answer",
+        "answer": "C - P = S - K e^(-rT)",
+        "acceptableAnswers": []
+      },
+      "explanation": null,
+      "sourceRef": "Brealey, Myers & Allen, Principles of Corporate Finance (McGraw-Hill); Graham & Dodd, Security Analysis",
+      "tags": ["finance"]
+    },
+    {
+      "prompt": "Capital asset pricing model",
+      "content": {
+        "kind": "short-answer",
+        "answer": "E(R) = Rf + β (E(Rm) - Rf)",
+        "acceptableAnswers": []
+      },
+      "explanation": null,
+      "sourceRef": "Brealey, Myers & Allen, Principles of Corporate Finance (McGraw-Hill); Graham & Dodd, Security Analysis",
+      "tags": ["finance"]
+    }
+  ]
 }

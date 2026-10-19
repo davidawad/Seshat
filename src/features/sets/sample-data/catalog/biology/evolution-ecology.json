@@ -1,388 +1,327 @@
 {
- "seshatExportVersion": 1,
- "name": "Evolution and Ecology",
- "description": "Mechanisms of evolution, classification and ecological concepts.",
- "tags": [
-  "biology",
-  "evolution"
- ],
- "cards": [
-  {
-   "prompt": "Natural selection requires",
-   "content": {
-    "kind": "short-answer",
-    "answer": "Heritable variation in traits that affects survival and reproduction.",
-    "acceptableAnswers": []
-   },
-   "explanation": null,
-   "sourceRef": "Campbell Biology (Pearson); Futuyma & Kirkpatrick, Evolution (Oxford)",
-   "tags": [
-    "biology"
-   ]
-  },
-  {
-   "prompt": "Four mechanisms of evolutionary change",
-   "content": {
-    "kind": "short-answer",
-    "answer": "Natural selection, genetic drift, gene flow, mutation.",
-    "acceptableAnswers": []
-   },
-   "explanation": null,
-   "sourceRef": "Campbell Biology (Pearson); Futuyma & Kirkpatrick, Evolution (Oxford)",
-   "tags": [
-    "biology"
-   ]
-  },
-  {
-   "prompt": "Genetic drift",
-   "content": {
-    "kind": "short-answer",
-    "answer": "Random change in allele frequencies, strongest in small populations.",
-    "acceptableAnswers": []
-   },
-   "explanation": null,
-   "sourceRef": "Campbell Biology (Pearson); Futuyma & Kirkpatrick, Evolution (Oxford)",
-   "tags": [
-    "biology"
-   ]
-  },
-  {
-   "prompt": "Founder effect",
-   "content": {
-    "kind": "short-answer",
-    "answer": "Drift when a small group founds a new population.",
-    "acceptableAnswers": []
-   },
-   "explanation": null,
-   "sourceRef": "Campbell Biology (Pearson); Futuyma & Kirkpatrick, Evolution (Oxford)",
-   "tags": [
-    "biology"
-   ]
-  },
-  {
-   "prompt": "Bottleneck effect",
-   "content": {
-    "kind": "short-answer",
-    "answer": "Drift after a population is sharply reduced in size.",
-    "acceptableAnswers": []
-   },
-   "explanation": null,
-   "sourceRef": "Campbell Biology (Pearson); Futuyma & Kirkpatrick, Evolution (Oxford)",
-   "tags": [
-    "biology"
-   ]
-  },
-  {
-   "prompt": "Fitness (evolutionary)",
-   "content": {
-    "kind": "short-answer",
-    "answer": "An individual's relative reproductive success.",
-    "acceptableAnswers": []
-   },
-   "explanation": null,
-   "sourceRef": "Campbell Biology (Pearson); Futuyma & Kirkpatrick, Evolution (Oxford)",
-   "tags": [
-    "biology"
-   ]
-  },
-  {
-   "prompt": "Directional, stabilizing, disruptive selection",
-   "content": {
-    "kind": "short-answer",
-    "answer": "Favor one extreme; favor the mean; favor both extremes.",
-    "acceptableAnswers": []
-   },
-   "explanation": null,
-   "sourceRef": "Campbell Biology (Pearson); Futuyma & Kirkpatrick, Evolution (Oxford)",
-   "tags": [
-    "biology"
-   ]
-  },
-  {
-   "prompt": "Biological species concept",
-   "content": {
-    "kind": "short-answer",
-    "answer": "Groups of interbreeding natural populations reproductively isolated from others (Mayr).",
-    "acceptableAnswers": []
-   },
-   "explanation": null,
-   "sourceRef": "Campbell Biology (Pearson); Futuyma & Kirkpatrick, Evolution (Oxford)",
-   "tags": [
-    "biology"
-   ]
-  },
-  {
-   "prompt": "Allopatric speciation",
-   "content": {
-    "kind": "short-answer",
-    "answer": "Speciation after geographic separation of populations.",
-    "acceptableAnswers": []
-   },
-   "explanation": null,
-   "sourceRef": "Campbell Biology (Pearson); Futuyma & Kirkpatrick, Evolution (Oxford)",
-   "tags": [
-    "biology"
-   ]
-  },
-  {
-   "prompt": "Homologous vs analogous structures",
-   "content": {
-    "kind": "short-answer",
-    "answer": "Homologous: shared ancestry (human arm, bat wing). Analogous: similar function, independent origin (bird and insect wings).",
-    "acceptableAnswers": []
-   },
-   "explanation": null,
-   "sourceRef": "Campbell Biology (Pearson); Futuyma & Kirkpatrick, Evolution (Oxford)",
-   "tags": [
-    "biology"
-   ]
-  },
-  {
-   "prompt": "Convergent evolution",
-   "content": {
-    "kind": "short-answer",
-    "answer": "Unrelated lineages evolve similar traits under similar pressures.",
-    "acceptableAnswers": []
-   },
-   "explanation": null,
-   "sourceRef": "Campbell Biology (Pearson); Futuyma & Kirkpatrick, Evolution (Oxford)",
-   "tags": [
-    "biology"
-   ]
-  },
-  {
-   "prompt": "Taxonomic ranks (broad to narrow)",
-   "content": {
-    "kind": "short-answer",
-    "answer": "Domain, kingdom, phylum, class, order, family, genus, species.",
-    "acceptableAnswers": []
-   },
-   "explanation": null,
-   "sourceRef": "Campbell Biology (Pearson); Futuyma & Kirkpatrick, Evolution (Oxford)",
-   "tags": [
-    "biology"
-   ]
-  },
-  {
-   "prompt": "Three domains of life",
-   "content": {
-    "kind": "short-answer",
-    "answer": "Bacteria, Archaea, Eukarya (Woese).",
-    "acceptableAnswers": []
-   },
-   "explanation": null,
-   "sourceRef": "Campbell Biology (Pearson); Futuyma & Kirkpatrick, Evolution (Oxford)",
-   "tags": [
-    "biology"
-   ]
-  },
-  {
-   "prompt": "Phylogenetic tree",
-   "content": {
-    "kind": "short-answer",
-    "answer": "A diagram of inferred evolutionary relationships among taxa.",
-    "acceptableAnswers": []
-   },
-   "explanation": null,
-   "sourceRef": "Campbell Biology (Pearson); Futuyma & Kirkpatrick, Evolution (Oxford)",
-   "tags": [
-    "biology"
-   ]
-  },
-  {
-   "prompt": "Molecular clock",
-   "content": {
-    "kind": "short-answer",
-    "answer": "Uses the roughly steady rate of neutral mutation to date divergences.",
-    "acceptableAnswers": []
-   },
-   "explanation": null,
-   "sourceRef": "Campbell Biology (Pearson); Futuyma & Kirkpatrick, Evolution (Oxford)",
-   "tags": [
-    "biology"
-   ]
-  },
-  {
-   "prompt": "Evidence for evolution (examples)",
-   "content": {
-    "kind": "short-answer",
-    "answer": "Fossil record, comparative anatomy, biogeography, molecular homology, observed evolution.",
-    "acceptableAnswers": []
-   },
-   "explanation": null,
-   "sourceRef": "Campbell Biology (Pearson); Futuyma & Kirkpatrick, Evolution (Oxford)",
-   "tags": [
-    "biology"
-   ]
-  },
-  {
-   "prompt": "Mass extinctions: the \"Big Five\" end the",
-   "content": {
-    "kind": "short-answer",
-    "answer": "Ordovician, Devonian, Permian, Triassic, Cretaceous periods.",
-    "acceptableAnswers": []
-   },
-   "explanation": null,
-   "sourceRef": "Campbell Biology (Pearson); Futuyma & Kirkpatrick, Evolution (Oxford)",
-   "tags": [
-    "biology"
-   ]
-  },
-  {
-   "prompt": "Population growth: exponential",
-   "content": {
-    "kind": "short-answer",
-    "answer": "dN/dt = rN",
-    "acceptableAnswers": []
-   },
-   "explanation": null,
-   "sourceRef": "Campbell Biology (Pearson); Futuyma & Kirkpatrick, Evolution (Oxford)",
-   "tags": [
-    "biology"
-   ]
-  },
-  {
-   "prompt": "Population growth: logistic",
-   "content": {
-    "kind": "short-answer",
-    "answer": "dN/dt = rN (1 - N/K), with K the carrying capacity.",
-    "acceptableAnswers": []
-   },
-   "explanation": null,
-   "sourceRef": "Campbell Biology (Pearson); Futuyma & Kirkpatrick, Evolution (Oxford)",
-   "tags": [
-    "biology"
-   ]
-  },
-  {
-   "prompt": "Density-dependent factors",
-   "content": {
-    "kind": "short-answer",
-    "answer": "Limiting factors whose effect grows with population density (e.g., competition, disease).",
-    "acceptableAnswers": []
-   },
-   "explanation": null,
-   "sourceRef": "Campbell Biology (Pearson); Futuyma & Kirkpatrick, Evolution (Oxford)",
-   "tags": [
-    "biology"
-   ]
-  },
-  {
-   "prompt": "Trophic efficiency (rule of thumb)",
-   "content": {
-    "kind": "short-answer",
-    "answer": "About 10% of energy passes to the next trophic level.",
-    "acceptableAnswers": []
-   },
-   "explanation": null,
-   "sourceRef": "Campbell Biology (Pearson); Futuyma & Kirkpatrick, Evolution (Oxford)",
-   "tags": [
-    "biology"
-   ]
-  },
-  {
-   "prompt": "Producers, primary consumers, decomposers",
-   "content": {
-    "kind": "short-answer",
-    "answer": "Producers fix energy; primary consumers eat producers; decomposers recycle dead matter.",
-    "acceptableAnswers": []
-   },
-   "explanation": null,
-   "sourceRef": "Campbell Biology (Pearson); Futuyma & Kirkpatrick, Evolution (Oxford)",
-   "tags": [
-    "biology"
-   ]
-  },
-  {
-   "prompt": "Keystone species",
-   "content": {
-    "kind": "short-answer",
-    "answer": "A species with a disproportionately large effect on its community relative to its abundance.",
-    "acceptableAnswers": []
-   },
-   "explanation": null,
-   "sourceRef": "Campbell Biology (Pearson); Futuyma & Kirkpatrick, Evolution (Oxford)",
-   "tags": [
-    "biology"
-   ]
-  },
-  {
-   "prompt": "Ecological succession",
-   "content": {
-    "kind": "short-answer",
-    "answer": "Gradual change in species composition after disturbance; primary starts without soil, secondary with soil.",
-    "acceptableAnswers": []
-   },
-   "explanation": null,
-   "sourceRef": "Campbell Biology (Pearson); Futuyma & Kirkpatrick, Evolution (Oxford)",
-   "tags": [
-    "biology"
-   ]
-  },
-  {
-   "prompt": "Competitive exclusion principle",
-   "content": {
-    "kind": "short-answer",
-    "answer": "Two species competing for the same limiting resource cannot coexist indefinitely.",
-    "acceptableAnswers": []
-   },
-   "explanation": null,
-   "sourceRef": "Campbell Biology (Pearson); Futuyma & Kirkpatrick, Evolution (Oxford)",
-   "tags": [
-    "biology"
-   ]
-  },
-  {
-   "prompt": "Mutualism, commensalism, parasitism",
-   "content": {
-    "kind": "short-answer",
-    "answer": "+/+, +/0, +/- interactions.",
-    "acceptableAnswers": []
-   },
-   "explanation": null,
-   "sourceRef": "Campbell Biology (Pearson); Futuyma & Kirkpatrick, Evolution (Oxford)",
-   "tags": [
-    "biology"
-   ]
-  },
-  {
-   "prompt": "Nitrogen fixation",
-   "content": {
-    "kind": "short-answer",
-    "answer": "Bacteria convert N2 into ammonia usable by plants.",
-    "acceptableAnswers": []
-   },
-   "explanation": null,
-   "sourceRef": "Campbell Biology (Pearson); Futuyma & Kirkpatrick, Evolution (Oxford)",
-   "tags": [
-    "biology"
-   ]
-  },
-  {
-   "prompt": "Biome examples",
-   "content": {
-    "kind": "short-answer",
-    "answer": "Tropical rainforest, desert, temperate forest, grassland, taiga, tundra.",
-    "acceptableAnswers": []
-   },
-   "explanation": null,
-   "sourceRef": "Campbell Biology (Pearson); Futuyma & Kirkpatrick, Evolution (Oxford)",
-   "tags": [
-    "biology"
-   ]
-  },
-  {
-   "prompt": "Greenhouse gases (major)",
-   "content": {
-    "kind": "short-answer",
-    "answer": "Water vapor, carbon dioxide, methane, nitrous oxide.",
-    "acceptableAnswers": []
-   },
-   "explanation": null,
-   "sourceRef": "Campbell Biology (Pearson); Futuyma & Kirkpatrick, Evolution (Oxford)",
-   "tags": [
-    "biology"
-   ]
-  }
- ]
+  "seshatExportVersion": 1,
+  "name": "Evolution and Ecology",
+  "description": "Mechanisms of evolution, classification and ecological concepts.",
+  "tags": ["biology", "evolution"],
+  "cards": [
+    {
+      "prompt": "Natural selection requires",
+      "content": {
+        "kind": "short-answer",
+        "answer": "Heritable variation in traits that affects survival and reproduction.",
+        "acceptableAnswers": []
+      },
+      "explanation": null,
+      "sourceRef": "Campbell Biology (Pearson); Futuyma & Kirkpatrick, Evolution (Oxford)",
+      "tags": ["biology"]
+    },
+    {
+      "prompt": "Four mechanisms of evolutionary change",
+      "content": {
+        "kind": "short-answer",
+        "answer": "Natural selection, genetic drift, gene flow, mutation.",
+        "acceptableAnswers": []
+      },
+      "explanation": null,
+      "sourceRef": "Campbell Biology (Pearson); Futuyma & Kirkpatrick, Evolution (Oxford)",
+      "tags": ["biology"]
+    },
+    {
+      "prompt": "Genetic drift",
+      "content": {
+        "kind": "short-answer",
+        "answer": "Random change in allele frequencies, strongest in small populations.",
+        "acceptableAnswers": []
+      },
+      "explanation": null,
+      "sourceRef": "Campbell Biology (Pearson); Futuyma & Kirkpatrick, Evolution (Oxford)",
+      "tags": ["biology"]
+    },
+    {
+      "prompt": "Founder effect",
+      "content": {
+        "kind": "short-answer",
+        "answer": "Drift when a small group founds a new population.",
+        "acceptableAnswers": []
+      },
+      "explanation": null,
+      "sourceRef": "Campbell Biology (Pearson); Futuyma & Kirkpatrick, Evolution (Oxford)",
+      "tags": ["biology"]
+    },
+    {
+      "prompt": "Bottleneck effect",
+      "content": {
+        "kind": "short-answer",
+        "answer": "Drift after a population is sharply reduced in size.",
+        "acceptableAnswers": []
+      },
+      "explanation": null,
+      "sourceRef": "Campbell Biology (Pearson); Futuyma & Kirkpatrick, Evolution (Oxford)",
+      "tags": ["biology"]
+    },
+    {
+      "prompt": "Fitness (evolutionary)",
+      "content": {
+        "kind": "short-answer",
+        "answer": "An individual's relative reproductive success.",
+        "acceptableAnswers": []
+      },
+      "explanation": null,
+      "sourceRef": "Campbell Biology (Pearson); Futuyma & Kirkpatrick, Evolution (Oxford)",
+      "tags": ["biology"]
+    },
+    {
+      "prompt": "Directional, stabilizing, disruptive selection",
+      "content": {
+        "kind": "short-answer",
+        "answer": "Favor one extreme; favor the mean; favor both extremes.",
+        "acceptableAnswers": []
+      },
+      "explanation": null,
+      "sourceRef": "Campbell Biology (Pearson); Futuyma & Kirkpatrick, Evolution (Oxford)",
+      "tags": ["biology"]
+    },
+    {
+      "prompt": "Biological species concept",
+      "content": {
+        "kind": "short-answer",
+        "answer": "Groups of interbreeding natural populations reproductively isolated from others (Mayr).",
+        "acceptableAnswers": []
+      },
+      "explanation": null,
+      "sourceRef": "Campbell Biology (Pearson); Futuyma & Kirkpatrick, Evolution (Oxford)",
+      "tags": ["biology"]
+    },
+    {
+      "prompt": "Allopatric speciation",
+      "content": {
+        "kind": "short-answer",
+        "answer": "Speciation after geographic separation of populations.",
+        "acceptableAnswers": []
+      },
+      "explanation": null,
+      "sourceRef": "Campbell Biology (Pearson); Futuyma & Kirkpatrick, Evolution (Oxford)",
+      "tags": ["biology"]
+    },
+    {
+      "prompt": "Homologous vs analogous structures",
+      "content": {
+        "kind": "short-answer",
+        "answer": "Homologous: shared ancestry (human arm, bat wing). Analogous: similar function, independent origin (bird and insect wings).",
+        "acceptableAnswers": []
+      },
+      "explanation": null,
+      "sourceRef": "Campbell Biology (Pearson); Futuyma & Kirkpatrick, Evolution (Oxford)",
+      "tags": ["biology"]
+    },
+    {
+      "prompt": "Convergent evolution",
+      "content": {
+        "kind": "short-answer",
+        "answer": "Unrelated lineages evolve similar traits under similar pressures.",
+        "acceptableAnswers": []
+      },
+      "explanation": null,
+      "sourceRef": "Campbell Biology (Pearson); Futuyma & Kirkpatrick, Evolution (Oxford)",
+      "tags": ["biology"]
+    },
+    {
+      "prompt": "Taxonomic ranks (broad to narrow)",
+      "content": {
+        "kind": "short-answer",
+        "answer": "Domain, kingdom, phylum, class, order, family, genus, species.",
+        "acceptableAnswers": []
+      },
+      "explanation": null,
+      "sourceRef": "Campbell Biology (Pearson); Futuyma & Kirkpatrick, Evolution (Oxford)",
+      "tags": ["biology"]
+    },
+    {
+      "prompt": "Three domains of life",
+      "content": {
+        "kind": "short-answer",
+        "answer": "Bacteria, Archaea, Eukarya (Woese).",
+        "acceptableAnswers": []
+      },
+      "explanation": null,
+      "sourceRef": "Campbell Biology (Pearson); Futuyma & Kirkpatrick, Evolution (Oxford)",
+      "tags": ["biology"]
+    },
+    {
+      "prompt": "Phylogenetic tree",
+      "content": {
+        "kind": "short-answer",
+        "answer": "A diagram of inferred evolutionary relationships among taxa.",
+        "acceptableAnswers": []
+      },
+      "explanation": null,
+      "sourceRef": "Campbell Biology (Pearson); Futuyma & Kirkpatrick, Evolution (Oxford)",
+      "tags": ["biology"]
+    },
+    {
+      "prompt": "Molecular clock",
+      "content": {
+        "kind": "short-answer",
+        "answer": "Uses the roughly steady rate of neutral mutation to date divergences.",
+        "acceptableAnswers": []
+      },
+      "explanation": null,
+      "sourceRef": "Campbell Biology (Pearson); Futuyma & Kirkpatrick, Evolution (Oxford)",
+      "tags": ["biology"]
+    },
+    {
+      "prompt": "Evidence for evolution (examples)",
+      "content": {
+        "kind": "short-answer",
+        "answer": "Fossil record, comparative anatomy, biogeography, molecular homology, observed evolution.",
+        "acceptableAnswers": []
+      },
+      "explanation": null,
+      "sourceRef": "Campbell Biology (Pearson); Futuyma & Kirkpatrick, Evolution (Oxford)",
+      "tags": ["biology"]
+    },
+    {
+      "prompt": "Mass extinctions: the \"Big Five\" end the",
+      "content": {
+        "kind": "short-answer",
+        "answer": "Ordovician, Devonian, Permian, Triassic, Cretaceous periods.",
+        "acceptableAnswers": []
+      },
+      "explanation": null,
+      "sourceRef": "Campbell Biology (Pearson); Futuyma & Kirkpatrick, Evolution (Oxford)",
+      "tags": ["biology"]
+    },
+    {
+      "prompt": "Population growth: exponential",
+      "content": {
+        "kind": "short-answer",
+        "answer": "dN/dt = rN",
+        "acceptableAnswers": []
+      },
+      "explanation": null,
+      "sourceRef": "Campbell Biology (Pearson); Futuyma & Kirkpatrick, Evolution (Oxford)",
+      "tags": ["biology"]
+    },
+    {
+      "prompt": "Population growth: logistic",
+      "content": {
+        "kind": "short-answer",
+        "answer": "dN/dt = rN (1 - N/K), with K the carrying capacity.",
+        "acceptableAnswers": []
+      },
+      "explanation": null,
+      "sourceRef": "Campbell Biology (Pearson); Futuyma & Kirkpatrick, Evolution (Oxford)",
+      "tags": ["biology"]
+    },
+    {
+      "prompt": "Density-dependent factors",
+      "content": {
+        "kind": "short-answer",
+        "answer": "Limiting factors whose effect grows with population density (e.g., competition, disease).",
+        "acceptableAnswers": []
+      },
+      "explanation": null,
+      "sourceRef": "Campbell Biology (Pearson); Futuyma & Kirkpatrick, Evolution (Oxford)",
+      "tags": ["biology"]
+    },
+    {
+      "prompt": "Trophic efficiency (rule of thumb)",
+      "content": {
+        "kind": "short-answer",
+        "answer": "About 10% of energy passes to the next trophic level.",
+        "acceptableAnswers": []
+      },
+      "explanation": null,
+      "sourceRef": "Campbell Biology (Pearson); Futuyma & Kirkpatrick, Evolution (Oxford)",
+      "tags": ["biology"]
+    },
+    {
+      "prompt": "Producers, primary consumers, decomposers",
+      "content": {
+        "kind": "short-answer",
+        "answer": "Producers fix energy; primary consumers eat producers; decomposers recycle dead matter.",
+        "acceptableAnswers": []
+      },
+      "explanation": null,
+      "sourceRef": "Campbell Biology (Pearson); Futuyma & Kirkpatrick, Evolution (Oxford)",
+      "tags": ["biology"]
+    },
+    {
+      "prompt": "Keystone species",
+      "content": {
+        "kind": "short-answer",
+        "answer": "A species with a disproportionately large effect on its community relative to its abundance.",
+        "acceptableAnswers": []
+      },
+      "explanation": null,
+      "sourceRef": "Campbell Biology (Pearson); Futuyma & Kirkpatrick, Evolution (Oxford)",
+      "tags": ["biology"]
+    },
+    {
+      "prompt": "Ecological succession",
+      "content": {
+        "kind": "short-answer",
+        "answer": "Gradual change in species composition after disturbance; primary starts without soil, secondary with soil.",
+        "acceptableAnswers": []
+      },
+      "explanation": null,
+      "sourceRef": "Campbell Biology (Pearson); Futuyma & Kirkpatrick, Evolution (Oxford)",
+      "tags": ["biology"]
+    },
+    {
+      "prompt": "Competitive exclusion principle",
+      "content": {
+        "kind": "short-answer",
+        "answer": "Two species competing for the same limiting resource cannot coexist indefinitely.",
+        "acceptableAnswers": []
+      },
+      "explanation": null,
+      "sourceRef": "Campbell Biology (Pearson); Futuyma & Kirkpatrick, Evolution (Oxford)",
+      "tags": ["biology"]
+    },
+    {
+      "prompt": "Mutualism, commensalism, parasitism",
+      "content": {
+        "kind": "short-answer",
+        "answer": "+/+, +/0, +/- interactions.",
+        "acceptableAnswers": []
+      },
+      "explanation": null,
+      "sourceRef": "Campbell Biology (Pearson); Futuyma & Kirkpatrick, Evolution (Oxford)",
+      "tags": ["biology"]
+    },
+    {
+      "prompt": "Nitrogen fixation",
+      "content": {
+        "kind": "short-answer",
+        "answer": "Bacteria convert N2 into ammonia usable by plants.",
+        "acceptableAnswers": []
+      },
+      "explanation": null,
+      "sourceRef": "Campbell Biology (Pearson); Futuyma & Kirkpatrick, Evolution (Oxford)",
+      "tags": ["biology"]
+    },
+    {
+      "prompt": "Biome examples",
+      "content": {
+        "kind": "short-answer",
+        "answer": "Tropical rainforest, desert, temperate forest, grassland, taiga, tundra.",
+        "acceptableAnswers": []
+      },
+      "explanation": null,
+      "sourceRef": "Campbell Biology (Pearson); Futuyma & Kirkpatrick, Evolution (Oxford)",
+      "tags": ["biology"]
+    },
+    {
+      "prompt": "Greenhouse gases (major)",
+      "content": {
+        "kind": "short-answer",
+        "answer": "Water vapor, carbon dioxide, methane, nitrous oxide.",
+        "acceptableAnswers": []
+      },
+      "explanation": null,
+      "sourceRef": "Campbell Biology (Pearson); Futuyma & Kirkpatrick, Evolution (Oxford)",
+      "tags": ["biology"]
+    }
+  ]
 }

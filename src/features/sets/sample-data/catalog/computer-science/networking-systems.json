@@ -1,388 +1,327 @@
 {
- "seshatExportVersion": 1,
- "name": "Networking and Operating Systems",
- "description": "OSI/TCP-IP layers, protocols, ports and OS fundamentals.",
- "tags": [
-  "computer-science",
-  "systems"
- ],
- "cards": [
-  {
-   "prompt": "OSI model layers (top to bottom)",
-   "content": {
-    "kind": "short-answer",
-    "answer": "Application, presentation, session, transport, network, data link, physical.",
-    "acceptableAnswers": []
-   },
-   "explanation": null,
-   "sourceRef": "Tanenbaum & Wetherall, Computer Networks (Pearson); Silberschatz et al., Operating System Concepts (Wiley)",
-   "tags": [
-    "computer-science"
-   ]
-  },
-  {
-   "prompt": "TCP/IP model layers",
-   "content": {
-    "kind": "short-answer",
-    "answer": "Application, transport, internet, link.",
-    "acceptableAnswers": []
-   },
-   "explanation": null,
-   "sourceRef": "Tanenbaum & Wetherall, Computer Networks (Pearson); Silberschatz et al., Operating System Concepts (Wiley)",
-   "tags": [
-    "computer-science"
-   ]
-  },
-  {
-   "prompt": "TCP vs UDP",
-   "content": {
-    "kind": "short-answer",
-    "answer": "TCP: connection-oriented, reliable, ordered. UDP: connectionless, no delivery guarantee, lower overhead.",
-    "acceptableAnswers": []
-   },
-   "explanation": null,
-   "sourceRef": "Tanenbaum & Wetherall, Computer Networks (Pearson); Silberschatz et al., Operating System Concepts (Wiley)",
-   "tags": [
-    "computer-science"
-   ]
-  },
-  {
-   "prompt": "TCP connection setup",
-   "content": {
-    "kind": "short-answer",
-    "answer": "Three-way handshake: SYN, SYN-ACK, ACK.",
-    "acceptableAnswers": []
-   },
-   "explanation": null,
-   "sourceRef": "Tanenbaum & Wetherall, Computer Networks (Pearson); Silberschatz et al., Operating System Concepts (Wiley)",
-   "tags": [
-    "computer-science"
-   ]
-  },
-  {
-   "prompt": "Default port for HTTP / HTTPS",
-   "content": {
-    "kind": "short-answer",
-    "answer": "80 / 443",
-    "acceptableAnswers": []
-   },
-   "explanation": null,
-   "sourceRef": "Tanenbaum & Wetherall, Computer Networks (Pearson); Silberschatz et al., Operating System Concepts (Wiley)",
-   "tags": [
-    "computer-science"
-   ]
-  },
-  {
-   "prompt": "Default port for SSH / DNS",
-   "content": {
-    "kind": "short-answer",
-    "answer": "22 / 53",
-    "acceptableAnswers": []
-   },
-   "explanation": null,
-   "sourceRef": "Tanenbaum & Wetherall, Computer Networks (Pearson); Silberschatz et al., Operating System Concepts (Wiley)",
-   "tags": [
-    "computer-science"
-   ]
-  },
-  {
-   "prompt": "Default port for SMTP",
-   "content": {
-    "kind": "short-answer",
-    "answer": "25 (587 for submission).",
-    "acceptableAnswers": []
-   },
-   "explanation": null,
-   "sourceRef": "Tanenbaum & Wetherall, Computer Networks (Pearson); Silberschatz et al., Operating System Concepts (Wiley)",
-   "tags": [
-    "computer-science"
-   ]
-  },
-  {
-   "prompt": "IPv4 vs IPv6 address length",
-   "content": {
-    "kind": "short-answer",
-    "answer": "32 bits vs 128 bits.",
-    "acceptableAnswers": []
-   },
-   "explanation": null,
-   "sourceRef": "Tanenbaum & Wetherall, Computer Networks (Pearson); Silberschatz et al., Operating System Concepts (Wiley)",
-   "tags": [
-    "computer-science"
-   ]
-  },
-  {
-   "prompt": "DNS",
-   "content": {
-    "kind": "short-answer",
-    "answer": "Translates domain names to IP addresses through a hierarchy of name servers.",
-    "acceptableAnswers": []
-   },
-   "explanation": null,
-   "sourceRef": "Tanenbaum & Wetherall, Computer Networks (Pearson); Silberschatz et al., Operating System Concepts (Wiley)",
-   "tags": [
-    "computer-science"
-   ]
-  },
-  {
-   "prompt": "DHCP",
-   "content": {
-    "kind": "short-answer",
-    "answer": "Assigns IP addresses and configuration to hosts dynamically.",
-    "acceptableAnswers": []
-   },
-   "explanation": null,
-   "sourceRef": "Tanenbaum & Wetherall, Computer Networks (Pearson); Silberschatz et al., Operating System Concepts (Wiley)",
-   "tags": [
-    "computer-science"
-   ]
-  },
-  {
-   "prompt": "NAT",
-   "content": {
-    "kind": "short-answer",
-    "answer": "Maps private IP addresses to a public address for Internet access.",
-    "acceptableAnswers": []
-   },
-   "explanation": null,
-   "sourceRef": "Tanenbaum & Wetherall, Computer Networks (Pearson); Silberschatz et al., Operating System Concepts (Wiley)",
-   "tags": [
-    "computer-science"
-   ]
-  },
-  {
-   "prompt": "ARP",
-   "content": {
-    "kind": "short-answer",
-    "answer": "Resolves an IP address to a MAC address on a local network.",
-    "acceptableAnswers": []
-   },
-   "explanation": null,
-   "sourceRef": "Tanenbaum & Wetherall, Computer Networks (Pearson); Silberschatz et al., Operating System Concepts (Wiley)",
-   "tags": [
-    "computer-science"
-   ]
-  },
-  {
-   "prompt": "HTTP status classes",
-   "content": {
-    "kind": "short-answer",
-    "answer": "1xx informational, 2xx success, 3xx redirect, 4xx client error, 5xx server error.",
-    "acceptableAnswers": []
-   },
-   "explanation": null,
-   "sourceRef": "Tanenbaum & Wetherall, Computer Networks (Pearson); Silberschatz et al., Operating System Concepts (Wiley)",
-   "tags": [
-    "computer-science"
-   ]
-  },
-  {
-   "prompt": "HTTP 404 and 500",
-   "content": {
-    "kind": "short-answer",
-    "answer": "Not Found; Internal Server Error.",
-    "acceptableAnswers": []
-   },
-   "explanation": null,
-   "sourceRef": "Tanenbaum & Wetherall, Computer Networks (Pearson); Silberschatz et al., Operating System Concepts (Wiley)",
-   "tags": [
-    "computer-science"
-   ]
-  },
-  {
-   "prompt": "TLS purpose",
-   "content": {
-    "kind": "short-answer",
-    "answer": "Encrypts and authenticates communication (HTTPS uses TLS).",
-    "acceptableAnswers": []
-   },
-   "explanation": null,
-   "sourceRef": "Tanenbaum & Wetherall, Computer Networks (Pearson); Silberschatz et al., Operating System Concepts (Wiley)",
-   "tags": [
-    "computer-science"
-   ]
-  },
-  {
-   "prompt": "Public-key vs symmetric encryption",
-   "content": {
-    "kind": "short-answer",
-    "answer": "Public-key uses a key pair (RSA, ECC); symmetric uses one shared key (AES), faster for bulk data.",
-    "acceptableAnswers": []
-   },
-   "explanation": null,
-   "sourceRef": "Tanenbaum & Wetherall, Computer Networks (Pearson); Silberschatz et al., Operating System Concepts (Wiley)",
-   "tags": [
-    "computer-science"
-   ]
-  },
-  {
-   "prompt": "Process vs thread",
-   "content": {
-    "kind": "short-answer",
-    "answer": "A process has its own address space; threads within a process share memory.",
-    "acceptableAnswers": []
-   },
-   "explanation": null,
-   "sourceRef": "Tanenbaum & Wetherall, Computer Networks (Pearson); Silberschatz et al., Operating System Concepts (Wiley)",
-   "tags": [
-    "computer-science"
-   ]
-  },
-  {
-   "prompt": "Deadlock necessary conditions",
-   "content": {
-    "kind": "short-answer",
-    "answer": "Mutual exclusion, hold and wait, no preemption, circular wait (Coffman conditions).",
-    "acceptableAnswers": []
-   },
-   "explanation": null,
-   "sourceRef": "Tanenbaum & Wetherall, Computer Networks (Pearson); Silberschatz et al., Operating System Concepts (Wiley)",
-   "tags": [
-    "computer-science"
-   ]
-  },
-  {
-   "prompt": "Mutex vs semaphore",
-   "content": {
-    "kind": "short-answer",
-    "answer": "A mutex gives exclusive ownership of a resource; a semaphore is a counter allowing up to N concurrent holders.",
-    "acceptableAnswers": []
-   },
-   "explanation": null,
-   "sourceRef": "Tanenbaum & Wetherall, Computer Networks (Pearson); Silberschatz et al., Operating System Concepts (Wiley)",
-   "tags": [
-    "computer-science"
-   ]
-  },
-  {
-   "prompt": "Virtual memory",
-   "content": {
-    "kind": "short-answer",
-    "answer": "Maps virtual addresses to physical memory, allowing processes larger than RAM through paging.",
-    "acceptableAnswers": []
-   },
-   "explanation": null,
-   "sourceRef": "Tanenbaum & Wetherall, Computer Networks (Pearson); Silberschatz et al., Operating System Concepts (Wiley)",
-   "tags": [
-    "computer-science"
-   ]
-  },
-  {
-   "prompt": "Page fault",
-   "content": {
-    "kind": "short-answer",
-    "answer": "An access to a page not currently in physical memory, requiring the OS to load it.",
-    "acceptableAnswers": []
-   },
-   "explanation": null,
-   "sourceRef": "Tanenbaum & Wetherall, Computer Networks (Pearson); Silberschatz et al., Operating System Concepts (Wiley)",
-   "tags": [
-    "computer-science"
-   ]
-  },
-  {
-   "prompt": "LRU page replacement",
-   "content": {
-    "kind": "short-answer",
-    "answer": "Evicts the page that has gone unused the longest.",
-    "acceptableAnswers": []
-   },
-   "explanation": null,
-   "sourceRef": "Tanenbaum & Wetherall, Computer Networks (Pearson); Silberschatz et al., Operating System Concepts (Wiley)",
-   "tags": [
-    "computer-science"
-   ]
-  },
-  {
-   "prompt": "Context switch",
-   "content": {
-    "kind": "short-answer",
-    "answer": "Saving one process's state and restoring another's so the CPU can switch tasks.",
-    "acceptableAnswers": []
-   },
-   "explanation": null,
-   "sourceRef": "Tanenbaum & Wetherall, Computer Networks (Pearson); Silberschatz et al., Operating System Concepts (Wiley)",
-   "tags": [
-    "computer-science"
-   ]
-  },
-  {
-   "prompt": "Round-robin scheduling",
-   "content": {
-    "kind": "short-answer",
-    "answer": "Each process gets a fixed time slice in turn.",
-    "acceptableAnswers": []
-   },
-   "explanation": null,
-   "sourceRef": "Tanenbaum & Wetherall, Computer Networks (Pearson); Silberschatz et al., Operating System Concepts (Wiley)",
-   "tags": [
-    "computer-science"
-   ]
-  },
-  {
-   "prompt": "CAP theorem",
-   "content": {
-    "kind": "short-answer",
-    "answer": "A distributed store can provide at most two of: consistency, availability, partition tolerance (partition tolerance is required in practice).",
-    "acceptableAnswers": []
-   },
-   "explanation": null,
-   "sourceRef": "Tanenbaum & Wetherall, Computer Networks (Pearson); Silberschatz et al., Operating System Concepts (Wiley)",
-   "tags": [
-    "computer-science"
-   ]
-  },
-  {
-   "prompt": "ACID properties",
-   "content": {
-    "kind": "short-answer",
-    "answer": "Atomicity, consistency, isolation, durability.",
-    "acceptableAnswers": []
-   },
-   "explanation": null,
-   "sourceRef": "Tanenbaum & Wetherall, Computer Networks (Pearson); Silberschatz et al., Operating System Concepts (Wiley)",
-   "tags": [
-    "computer-science"
-   ]
-  },
-  {
-   "prompt": "Subnet mask /24",
-   "content": {
-    "kind": "short-answer",
-    "answer": "255.255.255.0; 256 addresses (254 usable hosts).",
-    "acceptableAnswers": []
-   },
-   "explanation": null,
-   "sourceRef": "Tanenbaum & Wetherall, Computer Networks (Pearson); Silberschatz et al., Operating System Concepts (Wiley)",
-   "tags": [
-    "computer-science"
-   ]
-  },
-  {
-   "prompt": "RAID 0, 1, 5",
-   "content": {
-    "kind": "short-answer",
-    "answer": "Striping (no redundancy); mirroring; striping with distributed parity.",
-    "acceptableAnswers": []
-   },
-   "explanation": null,
-   "sourceRef": "Tanenbaum & Wetherall, Computer Networks (Pearson); Silberschatz et al., Operating System Concepts (Wiley)",
-   "tags": [
-    "computer-science"
-   ]
-  },
-  {
-   "prompt": "Compiler vs interpreter",
-   "content": {
-    "kind": "short-answer",
-    "answer": "A compiler translates the whole program before running; an interpreter executes it step by step.",
-    "acceptableAnswers": []
-   },
-   "explanation": null,
-   "sourceRef": "Tanenbaum & Wetherall, Computer Networks (Pearson); Silberschatz et al., Operating System Concepts (Wiley)",
-   "tags": [
-    "computer-science"
-   ]
-  }
- ]
+  "seshatExportVersion": 1,
+  "name": "Networking and Operating Systems",
+  "description": "OSI/TCP-IP layers, protocols, ports and OS fundamentals.",
+  "tags": ["computer-science", "systems"],
+  "cards": [
+    {
+      "prompt": "OSI model layers (top to bottom)",
+      "content": {
+        "kind": "short-answer",
+        "answer": "Application, presentation, session, transport, network, data link, physical.",
+        "acceptableAnswers": []
+      },
+      "explanation": null,
+      "sourceRef": "Tanenbaum & Wetherall, Computer Networks (Pearson); Silberschatz et al., Operating System Concepts (Wiley)",
+      "tags": ["computer-science"]
+    },
+    {
+      "prompt": "TCP/IP model layers",
+      "content": {
+        "kind": "short-answer",
+        "answer": "Application, transport, internet, link.",
+        "acceptableAnswers": []
+      },
+      "explanation": null,
+      "sourceRef": "Tanenbaum & Wetherall, Computer Networks (Pearson); Silberschatz et al., Operating System Concepts (Wiley)",
+      "tags": ["computer-science"]
+    },
+    {
+      "prompt": "TCP vs UDP",
+      "content": {
+        "kind": "short-answer",
+        "answer": "TCP: connection-oriented, reliable, ordered. UDP: connectionless, no delivery guarantee, lower overhead.",
+        "acceptableAnswers": []
+      },
+      "explanation": null,
+      "sourceRef": "Tanenbaum & Wetherall, Computer Networks (Pearson); Silberschatz et al., Operating System Concepts (Wiley)",
+      "tags": ["computer-science"]
+    },
+    {
+      "prompt": "TCP connection setup",
+      "content": {
+        "kind": "short-answer",
+        "answer": "Three-way handshake: SYN, SYN-ACK, ACK.",
+        "acceptableAnswers": []
+      },
+      "explanation": null,
+      "sourceRef": "Tanenbaum & Wetherall, Computer Networks (Pearson); Silberschatz et al., Operating System Concepts (Wiley)",
+      "tags": ["computer-science"]
+    },
+    {
+      "prompt": "Default port for HTTP / HTTPS",
+      "content": {
+        "kind": "short-answer",
+        "answer": "80 / 443",
+        "acceptableAnswers": []
+      },
+      "explanation": null,
+      "sourceRef": "Tanenbaum & Wetherall, Computer Networks (Pearson); Silberschatz et al., Operating System Concepts (Wiley)",
+      "tags": ["computer-science"]
+    },
+    {
+      "prompt": "Default port for SSH / DNS",
+      "content": {
+        "kind": "short-answer",
+        "answer": "22 / 53",
+        "acceptableAnswers": []
+      },
+      "explanation": null,
+      "sourceRef": "Tanenbaum & Wetherall, Computer Networks (Pearson); Silberschatz et al., Operating System Concepts (Wiley)",
+      "tags": ["computer-science"]
+    },
+    {
+      "prompt": "Default port for SMTP",
+      "content": {
+        "kind": "short-answer",
+        "answer": "25 (587 for submission).",
+        "acceptableAnswers": []
+      },
+      "explanation": null,
+      "sourceRef": "Tanenbaum & Wetherall, Computer Networks (Pearson); Silberschatz et al., Operating System Concepts (Wiley)",
+      "tags": ["computer-science"]
+    },
+    {
+      "prompt": "IPv4 vs IPv6 address length",
+      "content": {
+        "kind": "short-answer",
+        "answer": "32 bits vs 128 bits.",
+        "acceptableAnswers": []
+      },
+      "explanation": null,
+      "sourceRef": "Tanenbaum & Wetherall, Computer Networks (Pearson); Silberschatz et al., Operating System Concepts (Wiley)",
+      "tags": ["computer-science"]
+    },
+    {
+      "prompt": "DNS",
+      "content": {
+        "kind": "short-answer",
+        "answer": "Translates domain names to IP addresses through a hierarchy of name servers.",
+        "acceptableAnswers": []
+      },
+      "explanation": null,
+      "sourceRef": "Tanenbaum & Wetherall, Computer Networks (Pearson); Silberschatz et al., Operating System Concepts (Wiley)",
+      "tags": ["computer-science"]
+    },
+    {
+      "prompt": "DHCP",
+      "content": {
+        "kind": "short-answer",
+        "answer": "Assigns IP addresses and configuration to hosts dynamically.",
+        "acceptableAnswers": []
+      },
+      "explanation": null,
+      "sourceRef": "Tanenbaum & Wetherall, Computer Networks (Pearson); Silberschatz et al., Operating System Concepts (Wiley)",
+      "tags": ["computer-science"]
+    },
+    {
+      "prompt": "NAT",
+      "content": {
+        "kind": "short-answer",
+        "answer": "Maps private IP addresses to a public address for Internet access.",
+        "acceptableAnswers": []
+      },
+      "explanation": null,
+      "sourceRef": "Tanenbaum & Wetherall, Computer Networks (Pearson); Silberschatz et al., Operating System Concepts (Wiley)",
+      "tags": ["computer-science"]
+    },
+    {
+      "prompt": "ARP",
+      "content": {
+        "kind": "short-answer",
+        "answer": "Resolves an IP address to a MAC address on a local network.",
+        "acceptableAnswers": []
+      },
+      "explanation": null,
+      "sourceRef": "Tanenbaum & Wetherall, Computer Networks (Pearson); Silberschatz et al., Operating System Concepts (Wiley)",
+      "tags": ["computer-science"]
+    },
+    {
+      "prompt": "HTTP status classes",
+      "content": {
+        "kind": "short-answer",
+        "answer": "1xx informational, 2xx success, 3xx redirect, 4xx client error, 5xx server error.",
+        "acceptableAnswers": []
+      },
+      "explanation": null,
+      "sourceRef": "Tanenbaum & Wetherall, Computer Networks (Pearson); Silberschatz et al., Operating System Concepts (Wiley)",
+      "tags": ["computer-science"]
+    },
+    {
+      "prompt": "HTTP 404 and 500",
+      "content": {
+        "kind": "short-answer",
+        "answer": "Not Found; Internal Server Error.",
+        "acceptableAnswers": []
+      },
+      "explanation": null,
+      "sourceRef": "Tanenbaum & Wetherall, Computer Networks (Pearson); Silberschatz et al., Operating System Concepts (Wiley)",
+      "tags": ["computer-science"]
+    },
+    {
+      "prompt": "TLS purpose",
+      "content": {
+        "kind": "short-answer",
+        "answer": "Encrypts and authenticates communication (HTTPS uses TLS).",
+        "acceptableAnswers": []
+      },
+      "explanation": null,
+      "sourceRef": "Tanenbaum & Wetherall, Computer Networks (Pearson); Silberschatz et al., Operating System Concepts (Wiley)",
+      "tags": ["computer-science"]
+    },
+    {
+      "prompt": "Public-key vs symmetric encryption",
+      "content": {
+        "kind": "short-answer",
+        "answer": "Public-key uses a key pair (RSA, ECC); symmetric uses one shared key (AES), faster for bulk data.",
+        "acceptableAnswers": []
+      },
+      "explanation": null,
+      "sourceRef": "Tanenbaum & Wetherall, Computer Networks (Pearson); Silberschatz et al., Operating System Concepts (Wiley)",
+      "tags": ["computer-science"]
+    },
+    {
+      "prompt": "Process vs thread",
+      "content": {
+        "kind": "short-answer",
+        "answer": "A process has its own address space; threads within a process share memory.",
+        "acceptableAnswers": []
+      },
+      "explanation": null,
+      "sourceRef": "Tanenbaum & Wetherall, Computer Networks (Pearson); Silberschatz et al., Operating System Concepts (Wiley)",
+      "tags": ["computer-science"]
+    },
+    {
+      "prompt": "Deadlock necessary conditions",
+      "content": {
+        "kind": "short-answer",
+        "answer": "Mutual exclusion, hold and wait, no preemption, circular wait (Coffman conditions).",
+        "acceptableAnswers": []
+      },
+      "explanation": null,
+      "sourceRef": "Tanenbaum & Wetherall, Computer Networks (Pearson); Silberschatz et al., Operating System Concepts (Wiley)",
+      "tags": ["computer-science"]
+    },
+    {
+      "prompt": "Mutex vs semaphore",
+      "content": {
+        "kind": "short-answer",
+        "answer": "A mutex gives exclusive ownership of a resource; a semaphore is a counter allowing up to N concurrent holders.",
+        "acceptableAnswers": []
+      },
+      "explanation": null,
+      "sourceRef": "Tanenbaum & Wetherall, Computer Networks (Pearson); Silberschatz et al., Operating System Concepts (Wiley)",
+      "tags": ["computer-science"]
+    },
+    {
+      "prompt": "Virtual memory",
+      "content": {
+        "kind": "short-answer",
+        "answer": "Maps virtual addresses to physical memory, allowing processes larger than RAM through paging.",
+        "acceptableAnswers": []
+      },
+      "explanation": null,
+      "sourceRef": "Tanenbaum & Wetherall, Computer Networks (Pearson); Silberschatz et al., Operating System Concepts (Wiley)",
+      "tags": ["computer-science"]
+    },
+    {
+      "prompt": "Page fault",
+      "content": {
+        "kind": "short-answer",
+        "answer": "An access to a page not currently in physical memory, requiring the OS to load it.",
+        "acceptableAnswers": []
+      },
+      "explanation": null,
+      "sourceRef": "Tanenbaum & Wetherall, Computer Networks (Pearson); Silberschatz et al., Operating System Concepts (Wiley)",
+      "tags": ["computer-science"]
+    },
+    {
+      "prompt": "LRU page replacement",
+      "content": {
+        "kind": "short-answer",
+        "answer": "Evicts the page that has gone unused the longest.",
+        "acceptableAnswers": []
+      },
+      "explanation": null,
+      "sourceRef": "Tanenbaum & Wetherall, Computer Networks (Pearson); Silberschatz et al., Operating System Concepts (Wiley)",
+      "tags": ["computer-science"]
+    },
+    {
+      "prompt": "Context switch",
+      "content": {
+        "kind": "short-answer",
+        "answer": "Saving one process's state and restoring another's so the CPU can switch tasks.",
+        "acceptableAnswers": []
+      },
+      "explanation": null,
+      "sourceRef": "Tanenbaum & Wetherall, Computer Networks (Pearson); Silberschatz et al., Operating System Concepts (Wiley)",
+      "tags": ["computer-science"]
+    },
+    {
+      "prompt": "Round-robin scheduling",
+      "content": {
+        "kind": "short-answer",
+        "answer": "Each process gets a fixed time slice in turn.",
+        "acceptableAnswers": []
+      },
+      "explanation": null,
+      "sourceRef": "Tanenbaum & Wetherall, Computer Networks (Pearson); Silberschatz et al., Operating System Concepts (Wiley)",
+      "tags": ["computer-science"]
+    },
+    {
+      "prompt": "CAP theorem",
+      "content": {
+        "kind": "short-answer",
+        "answer": "A distributed store can provide at most two of: consistency, availability, partition tolerance (partition tolerance is required in practice).",
+        "acceptableAnswers": []
+      },
+      "explanation": null,
+      "sourceRef": "Tanenbaum & Wetherall, Computer Networks (Pearson); Silberschatz et al., Operating System Concepts (Wiley)",
+      "tags": ["computer-science"]
+    },
+    {
+      "prompt": "ACID properties",
+      "content": {
+        "kind": "short-answer",
+        "answer": "Atomicity, consistency, isolation, durability.",
+        "acceptableAnswers": []
+      },
+      "explanation": null,
+      "sourceRef": "Tanenbaum & Wetherall, Computer Networks (Pearson); Silberschatz et al., Operating System Concepts (Wiley)",
+      "tags": ["computer-science"]
+    },
+    {
+      "prompt": "Subnet mask /24",
+      "content": {
+        "kind": "short-answer",
+        "answer": "255.255.255.0; 256 addresses (254 usable hosts).",
+        "acceptableAnswers": []
+      },
+      "explanation": null,
+      "sourceRef": "Tanenbaum & Wetherall, Computer Networks (Pearson); Silberschatz et al., Operating System Concepts (Wiley)",
+      "tags": ["computer-science"]
+    },
+    {
+      "prompt": "RAID 0, 1, 5",
+      "content": {
+        "kind": "short-answer",
+        "answer": "Striping (no redundancy); mirroring; striping with distributed parity.",
+        "acceptableAnswers": []
+      },
+      "explanation": null,
+      "sourceRef": "Tanenbaum & Wetherall, Computer Networks (Pearson); Silberschatz et al., Operating System Concepts (Wiley)",
+      "tags": ["computer-science"]
+    },
+    {
+      "prompt": "Compiler vs interpreter",
+      "content": {
+        "kind": "short-answer",
+        "answer": "A compiler translates the whole program before running; an interpreter executes it step by step.",
+        "acceptableAnswers": []
+      },
+      "explanation": null,
+      "sourceRef": "Tanenbaum & Wetherall, Computer Networks (Pearson); Silberschatz et al., Operating System Concepts (Wiley)",
+      "tags": ["computer-science"]
+    }
+  ]
 }

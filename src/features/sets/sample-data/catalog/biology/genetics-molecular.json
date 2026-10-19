@@ -1,453 +1,382 @@
 {
- "seshatExportVersion": 1,
- "name": "Genetics and Molecular Biology",
- "description": "DNA structure, central dogma, gene regulation and inheritance.",
- "tags": [
-  "biology",
-  "genetics"
- ],
- "cards": [
-  {
-   "prompt": "DNA base pairs",
-   "content": {
-    "kind": "short-answer",
-    "answer": "A pairs with T (2 hydrogen bonds); G pairs with C (3 hydrogen bonds).",
-    "acceptableAnswers": []
-   },
-   "explanation": null,
-   "sourceRef": "Campbell Biology (Pearson); Griffiths et al., Introduction to Genetic Analysis",
-   "tags": [
-    "biology"
-   ]
-  },
-  {
-   "prompt": "DNA strand orientation",
-   "content": {
-    "kind": "short-answer",
-    "answer": "Antiparallel: one strand runs 5' to 3', the other 3' to 5'.",
-    "acceptableAnswers": []
-   },
-   "explanation": null,
-   "sourceRef": "Campbell Biology (Pearson); Griffiths et al., Introduction to Genetic Analysis",
-   "tags": [
-    "biology"
-   ]
-  },
-  {
-   "prompt": "Central dogma",
-   "content": {
-    "kind": "short-answer",
-    "answer": "DNA → RNA → protein.",
-    "acceptableAnswers": []
-   },
-   "explanation": null,
-   "sourceRef": "Campbell Biology (Pearson); Griffiths et al., Introduction to Genetic Analysis",
-   "tags": [
-    "biology"
-   ]
-  },
-  {
-   "prompt": "DNA replication is",
-   "content": {
-    "kind": "short-answer",
-    "answer": "Semiconservative (Meselson–Stahl, 1958).",
-    "acceptableAnswers": []
-   },
-   "explanation": null,
-   "sourceRef": "Campbell Biology (Pearson); Griffiths et al., Introduction to Genetic Analysis",
-   "tags": [
-    "biology"
-   ]
-  },
-  {
-   "prompt": "DNA polymerase synthesizes in the direction",
-   "content": {
-    "kind": "short-answer",
-    "answer": "5' to 3' (adds nucleotides to the 3' end).",
-    "acceptableAnswers": []
-   },
-   "explanation": null,
-   "sourceRef": "Campbell Biology (Pearson); Griffiths et al., Introduction to Genetic Analysis",
-   "tags": [
-    "biology"
-   ]
-  },
-  {
-   "prompt": "Okazaki fragments",
-   "content": {
-    "kind": "short-answer",
-    "answer": "Short DNA pieces made on the lagging strand, later joined by DNA ligase.",
-    "acceptableAnswers": []
-   },
-   "explanation": null,
-   "sourceRef": "Campbell Biology (Pearson); Griffiths et al., Introduction to Genetic Analysis",
-   "tags": [
-    "biology"
-   ]
-  },
-  {
-   "prompt": "Helicase",
-   "content": {
-    "kind": "short-answer",
-    "answer": "Unwinds the DNA double helix at the replication fork.",
-    "acceptableAnswers": []
-   },
-   "explanation": null,
-   "sourceRef": "Campbell Biology (Pearson); Griffiths et al., Introduction to Genetic Analysis",
-   "tags": [
-    "biology"
-   ]
-  },
-  {
-   "prompt": "Primase",
-   "content": {
-    "kind": "short-answer",
-    "answer": "Synthesizes the short RNA primers needed to start DNA synthesis.",
-    "acceptableAnswers": []
-   },
-   "explanation": null,
-   "sourceRef": "Campbell Biology (Pearson); Griffiths et al., Introduction to Genetic Analysis",
-   "tags": [
-    "biology"
-   ]
-  },
-  {
-   "prompt": "Transcription",
-   "content": {
-    "kind": "short-answer",
-    "answer": "RNA polymerase copies a DNA template strand into RNA.",
-    "acceptableAnswers": []
-   },
-   "explanation": null,
-   "sourceRef": "Campbell Biology (Pearson); Griffiths et al., Introduction to Genetic Analysis",
-   "tags": [
-    "biology"
-   ]
-  },
-  {
-   "prompt": "RNA processing in eukaryotes",
-   "content": {
-    "kind": "short-answer",
-    "answer": "5' cap, 3' poly-A tail, and splicing out introns.",
-    "acceptableAnswers": []
-   },
-   "explanation": null,
-   "sourceRef": "Campbell Biology (Pearson); Griffiths et al., Introduction to Genetic Analysis",
-   "tags": [
-    "biology"
-   ]
-  },
-  {
-   "prompt": "Translation",
-   "content": {
-    "kind": "short-answer",
-    "answer": "Ribosomes decode mRNA codons, using tRNAs, to build a polypeptide.",
-    "acceptableAnswers": []
-   },
-   "explanation": null,
-   "sourceRef": "Campbell Biology (Pearson); Griffiths et al., Introduction to Genetic Analysis",
-   "tags": [
-    "biology"
-   ]
-  },
-  {
-   "prompt": "Start codon",
-   "content": {
-    "kind": "short-answer",
-    "answer": "AUG (methionine).",
-    "acceptableAnswers": []
-   },
-   "explanation": null,
-   "sourceRef": "Campbell Biology (Pearson); Griffiths et al., Introduction to Genetic Analysis",
-   "tags": [
-    "biology"
-   ]
-  },
-  {
-   "prompt": "Stop codons",
-   "content": {
-    "kind": "short-answer",
-    "answer": "UAA, UAG, UGA.",
-    "acceptableAnswers": []
-   },
-   "explanation": null,
-   "sourceRef": "Campbell Biology (Pearson); Griffiths et al., Introduction to Genetic Analysis",
-   "tags": [
-    "biology"
-   ]
-  },
-  {
-   "prompt": "Codon length",
-   "content": {
-    "kind": "short-answer",
-    "answer": "Three nucleotides specify one amino acid; the code is degenerate (redundant).",
-    "acceptableAnswers": []
-   },
-   "explanation": null,
-   "sourceRef": "Campbell Biology (Pearson); Griffiths et al., Introduction to Genetic Analysis",
-   "tags": [
-    "biology"
-   ]
-  },
-  {
-   "prompt": "tRNA anticodon",
-   "content": {
-    "kind": "short-answer",
-    "answer": "Pairs with the mRNA codon and carries the matching amino acid.",
-    "acceptableAnswers": []
-   },
-   "explanation": null,
-   "sourceRef": "Campbell Biology (Pearson); Griffiths et al., Introduction to Genetic Analysis",
-   "tags": [
-    "biology"
-   ]
-  },
-  {
-   "prompt": "Missense, nonsense, silent mutation",
-   "content": {
-    "kind": "short-answer",
-    "answer": "Missense changes an amino acid; nonsense creates a stop codon; silent leaves the amino acid unchanged.",
-    "acceptableAnswers": []
-   },
-   "explanation": null,
-   "sourceRef": "Campbell Biology (Pearson); Griffiths et al., Introduction to Genetic Analysis",
-   "tags": [
-    "biology"
-   ]
-  },
-  {
-   "prompt": "Frameshift mutation",
-   "content": {
-    "kind": "short-answer",
-    "answer": "An insertion or deletion not a multiple of 3, altering the downstream reading frame.",
-    "acceptableAnswers": []
-   },
-   "explanation": null,
-   "sourceRef": "Campbell Biology (Pearson); Griffiths et al., Introduction to Genetic Analysis",
-   "tags": [
-    "biology"
-   ]
-  },
-  {
-   "prompt": "Lac operon: lactose present",
-   "content": {
-    "kind": "short-answer",
-    "answer": "Allolactose binds the repressor, releasing the operator so the genes are transcribed.",
-    "acceptableAnswers": []
-   },
-   "explanation": null,
-   "sourceRef": "Campbell Biology (Pearson); Griffiths et al., Introduction to Genetic Analysis",
-   "tags": [
-    "biology"
-   ]
-  },
-  {
-   "prompt": "Mendel's law of segregation",
-   "content": {
-    "kind": "short-answer",
-    "answer": "Each individual carries two alleles per gene, which separate into different gametes.",
-    "acceptableAnswers": []
-   },
-   "explanation": null,
-   "sourceRef": "Campbell Biology (Pearson); Griffiths et al., Introduction to Genetic Analysis",
-   "tags": [
-    "biology"
-   ]
-  },
-  {
-   "prompt": "Mendel's law of independent assortment",
-   "content": {
-    "kind": "short-answer",
-    "answer": "Alleles of genes on different chromosomes assort independently.",
-    "acceptableAnswers": []
-   },
-   "explanation": null,
-   "sourceRef": "Campbell Biology (Pearson); Griffiths et al., Introduction to Genetic Analysis",
-   "tags": [
-    "biology"
-   ]
-  },
-  {
-   "prompt": "Dihybrid cross AaBb × AaBb phenotype ratio",
-   "content": {
-    "kind": "short-answer",
-    "answer": "9:3:3:1",
-    "acceptableAnswers": []
-   },
-   "explanation": null,
-   "sourceRef": "Campbell Biology (Pearson); Griffiths et al., Introduction to Genetic Analysis",
-   "tags": [
-    "biology"
-   ]
-  },
-  {
-   "prompt": "Monohybrid Aa × Aa genotype ratio",
-   "content": {
-    "kind": "short-answer",
-    "answer": "1 AA : 2 Aa : 1 aa (phenotype 3:1 under complete dominance).",
-    "acceptableAnswers": []
-   },
-   "explanation": null,
-   "sourceRef": "Campbell Biology (Pearson); Griffiths et al., Introduction to Genetic Analysis",
-   "tags": [
-    "biology"
-   ]
-  },
-  {
-   "prompt": "Test cross",
-   "content": {
-    "kind": "short-answer",
-    "answer": "Crossing an unknown-genotype individual with a homozygous recessive.",
-    "acceptableAnswers": []
-   },
-   "explanation": null,
-   "sourceRef": "Campbell Biology (Pearson); Griffiths et al., Introduction to Genetic Analysis",
-   "tags": [
-    "biology"
-   ]
-  },
-  {
-   "prompt": "Incomplete dominance",
-   "content": {
-    "kind": "short-answer",
-    "answer": "The heterozygote has an intermediate phenotype.",
-    "acceptableAnswers": []
-   },
-   "explanation": null,
-   "sourceRef": "Campbell Biology (Pearson); Griffiths et al., Introduction to Genetic Analysis",
-   "tags": [
-    "biology"
-   ]
-  },
-  {
-   "prompt": "Codominance",
-   "content": {
-    "kind": "short-answer",
-    "answer": "Both alleles are fully expressed in the heterozygote (e.g., AB blood type).",
-    "acceptableAnswers": []
-   },
-   "explanation": null,
-   "sourceRef": "Campbell Biology (Pearson); Griffiths et al., Introduction to Genetic Analysis",
-   "tags": [
-    "biology"
-   ]
-  },
-  {
-   "prompt": "X-linked recessive inheritance pattern",
-   "content": {
-    "kind": "short-answer",
-    "answer": "Affects males more often; affected males pass the allele to daughters, never to sons.",
-    "acceptableAnswers": []
-   },
-   "explanation": null,
-   "sourceRef": "Campbell Biology (Pearson); Griffiths et al., Introduction to Genetic Analysis",
-   "tags": [
-    "biology"
-   ]
-  },
-  {
-   "prompt": "Hardy–Weinberg equations",
-   "content": {
-    "kind": "short-answer",
-    "answer": "p + q = 1 and p^2 + 2pq + q^2 = 1.",
-    "acceptableAnswers": []
-   },
-   "explanation": null,
-   "sourceRef": "Campbell Biology (Pearson); Griffiths et al., Introduction to Genetic Analysis",
-   "tags": [
-    "biology"
-   ]
-  },
-  {
-   "prompt": "PCR",
-   "content": {
-    "kind": "short-answer",
-    "answer": "Amplifies DNA by cycles of denaturing, primer annealing and extension with a heat-stable polymerase (Taq).",
-    "acceptableAnswers": []
-   },
-   "explanation": null,
-   "sourceRef": "Campbell Biology (Pearson); Griffiths et al., Introduction to Genetic Analysis",
-   "tags": [
-    "biology"
-   ]
-  },
-  {
-   "prompt": "CRISPR-Cas9",
-   "content": {
-    "kind": "short-answer",
-    "answer": "A guide RNA directs the Cas9 nuclease to cut a matching DNA sequence.",
-    "acceptableAnswers": []
-   },
-   "explanation": null,
-   "sourceRef": "Campbell Biology (Pearson); Griffiths et al., Introduction to Genetic Analysis",
-   "tags": [
-    "biology"
-   ]
-  },
-  {
-   "prompt": "Restriction enzymes",
-   "content": {
-    "kind": "short-answer",
-    "answer": "Cut DNA at specific recognition sequences.",
-    "acceptableAnswers": []
-   },
-   "explanation": null,
-   "sourceRef": "Campbell Biology (Pearson); Griffiths et al., Introduction to Genetic Analysis",
-   "tags": [
-    "biology"
-   ]
-  },
-  {
-   "prompt": "Gel electrophoresis separates DNA by",
-   "content": {
-    "kind": "short-answer",
-    "answer": "Size; smaller fragments migrate faster toward the positive electrode.",
-    "acceptableAnswers": []
-   },
-   "explanation": null,
-   "sourceRef": "Campbell Biology (Pearson); Griffiths et al., Introduction to Genetic Analysis",
-   "tags": [
-    "biology"
-   ]
-  },
-  {
-   "prompt": "Epigenetic marks",
-   "content": {
-    "kind": "short-answer",
-    "answer": "Heritable changes in expression without sequence change, e.g., DNA methylation and histone modification.",
-    "acceptableAnswers": []
-   },
-   "explanation": null,
-   "sourceRef": "Campbell Biology (Pearson); Griffiths et al., Introduction to Genetic Analysis",
-   "tags": [
-    "biology"
-   ]
-  },
-  {
-   "prompt": "Human chromosome number",
-   "content": {
-    "kind": "short-answer",
-    "answer": "46 (23 pairs) in somatic cells.",
-    "acceptableAnswers": []
-   },
-   "explanation": null,
-   "sourceRef": "Campbell Biology (Pearson); Griffiths et al., Introduction to Genetic Analysis",
-   "tags": [
-    "biology"
-   ]
-  },
-  {
-   "prompt": "Down syndrome cause",
-   "content": {
-    "kind": "short-answer",
-    "answer": "Trisomy 21 (usually from nondisjunction).",
-    "acceptableAnswers": []
-   },
-   "explanation": null,
-   "sourceRef": "Campbell Biology (Pearson); Griffiths et al., Introduction to Genetic Analysis",
-   "tags": [
-    "biology"
-   ]
-  }
- ]
+  "seshatExportVersion": 1,
+  "name": "Genetics and Molecular Biology",
+  "description": "DNA structure, central dogma, gene regulation and inheritance.",
+  "tags": ["biology", "genetics"],
+  "cards": [
+    {
+      "prompt": "DNA base pairs",
+      "content": {
+        "kind": "short-answer",
+        "answer": "A pairs with T (2 hydrogen bonds); G pairs with C (3 hydrogen bonds).",
+        "acceptableAnswers": []
+      },
+      "explanation": null,
+      "sourceRef": "Campbell Biology (Pearson); Griffiths et al., Introduction to Genetic Analysis",
+      "tags": ["biology"]
+    },
+    {
+      "prompt": "DNA strand orientation",
+      "content": {
+        "kind": "short-answer",
+        "answer": "Antiparallel: one strand runs 5' to 3', the other 3' to 5'.",
+        "acceptableAnswers": []
+      },
+      "explanation": null,
+      "sourceRef": "Campbell Biology (Pearson); Griffiths et al., Introduction to Genetic Analysis",
+      "tags": ["biology"]
+    },
+    {
+      "prompt": "Central dogma",
+      "content": {
+        "kind": "short-answer",
+        "answer": "DNA → RNA → protein.",
+        "acceptableAnswers": []
+      },
+      "explanation": null,
+      "sourceRef": "Campbell Biology (Pearson); Griffiths et al., Introduction to Genetic Analysis",
+      "tags": ["biology"]
+    },
+    {
+      "prompt": "DNA replication is",
+      "content": {
+        "kind": "short-answer",
+        "answer": "Semiconservative (Meselson–Stahl, 1958).",
+        "acceptableAnswers": []
+      },
+      "explanation": null,
+      "sourceRef": "Campbell Biology (Pearson); Griffiths et al., Introduction to Genetic Analysis",
+      "tags": ["biology"]
+    },
+    {
+      "prompt": "DNA polymerase synthesizes in the direction",
+      "content": {
+        "kind": "short-answer",
+        "answer": "5' to 3' (adds nucleotides to the 3' end).",
+        "acceptableAnswers": []
+      },
+      "explanation": null,
+      "sourceRef": "Campbell Biology (Pearson); Griffiths et al., Introduction to Genetic Analysis",
+      "tags": ["biology"]
+    },
+    {
+      "prompt": "Okazaki fragments",
+      "content": {
+        "kind": "short-answer",
+        "answer": "Short DNA pieces made on the lagging strand, later joined by DNA ligase.",
+        "acceptableAnswers": []
+      },
+      "explanation": null,
+      "sourceRef": "Campbell Biology (Pearson); Griffiths et al., Introduction to Genetic Analysis",
+      "tags": ["biology"]
+    },
+    {
+      "prompt": "Helicase",
+      "content": {
+        "kind": "short-answer",
+        "answer": "Unwinds the DNA double helix at the replication fork.",
+        "acceptableAnswers": []
+      },
+      "explanation": null,
+      "sourceRef": "Campbell Biology (Pearson); Griffiths et al., Introduction to Genetic Analysis",
+      "tags": ["biology"]
+    },
+    {
+      "prompt": "Primase",
+      "content": {
+        "kind": "short-answer",
+        "answer": "Synthesizes the short RNA primers needed to start DNA synthesis.",
+        "acceptableAnswers": []
+      },
+      "explanation": null,
+      "sourceRef": "Campbell Biology (Pearson); Griffiths et al., Introduction to Genetic Analysis",
+      "tags": ["biology"]
+    },
+    {
+      "prompt": "Transcription",
+      "content": {
+        "kind": "short-answer",
+        "answer": "RNA polymerase copies a DNA template strand into RNA.",
+        "acceptableAnswers": []
+      },
+      "explanation": null,
+      "sourceRef": "Campbell Biology (Pearson); Griffiths et al., Introduction to Genetic Analysis",
+      "tags": ["biology"]
+    },
+    {
+      "prompt": "RNA processing in eukaryotes",
+      "content": {
+        "kind": "short-answer",
+        "answer": "5' cap, 3' poly-A tail, and splicing out introns.",
+        "acceptableAnswers": []
+      },
+      "explanation": null,
+      "sourceRef": "Campbell Biology (Pearson); Griffiths et al., Introduction to Genetic Analysis",
+      "tags": ["biology"]
+    },
+    {
+      "prompt": "Translation",
+      "content": {
+        "kind": "short-answer",
+        "answer": "Ribosomes decode mRNA codons, using tRNAs, to build a polypeptide.",
+        "acceptableAnswers": []
+      },
+      "explanation": null,
+      "sourceRef": "Campbell Biology (Pearson); Griffiths et al., Introduction to Genetic Analysis",
+      "tags": ["biology"]
+    },
+    {
+      "prompt": "Start codon",
+      "content": {
+        "kind": "short-answer",
+        "answer": "AUG (methionine).",
+        "acceptableAnswers": []
+      },
+      "explanation": null,
+      "sourceRef": "Campbell Biology (Pearson); Griffiths et al., Introduction to Genetic Analysis",
+      "tags": ["biology"]
+    },
+    {
+      "prompt": "Stop codons",
+      "content": {
+        "kind": "short-answer",
+        "answer": "UAA, UAG, UGA.",
+        "acceptableAnswers": []
+      },
+      "explanation": null,
+      "sourceRef": "Campbell Biology (Pearson); Griffiths et al., Introduction to Genetic Analysis",
+      "tags": ["biology"]
+    },
+    {
+      "prompt": "Codon length",
+      "content": {
+        "kind": "short-answer",
+        "answer": "Three nucleotides specify one amino acid; the code is degenerate (redundant).",
+        "acceptableAnswers": []
+      },
+      "explanation": null,
+      "sourceRef": "Campbell Biology (Pearson); Griffiths et al., Introduction to Genetic Analysis",
+      "tags": ["biology"]
+    },
+    {
+      "prompt": "tRNA anticodon",
+      "content": {
+        "kind": "short-answer",
+        "answer": "Pairs with the mRNA codon and carries the matching amino acid.",
+        "acceptableAnswers": []
+      },
+      "explanation": null,
+      "sourceRef": "Campbell Biology (Pearson); Griffiths et al., Introduction to Genetic Analysis",
+      "tags": ["biology"]
+    },
+    {
+      "prompt": "Missense, nonsense, silent mutation",
+      "content": {
+        "kind": "short-answer",
+        "answer": "Missense changes an amino acid; nonsense creates a stop codon; silent leaves the amino acid unchanged.",
+        "acceptableAnswers": []
+      },
+      "explanation": null,
+      "sourceRef": "Campbell Biology (Pearson); Griffiths et al., Introduction to Genetic Analysis",
+      "tags": ["biology"]
+    },
+    {
+      "prompt": "Frameshift mutation",
+      "content": {
+        "kind": "short-answer",
+        "answer": "An insertion or deletion not a multiple of 3, altering the downstream reading frame.",
+        "acceptableAnswers": []
+      },
+      "explanation": null,
+      "sourceRef": "Campbell Biology (Pearson); Griffiths et al., Introduction to Genetic Analysis",
+      "tags": ["biology"]
+    },
+    {
+      "prompt": "Lac operon: lactose present",
+      "content": {
+        "kind": "short-answer",
+        "answer": "Allolactose binds the repressor, releasing the operator so the genes are transcribed.",
+        "acceptableAnswers": []
+      },
+      "explanation": null,
+      "sourceRef": "Campbell Biology (Pearson); Griffiths et al., Introduction to Genetic Analysis",
+      "tags": ["biology"]
+    },
+    {
+      "prompt": "Mendel's law of segregation",
+      "content": {
+        "kind": "short-answer",
+        "answer": "Each individual carries two alleles per gene, which separate into different gametes.",
+        "acceptableAnswers": []
+      },
+      "explanation": null,
+      "sourceRef": "Campbell Biology (Pearson); Griffiths et al., Introduction to Genetic Analysis",
+      "tags": ["biology"]
+    },
+    {
+      "prompt": "Mendel's law of independent assortment",
+      "content": {
+        "kind": "short-answer",
+        "answer": "Alleles of genes on different chromosomes assort independently.",
+        "acceptableAnswers": []
+      },
+      "explanation": null,
+      "sourceRef": "Campbell Biology (Pearson); Griffiths et al., Introduction to Genetic Analysis",
+      "tags": ["biology"]
+    },
+    {
+      "prompt": "Dihybrid cross AaBb × AaBb phenotype ratio",
+      "content": {
+        "kind": "short-answer",
+        "answer": "9:3:3:1",
+        "acceptableAnswers": []
+      },
+      "explanation": null,
+      "sourceRef": "Campbell Biology (Pearson); Griffiths et al., Introduction to Genetic Analysis",
+      "tags": ["biology"]
+    },
+    {
+      "prompt": "Monohybrid Aa × Aa genotype ratio",
+      "content": {
+        "kind": "short-answer",
+        "answer": "1 AA : 2 Aa : 1 aa (phenotype 3:1 under complete dominance).",
+        "acceptableAnswers": []
+      },
+      "explanation": null,
+      "sourceRef": "Campbell Biology (Pearson); Griffiths et al., Introduction to Genetic Analysis",
+      "tags": ["biology"]
+    },
+    {
+      "prompt": "Test cross",
+      "content": {
+        "kind": "short-answer",
+        "answer": "Crossing an unknown-genotype individual with a homozygous recessive.",
+        "acceptableAnswers": []
+      },
+      "explanation": null,
+      "sourceRef": "Campbell Biology (Pearson); Griffiths et al., Introduction to Genetic Analysis",
+      "tags": ["biology"]
+    },
+    {
+      "prompt": "Incomplete dominance",
+      "content": {
+        "kind": "short-answer",
+        "answer": "The heterozygote has an intermediate phenotype.",
+        "acceptableAnswers": []
+      },
+      "explanation": null,
+      "sourceRef": "Campbell Biology (Pearson); Griffiths et al., Introduction to Genetic Analysis",
+      "tags": ["biology"]
+    },
+    {
+      "prompt": "Codominance",
+      "content": {
+        "kind": "short-answer",
+        "answer": "Both alleles are fully expressed in the heterozygote (e.g., AB blood type).",
+        "acceptableAnswers": []
+      },
+      "explanation": null,
+      "sourceRef": "Campbell Biology (Pearson); Griffiths et al., Introduction to Genetic Analysis",
+      "tags": ["biology"]
+    },
+    {
+      "prompt": "X-linked recessive inheritance pattern",
+      "content": {
+        "kind": "short-answer",
+        "answer": "Affects males more often; affected males pass the allele to daughters, never to sons.",
+        "acceptableAnswers": []
+      },
+      "explanation": null,
+      "sourceRef": "Campbell Biology (Pearson); Griffiths et al., Introduction to Genetic Analysis",
+      "tags": ["biology"]
+    },
+    {
+      "prompt": "Hardy–Weinberg equations",
+      "content": {
+        "kind": "short-answer",
+        "answer": "p + q = 1 and p^2 + 2pq + q^2 = 1.",
+        "acceptableAnswers": []
+      },
+      "explanation": null,
+      "sourceRef": "Campbell Biology (Pearson); Griffiths et al., Introduction to Genetic Analysis",
+      "tags": ["biology"]
+    },
+    {
+      "prompt": "PCR",
+      "content": {
+        "kind": "short-answer",
+        "answer": "Amplifies DNA by cycles of denaturing, primer annealing and extension with a heat-stable polymerase (Taq).",
+        "acceptableAnswers": []
+      },
+      "explanation": null,
+      "sourceRef": "Campbell Biology (Pearson); Griffiths et al., Introduction to Genetic Analysis",
+      "tags": ["biology"]
+    },
+    {
+      "prompt": "CRISPR-Cas9",
+      "content": {
+        "kind": "short-answer",
+        "answer": "A guide RNA directs the Cas9 nuclease to cut a matching DNA sequence.",
+        "acceptableAnswers": []
+      },
+      "explanation": null,
+      "sourceRef": "Campbell Biology (Pearson); Griffiths et al., Introduction to Genetic Analysis",
+      "tags": ["biology"]
+    },
+    {
+      "prompt": "Restriction enzymes",
+      "content": {
+        "kind": "short-answer",
+        "answer": "Cut DNA at specific recognition sequences.",
+        "acceptableAnswers": []
+      },
+      "explanation": null,
+      "sourceRef": "Campbell Biology (Pearson); Griffiths et al., Introduction to Genetic Analysis",
+      "tags": ["biology"]
+    },
+    {
+      "prompt": "Gel electrophoresis separates DNA by",
+      "content": {
+        "kind": "short-answer",
+        "answer": "Size; smaller fragments migrate faster toward the positive electrode.",
+        "acceptableAnswers": []
+      },
+      "explanation": null,
+      "sourceRef": "Campbell Biology (Pearson); Griffiths et al., Introduction to Genetic Analysis",
+      "tags": ["biology"]
+    },
+    {
+      "prompt": "Epigenetic marks",
+      "content": {
+        "kind": "short-answer",
+        "answer": "Heritable changes in expression without sequence change, e.g., DNA methylation and histone modification.",
+        "acceptableAnswers": []
+      },
+      "explanation": null,
+      "sourceRef": "Campbell Biology (Pearson); Griffiths et al., Introduction to Genetic Analysis",
+      "tags": ["biology"]
+    },
+    {
+      "prompt": "Human chromosome number",
+      "content": {
+        "kind": "short-answer",
+        "answer": "46 (23 pairs) in somatic cells.",
+        "acceptableAnswers": []
+      },
+      "explanation": null,
+      "sourceRef": "Campbell Biology (Pearson); Griffiths et al., Introduction to Genetic Analysis",
+      "tags": ["biology"]
+    },
+    {
+      "prompt": "Down syndrome cause",
+      "content": {
+        "kind": "short-answer",
+        "answer": "Trisomy 21 (usually from nondisjunction).",
+        "acceptableAnswers": []
+      },
+      "explanation": null,
+      "sourceRef": "Campbell Biology (Pearson); Griffiths et al., Introduction to Genetic Analysis",
+      "tags": ["biology"]
+    }
+  ]
 }

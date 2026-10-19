@@ -1,427 +1,360 @@
 {
- "seshatExportVersion": 1,
- "name": "Thermodynamics, Waves and Modern Physics",
- "description": "Laws of thermodynamics, wave relations, relativity and quantum basics.",
- "tags": [
-  "physics",
-  "modern-physics"
- ],
- "cards": [
-  {
-   "prompt": "Zeroth law of thermodynamics",
-   "content": {
-    "kind": "short-answer",
-    "answer": "If A and B are each in thermal equilibrium with C, then A and B are in equilibrium with each other.",
-    "acceptableAnswers": []
-   },
-   "explanation": null,
-   "sourceRef": "Serway & Jewett, Physics for Scientists and Engineers (Cengage); NIST CODATA 2018",
-   "tags": [
-    "physics"
-   ]
-  },
-  {
-   "prompt": "First law of thermodynamics",
-   "content": {
-    "kind": "short-answer",
-    "answer": "ΔU = Q - W (heat added to the system minus work done by it).",
-    "acceptableAnswers": []
-   },
-   "explanation": null,
-   "sourceRef": "Serway & Jewett, Physics for Scientists and Engineers (Cengage); NIST CODATA 2018",
-   "tags": [
-    "physics"
-   ]
-  },
-  {
-   "prompt": "Second law (Clausius form)",
-   "content": {
-    "kind": "short-answer",
-    "answer": "Heat does not flow spontaneously from a colder body to a hotter one.",
-    "acceptableAnswers": []
-   },
-   "explanation": null,
-   "sourceRef": "Serway & Jewett, Physics for Scientists and Engineers (Cengage); NIST CODATA 2018",
-   "tags": [
-    "physics"
-   ]
-  },
-  {
-   "prompt": "Entropy and the second law",
-   "content": {
-    "kind": "short-answer",
-    "answer": "The total entropy of an isolated system never decreases.",
-    "acceptableAnswers": []
-   },
-   "explanation": null,
-   "sourceRef": "Serway & Jewett, Physics for Scientists and Engineers (Cengage); NIST CODATA 2018",
-   "tags": [
-    "physics"
-   ]
-  },
-  {
-   "prompt": "Third law of thermodynamics",
-   "content": {
-    "kind": "short-answer",
-    "answer": "Entropy of a perfect crystal approaches zero as T approaches absolute zero.",
-    "acceptableAnswers": []
-   },
-   "explanation": null,
-   "sourceRef": "Serway & Jewett, Physics for Scientists and Engineers (Cengage); NIST CODATA 2018",
-   "tags": [
-    "physics"
-   ]
-  },
-  {
-   "prompt": "Ideal gas law",
-   "content": {
-    "kind": "short-answer",
-    "answer": "PV = nRT = N k_B T",
-    "acceptableAnswers": []
-   },
-   "explanation": null,
-   "sourceRef": "Serway & Jewett, Physics for Scientists and Engineers (Cengage); NIST CODATA 2018",
-   "tags": [
-    "physics"
-   ]
-  },
-  {
-   "prompt": "Gas constant R",
-   "content": {
-    "kind": "short-answer",
-    "answer": "8.314 J/(mol·K) (8.314462618...)",
-    "acceptableAnswers": []
-   },
-   "explanation": null,
-   "sourceRef": "Serway & Jewett, Physics for Scientists and Engineers (Cengage); NIST CODATA 2018",
-   "tags": [
-    "physics"
-   ]
-  },
-  {
-   "prompt": "Boltzmann constant",
-   "content": {
-    "kind": "short-answer",
-    "answer": "1.380649 × 10^-23 J/K (exact in SI)",
-    "acceptableAnswers": []
-   },
-   "explanation": null,
-   "sourceRef": "Serway & Jewett, Physics for Scientists and Engineers (Cengage); NIST CODATA 2018",
-   "tags": [
-    "physics"
-   ]
-  },
-  {
-   "prompt": "Avogadro constant",
-   "content": {
-    "kind": "short-answer",
-    "answer": "6.02214076 × 10^23 per mole (exact in SI)",
-    "acceptableAnswers": []
-   },
-   "explanation": null,
-   "sourceRef": "Serway & Jewett, Physics for Scientists and Engineers (Cengage); NIST CODATA 2018",
-   "tags": [
-    "physics"
-   ]
-  },
-  {
-   "prompt": "Absolute zero in Celsius",
-   "content": {
-    "kind": "short-answer",
-    "answer": "-273.15 °C",
-    "acceptableAnswers": []
-   },
-   "explanation": null,
-   "sourceRef": "Serway & Jewett, Physics for Scientists and Engineers (Cengage); NIST CODATA 2018",
-   "tags": [
-    "physics"
-   ]
-  },
-  {
-   "prompt": "Carnot efficiency",
-   "content": {
-    "kind": "short-answer",
-    "answer": "η = 1 - T_cold / T_hot (temperatures in kelvin)",
-    "acceptableAnswers": []
-   },
-   "explanation": null,
-   "sourceRef": "Serway & Jewett, Physics for Scientists and Engineers (Cengage); NIST CODATA 2018",
-   "tags": [
-    "physics"
-   ]
-  },
-  {
-   "prompt": "Average translational kinetic energy per molecule",
-   "content": {
-    "kind": "short-answer",
-    "answer": "(3/2) k_B T",
-    "acceptableAnswers": []
-   },
-   "explanation": null,
-   "sourceRef": "Serway & Jewett, Physics for Scientists and Engineers (Cengage); NIST CODATA 2018",
-   "tags": [
-    "physics"
-   ]
-  },
-  {
-   "prompt": "Heat to change temperature",
-   "content": {
-    "kind": "short-answer",
-    "answer": "Q = m c ΔT",
-    "acceptableAnswers": []
-   },
-   "explanation": null,
-   "sourceRef": "Serway & Jewett, Physics for Scientists and Engineers (Cengage); NIST CODATA 2018",
-   "tags": [
-    "physics"
-   ]
-  },
-  {
-   "prompt": "Wave speed, frequency, wavelength",
-   "content": {
-    "kind": "short-answer",
-    "answer": "v = f λ",
-    "acceptableAnswers": []
-   },
-   "explanation": null,
-   "sourceRef": "Serway & Jewett, Physics for Scientists and Engineers (Cengage); NIST CODATA 2018",
-   "tags": [
-    "physics"
-   ]
-  },
-  {
-   "prompt": "Speed of sound in air at about 20 °C",
-   "content": {
-    "kind": "short-answer",
-    "answer": "About 343 m/s",
-    "acceptableAnswers": []
-   },
-   "explanation": null,
-   "sourceRef": "Serway & Jewett, Physics for Scientists and Engineers (Cengage); NIST CODATA 2018",
-   "tags": [
-    "physics"
-   ]
-  },
-  {
-   "prompt": "Doppler shift, source moving toward a stationary observer",
-   "content": {
-    "kind": "short-answer",
-    "answer": "f' = f · v / (v - v_s)",
-    "acceptableAnswers": []
-   },
-   "explanation": null,
-   "sourceRef": "Serway & Jewett, Physics for Scientists and Engineers (Cengage); NIST CODATA 2018",
-   "tags": [
-    "physics"
-   ]
-  },
-  {
-   "prompt": "Snell's law",
-   "content": {
-    "kind": "short-answer",
-    "answer": "n1 sin θ1 = n2 sin θ2",
-    "acceptableAnswers": []
-   },
-   "explanation": null,
-   "sourceRef": "Serway & Jewett, Physics for Scientists and Engineers (Cengage); NIST CODATA 2018",
-   "tags": [
-    "physics"
-   ]
-  },
-  {
-   "prompt": "Thin lens equation",
-   "content": {
-    "kind": "short-answer",
-    "answer": "1/f = 1/d_o + 1/d_i",
-    "acceptableAnswers": []
-   },
-   "explanation": null,
-   "sourceRef": "Serway & Jewett, Physics for Scientists and Engineers (Cengage); NIST CODATA 2018",
-   "tags": [
-    "physics"
-   ]
-  },
-  {
-   "prompt": "Condition for double-slit bright fringes",
-   "content": {
-    "kind": "short-answer",
-    "answer": "d sin θ = m λ (m = 0, ±1, ±2, ...)",
-    "acceptableAnswers": []
-   },
-   "explanation": null,
-   "sourceRef": "Serway & Jewett, Physics for Scientists and Engineers (Cengage); NIST CODATA 2018",
-   "tags": [
-    "physics"
-   ]
-  },
-  {
-   "prompt": "Postulates of special relativity",
-   "content": {
-    "kind": "short-answer",
-    "answer": "Physics laws are the same in all inertial frames; the speed of light in vacuum is the same in all of them.",
-    "acceptableAnswers": []
-   },
-   "explanation": null,
-   "sourceRef": "Serway & Jewett, Physics for Scientists and Engineers (Cengage); NIST CODATA 2018",
-   "tags": [
-    "physics"
-   ]
-  },
-  {
-   "prompt": "Time dilation",
-   "content": {
-    "kind": "short-answer",
-    "answer": "Δt = γ Δt0, with γ = 1/sqrt(1 - v^2/c^2)",
-    "acceptableAnswers": []
-   },
-   "explanation": null,
-   "sourceRef": "Serway & Jewett, Physics for Scientists and Engineers (Cengage); NIST CODATA 2018",
-   "tags": [
-    "physics"
-   ]
-  },
-  {
-   "prompt": "Mass–energy equivalence",
-   "content": {
-    "kind": "short-answer",
-    "answer": "E = m c^2 (rest energy)",
-    "acceptableAnswers": []
-   },
-   "explanation": null,
-   "sourceRef": "Serway & Jewett, Physics for Scientists and Engineers (Cengage); NIST CODATA 2018",
-   "tags": [
-    "physics"
-   ]
-  },
-  {
-   "prompt": "Photon energy",
-   "content": {
-    "kind": "short-answer",
-    "answer": "E = h f = h c / λ",
-    "acceptableAnswers": []
-   },
-   "explanation": null,
-   "sourceRef": "Serway & Jewett, Physics for Scientists and Engineers (Cengage); NIST CODATA 2018",
-   "tags": [
-    "physics"
-   ]
-  },
-  {
-   "prompt": "Planck constant h",
-   "content": {
-    "kind": "short-answer",
-    "answer": "6.62607015 × 10^-34 J·s (exact in SI)",
-    "acceptableAnswers": []
-   },
-   "explanation": null,
-   "sourceRef": "Serway & Jewett, Physics for Scientists and Engineers (Cengage); NIST CODATA 2018",
-   "tags": [
-    "physics"
-   ]
-  },
-  {
-   "prompt": "de Broglie wavelength",
-   "content": {
-    "kind": "short-answer",
-    "answer": "λ = h / p",
-    "acceptableAnswers": []
-   },
-   "explanation": null,
-   "sourceRef": "Serway & Jewett, Physics for Scientists and Engineers (Cengage); NIST CODATA 2018",
-   "tags": [
-    "physics"
-   ]
-  },
-  {
-   "prompt": "Heisenberg uncertainty principle",
-   "content": {
-    "kind": "short-answer",
-    "answer": "Δx Δp ≥ ħ / 2",
-    "acceptableAnswers": []
-   },
-   "explanation": null,
-   "sourceRef": "Serway & Jewett, Physics for Scientists and Engineers (Cengage); NIST CODATA 2018",
-   "tags": [
-    "physics"
-   ]
-  },
-  {
-   "prompt": "Photoelectric effect equation",
-   "content": {
-    "kind": "short-answer",
-    "answer": "K_max = h f - φ (φ the work function)",
-    "acceptableAnswers": []
-   },
-   "explanation": null,
-   "sourceRef": "Serway & Jewett, Physics for Scientists and Engineers (Cengage); NIST CODATA 2018",
-   "tags": [
-    "physics"
-   ]
-  },
-  {
-   "prompt": "Bohr model hydrogen energy levels",
-   "content": {
-    "kind": "short-answer",
-    "answer": "E_n = -13.6 eV / n^2 (13.6057 eV)",
-    "acceptableAnswers": []
-   },
-   "explanation": null,
-   "sourceRef": "Serway & Jewett, Physics for Scientists and Engineers (Cengage); NIST CODATA 2018",
-   "tags": [
-    "physics"
-   ]
-  },
-  {
-   "prompt": "Schrödinger equation (time-dependent)",
-   "content": {
-    "kind": "short-answer",
-    "answer": "iħ ∂ψ/∂t = Ĥ ψ",
-    "acceptableAnswers": []
-   },
-   "explanation": null,
-   "sourceRef": "Serway & Jewett, Physics for Scientists and Engineers (Cengage); NIST CODATA 2018",
-   "tags": [
-    "physics"
-   ]
-  },
-  {
-   "prompt": "Pauli exclusion principle",
-   "content": {
-    "kind": "short-answer",
-    "answer": "No two identical fermions can occupy the same quantum state.",
-    "acceptableAnswers": []
-   },
-   "explanation": null,
-   "sourceRef": "Serway & Jewett, Physics for Scientists and Engineers (Cengage); NIST CODATA 2018",
-   "tags": [
-    "physics"
-   ]
-  },
-  {
-   "prompt": "Radioactive decay law",
-   "content": {
-    "kind": "short-answer",
-    "answer": "N(t) = N0 e^(-λ t); half-life t½ = ln 2 / λ",
-    "acceptableAnswers": []
-   },
-   "explanation": null,
-   "sourceRef": "Serway & Jewett, Physics for Scientists and Engineers (Cengage); NIST CODATA 2018",
-   "tags": [
-    "physics"
-   ]
-  },
-  {
-   "prompt": "Stefan–Boltzmann law",
-   "content": {
-    "kind": "short-answer",
-    "answer": "Radiated power per unit area of a blackbody j = σ T^4",
-    "acceptableAnswers": []
-   },
-   "explanation": null,
-   "sourceRef": "Serway & Jewett, Physics for Scientists and Engineers (Cengage); NIST CODATA 2018",
-   "tags": [
-    "physics"
-   ]
-  }
- ]
+  "seshatExportVersion": 1,
+  "name": "Thermodynamics, Waves and Modern Physics",
+  "description": "Laws of thermodynamics, wave relations, relativity and quantum basics.",
+  "tags": ["physics", "modern-physics"],
+  "cards": [
+    {
+      "prompt": "Zeroth law of thermodynamics",
+      "content": {
+        "kind": "short-answer",
+        "answer": "If A and B are each in thermal equilibrium with C, then A and B are in equilibrium with each other.",
+        "acceptableAnswers": []
+      },
+      "explanation": null,
+      "sourceRef": "Serway & Jewett, Physics for Scientists and Engineers (Cengage); NIST CODATA 2018",
+      "tags": ["physics"]
+    },
+    {
+      "prompt": "First law of thermodynamics",
+      "content": {
+        "kind": "short-answer",
+        "answer": "ΔU = Q - W (heat added to the system minus work done by it).",
+        "acceptableAnswers": []
+      },
+      "explanation": null,
+      "sourceRef": "Serway & Jewett, Physics for Scientists and Engineers (Cengage); NIST CODATA 2018",
+      "tags": ["physics"]
+    },
+    {
+      "prompt": "Second law (Clausius form)",
+      "content": {
+        "kind": "short-answer",
+        "answer": "Heat does not flow spontaneously from a colder body to a hotter one.",
+        "acceptableAnswers": []
+      },
+      "explanation": null,
+      "sourceRef": "Serway & Jewett, Physics for Scientists and Engineers (Cengage); NIST CODATA 2018",
+      "tags": ["physics"]
+    },
+    {
+      "prompt": "Entropy and the second law",
+      "content": {
+        "kind": "short-answer",
+        "answer": "The total entropy of an isolated system never decreases.",
+        "acceptableAnswers": []
+      },
+      "explanation": null,
+      "sourceRef": "Serway & Jewett, Physics for Scientists and Engineers (Cengage); NIST CODATA 2018",
+      "tags": ["physics"]
+    },
+    {
+      "prompt": "Third law of thermodynamics",
+      "content": {
+        "kind": "short-answer",
+        "answer": "Entropy of a perfect crystal approaches zero as T approaches absolute zero.",
+        "acceptableAnswers": []
+      },
+      "explanation": null,
+      "sourceRef": "Serway & Jewett, Physics for Scientists and Engineers (Cengage); NIST CODATA 2018",
+      "tags": ["physics"]
+    },
+    {
+      "prompt": "Ideal gas law",
+      "content": {
+        "kind": "short-answer",
+        "answer": "PV = nRT = N k_B T",
+        "acceptableAnswers": []
+      },
+      "explanation": null,
+      "sourceRef": "Serway & Jewett, Physics for Scientists and Engineers (Cengage); NIST CODATA 2018",
+      "tags": ["physics"]
+    },
+    {
+      "prompt": "Gas constant R",
+      "content": {
+        "kind": "short-answer",
+        "answer": "8.314 J/(mol·K) (8.314462618...)",
+        "acceptableAnswers": []
+      },
+      "explanation": null,
+      "sourceRef": "Serway & Jewett, Physics for Scientists and Engineers (Cengage); NIST CODATA 2018",
+      "tags": ["physics"]
+    },
+    {
+      "prompt": "Boltzmann constant",
+      "content": {
+        "kind": "short-answer",
+        "answer": "1.380649 × 10^-23 J/K (exact in SI)",
+        "acceptableAnswers": []
+      },
+      "explanation": null,
+      "sourceRef": "Serway & Jewett, Physics for Scientists and Engineers (Cengage); NIST CODATA 2018",
+      "tags": ["physics"]
+    },
+    {
+      "prompt": "Avogadro constant",
+      "content": {
+        "kind": "short-answer",
+        "answer": "6.02214076 × 10^23 per mole (exact in SI)",
+        "acceptableAnswers": []
+      },
+      "explanation": null,
+      "sourceRef": "Serway & Jewett, Physics for Scientists and Engineers (Cengage); NIST CODATA 2018",
+      "tags": ["physics"]
+    },
+    {
+      "prompt": "Absolute zero in Celsius",
+      "content": {
+        "kind": "short-answer",
+        "answer": "-273.15 °C",
+        "acceptableAnswers": []
+      },
+      "explanation": null,
+      "sourceRef": "Serway & Jewett, Physics for Scientists and Engineers (Cengage); NIST CODATA 2018",
+      "tags": ["physics"]
+    },
+    {
+      "prompt": "Carnot efficiency",
+      "content": {
+        "kind": "short-answer",
+        "answer": "η = 1 - T_cold / T_hot (temperatures in kelvin)",
+        "acceptableAnswers": []
+      },
+      "explanation": null,
+      "sourceRef": "Serway & Jewett, Physics for Scientists and Engineers (Cengage); NIST CODATA 2018",
+      "tags": ["physics"]
+    },
+    {
+      "prompt": "Average translational kinetic energy per molecule",
+      "content": {
+        "kind": "short-answer",
+        "answer": "(3/2) k_B T",
+        "acceptableAnswers": []
+      },
+      "explanation": null,
+      "sourceRef": "Serway & Jewett, Physics for Scientists and Engineers (Cengage); NIST CODATA 2018",
+      "tags": ["physics"]
+    },
+    {
+      "prompt": "Heat to change temperature",
+      "content": {
+        "kind": "short-answer",
+        "answer": "Q = m c ΔT",
+        "acceptableAnswers": []
+      },
+      "explanation": null,
+      "sourceRef": "Serway & Jewett, Physics for Scientists and Engineers (Cengage); NIST CODATA 2018",
+      "tags": ["physics"]
+    },
+    {
+      "prompt": "Wave speed, frequency, wavelength",
+      "content": {
+        "kind": "short-answer",
+        "answer": "v = f λ",
+        "acceptableAnswers": []
+      },
+      "explanation": null,
+      "sourceRef": "Serway & Jewett, Physics for Scientists and Engineers (Cengage); NIST CODATA 2018",
+      "tags": ["physics"]
+    },
+    {
+      "prompt": "Speed of sound in air at about 20 °C",
+      "content": {
+        "kind": "short-answer",
+        "answer": "About 343 m/s",
+        "acceptableAnswers": []
+      },
+      "explanation": null,
+      "sourceRef": "Serway & Jewett, Physics for Scientists and Engineers (Cengage); NIST CODATA 2018",
+      "tags": ["physics"]
+    },
+    {
+      "prompt": "Doppler shift, source moving toward a stationary observer",
+      "content": {
+        "kind": "short-answer",
+        "answer": "f' = f · v / (v - v_s)",
+        "acceptableAnswers": []
+      },
+      "explanation": null,
+      "sourceRef": "Serway & Jewett, Physics for Scientists and Engineers (Cengage); NIST CODATA 2018",
+      "tags": ["physics"]
+    },
+    {
+      "prompt": "Snell's law",
+      "content": {
+        "kind": "short-answer",
+        "answer": "n1 sin θ1 = n2 sin θ2",
+        "acceptableAnswers": []
+      },
+      "explanation": null,
+      "sourceRef": "Serway & Jewett, Physics for Scientists and Engineers (Cengage); NIST CODATA 2018",
+      "tags": ["physics"]
+    },
+    {
+      "prompt": "Thin lens equation",
+      "content": {
+        "kind": "short-answer",
+        "answer": "1/f = 1/d_o + 1/d_i",
+        "acceptableAnswers": []
+      },
+      "explanation": null,
+      "sourceRef": "Serway & Jewett, Physics for Scientists and Engineers (Cengage); NIST CODATA 2018",
+      "tags": ["physics"]
+    },
+    {
+      "prompt": "Condition for double-slit bright fringes",
+      "content": {
+        "kind": "short-answer",
+        "answer": "d sin θ = m λ (m = 0, ±1, ±2, ...)",
+        "acceptableAnswers": []
+      },
+      "explanation": null,
+      "sourceRef": "Serway & Jewett, Physics for Scientists and Engineers (Cengage); NIST CODATA 2018",
+      "tags": ["physics"]
+    },
+    {
+      "prompt": "Postulates of special relativity",
+      "content": {
+        "kind": "short-answer",
+        "answer": "Physics laws are the same in all inertial frames; the speed of light in vacuum is the same in all of them.",
+        "acceptableAnswers": []
+      },
+      "explanation": null,
+      "sourceRef": "Serway & Jewett, Physics for Scientists and Engineers (Cengage); NIST CODATA 2018",
+      "tags": ["physics"]
+    },
+    {
+      "prompt": "Time dilation",
+      "content": {
+        "kind": "short-answer",
+        "answer": "Δt = γ Δt0, with γ = 1/sqrt(1 - v^2/c^2)",
+        "acceptableAnswers": []
+      },
+      "explanation": null,
+      "sourceRef": "Serway & Jewett, Physics for Scientists and Engineers (Cengage); NIST CODATA 2018",
+      "tags": ["physics"]
+    },
+    {
+      "prompt": "Mass–energy equivalence",
+      "content": {
+        "kind": "short-answer",
+        "answer": "E = m c^2 (rest energy)",
+        "acceptableAnswers": []
+      },
+      "explanation": null,
+      "sourceRef": "Serway & Jewett, Physics for Scientists and Engineers (Cengage); NIST CODATA 2018",
+      "tags": ["physics"]
+    },
+    {
+      "prompt": "Photon energy",
+      "content": {
+        "kind": "short-answer",
+        "answer": "E = h f = h c / λ",
+        "acceptableAnswers": []
+      },
+      "explanation": null,
+      "sourceRef": "Serway & Jewett, Physics for Scientists and Engineers (Cengage); NIST CODATA 2018",
+      "tags": ["physics"]
+    },
+    {
+      "prompt": "Planck constant h",
+      "content": {
+        "kind": "short-answer",
+        "answer": "6.62607015 × 10^-34 J·s (exact in SI)",
+        "acceptableAnswers": []
+      },
+      "explanation": null,
+      "sourceRef": "Serway & Jewett, Physics for Scientists and Engineers (Cengage); NIST CODATA 2018",
+      "tags": ["physics"]
+    },
+    {
+      "prompt": "de Broglie wavelength",
+      "content": {
+        "kind": "short-answer",
+        "answer": "λ = h / p",
+        "acceptableAnswers": []
+      },
+      "explanation": null,
+      "sourceRef": "Serway & Jewett, Physics for Scientists and Engineers (Cengage); NIST CODATA 2018",
+      "tags": ["physics"]
+    },
+    {
+      "prompt": "Heisenberg uncertainty principle",
+      "content": {
+        "kind": "short-answer",
+        "answer": "Δx Δp ≥ ħ / 2",
+        "acceptableAnswers": []
+      },
+      "explanation": null,
+      "sourceRef": "Serway & Jewett, Physics for Scientists and Engineers (Cengage); NIST CODATA 2018",
+      "tags": ["physics"]
+    },
+    {
+      "prompt": "Photoelectric effect equation",
+      "content": {
+        "kind": "short-answer",
+        "answer": "K_max = h f - φ (φ the work function)",
+        "acceptableAnswers": []
+      },
+      "explanation": null,
+      "sourceRef": "Serway & Jewett, Physics for Scientists and Engineers (Cengage); NIST CODATA 2018",
+      "tags": ["physics"]
+    },
+    {
+      "prompt": "Bohr model hydrogen energy levels",
+      "content": {
+        "kind": "short-answer",
+        "answer": "E_n = -13.6 eV / n^2 (13.6057 eV)",
+        "acceptableAnswers": []
+      },
+      "explanation": null,
+      "sourceRef": "Serway & Jewett, Physics for Scientists and Engineers (Cengage); NIST CODATA 2018",
+      "tags": ["physics"]
+    },
+    {
+      "prompt": "Schrödinger equation (time-dependent)",
+      "content": {
+        "kind": "short-answer",
+        "answer": "iħ ∂ψ/∂t = Ĥ ψ",
+        "acceptableAnswers": []
+      },
+      "explanation": null,
+      "sourceRef": "Serway & Jewett, Physics for Scientists and Engineers (Cengage); NIST CODATA 2018",
+      "tags": ["physics"]
+    },
+    {
+      "prompt": "Pauli exclusion principle",
+      "content": {
+        "kind": "short-answer",
+        "answer": "No two identical fermions can occupy the same quantum state.",
+        "acceptableAnswers": []
+      },
+      "explanation": null,
+      "sourceRef": "Serway & Jewett, Physics for Scientists and Engineers (Cengage); NIST CODATA 2018",
+      "tags": ["physics"]
+    },
+    {
+      "prompt": "Radioactive decay law",
+      "content": {
+        "kind": "short-answer",
+        "answer": "N(t) = N0 e^(-λ t); half-life t½ = ln 2 / λ",
+        "acceptableAnswers": []
+      },
+      "explanation": null,
+      "sourceRef": "Serway & Jewett, Physics for Scientists and Engineers (Cengage); NIST CODATA 2018",
+      "tags": ["physics"]
+    },
+    {
+      "prompt": "Stefan–Boltzmann law",
+      "content": {
+        "kind": "short-answer",
+        "answer": "Radiated power per unit area of a blackbody j = σ T^4",
+        "acceptableAnswers": []
+      },
+      "explanation": null,
+      "sourceRef": "Serway & Jewett, Physics for Scientists and Engineers (Cengage); NIST CODATA 2018",
+      "tags": ["physics"]
+    }
+  ]
 }

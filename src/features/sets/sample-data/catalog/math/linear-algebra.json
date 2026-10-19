@@ -1,401 +1,338 @@
 {
- "seshatExportVersion": 1,
- "name": "Linear Algebra Fundamentals",
- "description": "Definitions and theorems every first course in linear algebra covers.",
- "tags": [
-  "math",
-  "linear-algebra"
- ],
- "cards": [
-  {
-   "prompt": "Linear independence of vectors v1..vk",
-   "content": {
-    "kind": "short-answer",
-    "answer": "c1v1 + ... + ckvk = 0 only when all ci = 0.",
-    "acceptableAnswers": []
-   },
-   "explanation": null,
-   "sourceRef": "Strang, Introduction to Linear Algebra (Wellesley-Cambridge)",
-   "tags": [
-    "math"
-   ]
-  },
-  {
-   "prompt": "Basis of a vector space",
-   "content": {
-    "kind": "short-answer",
-    "answer": "A linearly independent set that spans the space.",
-    "acceptableAnswers": []
-   },
-   "explanation": null,
-   "sourceRef": "Strang, Introduction to Linear Algebra (Wellesley-Cambridge)",
-   "tags": [
-    "math"
-   ]
-  },
-  {
-   "prompt": "Dimension of a vector space",
-   "content": {
-    "kind": "short-answer",
-    "answer": "The number of vectors in any basis.",
-    "acceptableAnswers": []
-   },
-   "explanation": null,
-   "sourceRef": "Strang, Introduction to Linear Algebra (Wellesley-Cambridge)",
-   "tags": [
-    "math"
-   ]
-  },
-  {
-   "prompt": "Rank-nullity theorem for an m×n matrix A",
-   "content": {
-    "kind": "short-answer",
-    "answer": "rank(A) + nullity(A) = n (the number of columns).",
-    "acceptableAnswers": []
-   },
-   "explanation": null,
-   "sourceRef": "Strang, Introduction to Linear Algebra (Wellesley-Cambridge)",
-   "tags": [
-    "math"
-   ]
-  },
-  {
-   "prompt": "Rank of a matrix",
-   "content": {
-    "kind": "short-answer",
-    "answer": "The dimension of its column space (equals the dimension of its row space).",
-    "acceptableAnswers": []
-   },
-   "explanation": null,
-   "sourceRef": "Strang, Introduction to Linear Algebra (Wellesley-Cambridge)",
-   "tags": [
-    "math"
-   ]
-  },
-  {
-   "prompt": "Null space of A",
-   "content": {
-    "kind": "short-answer",
-    "answer": "The set of all x with Ax = 0.",
-    "acceptableAnswers": []
-   },
-   "explanation": null,
-   "sourceRef": "Strang, Introduction to Linear Algebra (Wellesley-Cambridge)",
-   "tags": [
-    "math"
-   ]
-  },
-  {
-   "prompt": "det(AB)",
-   "content": {
-    "kind": "short-answer",
-    "answer": "det(A) · det(B)",
-    "acceptableAnswers": []
-   },
-   "explanation": null,
-   "sourceRef": "Strang, Introduction to Linear Algebra (Wellesley-Cambridge)",
-   "tags": [
-    "math"
-   ]
-  },
-  {
-   "prompt": "det(A^T)",
-   "content": {
-    "kind": "short-answer",
-    "answer": "det(A)",
-    "acceptableAnswers": []
-   },
-   "explanation": null,
-   "sourceRef": "Strang, Introduction to Linear Algebra (Wellesley-Cambridge)",
-   "tags": [
-    "math"
-   ]
-  },
-  {
-   "prompt": "A square matrix is invertible if and only if",
-   "content": {
-    "kind": "short-answer",
-    "answer": "det(A) ≠ 0 (equivalently, it has full rank).",
-    "acceptableAnswers": []
-   },
-   "explanation": null,
-   "sourceRef": "Strang, Introduction to Linear Algebra (Wellesley-Cambridge)",
-   "tags": [
-    "math"
-   ]
-  },
-  {
-   "prompt": "det of a triangular matrix",
-   "content": {
-    "kind": "short-answer",
-    "answer": "The product of its diagonal entries.",
-    "acceptableAnswers": []
-   },
-   "explanation": null,
-   "sourceRef": "Strang, Introduction to Linear Algebra (Wellesley-Cambridge)",
-   "tags": [
-    "math"
-   ]
-  },
-  {
-   "prompt": "(AB)^-1",
-   "content": {
-    "kind": "short-answer",
-    "answer": "B^-1 A^-1",
-    "acceptableAnswers": []
-   },
-   "explanation": null,
-   "sourceRef": "Strang, Introduction to Linear Algebra (Wellesley-Cambridge)",
-   "tags": [
-    "math"
-   ]
-  },
-  {
-   "prompt": "(AB)^T",
-   "content": {
-    "kind": "short-answer",
-    "answer": "B^T A^T",
-    "acceptableAnswers": []
-   },
-   "explanation": null,
-   "sourceRef": "Strang, Introduction to Linear Algebra (Wellesley-Cambridge)",
-   "tags": [
-    "math"
-   ]
-  },
-  {
-   "prompt": "Eigenvector v and eigenvalue λ of A",
-   "content": {
-    "kind": "short-answer",
-    "answer": "Av = λv with v ≠ 0.",
-    "acceptableAnswers": []
-   },
-   "explanation": null,
-   "sourceRef": "Strang, Introduction to Linear Algebra (Wellesley-Cambridge)",
-   "tags": [
-    "math"
-   ]
-  },
-  {
-   "prompt": "Characteristic equation for eigenvalues",
-   "content": {
-    "kind": "short-answer",
-    "answer": "det(A - λI) = 0",
-    "acceptableAnswers": []
-   },
-   "explanation": null,
-   "sourceRef": "Strang, Introduction to Linear Algebra (Wellesley-Cambridge)",
-   "tags": [
-    "math"
-   ]
-  },
-  {
-   "prompt": "Sum of the eigenvalues of A (with multiplicity)",
-   "content": {
-    "kind": "short-answer",
-    "answer": "trace(A)",
-    "acceptableAnswers": []
-   },
-   "explanation": null,
-   "sourceRef": "Strang, Introduction to Linear Algebra (Wellesley-Cambridge)",
-   "tags": [
-    "math"
-   ]
-  },
-  {
-   "prompt": "Product of the eigenvalues of A (with multiplicity)",
-   "content": {
-    "kind": "short-answer",
-    "answer": "det(A)",
-    "acceptableAnswers": []
-   },
-   "explanation": null,
-   "sourceRef": "Strang, Introduction to Linear Algebra (Wellesley-Cambridge)",
-   "tags": [
-    "math"
-   ]
-  },
-  {
-   "prompt": "Eigenvalues of a triangular matrix",
-   "content": {
-    "kind": "short-answer",
-    "answer": "Its diagonal entries.",
-    "acceptableAnswers": []
-   },
-   "explanation": null,
-   "sourceRef": "Strang, Introduction to Linear Algebra (Wellesley-Cambridge)",
-   "tags": [
-    "math"
-   ]
-  },
-  {
-   "prompt": "Spectral theorem for real symmetric matrices",
-   "content": {
-    "kind": "short-answer",
-    "answer": "They have real eigenvalues and an orthonormal basis of eigenvectors: A = QΛQ^T.",
-    "acceptableAnswers": []
-   },
-   "explanation": null,
-   "sourceRef": "Strang, Introduction to Linear Algebra (Wellesley-Cambridge)",
-   "tags": [
-    "math"
-   ]
-  },
-  {
-   "prompt": "Orthogonal matrix Q",
-   "content": {
-    "kind": "short-answer",
-    "answer": "Q^T Q = I, so Q^-1 = Q^T; its columns are orthonormal.",
-    "acceptableAnswers": []
-   },
-   "explanation": null,
-   "sourceRef": "Strang, Introduction to Linear Algebra (Wellesley-Cambridge)",
-   "tags": [
-    "math"
-   ]
-  },
-  {
-   "prompt": "Dot product and angle",
-   "content": {
-    "kind": "short-answer",
-    "answer": "u · v = |u||v| cos θ",
-    "acceptableAnswers": []
-   },
-   "explanation": null,
-   "sourceRef": "Strang, Introduction to Linear Algebra (Wellesley-Cambridge)",
-   "tags": [
-    "math"
-   ]
-  },
-  {
-   "prompt": "Cauchy–Schwarz inequality",
-   "content": {
-    "kind": "short-answer",
-    "answer": "|u · v| ≤ |u||v|",
-    "acceptableAnswers": []
-   },
-   "explanation": null,
-   "sourceRef": "Strang, Introduction to Linear Algebra (Wellesley-Cambridge)",
-   "tags": [
-    "math"
-   ]
-  },
-  {
-   "prompt": "Projection of b onto the line through a",
-   "content": {
-    "kind": "short-answer",
-    "answer": "(a·b / a·a) a",
-    "acceptableAnswers": []
-   },
-   "explanation": null,
-   "sourceRef": "Strang, Introduction to Linear Algebra (Wellesley-Cambridge)",
-   "tags": [
-    "math"
-   ]
-  },
-  {
-   "prompt": "Least-squares solution of Ax = b",
-   "content": {
-    "kind": "short-answer",
-    "answer": "Solve the normal equations A^T A x̂ = A^T b.",
-    "acceptableAnswers": []
-   },
-   "explanation": null,
-   "sourceRef": "Strang, Introduction to Linear Algebra (Wellesley-Cambridge)",
-   "tags": [
-    "math"
-   ]
-  },
-  {
-   "prompt": "Gram–Schmidt process",
-   "content": {
-    "kind": "short-answer",
-    "answer": "Turns independent vectors into an orthonormal set by subtracting off projections onto earlier vectors.",
-    "acceptableAnswers": []
-   },
-   "explanation": null,
-   "sourceRef": "Strang, Introduction to Linear Algebra (Wellesley-Cambridge)",
-   "tags": [
-    "math"
-   ]
-  },
-  {
-   "prompt": "Positive definite symmetric matrix",
-   "content": {
-    "kind": "short-answer",
-    "answer": "x^T A x > 0 for every x ≠ 0 (equivalently all eigenvalues > 0).",
-    "acceptableAnswers": []
-   },
-   "explanation": null,
-   "sourceRef": "Strang, Introduction to Linear Algebra (Wellesley-Cambridge)",
-   "tags": [
-    "math"
-   ]
-  },
-  {
-   "prompt": "Singular value decomposition",
-   "content": {
-    "kind": "short-answer",
-    "answer": "A = UΣV^T, with U and V orthogonal and Σ diagonal with non-negative singular values.",
-    "acceptableAnswers": []
-   },
-   "explanation": null,
-   "sourceRef": "Strang, Introduction to Linear Algebra (Wellesley-Cambridge)",
-   "tags": [
-    "math"
-   ]
-  },
-  {
-   "prompt": "Diagonalizable matrix",
-   "content": {
-    "kind": "short-answer",
-    "answer": "A = PDP^-1, which holds when A has n linearly independent eigenvectors.",
-    "acceptableAnswers": []
-   },
-   "explanation": null,
-   "sourceRef": "Strang, Introduction to Linear Algebra (Wellesley-Cambridge)",
-   "tags": [
-    "math"
-   ]
-  },
-  {
-   "prompt": "Cramer's rule",
-   "content": {
-    "kind": "short-answer",
-    "answer": "xi = det(Ai) / det(A), where Ai is A with column i replaced by b.",
-    "acceptableAnswers": []
-   },
-   "explanation": null,
-   "sourceRef": "Strang, Introduction to Linear Algebra (Wellesley-Cambridge)",
-   "tags": [
-    "math"
-   ]
-  },
-  {
-   "prompt": "Linear transformation T",
-   "content": {
-    "kind": "short-answer",
-    "answer": "T(u + v) = T(u) + T(v) and T(cu) = cT(u).",
-    "acceptableAnswers": []
-   },
-   "explanation": null,
-   "sourceRef": "Strang, Introduction to Linear Algebra (Wellesley-Cambridge)",
-   "tags": [
-    "math"
-   ]
-  },
-  {
-   "prompt": "Solutions of Ax = b exist for every b if and only if",
-   "content": {
-    "kind": "short-answer",
-    "answer": "The columns of A span R^m (rank = m).",
-    "acceptableAnswers": []
-   },
-   "explanation": null,
-   "sourceRef": "Strang, Introduction to Linear Algebra (Wellesley-Cambridge)",
-   "tags": [
-    "math"
-   ]
-  }
- ]
+  "seshatExportVersion": 1,
+  "name": "Linear Algebra Fundamentals",
+  "description": "Definitions and theorems every first course in linear algebra covers.",
+  "tags": ["math", "linear-algebra"],
+  "cards": [
+    {
+      "prompt": "Linear independence of vectors v1..vk",
+      "content": {
+        "kind": "short-answer",
+        "answer": "c1v1 + ... + ckvk = 0 only when all ci = 0.",
+        "acceptableAnswers": []
+      },
+      "explanation": null,
+      "sourceRef": "Strang, Introduction to Linear Algebra (Wellesley-Cambridge)",
+      "tags": ["math"]
+    },
+    {
+      "prompt": "Basis of a vector space",
+      "content": {
+        "kind": "short-answer",
+        "answer": "A linearly independent set that spans the space.",
+        "acceptableAnswers": []
+      },
+      "explanation": null,
+      "sourceRef": "Strang, Introduction to Linear Algebra (Wellesley-Cambridge)",
+      "tags": ["math"]
+    },
+    {
+      "prompt": "Dimension of a vector space",
+      "content": {
+        "kind": "short-answer",
+        "answer": "The number of vectors in any basis.",
+        "acceptableAnswers": []
+      },
+      "explanation": null,
+      "sourceRef": "Strang, Introduction to Linear Algebra (Wellesley-Cambridge)",
+      "tags": ["math"]
+    },
+    {
+      "prompt": "Rank-nullity theorem for an m×n matrix A",
+      "content": {
+        "kind": "short-answer",
+        "answer": "rank(A) + nullity(A) = n (the number of columns).",
+        "acceptableAnswers": []
+      },
+      "explanation": null,
+      "sourceRef": "Strang, Introduction to Linear Algebra (Wellesley-Cambridge)",
+      "tags": ["math"]
+    },
+    {
+      "prompt": "Rank of a matrix",
+      "content": {
+        "kind": "short-answer",
+        "answer": "The dimension of its column space (equals the dimension of its row space).",
+        "acceptableAnswers": []
+      },
+      "explanation": null,
+      "sourceRef": "Strang, Introduction to Linear Algebra (Wellesley-Cambridge)",
+      "tags": ["math"]
+    },
+    {
+      "prompt": "Null space of A",
+      "content": {
+        "kind": "short-answer",
+        "answer": "The set of all x with Ax = 0.",
+        "acceptableAnswers": []
+      },
+      "explanation": null,
+      "sourceRef": "Strang, Introduction to Linear Algebra (Wellesley-Cambridge)",
+      "tags": ["math"]
+    },
+    {
+      "prompt": "det(AB)",
+      "content": {
+        "kind": "short-answer",
+        "answer": "det(A) · det(B)",
+        "acceptableAnswers": []
+      },
+      "explanation": null,
+      "sourceRef": "Strang, Introduction to Linear Algebra (Wellesley-Cambridge)",
+      "tags": ["math"]
+    },
+    {
+      "prompt": "det(A^T)",
+      "content": {
+        "kind": "short-answer",
+        "answer": "det(A)",
+        "acceptableAnswers": []
+      },
+      "explanation": null,
+      "sourceRef": "Strang, Introduction to Linear Algebra (Wellesley-Cambridge)",
+      "tags": ["math"]
+    },
+    {
+      "prompt": "A square matrix is invertible if and only if",
+      "content": {
+        "kind": "short-answer",
+        "answer": "det(A) ≠ 0 (equivalently, it has full rank).",
+        "acceptableAnswers": []
+      },
+      "explanation": null,
+      "sourceRef": "Strang, Introduction to Linear Algebra (Wellesley-Cambridge)",
+      "tags": ["math"]
+    },
+    {
+      "prompt": "det of a triangular matrix",
+      "content": {
+        "kind": "short-answer",
+        "answer": "The product of its diagonal entries.",
+        "acceptableAnswers": []
+      },
+      "explanation": null,
+      "sourceRef": "Strang, Introduction to Linear Algebra (Wellesley-Cambridge)",
+      "tags": ["math"]
+    },
+    {
+      "prompt": "(AB)^-1",
+      "content": {
+        "kind": "short-answer",
+        "answer": "B^-1 A^-1",
+        "acceptableAnswers": []
+      },
+      "explanation": null,
+      "sourceRef": "Strang, Introduction to Linear Algebra (Wellesley-Cambridge)",
+      "tags": ["math"]
+    },
+    {
+      "prompt": "(AB)^T",
+      "content": {
+        "kind": "short-answer",
+        "answer": "B^T A^T",
+        "acceptableAnswers": []
+      },
+      "explanation": null,
+      "sourceRef": "Strang, Introduction to Linear Algebra (Wellesley-Cambridge)",
+      "tags": ["math"]
+    },
+    {
+      "prompt": "Eigenvector v and eigenvalue λ of A",
+      "content": {
+        "kind": "short-answer",
+        "answer": "Av = λv with v ≠ 0.",
+        "acceptableAnswers": []
+      },
+      "explanation": null,
+      "sourceRef": "Strang, Introduction to Linear Algebra (Wellesley-Cambridge)",
+      "tags": ["math"]
+    },
+    {
+      "prompt": "Characteristic equation for eigenvalues",
+      "content": {
+        "kind": "short-answer",
+        "answer": "det(A - λI) = 0",
+        "acceptableAnswers": []
+      },
+      "explanation": null,
+      "sourceRef": "Strang, Introduction to Linear Algebra (Wellesley-Cambridge)",
+      "tags": ["math"]
+    },
+    {
+      "prompt": "Sum of the eigenvalues of A (with multiplicity)",
+      "content": {
+        "kind": "short-answer",
+        "answer": "trace(A)",
+        "acceptableAnswers": []
+      },
+      "explanation": null,
+      "sourceRef": "Strang, Introduction to Linear Algebra (Wellesley-Cambridge)",
+      "tags": ["math"]
+    },
+    {
+      "prompt": "Product of the eigenvalues of A (with multiplicity)",
+      "content": {
+        "kind": "short-answer",
+        "answer": "det(A)",
+        "acceptableAnswers": []
+      },
+      "explanation": null,
+      "sourceRef": "Strang, Introduction to Linear Algebra (Wellesley-Cambridge)",
+      "tags": ["math"]
+    },
+    {
+      "prompt": "Eigenvalues of a triangular matrix",
+      "content": {
+        "kind": "short-answer",
+        "answer": "Its diagonal entries.",
+        "acceptableAnswers": []
+      },
+      "explanation": null,
+      "sourceRef": "Strang, Introduction to Linear Algebra (Wellesley-Cambridge)",
+      "tags": ["math"]
+    },
+    {
+      "prompt": "Spectral theorem for real symmetric matrices",
+      "content": {
+        "kind": "short-answer",
+        "answer": "They have real eigenvalues and an orthonormal basis of eigenvectors: A = QΛQ^T.",
+        "acceptableAnswers": []
+      },
+      "explanation": null,
+      "sourceRef": "Strang, Introduction to Linear Algebra (Wellesley-Cambridge)",
+      "tags": ["math"]
+    },
+    {
+      "prompt": "Orthogonal matrix Q",
+      "content": {
+        "kind": "short-answer",
+        "answer": "Q^T Q = I, so Q^-1 = Q^T; its columns are orthonormal.",
+        "acceptableAnswers": []
+      },
+      "explanation": null,
+      "sourceRef": "Strang, Introduction to Linear Algebra (Wellesley-Cambridge)",
+      "tags": ["math"]
+    },
+    {
+      "prompt": "Dot product and angle",
+      "content": {
+        "kind": "short-answer",
+        "answer": "u · v = |u||v| cos θ",
+        "acceptableAnswers": []
+      },
+      "explanation": null,
+      "sourceRef": "Strang, Introduction to Linear Algebra (Wellesley-Cambridge)",
+      "tags": ["math"]
+    },
+    {
+      "prompt": "Cauchy–Schwarz inequality",
+      "content": {
+        "kind": "short-answer",
+        "answer": "|u · v| ≤ |u||v|",
+        "acceptableAnswers": []
+      },
+      "explanation": null,
+      "sourceRef": "Strang, Introduction to Linear Algebra (Wellesley-Cambridge)",
+      "tags": ["math"]
+    },
+    {
+      "prompt": "Projection of b onto the line through a",
+      "content": {
+        "kind": "short-answer",
+        "answer": "(a·b / a·a) a",
+        "acceptableAnswers": []
+      },
+      "explanation": null,
+      "sourceRef": "Strang, Introduction to Linear Algebra (Wellesley-Cambridge)",
+      "tags": ["math"]
+    },
+    {
+      "prompt": "Least-squares solution of Ax = b",
+      "content": {
+        "kind": "short-answer",
+        "answer": "Solve the normal equations A^T A x̂ = A^T b.",
+        "acceptableAnswers": []
+      },
+      "explanation": null,
+      "sourceRef": "Strang, Introduction to Linear Algebra (Wellesley-Cambridge)",
+      "tags": ["math"]
+    },
+    {
+      "prompt": "Gram–Schmidt process",
+      "content": {
+        "kind": "short-answer",
+        "answer": "Turns independent vectors into an orthonormal set by subtracting off projections onto earlier vectors.",
+        "acceptableAnswers": []
+      },
+      "explanation": null,
+      "sourceRef": "Strang, Introduction to Linear Algebra (Wellesley-Cambridge)",
+      "tags": ["math"]
+    },
+    {
+      "prompt": "Positive definite symmetric matrix",
+      "content": {
+        "kind": "short-answer",
+        "answer": "x^T A x > 0 for every x ≠ 0 (equivalently all eigenvalues > 0).",
+        "acceptableAnswers": []
+      },
+      "explanation": null,
+      "sourceRef": "Strang, Introduction to Linear Algebra (Wellesley-Cambridge)",
+      "tags": ["math"]
+    },
+    {
+      "prompt": "Singular value decomposition",
+      "content": {
+        "kind": "short-answer",
+        "answer": "A = UΣV^T, with U and V orthogonal and Σ diagonal with non-negative singular values.",
+        "acceptableAnswers": []
+      },
+      "explanation": null,
+      "sourceRef": "Strang, Introduction to Linear Algebra (Wellesley-Cambridge)",
+      "tags": ["math"]
+    },
+    {
+      "prompt": "Diagonalizable matrix",
+      "content": {
+        "kind": "short-answer",
+        "answer": "A = PDP^-1, which holds when A has n linearly independent eigenvectors.",
+        "acceptableAnswers": []
+      },
+      "explanation": null,
+      "sourceRef": "Strang, Introduction to Linear Algebra (Wellesley-Cambridge)",
+      "tags": ["math"]
+    },
+    {
+      "prompt": "Cramer's rule",
+      "content": {
+        "kind": "short-answer",
+        "answer": "xi = det(Ai) / det(A), where Ai is A with column i replaced by b.",
+        "acceptableAnswers": []
+      },
+      "explanation": null,
+      "sourceRef": "Strang, Introduction to Linear Algebra (Wellesley-Cambridge)",
+      "tags": ["math"]
+    },
+    {
+      "prompt": "Linear transformation T",
+      "content": {
+        "kind": "short-answer",
+        "answer": "T(u + v) = T(u) + T(v) and T(cu) = cT(u).",
+        "acceptableAnswers": []
+      },
+      "explanation": null,
+      "sourceRef": "Strang, Introduction to Linear Algebra (Wellesley-Cambridge)",
+      "tags": ["math"]
+    },
+    {
+      "prompt": "Solutions of Ax = b exist for every b if and only if",
+      "content": {
+        "kind": "short-answer",
+        "answer": "The columns of A span R^m (rank = m).",
+        "acceptableAnswers": []
+      },
+      "explanation": null,
+      "sourceRef": "Strang, Introduction to Linear Algebra (Wellesley-Cambridge)",
+      "tags": ["math"]
+    }
+  ]
 }

@@ -1,713 +1,602 @@
 {
- "seshatExportVersion": 1,
- "name": "World Capitals",
- "description": "Capital cities of major countries.",
- "tags": [
-  "geography",
-  "capitals"
- ],
- "cards": [
-  {
-   "prompt": "Capital of Australia",
-   "content": {
-    "kind": "short-answer",
-    "answer": "Canberra",
-    "acceptableAnswers": []
-   },
-   "explanation": null,
-   "sourceRef": "CIA World Factbook (cia.gov/the-world-factbook); UN Geoscheme",
-   "tags": [
-    "geography"
-   ]
-  },
-  {
-   "prompt": "Capital of Canada",
-   "content": {
-    "kind": "short-answer",
-    "answer": "Ottawa",
-    "acceptableAnswers": []
-   },
-   "explanation": null,
-   "sourceRef": "CIA World Factbook (cia.gov/the-world-factbook); UN Geoscheme",
-   "tags": [
-    "geography"
-   ]
-  },
-  {
-   "prompt": "Capital of Brazil",
-   "content": {
-    "kind": "short-answer",
-    "answer": "Brasília",
-    "acceptableAnswers": []
-   },
-   "explanation": null,
-   "sourceRef": "CIA World Factbook (cia.gov/the-world-factbook); UN Geoscheme",
-   "tags": [
-    "geography"
-   ]
-  },
-  {
-   "prompt": "Capital of Turkey",
-   "content": {
-    "kind": "short-answer",
-    "answer": "Ankara",
-    "acceptableAnswers": []
-   },
-   "explanation": null,
-   "sourceRef": "CIA World Factbook (cia.gov/the-world-factbook); UN Geoscheme",
-   "tags": [
-    "geography"
-   ]
-  },
-  {
-   "prompt": "Capital of Switzerland",
-   "content": {
-    "kind": "short-answer",
-    "answer": "Bern",
-    "acceptableAnswers": []
-   },
-   "explanation": null,
-   "sourceRef": "CIA World Factbook (cia.gov/the-world-factbook); UN Geoscheme",
-   "tags": [
-    "geography"
-   ]
-  },
-  {
-   "prompt": "Capital of New Zealand",
-   "content": {
-    "kind": "short-answer",
-    "answer": "Wellington",
-    "acceptableAnswers": []
-   },
-   "explanation": null,
-   "sourceRef": "CIA World Factbook (cia.gov/the-world-factbook); UN Geoscheme",
-   "tags": [
-    "geography"
-   ]
-  },
-  {
-   "prompt": "Capital of Nigeria",
-   "content": {
-    "kind": "short-answer",
-    "answer": "Abuja",
-    "acceptableAnswers": []
-   },
-   "explanation": null,
-   "sourceRef": "CIA World Factbook (cia.gov/the-world-factbook); UN Geoscheme",
-   "tags": [
-    "geography"
-   ]
-  },
-  {
-   "prompt": "Capital of Morocco",
-   "content": {
-    "kind": "short-answer",
-    "answer": "Rabat",
-    "acceptableAnswers": []
-   },
-   "explanation": null,
-   "sourceRef": "CIA World Factbook (cia.gov/the-world-factbook); UN Geoscheme",
-   "tags": [
-    "geography"
-   ]
-  },
-  {
-   "prompt": "Capital of Kazakhstan",
-   "content": {
-    "kind": "short-answer",
-    "answer": "Astana",
-    "acceptableAnswers": []
-   },
-   "explanation": null,
-   "sourceRef": "CIA World Factbook (cia.gov/the-world-factbook); UN Geoscheme",
-   "tags": [
-    "geography"
-   ]
-  },
-  {
-   "prompt": "Capital of Myanmar",
-   "content": {
-    "kind": "short-answer",
-    "answer": "Naypyidaw",
-    "acceptableAnswers": []
-   },
-   "explanation": null,
-   "sourceRef": "CIA World Factbook (cia.gov/the-world-factbook); UN Geoscheme",
-   "tags": [
-    "geography"
-   ]
-  },
-  {
-   "prompt": "Capital of Vietnam",
-   "content": {
-    "kind": "short-answer",
-    "answer": "Hanoi",
-    "acceptableAnswers": []
-   },
-   "explanation": null,
-   "sourceRef": "CIA World Factbook (cia.gov/the-world-factbook); UN Geoscheme",
-   "tags": [
-    "geography"
-   ]
-  },
-  {
-   "prompt": "Capital of Thailand",
-   "content": {
-    "kind": "short-answer",
-    "answer": "Bangkok",
-    "acceptableAnswers": []
-   },
-   "explanation": null,
-   "sourceRef": "CIA World Factbook (cia.gov/the-world-factbook); UN Geoscheme",
-   "tags": [
-    "geography"
-   ]
-  },
-  {
-   "prompt": "Capital of Philippines",
-   "content": {
-    "kind": "short-answer",
-    "answer": "Manila",
-    "acceptableAnswers": []
-   },
-   "explanation": null,
-   "sourceRef": "CIA World Factbook (cia.gov/the-world-factbook); UN Geoscheme",
-   "tags": [
-    "geography"
-   ]
-  },
-  {
-   "prompt": "Capital of Pakistan",
-   "content": {
-    "kind": "short-answer",
-    "answer": "Islamabad",
-    "acceptableAnswers": []
-   },
-   "explanation": null,
-   "sourceRef": "CIA World Factbook (cia.gov/the-world-factbook); UN Geoscheme",
-   "tags": [
-    "geography"
-   ]
-  },
-  {
-   "prompt": "Capital of Egypt",
-   "content": {
-    "kind": "short-answer",
-    "answer": "Cairo",
-    "acceptableAnswers": []
-   },
-   "explanation": null,
-   "sourceRef": "CIA World Factbook (cia.gov/the-world-factbook); UN Geoscheme",
-   "tags": [
-    "geography"
-   ]
-  },
-  {
-   "prompt": "Capital of Kenya",
-   "content": {
-    "kind": "short-answer",
-    "answer": "Nairobi",
-    "acceptableAnswers": []
-   },
-   "explanation": null,
-   "sourceRef": "CIA World Factbook (cia.gov/the-world-factbook); UN Geoscheme",
-   "tags": [
-    "geography"
-   ]
-  },
-  {
-   "prompt": "Capital of Ethiopia",
-   "content": {
-    "kind": "short-answer",
-    "answer": "Addis Ababa",
-    "acceptableAnswers": []
-   },
-   "explanation": null,
-   "sourceRef": "CIA World Factbook (cia.gov/the-world-factbook); UN Geoscheme",
-   "tags": [
-    "geography"
-   ]
-  },
-  {
-   "prompt": "Capital of South Africa",
-   "content": {
-    "kind": "short-answer",
-    "answer": "Pretoria (executive); Cape Town (legislative); Bloemfontein (judicial)",
-    "acceptableAnswers": []
-   },
-   "explanation": null,
-   "sourceRef": "CIA World Factbook (cia.gov/the-world-factbook); UN Geoscheme",
-   "tags": [
-    "geography"
-   ]
-  },
-  {
-   "prompt": "Capital of Argentina",
-   "content": {
-    "kind": "short-answer",
-    "answer": "Buenos Aires",
-    "acceptableAnswers": []
-   },
-   "explanation": null,
-   "sourceRef": "CIA World Factbook (cia.gov/the-world-factbook); UN Geoscheme",
-   "tags": [
-    "geography"
-   ]
-  },
-  {
-   "prompt": "Capital of Chile",
-   "content": {
-    "kind": "short-answer",
-    "answer": "Santiago",
-    "acceptableAnswers": []
-   },
-   "explanation": null,
-   "sourceRef": "CIA World Factbook (cia.gov/the-world-factbook); UN Geoscheme",
-   "tags": [
-    "geography"
-   ]
-  },
-  {
-   "prompt": "Capital of Peru",
-   "content": {
-    "kind": "short-answer",
-    "answer": "Lima",
-    "acceptableAnswers": []
-   },
-   "explanation": null,
-   "sourceRef": "CIA World Factbook (cia.gov/the-world-factbook); UN Geoscheme",
-   "tags": [
-    "geography"
-   ]
-  },
-  {
-   "prompt": "Capital of Colombia",
-   "content": {
-    "kind": "short-answer",
-    "answer": "Bogotá",
-    "acceptableAnswers": []
-   },
-   "explanation": null,
-   "sourceRef": "CIA World Factbook (cia.gov/the-world-factbook); UN Geoscheme",
-   "tags": [
-    "geography"
-   ]
-  },
-  {
-   "prompt": "Capital of Venezuela",
-   "content": {
-    "kind": "short-answer",
-    "answer": "Caracas",
-    "acceptableAnswers": []
-   },
-   "explanation": null,
-   "sourceRef": "CIA World Factbook (cia.gov/the-world-factbook); UN Geoscheme",
-   "tags": [
-    "geography"
-   ]
-  },
-  {
-   "prompt": "Capital of Cuba",
-   "content": {
-    "kind": "short-answer",
-    "answer": "Havana",
-    "acceptableAnswers": []
-   },
-   "explanation": null,
-   "sourceRef": "CIA World Factbook (cia.gov/the-world-factbook); UN Geoscheme",
-   "tags": [
-    "geography"
-   ]
-  },
-  {
-   "prompt": "Capital of Mexico",
-   "content": {
-    "kind": "short-answer",
-    "answer": "Mexico City",
-    "acceptableAnswers": []
-   },
-   "explanation": null,
-   "sourceRef": "CIA World Factbook (cia.gov/the-world-factbook); UN Geoscheme",
-   "tags": [
-    "geography"
-   ]
-  },
-  {
-   "prompt": "Capital of Poland",
-   "content": {
-    "kind": "short-answer",
-    "answer": "Warsaw",
-    "acceptableAnswers": []
-   },
-   "explanation": null,
-   "sourceRef": "CIA World Factbook (cia.gov/the-world-factbook); UN Geoscheme",
-   "tags": [
-    "geography"
-   ]
-  },
-  {
-   "prompt": "Capital of Hungary",
-   "content": {
-    "kind": "short-answer",
-    "answer": "Budapest",
-    "acceptableAnswers": []
-   },
-   "explanation": null,
-   "sourceRef": "CIA World Factbook (cia.gov/the-world-factbook); UN Geoscheme",
-   "tags": [
-    "geography"
-   ]
-  },
-  {
-   "prompt": "Capital of Czechia",
-   "content": {
-    "kind": "short-answer",
-    "answer": "Prague",
-    "acceptableAnswers": []
-   },
-   "explanation": null,
-   "sourceRef": "CIA World Factbook (cia.gov/the-world-factbook); UN Geoscheme",
-   "tags": [
-    "geography"
-   ]
-  },
-  {
-   "prompt": "Capital of Austria",
-   "content": {
-    "kind": "short-answer",
-    "answer": "Vienna",
-    "acceptableAnswers": []
-   },
-   "explanation": null,
-   "sourceRef": "CIA World Factbook (cia.gov/the-world-factbook); UN Geoscheme",
-   "tags": [
-    "geography"
-   ]
-  },
-  {
-   "prompt": "Capital of Norway",
-   "content": {
-    "kind": "short-answer",
-    "answer": "Oslo",
-    "acceptableAnswers": []
-   },
-   "explanation": null,
-   "sourceRef": "CIA World Factbook (cia.gov/the-world-factbook); UN Geoscheme",
-   "tags": [
-    "geography"
-   ]
-  },
-  {
-   "prompt": "Capital of Sweden",
-   "content": {
-    "kind": "short-answer",
-    "answer": "Stockholm",
-    "acceptableAnswers": []
-   },
-   "explanation": null,
-   "sourceRef": "CIA World Factbook (cia.gov/the-world-factbook); UN Geoscheme",
-   "tags": [
-    "geography"
-   ]
-  },
-  {
-   "prompt": "Capital of Finland",
-   "content": {
-    "kind": "short-answer",
-    "answer": "Helsinki",
-    "acceptableAnswers": []
-   },
-   "explanation": null,
-   "sourceRef": "CIA World Factbook (cia.gov/the-world-factbook); UN Geoscheme",
-   "tags": [
-    "geography"
-   ]
-  },
-  {
-   "prompt": "Capital of Ireland",
-   "content": {
-    "kind": "short-answer",
-    "answer": "Dublin",
-    "acceptableAnswers": []
-   },
-   "explanation": null,
-   "sourceRef": "CIA World Factbook (cia.gov/the-world-factbook); UN Geoscheme",
-   "tags": [
-    "geography"
-   ]
-  },
-  {
-   "prompt": "Capital of Portugal",
-   "content": {
-    "kind": "short-answer",
-    "answer": "Lisbon",
-    "acceptableAnswers": []
-   },
-   "explanation": null,
-   "sourceRef": "CIA World Factbook (cia.gov/the-world-factbook); UN Geoscheme",
-   "tags": [
-    "geography"
-   ]
-  },
-  {
-   "prompt": "Capital of Greece",
-   "content": {
-    "kind": "short-answer",
-    "answer": "Athens",
-    "acceptableAnswers": []
-   },
-   "explanation": null,
-   "sourceRef": "CIA World Factbook (cia.gov/the-world-factbook); UN Geoscheme",
-   "tags": [
-    "geography"
-   ]
-  },
-  {
-   "prompt": "Capital of Ukraine",
-   "content": {
-    "kind": "short-answer",
-    "answer": "Kyiv",
-    "acceptableAnswers": []
-   },
-   "explanation": null,
-   "sourceRef": "CIA World Factbook (cia.gov/the-world-factbook); UN Geoscheme",
-   "tags": [
-    "geography"
-   ]
-  },
-  {
-   "prompt": "Capital of Israel",
-   "content": {
-    "kind": "short-answer",
-    "answer": "Jerusalem (as designated by Israel; most embassies are in Tel Aviv)",
-    "acceptableAnswers": []
-   },
-   "explanation": null,
-   "sourceRef": "CIA World Factbook (cia.gov/the-world-factbook); UN Geoscheme",
-   "tags": [
-    "geography"
-   ]
-  },
-  {
-   "prompt": "Capital of Iran",
-   "content": {
-    "kind": "short-answer",
-    "answer": "Tehran",
-    "acceptableAnswers": []
-   },
-   "explanation": null,
-   "sourceRef": "CIA World Factbook (cia.gov/the-world-factbook); UN Geoscheme",
-   "tags": [
-    "geography"
-   ]
-  },
-  {
-   "prompt": "Capital of Iraq",
-   "content": {
-    "kind": "short-answer",
-    "answer": "Baghdad",
-    "acceptableAnswers": []
-   },
-   "explanation": null,
-   "sourceRef": "CIA World Factbook (cia.gov/the-world-factbook); UN Geoscheme",
-   "tags": [
-    "geography"
-   ]
-  },
-  {
-   "prompt": "Capital of Saudi Arabia",
-   "content": {
-    "kind": "short-answer",
-    "answer": "Riyadh",
-    "acceptableAnswers": []
-   },
-   "explanation": null,
-   "sourceRef": "CIA World Factbook (cia.gov/the-world-factbook); UN Geoscheme",
-   "tags": [
-    "geography"
-   ]
-  },
-  {
-   "prompt": "Capital of India",
-   "content": {
-    "kind": "short-answer",
-    "answer": "New Delhi",
-    "acceptableAnswers": []
-   },
-   "explanation": null,
-   "sourceRef": "CIA World Factbook (cia.gov/the-world-factbook); UN Geoscheme",
-   "tags": [
-    "geography"
-   ]
-  },
-  {
-   "prompt": "Capital of Bangladesh",
-   "content": {
-    "kind": "short-answer",
-    "answer": "Dhaka",
-    "acceptableAnswers": []
-   },
-   "explanation": null,
-   "sourceRef": "CIA World Factbook (cia.gov/the-world-factbook); UN Geoscheme",
-   "tags": [
-    "geography"
-   ]
-  },
-  {
-   "prompt": "Capital of Sri Lanka",
-   "content": {
-    "kind": "short-answer",
-    "answer": "Sri Jayawardenepura Kotte (executive capital: Colombo)",
-    "acceptableAnswers": []
-   },
-   "explanation": null,
-   "sourceRef": "CIA World Factbook (cia.gov/the-world-factbook); UN Geoscheme",
-   "tags": [
-    "geography"
-   ]
-  },
-  {
-   "prompt": "Capital of Indonesia",
-   "content": {
-    "kind": "short-answer",
-    "answer": "Jakarta (Nusantara is the planned new capital)",
-    "acceptableAnswers": []
-   },
-   "explanation": null,
-   "sourceRef": "CIA World Factbook (cia.gov/the-world-factbook); UN Geoscheme",
-   "tags": [
-    "geography"
-   ]
-  },
-  {
-   "prompt": "Capital of Malaysia",
-   "content": {
-    "kind": "short-answer",
-    "answer": "Kuala Lumpur",
-    "acceptableAnswers": []
-   },
-   "explanation": null,
-   "sourceRef": "CIA World Factbook (cia.gov/the-world-factbook); UN Geoscheme",
-   "tags": [
-    "geography"
-   ]
-  },
-  {
-   "prompt": "Capital of South Korea",
-   "content": {
-    "kind": "short-answer",
-    "answer": "Seoul",
-    "acceptableAnswers": []
-   },
-   "explanation": null,
-   "sourceRef": "CIA World Factbook (cia.gov/the-world-factbook); UN Geoscheme",
-   "tags": [
-    "geography"
-   ]
-  },
-  {
-   "prompt": "Capital of Mongolia",
-   "content": {
-    "kind": "short-answer",
-    "answer": "Ulaanbaatar",
-    "acceptableAnswers": []
-   },
-   "explanation": null,
-   "sourceRef": "CIA World Factbook (cia.gov/the-world-factbook); UN Geoscheme",
-   "tags": [
-    "geography"
-   ]
-  },
-  {
-   "prompt": "Largest country by area",
-   "content": {
-    "kind": "short-answer",
-    "answer": "Russia",
-    "acceptableAnswers": []
-   },
-   "explanation": null,
-   "sourceRef": "CIA World Factbook (cia.gov/the-world-factbook); UN Geoscheme",
-   "tags": [
-    "geography"
-   ]
-  },
-  {
-   "prompt": "Smallest country by area",
-   "content": {
-    "kind": "short-answer",
-    "answer": "Vatican City",
-    "acceptableAnswers": []
-   },
-   "explanation": null,
-   "sourceRef": "CIA World Factbook (cia.gov/the-world-factbook); UN Geoscheme",
-   "tags": [
-    "geography"
-   ]
-  },
-  {
-   "prompt": "Longest river (commonly cited)",
-   "content": {
-    "kind": "short-answer",
-    "answer": "The Nile (about 6,650 km), with the Amazon a close contender depending on measurement.",
-    "acceptableAnswers": []
-   },
-   "explanation": null,
-   "sourceRef": "CIA World Factbook (cia.gov/the-world-factbook); UN Geoscheme",
-   "tags": [
-    "geography"
-   ]
-  },
-  {
-   "prompt": "Highest mountain above sea level",
-   "content": {
-    "kind": "short-answer",
-    "answer": "Mount Everest, 8,849 m (2020 China–Nepal survey).",
-    "acceptableAnswers": []
-   },
-   "explanation": null,
-   "sourceRef": "CIA World Factbook (cia.gov/the-world-factbook); UN Geoscheme",
-   "tags": [
-    "geography"
-   ]
-  },
-  {
-   "prompt": "Largest ocean",
-   "content": {
-    "kind": "short-answer",
-    "answer": "The Pacific",
-    "acceptableAnswers": []
-   },
-   "explanation": null,
-   "sourceRef": "CIA World Factbook (cia.gov/the-world-factbook); UN Geoscheme",
-   "tags": [
-    "geography"
-   ]
-  },
-  {
-   "prompt": "Deepest known point in the ocean",
-   "content": {
-    "kind": "short-answer",
-    "answer": "Challenger Deep in the Mariana Trench, about 10,900 m",
-    "acceptableAnswers": []
-   },
-   "explanation": null,
-   "sourceRef": "CIA World Factbook (cia.gov/the-world-factbook); UN Geoscheme",
-   "tags": [
-    "geography"
-   ]
-  },
-  {
-   "prompt": "Largest desert (by area, including polar)",
-   "content": {
-    "kind": "short-answer",
-    "answer": "Antarctica; the Sahara is the largest hot desert.",
-    "acceptableAnswers": []
-   },
-   "explanation": null,
-   "sourceRef": "CIA World Factbook (cia.gov/the-world-factbook); UN Geoscheme",
-   "tags": [
-    "geography"
-   ]
-  }
- ]
+  "seshatExportVersion": 1,
+  "name": "World Capitals",
+  "description": "Capital cities of major countries.",
+  "tags": ["geography", "capitals"],
+  "cards": [
+    {
+      "prompt": "Capital of Australia",
+      "content": {
+        "kind": "short-answer",
+        "answer": "Canberra",
+        "acceptableAnswers": []
+      },
+      "explanation": null,
+      "sourceRef": "CIA World Factbook (cia.gov/the-world-factbook); UN Geoscheme",
+      "tags": ["geography"]
+    },
+    {
+      "prompt": "Capital of Canada",
+      "content": {
+        "kind": "short-answer",
+        "answer": "Ottawa",
+        "acceptableAnswers": []
+      },
+      "explanation": null,
+      "sourceRef": "CIA World Factbook (cia.gov/the-world-factbook); UN Geoscheme",
+      "tags": ["geography"]
+    },
+    {
+      "prompt": "Capital of Brazil",
+      "content": {
+        "kind": "short-answer",
+        "answer": "Brasília",
+        "acceptableAnswers": []
+      },
+      "explanation": null,
+      "sourceRef": "CIA World Factbook (cia.gov/the-world-factbook); UN Geoscheme",
+      "tags": ["geography"]
+    },
+    {
+      "prompt": "Capital of Turkey",
+      "content": {
+        "kind": "short-answer",
+        "answer": "Ankara",
+        "acceptableAnswers": []
+      },
+      "explanation": null,
+      "sourceRef": "CIA World Factbook (cia.gov/the-world-factbook); UN Geoscheme",
+      "tags": ["geography"]
+    },
+    {
+      "prompt": "Capital of Switzerland",
+      "content": {
+        "kind": "short-answer",
+        "answer": "Bern",
+        "acceptableAnswers": []
+      },
+      "explanation": null,
+      "sourceRef": "CIA World Factbook (cia.gov/the-world-factbook); UN Geoscheme",
+      "tags": ["geography"]
+    },
+    {
+      "prompt": "Capital of New Zealand",
+      "content": {
+        "kind": "short-answer",
+        "answer": "Wellington",
+        "acceptableAnswers": []
+      },
+      "explanation": null,
+      "sourceRef": "CIA World Factbook (cia.gov/the-world-factbook); UN Geoscheme",
+      "tags": ["geography"]
+    },
+    {
+      "prompt": "Capital of Nigeria",
+      "content": {
+        "kind": "short-answer",
+        "answer": "Abuja",
+        "acceptableAnswers": []
+      },
+      "explanation": null,
+      "sourceRef": "CIA World Factbook (cia.gov/the-world-factbook); UN Geoscheme",
+      "tags": ["geography"]
+    },
+    {
+      "prompt": "Capital of Morocco",
+      "content": {
+        "kind": "short-answer",
+        "answer": "Rabat",
+        "acceptableAnswers": []
+      },
+      "explanation": null,
+      "sourceRef": "CIA World Factbook (cia.gov/the-world-factbook); UN Geoscheme",
+      "tags": ["geography"]
+    },
+    {
+      "prompt": "Capital of Kazakhstan",
+      "content": {
+        "kind": "short-answer",
+        "answer": "Astana",
+        "acceptableAnswers": []
+      },
+      "explanation": null,
+      "sourceRef": "CIA World Factbook (cia.gov/the-world-factbook); UN Geoscheme",
+      "tags": ["geography"]
+    },
+    {
+      "prompt": "Capital of Myanmar",
+      "content": {
+        "kind": "short-answer",
+        "answer": "Naypyidaw",
+        "acceptableAnswers": []
+      },
+      "explanation": null,
+      "sourceRef": "CIA World Factbook (cia.gov/the-world-factbook); UN Geoscheme",
+      "tags": ["geography"]
+    },
+    {
+      "prompt": "Capital of Vietnam",
+      "content": {
+        "kind": "short-answer",
+        "answer": "Hanoi",
+        "acceptableAnswers": []
+      },
+      "explanation": null,
+      "sourceRef": "CIA World Factbook (cia.gov/the-world-factbook); UN Geoscheme",
+      "tags": ["geography"]
+    },
+    {
+      "prompt": "Capital of Thailand",
+      "content": {
+        "kind": "short-answer",
+        "answer": "Bangkok",
+        "acceptableAnswers": []
+      },
+      "explanation": null,
+      "sourceRef": "CIA World Factbook (cia.gov/the-world-factbook); UN Geoscheme",
+      "tags": ["geography"]
+    },
+    {
+      "prompt": "Capital of Philippines",
+      "content": {
+        "kind": "short-answer",
+        "answer": "Manila",
+        "acceptableAnswers": []
+      },
+      "explanation": null,
+      "sourceRef": "CIA World Factbook (cia.gov/the-world-factbook); UN Geoscheme",
+      "tags": ["geography"]
+    },
+    {
+      "prompt": "Capital of Pakistan",
+      "content": {
+        "kind": "short-answer",
+        "answer": "Islamabad",
+        "acceptableAnswers": []
+      },
+      "explanation": null,
+      "sourceRef": "CIA World Factbook (cia.gov/the-world-factbook); UN Geoscheme",
+      "tags": ["geography"]
+    },
+    {
+      "prompt": "Capital of Egypt",
+      "content": {
+        "kind": "short-answer",
+        "answer": "Cairo",
+        "acceptableAnswers": []
+      },
+      "explanation": null,
+      "sourceRef": "CIA World Factbook (cia.gov/the-world-factbook); UN Geoscheme",
+      "tags": ["geography"]
+    },
+    {
+      "prompt": "Capital of Kenya",
+      "content": {
+        "kind": "short-answer",
+        "answer": "Nairobi",
+        "acceptableAnswers": []
+      },
+      "explanation": null,
+      "sourceRef": "CIA World Factbook (cia.gov/the-world-factbook); UN Geoscheme",
+      "tags": ["geography"]
+    },
+    {
+      "prompt": "Capital of Ethiopia",
+      "content": {
+        "kind": "short-answer",
+        "answer": "Addis Ababa",
+        "acceptableAnswers": []
+      },
+      "explanation": null,
+      "sourceRef": "CIA World Factbook (cia.gov/the-world-factbook); UN Geoscheme",
+      "tags": ["geography"]
+    },
+    {
+      "prompt": "Capital of South Africa",
+      "content": {
+        "kind": "short-answer",
+        "answer": "Pretoria (executive); Cape Town (legislative); Bloemfontein (judicial)",
+        "acceptableAnswers": []
+      },
+      "explanation": null,
+      "sourceRef": "CIA World Factbook (cia.gov/the-world-factbook); UN Geoscheme",
+      "tags": ["geography"]
+    },
+    {
+      "prompt": "Capital of Argentina",
+      "content": {
+        "kind": "short-answer",
+        "answer": "Buenos Aires",
+        "acceptableAnswers": []
+      },
+      "explanation": null,
+      "sourceRef": "CIA World Factbook (cia.gov/the-world-factbook); UN Geoscheme",
+      "tags": ["geography"]
+    },
+    {
+      "prompt": "Capital of Chile",
+      "content": {
+        "kind": "short-answer",
+        "answer": "Santiago",
+        "acceptableAnswers": []
+      },
+      "explanation": null,
+      "sourceRef": "CIA World Factbook (cia.gov/the-world-factbook); UN Geoscheme",
+      "tags": ["geography"]
+    },
+    {
+      "prompt": "Capital of Peru",
+      "content": {
+        "kind": "short-answer",
+        "answer": "Lima",
+        "acceptableAnswers": []
+      },
+      "explanation": null,
+      "sourceRef": "CIA World Factbook (cia.gov/the-world-factbook); UN Geoscheme",
+      "tags": ["geography"]
+    },
+    {
+      "prompt": "Capital of Colombia",
+      "content": {
+        "kind": "short-answer",
+        "answer": "Bogotá",
+        "acceptableAnswers": []
+      },
+      "explanation": null,
+      "sourceRef": "CIA World Factbook (cia.gov/the-world-factbook); UN Geoscheme",
+      "tags": ["geography"]
+    },
+    {
+      "prompt": "Capital of Venezuela",
+      "content": {
+        "kind": "short-answer",
+        "answer": "Caracas",
+        "acceptableAnswers": []
+      },
+      "explanation": null,
+      "sourceRef": "CIA World Factbook (cia.gov/the-world-factbook); UN Geoscheme",
+      "tags": ["geography"]
+    },
+    {
+      "prompt": "Capital of Cuba",
+      "content": {
+        "kind": "short-answer",
+        "answer": "Havana",
+        "acceptableAnswers": []
+      },
+      "explanation": null,
+      "sourceRef": "CIA World Factbook (cia.gov/the-world-factbook); UN Geoscheme",
+      "tags": ["geography"]
+    },
+    {
+      "prompt": "Capital of Mexico",
+      "content": {
+        "kind": "short-answer",
+        "answer": "Mexico City",
+        "acceptableAnswers": []
+      },
+      "explanation": null,
+      "sourceRef": "CIA World Factbook (cia.gov/the-world-factbook); UN Geoscheme",
+      "tags": ["geography"]
+    },
+    {
+      "prompt": "Capital of Poland",
+      "content": {
+        "kind": "short-answer",
+        "answer": "Warsaw",
+        "acceptableAnswers": []
+      },
+      "explanation": null,
+      "sourceRef": "CIA World Factbook (cia.gov/the-world-factbook); UN Geoscheme",
+      "tags": ["geography"]
+    },
+    {
+      "prompt": "Capital of Hungary",
+      "content": {
+        "kind": "short-answer",
+        "answer": "Budapest",
+        "acceptableAnswers": []
+      },
+      "explanation": null,
+      "sourceRef": "CIA World Factbook (cia.gov/the-world-factbook); UN Geoscheme",
+      "tags": ["geography"]
+    },
+    {
+      "prompt": "Capital of Czechia",
+      "content": {
+        "kind": "short-answer",
+        "answer": "Prague",
+        "acceptableAnswers": []
+      },
+      "explanation": null,
+      "sourceRef": "CIA World Factbook (cia.gov/the-world-factbook); UN Geoscheme",
+      "tags": ["geography"]
+    },
+    {
+      "prompt": "Capital of Austria",
+      "content": {
+        "kind": "short-answer",
+        "answer": "Vienna",
+        "acceptableAnswers": []
+      },
+      "explanation": null,
+      "sourceRef": "CIA World Factbook (cia.gov/the-world-factbook); UN Geoscheme",
+      "tags": ["geography"]
+    },
+    {
+      "prompt": "Capital of Norway",
+      "content": {
+        "kind": "short-answer",
+        "answer": "Oslo",
+        "acceptableAnswers": []
+      },
+      "explanation": null,
+      "sourceRef": "CIA World Factbook (cia.gov/the-world-factbook); UN Geoscheme",
+      "tags": ["geography"]
+    },
+    {
+      "prompt": "Capital of Sweden",
+      "content": {
+        "kind": "short-answer",
+        "answer": "Stockholm",
+        "acceptableAnswers": []
+      },
+      "explanation": null,
+      "sourceRef": "CIA World Factbook (cia.gov/the-world-factbook); UN Geoscheme",
+      "tags": ["geography"]
+    },
+    {
+      "prompt": "Capital of Finland",
+      "content": {
+        "kind": "short-answer",
+        "answer": "Helsinki",
+        "acceptableAnswers": []
+      },
+      "explanation": null,
+      "sourceRef": "CIA World Factbook (cia.gov/the-world-factbook); UN Geoscheme",
+      "tags": ["geography"]
+    },
+    {
+      "prompt": "Capital of Ireland",
+      "content": {
+        "kind": "short-answer",
+        "answer": "Dublin",
+        "acceptableAnswers": []
+      },
+      "explanation": null,
+      "sourceRef": "CIA World Factbook (cia.gov/the-world-factbook); UN Geoscheme",
+      "tags": ["geography"]
+    },
+    {
+      "prompt": "Capital of Portugal",
+      "content": {
+        "kind": "short-answer",
+        "answer": "Lisbon",
+        "acceptableAnswers": []
+      },
+      "explanation": null,
+      "sourceRef": "CIA World Factbook (cia.gov/the-world-factbook); UN Geoscheme",
+      "tags": ["geography"]
+    },
+    {
+      "prompt": "Capital of Greece",
+      "content": {
+        "kind": "short-answer",
+        "answer": "Athens",
+        "acceptableAnswers": []
+      },
+      "explanation": null,
+      "sourceRef": "CIA World Factbook (cia.gov/the-world-factbook); UN Geoscheme",
+      "tags": ["geography"]
+    },
+    {
+      "prompt": "Capital of Ukraine",
+      "content": {
+        "kind": "short-answer",
+        "answer": "Kyiv",
+        "acceptableAnswers": []
+      },
+      "explanation": null,
+      "sourceRef": "CIA World Factbook (cia.gov/the-world-factbook); UN Geoscheme",
+      "tags": ["geography"]
+    },
+    {
+      "prompt": "Capital of Israel",
+      "content": {
+        "kind": "short-answer",
+        "answer": "Jerusalem (as designated by Israel; most embassies are in Tel Aviv)",
+        "acceptableAnswers": []
+      },
+      "explanation": null,
+      "sourceRef": "CIA World Factbook (cia.gov/the-world-factbook); UN Geoscheme",
+      "tags": ["geography"]
+    },
+    {
+      "prompt": "Capital of Iran",
+      "content": {
+        "kind": "short-answer",
+        "answer": "Tehran",
+        "acceptableAnswers": []
+      },
+      "explanation": null,
+      "sourceRef": "CIA World Factbook (cia.gov/the-world-factbook); UN Geoscheme",
+      "tags": ["geography"]
+    },
+    {
+      "prompt": "Capital of Iraq",
+      "content": {
+        "kind": "short-answer",
+        "answer": "Baghdad",
+        "acceptableAnswers": []
+      },
+      "explanation": null,
+      "sourceRef": "CIA World Factbook (cia.gov/the-world-factbook); UN Geoscheme",
+      "tags": ["geography"]
+    },
+    {
+      "prompt": "Capital of Saudi Arabia",
+      "content": {
+        "kind": "short-answer",
+        "answer": "Riyadh",
+        "acceptableAnswers": []
+      },
+      "explanation": null,
+      "sourceRef": "CIA World Factbook (cia.gov/the-world-factbook); UN Geoscheme",
+      "tags": ["geography"]
+    },
+    {
+      "prompt": "Capital of India",
+      "content": {
+        "kind": "short-answer",
+        "answer": "New Delhi",
+        "acceptableAnswers": []
+      },
+      "explanation": null,
+      "sourceRef": "CIA World Factbook (cia.gov/the-world-factbook); UN Geoscheme",
+      "tags": ["geography"]
+    },
+    {
+      "prompt": "Capital of Bangladesh",
+      "content": {
+        "kind": "short-answer",
+        "answer": "Dhaka",
+        "acceptableAnswers": []
+      },
+      "explanation": null,
+      "sourceRef": "CIA World Factbook (cia.gov/the-world-factbook); UN Geoscheme",
+      "tags": ["geography"]
+    },
+    {
+      "prompt": "Capital of Sri Lanka",
+      "content": {
+        "kind": "short-answer",
+        "answer": "Sri Jayawardenepura Kotte (executive capital: Colombo)",
+        "acceptableAnswers": []
+      },
+      "explanation": null,
+      "sourceRef": "CIA World Factbook (cia.gov/the-world-factbook); UN Geoscheme",
+      "tags": ["geography"]
+    },
+    {
+      "prompt": "Capital of Indonesia",
+      "content": {
+        "kind": "short-answer",
+        "answer": "Jakarta (Nusantara is the planned new capital)",
+        "acceptableAnswers": []
+      },
+      "explanation": null,
+      "sourceRef": "CIA World Factbook (cia.gov/the-world-factbook); UN Geoscheme",
+      "tags": ["geography"]
+    },
+    {
+      "prompt": "Capital of Malaysia",
+      "content": {
+        "kind": "short-answer",
+        "answer": "Kuala Lumpur",
+        "acceptableAnswers": []
+      },
+      "explanation": null,
+      "sourceRef": "CIA World Factbook (cia.gov/the-world-factbook); UN Geoscheme",
+      "tags": ["geography"]
+    },
+    {
+      "prompt": "Capital of South Korea",
+      "content": {
+        "kind": "short-answer",
+        "answer": "Seoul",
+        "acceptableAnswers": []
+      },
+      "explanation": null,
+      "sourceRef": "CIA World Factbook (cia.gov/the-world-factbook); UN Geoscheme",
+      "tags": ["geography"]
+    },
+    {
+      "prompt": "Capital of Mongolia",
+      "content": {
+        "kind": "short-answer",
+        "answer": "Ulaanbaatar",
+        "acceptableAnswers": []
+      },
+      "explanation": null,
+      "sourceRef": "CIA World Factbook (cia.gov/the-world-factbook); UN Geoscheme",
+      "tags": ["geography"]
+    },
+    {
+      "prompt": "Largest country by area",
+      "content": {
+        "kind": "short-answer",
+        "answer": "Russia",
+        "acceptableAnswers": []
+      },
+      "explanation": null,
+      "sourceRef": "CIA World Factbook (cia.gov/the-world-factbook); UN Geoscheme",
+      "tags": ["geography"]
+    },
+    {
+      "prompt": "Smallest country by area",
+      "content": {
+        "kind": "short-answer",
+        "answer": "Vatican City",
+        "acceptableAnswers": []
+      },
+      "explanation": null,
+      "sourceRef": "CIA World Factbook (cia.gov/the-world-factbook); UN Geoscheme",
+      "tags": ["geography"]
+    },
+    {
+      "prompt": "Longest river (commonly cited)",
+      "content": {
+        "kind": "short-answer",
+        "answer": "The Nile (about 6,650 km), with the Amazon a close contender depending on measurement.",
+        "acceptableAnswers": []
+      },
+      "explanation": null,
+      "sourceRef": "CIA World Factbook (cia.gov/the-world-factbook); UN Geoscheme",
+      "tags": ["geography"]
+    },
+    {
+      "prompt": "Highest mountain above sea level",
+      "content": {
+        "kind": "short-answer",
+        "answer": "Mount Everest, 8,849 m (2020 China–Nepal survey).",
+        "acceptableAnswers": []
+      },
+      "explanation": null,
+      "sourceRef": "CIA World Factbook (cia.gov/the-world-factbook); UN Geoscheme",
+      "tags": ["geography"]
+    },
+    {
+      "prompt": "Largest ocean",
+      "content": {
+        "kind": "short-answer",
+        "answer": "The Pacific",
+        "acceptableAnswers": []
+      },
+      "explanation": null,
+      "sourceRef": "CIA World Factbook (cia.gov/the-world-factbook); UN Geoscheme",
+      "tags": ["geography"]
+    },
+    {
+      "prompt": "Deepest known point in the ocean",
+      "content": {
+        "kind": "short-answer",
+        "answer": "Challenger Deep in the Mariana Trench, about 10,900 m",
+        "acceptableAnswers": []
+      },
+      "explanation": null,
+      "sourceRef": "CIA World Factbook (cia.gov/the-world-factbook); UN Geoscheme",
+      "tags": ["geography"]
+    },
+    {
+      "prompt": "Largest desert (by area, including polar)",
+      "content": {
+        "kind": "short-answer",
+        "answer": "Antarctica; the Sahara is the largest hot desert.",
+        "acceptableAnswers": []
+      },
+      "explanation": null,
+      "sourceRef": "CIA World Factbook (cia.gov/the-world-factbook); UN Geoscheme",
+      "tags": ["geography"]
+    }
+  ]
 }

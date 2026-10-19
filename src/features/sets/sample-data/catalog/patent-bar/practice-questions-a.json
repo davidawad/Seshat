@@ -1,930 +1,704 @@
 {
- "seshatExportVersion": 1,
- "name": "Patent Bar Practice Questions A",
- "description": "45 multiple-choice questions sampled from 1997-2003 USPTO registration exams, with the official model-answer explanations (pre-AIA law: check current MPEP).",
- "tags": [
-  "patent-bar",
-  "uspto-exam",
-  "mcq"
- ],
- "cards": [
-  {
-   "prompt": "Applicant filed a patent application in the PTO on January 30, 1997. The application was based on an application for an inventors' certificate filed in country X on January 31, 1996. The laws of country X permit applicants to apply, at their discretion, either for a patent or for an inventors' certificate, and country X is a signatory of the Stockholm Revision of the Paris Convention. In the first Office action, the examiner rejected applicant's claims as anticipated by a reference with an effective date of November 6, 1996. To overcome the rejection applicant is required to:",
-   "content": {
-    "kind": "mcq",
-    "options": [
-     "File a copy of the foreign application for inventor's certificate together with an English translation of the papers.",
-     "File a copy of the foreign application for inventor's certificate showing the date of the application.",
-     "File a claim for a right of priority based upon the foreign application for inventor's certificate together with an English translation of the papers.",
-     "File a claim for a right of priority based upon the foreign application for inventor's certificate along with a certified copy of the foreign application, and an English translation of the papers.",
-     "The rejection cannot be overcome because the right of priority must be based upon an application for patent in a foreign country, rather than an application for an inventors' certificate."
-    ],
-    "correctIndex": 3
-   },
-   "explanation": "ANSWER: (D). The provisions of 35 U.S.C. § 119(d) are satisfied by (D). (A) Is wrong\nbecause there is no claim for priority under 35 U.S.C. § 119(b). (A), (B), and (C) are wrong\nbecause they do not provide for a certified copy of the foreign application. 35 U.S.C. § 119(b).\n(E) is wrong because patent applicants may base their claim for benefit of foreign prionty on\neither a foreign patent application or an inventor's certificate where they have discretion to file for\neither type of protection. 35 U.S.C. § 119(d).",
-   "sourceRef": "USPTO Registration Exam 1997-08 AM Q42",
-   "tags": [
-    "1997-08",
-    "am",
-    "patent-bar",
-    "uspto-exam"
-   ]
-  },
-  {
-   "prompt": "Which of the following is not a requirement of 35 U.S.C. § 102(d) to bar the granting of a patent in this country?",
-   "content": {
-    "kind": "mcq",
-    "options": [
-     "The foreign application must have been filed more than 12 months before the effective filing of the application in the United States.",
-     "The foreign application must have been filed by the same applicant as in the United States or by his or her legal representatives or assigns.",
-     "The foreign patent or inventor's certificate must be actually granted before the U.S. filing date.",
-     "The foreign patent or inventor's certificate must have been published prior to the date of the application for patent in the United States.",
-     "The same invention must be involved."
-    ],
-    "correctIndex": 3
-   },
-   "explanation": "ANSWER: (D) is the most correct answer. 35 U.S.C. § 102(d) and MPEP §\n2135 expressly list (A), (B), (C), and (E) as the four conditions which, if all are present,\nestablish a bar against the granting of a patent in this country. The foreign patent or\ninventor’s certificate described in (D) need not be published to establish a 35 U.S.C. §\n\n102(d) bar. MPEP 2135.\n\na)\nsO",
-   "sourceRef": "USPTO Registration Exam 1998-08 AM Q50",
-   "tags": [
-    "1998-08",
-    "am",
-    "patent-bar",
-    "uspto-exam"
-   ]
-  },
-  {
-   "prompt": "Petitions under 37 CFR § 1.48 are generally decided by the primary examiner except:",
-   "content": {
-    "kind": "mcq",
-    "options": [
-     "When the application is involved in an interference.",
-     "When the application is a national stage application filed under 35 U.S.C. § 371.",
-     "When accompanied by a petition under 37 CFR § 1.183 requesting waiver of a requirement under 37 CFR § 1.48(a) or (c), e.g., waiver of the statement of lack of deceptive intent by an inventor to be added or deleted, or waiver of the reexecution of the declaration by all of the inventors.",
-     "When a second conversion under 37 CFR § 1.48(a) is attempted.",
-     "All of the above."
-    ],
-    "correctIndex": 4
-   },
-   "explanation": "ANSWER:  (E&) All of the above. See MPEP § 201.03 (pp. 200-3 - 200-4) As set\nforth in MPEP § 201.03, (A) is decided by the Board of Patent Appeals and Interferences;\n(B) is decided in the PCT Legal Office; (C) is decided in the Office of Petitions; and (D) is\ndecided by the Group Director.",
-   "sourceRef": "USPTO Registration Exam 1999-04 AM Q41",
-   "tags": [
-    "1999-04",
-    "am",
-    "patent-bar",
-    "uspto-exam"
-   ]
-  },
-  {
-   "prompt": "X invented a laminate which is most broadly disclosed in a patent application as containing a transparent protective layer and a light-sensitive layer, without an intermediate layer. The prior art included a laminate containing a transparent protective layer and a light-sensitive layer held together by an intermediate adhesive layer. Which of the following claims would overcome a 35 USC § 102 rejection based on the prior art?",
-   "content": {
-    "kind": "mcq",
-    "options": [
-     "1. A laminate comprising a transparent protective layer and a light-sensitive layer.",
-     "1. A laminate comprising a transparent protective layer and a light-sensitive layer which is in continuous and direct contact with the transparent protective layer.",
-     "1. A laminate comprising a transparent protective layer and a light-sensitive layer, but not including an adhesive layer.",
-     "(A) and (B).",
-     "(B) and (C)."
-    ],
-    "correctIndex": 4
-   },
-   "explanation": "ANSWER: (E) is correct because (B) and (C) are correct. (A) does not overcome the prior\nart because the broad “comprising” language permits the laminate to have additional layers, such\nas an intermediate adhesive layer. MPEP § 2111.03. (B) overcomes a § 102 rejection on the\nbasis of the prior art by reciting that the transparent protective layer and the light-sensitive layer\nare in actual contact therewith, eliminating the possibility of an intermediate adhesive layer.\n(C) also avoids the prior art by using a negative limitation to particularly point out and distinctly\nclaim that X does not claim any laminate including an adhesive layer. MPEP § 2173.05(i).",
-   "sourceRef": "USPTO Registration Exam 1999-11 PM Q26",
-   "tags": [
-    "1999-11",
-    "patent-bar",
-    "pm",
-    "uspto-exam"
-   ]
-  },
-  {
-   "prompt": "You obtained a patent for inventor Jones. The patent, although disclosing a use for her invention, and the best mode contemplated by Jones at the time the application was filed for making and using her invention, through error and without deceptive intent, failed to describe an embodiment of her invention. The embodiment has become a commercial success. Eighteen months after the patent issued, you filed a reissue application adding a claim and new, necessary supporting disclosure directed to the omitted embodiment, together with Jones' declaration explaining the error, and other required papers. In accordance with proper PTO practice and procedure:",
-   "content": {
-    "kind": "mcq",
-    "options": [
-     "The claim is subject to a new matter rejection under 35 U.S.C. § 132.",
-     "The specification is subject to rejection under 35 U.S.C. § 101 for failure to disclose the best mode for achieving commercial success.",
-     "The claim is subject to a rejection under 35 U.S.C. § 251 and a rejection under 35 U.S.C. § 112, first paragraph.",
-     "The claim is allowable.",
-     "(B) and (D)."
-    ],
-    "correctIndex": 2
-   },
-   "explanation": "ANSWER: (C). MPEP § 1411.02. (A) is incorrect because a rejection for new matter in a\n\nreissue application must be made under 35 U.S.C. § 251, and not 35 U.S.C. § 132. (B) is\nincorrect because patent complied with 35 U.S.C. § 101 inasmuch as the patent disclosed a use\n\n10 April 12, 2000 Examination Afternoon Session Model Answers\n\nfor the invention, and Jones is not required by the Patent Statute to disclose the best mode for\nachieving commercial success. (D) is incorrect because the embodiment was not disclosed in the\noriginal patent. (E) is incorrect because (B) and (D) are incorrect.",
-   "sourceRef": "USPTO Registration Exam 2000-04 PM Q45",
-   "tags": [
-    "2000-04",
-    "patent-bar",
-    "pm",
-    "uspto-exam"
-   ]
-  },
-  {
-   "prompt": "Jack, a registered patent agent, received a final rejection of all of the claims in an application directed to an article of manufacture. Jack is about to file a timely Notice of Appeal to the Board of Patent Appeals and Interferences. Before filing his notice of appeal, Jack would like to tie up some loose ends by amendment. Which of the following reply (replies) may he file without triggering the requirements of 37 C.F.R. § 1.116(b)?",
-   "content": {
-    "kind": "mcq",
-    "options": [
-     "A reply that presents his argument in a more defensible light and adds additional claims.",
-     "A reply amending the claims into process claims.",
-     "A reply amending all of the independent claims, accompanied by a declaration from the inventor.",
-     "A reply complying with a requirement of form expressly set forth in the previous Office action.",
-     "(A) and (D)."
-    ],
-    "correctIndex": 3
-   },
-   "explanation": "ANSWER: (D). 37 C.F.R. § 1.116; MPEP § 714.13, Entry Not Matter of Right [p. 700-\n118]. The reply in (D) is directed to a reply permitted to be made under 37 C.F.R. § 1.116(a).\n(A), (B), and (C) are directed to the merits of the application, and are not in accord with 37\nC.F.R. § 1.116(a).",
-   "sourceRef": "USPTO Registration Exam 2000-10 AM Q14",
-   "tags": [
-    "2000-10",
-    "am",
-    "patent-bar",
-    "uspto-exam"
-   ]
-  },
-  {
-   "prompt": "Which of the following is not a USPTO recommendation or requirement?",
-   "content": {
-    "kind": "mcq",
-    "options": [
-     "Every application should contain no more than three dependent claims.",
-     "Claims should be arranged in order of scope so that the first claim presented is the least restrictive.",
-     "Product and process claims should be separately grouped.",
-     "A claim which depends from a dependent claim should not be separated from that dependent claim by any claim which does not also depend from the dependent claim.",
-     "Each claim should start with a capital letter and end with a period."
-    ],
-    "correctIndex": 0
-   },
-   "explanation": "ANSWER: (A) is the most correct answer. The USPTO does not require or recommend a\nminimum or maximum number of dependent claims. 37 C.F.R. § 1.75(c). (B) is a USPTO\nrecommendation. See MPEP 608.01(m) (“Claims should preferably be arranged in order of\nscope so that the first claim presented is the least restrictive.’”). (C) is a USPTO recommendation.\nSee MPEP 608.01(m) (“Similarly, product and process claims should be separately grouped.”).\n(D) is a PTO recommendation. See MPEP 608.01(n), part IV. (E) is a USPTO requirement.\nSee MPEP 608.01(m) (“Each claim begins with a capital letter and ends with a period.”).",
-   "sourceRef": "USPTO Registration Exam 2001-04 PM Q21",
-   "tags": [
-    "2001-04",
-    "patent-bar",
-    "pm",
-    "uspto-exam"
-   ]
-  },
-  {
-   "prompt": "Able conceived the invention claimed in a patent application. In conceiving the invention, Able used and adopted ideas and materials known in the art and invented by others. Ben, Able's employee, reduced the invention to practice at Able's request and totally pursuant to Able's suggestions. Being unable to afford a patent practitioner's fees to prepare and prosecute the application, Able convinced John to pay for the practitioner's services in return for an interest in the invention. John did nothing more than provide the funds for the practitioner. Which of the following is in accordance with proper USPTO practice or procedure?",
-   "content": {
-    "kind": "mcq",
-    "options": [
-     "Able need not be the one to reduce the invention to practice so long as the reduction to practice occurred on his or her behalf. Able can be properly named as inventor in the application.",
-     "To be named an inventor, it is not necessary for John to have contributed to the conception of the invention. Ben, not Able, can be named as inventor in the application.",
-     "In conceiving the invention, Able may not consider and adopt ideas and materials derived from any sources, such as ideas of previous inventors. Able cannot be properly named as inventor in the application.",
-     "John and Able may be properly named as joint inventors of the invention in the application.",
-     "John, Ben, and Able may be properly named as joint inventors of the invention in the application."
-    ],
-    "correctIndex": 0
-   },
-   "explanation": "ANSWER: The most correct answer is (A). MPEP § 2137.01 (The Inventor Is Not\nRequired To Reduce The Invention To Practice) citing In re DeBaun, 214 USPQ 933, 936\n(CCPA 1982). (B) is not correct. MPEP §2137.01 (An Inventor Must Contribute To The\nConception Of The Invention) citing, Fiers v. Revel, 25 USPQ2d 1601, 1604 - 05 (Fed. Cir.\n1993); and In re Hardee, 223 USPQ 1122, 1123 (Dep. Asst. Comm'r Pat. 1984). (C) is not\ncorrect. MPEP § 2137.01 (As Long As The Inventor Maintains Intellectual Domination Over\nMaking The Invention, Ideas, Suggestions, And Materials May Be Adopted From Others) citing\nMorse v. Porter, 155 USPQ 280, 283 (Bd. Pat. Inter. 1965); and New England Braiding Co., Inc.\nv. A.W. Chesterton Co., 23 USPQ2d 1622, 1626 (Fed. Cir. 1992). (D) and (E) are not correct.\n35 U.S.C. § 116; MPEP § 2137.01 (Requirements For Joint Inventorship).",
-   "sourceRef": "USPTO Registration Exam 2001-10 PM Q2",
-   "tags": [
-    "2001-10",
-    "patent-bar",
-    "pm",
-    "uspto-exam"
-   ]
-  },
-  {
-   "prompt": "An application is transmitted to the USPTO on January 12, 2001, without an oath or declaration by any of the inventors. Which of the following, prior to the filing of an oath or declaration, may properly change the address to which the Office will direct all notices, official letters, and other communications relating to the application?",
-   "content": {
-    "kind": "mcq",
-    "options": [
-     "A registered practitioner that filed the application.",
-     "Any registered practitioner named in the transmittal papers accompanying the original application, if the application was filed by a registered practitioner.",
-     "One inventor who solely filed the application, where two inventors are named in the transmittal papers accompanying the original application.",
-     "(A), (B), and (C).",
-     "(A) and (B)."
-    ],
-    "correctIndex": 3
-   },
-   "explanation": "ANSWER: (D) is the correct answer. 37 C.F.R. § 1.33(a)(1) (effective November 7, 2000)\n“Changes To Implement the Patent Business Goals; Final Rule,’ 65 FR 54604, 54617\n(September 8, 2000). 37 C.F.R. § 1.33(a)(1), in pertinent part provides, “Thus, the inventor(s),\nany registered practitioner named in the transmittal papers accompanying the original\napplication, or a party that will be the assignee who filed the application, may change the\ncorrespondence address in that application under this paragraph.” As stated in 65 FR at 54617,\nmiddle column, “The parties who may so change the correspondence address would include only\nthe one inventor filing the application, even if more than one inventor was identified on the\napplication transmittal letter.” Since (A), (B), and (C) are provided for in 37 C.F.R. § 1.33(a)(1),\n(D) is correct. (E) is incorrect because (D) is correct.",
-   "sourceRef": "USPTO Registration Exam 2002-04 PM Q45",
-   "tags": [
-    "2002-04",
-    "patent-bar",
-    "pm",
-    "uspto-exam"
-   ]
-  },
-  {
-   "prompt": "Which of the following is not in accordance with the recommended format for a claim set forth in the provisions of the MPEP?",
-   "content": {
-    "kind": "mcq",
-    "options": [
-     "Where a claim sets forth a plurality of elements or steps, each element or step of the claim should be separated by a line indentation.",
-     "A claim may include plural indentations to further segregate subcombinations or related steps.",
-     "The claim or claims must commence on a separate sheet after the detailed description of the invention.",
-     "Each claim should end with a period.",
-     "A claim should always begin with \"A\", \"An\" or \"In.\""
-    ],
-    "correctIndex": 4
-   },
-   "explanation": "ANSWER: (E). There is no such requirement. As to (C), see 37 C.F.R. § 1.52(b). As to\n(A) through (D) see MPEP § 608.01(m). 37 C.F.R. § 1.75(4).",
-   "sourceRef": "USPTO Registration Exam 2002-10 AM Q3",
-   "tags": [
-    "2002-10",
-    "am",
-    "patent-bar",
-    "uspto-exam"
-   ]
-  },
-  {
-   "prompt": "In accordance with the USPTO rules and the procedures of the MPEP, which of the following is true?",
-   "content": {
-    "kind": "mcq",
-    "options": [
-     "If after the filing of a reissue application no errors in the original patent are found, a reissue patent will be granted on the reissue application noting no change, and the original patent will be returned to the applicant.",
-     "In order to add matter not previously found in the patent, a continuation-in-part reissue application must be filed.",
-     "In a reissue application, additions and deletions to the original patent should be made by underlining and bracketing, respectively, except for changes made in prior Certificates of Correction and disclaimer(s) of claims under 37 CFR 1.321(a).",
-     "A dependent claim may be broadened in a reissue application only in the first two years of the enforceable life of the patent.",
-     "(A), (B), and (C)."
-    ],
-    "correctIndex": 2
-   },
-   "explanation": "ANSWER: (C) is the most correct answer. See MPEP § 1411.01. As to (A) see MPEP\n§ 1402. A reissue patent is not granted. As to (B), new matter may not be entered in a reissue.\nAs to (D) see MPEP § 1412.03. Since (A), and (B) are incorrect, (E) is incorrect.",
-   "sourceRef": "USPTO Registration Exam 2003-04 PM Q6",
-   "tags": [
-    "2003-04",
-    "patent-bar",
-    "pm",
-    "uspto-exam"
-   ]
-  },
-  {
-   "prompt": "A U.S. patent was granted on May 8, 2001 to five inventors. The five inventors assigned their entire patent rights to Q Company. Q Company needs to file a reissue application to broaden the claims of the patent. The registered practitioner preparing the application has been unable to locate any of the five inventors to sign the reissue oath or declaration. Today is May 8, 2003. Which of the following should the practitioner do to enable the applicant to broaden the patent claims in accordance with the patent laws, rules and procedures as related in the MPEP?",
-   "content": {
-    "kind": "mcq",
-    "options": [
-     "Wait to file the reissue application until the first day the signatures of all five inventors can be obtained. At that time, pay the filing fee and file a petition seeking May 8, 2003 as the filing date. File with the petition a showing of the unavailability of all inventors until the filing of the application.",
-     "Wait to file the reissue application until the signatures of at least three inventors can be obtained. At that time, file a petition seeking May 7, 2003 as the filing date accompanied by a showing of the unavailability of all inventors on May 8th. Payment of the filing fees may be postponed until receipt of a decision on the petition.",
-     "File the reissue application on May 8, 2003, presenting only the claims in the patent, and include a listing of inventors, but not pay the filing fee at the time of filing.",
-     "Wait to file the reissue application until the signature of one of the inventors has been obtained since at least one inventor is needed to show a lack of deceptive intent on the part of the applicants.",
-     "File the complete reissue application complying with 37 CFR 1.173(a) and 1.53(b) with an unexecuted reissue declaration listing the names of all the inventors with at least one broadening claim on May 8, 2003."
-    ],
-    "correctIndex": 4
-   },
-   "explanation": "ANSWER: (E) is the most correct answer. 35 U.S.C. § 251; 37 CFR § 1.53(f); MPEP\n§ 1403. Filing a broadened reissue application with at least one broadening claim prior to the\nexpiration of the two-year time period set in the statute satisfies the diligence provisions of 35\nU.S.C. § 251. The executed reissue oath/declaration and the filing fee may be filed at a later\ntime. According to MPEP § 1403, a reissue application can be granted a filing date without an\noath or declaration, or without the filing fee being present. See 37 CFR § 1.53(f). The reissue\napplicant will be given a period of time to provide the missing parts and to pay the surcharge\nunder 37 CFR § 1.16(e). See MPEP § 1410.01. (A), (B) and (D) are clearly incorrect since the\ninventors and assignee would be barred from a broadening reissue if filed after the two year\nperiod set in the statute. (C) is incorrect since the reissue application was filed without at least\none broadening claim prior to the expiration of the two-year time period set in 35 U.S.C. § 251.",
-   "sourceRef": "USPTO Registration Exam 2003-10 PM Q11",
-   "tags": [
-    "2003-10",
-    "patent-bar",
-    "pm",
-    "uspto-exam"
-   ]
-  },
-  {
-   "prompt": "You draft a patent application disclosing and describing an electrical chronometer containing a resistor having a resistance of 10-90 ohms, preferably 40 ohms. You draft the following independent claim:\n1. An electrical chronometer comprising a resistor with a resistance of 10-90 ohms.\nWhich of the following would not be a proper dependent claim if presented as an original claim in the application when the application is filed in the PTO?",
-   "content": {
-    "kind": "mcq",
-    "options": [
-     "2. The electrical chronometer of Claim 1 wherein the resistor has a resistance of 40 ohms.",
-     "2. An electrical chronometer as in Claim 1 wherein the resistor has a resistance of 40-90 ohms.",
-     "2. An electrical chronometer as in Claim 1 wherein the resistor has a resistance of about 10 - 90 ohms.",
-     "2. The electrical chronometer of Claim 1 wherein the resistor has a resistance of between 50 and 90 ohms.",
-     "(C) and (D)."
-    ],
-    "correctIndex": 2
-   },
-   "explanation": "ANSWER: (C). 37 CFR §1.75(c). A dependent claim must further limit the claim from which\nit depends. The claim in (C) is an improper dependent claim because it includes resistance outside\nthe scope of Claim |. In the claim in (C), the term “about” allows for a range slightly above 90\nohms or below 10 ohms, which is “outside” the scope of Claim 1. See MPEP 2144.05. (A), (B),\nand (D) are proper dependent claims because they further limit Claim | by limiting the resistance\nto amounts within the scope of Claim 1. (E) is incorrect because (D) is a proper dependent claim.",
-   "sourceRef": "USPTO Registration Exam 1997-08 PM QII-6",
-   "tags": [
-    "1997-08",
-    "patent-bar",
-    "pm",
-    "uspto-exam"
-   ]
-  },
-  {
-   "prompt": "Given the following information regarding three claims: (i) A claim refers to \"said lever\" where the claim contains no earlier recitation or limitation of a lever; (ii) A claim initially refers to \"an aluminum lever,\" and \"a plastic lever\" and thereafter refers to \"said lever\"; and (iii) A claim initially refers to a \"controlled stream of fluid\" and thereafter refers to \"the controlled fluid,\" which of the following statements is correct?",
-   "content": {
-    "kind": "mcq",
-    "options": [
-     "The claims in (i), (ii) and (iii) are all definite.",
-     "The claims in (i) and (ii) are definite; and the claim in (iii) is indefinite.",
-     "The claim in (i) is indefinite; and the claims in (ii) and (iii) are definite.",
-     "The claims (i) and (ii) are indefinite; and the claim in (iii) is definite.",
-     "The claims in (i), (ii) and (iii) are all indefinite."
-    ],
-    "correctIndex": 3
-   },
-   "explanation": "ANSWER: (D) MPEP § 2173.05(e). Claim (i) is indefinite because the claim does\nnot contain the earlier limitation of a “lever” referenced by “said lever”; claim (ii) is\nindefinite because it is unclear which of the two previously recited levers “said lever” is\nreferring to; claim (iii) is definite since it is clear that the “the controlled fluid” is\nreferring back to the earlier claimed “controlled stream of fluid”. Ex parte Porter, 25\nUSPQ2d 1144, 1145 (Bd. Pat. App. & Int. 1992).",
-   "sourceRef": "USPTO Registration Exam 1998-08 PM Q35",
-   "tags": [
-    "1998-08",
-    "patent-bar",
-    "pm",
-    "uspto-exam"
-   ]
-  },
-  {
-   "prompt": "Which of the following statements, if any, are true regarding representations to the Patent and Trademark Office under 37 CFR § 10.18 and 37 CFR § 1.4(d)(2)?\n(I) Practitioners are required to advise clients regarding the sanctions which apply for knowingly and willfully concealing a material fact in papers submitted to the PTO.\n(II) Every paper filed by a practitioner must be personally signed by the practitioner, except those required to be signed by the applicant or party.\n(III) Applicant has a duty to conduct a prior art search as a prerequisite to filing an application for patent.",
-   "content": {
-    "kind": "mcq",
-    "options": [
-     "I and II.",
-     "I only.",
-     "II only.",
-     "I, II, and III.",
-     "III only."
-    ],
-    "correctIndex": 2
-   },
-   "explanation": "ANSWER: (C)is the correct answer. 37 CFR § 10.18(a), MPEP § 402 (pp.\n400-3). Statement (1) is not true because practitioners are not required to advise their\nclients regarding sanctions. MPEP § 410 (pp.400-30) Statement (IIT) is also not true. As AM Answers Page 4\n\nset forth in MPEP § 410, “an applicant has no duty to conduct a prior art search as a\nprerequisite to filing an application for patent.” Accordingly, answers (A), (B), (D) and (E)\nare incorrect.",
-   "sourceRef": "USPTO Registration Exam 1999-04 AM Q19",
-   "tags": [
-    "1999-04",
-    "am",
-    "patent-bar",
-    "uspto-exam"
-   ]
-  },
-  {
-   "prompt": "You draft a patent application disclosing and describing an electrical chronometer containing a resistor having a resistance of 20-90 ohms, preferably 40 ohms. You draft the following independent claim:\n\n1. An electrical chronometer comprising a resistor with a resistance of 20-90 ohms.\n\nWhich of the following would not be a proper dependent claim if presented as an original claim in the application when the application is filed in the PTO?",
-   "content": {
-    "kind": "mcq",
-    "options": [
-     "2. The electrical chronometer of Claim 1 wherein the resistor has a resistance of 40 ohms.",
-     "2. An electrical chronometer as in Claim 1 wherein the resistor has a resistance of 40-90 ohms.",
-     "2. An electrical chronometer as in Claim 1 wherein the resistor has a resistance of about 20 - 90 ohms.",
-     "2. The electrical chronometer of Claim 1 wherein the resistor has a resistance of between 50 and 90 ohms.",
-     "(C) and (D)."
-    ],
-    "correctIndex": 2
-   },
-   "explanation": "ANSWER: (C). 37 CFR § 1.75(c). A dependent claim must further limit the claim from\nwhich it depends. The claim in (C) is an improper dependent claim because it includes\nresistance outside the scope of Claim 1. In the claim in (C), the term “about” allows for a range\nslightly above 90 ohms or below 10 ohms, which is “outside” the scope of Claim 1. See MPEP §\n2144.05. (A), (B), and (D) are proper dependent claims because they further limit Claim | by\nlimiting the resistance to amounts within the scope of Claim 1. (E) is incorrect because (D) is a\nproper dependent claim.",
-   "sourceRef": "USPTO Registration Exam 1999-11 AM Q15",
-   "tags": [
-    "1999-11",
-    "am",
-    "patent-bar",
-    "uspto-exam"
-   ]
-  },
-  {
-   "prompt": "Which of the following statements correctly describes current PTO practice and procedure?",
-   "content": {
-    "kind": "mcq",
-    "options": [
-     "A joint application by inventors Sam and Will, and a joint application by Will and Sam are different inventive entities.",
-     "A joint application by inventors Sam and Will, and a sole application by Sam are different inventive entities.",
-     "Where a patent is granted to Will, and later Will and Sam file a joint application, the presence of Will, a common inventor in the patent, prevents a determination that the patent entity is to \"another\" within the meaning of 35 U.S.C. § 102(e).",
-     "The fact that an application has named a different inventive entity (Sam and Will) than a patent reference (Will) makes the patent prior art, even where one of the inventors is common to both.",
-     "(A) and (C)."
-    ],
-    "correctIndex": 1
-   },
-   "explanation": "ANSWER: (B) is the most correct answer. Ex parte Utschig, 156 USPQ 156, 157 (Bd.\nApp. 1966); MPEP § 2137.01 (section styled “Inventorship Is Generally ‘To Another’? Where\nThere Are Different Inventive Entities With At Least One Inventor In Common’). (A) is\nincorrect. The same inventive entity obtains, regardless of the order in which the inventors are\nlisted, inasmuch as the same inventors are recited. (C) is incorrect. The presence of a common\ninventor in a reference patent and application does not preclude determination that the inventive\nentity in the reference is to another within the meaning of 35 U.S.C. § 102(e). Ex parte\nDesOrmeaus, 25 USPQ2d 2040 (Bd. Pat. App. & Inter. 1992). (D) is incorrect. Merely the fact\nthat the inventive entities differ does not cause the patent to necessarily be prior art. Applied\nMaterials Inc. v. Gemini Research Corp., 835 F.2d 279, 281, 15 USPQ2d 1816, 1818 (Fed. Cir.\n1988); MPEP § 2137.01. (E) is incorrect because (A) and (C) are incorrect.",
-   "sourceRef": "USPTO Registration Exam 2000-04 PM Q38",
-   "tags": [
-    "2000-04",
-    "patent-bar",
-    "pm",
-    "uspto-exam"
-   ]
-  },
-  {
-   "prompt": "Which of the following is true?",
-   "content": {
-    "kind": "mcq",
-    "options": [
-     "There is no practical difference between an objection and rejection of a claim.",
-     "If the form of the claim (as distinguished from its substance) is improper, an objection is made.",
-     "An objection, if maintained by an examiner, is subject to review by the Board of Patent Appeals and Interferences.",
-     "An example of a proper objection is where the claims are refused because they fail to comply with the second paragraph of 35 U.S.C. § 112.",
-     "An example of a proper rejection is a rejection of a dependent claim for being dependent on a claim that has been rejected only over prior art, where the dependent claim is otherwise allowable."
-    ],
-    "correctIndex": 1
-   },
-   "explanation": "ANSWER: (B). MPEP § 706.01. (A) and (C) are incorrect. As stated by MPEP § 706.01,\n“The practical difference between a rejection and an objection is that a rejection, involving the\nmerits of the claim, is subject to review by the Board of Patent Appeals and Interferences, while\nan objection, if persisted, may be reviewed only by way of petition to the Commissioner.” (D) is\nincorrect. MPEP § 706.03(d). (E) is incorrect. As stated in MPEP § 706.01, “If the form of the\nclaim (as distinguished from its substance) is improper, an “objection” is made. An example of a\nmatter of form as to which objection is made is dependency of a claim on a rejected claim, if the\ndependent claim is otherwise allowable. See MPEP § § 608.01(n).”",
-   "sourceRef": "USPTO Registration Exam 2000-10 AM Q28",
-   "tags": [
-    "2000-10",
-    "am",
-    "patent-bar",
-    "uspto-exam"
-   ]
-  },
-  {
-   "prompt": "You filed a patent application for a client containing a claim to a composition consisting of X, water and plaster. In the claim X is defined as follows: \"X is a member selected from the group consisting of elements A, B, and C.\" The claim is properly rejected under 35 U.S.C. § 102(b) as being anticipated by a reference describing the composition made of A, water and plaster. The rejection may be properly overcome by:",
-   "content": {
-    "kind": "mcq",
-    "options": [
-     "Amending the claim by canceling elements B and C because the reference is concerned only with element A.",
-     "Amending the claim by canceling element A from the Markush group.",
-     "Arguing that the reference is not relevant because it lacks elements B and C.",
-     "Amending the claim by changing \"consisting of\" to \"consisting essentially of.\"",
-     "Amending the claim to redefine X as \"being a member selected from the group comprising elements A, B, and C.\""
-    ],
-    "correctIndex": 1
-   },
-   "explanation": "ANSWER: (B) is the most correct answer. 35 U.S.C. § 102(b); MPEP § 2173.05(h).\nDeletion of the anticipated element from the claim leaves an invention that is no longer\nanticipated by the reference. (A), (D), and (E) are incorrect despite the amendments because the\nclaim remains anticipated since the claim is still directed to the invention described in the\nreference wherein X is element A. For example, in (D) and (E), element A would still be a\nmember of the group and the claim would still be anticipated by the prior art. (C) is incorrect\nbecause the argument does not change the fact that the claim remains anticipated by the same\ninvention described in the reference wherein X is element A. (E) is incorrect because\n“comprising” cannot be used in a proper Markush group.",
-   "sourceRef": "USPTO Registration Exam 2001-04 PM Q40",
-   "tags": [
-    "2001-04",
-    "patent-bar",
-    "pm",
-    "uspto-exam"
-   ]
-  },
-  {
-   "prompt": "The following facts pertain to questions 33 and 34 (see the fact pattern under question 33: Applicant Sonny's patent application claiming an apparatus for converting solar energy into electrical energy, rejected under 35 U.S.C. § 102(d) over a Foreign patent). Which of the following claims, if fully disclosed and presented in Sonny's U.S. application, provides a proper basis for an objection under 37 CFR 1.75(c)?",
-   "content": {
-    "kind": "mcq",
-    "options": [
-     "Claim 2. An apparatus as in claim 1, further comprising a voltage regulator coupled to the electrical generator.",
-     "Claim 2. An apparatus as in claim 1, wherein the metallic parabolic reflector is aluminum.",
-     "Claim 2. An apparatus as in claim 1, wherein the steam engine has two cylinders.",
-     "Claim 2. An apparatus as in claim 1, wherein the parabolic reflector is either metallic or plastic.",
-     "Claim 2. An apparatus as in claim 1, further comprising an electronic pressure sensor coupled to the steam engine."
-    ],
-    "correctIndex": 3
-   },
-   "explanation": "ANSWER: (D) is the correct answer because it is a dependent claim which fails to further\nlimit the subject matter of claim 1, as it seeks to remove the limitation that the parabolic reflector\nis metallic. MPEP §608.01(n)CD) and 37 CFR 1.75(c). (A), (B), (C), and (E) are incorrect\nbecause each of these claims further limits claim 1 and therefore do not support on objection\nunder § 1.75(c).",
-   "sourceRef": "USPTO Registration Exam 2001-10 PM Q34",
-   "tags": [
-    "2001-10",
-    "patent-bar",
-    "pm",
-    "uspto-exam"
-   ]
-  },
-  {
-   "prompt": "In accordance with proper USPTO practice and procedure, a submission for a request for continued examination does not include:",
-   "content": {
-    "kind": "mcq",
-    "options": [
-     "An appeal brief or reply brief (or related papers).",
-     "New arguments in support of patentability.",
-     "New evidence in support of patentability.",
-     "An amendment of the drawings.",
-     "An amendment of the claims."
-    ],
-    "correctIndex": 0
-   },
-   "explanation": "ANSWER: (A) is the most correct answer. 37 C.F.R. § 1.114(d), last sentence. (B), (C),\n(D), and (E) are not the most correct answers. Each is recognized as being a “submission”\nwithin the scope of 37 C.F.R. § 1.114(c).",
-   "sourceRef": "USPTO Registration Exam 2002-04 PM Q28",
-   "tags": [
-    "2002-04",
-    "patent-bar",
-    "pm",
-    "uspto-exam"
-   ]
-  },
-  {
-   "prompt": "Which of the following is not in accordance with the provisions of 35 USC 115 (Oath of applicant)?",
-   "content": {
-    "kind": "mcq",
-    "options": [
-     "The applicant shall make oath (or declaration) that he believes himself to be the original and first inventor of the process, machine, manufacture, or composition of matter, or improvement thereof, for which he solicits a patent.",
-     "In the oath or declaration, the applicant must state of what country he is a citizen.",
-     "An oath may be made before any person within the United States authorized by law to administer oaths.",
-     "An oath executed in a foreign country must be properly authenticated.",
-     "A declaration which accompanies a patent application must state on the document a warning that willful false statements and the like are punishable by fine or imprisonment or both under 18 USC 1001, and the declaration must be notarized."
-    ],
-    "correctIndex": 4
-   },
-   "explanation": "ANSWER: (E) is the best answer. The declaration need not be notarized. See 37 C.F.R.\n§ 1.63(a). A declaration may be used in lieu of an oath. 37 C.F.R. § 1.68, MPEP 602. As to (A)\nthrough (C) see 35 U.S.C.§ 115. As to (D), see MPEP § 602.04 at p. 600-34, left column.",
-   "sourceRef": "USPTO Registration Exam 2002-10 PM Q28",
-   "tags": [
-    "2002-10",
-    "patent-bar",
-    "pm",
-    "uspto-exam"
-   ]
-  },
-  {
-   "prompt": "Which of the following is not in accordance with the provisions of the USPTO rules and the procedures set forth in the MPEP?",
-   "content": {
-    "kind": "mcq",
-    "options": [
-     "Where joint inventors are named, the examiner should not inquire of the patent applicant concerning the inventors and the invention dates for the subject matter of the various claims until it becomes necessary to do so in order to properly examine the application.",
-     "Under 35 USC 119(a), the foreign priority benefit may be claimed to any foreign application that names a U.S. inventor as long as the U.S. named inventor was the inventor of the foreign application invention and 35 USC 119(a)-(d) requirements are met.",
-     "Where two or more foreign applications are combined in a single U.S. application, to take advantage of the changes to 35 USC 103 or 35 USC 116, the U.S. application may claim benefit under 35 USC 119(a) to each of the foreign applications provided all the requirements of 35 USC 119(a)-(d) are met.",
-     "One of the conditions for benefit under 35 USC 119(a) is that the foreign application must be for the same or a nonobvious improvement of the invention described in the United States application.",
-     "If a foreign application for which priority is being claimed under 35 USC 119 is filed in a country which does not afford similar privileges in the case of applications filed in the United States or to citizens of the United States and the foreign country is not a WTO member country, any claim for the foreign priority thereto by a U.S. application will not be effective."
-    ],
-    "correctIndex": 3
-   },
-   "explanation": "ANSWER: (D) is the best answer as the inventions must be the same in the foreign and U.S.\napplications. 35 U.S.C. § 119(a). As to (A) through (C), see MPEP § 605.07. As to (E), see 35\nU.S.C. § 119, which provides that the previously filed application must have been filed in a\ncountry that affords similar privileges in the case of applications filed in the United States or to\ncitizens of the United States or ina WTO member country.",
-   "sourceRef": "USPTO Registration Exam 2003-04 AM Q9",
-   "tags": [
-    "2003-04",
-    "am",
-    "patent-bar",
-    "uspto-exam"
-   ]
-  },
-  {
-   "prompt": "Which of the following phrases taken from an independent claim has an antecedent basis problem according to the patent laws, rules and the procedures as related in the MPEP?",
-   "content": {
-    "kind": "mcq",
-    "options": [
-     "\"the center of the circle having ...,\" where the claim does not previously recite that the circle has a \"center.\"",
-     "\"the major diameter of the ellipse being ...,\" where the claim does not previously recite that the ellipse has a \"major diameter.\"",
-     "\"the outer surface of the sphere being ...,\" where the claim does not previously recite that the sphere has an \"outer surface.\"",
-     "\"the lever of the machine being located ...,\" where the claim does not previously recite a \"lever.\"",
-     "\"the area of the rectangle being ...,\" where the claim does not previously define an \"area.\""
-    ],
-    "correctIndex": 3
-   },
-   "explanation": "ANSWER: (D) is correct. \"Inherent components of elements recited have antecedent\nbasis in the recitation of the components themselves.\" MPEP § 2173.05(e). The MPEP provides\nan analogous example: \"the limitation 'the outer surface of said sphere' would not require an\nantecedent recitation that the sphere have an outer surface.\" Jd. (A), (B), (C), and (E) are all\nexamples of things which inherently have the claimed characteristic and do not have an\nantecedent basis problem; that is, all circles have a center, all ellipses have a major diameter, all\nspheres have an outer surface, and all rectangles have an area, and these characteristics need not\nbe provided with express antecedent basis. The ellipse example is from Bose Corp. v. JBL Inc.,\n61 USPQ2d 1216, 1219 (Fed. Cir. 2001) (\"There can be no dispute that mathematically an\ninherent characteristic of an ellipse is a major diameter.\"). The lever recited in (D) is not an\ninherent component of a machine and therefore requires express antecedent basis.",
-   "sourceRef": "USPTO Registration Exam 2003-10 AM Q33",
-   "tags": [
-    "2003-10",
-    "am",
-    "patent-bar",
-    "uspto-exam"
-   ]
-  },
-  {
-   "prompt": "A claim in the application as filed is definite which initially refers to \"an aluminum lever,\" and \"a plastic lever\" and thereafter refers to \"said lever\".",
-   "content": {
-    "kind": "mcq",
-    "options": [
-     "True",
-     "False"
-    ],
-    "correctIndex": 1
-   },
-   "explanation": "ANSWER: (B), false. The term “said lever” lacks antecedent basis according to 35 U.S.C. §\n112, second paragraph, because it is indefinite whether the term refers to the aluminum lever or\nthe plastic lever. See MPEP 2173 .05(e).",
-   "sourceRef": "USPTO Registration Exam 1997-08 PM QI-11",
-   "tags": [
-    "1997-08",
-    "patent-bar",
-    "pm",
-    "uspto-exam"
-   ]
-  },
-  {
-   "prompt": "You have filed a patent application on behalf of your client, Smith, on October 7, 1997. On January 5, 1998, the examiner sent a second Office action containing a final rejection. You mailed a reply to the PTO on July 10, 1998. Yesterday, you received an Ex parte Quayle action. Today, August 26, 1998, Smith brought to your attention prior art that he discovered last week. After reviewing the prior art, you determine that the prior art should be submitted to the PTO for consideration by the examiner. What will need to be filed with an Information Disclosure Statement (IDS) in order for the IDS to be considered by the examiner?",
-   "content": {
-    "kind": "mcq",
-    "options": [
-     "No additional papers are required to be filed with the IDS.",
-     "A petition requesting consideration of the IDS, and the appropriate fee.",
-     "A certificate of mailing, and the appropriate fee.",
-     "A certification that no information contained in the Information Disclosure Statement (IDS) was cited in a communication from a foreign patent office in a counterpart foreign application or, to the knowledge of the person signing the certification after making reasonable inquiry, was known to any individual designated in § 1.56(c) more than three months prior to the filing of the statement, a petition requesting consideration of the IDS and the appropriate fee.",
-     "A certification and statement stating that no item of information contained in the IDS was known to any individual designated in § 1.56(c) more than three months prior to the filing of the statement and a petition requesting consideration of the IDS."
-    ],
-    "correctIndex": 3
-   },
-   "explanation": "ANSWER: (D) is the most correct answer. 37 CFR § 1.97(d). MPEP § 609,\npage 600-97. When an Ex parte Quayle action is issued after a final rejection which has\nnot been withdrawn, the Information Disclosure Statement must follow the rules pursuant\nto 37 CFR § 1.97(d) which requires that the IDS be filed with a certification as defined in\n37 CFR § 1.97(e), a petition requesting consideration of the IDS, and the appropriate\npetition fee. Answer (A) is not correct because the IDS must be filed within three months\nof the filing date of the application or before the First Office action is issued for there to\nbe no additional steps required and the fact pattern states that there has already been a\nsecond Office action Final Rejection issued. Answers (B), (C), and (E) are not correct\nbecause they do not fully comply with 37 CFR § 1.97(d).",
-   "sourceRef": "USPTO Registration Exam 1998-08 AM Q15",
-   "tags": [
-    "1998-08",
-    "am",
-    "patent-bar",
-    "uspto-exam"
-   ]
-  },
-  {
-   "prompt": "Bert and Ernie are joint inventors of a widget that automatically adjusts television volume levels during commercial breaks. A nonprovisional patent application was filed on October 15, 1998, and a first Office action on the merits was mailed on January 11, 1999. A reply was filed on January 28, 1999, and a Notice of Allowance was mailed on February 26, 1999. The Issue Fee has not been paid. What is the last day that Bert and Ernie can file a properly drafted Information Disclosure Statement (IDS) without having to pay a fee and to ensure that the information submitted in the IDS would be considered by the examiner?",
-   "content": {
-    "kind": "mcq",
-    "options": [
-     "Friday, January 15, 1999, via facsimile with a Certificate of Transmission",
-     "Sunday, January 10, 1999, via facsimile with a Certificate of Transmission",
-     "Thursday, January 28, 1999, via first class mail with no Certificate of Transmission",
-     "Friday, January 15, 1999, via \"Express Mail Post Office to Post Office\" with a Certificate of Express Mailing",
-     "Thursday, February 25, 1999, via facsimile with a Certificate of Transmission but without a statement that each item cited in the IDS was cited in a communication from a foreign patent office in a counterpart foreign application not more than three months prior to submission of the IDS"
-    ],
-    "correctIndex": 0
-   },
-   "explanation": "ANSWER: (A) is the correct answer. 37 CFR § |.97(b); MPEP § 609(B)\\(1) [p.\n600-106]. (B)is not correct because it is not the latest date. (C) and (D) are incorrect. An\nInformation Disclosure Statement (IDS) will be considered to have been filed on the day it\nwas received in the Office, or on an earlier date of mailing if accompanied by a properly\nexecuted certificate of mailing or facsimile transmission. (C) did not include a certificate\nof mailing and (D) used an incorrect “Express Mail” service designation. 37 CFR § 1.10.\n(E) is incorrect because filing the LDS before the Notice of Allowance will require Bert and\nEmie¢ to pay the fee set forth in 37 CFR § 1.17(p) given that Bert and Emie did not file a\nstatement under 37 CFR § 1.97(e). An IDS filed pursuant to 37 CFR § 1.97(c) will be\nconsidered provided that the IDS is accompanied by either (1) a statement as specified in\n37 CFR § 1.97(e); or (2) the fee set forth in 37 CFR § 1.17(p). MPEP § 609(B(2)) [pp.\n600-106-107). AM Answers Page 5",
-   "sourceRef": "USPTO Registration Exam 1999-04 AM Q25",
-   "tags": [
-    "1999-04",
-    "am",
-    "patent-bar",
-    "uspto-exam"
-   ]
-  },
-  {
-   "prompt": "On September 14, 1999, you filed a patent application in the PTO on behalf of a large corporation together with an authorization to charge the filing fee to your deposit account. However, due to unforeseen circumstances, measures were not taken to cover the $760.00 filing fee against the amount in your deposit account, which has a $10.00 balance. Consequently, you received a notice from the PTO dated September 28, 1999, that your deposit account has insufficient funds. Which of the following steps avoids abandonment of the recently filed application?",
-   "content": {
-    "kind": "mcq",
-    "options": [
-     "On September 29, 1999, replenish the deposit account with $800.00 in cash to encompass the filing fee, and the $10 fee required by 37 CFR § 1.21(b)(1).",
-     "On September 29, 1999, open a new deposit account with $800.00 in cash, and file in the PTO correspondence authorizing the fee for filing the application be charged against your new deposit account.",
-     "On September 29, 1999, file in the PTO a check for $760.00 for the filing fee, and file in the PTO correspondence authorizing the balance of the filing fee be paid from your deposit account.",
-     "On September 29, 1999, replenish the deposit account with $890.00 in cash to cover the filing fee, and a surcharge fee for late payment of the filing fee, and file in the PTO correspondence authorizing the fees for the application be charged to your deposit account.",
-     "(B) or (C)."
-    ],
-    "correctIndex": 3
-   },
-   "explanation": "ANSWER: (D). 37 CFR § 1.16(a) and (e); and MPEP § 509.01, which states, “For\napplications filed after February 27, 1983, if there is an authorization to charge the filing fee to a\ndeposit account which is overdrawn or has insufficient funds, a surcharge (37 CFR § 1.16(e)) is\nrequired in addition to payment of the filing fee. Failure to timely pay the filing fee and\nsurcharge will result in abandonment of the application.”",
-   "sourceRef": "USPTO Registration Exam 1999-11 AM Q30",
-   "tags": [
-    "1999-11",
-    "am",
-    "patent-bar",
-    "uspto-exam"
-   ]
-  },
-  {
-   "prompt": "A claim limitation reads \"having 10 to 20 grams of iron, preferably 13-18 grams of iron.\" The specification preceding the claim supports not only the limitation, but also the broader amounts of iron. Which of the following statements is correct?",
-   "content": {
-    "kind": "mcq",
-    "options": [
-     "The limitation may be indefinite.",
-     "Since the limitation properly sets forth outer limits, it is definite.",
-     "As long as the limitation is supported in the written description, it is proper.",
-     "The limitation is definite since the limitation sets forth a preferred range.",
-     "The applicant, having set forth a limitation in the claim, i.e., a range of 10 to 20 grams, is precluded by the doctrine of equivalents from expanding the claim coverage beyond the 10 to 20 grams of iron."
-    ],
-    "correctIndex": 0
-   },
-   "explanation": "ANSWER: (A) is correct. MPEP § 2173.05, part (c) indicates that a preferred narrower\nrange set forth within a broader range may render the claim indefinite if the boundaries of the\nclaim are not discernable. (B), (C) and (D) are incorrect. MPEP § 2173.05(c), part (I) indicates\nthat reciting in a single claim both a broad range and a preferred narrower range within the broad\nrange may render the claim indefinite. (E) is incorrect. The doctrine of equivalents operates to\nexpand claim coverage beyond the literal scope of the claim language.",
-   "sourceRef": "USPTO Registration Exam 2000-04 PM Q33",
-   "tags": [
-    "2000-04",
-    "patent-bar",
-    "pm",
-    "uspto-exam"
-   ]
-  },
-  {
-   "prompt": "Which of the following is entitled to the benefit of a certificate of mailing under 37 CFR § 1.8?",
-   "content": {
-    "kind": "mcq",
-    "options": [
-     "Filing a request for continued examination under 37 CFR § 1.114.",
-     "Filing a request for a continued prosecution application under 37 CFR § 1.53(d).",
-     "Filing a reply under 37 CFR § 1.111 in a non-provisional patent application.",
-     "(A) and (C).",
-     "All of the above."
-    ],
-    "correctIndex": 3
-   },
-   "explanation": "ANSWER: (D) is the most correct answer. 37 CFR § 1.114 (effective August 16, 2000),\nsee, “Request for Continued Examination Practice and Changes to Provisional Application\nPractice; Final Rule,’ 65 FR 50092, 50096 (Aug. 16, 2000); and 37 CFR § 1.8. As stated in 65\nFR 50096, column 3, “(4) a request for continued examination under § 1.114 is entitled to the\nbenefit of a certificate of mailing under § 1.8 (cf. 1.8(a)(2)()(A))...” (A) is correct. The filing\nof a reply under 37 CFR § 1.111 in a national patent application is not a case enumerated in 37\nCFR § 1.8(a)(2). (C) is included in 37 CFR § 1.8(a)(1), and thus (D) is correct. (B) is incorrect.\n37 CFR § 1.8(a)(2)(i)(A). (E) is incorrect because (B) is incorrect.",
-   "sourceRef": "USPTO Registration Exam 2001-04 PM Q24",
-   "tags": [
-    "2001-04",
-    "patent-bar",
-    "pm",
-    "uspto-exam"
-   ]
-  },
-  {
-   "prompt": "Which of the following statements accords with proper USPTO practice and procedure?",
-   "content": {
-    "kind": "mcq",
-    "options": [
-     "A request for publication of a provisional application on a certain date will be treated as a request for publication as soon as possible.",
-     "If an applicant filed an application in a foreign country and the description of the invention in the foreign application is less extensive than the description of the invention in the application filed in the USPTO, the applicant may submit a redacted copy, eliminating the description not contained in the foreign application, for publication within 12 months after the filing date for which a benefit is sought under 35 U.S.C.",
-     "Early publication of a reissue application may be honored only if accompanied by a copy of the application in compliance with the Office electronic filing system requirements.",
-     "If an applicant filed an application in a foreign country and the description of the invention in the foreign application is more extensive than the description of the invention in the application filed in the USPTO, the applicant may submit a redacted copy, eliminating the description not contained in the foreign application, for publication within 14 months after the filing date for which a benefit is sought under 35 U.S.C.",
-     "Re-publication of a patent application is available where the Office makes a material mistake apparent from the records and the request for re-publication is filed within 3 months from the date of the patent application publication."
-    ],
-    "correctIndex": 1
-   },
-   "explanation": "ANSWER: (B) is correct because 37 CFR 1.217(a) permits such action within 16 months\nafter the filing date for which a benefit is sought under 35 U.S.C. §119(a), and 12 months is\nwithin 16 months. (A) and (C) are wrong because provisional and reissue applications are\nexcepted from the publication provisions of 37 CFR 1.211(a) by 37 CFR 1.211(b). (D) is wrong\nbecause the provisions for publication of a redacted application do not apply when the foreign\napplication is more extensive than the US application. (E) is wrong because 37 CFR 1.221(b)\nlimits the period for filing a request for re-publication under such circumstances to 2 months\nfrom the date of the patent application publication.",
-   "sourceRef": "USPTO Registration Exam 2001-10 AM Q45",
-   "tags": [
-    "2001-10",
-    "am",
-    "patent-bar",
-    "uspto-exam"
-   ]
-  },
-  {
-   "prompt": "An amendment filed in January 8, 2002, in an unassigned nonprovisional application seeks to cancel claims so that fewer than all of the currently named inventors are the actual inventors of the invention being claimed. The amendment includes a request to delete the names of the persons who are not inventors. In accordance with proper USPTO rules and procedure, the request may be signed by which of the following?",
-   "content": {
-    "kind": "mcq",
-    "options": [
-     "A registered practitioner not of record who acts in a representative capacity under 37 CFR 1.34(a).",
-     "All of the applicants (37 CFR 1.41(b)) for patent.",
-     "A registered practitioner of record appointed pursuant to 37 CFR 1.34(b).",
-     "(B) and (C).",
-     "(A), (B), and (C)."
-    ],
-    "correctIndex": 4
-   },
-   "explanation": "ANSWER: (E) is the correct answer. 37 C.F.R. § 1.48(b) (effective November 7, 2000);\n“Changes To Implement the Patent Business Goals; Final Rule,’ 65 FR 54604, 54619\n(September 8, 2000). As stated in 65 FR at 54619, middle column, “Sections 1.48(b) and (d) are\nrevised to indicate that a request to correct the inventorship thereunder must be signed by a party\nas set forth in § 1.33(b)...” (A), (B), and (C) are provided for in 37 C.F.R. § 1.33(b). Thus (E),\nthe most inclusive answer, is correct.\n\n13 April 17, 2002 Examination Morning Session Model Answers",
-   "sourceRef": "USPTO Registration Exam 2002-04 AM Q44",
-   "tags": [
-    "2002-04",
-    "am",
-    "patent-bar",
-    "uspto-exam"
-   ]
-  },
-  {
-   "prompt": "In accordance with the MPEP and USPTO rules and procedure, certain individuals owe a duty to the USPTO to disclose all information known to be material to patentability of the claim(s) pending in an application. Which of the following parties does not have the duty?",
-   "content": {
-    "kind": "mcq",
-    "options": [
-     "An inventor named in the application who relies on a patent attorney to prepare and prosecute the application.",
-     "A corporation to which an assignment of the entire interest in the application is on record at the USPTO.",
-     "An agent who prepares the application.",
-     "An attorney who prosecutes the application.",
-     "A person, who is not an inventor named in the application, who is substantively involved in the preparation and prosecution of the application, and who is associated with an inventor named in the application."
-    ],
-    "correctIndex": 1
-   },
-   "explanation": "ANSWER: Choice (B) is the correct answer. MPEP § 2001.01, and 37 C.F.R. § 1.56(c).\nMPEP § 2001.01 states that “the duty applies only to individuals, not to organizations...the duty\nof disclosure would not apply to a corporation or institution as such.” (A) is incorrect because the\nduty of disclosure applies to each inventor named in the application. 37 C.F.R. § 1.56(c)(1). (C)\nand (D) are each incorrect because the duty of disclosure applies to an each attorney or agent\nwho prepares or prosecutes the application. 37 C.F.R. § 1.56(c)(2). (E) is incorrect because, in\nthe case of a person who is not a named inventor or an attorney or agent but who prepares or\nprosecutes the application, the duty of disclosure applies to each such person who is\nsubstantively involved in the preparation or prosecution of the application and who is associated\nwith the inventor, with the assignee or with anyone to whom there is an obligation to assign the\napplication. 37 C.F.R. § 1.56(c)(3).",
-   "sourceRef": "USPTO Registration Exam 2002-10 PM Q5",
-   "tags": [
-    "2002-10",
-    "patent-bar",
-    "pm",
-    "uspto-exam"
-   ]
-  },
-  {
-   "prompt": "A complete continuation application by the same inventors as those named in the prior application may be filed under 35 USC 111(a) using the procedures of 37 CFR 1.53(b) by providing, in accordance with the USPTO rules and the procedures set forth in the MPEP:",
-   "content": {
-    "kind": "mcq",
-    "options": [
-     "A copy of the prior application, including a copy of the signed declaration in the prior application, as amended.",
-     "A new and proper specification (including one or more claims), any necessary drawings, a copy of the signed declaration as filed in the prior application (the new specification, claim(s), and drawings do not contain any subject matter that would have been new matter in the prior application), and all required fees.",
-     "A new specification and drawings and a newly executed declaration. The new specification and drawings may contain any subject matter that would have been new matter in the prior application.",
-     "A new specification and drawings, and all required fees.",
-     "(A), (B), (C) and (D)."
-    ],
-    "correctIndex": 1
-   },
-   "explanation": "ANSWER: (B) is the most correct answer. See 37 CFR §§ 1.51(b), 1.53(b), and 1.63(d)(1)(iv);\nMPEP § 201.06(c), under the heading “Specification and Drawings,” and MPEP § 602.05(a).\n(A) is incorrect. As indicated by MPEP § 201.06(c), a continuation application may be filed\nunder 35 U.S.C. § 111(a) by providing a copy of the prior application, including a copy of the\nsigned declaration in the prior application, as filed. (C) is incorrect. As indicated by MPEP\n\n§ 201.06(c), a continuation application may be filed under 35 U.S.C. § 111(a) by providing a\nnew specification and drawings and a newly executed declaration provided the new specification\nand drawings do not contain any subject matter that would have been new matter in the prior\napplication. (D) is incorrect. The oath or declaration is needed to name the same inventor in the\ncontinuation application. 37 CFR § 1.53(b); MPEP § 201.06(c). (E) is incorrect because (A),\n(C) and (D) are incorrect.",
-   "sourceRef": "USPTO Registration Exam 2003-04 PM Q8",
-   "tags": [
-    "2003-04",
-    "patent-bar",
-    "pm",
-    "uspto-exam"
-   ]
-  },
-  {
-   "prompt": "A registered practitioner files a nonprovisional utility application in 2000. In 2002, the practitioner files a continuation-in-part application and claims benefit of the filing date of the 2000 application for the 2002 application. Thereafter, the practitioner amends the 2002 application to include claims that were not present in either the originally filed 2000 application or the originally filed 2002 application. The primary examiner properly concludes that the added claims are not supported by the original disclosure in either application. Which of the following is in accord with the patent laws, rules and procedures as related in the MPEP?",
-   "content": {
-    "kind": "mcq",
-    "options": [
-     "The added claims are rejected for lack of written description under 35 USC 112, first paragraph.",
-     "The added claims are rejected as new matter under 35 USC 132.",
-     "The added claims are denied benefit of the filing date of the 2000 application.",
-     "(A) and (B).",
-     "(A) and (C)."
-    ],
-    "correctIndex": 4
-   },
-   "explanation": "ANSWER: (E) is the most correct answer. Both (A) and (C) are correct. MPEP\n§ 2163.01, under the heading “Support For The Claimed Subject Matter In The Disclosure,”\nstates that “[I|f the examiner concludes that the claimed subject matter is not supported\n[described] in an application as filed, this would result in a rejection of the claim on the ground\nof a lack of written description under 35 U.S.C. 112, first paragraph, or denial of the benefit of\nfiling date of a previously filed application.” (B) is incorrect. MPEP § 2163.01 states that\nunsupported claims “should not be rejected or objected to on the ground of new matter. As\nframed by the court in Jn re Rasmussen, 650 F.2d 1212, 211 USPQ 323 (CCPA 1981), the\nconcept of new matter is properly employed as a basis for objection to amendments to the\nabstract, specification or drawings attempting to add new disclosure to that originally presented.”\n(D) is incorrect because (B) is incorrect.",
-   "sourceRef": "USPTO Registration Exam 2003-10 PM Q25",
-   "tags": [
-    "2003-10",
-    "patent-bar",
-    "pm",
-    "uspto-exam"
-   ]
-  },
-  {
-   "prompt": "A claim in the application as filed is definite which initially refers to \"the lever,\" or \"said lever\" when the claim contains no earlier recitation or limitation to a lever, and it is unclear as to what element the limitation is referencing.",
-   "content": {
-    "kind": "mcq",
-    "options": [
-     "True",
-     "False"
-    ],
-    "correctIndex": 1
-   },
-   "explanation": "ANSWER: (B), false. A claim term which lacks antecedent basis is not necessarily indefinite.\nIn this example, however, the use of the definite article leaves it unclear as to which element the\nclaim is referring to, therefore, the claim is indefinite under 35 U.S.C. § 112, second paragraph:\nMPEP 2173.05(e).",
-   "sourceRef": "USPTO Registration Exam 1997-08 PM QI-14",
-   "tags": [
-    "1997-08",
-    "patent-bar",
-    "pm",
-    "uspto-exam"
-   ]
-  },
-  {
-   "prompt": "The claims of an application limit a scanning device as having a specific angular view. A patent issues. One year after the patent issued, the patentee filed a reissue application with all required papers. As filed, the claims in the reissue application are amended to remove the limitations directed to the specific angular view. Which of the following is correct?",
-   "content": {
-    "kind": "mcq",
-    "options": [
-     "The patentee may not broaden his claims through reissue by removing the limitations directed to the specific angular view.",
-     "Since the patentee is removing a limitation, the claim is being narrowed.",
-     "The patent may not be modified after issuance.",
-     "The patentee may broaden claims through reissue by removing the limitation directed to the specific angular view.",
-     "The Patent and Trademark Office may not allow broader claims during reissue."
-    ],
-    "correctIndex": 3
-   },
-   "explanation": "ANSWER: _(D) is correct because 35 U.S.C. § 251 permits the broadening of\nclaims if sought within two years from the grant of the original patent. (A) is not correct\nbecause 35 U.S.C. § 251 permits the broadening of claims within two years from the\ngrant of the original patent. (B) is not correct because removing a limitation broadens a\nclaim which may be sought under 35 U.S.C. § 251 within two years from the grant of the\noriginal patent. (C) is not correct because 35 U.S.C. § 251 permits seeking reissuance of\na patent. (E) is not correct because 35 U.S.C. § 251 permits the PTO to issue broader\nclaims if they were sought within two years from the grant of the original patent, and are\nsupported by a proper oath or declaration under 37 CFR § 1.75.",
-   "sourceRef": "USPTO Registration Exam 1998-08 PM Q18",
-   "tags": [
-    "1998-08",
-    "patent-bar",
-    "pm",
-    "uspto-exam"
-   ]
-  },
-  {
-   "prompt": "Which of the following statements correctly sets forth the manner in which Inventor Ann, a U.S. citizen, may file documents regarding her international patent application with the United States Receiving Office?",
-   "content": {
-    "kind": "mcq",
-    "options": [
-     "Where the document is the PCT international application and Ann needs to receive an April 1, 1999, filing date, Ann should file her PCT international application via first class mail with the United States Post Office and include a Certificate of Mailing dated April 1, 1999.",
-     "Where the document is a Demand for international preliminary examination, two weeks before the deadline, Ann should file her Demand by facsimile transmission with a dated Certificate of Transmission.",
-     "Where the document is the PCT international application and Ann needs to receive an April 12, 1999, filing date, Ann should file a copy of her international application via facsimile transmission with a Certificate of Transmission dated April 12, 1999.",
-     "Where the documents are substituted drawing sheets due on April 15, 1999, Ann should file her substitute drawing sheets via facsimile on April 15, 1999.",
-     "All of the above."
-    ],
-    "correctIndex": 1
-   },
-   "explanation": "ANSWER: (B)is the correct answer. MPEP §§ 1805; 1834.01. (A),(C), (D)\nand (E) are incorrect. MPEP § 1805. PCT intemational applications and papers relating to\nthe applications are specifically excluded from the Certificate of Mailing or Transmission\nprocedures of 37 CFR § 1.8. Also, facsimile may not be used to file applications or\ndrawings for PCT applications. MPEP § 1805.",
-   "sourceRef": "USPTO Registration Exam 1999-04 PM Q24",
-   "tags": [
-    "1999-04",
-    "patent-bar",
-    "pm",
-    "uspto-exam"
-   ]
-  },
-  {
-   "prompt": "In which of the following situations, considered independently of each other, is the original, new, or amended claim supported in the application as filed?",
-   "content": {
-    "kind": "mcq",
-    "options": [
-     "An amendment to the specification changing the definition of \"holder\" from \"is a hook\" to \"is a hook, clasp, crimp, or tong\" and no amendment is made of the claim, which uses the term \"holder.\" The amendment is filed one month after the application was filed. There was no previous supporting disclosure in the specification of the holder being a clasp, crimp, or tong.",
-     "An amendment to the specification and claims changing the definition of \"holder\" from \"is a hook\" to \"is a hook, clasp, crimp, or tong.\" The amendment is filed one month after the application was filed. There was no previous supporting disclosure in the specification of the holder being a clasp, crimp, or tong.",
-     "Original claim 1 in the application refers to \"a holder,\" and original claim 2 depends from and refers to claim 1 stating, \"said holder is a hook, clasp, crimp, or tong.\" There is no disclosure in the specification preceding the claims in the application as filed for the holder to be a clasp, crimp, or tong.",
-     "An amendment is filed presenting a claim to an electrical insulating device, copied from a patent for the purpose of provoking an interference. The claim refers to \"nonconductive plastic holder.\" The application as filed contains a broad generic disclosure describing electrical insulating devices. The holder is described in the specification of the application as \"conducting electricity.\" There is no disclosure in the specification of the holder being \"nonconductive.\"",
-     "All of the above."
-    ],
-    "correctIndex": 2
-   },
-   "explanation": "ANSWER (C). MPEP § 2163.03, item I. Original claims constitute their own description.\nIn re Koller, 613 F.2d 819, 204 USPQ 702 (CCPA 1980). (A) and (B) are incorrect. As stated\nin MPEP § 2163.03, item I, “An amendment to the specification (e.g., a change in the definition\nof a term used both in the specification and claim) may indirectly affect a claim even though no\nactual amendment is made to the claim.” There is no supporting disclosure in the original\ndescription of the invention for the holder to a clasp, crimp, or tong. (D) is incorrect. MPEP §\n2163.03, item IV. A broad generic disclosure is not necessarily a sufficient written description\nof a specific embodiment, especially where the broad generic disclosure conflicts with the\nremainder of the disclosure. Fields v. Conover, 443 F.2d 1386, 170 USPQ 276 (CCPA 1970).\n(E) is not correct because (C) is correct.",
-   "sourceRef": "USPTO Registration Exam 1999-11 AM Q8",
-   "tags": [
-    "1999-11",
-    "am",
-    "patent-bar",
-    "uspto-exam"
-   ]
-  },
-  {
-   "prompt": "Which of the following statements is not true?",
-   "content": {
-    "kind": "mcq",
-    "options": [
-     "The failure to perfect a claim to foreign priority benefit prior to issuance of the patent may be cured by filing a reissue application.",
-     "The failure to both express a desire to obtain the benefits of foreign priority and perfect a claim to foreign priority benefit prior to issuance of a parent patent may be cured by filing a Certificate of Correction request provided the requirements of 35 U.S.C. § 119(a)-(d) are satisfied in a continuation application.",
-     "The failure to perfect a claim to foreign priority benefit prior to issuance of a patent on a continuation application may be cured by filing a Certificate of Correction request provided the requirements of 35 U.S.C. § 119(a)-(d) are satisfied in the parent application prior to issuance, and the requirements of 35 U.S.C. § 120 and 37 C.F.R. § 1.55 are satisfied.",
-     "No renewal of previously made claims for foreign priority under 35 U.S.C. § 119 or continuation status of an application under 35 U.S.C. § 120 is necessary during reexamination.",
-     "A sole or joint applicant may rely on two or more different foreign applications and may be entitled to the filing date of one of them with respect to certain claims and to another with respect to other claims."
-    ],
-    "correctIndex": 1
-   },
-   "explanation": "ANSWER: (B). There must be a previously expressed desire by the applicant to receive\nbenefits under a claim of priority before a Certificate of Correction request will be granted.\nWhile a continuation application can rely on a previously expressed desire to receive benefits\nunder a claim of priority in a parent case, a parent case has no prior application to look to.\nMPEP § 201.16. (A) is incorrect because it is a true statement. See Brenner v. State of Israel,\n158 USPQ 584 (D.C. Cir. 1968). (C) and (D) are true statements. Hence, they are incorrect\nanswers. In re Van Esdonk, 187 USPQ 671 (Comm’r Pat. 1975). MPEP § 201.16 and 2258,\nrespectively. (E) is a true statement, and therefore, is a wrong answer. MPEP § 201.15 (last\nparagraph).",
-   "sourceRef": "USPTO Registration Exam 2000-10 PM Q32",
-   "tags": [
-    "2000-10",
-    "patent-bar",
-    "pm",
-    "uspto-exam"
-   ]
-  },
-  {
-   "prompt": "In connection with the utility of an invention described in a patent application, which of the following conforms to proper USPTO practice and procedure?",
-   "content": {
-    "kind": "mcq",
-    "options": [
-     "A deficiency under 35 U.S.C. § 101 also creates a deficiency under 35 U.S.C. § 112, first paragraph.",
-     "To overcome a rejection under 35 U.S.C. § 101, it must be shown that the claimed device is capable of achieving a useful result on all occasions and under all conditions.",
-     "A claimed invention is properly rejected under 35 U.S.C. § 101 as lacking utility if the particular embodiment disclosed in the patent lacks perfection or performs crudely.",
-     "To overcome a rejection under 35 U.S.C. § 101, it is essential to show that the claimed invention accomplishes all its intended functions.",
-     "A claimed invention lacks utility if it is not commercially successful."
-    ],
-    "correctIndex": 0
-   },
-   "explanation": "ANSWER: The most correct answer is (A). As stated in MPEP § 2107.01 (IV). A\ndeficiency under 35 U.S.C. § 101 also creates a deficiency under 35 U.S.C. § 112, first\nparagraph. See In re Brana, 51 F.3d 1560, 34 USPQ2d 1436 (Fed. Cir. 1995); In re Jolles, 628\nF.2d 1322, 1326 n.10, 206 USPQ 885, 889 n.11 (CCPA 1980); In re Fouche, 439 F.2d 1237,\n1243, 169 USPQ 429, 434 (CCPA 1971) (“If such compositions are in fact useless, appellant’s\nspecification cannot have taught how to use them.”). (B) is not correct. MPEP § 2107 (II), and\nsee Brooktree Corp. v. Advanced Micro Devices, Inc., 977 F.2d 1555, 1571, 24 USPQ2d 1401,\n1412 (Fed. Cir. 1992); and E.I. du Pont De Nemours and Co. v. Berkley and Co., 620 F.2d 1247,\n1260 n.17, 205 USPQ 1, 10 n.17 (8th Cir. 1980). (C), (D) and (E) are not correct. MPEP § 2107\n(II), and see E.J. du Pont De Nemours and Co. v. Berkley and Co., 620 F.2d 1247, 1260 n.17,\n205 USPQ 1, 10 n.17 (8th Cir. 1980).",
-   "sourceRef": "USPTO Registration Exam 2001-10 AM Q6",
-   "tags": [
-    "2001-10",
-    "am",
-    "patent-bar",
-    "uspto-exam"
-   ]
-  },
-  {
-   "prompt": "Which of the following is or are a factor that will be considered in disapproving a preliminary amendment in an application filed November 10, 2000?",
-   "content": {
-    "kind": "mcq",
-    "options": [
-     "The nature of any changes to the claims or specification that would result from entry of the preliminary amendment.",
-     "The state of preparation of a first Office action as of the date of receipt of the preliminary amendment by the Office.",
-     "The state of preparation of a first Office action as of the certificate of mailing date under 37 CFR 1.8, of the preliminary amendment.",
-     "All of the above.",
-     "(A) and (B)."
-    ],
-    "correctIndex": 4
-   },
-   "explanation": "ANSWER: (E) is the correct answer. 37 C.F.R. § 1.115(b)(1). As stated in 65 FR at 54636,\nmiddle and right columns, “Factors that will be considered in disapproving a preliminary\namendment include: the state of preparation of a first Office action as of the date of receipt (§ April 17, 2002 Examination Afternoon Session Model Answers\n\n1.6, which does not include § 1.8 certificate of mailing dates) of the preliminary amendment by\nthe Office...” Thus, choices (C) and (D) are incorrect.",
-   "sourceRef": "USPTO Registration Exam 2002-04 PM Q13",
-   "tags": [
-    "2002-04",
-    "patent-bar",
-    "pm",
-    "uspto-exam"
-   ]
-  }
- ]
+  "seshatExportVersion": 1,
+  "name": "Patent Bar Practice Questions A",
+  "description": "45 multiple-choice questions sampled from 1997-2003 USPTO registration exams, with the official model-answer explanations (pre-AIA law: check current MPEP).",
+  "tags": ["patent-bar", "uspto-exam", "mcq"],
+  "cards": [
+    {
+      "prompt": "Applicant filed a patent application in the PTO on January 30, 1997. The application was based on an application for an inventors' certificate filed in country X on January 31, 1996. The laws of country X permit applicants to apply, at their discretion, either for a patent or for an inventors' certificate, and country X is a signatory of the Stockholm Revision of the Paris Convention. In the first Office action, the examiner rejected applicant's claims as anticipated by a reference with an effective date of November 6, 1996. To overcome the rejection applicant is required to:",
+      "content": {
+        "kind": "mcq",
+        "options": [
+          "File a copy of the foreign application for inventor's certificate together with an English translation of the papers.",
+          "File a copy of the foreign application for inventor's certificate showing the date of the application.",
+          "File a claim for a right of priority based upon the foreign application for inventor's certificate together with an English translation of the papers.",
+          "File a claim for a right of priority based upon the foreign application for inventor's certificate along with a certified copy of the foreign application, and an English translation of the papers.",
+          "The rejection cannot be overcome because the right of priority must be based upon an application for patent in a foreign country, rather than an application for an inventors' certificate."
+        ],
+        "correctIndex": 3
+      },
+      "explanation": "ANSWER: (D). The provisions of 35 U.S.C. § 119(d) are satisfied by (D). (A) Is wrong\nbecause there is no claim for priority under 35 U.S.C. § 119(b). (A), (B), and (C) are wrong\nbecause they do not provide for a certified copy of the foreign application. 35 U.S.C. § 119(b).\n(E) is wrong because patent applicants may base their claim for benefit of foreign prionty on\neither a foreign patent application or an inventor's certificate where they have discretion to file for\neither type of protection. 35 U.S.C. § 119(d).",
+      "sourceRef": "USPTO Registration Exam 1997-08 AM Q42",
+      "tags": ["1997-08", "am", "patent-bar", "uspto-exam"]
+    },
+    {
+      "prompt": "Which of the following is not a requirement of 35 U.S.C. § 102(d) to bar the granting of a patent in this country?",
+      "content": {
+        "kind": "mcq",
+        "options": [
+          "The foreign application must have been filed more than 12 months before the effective filing of the application in the United States.",
+          "The foreign application must have been filed by the same applicant as in the United States or by his or her legal representatives or assigns.",
+          "The foreign patent or inventor's certificate must be actually granted before the U.S. filing date.",
+          "The foreign patent or inventor's certificate must have been published prior to the date of the application for patent in the United States.",
+          "The same invention must be involved."
+        ],
+        "correctIndex": 3
+      },
+      "explanation": "ANSWER: (D) is the most correct answer. 35 U.S.C. § 102(d) and MPEP §\n2135 expressly list (A), (B), (C), and (E) as the four conditions which, if all are present,\nestablish a bar against the granting of a patent in this country. The foreign patent or\ninventor’s certificate described in (D) need not be published to establish a 35 U.S.C. §\n\n102(d) bar. MPEP 2135.\n\na)\nsO",
+      "sourceRef": "USPTO Registration Exam 1998-08 AM Q50",
+      "tags": ["1998-08", "am", "patent-bar", "uspto-exam"]
+    },
+    {
+      "prompt": "Petitions under 37 CFR § 1.48 are generally decided by the primary examiner except:",
+      "content": {
+        "kind": "mcq",
+        "options": [
+          "When the application is involved in an interference.",
+          "When the application is a national stage application filed under 35 U.S.C. § 371.",
+          "When accompanied by a petition under 37 CFR § 1.183 requesting waiver of a requirement under 37 CFR § 1.48(a) or (c), e.g., waiver of the statement of lack of deceptive intent by an inventor to be added or deleted, or waiver of the reexecution of the declaration by all of the inventors.",
+          "When a second conversion under 37 CFR § 1.48(a) is attempted.",
+          "All of the above."
+        ],
+        "correctIndex": 4
+      },
+      "explanation": "ANSWER:  (E&) All of the above. See MPEP § 201.03 (pp. 200-3 - 200-4) As set\nforth in MPEP § 201.03, (A) is decided by the Board of Patent Appeals and Interferences;\n(B) is decided in the PCT Legal Office; (C) is decided in the Office of Petitions; and (D) is\ndecided by the Group Director.",
+      "sourceRef": "USPTO Registration Exam 1999-04 AM Q41",
+      "tags": ["1999-04", "am", "patent-bar", "uspto-exam"]
+    },
+    {
+      "prompt": "X invented a laminate which is most broadly disclosed in a patent application as containing a transparent protective layer and a light-sensitive layer, without an intermediate layer. The prior art included a laminate containing a transparent protective layer and a light-sensitive layer held together by an intermediate adhesive layer. Which of the following claims would overcome a 35 USC § 102 rejection based on the prior art?",
+      "content": {
+        "kind": "mcq",
+        "options": [
+          "1. A laminate comprising a transparent protective layer and a light-sensitive layer.",
+          "1. A laminate comprising a transparent protective layer and a light-sensitive layer which is in continuous and direct contact with the transparent protective layer.",
+          "1. A laminate comprising a transparent protective layer and a light-sensitive layer, but not including an adhesive layer.",
+          "(A) and (B).",
+          "(B) and (C)."
+        ],
+        "correctIndex": 4
+      },
+      "explanation": "ANSWER: (E) is correct because (B) and (C) are correct. (A) does not overcome the prior\nart because the broad “comprising” language permits the laminate to have additional layers, such\nas an intermediate adhesive layer. MPEP § 2111.03. (B) overcomes a § 102 rejection on the\nbasis of the prior art by reciting that the transparent protective layer and the light-sensitive layer\nare in actual contact therewith, eliminating the possibility of an intermediate adhesive layer.\n(C) also avoids the prior art by using a negative limitation to particularly point out and distinctly\nclaim that X does not claim any laminate including an adhesive layer. MPEP § 2173.05(i).",
+      "sourceRef": "USPTO Registration Exam 1999-11 PM Q26",
+      "tags": ["1999-11", "patent-bar", "pm", "uspto-exam"]
+    },
+    {
+      "prompt": "You obtained a patent for inventor Jones. The patent, although disclosing a use for her invention, and the best mode contemplated by Jones at the time the application was filed for making and using her invention, through error and without deceptive intent, failed to describe an embodiment of her invention. The embodiment has become a commercial success. Eighteen months after the patent issued, you filed a reissue application adding a claim and new, necessary supporting disclosure directed to the omitted embodiment, together with Jones' declaration explaining the error, and other required papers. In accordance with proper PTO practice and procedure:",
+      "content": {
+        "kind": "mcq",
+        "options": [
+          "The claim is subject to a new matter rejection under 35 U.S.C. § 132.",
+          "The specification is subject to rejection under 35 U.S.C. § 101 for failure to disclose the best mode for achieving commercial success.",
+          "The claim is subject to a rejection under 35 U.S.C. § 251 and a rejection under 35 U.S.C. § 112, first paragraph.",
+          "The claim is allowable.",
+          "(B) and (D)."
+        ],
+        "correctIndex": 2
+      },
+      "explanation": "ANSWER: (C). MPEP § 1411.02. (A) is incorrect because a rejection for new matter in a\n\nreissue application must be made under 35 U.S.C. § 251, and not 35 U.S.C. § 132. (B) is\nincorrect because patent complied with 35 U.S.C. § 101 inasmuch as the patent disclosed a use\n\n10 April 12, 2000 Examination Afternoon Session Model Answers\n\nfor the invention, and Jones is not required by the Patent Statute to disclose the best mode for\nachieving commercial success. (D) is incorrect because the embodiment was not disclosed in the\noriginal patent. (E) is incorrect because (B) and (D) are incorrect.",
+      "sourceRef": "USPTO Registration Exam 2000-04 PM Q45",
+      "tags": ["2000-04", "patent-bar", "pm", "uspto-exam"]
+    },
+    {
+      "prompt": "Jack, a registered patent agent, received a final rejection of all of the claims in an application directed to an article of manufacture. Jack is about to file a timely Notice of Appeal to the Board of Patent Appeals and Interferences. Before filing his notice of appeal, Jack would like to tie up some loose ends by amendment. Which of the following reply (replies) may he file without triggering the requirements of 37 C.F.R. § 1.116(b)?",
+      "content": {
+        "kind": "mcq",
+        "options": [
+          "A reply that presents his argument in a more defensible light and adds additional claims.",
+          "A reply amending the claims into process claims.",
+          "A reply amending all of the independent claims, accompanied by a declaration from the inventor.",
+          "A reply complying with a requirement of form expressly set forth in the previous Office action.",
+          "(A) and (D)."
+        ],
+        "correctIndex": 3
+      },
+      "explanation": "ANSWER: (D). 37 C.F.R. § 1.116; MPEP § 714.13, Entry Not Matter of Right [p. 700-\n118]. The reply in (D) is directed to a reply permitted to be made under 37 C.F.R. § 1.116(a).\n(A), (B), and (C) are directed to the merits of the application, and are not in accord with 37\nC.F.R. § 1.116(a).",
+      "sourceRef": "USPTO Registration Exam 2000-10 AM Q14",
+      "tags": ["2000-10", "am", "patent-bar", "uspto-exam"]
+    },
+    {
+      "prompt": "Which of the following is not a USPTO recommendation or requirement?",
+      "content": {
+        "kind": "mcq",
+        "options": [
+          "Every application should contain no more than three dependent claims.",
+          "Claims should be arranged in order of scope so that the first claim presented is the least restrictive.",
+          "Product and process claims should be separately grouped.",
+          "A claim which depends from a dependent claim should not be separated from that dependent claim by any claim which does not also depend from the dependent claim.",
+          "Each claim should start with a capital letter and end with a period."
+        ],
+        "correctIndex": 0
+      },
+      "explanation": "ANSWER: (A) is the most correct answer. The USPTO does not require or recommend a\nminimum or maximum number of dependent claims. 37 C.F.R. § 1.75(c). (B) is a USPTO\nrecommendation. See MPEP 608.01(m) (“Claims should preferably be arranged in order of\nscope so that the first claim presented is the least restrictive.’”). (C) is a USPTO recommendation.\nSee MPEP 608.01(m) (“Similarly, product and process claims should be separately grouped.”).\n(D) is a PTO recommendation. See MPEP 608.01(n), part IV. (E) is a USPTO requirement.\nSee MPEP 608.01(m) (“Each claim begins with a capital letter and ends with a period.”).",
+      "sourceRef": "USPTO Registration Exam 2001-04 PM Q21",
+      "tags": ["2001-04", "patent-bar", "pm", "uspto-exam"]
+    },
+    {
+      "prompt": "Able conceived the invention claimed in a patent application. In conceiving the invention, Able used and adopted ideas and materials known in the art and invented by others. Ben, Able's employee, reduced the invention to practice at Able's request and totally pursuant to Able's suggestions. Being unable to afford a patent practitioner's fees to prepare and prosecute the application, Able convinced John to pay for the practitioner's services in return for an interest in the invention. John did nothing more than provide the funds for the practitioner. Which of the following is in accordance with proper USPTO practice or procedure?",
+      "content": {
+        "kind": "mcq",
+        "options": [
+          "Able need not be the one to reduce the invention to practice so long as the reduction to practice occurred on his or her behalf. Able can be properly named as inventor in the application.",
+          "To be named an inventor, it is not necessary for John to have contributed to the conception of the invention. Ben, not Able, can be named as inventor in the application.",
+          "In conceiving the invention, Able may not consider and adopt ideas and materials derived from any sources, such as ideas of previous inventors. Able cannot be properly named as inventor in the application.",
+          "John and Able may be properly named as joint inventors of the invention in the application.",
+          "John, Ben, and Able may be properly named as joint inventors of the invention in the application."
+        ],
+        "correctIndex": 0
+      },
+      "explanation": "ANSWER: The most correct answer is (A). MPEP § 2137.01 (The Inventor Is Not\nRequired To Reduce The Invention To Practice) citing In re DeBaun, 214 USPQ 933, 936\n(CCPA 1982). (B) is not correct. MPEP §2137.01 (An Inventor Must Contribute To The\nConception Of The Invention) citing, Fiers v. Revel, 25 USPQ2d 1601, 1604 - 05 (Fed. Cir.\n1993); and In re Hardee, 223 USPQ 1122, 1123 (Dep. Asst. Comm'r Pat. 1984). (C) is not\ncorrect. MPEP § 2137.01 (As Long As The Inventor Maintains Intellectual Domination Over\nMaking The Invention, Ideas, Suggestions, And Materials May Be Adopted From Others) citing\nMorse v. Porter, 155 USPQ 280, 283 (Bd. Pat. Inter. 1965); and New England Braiding Co., Inc.\nv. A.W. Chesterton Co., 23 USPQ2d 1622, 1626 (Fed. Cir. 1992). (D) and (E) are not correct.\n35 U.S.C. § 116; MPEP § 2137.01 (Requirements For Joint Inventorship).",
+      "sourceRef": "USPTO Registration Exam 2001-10 PM Q2",
+      "tags": ["2001-10", "patent-bar", "pm", "uspto-exam"]
+    },
+    {
+      "prompt": "An application is transmitted to the USPTO on January 12, 2001, without an oath or declaration by any of the inventors. Which of the following, prior to the filing of an oath or declaration, may properly change the address to which the Office will direct all notices, official letters, and other communications relating to the application?",
+      "content": {
+        "kind": "mcq",
+        "options": [
+          "A registered practitioner that filed the application.",
+          "Any registered practitioner named in the transmittal papers accompanying the original application, if the application was filed by a registered practitioner.",
+          "One inventor who solely filed the application, where two inventors are named in the transmittal papers accompanying the original application.",
+          "(A), (B), and (C).",
+          "(A) and (B)."
+        ],
+        "correctIndex": 3
+      },
+      "explanation": "ANSWER: (D) is the correct answer. 37 C.F.R. § 1.33(a)(1) (effective November 7, 2000)\n“Changes To Implement the Patent Business Goals; Final Rule,’ 65 FR 54604, 54617\n(September 8, 2000). 37 C.F.R. § 1.33(a)(1), in pertinent part provides, “Thus, the inventor(s),\nany registered practitioner named in the transmittal papers accompanying the original\napplication, or a party that will be the assignee who filed the application, may change the\ncorrespondence address in that application under this paragraph.” As stated in 65 FR at 54617,\nmiddle column, “The parties who may so change the correspondence address would include only\nthe one inventor filing the application, even if more than one inventor was identified on the\napplication transmittal letter.” Since (A), (B), and (C) are provided for in 37 C.F.R. § 1.33(a)(1),\n(D) is correct. (E) is incorrect because (D) is correct.",
+      "sourceRef": "USPTO Registration Exam 2002-04 PM Q45",
+      "tags": ["2002-04", "patent-bar", "pm", "uspto-exam"]
+    },
+    {
+      "prompt": "Which of the following is not in accordance with the recommended format for a claim set forth in the provisions of the MPEP?",
+      "content": {
+        "kind": "mcq",
+        "options": [
+          "Where a claim sets forth a plurality of elements or steps, each element or step of the claim should be separated by a line indentation.",
+          "A claim may include plural indentations to further segregate subcombinations or related steps.",
+          "The claim or claims must commence on a separate sheet after the detailed description of the invention.",
+          "Each claim should end with a period.",
+          "A claim should always begin with \"A\", \"An\" or \"In.\""
+        ],
+        "correctIndex": 4
+      },
+      "explanation": "ANSWER: (E). There is no such requirement. As to (C), see 37 C.F.R. § 1.52(b). As to\n(A) through (D) see MPEP § 608.01(m). 37 C.F.R. § 1.75(4).",
+      "sourceRef": "USPTO Registration Exam 2002-10 AM Q3",
+      "tags": ["2002-10", "am", "patent-bar", "uspto-exam"]
+    },
+    {
+      "prompt": "In accordance with the USPTO rules and the procedures of the MPEP, which of the following is true?",
+      "content": {
+        "kind": "mcq",
+        "options": [
+          "If after the filing of a reissue application no errors in the original patent are found, a reissue patent will be granted on the reissue application noting no change, and the original patent will be returned to the applicant.",
+          "In order to add matter not previously found in the patent, a continuation-in-part reissue application must be filed.",
+          "In a reissue application, additions and deletions to the original patent should be made by underlining and bracketing, respectively, except for changes made in prior Certificates of Correction and disclaimer(s) of claims under 37 CFR 1.321(a).",
+          "A dependent claim may be broadened in a reissue application only in the first two years of the enforceable life of the patent.",
+          "(A), (B), and (C)."
+        ],
+        "correctIndex": 2
+      },
+      "explanation": "ANSWER: (C) is the most correct answer. See MPEP § 1411.01. As to (A) see MPEP\n§ 1402. A reissue patent is not granted. As to (B), new matter may not be entered in a reissue.\nAs to (D) see MPEP § 1412.03. Since (A), and (B) are incorrect, (E) is incorrect.",
+      "sourceRef": "USPTO Registration Exam 2003-04 PM Q6",
+      "tags": ["2003-04", "patent-bar", "pm", "uspto-exam"]
+    },
+    {
+      "prompt": "A U.S. patent was granted on May 8, 2001 to five inventors. The five inventors assigned their entire patent rights to Q Company. Q Company needs to file a reissue application to broaden the claims of the patent. The registered practitioner preparing the application has been unable to locate any of the five inventors to sign the reissue oath or declaration. Today is May 8, 2003. Which of the following should the practitioner do to enable the applicant to broaden the patent claims in accordance with the patent laws, rules and procedures as related in the MPEP?",
+      "content": {
+        "kind": "mcq",
+        "options": [
+          "Wait to file the reissue application until the first day the signatures of all five inventors can be obtained. At that time, pay the filing fee and file a petition seeking May 8, 2003 as the filing date. File with the petition a showing of the unavailability of all inventors until the filing of the application.",
+          "Wait to file the reissue application until the signatures of at least three inventors can be obtained. At that time, file a petition seeking May 7, 2003 as the filing date accompanied by a showing of the unavailability of all inventors on May 8th. Payment of the filing fees may be postponed until receipt of a decision on the petition.",
+          "File the reissue application on May 8, 2003, presenting only the claims in the patent, and include a listing of inventors, but not pay the filing fee at the time of filing.",
+          "Wait to file the reissue application until the signature of one of the inventors has been obtained since at least one inventor is needed to show a lack of deceptive intent on the part of the applicants.",
+          "File the complete reissue application complying with 37 CFR 1.173(a) and 1.53(b) with an unexecuted reissue declaration listing the names of all the inventors with at least one broadening claim on May 8, 2003."
+        ],
+        "correctIndex": 4
+      },
+      "explanation": "ANSWER: (E) is the most correct answer. 35 U.S.C. § 251; 37 CFR § 1.53(f); MPEP\n§ 1403. Filing a broadened reissue application with at least one broadening claim prior to the\nexpiration of the two-year time period set in the statute satisfies the diligence provisions of 35\nU.S.C. § 251. The executed reissue oath/declaration and the filing fee may be filed at a later\ntime. According to MPEP § 1403, a reissue application can be granted a filing date without an\noath or declaration, or without the filing fee being present. See 37 CFR § 1.53(f). The reissue\napplicant will be given a period of time to provide the missing parts and to pay the surcharge\nunder 37 CFR § 1.16(e). See MPEP § 1410.01. (A), (B) and (D) are clearly incorrect since the\ninventors and assignee would be barred from a broadening reissue if filed after the two year\nperiod set in the statute. (C) is incorrect since the reissue application was filed without at least\none broadening claim prior to the expiration of the two-year time period set in 35 U.S.C. § 251.",
+      "sourceRef": "USPTO Registration Exam 2003-10 PM Q11",
+      "tags": ["2003-10", "patent-bar", "pm", "uspto-exam"]
+    },
+    {
+      "prompt": "You draft a patent application disclosing and describing an electrical chronometer containing a resistor having a resistance of 10-90 ohms, preferably 40 ohms. You draft the following independent claim:\n1. An electrical chronometer comprising a resistor with a resistance of 10-90 ohms.\nWhich of the following would not be a proper dependent claim if presented as an original claim in the application when the application is filed in the PTO?",
+      "content": {
+        "kind": "mcq",
+        "options": [
+          "2. The electrical chronometer of Claim 1 wherein the resistor has a resistance of 40 ohms.",
+          "2. An electrical chronometer as in Claim 1 wherein the resistor has a resistance of 40-90 ohms.",
+          "2. An electrical chronometer as in Claim 1 wherein the resistor has a resistance of about 10 - 90 ohms.",
+          "2. The electrical chronometer of Claim 1 wherein the resistor has a resistance of between 50 and 90 ohms.",
+          "(C) and (D)."
+        ],
+        "correctIndex": 2
+      },
+      "explanation": "ANSWER: (C). 37 CFR §1.75(c). A dependent claim must further limit the claim from which\nit depends. The claim in (C) is an improper dependent claim because it includes resistance outside\nthe scope of Claim |. In the claim in (C), the term “about” allows for a range slightly above 90\nohms or below 10 ohms, which is “outside” the scope of Claim 1. See MPEP 2144.05. (A), (B),\nand (D) are proper dependent claims because they further limit Claim | by limiting the resistance\nto amounts within the scope of Claim 1. (E) is incorrect because (D) is a proper dependent claim.",
+      "sourceRef": "USPTO Registration Exam 1997-08 PM QII-6",
+      "tags": ["1997-08", "patent-bar", "pm", "uspto-exam"]
+    },
+    {
+      "prompt": "Given the following information regarding three claims: (i) A claim refers to \"said lever\" where the claim contains no earlier recitation or limitation of a lever; (ii) A claim initially refers to \"an aluminum lever,\" and \"a plastic lever\" and thereafter refers to \"said lever\"; and (iii) A claim initially refers to a \"controlled stream of fluid\" and thereafter refers to \"the controlled fluid,\" which of the following statements is correct?",
+      "content": {
+        "kind": "mcq",
+        "options": [
+          "The claims in (i), (ii) and (iii) are all definite.",
+          "The claims in (i) and (ii) are definite; and the claim in (iii) is indefinite.",
+          "The claim in (i) is indefinite; and the claims in (ii) and (iii) are definite.",
+          "The claims (i) and (ii) are indefinite; and the claim in (iii) is definite.",
+          "The claims in (i), (ii) and (iii) are all indefinite."
+        ],
+        "correctIndex": 3
+      },
+      "explanation": "ANSWER: (D) MPEP § 2173.05(e). Claim (i) is indefinite because the claim does\nnot contain the earlier limitation of a “lever” referenced by “said lever”; claim (ii) is\nindefinite because it is unclear which of the two previously recited levers “said lever” is\nreferring to; claim (iii) is definite since it is clear that the “the controlled fluid” is\nreferring back to the earlier claimed “controlled stream of fluid”. Ex parte Porter, 25\nUSPQ2d 1144, 1145 (Bd. Pat. App. & Int. 1992).",
+      "sourceRef": "USPTO Registration Exam 1998-08 PM Q35",
+      "tags": ["1998-08", "patent-bar", "pm", "uspto-exam"]
+    },
+    {
+      "prompt": "Which of the following statements, if any, are true regarding representations to the Patent and Trademark Office under 37 CFR § 10.18 and 37 CFR § 1.4(d)(2)?\n(I) Practitioners are required to advise clients regarding the sanctions which apply for knowingly and willfully concealing a material fact in papers submitted to the PTO.\n(II) Every paper filed by a practitioner must be personally signed by the practitioner, except those required to be signed by the applicant or party.\n(III) Applicant has a duty to conduct a prior art search as a prerequisite to filing an application for patent.",
+      "content": {
+        "kind": "mcq",
+        "options": ["I and II.", "I only.", "II only.", "I, II, and III.", "III only."],
+        "correctIndex": 2
+      },
+      "explanation": "ANSWER: (C)is the correct answer. 37 CFR § 10.18(a), MPEP § 402 (pp.\n400-3). Statement (1) is not true because practitioners are not required to advise their\nclients regarding sanctions. MPEP § 410 (pp.400-30) Statement (IIT) is also not true. As AM Answers Page 4\n\nset forth in MPEP § 410, “an applicant has no duty to conduct a prior art search as a\nprerequisite to filing an application for patent.” Accordingly, answers (A), (B), (D) and (E)\nare incorrect.",
+      "sourceRef": "USPTO Registration Exam 1999-04 AM Q19",
+      "tags": ["1999-04", "am", "patent-bar", "uspto-exam"]
+    },
+    {
+      "prompt": "You draft a patent application disclosing and describing an electrical chronometer containing a resistor having a resistance of 20-90 ohms, preferably 40 ohms. You draft the following independent claim:\n\n1. An electrical chronometer comprising a resistor with a resistance of 20-90 ohms.\n\nWhich of the following would not be a proper dependent claim if presented as an original claim in the application when the application is filed in the PTO?",
+      "content": {
+        "kind": "mcq",
+        "options": [
+          "2. The electrical chronometer of Claim 1 wherein the resistor has a resistance of 40 ohms.",
+          "2. An electrical chronometer as in Claim 1 wherein the resistor has a resistance of 40-90 ohms.",
+          "2. An electrical chronometer as in Claim 1 wherein the resistor has a resistance of about 20 - 90 ohms.",
+          "2. The electrical chronometer of Claim 1 wherein the resistor has a resistance of between 50 and 90 ohms.",
+          "(C) and (D)."
+        ],
+        "correctIndex": 2
+      },
+      "explanation": "ANSWER: (C). 37 CFR § 1.75(c). A dependent claim must further limit the claim from\nwhich it depends. The claim in (C) is an improper dependent claim because it includes\nresistance outside the scope of Claim 1. In the claim in (C), the term “about” allows for a range\nslightly above 90 ohms or below 10 ohms, which is “outside” the scope of Claim 1. See MPEP §\n2144.05. (A), (B), and (D) are proper dependent claims because they further limit Claim | by\nlimiting the resistance to amounts within the scope of Claim 1. (E) is incorrect because (D) is a\nproper dependent claim.",
+      "sourceRef": "USPTO Registration Exam 1999-11 AM Q15",
+      "tags": ["1999-11", "am", "patent-bar", "uspto-exam"]
+    },
+    {
+      "prompt": "Which of the following statements correctly describes current PTO practice and procedure?",
+      "content": {
+        "kind": "mcq",
+        "options": [
+          "A joint application by inventors Sam and Will, and a joint application by Will and Sam are different inventive entities.",
+          "A joint application by inventors Sam and Will, and a sole application by Sam are different inventive entities.",
+          "Where a patent is granted to Will, and later Will and Sam file a joint application, the presence of Will, a common inventor in the patent, prevents a determination that the patent entity is to \"another\" within the meaning of 35 U.S.C. § 102(e).",
+          "The fact that an application has named a different inventive entity (Sam and Will) than a patent reference (Will) makes the patent prior art, even where one of the inventors is common to both.",
+          "(A) and (C)."
+        ],
+        "correctIndex": 1
+      },
+      "explanation": "ANSWER: (B) is the most correct answer. Ex parte Utschig, 156 USPQ 156, 157 (Bd.\nApp. 1966); MPEP § 2137.01 (section styled “Inventorship Is Generally ‘To Another’? Where\nThere Are Different Inventive Entities With At Least One Inventor In Common’). (A) is\nincorrect. The same inventive entity obtains, regardless of the order in which the inventors are\nlisted, inasmuch as the same inventors are recited. (C) is incorrect. The presence of a common\ninventor in a reference patent and application does not preclude determination that the inventive\nentity in the reference is to another within the meaning of 35 U.S.C. § 102(e). Ex parte\nDesOrmeaus, 25 USPQ2d 2040 (Bd. Pat. App. & Inter. 1992). (D) is incorrect. Merely the fact\nthat the inventive entities differ does not cause the patent to necessarily be prior art. Applied\nMaterials Inc. v. Gemini Research Corp., 835 F.2d 279, 281, 15 USPQ2d 1816, 1818 (Fed. Cir.\n1988); MPEP § 2137.01. (E) is incorrect because (A) and (C) are incorrect.",
+      "sourceRef": "USPTO Registration Exam 2000-04 PM Q38",
+      "tags": ["2000-04", "patent-bar", "pm", "uspto-exam"]
+    },
+    {
+      "prompt": "Which of the following is true?",
+      "content": {
+        "kind": "mcq",
+        "options": [
+          "There is no practical difference between an objection and rejection of a claim.",
+          "If the form of the claim (as distinguished from its substance) is improper, an objection is made.",
+          "An objection, if maintained by an examiner, is subject to review by the Board of Patent Appeals and Interferences.",
+          "An example of a proper objection is where the claims are refused because they fail to comply with the second paragraph of 35 U.S.C. § 112.",
+          "An example of a proper rejection is a rejection of a dependent claim for being dependent on a claim that has been rejected only over prior art, where the dependent claim is otherwise allowable."
+        ],
+        "correctIndex": 1
+      },
+      "explanation": "ANSWER: (B). MPEP § 706.01. (A) and (C) are incorrect. As stated by MPEP § 706.01,\n“The practical difference between a rejection and an objection is that a rejection, involving the\nmerits of the claim, is subject to review by the Board of Patent Appeals and Interferences, while\nan objection, if persisted, may be reviewed only by way of petition to the Commissioner.” (D) is\nincorrect. MPEP § 706.03(d). (E) is incorrect. As stated in MPEP § 706.01, “If the form of the\nclaim (as distinguished from its substance) is improper, an “objection” is made. An example of a\nmatter of form as to which objection is made is dependency of a claim on a rejected claim, if the\ndependent claim is otherwise allowable. See MPEP § § 608.01(n).”",
+      "sourceRef": "USPTO Registration Exam 2000-10 AM Q28",
+      "tags": ["2000-10", "am", "patent-bar", "uspto-exam"]
+    },
+    {
+      "prompt": "You filed a patent application for a client containing a claim to a composition consisting of X, water and plaster. In the claim X is defined as follows: \"X is a member selected from the group consisting of elements A, B, and C.\" The claim is properly rejected under 35 U.S.C. § 102(b) as being anticipated by a reference describing the composition made of A, water and plaster. The rejection may be properly overcome by:",
+      "content": {
+        "kind": "mcq",
+        "options": [
+          "Amending the claim by canceling elements B and C because the reference is concerned only with element A.",
+          "Amending the claim by canceling element A from the Markush group.",
+          "Arguing that the reference is not relevant because it lacks elements B and C.",
+          "Amending the claim by changing \"consisting of\" to \"consisting essentially of.\"",
+          "Amending the claim to redefine X as \"being a member selected from the group comprising elements A, B, and C.\""
+        ],
+        "correctIndex": 1
+      },
+      "explanation": "ANSWER: (B) is the most correct answer. 35 U.S.C. § 102(b); MPEP § 2173.05(h).\nDeletion of the anticipated element from the claim leaves an invention that is no longer\nanticipated by the reference. (A), (D), and (E) are incorrect despite the amendments because the\nclaim remains anticipated since the claim is still directed to the invention described in the\nreference wherein X is element A. For example, in (D) and (E), element A would still be a\nmember of the group and the claim would still be anticipated by the prior art. (C) is incorrect\nbecause the argument does not change the fact that the claim remains anticipated by the same\ninvention described in the reference wherein X is element A. (E) is incorrect because\n“comprising” cannot be used in a proper Markush group.",
+      "sourceRef": "USPTO Registration Exam 2001-04 PM Q40",
+      "tags": ["2001-04", "patent-bar", "pm", "uspto-exam"]
+    },
+    {
+      "prompt": "The following facts pertain to questions 33 and 34 (see the fact pattern under question 33: Applicant Sonny's patent application claiming an apparatus for converting solar energy into electrical energy, rejected under 35 U.S.C. § 102(d) over a Foreign patent). Which of the following claims, if fully disclosed and presented in Sonny's U.S. application, provides a proper basis for an objection under 37 CFR 1.75(c)?",
+      "content": {
+        "kind": "mcq",
+        "options": [
+          "Claim 2. An apparatus as in claim 1, further comprising a voltage regulator coupled to the electrical generator.",
+          "Claim 2. An apparatus as in claim 1, wherein the metallic parabolic reflector is aluminum.",
+          "Claim 2. An apparatus as in claim 1, wherein the steam engine has two cylinders.",
+          "Claim 2. An apparatus as in claim 1, wherein the parabolic reflector is either metallic or plastic.",
+          "Claim 2. An apparatus as in claim 1, further comprising an electronic pressure sensor coupled to the steam engine."
+        ],
+        "correctIndex": 3
+      },
+      "explanation": "ANSWER: (D) is the correct answer because it is a dependent claim which fails to further\nlimit the subject matter of claim 1, as it seeks to remove the limitation that the parabolic reflector\nis metallic. MPEP §608.01(n)CD) and 37 CFR 1.75(c). (A), (B), (C), and (E) are incorrect\nbecause each of these claims further limits claim 1 and therefore do not support on objection\nunder § 1.75(c).",
+      "sourceRef": "USPTO Registration Exam 2001-10 PM Q34",
+      "tags": ["2001-10", "patent-bar", "pm", "uspto-exam"]
+    },
+    {
+      "prompt": "In accordance with proper USPTO practice and procedure, a submission for a request for continued examination does not include:",
+      "content": {
+        "kind": "mcq",
+        "options": [
+          "An appeal brief or reply brief (or related papers).",
+          "New arguments in support of patentability.",
+          "New evidence in support of patentability.",
+          "An amendment of the drawings.",
+          "An amendment of the claims."
+        ],
+        "correctIndex": 0
+      },
+      "explanation": "ANSWER: (A) is the most correct answer. 37 C.F.R. § 1.114(d), last sentence. (B), (C),\n(D), and (E) are not the most correct answers. Each is recognized as being a “submission”\nwithin the scope of 37 C.F.R. § 1.114(c).",
+      "sourceRef": "USPTO Registration Exam 2002-04 PM Q28",
+      "tags": ["2002-04", "patent-bar", "pm", "uspto-exam"]
+    },
+    {
+      "prompt": "Which of the following is not in accordance with the provisions of 35 USC 115 (Oath of applicant)?",
+      "content": {
+        "kind": "mcq",
+        "options": [
+          "The applicant shall make oath (or declaration) that he believes himself to be the original and first inventor of the process, machine, manufacture, or composition of matter, or improvement thereof, for which he solicits a patent.",
+          "In the oath or declaration, the applicant must state of what country he is a citizen.",
+          "An oath may be made before any person within the United States authorized by law to administer oaths.",
+          "An oath executed in a foreign country must be properly authenticated.",
+          "A declaration which accompanies a patent application must state on the document a warning that willful false statements and the like are punishable by fine or imprisonment or both under 18 USC 1001, and the declaration must be notarized."
+        ],
+        "correctIndex": 4
+      },
+      "explanation": "ANSWER: (E) is the best answer. The declaration need not be notarized. See 37 C.F.R.\n§ 1.63(a). A declaration may be used in lieu of an oath. 37 C.F.R. § 1.68, MPEP 602. As to (A)\nthrough (C) see 35 U.S.C.§ 115. As to (D), see MPEP § 602.04 at p. 600-34, left column.",
+      "sourceRef": "USPTO Registration Exam 2002-10 PM Q28",
+      "tags": ["2002-10", "patent-bar", "pm", "uspto-exam"]
+    },
+    {
+      "prompt": "Which of the following is not in accordance with the provisions of the USPTO rules and the procedures set forth in the MPEP?",
+      "content": {
+        "kind": "mcq",
+        "options": [
+          "Where joint inventors are named, the examiner should not inquire of the patent applicant concerning the inventors and the invention dates for the subject matter of the various claims until it becomes necessary to do so in order to properly examine the application.",
+          "Under 35 USC 119(a), the foreign priority benefit may be claimed to any foreign application that names a U.S. inventor as long as the U.S. named inventor was the inventor of the foreign application invention and 35 USC 119(a)-(d) requirements are met.",
+          "Where two or more foreign applications are combined in a single U.S. application, to take advantage of the changes to 35 USC 103 or 35 USC 116, the U.S. application may claim benefit under 35 USC 119(a) to each of the foreign applications provided all the requirements of 35 USC 119(a)-(d) are met.",
+          "One of the conditions for benefit under 35 USC 119(a) is that the foreign application must be for the same or a nonobvious improvement of the invention described in the United States application.",
+          "If a foreign application for which priority is being claimed under 35 USC 119 is filed in a country which does not afford similar privileges in the case of applications filed in the United States or to citizens of the United States and the foreign country is not a WTO member country, any claim for the foreign priority thereto by a U.S. application will not be effective."
+        ],
+        "correctIndex": 3
+      },
+      "explanation": "ANSWER: (D) is the best answer as the inventions must be the same in the foreign and U.S.\napplications. 35 U.S.C. § 119(a). As to (A) through (C), see MPEP § 605.07. As to (E), see 35\nU.S.C. § 119, which provides that the previously filed application must have been filed in a\ncountry that affords similar privileges in the case of applications filed in the United States or to\ncitizens of the United States or ina WTO member country.",
+      "sourceRef": "USPTO Registration Exam 2003-04 AM Q9",
+      "tags": ["2003-04", "am", "patent-bar", "uspto-exam"]
+    },
+    {
+      "prompt": "Which of the following phrases taken from an independent claim has an antecedent basis problem according to the patent laws, rules and the procedures as related in the MPEP?",
+      "content": {
+        "kind": "mcq",
+        "options": [
+          "\"the center of the circle having ...,\" where the claim does not previously recite that the circle has a \"center.\"",
+          "\"the major diameter of the ellipse being ...,\" where the claim does not previously recite that the ellipse has a \"major diameter.\"",
+          "\"the outer surface of the sphere being ...,\" where the claim does not previously recite that the sphere has an \"outer surface.\"",
+          "\"the lever of the machine being located ...,\" where the claim does not previously recite a \"lever.\"",
+          "\"the area of the rectangle being ...,\" where the claim does not previously define an \"area.\""
+        ],
+        "correctIndex": 3
+      },
+      "explanation": "ANSWER: (D) is correct. \"Inherent components of elements recited have antecedent\nbasis in the recitation of the components themselves.\" MPEP § 2173.05(e). The MPEP provides\nan analogous example: \"the limitation 'the outer surface of said sphere' would not require an\nantecedent recitation that the sphere have an outer surface.\" Jd. (A), (B), (C), and (E) are all\nexamples of things which inherently have the claimed characteristic and do not have an\nantecedent basis problem; that is, all circles have a center, all ellipses have a major diameter, all\nspheres have an outer surface, and all rectangles have an area, and these characteristics need not\nbe provided with express antecedent basis. The ellipse example is from Bose Corp. v. JBL Inc.,\n61 USPQ2d 1216, 1219 (Fed. Cir. 2001) (\"There can be no dispute that mathematically an\ninherent characteristic of an ellipse is a major diameter.\"). The lever recited in (D) is not an\ninherent component of a machine and therefore requires express antecedent basis.",
+      "sourceRef": "USPTO Registration Exam 2003-10 AM Q33",
+      "tags": ["2003-10", "am", "patent-bar", "uspto-exam"]
+    },
+    {
+      "prompt": "A claim in the application as filed is definite which initially refers to \"an aluminum lever,\" and \"a plastic lever\" and thereafter refers to \"said lever\".",
+      "content": {
+        "kind": "mcq",
+        "options": ["True", "False"],
+        "correctIndex": 1
+      },
+      "explanation": "ANSWER: (B), false. The term “said lever” lacks antecedent basis according to 35 U.S.C. §\n112, second paragraph, because it is indefinite whether the term refers to the aluminum lever or\nthe plastic lever. See MPEP 2173 .05(e).",
+      "sourceRef": "USPTO Registration Exam 1997-08 PM QI-11",
+      "tags": ["1997-08", "patent-bar", "pm", "uspto-exam"]
+    },
+    {
+      "prompt": "You have filed a patent application on behalf of your client, Smith, on October 7, 1997. On January 5, 1998, the examiner sent a second Office action containing a final rejection. You mailed a reply to the PTO on July 10, 1998. Yesterday, you received an Ex parte Quayle action. Today, August 26, 1998, Smith brought to your attention prior art that he discovered last week. After reviewing the prior art, you determine that the prior art should be submitted to the PTO for consideration by the examiner. What will need to be filed with an Information Disclosure Statement (IDS) in order for the IDS to be considered by the examiner?",
+      "content": {
+        "kind": "mcq",
+        "options": [
+          "No additional papers are required to be filed with the IDS.",
+          "A petition requesting consideration of the IDS, and the appropriate fee.",
+          "A certificate of mailing, and the appropriate fee.",
+          "A certification that no information contained in the Information Disclosure Statement (IDS) was cited in a communication from a foreign patent office in a counterpart foreign application or, to the knowledge of the person signing the certification after making reasonable inquiry, was known to any individual designated in § 1.56(c) more than three months prior to the filing of the statement, a petition requesting consideration of the IDS and the appropriate fee.",
+          "A certification and statement stating that no item of information contained in the IDS was known to any individual designated in § 1.56(c) more than three months prior to the filing of the statement and a petition requesting consideration of the IDS."
+        ],
+        "correctIndex": 3
+      },
+      "explanation": "ANSWER: (D) is the most correct answer. 37 CFR § 1.97(d). MPEP § 609,\npage 600-97. When an Ex parte Quayle action is issued after a final rejection which has\nnot been withdrawn, the Information Disclosure Statement must follow the rules pursuant\nto 37 CFR § 1.97(d) which requires that the IDS be filed with a certification as defined in\n37 CFR § 1.97(e), a petition requesting consideration of the IDS, and the appropriate\npetition fee. Answer (A) is not correct because the IDS must be filed within three months\nof the filing date of the application or before the First Office action is issued for there to\nbe no additional steps required and the fact pattern states that there has already been a\nsecond Office action Final Rejection issued. Answers (B), (C), and (E) are not correct\nbecause they do not fully comply with 37 CFR § 1.97(d).",
+      "sourceRef": "USPTO Registration Exam 1998-08 AM Q15",
+      "tags": ["1998-08", "am", "patent-bar", "uspto-exam"]
+    },
+    {
+      "prompt": "Bert and Ernie are joint inventors of a widget that automatically adjusts television volume levels during commercial breaks. A nonprovisional patent application was filed on October 15, 1998, and a first Office action on the merits was mailed on January 11, 1999. A reply was filed on January 28, 1999, and a Notice of Allowance was mailed on February 26, 1999. The Issue Fee has not been paid. What is the last day that Bert and Ernie can file a properly drafted Information Disclosure Statement (IDS) without having to pay a fee and to ensure that the information submitted in the IDS would be considered by the examiner?",
+      "content": {
+        "kind": "mcq",
+        "options": [
+          "Friday, January 15, 1999, via facsimile with a Certificate of Transmission",
+          "Sunday, January 10, 1999, via facsimile with a Certificate of Transmission",
+          "Thursday, January 28, 1999, via first class mail with no Certificate of Transmission",
+          "Friday, January 15, 1999, via \"Express Mail Post Office to Post Office\" with a Certificate of Express Mailing",
+          "Thursday, February 25, 1999, via facsimile with a Certificate of Transmission but without a statement that each item cited in the IDS was cited in a communication from a foreign patent office in a counterpart foreign application not more than three months prior to submission of the IDS"
+        ],
+        "correctIndex": 0
+      },
+      "explanation": "ANSWER: (A) is the correct answer. 37 CFR § |.97(b); MPEP § 609(B)\\(1) [p.\n600-106]. (B)is not correct because it is not the latest date. (C) and (D) are incorrect. An\nInformation Disclosure Statement (IDS) will be considered to have been filed on the day it\nwas received in the Office, or on an earlier date of mailing if accompanied by a properly\nexecuted certificate of mailing or facsimile transmission. (C) did not include a certificate\nof mailing and (D) used an incorrect “Express Mail” service designation. 37 CFR § 1.10.\n(E) is incorrect because filing the LDS before the Notice of Allowance will require Bert and\nEmie¢ to pay the fee set forth in 37 CFR § 1.17(p) given that Bert and Emie did not file a\nstatement under 37 CFR § 1.97(e). An IDS filed pursuant to 37 CFR § 1.97(c) will be\nconsidered provided that the IDS is accompanied by either (1) a statement as specified in\n37 CFR § 1.97(e); or (2) the fee set forth in 37 CFR § 1.17(p). MPEP § 609(B(2)) [pp.\n600-106-107). AM Answers Page 5",
+      "sourceRef": "USPTO Registration Exam 1999-04 AM Q25",
+      "tags": ["1999-04", "am", "patent-bar", "uspto-exam"]
+    },
+    {
+      "prompt": "On September 14, 1999, you filed a patent application in the PTO on behalf of a large corporation together with an authorization to charge the filing fee to your deposit account. However, due to unforeseen circumstances, measures were not taken to cover the $760.00 filing fee against the amount in your deposit account, which has a $10.00 balance. Consequently, you received a notice from the PTO dated September 28, 1999, that your deposit account has insufficient funds. Which of the following steps avoids abandonment of the recently filed application?",
+      "content": {
+        "kind": "mcq",
+        "options": [
+          "On September 29, 1999, replenish the deposit account with $800.00 in cash to encompass the filing fee, and the $10 fee required by 37 CFR § 1.21(b)(1).",
+          "On September 29, 1999, open a new deposit account with $800.00 in cash, and file in the PTO correspondence authorizing the fee for filing the application be charged against your new deposit account.",
+          "On September 29, 1999, file in the PTO a check for $760.00 for the filing fee, and file in the PTO correspondence authorizing the balance of the filing fee be paid from your deposit account.",
+          "On September 29, 1999, replenish the deposit account with $890.00 in cash to cover the filing fee, and a surcharge fee for late payment of the filing fee, and file in the PTO correspondence authorizing the fees for the application be charged to your deposit account.",
+          "(B) or (C)."
+        ],
+        "correctIndex": 3
+      },
+      "explanation": "ANSWER: (D). 37 CFR § 1.16(a) and (e); and MPEP § 509.01, which states, “For\napplications filed after February 27, 1983, if there is an authorization to charge the filing fee to a\ndeposit account which is overdrawn or has insufficient funds, a surcharge (37 CFR § 1.16(e)) is\nrequired in addition to payment of the filing fee. Failure to timely pay the filing fee and\nsurcharge will result in abandonment of the application.”",
+      "sourceRef": "USPTO Registration Exam 1999-11 AM Q30",
+      "tags": ["1999-11", "am", "patent-bar", "uspto-exam"]
+    },
+    {
+      "prompt": "A claim limitation reads \"having 10 to 20 grams of iron, preferably 13-18 grams of iron.\" The specification preceding the claim supports not only the limitation, but also the broader amounts of iron. Which of the following statements is correct?",
+      "content": {
+        "kind": "mcq",
+        "options": [
+          "The limitation may be indefinite.",
+          "Since the limitation properly sets forth outer limits, it is definite.",
+          "As long as the limitation is supported in the written description, it is proper.",
+          "The limitation is definite since the limitation sets forth a preferred range.",
+          "The applicant, having set forth a limitation in the claim, i.e., a range of 10 to 20 grams, is precluded by the doctrine of equivalents from expanding the claim coverage beyond the 10 to 20 grams of iron."
+        ],
+        "correctIndex": 0
+      },
+      "explanation": "ANSWER: (A) is correct. MPEP § 2173.05, part (c) indicates that a preferred narrower\nrange set forth within a broader range may render the claim indefinite if the boundaries of the\nclaim are not discernable. (B), (C) and (D) are incorrect. MPEP § 2173.05(c), part (I) indicates\nthat reciting in a single claim both a broad range and a preferred narrower range within the broad\nrange may render the claim indefinite. (E) is incorrect. The doctrine of equivalents operates to\nexpand claim coverage beyond the literal scope of the claim language.",
+      "sourceRef": "USPTO Registration Exam 2000-04 PM Q33",
+      "tags": ["2000-04", "patent-bar", "pm", "uspto-exam"]
+    },
+    {
+      "prompt": "Which of the following is entitled to the benefit of a certificate of mailing under 37 CFR § 1.8?",
+      "content": {
+        "kind": "mcq",
+        "options": [
+          "Filing a request for continued examination under 37 CFR § 1.114.",
+          "Filing a request for a continued prosecution application under 37 CFR § 1.53(d).",
+          "Filing a reply under 37 CFR § 1.111 in a non-provisional patent application.",
+          "(A) and (C).",
+          "All of the above."
+        ],
+        "correctIndex": 3
+      },
+      "explanation": "ANSWER: (D) is the most correct answer. 37 CFR § 1.114 (effective August 16, 2000),\nsee, “Request for Continued Examination Practice and Changes to Provisional Application\nPractice; Final Rule,’ 65 FR 50092, 50096 (Aug. 16, 2000); and 37 CFR § 1.8. As stated in 65\nFR 50096, column 3, “(4) a request for continued examination under § 1.114 is entitled to the\nbenefit of a certificate of mailing under § 1.8 (cf. 1.8(a)(2)()(A))...” (A) is correct. The filing\nof a reply under 37 CFR § 1.111 in a national patent application is not a case enumerated in 37\nCFR § 1.8(a)(2). (C) is included in 37 CFR § 1.8(a)(1), and thus (D) is correct. (B) is incorrect.\n37 CFR § 1.8(a)(2)(i)(A). (E) is incorrect because (B) is incorrect.",
+      "sourceRef": "USPTO Registration Exam 2001-04 PM Q24",
+      "tags": ["2001-04", "patent-bar", "pm", "uspto-exam"]
+    },
+    {
+      "prompt": "Which of the following statements accords with proper USPTO practice and procedure?",
+      "content": {
+        "kind": "mcq",
+        "options": [
+          "A request for publication of a provisional application on a certain date will be treated as a request for publication as soon as possible.",
+          "If an applicant filed an application in a foreign country and the description of the invention in the foreign application is less extensive than the description of the invention in the application filed in the USPTO, the applicant may submit a redacted copy, eliminating the description not contained in the foreign application, for publication within 12 months after the filing date for which a benefit is sought under 35 U.S.C.",
+          "Early publication of a reissue application may be honored only if accompanied by a copy of the application in compliance with the Office electronic filing system requirements.",
+          "If an applicant filed an application in a foreign country and the description of the invention in the foreign application is more extensive than the description of the invention in the application filed in the USPTO, the applicant may submit a redacted copy, eliminating the description not contained in the foreign application, for publication within 14 months after the filing date for which a benefit is sought under 35 U.S.C.",
+          "Re-publication of a patent application is available where the Office makes a material mistake apparent from the records and the request for re-publication is filed within 3 months from the date of the patent application publication."
+        ],
+        "correctIndex": 1
+      },
+      "explanation": "ANSWER: (B) is correct because 37 CFR 1.217(a) permits such action within 16 months\nafter the filing date for which a benefit is sought under 35 U.S.C. §119(a), and 12 months is\nwithin 16 months. (A) and (C) are wrong because provisional and reissue applications are\nexcepted from the publication provisions of 37 CFR 1.211(a) by 37 CFR 1.211(b). (D) is wrong\nbecause the provisions for publication of a redacted application do not apply when the foreign\napplication is more extensive than the US application. (E) is wrong because 37 CFR 1.221(b)\nlimits the period for filing a request for re-publication under such circumstances to 2 months\nfrom the date of the patent application publication.",
+      "sourceRef": "USPTO Registration Exam 2001-10 AM Q45",
+      "tags": ["2001-10", "am", "patent-bar", "uspto-exam"]
+    },
+    {
+      "prompt": "An amendment filed in January 8, 2002, in an unassigned nonprovisional application seeks to cancel claims so that fewer than all of the currently named inventors are the actual inventors of the invention being claimed. The amendment includes a request to delete the names of the persons who are not inventors. In accordance with proper USPTO rules and procedure, the request may be signed by which of the following?",
+      "content": {
+        "kind": "mcq",
+        "options": [
+          "A registered practitioner not of record who acts in a representative capacity under 37 CFR 1.34(a).",
+          "All of the applicants (37 CFR 1.41(b)) for patent.",
+          "A registered practitioner of record appointed pursuant to 37 CFR 1.34(b).",
+          "(B) and (C).",
+          "(A), (B), and (C)."
+        ],
+        "correctIndex": 4
+      },
+      "explanation": "ANSWER: (E) is the correct answer. 37 C.F.R. § 1.48(b) (effective November 7, 2000);\n“Changes To Implement the Patent Business Goals; Final Rule,’ 65 FR 54604, 54619\n(September 8, 2000). As stated in 65 FR at 54619, middle column, “Sections 1.48(b) and (d) are\nrevised to indicate that a request to correct the inventorship thereunder must be signed by a party\nas set forth in § 1.33(b)...” (A), (B), and (C) are provided for in 37 C.F.R. § 1.33(b). Thus (E),\nthe most inclusive answer, is correct.\n\n13 April 17, 2002 Examination Morning Session Model Answers",
+      "sourceRef": "USPTO Registration Exam 2002-04 AM Q44",
+      "tags": ["2002-04", "am", "patent-bar", "uspto-exam"]
+    },
+    {
+      "prompt": "In accordance with the MPEP and USPTO rules and procedure, certain individuals owe a duty to the USPTO to disclose all information known to be material to patentability of the claim(s) pending in an application. Which of the following parties does not have the duty?",
+      "content": {
+        "kind": "mcq",
+        "options": [
+          "An inventor named in the application who relies on a patent attorney to prepare and prosecute the application.",
+          "A corporation to which an assignment of the entire interest in the application is on record at the USPTO.",
+          "An agent who prepares the application.",
+          "An attorney who prosecutes the application.",
+          "A person, who is not an inventor named in the application, who is substantively involved in the preparation and prosecution of the application, and who is associated with an inventor named in the application."
+        ],
+        "correctIndex": 1
+      },
+      "explanation": "ANSWER: Choice (B) is the correct answer. MPEP § 2001.01, and 37 C.F.R. § 1.56(c).\nMPEP § 2001.01 states that “the duty applies only to individuals, not to organizations...the duty\nof disclosure would not apply to a corporation or institution as such.” (A) is incorrect because the\nduty of disclosure applies to each inventor named in the application. 37 C.F.R. § 1.56(c)(1). (C)\nand (D) are each incorrect because the duty of disclosure applies to an each attorney or agent\nwho prepares or prosecutes the application. 37 C.F.R. § 1.56(c)(2). (E) is incorrect because, in\nthe case of a person who is not a named inventor or an attorney or agent but who prepares or\nprosecutes the application, the duty of disclosure applies to each such person who is\nsubstantively involved in the preparation or prosecution of the application and who is associated\nwith the inventor, with the assignee or with anyone to whom there is an obligation to assign the\napplication. 37 C.F.R. § 1.56(c)(3).",
+      "sourceRef": "USPTO Registration Exam 2002-10 PM Q5",
+      "tags": ["2002-10", "patent-bar", "pm", "uspto-exam"]
+    },
+    {
+      "prompt": "A complete continuation application by the same inventors as those named in the prior application may be filed under 35 USC 111(a) using the procedures of 37 CFR 1.53(b) by providing, in accordance with the USPTO rules and the procedures set forth in the MPEP:",
+      "content": {
+        "kind": "mcq",
+        "options": [
+          "A copy of the prior application, including a copy of the signed declaration in the prior application, as amended.",
+          "A new and proper specification (including one or more claims), any necessary drawings, a copy of the signed declaration as filed in the prior application (the new specification, claim(s), and drawings do not contain any subject matter that would have been new matter in the prior application), and all required fees.",
+          "A new specification and drawings and a newly executed declaration. The new specification and drawings may contain any subject matter that would have been new matter in the prior application.",
+          "A new specification and drawings, and all required fees.",
+          "(A), (B), (C) and (D)."
+        ],
+        "correctIndex": 1
+      },
+      "explanation": "ANSWER: (B) is the most correct answer. See 37 CFR §§ 1.51(b), 1.53(b), and 1.63(d)(1)(iv);\nMPEP § 201.06(c), under the heading “Specification and Drawings,” and MPEP § 602.05(a).\n(A) is incorrect. As indicated by MPEP § 201.06(c), a continuation application may be filed\nunder 35 U.S.C. § 111(a) by providing a copy of the prior application, including a copy of the\nsigned declaration in the prior application, as filed. (C) is incorrect. As indicated by MPEP\n\n§ 201.06(c), a continuation application may be filed under 35 U.S.C. § 111(a) by providing a\nnew specification and drawings and a newly executed declaration provided the new specification\nand drawings do not contain any subject matter that would have been new matter in the prior\napplication. (D) is incorrect. The oath or declaration is needed to name the same inventor in the\ncontinuation application. 37 CFR § 1.53(b); MPEP § 201.06(c). (E) is incorrect because (A),\n(C) and (D) are incorrect.",
+      "sourceRef": "USPTO Registration Exam 2003-04 PM Q8",
+      "tags": ["2003-04", "patent-bar", "pm", "uspto-exam"]
+    },
+    {
+      "prompt": "A registered practitioner files a nonprovisional utility application in 2000. In 2002, the practitioner files a continuation-in-part application and claims benefit of the filing date of the 2000 application for the 2002 application. Thereafter, the practitioner amends the 2002 application to include claims that were not present in either the originally filed 2000 application or the originally filed 2002 application. The primary examiner properly concludes that the added claims are not supported by the original disclosure in either application. Which of the following is in accord with the patent laws, rules and procedures as related in the MPEP?",
+      "content": {
+        "kind": "mcq",
+        "options": [
+          "The added claims are rejected for lack of written description under 35 USC 112, first paragraph.",
+          "The added claims are rejected as new matter under 35 USC 132.",
+          "The added claims are denied benefit of the filing date of the 2000 application.",
+          "(A) and (B).",
+          "(A) and (C)."
+        ],
+        "correctIndex": 4
+      },
+      "explanation": "ANSWER: (E) is the most correct answer. Both (A) and (C) are correct. MPEP\n§ 2163.01, under the heading “Support For The Claimed Subject Matter In The Disclosure,”\nstates that “[I|f the examiner concludes that the claimed subject matter is not supported\n[described] in an application as filed, this would result in a rejection of the claim on the ground\nof a lack of written description under 35 U.S.C. 112, first paragraph, or denial of the benefit of\nfiling date of a previously filed application.” (B) is incorrect. MPEP § 2163.01 states that\nunsupported claims “should not be rejected or objected to on the ground of new matter. As\nframed by the court in Jn re Rasmussen, 650 F.2d 1212, 211 USPQ 323 (CCPA 1981), the\nconcept of new matter is properly employed as a basis for objection to amendments to the\nabstract, specification or drawings attempting to add new disclosure to that originally presented.”\n(D) is incorrect because (B) is incorrect.",
+      "sourceRef": "USPTO Registration Exam 2003-10 PM Q25",
+      "tags": ["2003-10", "patent-bar", "pm", "uspto-exam"]
+    },
+    {
+      "prompt": "A claim in the application as filed is definite which initially refers to \"the lever,\" or \"said lever\" when the claim contains no earlier recitation or limitation to a lever, and it is unclear as to what element the limitation is referencing.",
+      "content": {
+        "kind": "mcq",
+        "options": ["True", "False"],
+        "correctIndex": 1
+      },
+      "explanation": "ANSWER: (B), false. A claim term which lacks antecedent basis is not necessarily indefinite.\nIn this example, however, the use of the definite article leaves it unclear as to which element the\nclaim is referring to, therefore, the claim is indefinite under 35 U.S.C. § 112, second paragraph:\nMPEP 2173.05(e).",
+      "sourceRef": "USPTO Registration Exam 1997-08 PM QI-14",
+      "tags": ["1997-08", "patent-bar", "pm", "uspto-exam"]
+    },
+    {
+      "prompt": "The claims of an application limit a scanning device as having a specific angular view. A patent issues. One year after the patent issued, the patentee filed a reissue application with all required papers. As filed, the claims in the reissue application are amended to remove the limitations directed to the specific angular view. Which of the following is correct?",
+      "content": {
+        "kind": "mcq",
+        "options": [
+          "The patentee may not broaden his claims through reissue by removing the limitations directed to the specific angular view.",
+          "Since the patentee is removing a limitation, the claim is being narrowed.",
+          "The patent may not be modified after issuance.",
+          "The patentee may broaden claims through reissue by removing the limitation directed to the specific angular view.",
+          "The Patent and Trademark Office may not allow broader claims during reissue."
+        ],
+        "correctIndex": 3
+      },
+      "explanation": "ANSWER: _(D) is correct because 35 U.S.C. § 251 permits the broadening of\nclaims if sought within two years from the grant of the original patent. (A) is not correct\nbecause 35 U.S.C. § 251 permits the broadening of claims within two years from the\ngrant of the original patent. (B) is not correct because removing a limitation broadens a\nclaim which may be sought under 35 U.S.C. § 251 within two years from the grant of the\noriginal patent. (C) is not correct because 35 U.S.C. § 251 permits seeking reissuance of\na patent. (E) is not correct because 35 U.S.C. § 251 permits the PTO to issue broader\nclaims if they were sought within two years from the grant of the original patent, and are\nsupported by a proper oath or declaration under 37 CFR § 1.75.",
+      "sourceRef": "USPTO Registration Exam 1998-08 PM Q18",
+      "tags": ["1998-08", "patent-bar", "pm", "uspto-exam"]
+    },
+    {
+      "prompt": "Which of the following statements correctly sets forth the manner in which Inventor Ann, a U.S. citizen, may file documents regarding her international patent application with the United States Receiving Office?",
+      "content": {
+        "kind": "mcq",
+        "options": [
+          "Where the document is the PCT international application and Ann needs to receive an April 1, 1999, filing date, Ann should file her PCT international application via first class mail with the United States Post Office and include a Certificate of Mailing dated April 1, 1999.",
+          "Where the document is a Demand for international preliminary examination, two weeks before the deadline, Ann should file her Demand by facsimile transmission with a dated Certificate of Transmission.",
+          "Where the document is the PCT international application and Ann needs to receive an April 12, 1999, filing date, Ann should file a copy of her international application via facsimile transmission with a Certificate of Transmission dated April 12, 1999.",
+          "Where the documents are substituted drawing sheets due on April 15, 1999, Ann should file her substitute drawing sheets via facsimile on April 15, 1999.",
+          "All of the above."
+        ],
+        "correctIndex": 1
+      },
+      "explanation": "ANSWER: (B)is the correct answer. MPEP §§ 1805; 1834.01. (A),(C), (D)\nand (E) are incorrect. MPEP § 1805. PCT intemational applications and papers relating to\nthe applications are specifically excluded from the Certificate of Mailing or Transmission\nprocedures of 37 CFR § 1.8. Also, facsimile may not be used to file applications or\ndrawings for PCT applications. MPEP § 1805.",
+      "sourceRef": "USPTO Registration Exam 1999-04 PM Q24",
+      "tags": ["1999-04", "patent-bar", "pm", "uspto-exam"]
+    },
+    {
+      "prompt": "In which of the following situations, considered independently of each other, is the original, new, or amended claim supported in the application as filed?",
+      "content": {
+        "kind": "mcq",
+        "options": [
+          "An amendment to the specification changing the definition of \"holder\" from \"is a hook\" to \"is a hook, clasp, crimp, or tong\" and no amendment is made of the claim, which uses the term \"holder.\" The amendment is filed one month after the application was filed. There was no previous supporting disclosure in the specification of the holder being a clasp, crimp, or tong.",
+          "An amendment to the specification and claims changing the definition of \"holder\" from \"is a hook\" to \"is a hook, clasp, crimp, or tong.\" The amendment is filed one month after the application was filed. There was no previous supporting disclosure in the specification of the holder being a clasp, crimp, or tong.",
+          "Original claim 1 in the application refers to \"a holder,\" and original claim 2 depends from and refers to claim 1 stating, \"said holder is a hook, clasp, crimp, or tong.\" There is no disclosure in the specification preceding the claims in the application as filed for the holder to be a clasp, crimp, or tong.",
+          "An amendment is filed presenting a claim to an electrical insulating device, copied from a patent for the purpose of provoking an interference. The claim refers to \"nonconductive plastic holder.\" The application as filed contains a broad generic disclosure describing electrical insulating devices. The holder is described in the specification of the application as \"conducting electricity.\" There is no disclosure in the specification of the holder being \"nonconductive.\"",
+          "All of the above."
+        ],
+        "correctIndex": 2
+      },
+      "explanation": "ANSWER (C). MPEP § 2163.03, item I. Original claims constitute their own description.\nIn re Koller, 613 F.2d 819, 204 USPQ 702 (CCPA 1980). (A) and (B) are incorrect. As stated\nin MPEP § 2163.03, item I, “An amendment to the specification (e.g., a change in the definition\nof a term used both in the specification and claim) may indirectly affect a claim even though no\nactual amendment is made to the claim.” There is no supporting disclosure in the original\ndescription of the invention for the holder to a clasp, crimp, or tong. (D) is incorrect. MPEP §\n2163.03, item IV. A broad generic disclosure is not necessarily a sufficient written description\nof a specific embodiment, especially where the broad generic disclosure conflicts with the\nremainder of the disclosure. Fields v. Conover, 443 F.2d 1386, 170 USPQ 276 (CCPA 1970).\n(E) is not correct because (C) is correct.",
+      "sourceRef": "USPTO Registration Exam 1999-11 AM Q8",
+      "tags": ["1999-11", "am", "patent-bar", "uspto-exam"]
+    },
+    {
+      "prompt": "Which of the following statements is not true?",
+      "content": {
+        "kind": "mcq",
+        "options": [
+          "The failure to perfect a claim to foreign priority benefit prior to issuance of the patent may be cured by filing a reissue application.",
+          "The failure to both express a desire to obtain the benefits of foreign priority and perfect a claim to foreign priority benefit prior to issuance of a parent patent may be cured by filing a Certificate of Correction request provided the requirements of 35 U.S.C. § 119(a)-(d) are satisfied in a continuation application.",
+          "The failure to perfect a claim to foreign priority benefit prior to issuance of a patent on a continuation application may be cured by filing a Certificate of Correction request provided the requirements of 35 U.S.C. § 119(a)-(d) are satisfied in the parent application prior to issuance, and the requirements of 35 U.S.C. § 120 and 37 C.F.R. § 1.55 are satisfied.",
+          "No renewal of previously made claims for foreign priority under 35 U.S.C. § 119 or continuation status of an application under 35 U.S.C. § 120 is necessary during reexamination.",
+          "A sole or joint applicant may rely on two or more different foreign applications and may be entitled to the filing date of one of them with respect to certain claims and to another with respect to other claims."
+        ],
+        "correctIndex": 1
+      },
+      "explanation": "ANSWER: (B). There must be a previously expressed desire by the applicant to receive\nbenefits under a claim of priority before a Certificate of Correction request will be granted.\nWhile a continuation application can rely on a previously expressed desire to receive benefits\nunder a claim of priority in a parent case, a parent case has no prior application to look to.\nMPEP § 201.16. (A) is incorrect because it is a true statement. See Brenner v. State of Israel,\n158 USPQ 584 (D.C. Cir. 1968). (C) and (D) are true statements. Hence, they are incorrect\nanswers. In re Van Esdonk, 187 USPQ 671 (Comm’r Pat. 1975). MPEP § 201.16 and 2258,\nrespectively. (E) is a true statement, and therefore, is a wrong answer. MPEP § 201.15 (last\nparagraph).",
+      "sourceRef": "USPTO Registration Exam 2000-10 PM Q32",
+      "tags": ["2000-10", "patent-bar", "pm", "uspto-exam"]
+    },
+    {
+      "prompt": "In connection with the utility of an invention described in a patent application, which of the following conforms to proper USPTO practice and procedure?",
+      "content": {
+        "kind": "mcq",
+        "options": [
+          "A deficiency under 35 U.S.C. § 101 also creates a deficiency under 35 U.S.C. § 112, first paragraph.",
+          "To overcome a rejection under 35 U.S.C. § 101, it must be shown that the claimed device is capable of achieving a useful result on all occasions and under all conditions.",
+          "A claimed invention is properly rejected under 35 U.S.C. § 101 as lacking utility if the particular embodiment disclosed in the patent lacks perfection or performs crudely.",
+          "To overcome a rejection under 35 U.S.C. § 101, it is essential to show that the claimed invention accomplishes all its intended functions.",
+          "A claimed invention lacks utility if it is not commercially successful."
+        ],
+        "correctIndex": 0
+      },
+      "explanation": "ANSWER: The most correct answer is (A). As stated in MPEP § 2107.01 (IV). A\ndeficiency under 35 U.S.C. § 101 also creates a deficiency under 35 U.S.C. § 112, first\nparagraph. See In re Brana, 51 F.3d 1560, 34 USPQ2d 1436 (Fed. Cir. 1995); In re Jolles, 628\nF.2d 1322, 1326 n.10, 206 USPQ 885, 889 n.11 (CCPA 1980); In re Fouche, 439 F.2d 1237,\n1243, 169 USPQ 429, 434 (CCPA 1971) (“If such compositions are in fact useless, appellant’s\nspecification cannot have taught how to use them.”). (B) is not correct. MPEP § 2107 (II), and\nsee Brooktree Corp. v. Advanced Micro Devices, Inc., 977 F.2d 1555, 1571, 24 USPQ2d 1401,\n1412 (Fed. Cir. 1992); and E.I. du Pont De Nemours and Co. v. Berkley and Co., 620 F.2d 1247,\n1260 n.17, 205 USPQ 1, 10 n.17 (8th Cir. 1980). (C), (D) and (E) are not correct. MPEP § 2107\n(II), and see E.J. du Pont De Nemours and Co. v. Berkley and Co., 620 F.2d 1247, 1260 n.17,\n205 USPQ 1, 10 n.17 (8th Cir. 1980).",
+      "sourceRef": "USPTO Registration Exam 2001-10 AM Q6",
+      "tags": ["2001-10", "am", "patent-bar", "uspto-exam"]
+    },
+    {
+      "prompt": "Which of the following is or are a factor that will be considered in disapproving a preliminary amendment in an application filed November 10, 2000?",
+      "content": {
+        "kind": "mcq",
+        "options": [
+          "The nature of any changes to the claims or specification that would result from entry of the preliminary amendment.",
+          "The state of preparation of a first Office action as of the date of receipt of the preliminary amendment by the Office.",
+          "The state of preparation of a first Office action as of the certificate of mailing date under 37 CFR 1.8, of the preliminary amendment.",
+          "All of the above.",
+          "(A) and (B)."
+        ],
+        "correctIndex": 4
+      },
+      "explanation": "ANSWER: (E) is the correct answer. 37 C.F.R. § 1.115(b)(1). As stated in 65 FR at 54636,\nmiddle and right columns, “Factors that will be considered in disapproving a preliminary\namendment include: the state of preparation of a first Office action as of the date of receipt (§ April 17, 2002 Examination Afternoon Session Model Answers\n\n1.6, which does not include § 1.8 certificate of mailing dates) of the preliminary amendment by\nthe Office...” Thus, choices (C) and (D) are incorrect.",
+      "sourceRef": "USPTO Registration Exam 2002-04 PM Q13",
+      "tags": ["2002-04", "patent-bar", "pm", "uspto-exam"]
+    }
+  ]
 }

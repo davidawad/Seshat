@@ -1,58 +1,58 @@
 {
- "patent-bar": {
-  "label": "Patent Bar",
-  "blurb": "USPTO registration exam practice questions, key terms and MPEP map."
- },
- "series-65": {
-  "label": "Series 65",
-  "blurb": "Investment adviser exam: regulation, ethics, investments and formulas."
- },
- "math": {
-  "label": "Math",
-  "blurb": "Calculus, linear algebra, probability and precalculus identities."
- },
- "number-theory": {
-  "label": "Number Theory",
-  "blurb": "Congruences, primes and the classical theorems."
- },
- "physics": {
-  "label": "Physics",
-  "blurb": "Mechanics, electromagnetism, thermodynamics and modern physics."
- },
- "biology": {
-  "label": "Biology",
-  "blurb": "Cells, genetics, evolution and ecology."
- },
- "pharmacology": {
-  "label": "Pharmacology",
-  "blurb": "Principles, drug classes and mechanisms (educational, not clinical advice)."
- },
- "anatomy": {
-  "label": "Anatomy",
-  "blurb": "Skeletal, muscular, cardiovascular, respiratory and nervous systems."
- },
- "chemistry": {
-  "label": "Chemistry",
-  "blurb": "The periodic table and core general-chemistry concepts."
- },
- "computer-science": {
-  "label": "Computer Science",
-  "blurb": "Algorithms, data structures, networking and operating systems."
- },
- "history": {
-  "label": "History",
-  "blurb": "American and world history key dates."
- },
- "economics-finance": {
-  "label": "Economics and Finance",
-  "blurb": "Micro/macro economics and corporate finance valuation."
- },
- "law-basics": {
-  "label": "Law Basics",
-  "blurb": "US constitutional law and intellectual property fundamentals."
- },
- "geography": {
-  "label": "Geography",
-  "blurb": "World capitals and physical geography records."
- }
+  "patent-bar": {
+    "label": "Patent Bar",
+    "blurb": "USPTO registration exam practice questions, key terms and MPEP map."
+  },
+  "series-65": {
+    "label": "Series 65",
+    "blurb": "Investment adviser exam: regulation, ethics, investments and formulas."
+  },
+  "math": {
+    "label": "Math",
+    "blurb": "Calculus, linear algebra, probability and precalculus identities."
+  },
+  "number-theory": {
+    "label": "Number Theory",
+    "blurb": "Congruences, primes and the classical theorems."
+  },
+  "physics": {
+    "label": "Physics",
+    "blurb": "Mechanics, electromagnetism, thermodynamics and modern physics."
+  },
+  "biology": {
+    "label": "Biology",
+    "blurb": "Cells, genetics, evolution and ecology."
+  },
+  "pharmacology": {
+    "label": "Pharmacology",
+    "blurb": "Principles, drug classes and mechanisms (educational, not clinical advice)."
+  },
+  "anatomy": {
+    "label": "Anatomy",
+    "blurb": "Skeletal, muscular, cardiovascular, respiratory and nervous systems."
+  },
+  "chemistry": {
+    "label": "Chemistry",
+    "blurb": "The periodic table and core general-chemistry concepts."
+  },
+  "computer-science": {
+    "label": "Computer Science",
+    "blurb": "Algorithms, data structures, networking and operating systems."
+  },
+  "history": {
+    "label": "History",
+    "blurb": "American and world history key dates."
+  },
+  "economics-finance": {
+    "label": "Economics and Finance",
+    "blurb": "Micro/macro economics and corporate finance valuation."
+  },
+  "law-basics": {
+    "label": "Law Basics",
+    "blurb": "US constitutional law and intellectual property fundamentals."
+  },
+  "geography": {
+    "label": "Geography",
+    "blurb": "World capitals and physical geography records."
+  }
 }

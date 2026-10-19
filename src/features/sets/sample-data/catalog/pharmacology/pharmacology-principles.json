@@ -1,414 +1,349 @@
 {
- "seshatExportVersion": 1,
- "name": "Pharmacology Principles",
- "description": "Pharmacokinetics, pharmacodynamics and drug-metabolism concepts (educational only, not clinical advice).",
- "tags": [
-  "pharmacology",
-  "principles"
- ],
- "cards": [
-  {
-   "prompt": "Pharmacokinetics (ADME)",
-   "content": {
-    "kind": "short-answer",
-    "answer": "Absorption, distribution, metabolism, excretion: what the body does to the drug.",
-    "acceptableAnswers": []
-   },
-   "explanation": null,
-   "sourceRef": "Katzung, Basic & Clinical Pharmacology (McGraw-Hill); educational use only, not clinical advice",
-   "tags": [
-    "pharmacology"
-   ]
-  },
-  {
-   "prompt": "Pharmacodynamics",
-   "content": {
-    "kind": "short-answer",
-    "answer": "What the drug does to the body: mechanism and effect.",
-    "acceptableAnswers": []
-   },
-   "explanation": null,
-   "sourceRef": "Katzung, Basic & Clinical Pharmacology (McGraw-Hill); educational use only, not clinical advice",
-   "tags": [
-    "pharmacology"
-   ]
-  },
-  {
-   "prompt": "Bioavailability (F)",
-   "content": {
-    "kind": "short-answer",
-    "answer": "The fraction of an administered dose reaching systemic circulation unchanged; 100% for IV.",
-    "acceptableAnswers": []
-   },
-   "explanation": null,
-   "sourceRef": "Katzung, Basic & Clinical Pharmacology (McGraw-Hill); educational use only, not clinical advice",
-   "tags": [
-    "pharmacology"
-   ]
-  },
-  {
-   "prompt": "First-pass effect",
-   "content": {
-    "kind": "short-answer",
-    "answer": "Hepatic metabolism of an oral drug before it reaches the systemic circulation.",
-    "acceptableAnswers": []
-   },
-   "explanation": null,
-   "sourceRef": "Katzung, Basic & Clinical Pharmacology (McGraw-Hill); educational use only, not clinical advice",
-   "tags": [
-    "pharmacology"
-   ]
-  },
-  {
-   "prompt": "Volume of distribution",
-   "content": {
-    "kind": "short-answer",
-    "answer": "Vd = amount of drug in body / plasma concentration; a large Vd means extensive tissue distribution.",
-    "acceptableAnswers": []
-   },
-   "explanation": null,
-   "sourceRef": "Katzung, Basic & Clinical Pharmacology (McGraw-Hill); educational use only, not clinical advice",
-   "tags": [
-    "pharmacology"
-   ]
-  },
-  {
-   "prompt": "Clearance",
-   "content": {
-    "kind": "short-answer",
-    "answer": "Volume of plasma cleared of drug per unit time; CL = rate of elimination / concentration.",
-    "acceptableAnswers": []
-   },
-   "explanation": null,
-   "sourceRef": "Katzung, Basic & Clinical Pharmacology (McGraw-Hill); educational use only, not clinical advice",
-   "tags": [
-    "pharmacology"
-   ]
-  },
-  {
-   "prompt": "Half-life",
-   "content": {
-    "kind": "short-answer",
-    "answer": "t½ = 0.693 × Vd / CL",
-    "acceptableAnswers": []
-   },
-   "explanation": null,
-   "sourceRef": "Katzung, Basic & Clinical Pharmacology (McGraw-Hill); educational use only, not clinical advice",
-   "tags": [
-    "pharmacology"
-   ]
-  },
-  {
-   "prompt": "Time to steady state with repeated dosing",
-   "content": {
-    "kind": "short-answer",
-    "answer": "About 4-5 half-lives.",
-    "acceptableAnswers": []
-   },
-   "explanation": null,
-   "sourceRef": "Katzung, Basic & Clinical Pharmacology (McGraw-Hill); educational use only, not clinical advice",
-   "tags": [
-    "pharmacology"
-   ]
-  },
-  {
-   "prompt": "First-order kinetics",
-   "content": {
-    "kind": "short-answer",
-    "answer": "A constant fraction of drug is eliminated per unit time; most drugs at therapeutic doses.",
-    "acceptableAnswers": []
-   },
-   "explanation": null,
-   "sourceRef": "Katzung, Basic & Clinical Pharmacology (McGraw-Hill); educational use only, not clinical advice",
-   "tags": [
-    "pharmacology"
-   ]
-  },
-  {
-   "prompt": "Zero-order kinetics",
-   "content": {
-    "kind": "short-answer",
-    "answer": "A constant amount is eliminated per unit time (saturated elimination); e.g., ethanol at usual intake, phenytoin at high levels.",
-    "acceptableAnswers": []
-   },
-   "explanation": null,
-   "sourceRef": "Katzung, Basic & Clinical Pharmacology (McGraw-Hill); educational use only, not clinical advice",
-   "tags": [
-    "pharmacology"
-   ]
-  },
-  {
-   "prompt": "Loading dose depends on",
-   "content": {
-    "kind": "short-answer",
-    "answer": "Volume of distribution (and target concentration).",
-    "acceptableAnswers": []
-   },
-   "explanation": null,
-   "sourceRef": "Katzung, Basic & Clinical Pharmacology (McGraw-Hill); educational use only, not clinical advice",
-   "tags": [
-    "pharmacology"
-   ]
-  },
-  {
-   "prompt": "Maintenance dose depends on",
-   "content": {
-    "kind": "short-answer",
-    "answer": "Clearance (and target concentration, bioavailability).",
-    "acceptableAnswers": []
-   },
-   "explanation": null,
-   "sourceRef": "Katzung, Basic & Clinical Pharmacology (McGraw-Hill); educational use only, not clinical advice",
-   "tags": [
-    "pharmacology"
-   ]
-  },
-  {
-   "prompt": "Phase I metabolism",
-   "content": {
-    "kind": "short-answer",
-    "answer": "Oxidation, reduction or hydrolysis (often cytochrome P450); makes the drug more polar.",
-    "acceptableAnswers": []
-   },
-   "explanation": null,
-   "sourceRef": "Katzung, Basic & Clinical Pharmacology (McGraw-Hill); educational use only, not clinical advice",
-   "tags": [
-    "pharmacology"
-   ]
-  },
-  {
-   "prompt": "Phase II metabolism",
-   "content": {
-    "kind": "short-answer",
-    "answer": "Conjugation (e.g., glucuronidation), generally producing inactive, water-soluble metabolites.",
-    "acceptableAnswers": []
-   },
-   "explanation": null,
-   "sourceRef": "Katzung, Basic & Clinical Pharmacology (McGraw-Hill); educational use only, not clinical advice",
-   "tags": [
-    "pharmacology"
-   ]
-  },
-  {
-   "prompt": "CYP3A4",
-   "content": {
-    "kind": "short-answer",
-    "answer": "The most abundant hepatic P450 isoform; metabolizes about half of drugs.",
-    "acceptableAnswers": []
-   },
-   "explanation": null,
-   "sourceRef": "Katzung, Basic & Clinical Pharmacology (McGraw-Hill); educational use only, not clinical advice",
-   "tags": [
-    "pharmacology"
-   ]
-  },
-  {
-   "prompt": "CYP450 inducer effect",
-   "content": {
-    "kind": "short-answer",
-    "answer": "Increases metabolism of other drugs, lowering their levels (e.g., rifampin, carbamazepine, St John's wort).",
-    "acceptableAnswers": []
-   },
-   "explanation": null,
-   "sourceRef": "Katzung, Basic & Clinical Pharmacology (McGraw-Hill); educational use only, not clinical advice",
-   "tags": [
-    "pharmacology"
-   ]
-  },
-  {
-   "prompt": "CYP450 inhibitor effect",
-   "content": {
-    "kind": "short-answer",
-    "answer": "Decreases metabolism of other drugs, raising their levels (e.g., ketoconazole, ritonavir, grapefruit juice for 3A4).",
-    "acceptableAnswers": []
-   },
-   "explanation": null,
-   "sourceRef": "Katzung, Basic & Clinical Pharmacology (McGraw-Hill); educational use only, not clinical advice",
-   "tags": [
-    "pharmacology"
-   ]
-  },
-  {
-   "prompt": "Prodrug",
-   "content": {
-    "kind": "short-answer",
-    "answer": "An inactive compound converted in the body to its active form.",
-    "acceptableAnswers": []
-   },
-   "explanation": null,
-   "sourceRef": "Katzung, Basic & Clinical Pharmacology (McGraw-Hill); educational use only, not clinical advice",
-   "tags": [
-    "pharmacology"
-   ]
-  },
-  {
-   "prompt": "Ion trapping",
-   "content": {
-    "kind": "short-answer",
-    "answer": "Weak acids are trapped in basic urine and weak bases in acidic urine, so urinary pH alters excretion.",
-    "acceptableAnswers": []
-   },
-   "explanation": null,
-   "sourceRef": "Katzung, Basic & Clinical Pharmacology (McGraw-Hill); educational use only, not clinical advice",
-   "tags": [
-    "pharmacology"
-   ]
-  },
-  {
-   "prompt": "Agonist, partial agonist, antagonist",
-   "content": {
-    "kind": "short-answer",
-    "answer": "Full activation; submaximal activation even at full occupancy; blocks receptor without activating.",
-    "acceptableAnswers": []
-   },
-   "explanation": null,
-   "sourceRef": "Katzung, Basic & Clinical Pharmacology (McGraw-Hill); educational use only, not clinical advice",
-   "tags": [
-    "pharmacology"
-   ]
-  },
-  {
-   "prompt": "Competitive antagonist effect on dose–response",
-   "content": {
-    "kind": "short-answer",
-    "answer": "Shifts curve right (higher EC50), same maximal effect achievable.",
-    "acceptableAnswers": []
-   },
-   "explanation": null,
-   "sourceRef": "Katzung, Basic & Clinical Pharmacology (McGraw-Hill); educational use only, not clinical advice",
-   "tags": [
-    "pharmacology"
-   ]
-  },
-  {
-   "prompt": "Noncompetitive antagonist effect",
-   "content": {
-    "kind": "short-answer",
-    "answer": "Lowers the maximal response.",
-    "acceptableAnswers": []
-   },
-   "explanation": null,
-   "sourceRef": "Katzung, Basic & Clinical Pharmacology (McGraw-Hill); educational use only, not clinical advice",
-   "tags": [
-    "pharmacology"
-   ]
-  },
-  {
-   "prompt": "Potency vs efficacy",
-   "content": {
-    "kind": "short-answer",
-    "answer": "Potency: dose needed (EC50). Efficacy: maximal effect (Emax).",
-    "acceptableAnswers": []
-   },
-   "explanation": null,
-   "sourceRef": "Katzung, Basic & Clinical Pharmacology (McGraw-Hill); educational use only, not clinical advice",
-   "tags": [
-    "pharmacology"
-   ]
-  },
-  {
-   "prompt": "Therapeutic index",
-   "content": {
-    "kind": "short-answer",
-    "answer": "TD50 / ED50 (or LD50 / ED50); a narrow index means a small margin of safety.",
-    "acceptableAnswers": []
-   },
-   "explanation": null,
-   "sourceRef": "Katzung, Basic & Clinical Pharmacology (McGraw-Hill); educational use only, not clinical advice",
-   "tags": [
-    "pharmacology"
-   ]
-  },
-  {
-   "prompt": "Tolerance vs tachyphylaxis",
-   "content": {
-    "kind": "short-answer",
-    "answer": "Gradual reduced response over time; rapid reduced response after repeated doses.",
-    "acceptableAnswers": []
-   },
-   "explanation": null,
-   "sourceRef": "Katzung, Basic & Clinical Pharmacology (McGraw-Hill); educational use only, not clinical advice",
-   "tags": [
-    "pharmacology"
-   ]
-  },
-  {
-   "prompt": "Receptor classes",
-   "content": {
-    "kind": "short-answer",
-    "answer": "Ligand-gated ion channels, G-protein-coupled receptors, enzyme-linked receptors, intracellular (nuclear) receptors.",
-    "acceptableAnswers": []
-   },
-   "explanation": null,
-   "sourceRef": "Katzung, Basic & Clinical Pharmacology (McGraw-Hill); educational use only, not clinical advice",
-   "tags": [
-    "pharmacology"
-   ]
-  },
-  {
-   "prompt": "Drugs with narrow therapeutic index (examples)",
-   "content": {
-    "kind": "short-answer",
-    "answer": "Warfarin, digoxin, lithium, phenytoin, theophylline, aminoglycosides.",
-    "acceptableAnswers": []
-   },
-   "explanation": null,
-   "sourceRef": "Katzung, Basic & Clinical Pharmacology (McGraw-Hill); educational use only, not clinical advice",
-   "tags": [
-    "pharmacology"
-   ]
-  },
-  {
-   "prompt": "Pregnancy drug risk classes",
-   "content": {
-    "kind": "short-answer",
-    "answer": "FDA replaced letter categories A, B, C, D, X with the PLLR narrative format in 2015.",
-    "acceptableAnswers": []
-   },
-   "explanation": null,
-   "sourceRef": "Katzung, Basic & Clinical Pharmacology (McGraw-Hill); educational use only, not clinical advice",
-   "tags": [
-    "pharmacology"
-   ]
-  },
-  {
-   "prompt": "Pharmacogenomics example",
-   "content": {
-    "kind": "short-answer",
-    "answer": "CYP2D6 poor metabolizers cannot convert codeine to morphine effectively.",
-    "acceptableAnswers": []
-   },
-   "explanation": null,
-   "sourceRef": "Katzung, Basic & Clinical Pharmacology (McGraw-Hill); educational use only, not clinical advice",
-   "tags": [
-    "pharmacology"
-   ]
-  },
-  {
-   "prompt": "Idiosyncratic reaction",
-   "content": {
-    "kind": "short-answer",
-    "answer": "An unusual response that is often genetic in origin, e.g., hemolysis with G6PD deficiency.",
-    "acceptableAnswers": []
-   },
-   "explanation": null,
-   "sourceRef": "Katzung, Basic & Clinical Pharmacology (McGraw-Hill); educational use only, not clinical advice",
-   "tags": [
-    "pharmacology"
-   ]
-  },
-  {
-   "prompt": "Naming: generic vs brand",
-   "content": {
-    "kind": "short-answer",
-    "answer": "Generic is the nonproprietary active ingredient name; brand is the manufacturer's trade name.",
-    "acceptableAnswers": []
-   },
-   "explanation": null,
-   "sourceRef": "Katzung, Basic & Clinical Pharmacology (McGraw-Hill); educational use only, not clinical advice",
-   "tags": [
-    "pharmacology"
-   ]
-  }
- ]
+  "seshatExportVersion": 1,
+  "name": "Pharmacology Principles",
+  "description": "Pharmacokinetics, pharmacodynamics and drug-metabolism concepts (educational only, not clinical advice).",
+  "tags": ["pharmacology", "principles"],
+  "cards": [
+    {
+      "prompt": "Pharmacokinetics (ADME)",
+      "content": {
+        "kind": "short-answer",
+        "answer": "Absorption, distribution, metabolism, excretion: what the body does to the drug.",
+        "acceptableAnswers": []
+      },
+      "explanation": null,
+      "sourceRef": "Katzung, Basic & Clinical Pharmacology (McGraw-Hill); educational use only, not clinical advice",
+      "tags": ["pharmacology"]
+    },
+    {
+      "prompt": "Pharmacodynamics",
+      "content": {
+        "kind": "short-answer",
+        "answer": "What the drug does to the body: mechanism and effect.",
+        "acceptableAnswers": []
+      },
+      "explanation": null,
+      "sourceRef": "Katzung, Basic & Clinical Pharmacology (McGraw-Hill); educational use only, not clinical advice",
+      "tags": ["pharmacology"]
+    },
+    {
+      "prompt": "Bioavailability (F)",
+      "content": {
+        "kind": "short-answer",
+        "answer": "The fraction of an administered dose reaching systemic circulation unchanged; 100% for IV.",
+        "acceptableAnswers": []
+      },
+      "explanation": null,
+      "sourceRef": "Katzung, Basic & Clinical Pharmacology (McGraw-Hill); educational use only, not clinical advice",
+      "tags": ["pharmacology"]
+    },
+    {
+      "prompt": "First-pass effect",
+      "content": {
+        "kind": "short-answer",
+        "answer": "Hepatic metabolism of an oral drug before it reaches the systemic circulation.",
+        "acceptableAnswers": []
+      },
+      "explanation": null,
+      "sourceRef": "Katzung, Basic & Clinical Pharmacology (McGraw-Hill); educational use only, not clinical advice",
+      "tags": ["pharmacology"]
+    },
+    {
+      "prompt": "Volume of distribution",
+      "content": {
+        "kind": "short-answer",
+        "answer": "Vd = amount of drug in body / plasma concentration; a large Vd means extensive tissue distribution.",
+        "acceptableAnswers": []
+      },
+      "explanation": null,
+      "sourceRef": "Katzung, Basic & Clinical Pharmacology (McGraw-Hill); educational use only, not clinical advice",
+      "tags": ["pharmacology"]
+    },
+    {
+      "prompt": "Clearance",
+      "content": {
+        "kind": "short-answer",
+        "answer": "Volume of plasma cleared of drug per unit time; CL = rate of elimination / concentration.",
+        "acceptableAnswers": []
+      },
+      "explanation": null,
+      "sourceRef": "Katzung, Basic & Clinical Pharmacology (McGraw-Hill); educational use only, not clinical advice",
+      "tags": ["pharmacology"]
+    },
+    {
+      "prompt": "Half-life",
+      "content": {
+        "kind": "short-answer",
+        "answer": "t½ = 0.693 × Vd / CL",
+        "acceptableAnswers": []
+      },
+      "explanation": null,
+      "sourceRef": "Katzung, Basic & Clinical Pharmacology (McGraw-Hill); educational use only, not clinical advice",
+      "tags": ["pharmacology"]
+    },
+    {
+      "prompt": "Time to steady state with repeated dosing",
+      "content": {
+        "kind": "short-answer",
+        "answer": "About 4-5 half-lives.",
+        "acceptableAnswers": []
+      },
+      "explanation": null,
+      "sourceRef": "Katzung, Basic & Clinical Pharmacology (McGraw-Hill); educational use only, not clinical advice",
+      "tags": ["pharmacology"]
+    },
+    {
+      "prompt": "First-order kinetics",
+      "content": {
+        "kind": "short-answer",
+        "answer": "A constant fraction of drug is eliminated per unit time; most drugs at therapeutic doses.",
+        "acceptableAnswers": []
+      },
+      "explanation": null,
+      "sourceRef": "Katzung, Basic & Clinical Pharmacology (McGraw-Hill); educational use only, not clinical advice",
+      "tags": ["pharmacology"]
+    },
+    {
+      "prompt": "Zero-order kinetics",
+      "content": {
+        "kind": "short-answer",
+        "answer": "A constant amount is eliminated per unit time (saturated elimination); e.g., ethanol at usual intake, phenytoin at high levels.",
+        "acceptableAnswers": []
+      },
+      "explanation": null,
+      "sourceRef": "Katzung, Basic & Clinical Pharmacology (McGraw-Hill); educational use only, not clinical advice",
+      "tags": ["pharmacology"]
+    },
+    {
+      "prompt": "Loading dose depends on",
+      "content": {
+        "kind": "short-answer",
+        "answer": "Volume of distribution (and target concentration).",
+        "acceptableAnswers": []
+      },
+      "explanation": null,
+      "sourceRef": "Katzung, Basic & Clinical Pharmacology (McGraw-Hill); educational use only, not clinical advice",
+      "tags": ["pharmacology"]
+    },
+    {
+      "prompt": "Maintenance dose depends on",
+      "content": {
+        "kind": "short-answer",
+        "answer": "Clearance (and target concentration, bioavailability).",
+        "acceptableAnswers": []
+      },
+      "explanation": null,
+      "sourceRef": "Katzung, Basic & Clinical Pharmacology (McGraw-Hill); educational use only, not clinical advice",
+      "tags": ["pharmacology"]
+    },
+    {
+      "prompt": "Phase I metabolism",
+      "content": {
+        "kind": "short-answer",
+        "answer": "Oxidation, reduction or hydrolysis (often cytochrome P450); makes the drug more polar.",
+        "acceptableAnswers": []
+      },
+      "explanation": null,
+      "sourceRef": "Katzung, Basic & Clinical Pharmacology (McGraw-Hill); educational use only, not clinical advice",
+      "tags": ["pharmacology"]
+    },
+    {
+      "prompt": "Phase II metabolism",
+      "content": {
+        "kind": "short-answer",
+        "answer": "Conjugation (e.g., glucuronidation), generally producing inactive, water-soluble metabolites.",
+        "acceptableAnswers": []
+      },
+      "explanation": null,
+      "sourceRef": "Katzung, Basic & Clinical Pharmacology (McGraw-Hill); educational use only, not clinical advice",
+      "tags": ["pharmacology"]
+    },
+    {
+      "prompt": "CYP3A4",
+      "content": {
+        "kind": "short-answer",
+        "answer": "The most abundant hepatic P450 isoform; metabolizes about half of drugs.",
+        "acceptableAnswers": []
+      },
+      "explanation": null,
+      "sourceRef": "Katzung, Basic & Clinical Pharmacology (McGraw-Hill); educational use only, not clinical advice",
+      "tags": ["pharmacology"]
+    },
+    {
+      "prompt": "CYP450 inducer effect",
+      "content": {
+        "kind": "short-answer",
+        "answer": "Increases metabolism of other drugs, lowering their levels (e.g., rifampin, carbamazepine, St John's wort).",
+        "acceptableAnswers": []
+      },
+      "explanation": null,
+      "sourceRef": "Katzung, Basic & Clinical Pharmacology (McGraw-Hill); educational use only, not clinical advice",
+      "tags": ["pharmacology"]
+    },
+    {
+      "prompt": "CYP450 inhibitor effect",
+      "content": {
+        "kind": "short-answer",
+        "answer": "Decreases metabolism of other drugs, raising their levels (e.g., ketoconazole, ritonavir, grapefruit juice for 3A4).",
+        "acceptableAnswers": []
+      },
+      "explanation": null,
+      "sourceRef": "Katzung, Basic & Clinical Pharmacology (McGraw-Hill); educational use only, not clinical advice",
+      "tags": ["pharmacology"]
+    },
+    {
+      "prompt": "Prodrug",
+      "content": {
+        "kind": "short-answer",
+        "answer": "An inactive compound converted in the body to its active form.",
+        "acceptableAnswers": []
+      },
+      "explanation": null,
+      "sourceRef": "Katzung, Basic & Clinical Pharmacology (McGraw-Hill); educational use only, not clinical advice",
+      "tags": ["pharmacology"]
+    },
+    {
+      "prompt": "Ion trapping",
+      "content": {
+        "kind": "short-answer",
+        "answer": "Weak acids are trapped in basic urine and weak bases in acidic urine, so urinary pH alters excretion.",
+        "acceptableAnswers": []
+      },
+      "explanation": null,
+      "sourceRef": "Katzung, Basic & Clinical Pharmacology (McGraw-Hill); educational use only, not clinical advice",
+      "tags": ["pharmacology"]
+    },
+    {
+      "prompt": "Agonist, partial agonist, antagonist",
+      "content": {
+        "kind": "short-answer",
+        "answer": "Full activation; submaximal activation even at full occupancy; blocks receptor without activating.",
+        "acceptableAnswers": []
+      },
+      "explanation": null,
+      "sourceRef": "Katzung, Basic & Clinical Pharmacology (McGraw-Hill); educational use only, not clinical advice",
+      "tags": ["pharmacology"]
+    },
+    {
+      "prompt": "Competitive antagonist effect on dose–response",
+      "content": {
+        "kind": "short-answer",
+        "answer": "Shifts curve right (higher EC50), same maximal effect achievable.",
+        "acceptableAnswers": []
+      },
+      "explanation": null,
+      "sourceRef": "Katzung, Basic & Clinical Pharmacology (McGraw-Hill); educational use only, not clinical advice",
+      "tags": ["pharmacology"]
+    },
+    {
+      "prompt": "Noncompetitive antagonist effect",
+      "content": {
+        "kind": "short-answer",
+        "answer": "Lowers the maximal response.",
+        "acceptableAnswers": []
+      },
+      "explanation": null,
+      "sourceRef": "Katzung, Basic & Clinical Pharmacology (McGraw-Hill); educational use only, not clinical advice",
+      "tags": ["pharmacology"]
+    },
+    {
+      "prompt": "Potency vs efficacy",
+      "content": {
+        "kind": "short-answer",
+        "answer": "Potency: dose needed (EC50). Efficacy: maximal effect (Emax).",
+        "acceptableAnswers": []
+      },
+      "explanation": null,
+      "sourceRef": "Katzung, Basic & Clinical Pharmacology (McGraw-Hill); educational use only, not clinical advice",
+      "tags": ["pharmacology"]
+    },
+    {
+      "prompt": "Therapeutic index",
+      "content": {
+        "kind": "short-answer",
+        "answer": "TD50 / ED50 (or LD50 / ED50); a narrow index means a small margin of safety.",
+        "acceptableAnswers": []
+      },
+      "explanation": null,
+      "sourceRef": "Katzung, Basic & Clinical Pharmacology (McGraw-Hill); educational use only, not clinical advice",
+      "tags": ["pharmacology"]
+    },
+    {
+      "prompt": "Tolerance vs tachyphylaxis",
+      "content": {
+        "kind": "short-answer",
+        "answer": "Gradual reduced response over time; rapid reduced response after repeated doses.",
+        "acceptableAnswers": []
+      },
+      "explanation": null,
+      "sourceRef": "Katzung, Basic & Clinical Pharmacology (McGraw-Hill); educational use only, not clinical advice",
+      "tags": ["pharmacology"]
+    },
+    {
+      "prompt": "Receptor classes",
+      "content": {
+        "kind": "short-answer",
+        "answer": "Ligand-gated ion channels, G-protein-coupled receptors, enzyme-linked receptors, intracellular (nuclear) receptors.",
+        "acceptableAnswers": []
+      },
+      "explanation": null,
+      "sourceRef": "Katzung, Basic & Clinical Pharmacology (McGraw-Hill); educational use only, not clinical advice",
+      "tags": ["pharmacology"]
+    },
+    {
+      "prompt": "Drugs with narrow therapeutic index (examples)",
+      "content": {
+        "kind": "short-answer",
+        "answer": "Warfarin, digoxin, lithium, phenytoin, theophylline, aminoglycosides.",
+        "acceptableAnswers": []
+      },
+      "explanation": null,
+      "sourceRef": "Katzung, Basic & Clinical Pharmacology (McGraw-Hill); educational use only, not clinical advice",
+      "tags": ["pharmacology"]
+    },
+    {
+      "prompt": "Pregnancy drug risk classes",
+      "content": {
+        "kind": "short-answer",
+        "answer": "FDA replaced letter categories A, B, C, D, X with the PLLR narrative format in 2015.",
+        "acceptableAnswers": []
+      },
+      "explanation": null,
+      "sourceRef": "Katzung, Basic & Clinical Pharmacology (McGraw-Hill); educational use only, not clinical advice",
+      "tags": ["pharmacology"]
+    },
+    {
+      "prompt": "Pharmacogenomics example",
+      "content": {
+        "kind": "short-answer",
+        "answer": "CYP2D6 poor metabolizers cannot convert codeine to morphine effectively.",
+        "acceptableAnswers": []
+      },
+      "explanation": null,
+      "sourceRef": "Katzung, Basic & Clinical Pharmacology (McGraw-Hill); educational use only, not clinical advice",
+      "tags": ["pharmacology"]
+    },
+    {
+      "prompt": "Idiosyncratic reaction",
+      "content": {
+        "kind": "short-answer",
+        "answer": "An unusual response that is often genetic in origin, e.g., hemolysis with G6PD deficiency.",
+        "acceptableAnswers": []
+      },
+      "explanation": null,
+      "sourceRef": "Katzung, Basic & Clinical Pharmacology (McGraw-Hill); educational use only, not clinical advice",
+      "tags": ["pharmacology"]
+    },
+    {
+      "prompt": "Naming: generic vs brand",
+      "content": {
+        "kind": "short-answer",
+        "answer": "Generic is the nonproprietary active ingredient name; brand is the manufacturer's trade name.",
+        "acceptableAnswers": []
+      },
+      "explanation": null,
+      "sourceRef": "Katzung, Basic & Clinical Pharmacology (McGraw-Hill); educational use only, not clinical advice",
+      "tags": ["pharmacology"]
+    }
+  ]
 }

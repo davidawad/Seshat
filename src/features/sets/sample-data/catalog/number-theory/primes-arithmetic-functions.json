@@ -1,362 +1,305 @@
 {
- "seshatExportVersion": 1,
- "name": "Primes and Arithmetic Functions",
- "description": "Prime facts, multiplicative functions and sieves.",
- "tags": [
-  "number-theory",
-  "primes"
- ],
- "cards": [
-  {
-   "prompt": "Smallest prime",
-   "content": {
-    "kind": "short-answer",
-    "answer": "2 (the only even prime).",
-    "acceptableAnswers": []
-   },
-   "explanation": null,
-   "sourceRef": "Hardy & Wright, An Introduction to the Theory of Numbers (Oxford)",
-   "tags": [
-    "number-theory"
-   ]
-  },
-  {
-   "prompt": "Primes below 30",
-   "content": {
-    "kind": "short-answer",
-    "answer": "2, 3, 5, 7, 11, 13, 17, 19, 23, 29",
-    "acceptableAnswers": []
-   },
-   "explanation": null,
-   "sourceRef": "Hardy & Wright, An Introduction to the Theory of Numbers (Oxford)",
-   "tags": [
-    "number-theory"
-   ]
-  },
-  {
-   "prompt": "Sieve of Eratosthenes",
-   "content": {
-    "kind": "short-answer",
-    "answer": "Cross out multiples of each prime up to √n; the survivors are the primes.",
-    "acceptableAnswers": []
-   },
-   "explanation": null,
-   "sourceRef": "Hardy & Wright, An Introduction to the Theory of Numbers (Oxford)",
-   "tags": [
-    "number-theory"
-   ]
-  },
-  {
-   "prompt": "Trial division: largest divisor you must test for primality of n",
-   "content": {
-    "kind": "short-answer",
-    "answer": "√n",
-    "acceptableAnswers": []
-   },
-   "explanation": null,
-   "sourceRef": "Hardy & Wright, An Introduction to the Theory of Numbers (Oxford)",
-   "tags": [
-    "number-theory"
-   ]
-  },
-  {
-   "prompt": "Twin prime conjecture",
-   "content": {
-    "kind": "short-answer",
-    "answer": "There are infinitely many primes p with p + 2 also prime (unproved).",
-    "acceptableAnswers": []
-   },
-   "explanation": null,
-   "sourceRef": "Hardy & Wright, An Introduction to the Theory of Numbers (Oxford)",
-   "tags": [
-    "number-theory"
-   ]
-  },
-  {
-   "prompt": "Goldbach's conjecture",
-   "content": {
-    "kind": "short-answer",
-    "answer": "Every even integer > 2 is a sum of two primes (unproved).",
-    "acceptableAnswers": []
-   },
-   "explanation": null,
-   "sourceRef": "Hardy & Wright, An Introduction to the Theory of Numbers (Oxford)",
-   "tags": [
-    "number-theory"
-   ]
-  },
-  {
-   "prompt": "Mersenne number",
-   "content": {
-    "kind": "short-answer",
-    "answer": "M_p = 2^p - 1, usually with p prime.",
-    "acceptableAnswers": []
-   },
-   "explanation": null,
-   "sourceRef": "Hardy & Wright, An Introduction to the Theory of Numbers (Oxford)",
-   "tags": [
-    "number-theory"
-   ]
-  },
-  {
-   "prompt": "Lucas–Lehmer test",
-   "content": {
-    "kind": "short-answer",
-    "answer": "For odd prime p, M_p is prime iff s_(p-2) ≡ 0 (mod M_p) with s_0 = 4, s_(k+1) = s_k^2 - 2.",
-    "acceptableAnswers": []
-   },
-   "explanation": null,
-   "sourceRef": "Hardy & Wright, An Introduction to the Theory of Numbers (Oxford)",
-   "tags": [
-    "number-theory"
-   ]
-  },
-  {
-   "prompt": "Perfect number",
-   "content": {
-    "kind": "short-answer",
-    "answer": "n equal to the sum of its proper divisors; 6 and 28 are examples.",
-    "acceptableAnswers": []
-   },
-   "explanation": null,
-   "sourceRef": "Hardy & Wright, An Introduction to the Theory of Numbers (Oxford)",
-   "tags": [
-    "number-theory"
-   ]
-  },
-  {
-   "prompt": "Euclid–Euler theorem",
-   "content": {
-    "kind": "short-answer",
-    "answer": "Even perfect numbers are exactly 2^(p-1)(2^p - 1) with 2^p - 1 a (Mersenne) prime.",
-    "acceptableAnswers": []
-   },
-   "explanation": null,
-   "sourceRef": "Hardy & Wright, An Introduction to the Theory of Numbers (Oxford)",
-   "tags": [
-    "number-theory"
-   ]
-  },
-  {
-   "prompt": "Fermat number",
-   "content": {
-    "kind": "short-answer",
-    "answer": "F_n = 2^(2^n) + 1",
-    "acceptableAnswers": []
-   },
-   "explanation": null,
-   "sourceRef": "Hardy & Wright, An Introduction to the Theory of Numbers (Oxford)",
-   "tags": [
-    "number-theory"
-   ]
-  },
-  {
-   "prompt": "Multiplicative function f",
-   "content": {
-    "kind": "short-answer",
-    "answer": "f(mn) = f(m) f(n) whenever gcd(m,n) = 1.",
-    "acceptableAnswers": []
-   },
-   "explanation": null,
-   "sourceRef": "Hardy & Wright, An Introduction to the Theory of Numbers (Oxford)",
-   "tags": [
-    "number-theory"
-   ]
-  },
-  {
-   "prompt": "Möbius function μ(n)",
-   "content": {
-    "kind": "short-answer",
-    "answer": "μ(1) = 1; μ(n) = 0 if n has a squared prime factor; otherwise (-1)^k for k distinct primes.",
-    "acceptableAnswers": []
-   },
-   "explanation": null,
-   "sourceRef": "Hardy & Wright, An Introduction to the Theory of Numbers (Oxford)",
-   "tags": [
-    "number-theory"
-   ]
-  },
-  {
-   "prompt": "Möbius inversion",
-   "content": {
-    "kind": "short-answer",
-    "answer": "If g(n) = Σ over d|n of f(d), then f(n) = Σ over d|n of μ(n/d) g(d).",
-    "acceptableAnswers": []
-   },
-   "explanation": null,
-   "sourceRef": "Hardy & Wright, An Introduction to the Theory of Numbers (Oxford)",
-   "tags": [
-    "number-theory"
-   ]
-  },
-  {
-   "prompt": "Σ over d|n of φ(d)",
-   "content": {
-    "kind": "short-answer",
-    "answer": "n",
-    "acceptableAnswers": []
-   },
-   "explanation": null,
-   "sourceRef": "Hardy & Wright, An Introduction to the Theory of Numbers (Oxford)",
-   "tags": [
-    "number-theory"
-   ]
-  },
-  {
-   "prompt": "Riemann zeta function for Re(s) > 1",
-   "content": {
-    "kind": "short-answer",
-    "answer": "ζ(s) = Σ n^-s = Π over primes p of 1/(1 - p^-s) (Euler product)",
-    "acceptableAnswers": []
-   },
-   "explanation": null,
-   "sourceRef": "Hardy & Wright, An Introduction to the Theory of Numbers (Oxford)",
-   "tags": [
-    "number-theory"
-   ]
-  },
-  {
-   "prompt": "ζ(2)",
-   "content": {
-    "kind": "short-answer",
-    "answer": "π^2/6 (the Basel problem, solved by Euler)",
-    "acceptableAnswers": []
-   },
-   "explanation": null,
-   "sourceRef": "Hardy & Wright, An Introduction to the Theory of Numbers (Oxford)",
-   "tags": [
-    "number-theory"
-   ]
-  },
-  {
-   "prompt": "Riemann hypothesis",
-   "content": {
-    "kind": "short-answer",
-    "answer": "All nontrivial zeros of ζ(s) have real part 1/2 (unproved).",
-    "acceptableAnswers": []
-   },
-   "explanation": null,
-   "sourceRef": "Hardy & Wright, An Introduction to the Theory of Numbers (Oxford)",
-   "tags": [
-    "number-theory"
-   ]
-  },
-  {
-   "prompt": "Carmichael number",
-   "content": {
-    "kind": "short-answer",
-    "answer": "A composite n with a^(n-1) ≡ 1 (mod n) for all a coprime to n; 561 is the smallest.",
-    "acceptableAnswers": []
-   },
-   "explanation": null,
-   "sourceRef": "Hardy & Wright, An Introduction to the Theory of Numbers (Oxford)",
-   "tags": [
-    "number-theory"
-   ]
-  },
-  {
-   "prompt": "Miller–Rabin test",
-   "content": {
-    "kind": "short-answer",
-    "answer": "A probabilistic primality test using strong pseudoprime witnesses; a composite is declared prime with probability at most 1/4 per random base.",
-    "acceptableAnswers": []
-   },
-   "explanation": null,
-   "sourceRef": "Hardy & Wright, An Introduction to the Theory of Numbers (Oxford)",
-   "tags": [
-    "number-theory"
-   ]
-  },
-  {
-   "prompt": "AKS primality test",
-   "content": {
-    "kind": "short-answer",
-    "answer": "A deterministic polynomial-time primality test (Agrawal, Kayal, Saxena, 2002).",
-    "acceptableAnswers": []
-   },
-   "explanation": null,
-   "sourceRef": "Hardy & Wright, An Introduction to the Theory of Numbers (Oxford)",
-   "tags": [
-    "number-theory"
-   ]
-  },
-  {
-   "prompt": "RSA: public key, private key",
-   "content": {
-    "kind": "short-answer",
-    "answer": "Public (n, e) with n = pq; private d with ed ≡ 1 (mod φ(n)). Encrypt c = m^e mod n; decrypt m = c^d mod n.",
-    "acceptableAnswers": []
-   },
-   "explanation": null,
-   "sourceRef": "Hardy & Wright, An Introduction to the Theory of Numbers (Oxford)",
-   "tags": [
-    "number-theory"
-   ]
-  },
-  {
-   "prompt": "Why RSA is hard to break",
-   "content": {
-    "kind": "short-answer",
-    "answer": "It relies on the presumed difficulty of factoring n = pq for large primes.",
-    "acceptableAnswers": []
-   },
-   "explanation": null,
-   "sourceRef": "Hardy & Wright, An Introduction to the Theory of Numbers (Oxford)",
-   "tags": [
-    "number-theory"
-   ]
-  },
-  {
-   "prompt": "Diophantine equation ax + by = c has integer solutions iff",
-   "content": {
-    "kind": "short-answer",
-    "answer": "gcd(a,b) divides c.",
-    "acceptableAnswers": []
-   },
-   "explanation": null,
-   "sourceRef": "Hardy & Wright, An Introduction to the Theory of Numbers (Oxford)",
-   "tags": [
-    "number-theory"
-   ]
-  },
-  {
-   "prompt": "Pell equation",
-   "content": {
-    "kind": "short-answer",
-    "answer": "x^2 - d y^2 = 1 for non-square d > 0; it always has infinitely many integer solutions.",
-    "acceptableAnswers": []
-   },
-   "explanation": null,
-   "sourceRef": "Hardy & Wright, An Introduction to the Theory of Numbers (Oxford)",
-   "tags": [
-    "number-theory"
-   ]
-  },
-  {
-   "prompt": "Square root of 2: irrational proof idea",
-   "content": {
-    "kind": "short-answer",
-    "answer": "If √2 = a/b in lowest terms, both a and b would be even, a contradiction.",
-    "acceptableAnswers": []
-   },
-   "explanation": null,
-   "sourceRef": "Hardy & Wright, An Introduction to the Theory of Numbers (Oxford)",
-   "tags": [
-    "number-theory"
-   ]
-  },
-  {
-   "prompt": "Continued fraction of an irrational number",
-   "content": {
-    "kind": "short-answer",
-    "answer": "Infinite; a quadratic irrational has an eventually periodic expansion (Lagrange).",
-    "acceptableAnswers": []
-   },
-   "explanation": null,
-   "sourceRef": "Hardy & Wright, An Introduction to the Theory of Numbers (Oxford)",
-   "tags": [
-    "number-theory"
-   ]
-  }
- ]
+  "seshatExportVersion": 1,
+  "name": "Primes and Arithmetic Functions",
+  "description": "Prime facts, multiplicative functions and sieves.",
+  "tags": ["number-theory", "primes"],
+  "cards": [
+    {
+      "prompt": "Smallest prime",
+      "content": {
+        "kind": "short-answer",
+        "answer": "2 (the only even prime).",
+        "acceptableAnswers": []
+      },
+      "explanation": null,
+      "sourceRef": "Hardy & Wright, An Introduction to the Theory of Numbers (Oxford)",
+      "tags": ["number-theory"]
+    },
+    {
+      "prompt": "Primes below 30",
+      "content": {
+        "kind": "short-answer",
+        "answer": "2, 3, 5, 7, 11, 13, 17, 19, 23, 29",
+        "acceptableAnswers": []
+      },
+      "explanation": null,
+      "sourceRef": "Hardy & Wright, An Introduction to the Theory of Numbers (Oxford)",
+      "tags": ["number-theory"]
+    },
+    {
+      "prompt": "Sieve of Eratosthenes",
+      "content": {
+        "kind": "short-answer",
+        "answer": "Cross out multiples of each prime up to √n; the survivors are the primes.",
+        "acceptableAnswers": []
+      },
+      "explanation": null,
+      "sourceRef": "Hardy & Wright, An Introduction to the Theory of Numbers (Oxford)",
+      "tags": ["number-theory"]
+    },
+    {
+      "prompt": "Trial division: largest divisor you must test for primality of n",
+      "content": {
+        "kind": "short-answer",
+        "answer": "√n",
+        "acceptableAnswers": []
+      },
+      "explanation": null,
+      "sourceRef": "Hardy & Wright, An Introduction to the Theory of Numbers (Oxford)",
+      "tags": ["number-theory"]
+    },
+    {
+      "prompt": "Twin prime conjecture",
+      "content": {
+        "kind": "short-answer",
+        "answer": "There are infinitely many primes p with p + 2 also prime (unproved).",
+        "acceptableAnswers": []
+      },
+      "explanation": null,
+      "sourceRef": "Hardy & Wright, An Introduction to the Theory of Numbers (Oxford)",
+      "tags": ["number-theory"]
+    },
+    {
+      "prompt": "Goldbach's conjecture",
+      "content": {
+        "kind": "short-answer",
+        "answer": "Every even integer > 2 is a sum of two primes (unproved).",
+        "acceptableAnswers": []
+      },
+      "explanation": null,
+      "sourceRef": "Hardy & Wright, An Introduction to the Theory of Numbers (Oxford)",
+      "tags": ["number-theory"]
+    },
+    {
+      "prompt": "Mersenne number",
+      "content": {
+        "kind": "short-answer",
+        "answer": "M_p = 2^p - 1, usually with p prime.",
+        "acceptableAnswers": []
+      },
+      "explanation": null,
+      "sourceRef": "Hardy & Wright, An Introduction to the Theory of Numbers (Oxford)",
+      "tags": ["number-theory"]
+    },
+    {
+      "prompt": "Lucas–Lehmer test",
+      "content": {
+        "kind": "short-answer",
+        "answer": "For odd prime p, M_p is prime iff s_(p-2) ≡ 0 (mod M_p) with s_0 = 4, s_(k+1) = s_k^2 - 2.",
+        "acceptableAnswers": []
+      },
+      "explanation": null,
+      "sourceRef": "Hardy & Wright, An Introduction to the Theory of Numbers (Oxford)",
+      "tags": ["number-theory"]
+    },
+    {
+      "prompt": "Perfect number",
+      "content": {
+        "kind": "short-answer",
+        "answer": "n equal to the sum of its proper divisors; 6 and 28 are examples.",
+        "acceptableAnswers": []
+      },
+      "explanation": null,
+      "sourceRef": "Hardy & Wright, An Introduction to the Theory of Numbers (Oxford)",
+      "tags": ["number-theory"]
+    },
+    {
+      "prompt": "Euclid–Euler theorem",
+      "content": {
+        "kind": "short-answer",
+        "answer": "Even perfect numbers are exactly 2^(p-1)(2^p - 1) with 2^p - 1 a (Mersenne) prime.",
+        "acceptableAnswers": []
+      },
+      "explanation": null,
+      "sourceRef": "Hardy & Wright, An Introduction to the Theory of Numbers (Oxford)",
+      "tags": ["number-theory"]
+    },
+    {
+      "prompt": "Fermat number",
+      "content": {
+        "kind": "short-answer",
+        "answer": "F_n = 2^(2^n) + 1",
+        "acceptableAnswers": []
+      },
+      "explanation": null,
+      "sourceRef": "Hardy & Wright, An Introduction to the Theory of Numbers (Oxford)",
+      "tags": ["number-theory"]
+    },
+    {
+      "prompt": "Multiplicative function f",
+      "content": {
+        "kind": "short-answer",
+        "answer": "f(mn) = f(m) f(n) whenever gcd(m,n) = 1.",
+        "acceptableAnswers": []
+      },
+      "explanation": null,
+      "sourceRef": "Hardy & Wright, An Introduction to the Theory of Numbers (Oxford)",
+      "tags": ["number-theory"]
+    },
+    {
+      "prompt": "Möbius function μ(n)",
+      "content": {
+        "kind": "short-answer",
+        "answer": "μ(1) = 1; μ(n) = 0 if n has a squared prime factor; otherwise (-1)^k for k distinct primes.",
+        "acceptableAnswers": []
+      },
+      "explanation": null,
+      "sourceRef": "Hardy & Wright, An Introduction to the Theory of Numbers (Oxford)",
+      "tags": ["number-theory"]
+    },
+    {
+      "prompt": "Möbius inversion",
+      "content": {
+        "kind": "short-answer",
+        "answer": "If g(n) = Σ over d|n of f(d), then f(n) = Σ over d|n of μ(n/d) g(d).",
+        "acceptableAnswers": []
+      },
+      "explanation": null,
+      "sourceRef": "Hardy & Wright, An Introduction to the Theory of Numbers (Oxford)",
+      "tags": ["number-theory"]
+    },
+    {
+      "prompt": "Σ over d|n of φ(d)",
+      "content": {
+        "kind": "short-answer",
+        "answer": "n",
+        "acceptableAnswers": []
+      },
+      "explanation": null,
+      "sourceRef": "Hardy & Wright, An Introduction to the Theory of Numbers (Oxford)",
+      "tags": ["number-theory"]
+    },
+    {
+      "prompt": "Riemann zeta function for Re(s) > 1",
+      "content": {
+        "kind": "short-answer",
+        "answer": "ζ(s) = Σ n^-s = Π over primes p of 1/(1 - p^-s) (Euler product)",
+        "acceptableAnswers": []
+      },
+      "explanation": null,
+      "sourceRef": "Hardy & Wright, An Introduction to the Theory of Numbers (Oxford)",
+      "tags": ["number-theory"]
+    },
+    {
+      "prompt": "ζ(2)",
+      "content": {
+        "kind": "short-answer",
+        "answer": "π^2/6 (the Basel problem, solved by Euler)",
+        "acceptableAnswers": []
+      },
+      "explanation": null,
+      "sourceRef": "Hardy & Wright, An Introduction to the Theory of Numbers (Oxford)",
+      "tags": ["number-theory"]
+    },
+    {
+      "prompt": "Riemann hypothesis",
+      "content": {
+        "kind": "short-answer",
+        "answer": "All nontrivial zeros of ζ(s) have real part 1/2 (unproved).",
+        "acceptableAnswers": []
+      },
+      "explanation": null,
+      "sourceRef": "Hardy & Wright, An Introduction to the Theory of Numbers (Oxford)",
+      "tags": ["number-theory"]
+    },
+    {
+      "prompt": "Carmichael number",
+      "content": {
+        "kind": "short-answer",
+        "answer": "A composite n with a^(n-1) ≡ 1 (mod n) for all a coprime to n; 561 is the smallest.",
+        "acceptableAnswers": []
+      },
+      "explanation": null,
+      "sourceRef": "Hardy & Wright, An Introduction to the Theory of Numbers (Oxford)",
+      "tags": ["number-theory"]
+    },
+    {
+      "prompt": "Miller–Rabin test",
+      "content": {
+        "kind": "short-answer",
+        "answer": "A probabilistic primality test using strong pseudoprime witnesses; a composite is declared prime with probability at most 1/4 per random base.",
+        "acceptableAnswers": []
+      },
+      "explanation": null,
+      "sourceRef": "Hardy & Wright, An Introduction to the Theory of Numbers (Oxford)",
+      "tags": ["number-theory"]
+    },
+    {
+      "prompt": "AKS primality test",
+      "content": {
+        "kind": "short-answer",
+        "answer": "A deterministic polynomial-time primality test (Agrawal, Kayal, Saxena, 2002).",
+        "acceptableAnswers": []
+      },
+      "explanation": null,
+      "sourceRef": "Hardy & Wright, An Introduction to the Theory of Numbers (Oxford)",
+      "tags": ["number-theory"]
+    },
+    {
+      "prompt": "RSA: public key, private key",
+      "content": {
+        "kind": "short-answer",
+        "answer": "Public (n, e) with n = pq; private d with ed ≡ 1 (mod φ(n)). Encrypt c = m^e mod n; decrypt m = c^d mod n.",
+        "acceptableAnswers": []
+      },
+      "explanation": null,
+      "sourceRef": "Hardy & Wright, An Introduction to the Theory of Numbers (Oxford)",
+      "tags": ["number-theory"]
+    },
+    {
+      "prompt": "Why RSA is hard to break",
+      "content": {
+        "kind": "short-answer",
+        "answer": "It relies on the presumed difficulty of factoring n = pq for large primes.",
+        "acceptableAnswers": []
+      },
+      "explanation": null,
+      "sourceRef": "Hardy & Wright, An Introduction to the Theory of Numbers (Oxford)",
+      "tags": ["number-theory"]
+    },
+    {
+      "prompt": "Diophantine equation ax + by = c has integer solutions iff",
+      "content": {
+        "kind": "short-answer",
+        "answer": "gcd(a,b) divides c.",
+        "acceptableAnswers": []
+      },
+      "explanation": null,
+      "sourceRef": "Hardy & Wright, An Introduction to the Theory of Numbers (Oxford)",
+      "tags": ["number-theory"]
+    },
+    {
+      "prompt": "Pell equation",
+      "content": {
+        "kind": "short-answer",
+        "answer": "x^2 - d y^2 = 1 for non-square d > 0; it always has infinitely many integer solutions.",
+        "acceptableAnswers": []
+      },
+      "explanation": null,
+      "sourceRef": "Hardy & Wright, An Introduction to the Theory of Numbers (Oxford)",
+      "tags": ["number-theory"]
+    },
+    {
+      "prompt": "Square root of 2: irrational proof idea",
+      "content": {
+        "kind": "short-answer",
+        "answer": "If √2 = a/b in lowest terms, both a and b would be even, a contradiction.",
+        "acceptableAnswers": []
+      },
+      "explanation": null,
+      "sourceRef": "Hardy & Wright, An Introduction to the Theory of Numbers (Oxford)",
+      "tags": ["number-theory"]
+    },
+    {
+      "prompt": "Continued fraction of an irrational number",
+      "content": {
+        "kind": "short-answer",
+        "answer": "Infinite; a quadratic irrational has an eventually periodic expansion (Lagrange).",
+        "acceptableAnswers": []
+      },
+      "explanation": null,
+      "sourceRef": "Hardy & Wright, An Introduction to the Theory of Numbers (Oxford)",
+      "tags": ["number-theory"]
+    }
+  ]
 }

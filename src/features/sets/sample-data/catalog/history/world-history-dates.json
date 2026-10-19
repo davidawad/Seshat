@@ -1,414 +1,349 @@
 {
- "seshatExportVersion": 1,
- "name": "World History Key Dates",
- "description": "Milestone events and dates from antiquity through the 20th century.",
- "tags": [
-  "history",
-  "world"
- ],
- "cards": [
-  {
-   "prompt": "Fall of the Western Roman Empire",
-   "content": {
-    "kind": "short-answer",
-    "answer": "476 CE",
-    "acceptableAnswers": []
-   },
-   "explanation": null,
-   "sourceRef": "Encyclopaedia Britannica; Roberts, The History of the World (Oxford)",
-   "tags": [
-    "history"
-   ]
-  },
-  {
-   "prompt": "Founding of Rome (traditional)",
-   "content": {
-    "kind": "short-answer",
-    "answer": "753 BCE",
-    "acceptableAnswers": []
-   },
-   "explanation": null,
-   "sourceRef": "Encyclopaedia Britannica; Roberts, The History of the World (Oxford)",
-   "tags": [
-    "history"
-   ]
-  },
-  {
-   "prompt": "Battle of Marathon",
-   "content": {
-    "kind": "short-answer",
-    "answer": "490 BCE: Athenians repelled the Persians.",
-    "acceptableAnswers": []
-   },
-   "explanation": null,
-   "sourceRef": "Encyclopaedia Britannica; Roberts, The History of the World (Oxford)",
-   "tags": [
-    "history"
-   ]
-  },
-  {
-   "prompt": "Alexander the Great died",
-   "content": {
-    "kind": "short-answer",
-    "answer": "323 BCE",
-    "acceptableAnswers": []
-   },
-   "explanation": null,
-   "sourceRef": "Encyclopaedia Britannica; Roberts, The History of the World (Oxford)",
-   "tags": [
-    "history"
-   ]
-  },
-  {
-   "prompt": "Julius Caesar assassinated",
-   "content": {
-    "kind": "short-answer",
-    "answer": "44 BCE (Ides of March)",
-    "acceptableAnswers": []
-   },
-   "explanation": null,
-   "sourceRef": "Encyclopaedia Britannica; Roberts, The History of the World (Oxford)",
-   "tags": [
-    "history"
-   ]
-  },
-  {
-   "prompt": "Constantine legalized Christianity (Edict of Milan)",
-   "content": {
-    "kind": "short-answer",
-    "answer": "313 CE",
-    "acceptableAnswers": []
-   },
-   "explanation": null,
-   "sourceRef": "Encyclopaedia Britannica; Roberts, The History of the World (Oxford)",
-   "tags": [
-    "history"
-   ]
-  },
-  {
-   "prompt": "Hijra of Muhammad to Medina (start of the Islamic calendar)",
-   "content": {
-    "kind": "short-answer",
-    "answer": "622 CE",
-    "acceptableAnswers": []
-   },
-   "explanation": null,
-   "sourceRef": "Encyclopaedia Britannica; Roberts, The History of the World (Oxford)",
-   "tags": [
-    "history"
-   ]
-  },
-  {
-   "prompt": "Charlemagne crowned emperor",
-   "content": {
-    "kind": "short-answer",
-    "answer": "800 CE",
-    "acceptableAnswers": []
-   },
-   "explanation": null,
-   "sourceRef": "Encyclopaedia Britannica; Roberts, The History of the World (Oxford)",
-   "tags": [
-    "history"
-   ]
-  },
-  {
-   "prompt": "Norman conquest of England (Battle of Hastings)",
-   "content": {
-    "kind": "short-answer",
-    "answer": "1066",
-    "acceptableAnswers": []
-   },
-   "explanation": null,
-   "sourceRef": "Encyclopaedia Britannica; Roberts, The History of the World (Oxford)",
-   "tags": [
-    "history"
-   ]
-  },
-  {
-   "prompt": "Magna Carta sealed",
-   "content": {
-    "kind": "short-answer",
-    "answer": "1215",
-    "acceptableAnswers": []
-   },
-   "explanation": null,
-   "sourceRef": "Encyclopaedia Britannica; Roberts, The History of the World (Oxford)",
-   "tags": [
-    "history"
-   ]
-  },
-  {
-   "prompt": "Black Death in Europe",
-   "content": {
-    "kind": "short-answer",
-    "answer": "1347-1351",
-    "acceptableAnswers": []
-   },
-   "explanation": null,
-   "sourceRef": "Encyclopaedia Britannica; Roberts, The History of the World (Oxford)",
-   "tags": [
-    "history"
-   ]
-  },
-  {
-   "prompt": "Fall of Constantinople to the Ottomans",
-   "content": {
-    "kind": "short-answer",
-    "answer": "1453",
-    "acceptableAnswers": []
-   },
-   "explanation": null,
-   "sourceRef": "Encyclopaedia Britannica; Roberts, The History of the World (Oxford)",
-   "tags": [
-    "history"
-   ]
-  },
-  {
-   "prompt": "Gutenberg printing press (movable type in Europe)",
-   "content": {
-    "kind": "short-answer",
-    "answer": "About 1450",
-    "acceptableAnswers": []
-   },
-   "explanation": null,
-   "sourceRef": "Encyclopaedia Britannica; Roberts, The History of the World (Oxford)",
-   "tags": [
-    "history"
-   ]
-  },
-  {
-   "prompt": "Columbus's first voyage to the Americas",
-   "content": {
-    "kind": "short-answer",
-    "answer": "1492",
-    "acceptableAnswers": []
-   },
-   "explanation": null,
-   "sourceRef": "Encyclopaedia Britannica; Roberts, The History of the World (Oxford)",
-   "tags": [
-    "history"
-   ]
-  },
-  {
-   "prompt": "Luther's Ninety-five Theses",
-   "content": {
-    "kind": "short-answer",
-    "answer": "1517",
-    "acceptableAnswers": []
-   },
-   "explanation": null,
-   "sourceRef": "Encyclopaedia Britannica; Roberts, The History of the World (Oxford)",
-   "tags": [
-    "history"
-   ]
-  },
-  {
-   "prompt": "Peace of Westphalia",
-   "content": {
-    "kind": "short-answer",
-    "answer": "1648, ending the Thirty Years' War.",
-    "acceptableAnswers": []
-   },
-   "explanation": null,
-   "sourceRef": "Encyclopaedia Britannica; Roberts, The History of the World (Oxford)",
-   "tags": [
-    "history"
-   ]
-  },
-  {
-   "prompt": "Glorious Revolution in England",
-   "content": {
-    "kind": "short-answer",
-    "answer": "1688-89",
-    "acceptableAnswers": []
-   },
-   "explanation": null,
-   "sourceRef": "Encyclopaedia Britannica; Roberts, The History of the World (Oxford)",
-   "tags": [
-    "history"
-   ]
-  },
-  {
-   "prompt": "French Revolution begins (storming of the Bastille)",
-   "content": {
-    "kind": "short-answer",
-    "answer": "1789",
-    "acceptableAnswers": []
-   },
-   "explanation": null,
-   "sourceRef": "Encyclopaedia Britannica; Roberts, The History of the World (Oxford)",
-   "tags": [
-    "history"
-   ]
-  },
-  {
-   "prompt": "Battle of Waterloo",
-   "content": {
-    "kind": "short-answer",
-    "answer": "1815: Napoleon's final defeat.",
-    "acceptableAnswers": []
-   },
-   "explanation": null,
-   "sourceRef": "Encyclopaedia Britannica; Roberts, The History of the World (Oxford)",
-   "tags": [
-    "history"
-   ]
-  },
-  {
-   "prompt": "Congress of Vienna",
-   "content": {
-    "kind": "short-answer",
-    "answer": "1814-15: restored European order after Napoleon.",
-    "acceptableAnswers": []
-   },
-   "explanation": null,
-   "sourceRef": "Encyclopaedia Britannica; Roberts, The History of the World (Oxford)",
-   "tags": [
-    "history"
-   ]
-  },
-  {
-   "prompt": "Unification of Germany and of Italy",
-   "content": {
-    "kind": "short-answer",
-    "answer": "Italy proclaimed 1861 (Rome joined 1870); German Empire 1871.",
-    "acceptableAnswers": []
-   },
-   "explanation": null,
-   "sourceRef": "Encyclopaedia Britannica; Roberts, The History of the World (Oxford)",
-   "tags": [
-    "history"
-   ]
-  },
-  {
-   "prompt": "Opium War (First)",
-   "content": {
-    "kind": "short-answer",
-    "answer": "1839-1842; Treaty of Nanking ceded Hong Kong to Britain.",
-    "acceptableAnswers": []
-   },
-   "explanation": null,
-   "sourceRef": "Encyclopaedia Britannica; Roberts, The History of the World (Oxford)",
-   "tags": [
-    "history"
-   ]
-  },
-  {
-   "prompt": "Meiji Restoration in Japan",
-   "content": {
-    "kind": "short-answer",
-    "answer": "1868",
-    "acceptableAnswers": []
-   },
-   "explanation": null,
-   "sourceRef": "Encyclopaedia Britannica; Roberts, The History of the World (Oxford)",
-   "tags": [
-    "history"
-   ]
-  },
-  {
-   "prompt": "World War I dates",
-   "content": {
-    "kind": "short-answer",
-    "answer": "1914-1918",
-    "acceptableAnswers": []
-   },
-   "explanation": null,
-   "sourceRef": "Encyclopaedia Britannica; Roberts, The History of the World (Oxford)",
-   "tags": [
-    "history"
-   ]
-  },
-  {
-   "prompt": "Russian Revolutions",
-   "content": {
-    "kind": "short-answer",
-    "answer": "February and October 1917",
-    "acceptableAnswers": []
-   },
-   "explanation": null,
-   "sourceRef": "Encyclopaedia Britannica; Roberts, The History of the World (Oxford)",
-   "tags": [
-    "history"
-   ]
-  },
-  {
-   "prompt": "Treaty of Versailles",
-   "content": {
-    "kind": "short-answer",
-    "answer": "1919",
-    "acceptableAnswers": []
-   },
-   "explanation": null,
-   "sourceRef": "Encyclopaedia Britannica; Roberts, The History of the World (Oxford)",
-   "tags": [
-    "history"
-   ]
-  },
-  {
-   "prompt": "World War II in Europe: began and ended",
-   "content": {
-    "kind": "short-answer",
-    "answer": "September 1, 1939 (invasion of Poland); May 8, 1945 (V-E Day).",
-    "acceptableAnswers": []
-   },
-   "explanation": null,
-   "sourceRef": "Encyclopaedia Britannica; Roberts, The History of the World (Oxford)",
-   "tags": [
-    "history"
-   ]
-  },
-  {
-   "prompt": "Indian independence and partition",
-   "content": {
-    "kind": "short-answer",
-    "answer": "August 15, 1947",
-    "acceptableAnswers": []
-   },
-   "explanation": null,
-   "sourceRef": "Encyclopaedia Britannica; Roberts, The History of the World (Oxford)",
-   "tags": [
-    "history"
-   ]
-  },
-  {
-   "prompt": "Founding of the People's Republic of China",
-   "content": {
-    "kind": "short-answer",
-    "answer": "October 1, 1949",
-    "acceptableAnswers": []
-   },
-   "explanation": null,
-   "sourceRef": "Encyclopaedia Britannica; Roberts, The History of the World (Oxford)",
-   "tags": [
-    "history"
-   ]
-  },
-  {
-   "prompt": "Suez Crisis",
-   "content": {
-    "kind": "short-answer",
-    "answer": "1956",
-    "acceptableAnswers": []
-   },
-   "explanation": null,
-   "sourceRef": "Encyclopaedia Britannica; Roberts, The History of the World (Oxford)",
-   "tags": [
-    "history"
-   ]
-  },
-  {
-   "prompt": "Apartheid ended; Mandela elected president",
-   "content": {
-    "kind": "short-answer",
-    "answer": "1994",
-    "acceptableAnswers": []
-   },
-   "explanation": null,
-   "sourceRef": "Encyclopaedia Britannica; Roberts, The History of the World (Oxford)",
-   "tags": [
-    "history"
-   ]
-  }
- ]
+  "seshatExportVersion": 1,
+  "name": "World History Key Dates",
+  "description": "Milestone events and dates from antiquity through the 20th century.",
+  "tags": ["history", "world"],
+  "cards": [
+    {
+      "prompt": "Fall of the Western Roman Empire",
+      "content": {
+        "kind": "short-answer",
+        "answer": "476 CE",
+        "acceptableAnswers": []
+      },
+      "explanation": null,
+      "sourceRef": "Encyclopaedia Britannica; Roberts, The History of the World (Oxford)",
+      "tags": ["history"]
+    },
+    {
+      "prompt": "Founding of Rome (traditional)",
+      "content": {
+        "kind": "short-answer",
+        "answer": "753 BCE",
+        "acceptableAnswers": []
+      },
+      "explanation": null,
+      "sourceRef": "Encyclopaedia Britannica; Roberts, The History of the World (Oxford)",
+      "tags": ["history"]
+    },
+    {
+      "prompt": "Battle of Marathon",
+      "content": {
+        "kind": "short-answer",
+        "answer": "490 BCE: Athenians repelled the Persians.",
+        "acceptableAnswers": []
+      },
+      "explanation": null,
+      "sourceRef": "Encyclopaedia Britannica; Roberts, The History of the World (Oxford)",
+      "tags": ["history"]
+    },
+    {
+      "prompt": "Alexander the Great died",
+      "content": {
+        "kind": "short-answer",
+        "answer": "323 BCE",
+        "acceptableAnswers": []
+      },
+      "explanation": null,
+      "sourceRef": "Encyclopaedia Britannica; Roberts, The History of the World (Oxford)",
+      "tags": ["history"]
+    },
+    {
+      "prompt": "Julius Caesar assassinated",
+      "content": {
+        "kind": "short-answer",
+        "answer": "44 BCE (Ides of March)",
+        "acceptableAnswers": []
+      },
+      "explanation": null,
+      "sourceRef": "Encyclopaedia Britannica; Roberts, The History of the World (Oxford)",
+      "tags": ["history"]
+    },
+    {
+      "prompt": "Constantine legalized Christianity (Edict of Milan)",
+      "content": {
+        "kind": "short-answer",
+        "answer": "313 CE",
+        "acceptableAnswers": []
+      },
+      "explanation": null,
+      "sourceRef": "Encyclopaedia Britannica; Roberts, The History of the World (Oxford)",
+      "tags": ["history"]
+    },
+    {
+      "prompt": "Hijra of Muhammad to Medina (start of the Islamic calendar)",
+      "content": {
+        "kind": "short-answer",
+        "answer": "622 CE",
+        "acceptableAnswers": []
+      },
+      "explanation": null,
+      "sourceRef": "Encyclopaedia Britannica; Roberts, The History of the World (Oxford)",
+      "tags": ["history"]
+    },
+    {
+      "prompt": "Charlemagne crowned emperor",
+      "content": {
+        "kind": "short-answer",
+        "answer": "800 CE",
+        "acceptableAnswers": []
+      },
+      "explanation": null,
+      "sourceRef": "Encyclopaedia Britannica; Roberts, The History of the World (Oxford)",
+      "tags": ["history"]
+    },
+    {
+      "prompt": "Norman conquest of England (Battle of Hastings)",
+      "content": {
+        "kind": "short-answer",
+        "answer": "1066",
+        "acceptableAnswers": []
+      },
+      "explanation": null,
+      "sourceRef": "Encyclopaedia Britannica; Roberts, The History of the World (Oxford)",
+      "tags": ["history"]
+    },
+    {
+      "prompt": "Magna Carta sealed",
+      "content": {
+        "kind": "short-answer",
+        "answer": "1215",
+        "acceptableAnswers": []
+      },
+      "explanation": null,
+      "sourceRef": "Encyclopaedia Britannica; Roberts, The History of the World (Oxford)",
+      "tags": ["history"]
+    },
+    {
+      "prompt": "Black Death in Europe",
+      "content": {
+        "kind": "short-answer",
+        "answer": "1347-1351",
+        "acceptableAnswers": []
+      },
+      "explanation": null,
+      "sourceRef": "Encyclopaedia Britannica; Roberts, The History of the World (Oxford)",
+      "tags": ["history"]
+    },
+    {
+      "prompt": "Fall of Constantinople to the Ottomans",
+      "content": {
+        "kind": "short-answer",
+        "answer": "1453",
+        "acceptableAnswers": []
+      },
+      "explanation": null,
+      "sourceRef": "Encyclopaedia Britannica; Roberts, The History of the World (Oxford)",
+      "tags": ["history"]
+    },
+    {
+      "prompt": "Gutenberg printing press (movable type in Europe)",
+      "content": {
+        "kind": "short-answer",
+        "answer": "About 1450",
+        "acceptableAnswers": []
+      },
+      "explanation": null,
+      "sourceRef": "Encyclopaedia Britannica; Roberts, The History of the World (Oxford)",
+      "tags": ["history"]
+    },
+    {
+      "prompt": "Columbus's first voyage to the Americas",
+      "content": {
+        "kind": "short-answer",
+        "answer": "1492",
+        "acceptableAnswers": []
+      },
+      "explanation": null,
+      "sourceRef": "Encyclopaedia Britannica; Roberts, The History of the World (Oxford)",
+      "tags": ["history"]
+    },
+    {
+      "prompt": "Luther's Ninety-five Theses",
+      "content": {
+        "kind": "short-answer",
+        "answer": "1517",
+        "acceptableAnswers": []
+      },
+      "explanation": null,
+      "sourceRef": "Encyclopaedia Britannica; Roberts, The History of the World (Oxford)",
+      "tags": ["history"]
+    },
+    {
+      "prompt": "Peace of Westphalia",
+      "content": {
+        "kind": "short-answer",
+        "answer": "1648, ending the Thirty Years' War.",
+        "acceptableAnswers": []
+      },
+      "explanation": null,
+      "sourceRef": "Encyclopaedia Britannica; Roberts, The History of the World (Oxford)",
+      "tags": ["history"]
+    },
+    {
+      "prompt": "Glorious Revolution in England",
+      "content": {
+        "kind": "short-answer",
+        "answer": "1688-89",
+        "acceptableAnswers": []
+      },
+      "explanation": null,
+      "sourceRef": "Encyclopaedia Britannica; Roberts, The History of the World (Oxford)",
+      "tags": ["history"]
+    },
+    {
+      "prompt": "French Revolution begins (storming of the Bastille)",
+      "content": {
+        "kind": "short-answer",
+        "answer": "1789",
+        "acceptableAnswers": []
+      },
+      "explanation": null,
+      "sourceRef": "Encyclopaedia Britannica; Roberts, The History of the World (Oxford)",
+      "tags": ["history"]
+    },
+    {
+      "prompt": "Battle of Waterloo",
+      "content": {
+        "kind": "short-answer",
+        "answer": "1815: Napoleon's final defeat.",
+        "acceptableAnswers": []
+      },
+      "explanation": null,
+      "sourceRef": "Encyclopaedia Britannica; Roberts, The History of the World (Oxford)",
+      "tags": ["history"]
+    },
+    {
+      "prompt": "Congress of Vienna",
+      "content": {
+        "kind": "short-answer",
+        "answer": "1814-15: restored European order after Napoleon.",
+        "acceptableAnswers": []
+      },
+      "explanation": null,
+      "sourceRef": "Encyclopaedia Britannica; Roberts, The History of the World (Oxford)",
+      "tags": ["history"]
+    },
+    {
+      "prompt": "Unification of Germany and of Italy",
+      "content": {
+        "kind": "short-answer",
+        "answer": "Italy proclaimed 1861 (Rome joined 1870); German Empire 1871.",
+        "acceptableAnswers": []
+      },
+      "explanation": null,
+      "sourceRef": "Encyclopaedia Britannica; Roberts, The History of the World (Oxford)",
+      "tags": ["history"]
+    },
+    {
+      "prompt": "Opium War (First)",
+      "content": {
+        "kind": "short-answer",
+        "answer": "1839-1842; Treaty of Nanking ceded Hong Kong to Britain.",
+        "acceptableAnswers": []
+      },
+      "explanation": null,
+      "sourceRef": "Encyclopaedia Britannica; Roberts, The History of the World (Oxford)",
+      "tags": ["history"]
+    },
+    {
+      "prompt": "Meiji Restoration in Japan",
+      "content": {
+        "kind": "short-answer",
+        "answer": "1868",
+        "acceptableAnswers": []
+      },
+      "explanation": null,
+      "sourceRef": "Encyclopaedia Britannica; Roberts, The History of the World (Oxford)",
+      "tags": ["history"]
+    },
+    {
+      "prompt": "World War I dates",
+      "content": {
+        "kind": "short-answer",
+        "answer": "1914-1918",
+        "acceptableAnswers": []
+      },
+      "explanation": null,
+      "sourceRef": "Encyclopaedia Britannica; Roberts, The History of the World (Oxford)",
+      "tags": ["history"]
+    },
+    {
+      "prompt": "Russian Revolutions",
+      "content": {
+        "kind": "short-answer",
+        "answer": "February and October 1917",
+        "acceptableAnswers": []
+      },
+      "explanation": null,
+      "sourceRef": "Encyclopaedia Britannica; Roberts, The History of the World (Oxford)",
+      "tags": ["history"]
+    },
+    {
+      "prompt": "Treaty of Versailles",
+      "content": {
+        "kind": "short-answer",
+        "answer": "1919",
+        "acceptableAnswers": []
+      },
+      "explanation": null,
+      "sourceRef": "Encyclopaedia Britannica; Roberts, The History of the World (Oxford)",
+      "tags": ["history"]
+    },
+    {
+      "prompt": "World War II in Europe: began and ended",
+      "content": {
+        "kind": "short-answer",
+        "answer": "September 1, 1939 (invasion of Poland); May 8, 1945 (V-E Day).",
+        "acceptableAnswers": []
+      },
+      "explanation": null,
+      "sourceRef": "Encyclopaedia Britannica; Roberts, The History of the World (Oxford)",
+      "tags": ["history"]
+    },
+    {
+      "prompt": "Indian independence and partition",
+      "content": {
+        "kind": "short-answer",
+        "answer": "August 15, 1947",
+        "acceptableAnswers": []
+      },
+      "explanation": null,
+      "sourceRef": "Encyclopaedia Britannica; Roberts, The History of the World (Oxford)",
+      "tags": ["history"]
+    },
+    {
+      "prompt": "Founding of the People's Republic of China",
+      "content": {
+        "kind": "short-answer",
+        "answer": "October 1, 1949",
+        "acceptableAnswers": []
+      },
+      "explanation": null,
+      "sourceRef": "Encyclopaedia Britannica; Roberts, The History of the World (Oxford)",
+      "tags": ["history"]
+    },
+    {
+      "prompt": "Suez Crisis",
+      "content": {
+        "kind": "short-answer",
+        "answer": "1956",
+        "acceptableAnswers": []
+      },
+      "explanation": null,
+      "sourceRef": "Encyclopaedia Britannica; Roberts, The History of the World (Oxford)",
+      "tags": ["history"]
+    },
+    {
+      "prompt": "Apartheid ended; Mandela elected president",
+      "content": {
+        "kind": "short-answer",
+        "answer": "1994",
+        "acceptableAnswers": []
+      },
+      "explanation": null,
+      "sourceRef": "Encyclopaedia Britannica; Roberts, The History of the World (Oxford)",
+      "tags": ["history"]
+    }
+  ]
 }

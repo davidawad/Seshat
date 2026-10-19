@@ -1,427 +1,360 @@
 {
- "seshatExportVersion": 1,
- "name": "Mechanisms and Classic Adverse Effects",
- "description": "Key drug mechanisms, antidotes and textbook adverse effects (educational only, not clinical advice).",
- "tags": [
-  "pharmacology",
-  "mechanisms"
- ],
- "cards": [
-  {
-   "prompt": "Aspirin mechanism",
-   "content": {
-    "kind": "short-answer",
-    "answer": "Irreversibly inhibits COX-1 and COX-2, reducing prostaglandin and thromboxane synthesis.",
-    "acceptableAnswers": []
-   },
-   "explanation": null,
-   "sourceRef": "Katzung, Basic & Clinical Pharmacology (McGraw-Hill); Lüllmann, Color Atlas of Pharmacology; educational use only, not clinical advice",
-   "tags": [
-    "pharmacology"
-   ]
-  },
-  {
-   "prompt": "Why aspirin has antiplatelet effects",
-   "content": {
-    "kind": "short-answer",
-    "answer": "It irreversibly blocks platelet thromboxane A2 synthesis; platelets cannot make new COX.",
-    "acceptableAnswers": []
-   },
-   "explanation": null,
-   "sourceRef": "Katzung, Basic & Clinical Pharmacology (McGraw-Hill); Lüllmann, Color Atlas of Pharmacology; educational use only, not clinical advice",
-   "tags": [
-    "pharmacology"
-   ]
-  },
-  {
-   "prompt": "Acetaminophen overdose antidote",
-   "content": {
-    "kind": "short-answer",
-    "answer": "N-acetylcysteine",
-    "acceptableAnswers": []
-   },
-   "explanation": null,
-   "sourceRef": "Katzung, Basic & Clinical Pharmacology (McGraw-Hill); Lüllmann, Color Atlas of Pharmacology; educational use only, not clinical advice",
-   "tags": [
-    "pharmacology"
-   ]
-  },
-  {
-   "prompt": "Acetaminophen overdose toxic metabolite",
-   "content": {
-    "kind": "short-answer",
-    "answer": "NAPQI, which depletes glutathione and injures the liver.",
-    "acceptableAnswers": []
-   },
-   "explanation": null,
-   "sourceRef": "Katzung, Basic & Clinical Pharmacology (McGraw-Hill); Lüllmann, Color Atlas of Pharmacology; educational use only, not clinical advice",
-   "tags": [
-    "pharmacology"
-   ]
-  },
-  {
-   "prompt": "Opioid overdose antidote",
-   "content": {
-    "kind": "short-answer",
-    "answer": "Naloxone (competitive opioid receptor antagonist).",
-    "acceptableAnswers": []
-   },
-   "explanation": null,
-   "sourceRef": "Katzung, Basic & Clinical Pharmacology (McGraw-Hill); Lüllmann, Color Atlas of Pharmacology; educational use only, not clinical advice",
-   "tags": [
-    "pharmacology"
-   ]
-  },
-  {
-   "prompt": "Benzodiazepine overdose reversal agent",
-   "content": {
-    "kind": "short-answer",
-    "answer": "Flumazenil (GABA-A benzodiazepine-site antagonist).",
-    "acceptableAnswers": []
-   },
-   "explanation": null,
-   "sourceRef": "Katzung, Basic & Clinical Pharmacology (McGraw-Hill); Lüllmann, Color Atlas of Pharmacology; educational use only, not clinical advice",
-   "tags": [
-    "pharmacology"
-   ]
-  },
-  {
-   "prompt": "Warfarin mechanism",
-   "content": {
-    "kind": "short-answer",
-    "answer": "Inhibits vitamin K epoxide reductase, reducing synthesis of factors II, VII, IX, X.",
-    "acceptableAnswers": []
-   },
-   "explanation": null,
-   "sourceRef": "Katzung, Basic & Clinical Pharmacology (McGraw-Hill); Lüllmann, Color Atlas of Pharmacology; educational use only, not clinical advice",
-   "tags": [
-    "pharmacology"
-   ]
-  },
-  {
-   "prompt": "Warfarin overdose reversal",
-   "content": {
-    "kind": "short-answer",
-    "answer": "Vitamin K; prothrombin complex concentrate or plasma for urgent reversal.",
-    "acceptableAnswers": []
-   },
-   "explanation": null,
-   "sourceRef": "Katzung, Basic & Clinical Pharmacology (McGraw-Hill); Lüllmann, Color Atlas of Pharmacology; educational use only, not clinical advice",
-   "tags": [
-    "pharmacology"
-   ]
-  },
-  {
-   "prompt": "Heparin reversal agent",
-   "content": {
-    "kind": "short-answer",
-    "answer": "Protamine sulfate",
-    "acceptableAnswers": []
-   },
-   "explanation": null,
-   "sourceRef": "Katzung, Basic & Clinical Pharmacology (McGraw-Hill); Lüllmann, Color Atlas of Pharmacology; educational use only, not clinical advice",
-   "tags": [
-    "pharmacology"
-   ]
-  },
-  {
-   "prompt": "Organophosphate poisoning mechanism",
-   "content": {
-    "kind": "short-answer",
-    "answer": "Irreversible acetylcholinesterase inhibition; treated with atropine and pralidoxime.",
-    "acceptableAnswers": []
-   },
-   "explanation": null,
-   "sourceRef": "Katzung, Basic & Clinical Pharmacology (McGraw-Hill); Lüllmann, Color Atlas of Pharmacology; educational use only, not clinical advice",
-   "tags": [
-    "pharmacology"
-   ]
-  },
-  {
-   "prompt": "Digoxin mechanism",
-   "content": {
-    "kind": "short-answer",
-    "answer": "Inhibits the Na+/K+ ATPase, raising intracellular calcium and cardiac contractility.",
-    "acceptableAnswers": []
-   },
-   "explanation": null,
-   "sourceRef": "Katzung, Basic & Clinical Pharmacology (McGraw-Hill); Lüllmann, Color Atlas of Pharmacology; educational use only, not clinical advice",
-   "tags": [
-    "pharmacology"
-   ]
-  },
-  {
-   "prompt": "Metformin mechanism",
-   "content": {
-    "kind": "short-answer",
-    "answer": "Reduces hepatic gluconeogenesis (activates AMPK); rare adverse effect: lactic acidosis.",
-    "acceptableAnswers": []
-   },
-   "explanation": null,
-   "sourceRef": "Katzung, Basic & Clinical Pharmacology (McGraw-Hill); Lüllmann, Color Atlas of Pharmacology; educational use only, not clinical advice",
-   "tags": [
-    "pharmacology"
-   ]
-  },
-  {
-   "prompt": "Penicillin mechanism",
-   "content": {
-    "kind": "short-answer",
-    "answer": "Binds penicillin-binding proteins, inhibiting bacterial cell wall cross-linking.",
-    "acceptableAnswers": []
-   },
-   "explanation": null,
-   "sourceRef": "Katzung, Basic & Clinical Pharmacology (McGraw-Hill); Lüllmann, Color Atlas of Pharmacology; educational use only, not clinical advice",
-   "tags": [
-    "pharmacology"
-   ]
-  },
-  {
-   "prompt": "Vancomycin mechanism",
-   "content": {
-    "kind": "short-answer",
-    "answer": "Binds D-Ala-D-Ala, blocking peptidoglycan synthesis in Gram-positive bacteria.",
-    "acceptableAnswers": []
-   },
-   "explanation": null,
-   "sourceRef": "Katzung, Basic & Clinical Pharmacology (McGraw-Hill); Lüllmann, Color Atlas of Pharmacology; educational use only, not clinical advice",
-   "tags": [
-    "pharmacology"
-   ]
-  },
-  {
-   "prompt": "Aminoglycoside toxicities",
-   "content": {
-    "kind": "short-answer",
-    "answer": "Nephrotoxicity and ototoxicity.",
-    "acceptableAnswers": []
-   },
-   "explanation": null,
-   "sourceRef": "Katzung, Basic & Clinical Pharmacology (McGraw-Hill); Lüllmann, Color Atlas of Pharmacology; educational use only, not clinical advice",
-   "tags": [
-    "pharmacology"
-   ]
-  },
-  {
-   "prompt": "Tetracycline caution (children, pregnancy)",
-   "content": {
-    "kind": "short-answer",
-    "answer": "Binds calcium in teeth and bone, causing tooth discoloration and impaired bone growth.",
-    "acceptableAnswers": []
-   },
-   "explanation": null,
-   "sourceRef": "Katzung, Basic & Clinical Pharmacology (McGraw-Hill); Lüllmann, Color Atlas of Pharmacology; educational use only, not clinical advice",
-   "tags": [
-    "pharmacology"
-   ]
-  },
-  {
-   "prompt": "Rifampin notable effect",
-   "content": {
-    "kind": "short-answer",
-    "answer": "Induces CYP450 enzymes and colors body fluids orange.",
-    "acceptableAnswers": []
-   },
-   "explanation": null,
-   "sourceRef": "Katzung, Basic & Clinical Pharmacology (McGraw-Hill); Lüllmann, Color Atlas of Pharmacology; educational use only, not clinical advice",
-   "tags": [
-    "pharmacology"
-   ]
-  },
-  {
-   "prompt": "Isoniazid classic adverse effects",
-   "content": {
-    "kind": "short-answer",
-    "answer": "Hepatotoxicity and peripheral neuropathy (reduced by pyridoxine).",
-    "acceptableAnswers": []
-   },
-   "explanation": null,
-   "sourceRef": "Katzung, Basic & Clinical Pharmacology (McGraw-Hill); Lüllmann, Color Atlas of Pharmacology; educational use only, not clinical advice",
-   "tags": [
-    "pharmacology"
-   ]
-  },
-  {
-   "prompt": "ACE inhibitor mechanism",
-   "content": {
-    "kind": "short-answer",
-    "answer": "Block conversion of angiotensin I to angiotensin II and reduce bradykinin breakdown (cough).",
-    "acceptableAnswers": []
-   },
-   "explanation": null,
-   "sourceRef": "Katzung, Basic & Clinical Pharmacology (McGraw-Hill); Lüllmann, Color Atlas of Pharmacology; educational use only, not clinical advice",
-   "tags": [
-    "pharmacology"
-   ]
-  },
-  {
-   "prompt": "Beta-blocker mechanism",
-   "content": {
-    "kind": "short-answer",
-    "answer": "Block beta-adrenergic receptors, lowering heart rate and contractility.",
-    "acceptableAnswers": []
-   },
-   "explanation": null,
-   "sourceRef": "Katzung, Basic & Clinical Pharmacology (McGraw-Hill); Lüllmann, Color Atlas of Pharmacology; educational use only, not clinical advice",
-   "tags": [
-    "pharmacology"
-   ]
-  },
-  {
-   "prompt": "Statin mechanism",
-   "content": {
-    "kind": "short-answer",
-    "answer": "Inhibit HMG-CoA reductase, reducing hepatic cholesterol synthesis; myopathy is a rare adverse effect.",
-    "acceptableAnswers": []
-   },
-   "explanation": null,
-   "sourceRef": "Katzung, Basic & Clinical Pharmacology (McGraw-Hill); Lüllmann, Color Atlas of Pharmacology; educational use only, not clinical advice",
-   "tags": [
-    "pharmacology"
-   ]
-  },
-  {
-   "prompt": "SSRI mechanism",
-   "content": {
-    "kind": "short-answer",
-    "answer": "Block serotonin reuptake transporter (SERT), increasing synaptic serotonin.",
-    "acceptableAnswers": []
-   },
-   "explanation": null,
-   "sourceRef": "Katzung, Basic & Clinical Pharmacology (McGraw-Hill); Lüllmann, Color Atlas of Pharmacology; educational use only, not clinical advice",
-   "tags": [
-    "pharmacology"
-   ]
-  },
-  {
-   "prompt": "Serotonin syndrome features",
-   "content": {
-    "kind": "short-answer",
-    "answer": "Agitation, hyperthermia, clonus, hyperreflexia, autonomic instability.",
-    "acceptableAnswers": []
-   },
-   "explanation": null,
-   "sourceRef": "Katzung, Basic & Clinical Pharmacology (McGraw-Hill); Lüllmann, Color Atlas of Pharmacology; educational use only, not clinical advice",
-   "tags": [
-    "pharmacology"
-   ]
-  },
-  {
-   "prompt": "Lithium notable properties",
-   "content": {
-    "kind": "short-answer",
-    "answer": "Narrow therapeutic index; can cause tremor, hypothyroidism, nephrogenic diabetes insipidus.",
-    "acceptableAnswers": []
-   },
-   "explanation": null,
-   "sourceRef": "Katzung, Basic & Clinical Pharmacology (McGraw-Hill); Lüllmann, Color Atlas of Pharmacology; educational use only, not clinical advice",
-   "tags": [
-    "pharmacology"
-   ]
-  },
-  {
-   "prompt": "Levodopa given with carbidopa because",
-   "content": {
-    "kind": "short-answer",
-    "answer": "Carbidopa inhibits peripheral dopa decarboxylase, so more levodopa reaches the brain.",
-    "acceptableAnswers": []
-   },
-   "explanation": null,
-   "sourceRef": "Katzung, Basic & Clinical Pharmacology (McGraw-Hill); Lüllmann, Color Atlas of Pharmacology; educational use only, not clinical advice",
-   "tags": [
-    "pharmacology"
-   ]
-  },
-  {
-   "prompt": "Cholinergic muscarinic antagonist (atropine) effects",
-   "content": {
-    "kind": "short-answer",
-    "answer": "Dry mouth, mydriasis, tachycardia, urinary retention, constipation.",
-    "acceptableAnswers": []
-   },
-   "explanation": null,
-   "sourceRef": "Katzung, Basic & Clinical Pharmacology (McGraw-Hill); Lüllmann, Color Atlas of Pharmacology; educational use only, not clinical advice",
-   "tags": [
-    "pharmacology"
-   ]
-  },
-  {
-   "prompt": "Succinylcholine mechanism",
-   "content": {
-    "kind": "short-answer",
-    "answer": "Depolarizing neuromuscular blocker; nicotinic ACh receptor agonist.",
-    "acceptableAnswers": []
-   },
-   "explanation": null,
-   "sourceRef": "Katzung, Basic & Clinical Pharmacology (McGraw-Hill); Lüllmann, Color Atlas of Pharmacology; educational use only, not clinical advice",
-   "tags": [
-    "pharmacology"
-   ]
-  },
-  {
-   "prompt": "Epinephrine receptor targets",
-   "content": {
-    "kind": "short-answer",
-    "answer": "Alpha-1, beta-1 and beta-2 adrenergic receptors.",
-    "acceptableAnswers": []
-   },
-   "explanation": null,
-   "sourceRef": "Katzung, Basic & Clinical Pharmacology (McGraw-Hill); Lüllmann, Color Atlas of Pharmacology; educational use only, not clinical advice",
-   "tags": [
-    "pharmacology"
-   ]
-  },
-  {
-   "prompt": "Glucocorticoid long-term adverse effects",
-   "content": {
-    "kind": "short-answer",
-    "answer": "Osteoporosis, hyperglycemia, weight gain, adrenal suppression, infection risk.",
-    "acceptableAnswers": []
-   },
-   "explanation": null,
-   "sourceRef": "Katzung, Basic & Clinical Pharmacology (McGraw-Hill); Lüllmann, Color Atlas of Pharmacology; educational use only, not clinical advice",
-   "tags": [
-    "pharmacology"
-   ]
-  },
-  {
-   "prompt": "Proton pump inhibitor target",
-   "content": {
-    "kind": "short-answer",
-    "answer": "H+/K+ ATPase of gastric parietal cells.",
-    "acceptableAnswers": []
-   },
-   "explanation": null,
-   "sourceRef": "Katzung, Basic & Clinical Pharmacology (McGraw-Hill); Lüllmann, Color Atlas of Pharmacology; educational use only, not clinical advice",
-   "tags": [
-    "pharmacology"
-   ]
-  },
-  {
-   "prompt": "Insulin glargine vs regular insulin",
-   "content": {
-    "kind": "short-answer",
-    "answer": "Glargine is long-acting basal; regular is short-acting.",
-    "acceptableAnswers": []
-   },
-   "explanation": null,
-   "sourceRef": "Katzung, Basic & Clinical Pharmacology (McGraw-Hill); Lüllmann, Color Atlas of Pharmacology; educational use only, not clinical advice",
-   "tags": [
-    "pharmacology"
-   ]
-  },
-  {
-   "prompt": "Sulfonylurea mechanism",
-   "content": {
-    "kind": "short-answer",
-    "answer": "Close pancreatic beta-cell K-ATP channels, stimulating insulin release; hypoglycemia risk.",
-    "acceptableAnswers": []
-   },
-   "explanation": null,
-   "sourceRef": "Katzung, Basic & Clinical Pharmacology (McGraw-Hill); Lüllmann, Color Atlas of Pharmacology; educational use only, not clinical advice",
-   "tags": [
-    "pharmacology"
-   ]
-  }
- ]
+  "seshatExportVersion": 1,
+  "name": "Mechanisms and Classic Adverse Effects",
+  "description": "Key drug mechanisms, antidotes and textbook adverse effects (educational only, not clinical advice).",
+  "tags": ["pharmacology", "mechanisms"],
+  "cards": [
+    {
+      "prompt": "Aspirin mechanism",
+      "content": {
+        "kind": "short-answer",
+        "answer": "Irreversibly inhibits COX-1 and COX-2, reducing prostaglandin and thromboxane synthesis.",
+        "acceptableAnswers": []
+      },
+      "explanation": null,
+      "sourceRef": "Katzung, Basic & Clinical Pharmacology (McGraw-Hill); Lüllmann, Color Atlas of Pharmacology; educational use only, not clinical advice",
+      "tags": ["pharmacology"]
+    },
+    {
+      "prompt": "Why aspirin has antiplatelet effects",
+      "content": {
+        "kind": "short-answer",
+        "answer": "It irreversibly blocks platelet thromboxane A2 synthesis; platelets cannot make new COX.",
+        "acceptableAnswers": []
+      },
+      "explanation": null,
+      "sourceRef": "Katzung, Basic & Clinical Pharmacology (McGraw-Hill); Lüllmann, Color Atlas of Pharmacology; educational use only, not clinical advice",
+      "tags": ["pharmacology"]
+    },
+    {
+      "prompt": "Acetaminophen overdose antidote",
+      "content": {
+        "kind": "short-answer",
+        "answer": "N-acetylcysteine",
+        "acceptableAnswers": []
+      },
+      "explanation": null,
+      "sourceRef": "Katzung, Basic & Clinical Pharmacology (McGraw-Hill); Lüllmann, Color Atlas of Pharmacology; educational use only, not clinical advice",
+      "tags": ["pharmacology"]
+    },
+    {
+      "prompt": "Acetaminophen overdose toxic metabolite",
+      "content": {
+        "kind": "short-answer",
+        "answer": "NAPQI, which depletes glutathione and injures the liver.",
+        "acceptableAnswers": []
+      },
+      "explanation": null,
+      "sourceRef": "Katzung, Basic & Clinical Pharmacology (McGraw-Hill); Lüllmann, Color Atlas of Pharmacology; educational use only, not clinical advice",
+      "tags": ["pharmacology"]
+    },
+    {
+      "prompt": "Opioid overdose antidote",
+      "content": {
+        "kind": "short-answer",
+        "answer": "Naloxone (competitive opioid receptor antagonist).",
+        "acceptableAnswers": []
+      },
+      "explanation": null,
+      "sourceRef": "Katzung, Basic & Clinical Pharmacology (McGraw-Hill); Lüllmann, Color Atlas of Pharmacology; educational use only, not clinical advice",
+      "tags": ["pharmacology"]
+    },
+    {
+      "prompt": "Benzodiazepine overdose reversal agent",
+      "content": {
+        "kind": "short-answer",
+        "answer": "Flumazenil (GABA-A benzodiazepine-site antagonist).",
+        "acceptableAnswers": []
+      },
+      "explanation": null,
+      "sourceRef": "Katzung, Basic & Clinical Pharmacology (McGraw-Hill); Lüllmann, Color Atlas of Pharmacology; educational use only, not clinical advice",
+      "tags": ["pharmacology"]
+    },
+    {
+      "prompt": "Warfarin mechanism",
+      "content": {
+        "kind": "short-answer",
+        "answer": "Inhibits vitamin K epoxide reductase, reducing synthesis of factors II, VII, IX, X.",
+        "acceptableAnswers": []
+      },
+      "explanation": null,
+      "sourceRef": "Katzung, Basic & Clinical Pharmacology (McGraw-Hill); Lüllmann, Color Atlas of Pharmacology; educational use only, not clinical advice",
+      "tags": ["pharmacology"]
+    },
+    {
+      "prompt": "Warfarin overdose reversal",
+      "content": {
+        "kind": "short-answer",
+        "answer": "Vitamin K; prothrombin complex concentrate or plasma for urgent reversal.",
+        "acceptableAnswers": []
+      },
+      "explanation": null,
+      "sourceRef": "Katzung, Basic & Clinical Pharmacology (McGraw-Hill); Lüllmann, Color Atlas of Pharmacology; educational use only, not clinical advice",
+      "tags": ["pharmacology"]
+    },
+    {
+      "prompt": "Heparin reversal agent",
+      "content": {
+        "kind": "short-answer",
+        "answer": "Protamine sulfate",
+        "acceptableAnswers": []
+      },
+      "explanation": null,
+      "sourceRef": "Katzung, Basic & Clinical Pharmacology (McGraw-Hill); Lüllmann, Color Atlas of Pharmacology; educational use only, not clinical advice",
+      "tags": ["pharmacology"]
+    },
+    {
+      "prompt": "Organophosphate poisoning mechanism",
+      "content": {
+        "kind": "short-answer",
+        "answer": "Irreversible acetylcholinesterase inhibition; treated with atropine and pralidoxime.",
+        "acceptableAnswers": []
+      },
+      "explanation": null,
+      "sourceRef": "Katzung, Basic & Clinical Pharmacology (McGraw-Hill); Lüllmann, Color Atlas of Pharmacology; educational use only, not clinical advice",
+      "tags": ["pharmacology"]
+    },
+    {
+      "prompt": "Digoxin mechanism",
+      "content": {
+        "kind": "short-answer",
+        "answer": "Inhibits the Na+/K+ ATPase, raising intracellular calcium and cardiac contractility.",
+        "acceptableAnswers": []
+      },
+      "explanation": null,
+      "sourceRef": "Katzung, Basic & Clinical Pharmacology (McGraw-Hill); Lüllmann, Color Atlas of Pharmacology; educational use only, not clinical advice",
+      "tags": ["pharmacology"]
+    },
+    {
+      "prompt": "Metformin mechanism",
+      "content": {
+        "kind": "short-answer",
+        "answer": "Reduces hepatic gluconeogenesis (activates AMPK); rare adverse effect: lactic acidosis.",
+        "acceptableAnswers": []
+      },
+      "explanation": null,
+      "sourceRef": "Katzung, Basic & Clinical Pharmacology (McGraw-Hill); Lüllmann, Color Atlas of Pharmacology; educational use only, not clinical advice",
+      "tags": ["pharmacology"]
+    },
+    {
+      "prompt": "Penicillin mechanism",
+      "content": {
+        "kind": "short-answer",
+        "answer": "Binds penicillin-binding proteins, inhibiting bacterial cell wall cross-linking.",
+        "acceptableAnswers": []
+      },
+      "explanation": null,
+      "sourceRef": "Katzung, Basic & Clinical Pharmacology (McGraw-Hill); Lüllmann, Color Atlas of Pharmacology; educational use only, not clinical advice",
+      "tags": ["pharmacology"]
+    },
+    {
+      "prompt": "Vancomycin mechanism",
+      "content": {
+        "kind": "short-answer",
+        "answer": "Binds D-Ala-D-Ala, blocking peptidoglycan synthesis in Gram-positive bacteria.",
+        "acceptableAnswers": []
+      },
+      "explanation": null,
+      "sourceRef": "Katzung, Basic & Clinical Pharmacology (McGraw-Hill); Lüllmann, Color Atlas of Pharmacology; educational use only, not clinical advice",
+      "tags": ["pharmacology"]
+    },
+    {
+      "prompt": "Aminoglycoside toxicities",
+      "content": {
+        "kind": "short-answer",
+        "answer": "Nephrotoxicity and ototoxicity.",
+        "acceptableAnswers": []
+      },
+      "explanation": null,
+      "sourceRef": "Katzung, Basic & Clinical Pharmacology (McGraw-Hill); Lüllmann, Color Atlas of Pharmacology; educational use only, not clinical advice",
+      "tags": ["pharmacology"]
+    },
+    {
+      "prompt": "Tetracycline caution (children, pregnancy)",
+      "content": {
+        "kind": "short-answer",
+        "answer": "Binds calcium in teeth and bone, causing tooth discoloration and impaired bone growth.",
+        "acceptableAnswers": []
+      },
+      "explanation": null,
+      "sourceRef": "Katzung, Basic & Clinical Pharmacology (McGraw-Hill); Lüllmann, Color Atlas of Pharmacology; educational use only, not clinical advice",
+      "tags": ["pharmacology"]
+    },
+    {
+      "prompt": "Rifampin notable effect",
+      "content": {
+        "kind": "short-answer",
+        "answer": "Induces CYP450 enzymes and colors body fluids orange.",
+        "acceptableAnswers": []
+      },
+      "explanation": null,
+      "sourceRef": "Katzung, Basic & Clinical Pharmacology (McGraw-Hill); Lüllmann, Color Atlas of Pharmacology; educational use only, not clinical advice",
+      "tags": ["pharmacology"]
+    },
+    {
+      "prompt": "Isoniazid classic adverse effects",
+      "content": {
+        "kind": "short-answer",
+        "answer": "Hepatotoxicity and peripheral neuropathy (reduced by pyridoxine).",
+        "acceptableAnswers": []
+      },
+      "explanation": null,
+      "sourceRef": "Katzung, Basic & Clinical Pharmacology (McGraw-Hill); Lüllmann, Color Atlas of Pharmacology; educational use only, not clinical advice",
+      "tags": ["pharmacology"]
+    },
+    {
+      "prompt": "ACE inhibitor mechanism",
+      "content": {
+        "kind": "short-answer",
+        "answer": "Block conversion of angiotensin I to angiotensin II and reduce bradykinin breakdown (cough).",
+        "acceptableAnswers": []
+      },
+      "explanation": null,
+      "sourceRef": "Katzung, Basic & Clinical Pharmacology (McGraw-Hill); Lüllmann, Color Atlas of Pharmacology; educational use only, not clinical advice",
+      "tags": ["pharmacology"]
+    },
+    {
+      "prompt": "Beta-blocker mechanism",
+      "content": {
+        "kind": "short-answer",
+        "answer": "Block beta-adrenergic receptors, lowering heart rate and contractility.",
+        "acceptableAnswers": []
+      },
+      "explanation": null,
+      "sourceRef": "Katzung, Basic & Clinical Pharmacology (McGraw-Hill); Lüllmann, Color Atlas of Pharmacology; educational use only, not clinical advice",
+      "tags": ["pharmacology"]
+    },
+    {
+      "prompt": "Statin mechanism",
+      "content": {
+        "kind": "short-answer",
+        "answer": "Inhibit HMG-CoA reductase, reducing hepatic cholesterol synthesis; myopathy is a rare adverse effect.",
+        "acceptableAnswers": []
+      },
+      "explanation": null,
+      "sourceRef": "Katzung, Basic & Clinical Pharmacology (McGraw-Hill); Lüllmann, Color Atlas of Pharmacology; educational use only, not clinical advice",
+      "tags": ["pharmacology"]
+    },
+    {
+      "prompt": "SSRI mechanism",
+      "content": {
+        "kind": "short-answer",
+        "answer": "Block serotonin reuptake transporter (SERT), increasing synaptic serotonin.",
+        "acceptableAnswers": []
+      },
+      "explanation": null,
+      "sourceRef": "Katzung, Basic & Clinical Pharmacology (McGraw-Hill); Lüllmann, Color Atlas of Pharmacology; educational use only, not clinical advice",
+      "tags": ["pharmacology"]
+    },
+    {
+      "prompt": "Serotonin syndrome features",
+      "content": {
+        "kind": "short-answer",
+        "answer": "Agitation, hyperthermia, clonus, hyperreflexia, autonomic instability.",
+        "acceptableAnswers": []
+      },
+      "explanation": null,
+      "sourceRef": "Katzung, Basic & Clinical Pharmacology (McGraw-Hill); Lüllmann, Color Atlas of Pharmacology; educational use only, not clinical advice",
+      "tags": ["pharmacology"]
+    },
+    {
+      "prompt": "Lithium notable properties",
+      "content": {
+        "kind": "short-answer",
+        "answer": "Narrow therapeutic index; can cause tremor, hypothyroidism, nephrogenic diabetes insipidus.",
+        "acceptableAnswers": []
+      },
+      "explanation": null,
+      "sourceRef": "Katzung, Basic & Clinical Pharmacology (McGraw-Hill); Lüllmann, Color Atlas of Pharmacology; educational use only, not clinical advice",
+      "tags": ["pharmacology"]
+    },
+    {
+      "prompt": "Levodopa given with carbidopa because",
+      "content": {
+        "kind": "short-answer",
+        "answer": "Carbidopa inhibits peripheral dopa decarboxylase, so more levodopa reaches the brain.",
+        "acceptableAnswers": []
+      },
+      "explanation": null,
+      "sourceRef": "Katzung, Basic & Clinical Pharmacology (McGraw-Hill); Lüllmann, Color Atlas of Pharmacology; educational use only, not clinical advice",
+      "tags": ["pharmacology"]
+    },
+    {
+      "prompt": "Cholinergic muscarinic antagonist (atropine) effects",
+      "content": {
+        "kind": "short-answer",
+        "answer": "Dry mouth, mydriasis, tachycardia, urinary retention, constipation.",
+        "acceptableAnswers": []
+      },
+      "explanation": null,
+      "sourceRef": "Katzung, Basic & Clinical Pharmacology (McGraw-Hill); Lüllmann, Color Atlas of Pharmacology; educational use only, not clinical advice",
+      "tags": ["pharmacology"]
+    },
+    {
+      "prompt": "Succinylcholine mechanism",
+      "content": {
+        "kind": "short-answer",
+        "answer": "Depolarizing neuromuscular blocker; nicotinic ACh receptor agonist.",
+        "acceptableAnswers": []
+      },
+      "explanation": null,
+      "sourceRef": "Katzung, Basic & Clinical Pharmacology (McGraw-Hill); Lüllmann, Color Atlas of Pharmacology; educational use only, not clinical advice",
+      "tags": ["pharmacology"]
+    },
+    {
+      "prompt": "Epinephrine receptor targets",
+      "content": {
+        "kind": "short-answer",
+        "answer": "Alpha-1, beta-1 and beta-2 adrenergic receptors.",
+        "acceptableAnswers": []
+      },
+      "explanation": null,
+      "sourceRef": "Katzung, Basic & Clinical Pharmacology (McGraw-Hill); Lüllmann, Color Atlas of Pharmacology; educational use only, not clinical advice",
+      "tags": ["pharmacology"]
+    },
+    {
+      "prompt": "Glucocorticoid long-term adverse effects",
+      "content": {
+        "kind": "short-answer",
+        "answer": "Osteoporosis, hyperglycemia, weight gain, adrenal suppression, infection risk.",
+        "acceptableAnswers": []
+      },
+      "explanation": null,
+      "sourceRef": "Katzung, Basic & Clinical Pharmacology (McGraw-Hill); Lüllmann, Color Atlas of Pharmacology; educational use only, not clinical advice",
+      "tags": ["pharmacology"]
+    },
+    {
+      "prompt": "Proton pump inhibitor target",
+      "content": {
+        "kind": "short-answer",
+        "answer": "H+/K+ ATPase of gastric parietal cells.",
+        "acceptableAnswers": []
+      },
+      "explanation": null,
+      "sourceRef": "Katzung, Basic & Clinical Pharmacology (McGraw-Hill); Lüllmann, Color Atlas of Pharmacology; educational use only, not clinical advice",
+      "tags": ["pharmacology"]
+    },
+    {
+      "prompt": "Insulin glargine vs regular insulin",
+      "content": {
+        "kind": "short-answer",
+        "answer": "Glargine is long-acting basal; regular is short-acting.",
+        "acceptableAnswers": []
+      },
+      "explanation": null,
+      "sourceRef": "Katzung, Basic & Clinical Pharmacology (McGraw-Hill); Lüllmann, Color Atlas of Pharmacology; educational use only, not clinical advice",
+      "tags": ["pharmacology"]
+    },
+    {
+      "prompt": "Sulfonylurea mechanism",
+      "content": {
+        "kind": "short-answer",
+        "answer": "Close pancreatic beta-cell K-ATP channels, stimulating insulin release; hypoglycemia risk.",
+        "acceptableAnswers": []
+      },
+      "explanation": null,
+      "sourceRef": "Katzung, Basic & Clinical Pharmacology (McGraw-Hill); Lüllmann, Color Atlas of Pharmacology; educational use only, not clinical advice",
+      "tags": ["pharmacology"]
+    }
+  ]
 }

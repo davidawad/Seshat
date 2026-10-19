@@ -1,309 +1,261 @@
 {
- "seshatExportVersion": 1,
- "name": "Patent Drafting Tools",
- "description": "Standard patent drafting vocabulary and claim-writing tools.",
- "tags": [
-  "patent-bar"
- ],
- "cards": [
-  {
-   "prompt": "DeepIP",
-   "content": {
-    "kind": "short-answer",
-    "answer": "Automated patent drafting software (formerly Davinci) (https://www.deepip.ai/)",
-    "acceptableAnswers": []
-   },
-   "explanation": null,
-   "sourceRef": "37 CFR 1.75; MPEP ch. 2100",
-   "tags": [
-    "patent-bar"
-   ]
-  },
-  {
-   "prompt": "Power Patent",
-   "content": {
-    "kind": "short-answer",
-    "answer": "Automated solution for generating patent application drafts (https://powerpatent.com/)",
-    "acceptableAnswers": []
-   },
-   "explanation": null,
-   "sourceRef": "37 CFR 1.75; MPEP ch. 2100",
-   "tags": [
-    "patent-bar"
-   ]
-  },
-  {
-   "prompt": "Edge",
-   "content": {
-    "kind": "short-answer",
-    "answer": "AI-powered patent drafting assistance tool (https://withedge.com/)",
-    "acceptableAnswers": []
-   },
-   "explanation": null,
-   "sourceRef": "37 CFR 1.75; MPEP ch. 2100",
-   "tags": [
-    "patent-bar"
-   ]
-  },
-  {
-   "prompt": "Patent Engine (designtoIP)",
-   "content": {
-    "kind": "short-answer",
-    "answer": "Automated patent document generation platform (https://www.designtoip.de/)",
-    "acceptableAnswers": []
-   },
-   "explanation": null,
-   "sourceRef": "37 CFR 1.75; MPEP ch. 2100",
-   "tags": [
-    "patent-bar"
-   ]
-  },
-  {
-   "prompt": "Fenix.ai",
-   "content": {
-    "kind": "short-answer",
-    "answer": "Machine learning-based patent drafting technology (https://www.fenix.ai/)",
-    "acceptableAnswers": []
-   },
-   "explanation": null,
-   "sourceRef": "37 CFR 1.75; MPEP ch. 2100",
-   "tags": [
-    "patent-bar"
-   ]
-  },
-  {
-   "prompt": "PatentPal",
-   "content": {
-    "kind": "short-answer",
-    "answer": "Intelligent system for creating patent specifications (https://patentpal.com/)",
-    "acceptableAnswers": []
-   },
-   "explanation": null,
-   "sourceRef": "37 CFR 1.75; MPEP ch. 2100",
-   "tags": [
-    "patent-bar"
-   ]
-  },
-  {
-   "prompt": "Claim Master",
-   "content": {
-    "kind": "short-answer",
-    "answer": "Specialized tool for automated claim drafting (https://www.patentclaimmaster.com/)",
-    "acceptableAnswers": []
-   },
-   "explanation": null,
-   "sourceRef": "37 CFR 1.75; MPEP ch. 2100",
-   "tags": [
-    "patent-bar"
-   ]
-  },
-  {
-   "prompt": "Paximal",
-   "content": {
-    "kind": "short-answer",
-    "answer": "Patent drafting software (previously called Specifo) (https://www.paximal.com/)",
-    "acceptableAnswers": []
-   },
-   "explanation": null,
-   "sourceRef": "37 CFR 1.75; MPEP ch. 2100",
-   "tags": [
-    "patent-bar"
-   ]
-  },
-  {
-   "prompt": "Dolcera / IP Author",
-   "content": {
-    "kind": "short-answer",
-    "answer": "Automated intellectual property document creation (https://ipauthor.com/)",
-    "acceptableAnswers": []
-   },
-   "explanation": null,
-   "sourceRef": "37 CFR 1.75; MPEP ch. 2100",
-   "tags": [
-    "patent-bar"
-   ]
-  },
-  {
-   "prompt": "Qatent",
-   "content": {
-    "kind": "short-answer",
-    "answer": "AI-assisted patent application development platform (https://qatent.com/)",
-    "acceptableAnswers": []
-   },
-   "explanation": null,
-   "sourceRef": "37 CFR 1.75; MPEP ch. 2100",
-   "tags": [
-    "patent-bar"
-   ]
-  },
-  {
-   "prompt": "Patent Pioneer",
-   "content": {
-    "kind": "short-answer",
-    "answer": "Automated patent drafting tool from Harrity LLP (formerly Patent Draftr) (https://software.harrityllp.com/pioneer/)",
-    "acceptableAnswers": []
-   },
-   "explanation": null,
-   "sourceRef": "37 CFR 1.75; MPEP ch. 2100",
-   "tags": [
-    "patent-bar"
-   ]
-  },
-  {
-   "prompt": "Clarivate Rowan",
-   "content": {
-    "kind": "short-answer",
-    "answer": "Patent drafting tool (previously Turbo Patent) (https://rowanpatents.com/drafting/)",
-    "acceptableAnswers": []
-   },
-   "explanation": null,
-   "sourceRef": "37 CFR 1.75; MPEP ch. 2100",
-   "tags": [
-    "patent-bar"
-   ]
-  },
-  {
-   "prompt": "Solve Intelligence",
-   "content": {
-    "kind": "short-answer",
-    "answer": "AI-assisted patent drafting solution (https://www.solveintelligence.com/)",
-    "acceptableAnswers": []
-   },
-   "explanation": null,
-   "sourceRef": "37 CFR 1.75; MPEP ch. 2100",
-   "tags": [
-    "patent-bar"
-   ]
-  },
-  {
-   "prompt": "Patent Bots",
-   "content": {
-    "kind": "short-answer",
-    "answer": "Robotic/automated patent application preparation system (https://www.patentbots.com/)",
-    "acceptableAnswers": []
-   },
-   "explanation": null,
-   "sourceRef": "37 CFR 1.75; MPEP ch. 2100",
-   "tags": [
-    "patent-bar"
-   ]
-  },
-  {
-   "prompt": "Patent Optimizer (LexisNexis)",
-   "content": {
-    "kind": "short-answer",
-    "answer": "Enterprise patent drafting optimization tool (https://www.lexisnexisip.com/solutions/patent-drafting/patentoptimizer/)",
-    "acceptableAnswers": []
-   },
-   "explanation": null,
-   "sourceRef": "37 CFR 1.75; MPEP ch. 2100",
-   "tags": [
-    "patent-bar"
-   ]
-  },
-  {
-   "prompt": "Lightbringer",
-   "content": {
-    "kind": "short-answer",
-    "answer": "Patent document automation software (https://www.lightbringer.com/)",
-    "acceptableAnswers": []
-   },
-   "explanation": null,
-   "sourceRef": "37 CFR 1.75; MPEP ch. 2100",
-   "tags": [
-    "patent-bar"
-   ]
-  },
-  {
-   "prompt": "PatentAssist",
-   "content": {
-    "kind": "short-answer",
-    "answer": "AI-driven patent drafting assistance (http://patentassist.ai/)",
-    "acceptableAnswers": []
-   },
-   "explanation": null,
-   "sourceRef": "37 CFR 1.75; MPEP ch. 2100",
-   "tags": [
-    "patent-bar"
-   ]
-  },
-  {
-   "prompt": "Patently (Onardo)",
-   "content": {
-    "kind": "short-answer",
-    "answer": "Collaborative patent application platform (https://patently.com/)",
-    "acceptableAnswers": []
-   },
-   "explanation": null,
-   "sourceRef": "37 CFR 1.75; MPEP ch. 2100",
-   "tags": [
-    "patent-bar"
-   ]
-  },
-  {
-   "prompt": "IPRally",
-   "content": {
-    "kind": "short-answer",
-    "answer": "Integrated patent management and drafting system (https://www.iprally.com/)",
-    "acceptableAnswers": []
-   },
-   "explanation": null,
-   "sourceRef": "37 CFR 1.75; MPEP ch. 2100",
-   "tags": [
-    "patent-bar"
-   ]
-  },
-  {
-   "prompt": "PatentMaker",
-   "content": {
-    "kind": "short-answer",
-    "answer": "AI patent drafting/prosecution platform from PatentMaker Software GmbH (Munich); blocks plain curl but loads fine in browser (https://patentmaker.eu/)",
-    "acceptableAnswers": []
-   },
-   "explanation": null,
-   "sourceRef": "37 CFR 1.75; MPEP ch. 2100",
-   "tags": [
-    "patent-bar"
-   ]
-  },
-  {
-   "prompt": "XLScout",
-   "content": {
-    "kind": "short-answer",
-    "answer": "Patent research and drafting integration platform (https://xlscout.ai/)",
-    "acceptableAnswers": []
-   },
-   "explanation": null,
-   "sourceRef": "37 CFR 1.75; MPEP ch. 2100",
-   "tags": [
-    "patent-bar"
-   ]
-  },
-  {
-   "prompt": "InCatalyst",
-   "content": {
-    "kind": "short-answer",
-    "answer": "Patent drafting catalyst system (https://www.in-catalyst.com/)",
-    "acceptableAnswers": []
-   },
-   "explanation": null,
-   "sourceRef": "37 CFR 1.75; MPEP ch. 2100",
-   "tags": [
-    "patent-bar"
-   ]
-  },
-  {
-   "prompt": "Philipa",
-   "content": {
-    "kind": "short-answer",
-    "answer": "German-language patent drafting automation tool (https://philipa.de/)",
-    "acceptableAnswers": []
-   },
-   "explanation": null,
-   "sourceRef": "37 CFR 1.75; MPEP ch. 2100",
-   "tags": [
-    "patent-bar"
-   ]
-  }
- ]
+  "seshatExportVersion": 1,
+  "name": "Patent Drafting Tools",
+  "description": "Standard patent drafting vocabulary and claim-writing tools.",
+  "tags": ["patent-bar"],
+  "cards": [
+    {
+      "prompt": "DeepIP",
+      "content": {
+        "kind": "short-answer",
+        "answer": "Automated patent drafting software (formerly Davinci) (https://www.deepip.ai/)",
+        "acceptableAnswers": []
+      },
+      "explanation": null,
+      "sourceRef": "37 CFR 1.75; MPEP ch. 2100",
+      "tags": ["patent-bar"]
+    },
+    {
+      "prompt": "Power Patent",
+      "content": {
+        "kind": "short-answer",
+        "answer": "Automated solution for generating patent application drafts (https://powerpatent.com/)",
+        "acceptableAnswers": []
+      },
+      "explanation": null,
+      "sourceRef": "37 CFR 1.75; MPEP ch. 2100",
+      "tags": ["patent-bar"]
+    },
+    {
+      "prompt": "Edge",
+      "content": {
+        "kind": "short-answer",
+        "answer": "AI-powered patent drafting assistance tool (https://withedge.com/)",
+        "acceptableAnswers": []
+      },
+      "explanation": null,
+      "sourceRef": "37 CFR 1.75; MPEP ch. 2100",
+      "tags": ["patent-bar"]
+    },
+    {
+      "prompt": "Patent Engine (designtoIP)",
+      "content": {
+        "kind": "short-answer",
+        "answer": "Automated patent document generation platform (https://www.designtoip.de/)",
+        "acceptableAnswers": []
+      },
+      "explanation": null,
+      "sourceRef": "37 CFR 1.75; MPEP ch. 2100",
+      "tags": ["patent-bar"]
+    },
+    {
+      "prompt": "Fenix.ai",
+      "content": {
+        "kind": "short-answer",
+        "answer": "Machine learning-based patent drafting technology (https://www.fenix.ai/)",
+        "acceptableAnswers": []
+      },
+      "explanation": null,
+      "sourceRef": "37 CFR 1.75; MPEP ch. 2100",
+      "tags": ["patent-bar"]
+    },
+    {
+      "prompt": "PatentPal",
+      "content": {
+        "kind": "short-answer",
+        "answer": "Intelligent system for creating patent specifications (https://patentpal.com/)",
+        "acceptableAnswers": []
+      },
+      "explanation": null,
+      "sourceRef": "37 CFR 1.75; MPEP ch. 2100",
+      "tags": ["patent-bar"]
+    },
+    {
+      "prompt": "Claim Master",
+      "content": {
+        "kind": "short-answer",
+        "answer": "Specialized tool for automated claim drafting (https://www.patentclaimmaster.com/)",
+        "acceptableAnswers": []
+      },
+      "explanation": null,
+      "sourceRef": "37 CFR 1.75; MPEP ch. 2100",
+      "tags": ["patent-bar"]
+    },
+    {
+      "prompt": "Paximal",
+      "content": {
+        "kind": "short-answer",
+        "answer": "Patent drafting software (previously called Specifo) (https://www.paximal.com/)",
+        "acceptableAnswers": []
+      },
+      "explanation": null,
+      "sourceRef": "37 CFR 1.75; MPEP ch. 2100",
+      "tags": ["patent-bar"]
+    },
+    {
+      "prompt": "Dolcera / IP Author",
+      "content": {
+        "kind": "short-answer",
+        "answer": "Automated intellectual property document creation (https://ipauthor.com/)",
+        "acceptableAnswers": []
+      },
+      "explanation": null,
+      "sourceRef": "37 CFR 1.75; MPEP ch. 2100",
+      "tags": ["patent-bar"]
+    },
+    {
+      "prompt": "Qatent",
+      "content": {
+        "kind": "short-answer",
+        "answer": "AI-assisted patent application development platform (https://qatent.com/)",
+        "acceptableAnswers": []
+      },
+      "explanation": null,
+      "sourceRef": "37 CFR 1.75; MPEP ch. 2100",
+      "tags": ["patent-bar"]
+    },
+    {
+      "prompt": "Patent Pioneer",
+      "content": {
+        "kind": "short-answer",
+        "answer": "Automated patent drafting tool from Harrity LLP (formerly Patent Draftr) (https://software.harrityllp.com/pioneer/)",
+        "acceptableAnswers": []
+      },
+      "explanation": null,
+      "sourceRef": "37 CFR 1.75; MPEP ch. 2100",
+      "tags": ["patent-bar"]
+    },
+    {
+      "prompt": "Clarivate Rowan",
+      "content": {
+        "kind": "short-answer",
+        "answer": "Patent drafting tool (previously Turbo Patent) (https://rowanpatents.com/drafting/)",
+        "acceptableAnswers": []
+      },
+      "explanation": null,
+      "sourceRef": "37 CFR 1.75; MPEP ch. 2100",
+      "tags": ["patent-bar"]
+    },
+    {
+      "prompt": "Solve Intelligence",
+      "content": {
+        "kind": "short-answer",
+        "answer": "AI-assisted patent drafting solution (https://www.solveintelligence.com/)",
+        "acceptableAnswers": []
+      },
+      "explanation": null,
+      "sourceRef": "37 CFR 1.75; MPEP ch. 2100",
+      "tags": ["patent-bar"]
+    },
+    {
+      "prompt": "Patent Bots",
+      "content": {
+        "kind": "short-answer",
+        "answer": "Robotic/automated patent application preparation system (https://www.patentbots.com/)",
+        "acceptableAnswers": []
+      },
+      "explanation": null,
+      "sourceRef": "37 CFR 1.75; MPEP ch. 2100",
+      "tags": ["patent-bar"]
+    },
+    {
+      "prompt": "Patent Optimizer (LexisNexis)",
+      "content": {
+        "kind": "short-answer",
+        "answer": "Enterprise patent drafting optimization tool (https://www.lexisnexisip.com/solutions/patent-drafting/patentoptimizer/)",
+        "acceptableAnswers": []
+      },
+      "explanation": null,
+      "sourceRef": "37 CFR 1.75; MPEP ch. 2100",
+      "tags": ["patent-bar"]
+    },
+    {
+      "prompt": "Lightbringer",
+      "content": {
+        "kind": "short-answer",
+        "answer": "Patent document automation software (https://www.lightbringer.com/)",
+        "acceptableAnswers": []
+      },
+      "explanation": null,
+      "sourceRef": "37 CFR 1.75; MPEP ch. 2100",
+      "tags": ["patent-bar"]
+    },
+    {
+      "prompt": "PatentAssist",
+      "content": {
+        "kind": "short-answer",
+        "answer": "AI-driven patent drafting assistance (http://patentassist.ai/)",
+        "acceptableAnswers": []
+      },
+      "explanation": null,
+      "sourceRef": "37 CFR 1.75; MPEP ch. 2100",
+      "tags": ["patent-bar"]
+    },
+    {
+      "prompt": "Patently (Onardo)",
+      "content": {
+        "kind": "short-answer",
+        "answer": "Collaborative patent application platform (https://patently.com/)",
+        "acceptableAnswers": []
+      },
+      "explanation": null,
+      "sourceRef": "37 CFR 1.75; MPEP ch. 2100",
+      "tags": ["patent-bar"]
+    },
+    {
+      "prompt": "IPRally",
+      "content": {
+        "kind": "short-answer",
+        "answer": "Integrated patent management and drafting system (https://www.iprally.com/)",
+        "acceptableAnswers": []
+      },
+      "explanation": null,
+      "sourceRef": "37 CFR 1.75; MPEP ch. 2100",
+      "tags": ["patent-bar"]
+    },
+    {
+      "prompt": "PatentMaker",
+      "content": {
+        "kind": "short-answer",
+        "answer": "AI patent drafting/prosecution platform from PatentMaker Software GmbH (Munich); blocks plain curl but loads fine in browser (https://patentmaker.eu/)",
+        "acceptableAnswers": []
+      },
+      "explanation": null,
+      "sourceRef": "37 CFR 1.75; MPEP ch. 2100",
+      "tags": ["patent-bar"]
+    },
+    {
+      "prompt": "XLScout",
+      "content": {
+        "kind": "short-answer",
+        "answer": "Patent research and drafting integration platform (https://xlscout.ai/)",
+        "acceptableAnswers": []
+      },
+      "explanation": null,
+      "sourceRef": "37 CFR 1.75; MPEP ch. 2100",
+      "tags": ["patent-bar"]
+    },
+    {
+      "prompt": "InCatalyst",
+      "content": {
+        "kind": "short-answer",
+        "answer": "Patent drafting catalyst system (https://www.in-catalyst.com/)",
+        "acceptableAnswers": []
+      },
+      "explanation": null,
+      "sourceRef": "37 CFR 1.75; MPEP ch. 2100",
+      "tags": ["patent-bar"]
+    },
+    {
+      "prompt": "Philipa",
+      "content": {
+        "kind": "short-answer",
+        "answer": "German-language patent drafting automation tool (https://philipa.de/)",
+        "acceptableAnswers": []
+      },
+      "explanation": null,
+      "sourceRef": "37 CFR 1.75; MPEP ch. 2100",
+      "tags": ["patent-bar"]
+    }
+  ]
 }

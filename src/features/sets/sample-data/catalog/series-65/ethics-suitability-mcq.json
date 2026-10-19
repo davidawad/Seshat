@@ -1,444 +1,382 @@
 {
- "seshatExportVersion": 1,
- "name": "Ethics, Fiduciary Duty and Suitability",
- "description": "Original practice questions on fiduciary duty, conflicts of interest, client profiling and communications.",
- "tags": [
-  "series-65",
-  "ethics",
-  "mcq"
- ],
- "cards": [
-  {
-   "prompt": "An investment adviser's fiduciary duty consists of which two broad components?",
-   "content": {
-    "kind": "mcq",
-    "options": [
-     "Duty of care and duty of loyalty",
-     "Duty of profit and duty of speed",
-     "Duty of disclosure only",
-     "Duty of confidentiality and duty of secrecy"
-    ],
-    "correctIndex": 0
-   },
-   "explanation": "The SEC's 2019 interpretation describes a duty of care (best interest advice, best execution, monitoring) and a duty of loyalty (not placing the adviser's interest ahead of the client's, with full and fair disclosure of conflicts).",
-   "sourceRef": "SEC Commission Interpretation Regarding Standard of Conduct for Investment Advisers (Release IA-5248, 2019); NASAA Series 65 content outline",
-   "tags": [
-    "series-65"
-   ]
-  },
-  {
-   "prompt": "When an adviser has a conflict of interest, the adviser must:",
-   "content": {
-    "kind": "mcq",
-    "options": [
-     "Hide it if immaterial",
-     "Fully and fairly disclose it so the client can give informed consent, or eliminate it",
-     "Wait to be asked",
-     "Charge a higher fee"
-    ],
-    "correctIndex": 1
-   },
-   "explanation": "Disclosure must be specific enough for the client to understand the conflict and provide informed consent.",
-   "sourceRef": "SEC Commission Interpretation Regarding Standard of Conduct for Investment Advisers (Release IA-5248, 2019); NASAA Series 65 content outline",
-   "tags": [
-    "series-65"
-   ]
-  },
-  {
-   "prompt": "Which of the following is the best first step in developing a client's investment policy?",
-   "content": {
-    "kind": "mcq",
-    "options": [
-     "Pick investments",
-     "Gather information about the client's objectives, constraints, and risk tolerance",
-     "Quote a fee",
-     "Execute trades"
-    ],
-    "correctIndex": 1
-   },
-   "explanation": "Know-your-client information (goals, time horizon, liquidity needs, taxes, legal constraints, risk tolerance and capacity) drives the suitability analysis.",
-   "sourceRef": "SEC Commission Interpretation Regarding Standard of Conduct for Investment Advisers (Release IA-5248, 2019); NASAA Series 65 content outline",
-   "tags": [
-    "series-65"
-   ]
-  },
-  {
-   "prompt": "Risk tolerance differs from risk capacity in that tolerance is:",
-   "content": {
-    "kind": "mcq",
-    "options": [
-     "The client's financial ability to bear loss",
-     "The client's psychological willingness to bear loss",
-     "The same thing",
-     "Determined by the adviser alone"
-    ],
-    "correctIndex": 1
-   },
-   "explanation": "Willingness is attitudinal; capacity is financial. The more conservative of the two typically governs.",
-   "sourceRef": "SEC Commission Interpretation Regarding Standard of Conduct for Investment Advisers (Release IA-5248, 2019); NASAA Series 65 content outline",
-   "tags": [
-    "series-65"
-   ]
-  },
-  {
-   "prompt": "A client who is 28 and saving for retirement in 35+ years generally has a:",
-   "content": {
-    "kind": "mcq",
-    "options": [
-     "Short time horizon and low risk capacity",
-     "Long time horizon, supporting higher equity allocation",
-     "No need for diversification",
-     "Fixed need for income"
-    ],
-    "correctIndex": 1
-   },
-   "explanation": "Long horizons allow more volatility; the adviser still considers risk tolerance and liquidity needs.",
-   "sourceRef": "SEC Commission Interpretation Regarding Standard of Conduct for Investment Advisers (Release IA-5248, 2019); NASAA Series 65 content outline",
-   "tags": [
-    "series-65"
-   ]
-  },
-  {
-   "prompt": "A retired client who needs reliable monthly income and has low risk tolerance is most appropriately offered:",
-   "content": {
-    "kind": "mcq",
-    "options": [
-     "Aggressive growth stocks",
-     "High-yield bonds only",
-     "Diversified, income-oriented holdings of higher quality with liquidity",
-     "Penny stocks"
-    ],
-    "correctIndex": 2
-   },
-   "explanation": "Recommendations must match the client's objectives, risk tolerance and cash-flow needs.",
-   "sourceRef": "SEC Commission Interpretation Regarding Standard of Conduct for Investment Advisers (Release IA-5248, 2019); NASAA Series 65 content outline",
-   "tags": [
-    "series-65"
-   ]
-  },
-  {
-   "prompt": "Churning is:",
-   "content": {
-    "kind": "mcq",
-    "options": [
-     "Excessive trading to generate commissions or fees that is inconsistent with client objectives",
-     "Rebalancing annually",
-     "Tax-loss harvesting",
-     "Dollar-cost averaging"
-    ],
-    "correctIndex": 0
-   },
-   "explanation": "Excessive trading for the adviser's benefit violates the fiduciary duty and antifraud provisions.",
-   "sourceRef": "SEC Commission Interpretation Regarding Standard of Conduct for Investment Advisers (Release IA-5248, 2019); NASAA Series 65 content outline",
-   "tags": [
-    "series-65"
-   ]
-  },
-  {
-   "prompt": "Front-running is:",
-   "content": {
-    "kind": "mcq",
-    "options": [
-     "Buying for yourself ahead of a known client order",
-     "Rebalancing before the client asks",
-     "Trading at the open",
-     "Asking the client for a deposit"
-    ],
-    "correctIndex": 0
-   },
-   "explanation": "Trading ahead of client orders to profit from the expected price move is fraud and a breach of loyalty.",
-   "sourceRef": "SEC Commission Interpretation Regarding Standard of Conduct for Investment Advisers (Release IA-5248, 2019); NASAA Series 65 content outline",
-   "tags": [
-    "series-65"
-   ]
-  },
-  {
-   "prompt": "An adviser may not do which of the following?",
-   "content": {
-    "kind": "mcq",
-    "options": [
-     "Guarantee a client against loss",
-     "Disclose conflicts",
-     "Provide a written fee schedule",
-     "Obtain best execution"
-    ],
-    "correctIndex": 0
-   },
-   "explanation": "Guaranteeing returns or promising no loss is fraudulent or misleading. Investment advice must be given with disclosure of risks.",
-   "sourceRef": "SEC Commission Interpretation Regarding Standard of Conduct for Investment Advisers (Release IA-5248, 2019); NASAA Series 65 content outline",
-   "tags": [
-    "series-65"
-   ]
-  },
-  {
-   "prompt": "Under Regulation S-P, an adviser must provide clients with:",
-   "content": {
-    "kind": "mcq",
-    "options": [
-     "A privacy notice at the start of the relationship and annually (unless exempt)",
-     "Quarterly trade confirmations",
-     "Credit reports",
-     "Tax forms"
-    ],
-    "correctIndex": 0
-   },
-   "explanation": "Reg S-P requires initial and annual privacy notices (subject to an exception if no sharing outside the exceptions) and safeguards for customer records.",
-   "sourceRef": "SEC Commission Interpretation Regarding Standard of Conduct for Investment Advisers (Release IA-5248, 2019); NASAA Series 65 content outline",
-   "tags": [
-    "series-65"
-   ]
-  },
-  {
-   "prompt": "Which communication would most likely be misleading?",
-   "content": {
-    "kind": "mcq",
-    "options": [
-     "Showing only the best-performing accounts without disclosing that it is a selection",
-     "Using a standard disclaimer",
-     "Showing net performance",
-     "Disclosing fees"
-    ],
-    "correctIndex": 0
-   },
-   "explanation": "Selective presentation of performance (cherry-picking results) is misleading under the antifraud provisions and the marketing rule.",
-   "sourceRef": "SEC Commission Interpretation Regarding Standard of Conduct for Investment Advisers (Release IA-5248, 2019); NASAA Series 65 content outline",
-   "tags": [
-    "series-65"
-   ]
-  },
-  {
-   "prompt": "A client asks the adviser to keep the client's account details confidential. The adviser may disclose the information to:",
-   "content": {
-    "kind": "mcq",
-    "options": [
-     "Any interested party",
-     "Only as required by law or with consent, or as permitted for servicing the account",
-     "The adviser's friends",
-     "The media"
-    ],
-    "correctIndex": 1
-   },
-   "explanation": "Client information must be protected; disclosure is permitted with consent, to service providers under confidentiality, or when required by law.",
-   "sourceRef": "SEC Commission Interpretation Regarding Standard of Conduct for Investment Advisers (Release IA-5248, 2019); NASAA Series 65 content outline",
-   "tags": [
-    "series-65"
-   ]
-  },
-  {
-   "prompt": "Dual registrants (IAR and broker-dealer agent) must be especially careful because they can:",
-   "content": {
-    "kind": "mcq",
-    "options": [
-     "Never receive fees",
-     "Face conflicts between commission-based and fee-based roles and must disclose which capacity they act in",
-     "Avoid fiduciary duty",
-     "Skip Form ADV"
-    ],
-    "correctIndex": 1
-   },
-   "explanation": "Disclosure of capacity and conflicts is required when the same person acts as both adviser and broker-dealer representative.",
-   "sourceRef": "SEC Commission Interpretation Regarding Standard of Conduct for Investment Advisers (Release IA-5248, 2019); NASAA Series 65 content outline",
-   "tags": [
-    "series-65"
-   ]
-  },
-  {
-   "prompt": "Under Regulation Best Interest (for broker-dealers), a recommendation must:",
-   "content": {
-    "kind": "mcq",
-    "options": [
-     "Be in the retail customer's best interest at the time made, without placing the broker's interest ahead of the customer",
-     "Always be the lowest cost",
-     "Be approved by FINRA",
-     "Beat the market"
-    ],
-    "correctIndex": 0
-   },
-   "explanation": "Reg BI requires a duty of care, disclosure, conflict mitigation and compliance obligations when recommending securities to retail customers.",
-   "sourceRef": "SEC Commission Interpretation Regarding Standard of Conduct for Investment Advisers (Release IA-5248, 2019); NASAA Series 65 content outline",
-   "tags": [
-    "series-65"
-   ]
-  },
-  {
-   "prompt": "Form CRS (relationship summary) is delivered to:",
-   "content": {
-    "kind": "mcq",
-    "options": [
-     "Institutional clients only",
-     "Retail investors",
-     "The state administrator only",
-     "Clients over 65"
-    ],
-    "correctIndex": 1
-   },
-   "explanation": "Advisers and broker-dealers deliver Form CRS to retail investors at the start of the relationship and when materially updated.",
-   "sourceRef": "SEC Commission Interpretation Regarding Standard of Conduct for Investment Advisers (Release IA-5248, 2019); NASAA Series 65 content outline",
-   "tags": [
-    "series-65"
-   ]
-  },
-  {
-   "prompt": "A power of attorney or discretionary authority lets an adviser:",
-   "content": {
-    "kind": "mcq",
-    "options": [
-     "Make investment decisions without prior client approval for each trade within the agreed scope",
-     "Withdraw cash for personal use",
-     "Waive the contract",
-     "Change the fee"
-    ],
-    "correctIndex": 0
-   },
-   "explanation": "Discretion must be documented in the client agreement, typically via limited trading authorization. It does not permit withdrawal for the adviser's own use.",
-   "sourceRef": "SEC Commission Interpretation Regarding Standard of Conduct for Investment Advisers (Release IA-5248, 2019); NASAA Series 65 content outline",
-   "tags": [
-    "series-65"
-   ]
-  },
-  {
-   "prompt": "Which fee arrangement is the most common for advisers?",
-   "content": {
-    "kind": "mcq",
-    "options": [
-     "A percentage of assets under management",
-     "Commission only",
-     "A percentage of profits only",
-     "Free"
-    ],
-    "correctIndex": 0
-   },
-   "explanation": "Asset-based fees (e.g., 1% of AUM) are most common; fee disclosure and billing practices must be described in Form ADV Part 2A.",
-   "sourceRef": "SEC Commission Interpretation Regarding Standard of Conduct for Investment Advisers (Release IA-5248, 2019); NASAA Series 65 content outline",
-   "tags": [
-    "series-65"
-   ]
-  },
-  {
-   "prompt": "If a client's circumstances change significantly (e.g., job loss), the adviser should:",
-   "content": {
-    "kind": "mcq",
-    "options": [
-     "Ignore it until the annual review",
-     "Reassess the client profile and update recommendations as needed",
-     "Close the account",
-     "Raise the fee"
-    ],
-    "correctIndex": 1
-   },
-   "explanation": "Duty of care includes monitoring the relationship at a frequency consistent with the agreed scope of services.",
-   "sourceRef": "SEC Commission Interpretation Regarding Standard of Conduct for Investment Advisers (Release IA-5248, 2019); NASAA Series 65 content outline",
-   "tags": [
-    "series-65"
-   ]
-  },
-  {
-   "prompt": "Soft-dollar benefits must be:",
-   "content": {
-    "kind": "mcq",
-    "options": [
-     "Concealed",
-     "Disclosed in Form ADV Part 2A",
-     "Used to pay adviser rent",
-     "Never allowed"
-    ],
-    "correctIndex": 1
-   },
-   "explanation": "Soft-dollar practices and conflicts must be disclosed; benefits within the 28(e) safe harbor must help the adviser's decision-making for clients.",
-   "sourceRef": "SEC Commission Interpretation Regarding Standard of Conduct for Investment Advisers (Release IA-5248, 2019); NASAA Series 65 content outline",
-   "tags": [
-    "series-65"
-   ]
-  },
-  {
-   "prompt": "Which of the following is a prohibited practice under the Uniform Securities Act for an IAR?",
-   "content": {
-    "kind": "mcq",
-    "options": [
-     "Borrowing money from a client (unless the client is a financial institution in the business of lending)",
-     "Charging a disclosed fee",
-     "Maintaining records",
-     "Taking continuing education"
-    ],
-    "correctIndex": 0
-   },
-   "explanation": "NASAA model rules prohibit advisers from borrowing from clients (with limited exceptions) and require disclosure of conflicts such as personal trading.",
-   "sourceRef": "SEC Commission Interpretation Regarding Standard of Conduct for Investment Advisers (Release IA-5248, 2019); NASAA Series 65 content outline",
-   "tags": [
-    "series-65"
-   ]
-  },
-  {
-   "prompt": "Which document spells out the services, fees, and termination terms of an advisory relationship?",
-   "content": {
-    "kind": "mcq",
-    "options": [
-     "Form U4",
-     "The investment advisory contract",
-     "A trade confirmation",
-     "Form ADV Part 2B"
-    ],
-    "correctIndex": 1
-   },
-   "explanation": "The advisory contract defines the engagement; Part 2A discloses the firm; Part 2B discloses supervised persons.",
-   "sourceRef": "SEC Commission Interpretation Regarding Standard of Conduct for Investment Advisers (Release IA-5248, 2019); NASAA Series 65 content outline",
-   "tags": [
-    "series-65"
-   ]
-  },
-  {
-   "prompt": "When a client wants an aggressive strategy that is inconsistent with the client's circumstances, the adviser should:",
-   "content": {
-    "kind": "mcq",
-    "options": [
-     "Execute immediately",
-     "Explain risks, document the discussion, and decline if the strategy is not suitable",
-     "Convert to discretionary",
-     "Charge a fee premium"
-    ],
-    "correctIndex": 1
-   },
-   "explanation": "Advice must be in the client's best interest; unsolicited client instructions can be accepted when the adviser documents them and the strategy is not otherwise prohibited.",
-   "sourceRef": "SEC Commission Interpretation Regarding Standard of Conduct for Investment Advisers (Release IA-5248, 2019); NASAA Series 65 content outline",
-   "tags": [
-    "series-65"
-   ]
-  },
-  {
-   "prompt": "Books and records for an SEC-registered adviser generally must be kept for:",
-   "content": {
-    "kind": "mcq",
-    "options": [
-     "1 year",
-     "5 years from the end of the fiscal year of the last entry, the first 2 years in the office",
-     "10 years",
-     "Indefinitely"
-    ],
-    "correctIndex": 1
-   },
-   "explanation": "Rule 204-2 generally requires 5 years, with the first two years in an appropriate office of the adviser.",
-   "sourceRef": "SEC Commission Interpretation Regarding Standard of Conduct for Investment Advisers (Release IA-5248, 2019); NASAA Series 65 content outline",
-   "tags": [
-    "series-65"
-   ]
-  },
-  {
-   "prompt": "A client's \"capacity\" for loss primarily depends on:",
-   "content": {
-    "kind": "mcq",
-    "options": [
-     "Mood",
-     "Financial situation (income, assets, liabilities, horizon)",
-     "Age only",
-     "Risk score only"
-    ],
-    "correctIndex": 1
-   },
-   "explanation": "Capacity is objective: resources, obligations and time to recover from losses.",
-   "sourceRef": "SEC Commission Interpretation Regarding Standard of Conduct for Investment Advisers (Release IA-5248, 2019); NASAA Series 65 content outline",
-   "tags": [
-    "series-65"
-   ]
-  }
- ]
+  "seshatExportVersion": 1,
+  "name": "Ethics, Fiduciary Duty and Suitability",
+  "description": "Original practice questions on fiduciary duty, conflicts of interest, client profiling and communications.",
+  "tags": ["series-65", "ethics", "mcq"],
+  "cards": [
+    {
+      "prompt": "An investment adviser's fiduciary duty consists of which two broad components?",
+      "content": {
+        "kind": "mcq",
+        "options": [
+          "Duty of care and duty of loyalty",
+          "Duty of profit and duty of speed",
+          "Duty of disclosure only",
+          "Duty of confidentiality and duty of secrecy"
+        ],
+        "correctIndex": 0
+      },
+      "explanation": "The SEC's 2019 interpretation describes a duty of care (best interest advice, best execution, monitoring) and a duty of loyalty (not placing the adviser's interest ahead of the client's, with full and fair disclosure of conflicts).",
+      "sourceRef": "SEC Commission Interpretation Regarding Standard of Conduct for Investment Advisers (Release IA-5248, 2019); NASAA Series 65 content outline",
+      "tags": ["series-65"]
+    },
+    {
+      "prompt": "When an adviser has a conflict of interest, the adviser must:",
+      "content": {
+        "kind": "mcq",
+        "options": [
+          "Hide it if immaterial",
+          "Fully and fairly disclose it so the client can give informed consent, or eliminate it",
+          "Wait to be asked",
+          "Charge a higher fee"
+        ],
+        "correctIndex": 1
+      },
+      "explanation": "Disclosure must be specific enough for the client to understand the conflict and provide informed consent.",
+      "sourceRef": "SEC Commission Interpretation Regarding Standard of Conduct for Investment Advisers (Release IA-5248, 2019); NASAA Series 65 content outline",
+      "tags": ["series-65"]
+    },
+    {
+      "prompt": "Which of the following is the best first step in developing a client's investment policy?",
+      "content": {
+        "kind": "mcq",
+        "options": [
+          "Pick investments",
+          "Gather information about the client's objectives, constraints, and risk tolerance",
+          "Quote a fee",
+          "Execute trades"
+        ],
+        "correctIndex": 1
+      },
+      "explanation": "Know-your-client information (goals, time horizon, liquidity needs, taxes, legal constraints, risk tolerance and capacity) drives the suitability analysis.",
+      "sourceRef": "SEC Commission Interpretation Regarding Standard of Conduct for Investment Advisers (Release IA-5248, 2019); NASAA Series 65 content outline",
+      "tags": ["series-65"]
+    },
+    {
+      "prompt": "Risk tolerance differs from risk capacity in that tolerance is:",
+      "content": {
+        "kind": "mcq",
+        "options": [
+          "The client's financial ability to bear loss",
+          "The client's psychological willingness to bear loss",
+          "The same thing",
+          "Determined by the adviser alone"
+        ],
+        "correctIndex": 1
+      },
+      "explanation": "Willingness is attitudinal; capacity is financial. The more conservative of the two typically governs.",
+      "sourceRef": "SEC Commission Interpretation Regarding Standard of Conduct for Investment Advisers (Release IA-5248, 2019); NASAA Series 65 content outline",
+      "tags": ["series-65"]
+    },
+    {
+      "prompt": "A client who is 28 and saving for retirement in 35+ years generally has a:",
+      "content": {
+        "kind": "mcq",
+        "options": [
+          "Short time horizon and low risk capacity",
+          "Long time horizon, supporting higher equity allocation",
+          "No need for diversification",
+          "Fixed need for income"
+        ],
+        "correctIndex": 1
+      },
+      "explanation": "Long horizons allow more volatility; the adviser still considers risk tolerance and liquidity needs.",
+      "sourceRef": "SEC Commission Interpretation Regarding Standard of Conduct for Investment Advisers (Release IA-5248, 2019); NASAA Series 65 content outline",
+      "tags": ["series-65"]
+    },
+    {
+      "prompt": "A retired client who needs reliable monthly income and has low risk tolerance is most appropriately offered:",
+      "content": {
+        "kind": "mcq",
+        "options": [
+          "Aggressive growth stocks",
+          "High-yield bonds only",
+          "Diversified, income-oriented holdings of higher quality with liquidity",
+          "Penny stocks"
+        ],
+        "correctIndex": 2
+      },
+      "explanation": "Recommendations must match the client's objectives, risk tolerance and cash-flow needs.",
+      "sourceRef": "SEC Commission Interpretation Regarding Standard of Conduct for Investment Advisers (Release IA-5248, 2019); NASAA Series 65 content outline",
+      "tags": ["series-65"]
+    },
+    {
+      "prompt": "Churning is:",
+      "content": {
+        "kind": "mcq",
+        "options": [
+          "Excessive trading to generate commissions or fees that is inconsistent with client objectives",
+          "Rebalancing annually",
+          "Tax-loss harvesting",
+          "Dollar-cost averaging"
+        ],
+        "correctIndex": 0
+      },
+      "explanation": "Excessive trading for the adviser's benefit violates the fiduciary duty and antifraud provisions.",
+      "sourceRef": "SEC Commission Interpretation Regarding Standard of Conduct for Investment Advisers (Release IA-5248, 2019); NASAA Series 65 content outline",
+      "tags": ["series-65"]
+    },
+    {
+      "prompt": "Front-running is:",
+      "content": {
+        "kind": "mcq",
+        "options": [
+          "Buying for yourself ahead of a known client order",
+          "Rebalancing before the client asks",
+          "Trading at the open",
+          "Asking the client for a deposit"
+        ],
+        "correctIndex": 0
+      },
+      "explanation": "Trading ahead of client orders to profit from the expected price move is fraud and a breach of loyalty.",
+      "sourceRef": "SEC Commission Interpretation Regarding Standard of Conduct for Investment Advisers (Release IA-5248, 2019); NASAA Series 65 content outline",
+      "tags": ["series-65"]
+    },
+    {
+      "prompt": "An adviser may not do which of the following?",
+      "content": {
+        "kind": "mcq",
+        "options": [
+          "Guarantee a client against loss",
+          "Disclose conflicts",
+          "Provide a written fee schedule",
+          "Obtain best execution"
+        ],
+        "correctIndex": 0
+      },
+      "explanation": "Guaranteeing returns or promising no loss is fraudulent or misleading. Investment advice must be given with disclosure of risks.",
+      "sourceRef": "SEC Commission Interpretation Regarding Standard of Conduct for Investment Advisers (Release IA-5248, 2019); NASAA Series 65 content outline",
+      "tags": ["series-65"]
+    },
+    {
+      "prompt": "Under Regulation S-P, an adviser must provide clients with:",
+      "content": {
+        "kind": "mcq",
+        "options": [
+          "A privacy notice at the start of the relationship and annually (unless exempt)",
+          "Quarterly trade confirmations",
+          "Credit reports",
+          "Tax forms"
+        ],
+        "correctIndex": 0
+      },
+      "explanation": "Reg S-P requires initial and annual privacy notices (subject to an exception if no sharing outside the exceptions) and safeguards for customer records.",
+      "sourceRef": "SEC Commission Interpretation Regarding Standard of Conduct for Investment Advisers (Release IA-5248, 2019); NASAA Series 65 content outline",
+      "tags": ["series-65"]
+    },
+    {
+      "prompt": "Which communication would most likely be misleading?",
+      "content": {
+        "kind": "mcq",
+        "options": [
+          "Showing only the best-performing accounts without disclosing that it is a selection",
+          "Using a standard disclaimer",
+          "Showing net performance",
+          "Disclosing fees"
+        ],
+        "correctIndex": 0
+      },
+      "explanation": "Selective presentation of performance (cherry-picking results) is misleading under the antifraud provisions and the marketing rule.",
+      "sourceRef": "SEC Commission Interpretation Regarding Standard of Conduct for Investment Advisers (Release IA-5248, 2019); NASAA Series 65 content outline",
+      "tags": ["series-65"]
+    },
+    {
+      "prompt": "A client asks the adviser to keep the client's account details confidential. The adviser may disclose the information to:",
+      "content": {
+        "kind": "mcq",
+        "options": [
+          "Any interested party",
+          "Only as required by law or with consent, or as permitted for servicing the account",
+          "The adviser's friends",
+          "The media"
+        ],
+        "correctIndex": 1
+      },
+      "explanation": "Client information must be protected; disclosure is permitted with consent, to service providers under confidentiality, or when required by law.",
+      "sourceRef": "SEC Commission Interpretation Regarding Standard of Conduct for Investment Advisers (Release IA-5248, 2019); NASAA Series 65 content outline",
+      "tags": ["series-65"]
+    },
+    {
+      "prompt": "Dual registrants (IAR and broker-dealer agent) must be especially careful because they can:",
+      "content": {
+        "kind": "mcq",
+        "options": [
+          "Never receive fees",
+          "Face conflicts between commission-based and fee-based roles and must disclose which capacity they act in",
+          "Avoid fiduciary duty",
+          "Skip Form ADV"
+        ],
+        "correctIndex": 1
+      },
+      "explanation": "Disclosure of capacity and conflicts is required when the same person acts as both adviser and broker-dealer representative.",
+      "sourceRef": "SEC Commission Interpretation Regarding Standard of Conduct for Investment Advisers (Release IA-5248, 2019); NASAA Series 65 content outline",
+      "tags": ["series-65"]
+    },
+    {
+      "prompt": "Under Regulation Best Interest (for broker-dealers), a recommendation must:",
+      "content": {
+        "kind": "mcq",
+        "options": [
+          "Be in the retail customer's best interest at the time made, without placing the broker's interest ahead of the customer",
+          "Always be the lowest cost",
+          "Be approved by FINRA",
+          "Beat the market"
+        ],
+        "correctIndex": 0
+      },
+      "explanation": "Reg BI requires a duty of care, disclosure, conflict mitigation and compliance obligations when recommending securities to retail customers.",
+      "sourceRef": "SEC Commission Interpretation Regarding Standard of Conduct for Investment Advisers (Release IA-5248, 2019); NASAA Series 65 content outline",
+      "tags": ["series-65"]
+    },
+    {
+      "prompt": "Form CRS (relationship summary) is delivered to:",
+      "content": {
+        "kind": "mcq",
+        "options": [
+          "Institutional clients only",
+          "Retail investors",
+          "The state administrator only",
+          "Clients over 65"
+        ],
+        "correctIndex": 1
+      },
+      "explanation": "Advisers and broker-dealers deliver Form CRS to retail investors at the start of the relationship and when materially updated.",
+      "sourceRef": "SEC Commission Interpretation Regarding Standard of Conduct for Investment Advisers (Release IA-5248, 2019); NASAA Series 65 content outline",
+      "tags": ["series-65"]
+    },
+    {
+      "prompt": "A power of attorney or discretionary authority lets an adviser:",
+      "content": {
+        "kind": "mcq",
+        "options": [
+          "Make investment decisions without prior client approval for each trade within the agreed scope",
+          "Withdraw cash for personal use",
+          "Waive the contract",
+          "Change the fee"
+        ],
+        "correctIndex": 0
+      },
+      "explanation": "Discretion must be documented in the client agreement, typically via limited trading authorization. It does not permit withdrawal for the adviser's own use.",
+      "sourceRef": "SEC Commission Interpretation Regarding Standard of Conduct for Investment Advisers (Release IA-5248, 2019); NASAA Series 65 content outline",
+      "tags": ["series-65"]
+    },
+    {
+      "prompt": "Which fee arrangement is the most common for advisers?",
+      "content": {
+        "kind": "mcq",
+        "options": [
+          "A percentage of assets under management",
+          "Commission only",
+          "A percentage of profits only",
+          "Free"
+        ],
+        "correctIndex": 0
+      },
+      "explanation": "Asset-based fees (e.g., 1% of AUM) are most common; fee disclosure and billing practices must be described in Form ADV Part 2A.",
+      "sourceRef": "SEC Commission Interpretation Regarding Standard of Conduct for Investment Advisers (Release IA-5248, 2019); NASAA Series 65 content outline",
+      "tags": ["series-65"]
+    },
+    {
+      "prompt": "If a client's circumstances change significantly (e.g., job loss), the adviser should:",
+      "content": {
+        "kind": "mcq",
+        "options": [
+          "Ignore it until the annual review",
+          "Reassess the client profile and update recommendations as needed",
+          "Close the account",
+          "Raise the fee"
+        ],
+        "correctIndex": 1
+      },
+      "explanation": "Duty of care includes monitoring the relationship at a frequency consistent with the agreed scope of services.",
+      "sourceRef": "SEC Commission Interpretation Regarding Standard of Conduct for Investment Advisers (Release IA-5248, 2019); NASAA Series 65 content outline",
+      "tags": ["series-65"]
+    },
+    {
+      "prompt": "Soft-dollar benefits must be:",
+      "content": {
+        "kind": "mcq",
+        "options": ["Concealed", "Disclosed in Form ADV Part 2A", "Used to pay adviser rent", "Never allowed"],
+        "correctIndex": 1
+      },
+      "explanation": "Soft-dollar practices and conflicts must be disclosed; benefits within the 28(e) safe harbor must help the adviser's decision-making for clients.",
+      "sourceRef": "SEC Commission Interpretation Regarding Standard of Conduct for Investment Advisers (Release IA-5248, 2019); NASAA Series 65 content outline",
+      "tags": ["series-65"]
+    },
+    {
+      "prompt": "Which of the following is a prohibited practice under the Uniform Securities Act for an IAR?",
+      "content": {
+        "kind": "mcq",
+        "options": [
+          "Borrowing money from a client (unless the client is a financial institution in the business of lending)",
+          "Charging a disclosed fee",
+          "Maintaining records",
+          "Taking continuing education"
+        ],
+        "correctIndex": 0
+      },
+      "explanation": "NASAA model rules prohibit advisers from borrowing from clients (with limited exceptions) and require disclosure of conflicts such as personal trading.",
+      "sourceRef": "SEC Commission Interpretation Regarding Standard of Conduct for Investment Advisers (Release IA-5248, 2019); NASAA Series 65 content outline",
+      "tags": ["series-65"]
+    },
+    {
+      "prompt": "Which document spells out the services, fees, and termination terms of an advisory relationship?",
+      "content": {
+        "kind": "mcq",
+        "options": ["Form U4", "The investment advisory contract", "A trade confirmation", "Form ADV Part 2B"],
+        "correctIndex": 1
+      },
+      "explanation": "The advisory contract defines the engagement; Part 2A discloses the firm; Part 2B discloses supervised persons.",
+      "sourceRef": "SEC Commission Interpretation Regarding Standard of Conduct for Investment Advisers (Release IA-5248, 2019); NASAA Series 65 content outline",
+      "tags": ["series-65"]
+    },
+    {
+      "prompt": "When a client wants an aggressive strategy that is inconsistent with the client's circumstances, the adviser should:",
+      "content": {
+        "kind": "mcq",
+        "options": [
+          "Execute immediately",
+          "Explain risks, document the discussion, and decline if the strategy is not suitable",
+          "Convert to discretionary",
+          "Charge a fee premium"
+        ],
+        "correctIndex": 1
+      },
+      "explanation": "Advice must be in the client's best interest; unsolicited client instructions can be accepted when the adviser documents them and the strategy is not otherwise prohibited.",
+      "sourceRef": "SEC Commission Interpretation Regarding Standard of Conduct for Investment Advisers (Release IA-5248, 2019); NASAA Series 65 content outline",
+      "tags": ["series-65"]
+    },
+    {
+      "prompt": "Books and records for an SEC-registered adviser generally must be kept for:",
+      "content": {
+        "kind": "mcq",
+        "options": [
+          "1 year",
+          "5 years from the end of the fiscal year of the last entry, the first 2 years in the office",
+          "10 years",
+          "Indefinitely"
+        ],
+        "correctIndex": 1
+      },
+      "explanation": "Rule 204-2 generally requires 5 years, with the first two years in an appropriate office of the adviser.",
+      "sourceRef": "SEC Commission Interpretation Regarding Standard of Conduct for Investment Advisers (Release IA-5248, 2019); NASAA Series 65 content outline",
+      "tags": ["series-65"]
+    },
+    {
+      "prompt": "A client's \"capacity\" for loss primarily depends on:",
+      "content": {
+        "kind": "mcq",
+        "options": [
+          "Mood",
+          "Financial situation (income, assets, liabilities, horizon)",
+          "Age only",
+          "Risk score only"
+        ],
+        "correctIndex": 1
+      },
+      "explanation": "Capacity is objective: resources, obligations and time to recover from losses.",
+      "sourceRef": "SEC Commission Interpretation Regarding Standard of Conduct for Investment Advisers (Release IA-5248, 2019); NASAA Series 65 content outline",
+      "tags": ["series-65"]
+    }
+  ]
 }
