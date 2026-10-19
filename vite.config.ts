@@ -50,6 +50,10 @@ export default defineConfig(({ command, isPreview }) => ({
   },
   test: {
     environment: 'jsdom',
+    // Node 22+/26 ships an experimental global `localStorage` that shadows
+    // jsdom's, so bare `npx vitest run` (without the package.json script's
+    // NODE_OPTIONS) fails ~450 tests. Pin the flag on the workers themselves.
+    execArgv: ['--no-experimental-webstorage'],
     // The full suite renders real React trees in jsdom across many parallel
     // workers; under CPU contention (coverage instrumentation, a dev server,
     // other builds on the machine) the 5s default flaked on tests that pass

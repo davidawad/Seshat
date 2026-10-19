@@ -17,12 +17,13 @@
     "test:coverage": "NODE_OPTIONS=--no-experimental-webstorage vitest run --coverage",
     "preview": "vite preview",
     "knip": "knip",
+    "deps:check": "knip --dependencies",
     "duplication": "jscpd --config .jscpd.json",
     "circular": "madge --circular --extensions ts,tsx src",
     "license": "license-checker-rseidelsohn --failOn 'GPL;AGPL' --excludePackages 'seshat@0.1.0' --summary",
     "audit": "pnpm audit",
     "size": "size-limit",
-    "ci": "pnpm run format:check && pnpm run lint && pnpm run typecheck && pnpm run circular && pnpm run duplication && pnpm run license && pnpm run test:coverage && pnpm run build && pnpm run size",
+    "ci": "pnpm run format:check && pnpm run lint && pnpm run deps:check && pnpm run typecheck && pnpm run circular && pnpm run duplication && pnpm run license && pnpm run test:coverage && pnpm run build && pnpm run size",
     "prepare": "husky"
   },
   "dependencies": {
