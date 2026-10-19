@@ -9,6 +9,7 @@ import { SetDetailPage } from '../features/sets/SetDetail'
 const SetEditPage = lazy(async () => ({ default: (await import('../features/sets/SetEdit')).SetEditPage }))
 const SetCreatePage = lazy(async () => ({ default: (await import('../features/sets/SetCreatePage')).SetCreatePage }))
 const SetImportPage = lazy(async () => ({ default: (await import('../features/sets/SetImportPage')).SetImportPage }))
+const SetBrowsePage = lazy(async () => ({ default: (await import('../features/sets/SetBrowsePage')).SetBrowsePage }))
 const TestPage = lazy(async () => ({ default: (await import('./Test')).TestPage }))
 const LearnPage = lazy(async () => ({ default: (await import('./Learn')).LearnPage }))
 
@@ -19,7 +20,7 @@ const GameSessionPage = lazy(async () => ({ default: (await import('./Games')).G
 /**
  * Everything about sets, RESTfully nested under one router: `/sets` is the same
  * sets browser as Home (only the heading differs); `/sets/:id` is a set's hub page; `/sets/:id/edit` is
- * where cards actually get added/edited; `/sets/new` and `/sets/import` are
+ * where cards actually get added/edited; `/sets/new`, `/sets/import` and `/sets/browse` (the bundled catalog) are
  * full-page create and import flows (static paths win over `:id`); the study modes and the
  * (experimental, settings-gated) Games section each get their own
  * sub-route scoped to that one set.
@@ -30,6 +31,7 @@ export const SetsPage = () => (
       <Route index element={<SetsBrowser title="Sets" />} />
       <Route path="new" element={<SetCreatePage />} />
       <Route path="import" element={<SetImportPage />} />
+      <Route path="browse" element={<SetBrowsePage />} />
       <Route path=":id" element={<SetDetailPage />} />
       <Route path=":id/edit" element={<SetEditPage />} />
       <Route path=":id/study" element={<StudyPage />} />
