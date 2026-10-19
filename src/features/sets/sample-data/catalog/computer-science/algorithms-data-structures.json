@@ -1,0 +1,427 @@
+{
+ "seshatExportVersion": 1,
+ "name": "Algorithms and Data Structures",
+ "description": "Complexity of classic algorithms and data structures.",
+ "tags": [
+  "computer-science",
+  "algorithms"
+ ],
+ "cards": [
+  {
+   "prompt": "Binary search time complexity",
+   "content": {
+    "kind": "short-answer",
+    "answer": "O(log n) on a sorted array.",
+    "acceptableAnswers": []
+   },
+   "explanation": null,
+   "sourceRef": "Cormen, Leiserson, Rivest & Stein, Introduction to Algorithms (MIT Press)",
+   "tags": [
+    "computer-science"
+   ]
+  },
+  {
+   "prompt": "Merge sort time complexity",
+   "content": {
+    "kind": "short-answer",
+    "answer": "O(n log n) in every case; stable; O(n) extra space.",
+    "acceptableAnswers": []
+   },
+   "explanation": null,
+   "sourceRef": "Cormen, Leiserson, Rivest & Stein, Introduction to Algorithms (MIT Press)",
+   "tags": [
+    "computer-science"
+   ]
+  },
+  {
+   "prompt": "Quicksort time complexity",
+   "content": {
+    "kind": "short-answer",
+    "answer": "O(n log n) average; O(n^2) worst case.",
+    "acceptableAnswers": []
+   },
+   "explanation": null,
+   "sourceRef": "Cormen, Leiserson, Rivest & Stein, Introduction to Algorithms (MIT Press)",
+   "tags": [
+    "computer-science"
+   ]
+  },
+  {
+   "prompt": "Heapsort time complexity",
+   "content": {
+    "kind": "short-answer",
+    "answer": "O(n log n) worst case; in-place; not stable.",
+    "acceptableAnswers": []
+   },
+   "explanation": null,
+   "sourceRef": "Cormen, Leiserson, Rivest & Stein, Introduction to Algorithms (MIT Press)",
+   "tags": [
+    "computer-science"
+   ]
+  },
+  {
+   "prompt": "Lower bound for comparison sorting",
+   "content": {
+    "kind": "short-answer",
+    "answer": "Ω(n log n)",
+    "acceptableAnswers": []
+   },
+   "explanation": null,
+   "sourceRef": "Cormen, Leiserson, Rivest & Stein, Introduction to Algorithms (MIT Press)",
+   "tags": [
+    "computer-science"
+   ]
+  },
+  {
+   "prompt": "Insertion sort time complexity",
+   "content": {
+    "kind": "short-answer",
+    "answer": "O(n^2) worst case; O(n) on nearly sorted input.",
+    "acceptableAnswers": []
+   },
+   "explanation": null,
+   "sourceRef": "Cormen, Leiserson, Rivest & Stein, Introduction to Algorithms (MIT Press)",
+   "tags": [
+    "computer-science"
+   ]
+  },
+  {
+   "prompt": "Counting sort time complexity",
+   "content": {
+    "kind": "short-answer",
+    "answer": "O(n + k) for keys in range 0..k.",
+    "acceptableAnswers": []
+   },
+   "explanation": null,
+   "sourceRef": "Cormen, Leiserson, Rivest & Stein, Introduction to Algorithms (MIT Press)",
+   "tags": [
+    "computer-science"
+   ]
+  },
+  {
+   "prompt": "Hash table lookup (average / worst)",
+   "content": {
+    "kind": "short-answer",
+    "answer": "O(1) average; O(n) worst case.",
+    "acceptableAnswers": []
+   },
+   "explanation": null,
+   "sourceRef": "Cormen, Leiserson, Rivest & Stein, Introduction to Algorithms (MIT Press)",
+   "tags": [
+    "computer-science"
+   ]
+  },
+  {
+   "prompt": "Binary search tree operations (balanced / degenerate)",
+   "content": {
+    "kind": "short-answer",
+    "answer": "O(log n) balanced; O(n) when degenerate.",
+    "acceptableAnswers": []
+   },
+   "explanation": null,
+   "sourceRef": "Cormen, Leiserson, Rivest & Stein, Introduction to Algorithms (MIT Press)",
+   "tags": [
+    "computer-science"
+   ]
+  },
+  {
+   "prompt": "AVL and red-black trees",
+   "content": {
+    "kind": "short-answer",
+    "answer": "Self-balancing BSTs guaranteeing O(log n) search, insert and delete.",
+    "acceptableAnswers": []
+   },
+   "explanation": null,
+   "sourceRef": "Cormen, Leiserson, Rivest & Stein, Introduction to Algorithms (MIT Press)",
+   "tags": [
+    "computer-science"
+   ]
+  },
+  {
+   "prompt": "Binary heap: insert and extract-min",
+   "content": {
+    "kind": "short-answer",
+    "answer": "O(log n) each; find-min O(1).",
+    "acceptableAnswers": []
+   },
+   "explanation": null,
+   "sourceRef": "Cormen, Leiserson, Rivest & Stein, Introduction to Algorithms (MIT Press)",
+   "tags": [
+    "computer-science"
+   ]
+  },
+  {
+   "prompt": "Building a binary heap from n items",
+   "content": {
+    "kind": "short-answer",
+    "answer": "O(n) (using bottom-up heapify).",
+    "acceptableAnswers": []
+   },
+   "explanation": null,
+   "sourceRef": "Cormen, Leiserson, Rivest & Stein, Introduction to Algorithms (MIT Press)",
+   "tags": [
+    "computer-science"
+   ]
+  },
+  {
+   "prompt": "Breadth-first search",
+   "content": {
+    "kind": "short-answer",
+    "answer": "Explores level by level using a queue; finds shortest paths in unweighted graphs; O(V + E).",
+    "acceptableAnswers": []
+   },
+   "explanation": null,
+   "sourceRef": "Cormen, Leiserson, Rivest & Stein, Introduction to Algorithms (MIT Press)",
+   "tags": [
+    "computer-science"
+   ]
+  },
+  {
+   "prompt": "Depth-first search",
+   "content": {
+    "kind": "short-answer",
+    "answer": "Explores deeply using a stack or recursion; O(V + E); used for topological sort and cycle detection.",
+    "acceptableAnswers": []
+   },
+   "explanation": null,
+   "sourceRef": "Cormen, Leiserson, Rivest & Stein, Introduction to Algorithms (MIT Press)",
+   "tags": [
+    "computer-science"
+   ]
+  },
+  {
+   "prompt": "Dijkstra's algorithm",
+   "content": {
+    "kind": "short-answer",
+    "answer": "Single-source shortest paths for non-negative edge weights; O((V + E) log V) with a binary heap.",
+    "acceptableAnswers": []
+   },
+   "explanation": null,
+   "sourceRef": "Cormen, Leiserson, Rivest & Stein, Introduction to Algorithms (MIT Press)",
+   "tags": [
+    "computer-science"
+   ]
+  },
+  {
+   "prompt": "Bellman–Ford algorithm",
+   "content": {
+    "kind": "short-answer",
+    "answer": "Single-source shortest paths allowing negative edges and detecting negative cycles; O(VE).",
+    "acceptableAnswers": []
+   },
+   "explanation": null,
+   "sourceRef": "Cormen, Leiserson, Rivest & Stein, Introduction to Algorithms (MIT Press)",
+   "tags": [
+    "computer-science"
+   ]
+  },
+  {
+   "prompt": "Floyd–Warshall",
+   "content": {
+    "kind": "short-answer",
+    "answer": "All-pairs shortest paths in O(V^3).",
+    "acceptableAnswers": []
+   },
+   "explanation": null,
+   "sourceRef": "Cormen, Leiserson, Rivest & Stein, Introduction to Algorithms (MIT Press)",
+   "tags": [
+    "computer-science"
+   ]
+  },
+  {
+   "prompt": "Kruskal's and Prim's algorithms",
+   "content": {
+    "kind": "short-answer",
+    "answer": "Both compute a minimum spanning tree (greedy).",
+    "acceptableAnswers": []
+   },
+   "explanation": null,
+   "sourceRef": "Cormen, Leiserson, Rivest & Stein, Introduction to Algorithms (MIT Press)",
+   "tags": [
+    "computer-science"
+   ]
+  },
+  {
+   "prompt": "Topological sort applies to",
+   "content": {
+    "kind": "short-answer",
+    "answer": "Directed acyclic graphs (DAGs).",
+    "acceptableAnswers": []
+   },
+   "explanation": null,
+   "sourceRef": "Cormen, Leiserson, Rivest & Stein, Introduction to Algorithms (MIT Press)",
+   "tags": [
+    "computer-science"
+   ]
+  },
+  {
+   "prompt": "Dynamic programming requires",
+   "content": {
+    "kind": "short-answer",
+    "answer": "Optimal substructure and overlapping subproblems.",
+    "acceptableAnswers": []
+   },
+   "explanation": null,
+   "sourceRef": "Cormen, Leiserson, Rivest & Stein, Introduction to Algorithms (MIT Press)",
+   "tags": [
+    "computer-science"
+   ]
+  },
+  {
+   "prompt": "Memoization vs tabulation",
+   "content": {
+    "kind": "short-answer",
+    "answer": "Top-down caching of recursive results vs bottom-up table filling.",
+    "acceptableAnswers": []
+   },
+   "explanation": null,
+   "sourceRef": "Cormen, Leiserson, Rivest & Stein, Introduction to Algorithms (MIT Press)",
+   "tags": [
+    "computer-science"
+   ]
+  },
+  {
+   "prompt": "Greedy algorithm",
+   "content": {
+    "kind": "short-answer",
+    "answer": "Makes the locally optimal choice at each step; correct only for problems with the greedy-choice property.",
+    "acceptableAnswers": []
+   },
+   "explanation": null,
+   "sourceRef": "Cormen, Leiserson, Rivest & Stein, Introduction to Algorithms (MIT Press)",
+   "tags": [
+    "computer-science"
+   ]
+  },
+  {
+   "prompt": "P vs NP",
+   "content": {
+    "kind": "short-answer",
+    "answer": "Whether every problem whose solution can be verified in polynomial time can also be solved in polynomial time (open).",
+    "acceptableAnswers": []
+   },
+   "explanation": null,
+   "sourceRef": "Cormen, Leiserson, Rivest & Stein, Introduction to Algorithms (MIT Press)",
+   "tags": [
+    "computer-science"
+   ]
+  },
+  {
+   "prompt": "NP-complete",
+   "content": {
+    "kind": "short-answer",
+    "answer": "In NP and at least as hard as every problem in NP (Cook–Levin theorem: SAT is NP-complete).",
+    "acceptableAnswers": []
+   },
+   "explanation": null,
+   "sourceRef": "Cormen, Leiserson, Rivest & Stein, Introduction to Algorithms (MIT Press)",
+   "tags": [
+    "computer-science"
+   ]
+  },
+  {
+   "prompt": "Big-O, Big-Omega, Big-Theta",
+   "content": {
+    "kind": "short-answer",
+    "answer": "Upper bound; lower bound; tight bound.",
+    "acceptableAnswers": []
+   },
+   "explanation": null,
+   "sourceRef": "Cormen, Leiserson, Rivest & Stein, Introduction to Algorithms (MIT Press)",
+   "tags": [
+    "computer-science"
+   ]
+  },
+  {
+   "prompt": "Stack vs queue",
+   "content": {
+    "kind": "short-answer",
+    "answer": "LIFO (last in, first out) vs FIFO (first in, first out).",
+    "acceptableAnswers": []
+   },
+   "explanation": null,
+   "sourceRef": "Cormen, Leiserson, Rivest & Stein, Introduction to Algorithms (MIT Press)",
+   "tags": [
+    "computer-science"
+   ]
+  },
+  {
+   "prompt": "Linked list: insert at head / index access",
+   "content": {
+    "kind": "short-answer",
+    "answer": "O(1) / O(n).",
+    "acceptableAnswers": []
+   },
+   "explanation": null,
+   "sourceRef": "Cormen, Leiserson, Rivest & Stein, Introduction to Algorithms (MIT Press)",
+   "tags": [
+    "computer-science"
+   ]
+  },
+  {
+   "prompt": "Dynamic array amortized append cost",
+   "content": {
+    "kind": "short-answer",
+    "answer": "O(1) amortized.",
+    "acceptableAnswers": []
+   },
+   "explanation": null,
+   "sourceRef": "Cormen, Leiserson, Rivest & Stein, Introduction to Algorithms (MIT Press)",
+   "tags": [
+    "computer-science"
+   ]
+  },
+  {
+   "prompt": "Trie lookup time for a string of length m",
+   "content": {
+    "kind": "short-answer",
+    "answer": "O(m)",
+    "acceptableAnswers": []
+   },
+   "explanation": null,
+   "sourceRef": "Cormen, Leiserson, Rivest & Stein, Introduction to Algorithms (MIT Press)",
+   "tags": [
+    "computer-science"
+   ]
+  },
+  {
+   "prompt": "Union–Find with path compression and union by rank",
+   "content": {
+    "kind": "short-answer",
+    "answer": "Nearly constant amortized time per operation (inverse Ackermann).",
+    "acceptableAnswers": []
+   },
+   "explanation": null,
+   "sourceRef": "Cormen, Leiserson, Rivest & Stein, Introduction to Algorithms (MIT Press)",
+   "tags": [
+    "computer-science"
+   ]
+  },
+  {
+   "prompt": "Master theorem use",
+   "content": {
+    "kind": "short-answer",
+    "answer": "Solves recurrences of the form T(n) = a T(n/b) + f(n).",
+    "acceptableAnswers": []
+   },
+   "explanation": null,
+   "sourceRef": "Cormen, Leiserson, Rivest & Stein, Introduction to Algorithms (MIT Press)",
+   "tags": [
+    "computer-science"
+   ]
+  },
+  {
+   "prompt": "Halting problem",
+   "content": {
+    "kind": "short-answer",
+    "answer": "Undecidable: no algorithm decides, for every program and input, whether it halts (Turing, 1936).",
+    "acceptableAnswers": []
+   },
+   "explanation": null,
+   "sourceRef": "Cormen, Leiserson, Rivest & Stein, Introduction to Algorithms (MIT Press)",
+   "tags": [
+    "computer-science"
+   ]
+  }
+ ]
+}

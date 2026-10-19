@@ -1,0 +1,544 @@
+{
+ "seshatExportVersion": 1,
+ "name": "Series 65 Formulas and Calculations",
+ "description": "Core formulas with worked numerical examples.",
+ "tags": [
+  "series-65",
+  "formulas"
+ ],
+ "cards": [
+  {
+   "prompt": "Current yield",
+   "content": {
+    "kind": "short-answer",
+    "answer": "Annual coupon / current price. A $1,000, 6% bond priced at $900 yields $60/$900 = 6.67%.",
+    "acceptableAnswers": []
+   },
+   "explanation": null,
+   "sourceRef": "CFA Institute, Quantitative Methods and Fixed Income readings; Bodie, Kane & Marcus, Investments",
+   "tags": [
+    "series-65"
+   ]
+  },
+  {
+   "prompt": "Total return",
+   "content": {
+    "kind": "short-answer",
+    "answer": "(Income + price change) / beginning price.",
+    "acceptableAnswers": []
+   },
+   "explanation": null,
+   "sourceRef": "CFA Institute, Quantitative Methods and Fixed Income readings; Bodie, Kane & Marcus, Investments",
+   "tags": [
+    "series-65"
+   ]
+  },
+  {
+   "prompt": "Real return (approx.)",
+   "content": {
+    "kind": "short-answer",
+    "answer": "Nominal return - inflation. 8% nominal with 3% inflation is about 5% real.",
+    "acceptableAnswers": []
+   },
+   "explanation": null,
+   "sourceRef": "CFA Institute, Quantitative Methods and Fixed Income readings; Bodie, Kane & Marcus, Investments",
+   "tags": [
+    "series-65"
+   ]
+  },
+  {
+   "prompt": "Exact real return",
+   "content": {
+    "kind": "short-answer",
+    "answer": "(1 + nominal) / (1 + inflation) - 1",
+    "acceptableAnswers": []
+   },
+   "explanation": null,
+   "sourceRef": "CFA Institute, Quantitative Methods and Fixed Income readings; Bodie, Kane & Marcus, Investments",
+   "tags": [
+    "series-65"
+   ]
+  },
+  {
+   "prompt": "Taxable-equivalent yield",
+   "content": {
+    "kind": "short-answer",
+    "answer": "Tax-free yield / (1 - marginal tax rate). 3% at 25% is 4%.",
+    "acceptableAnswers": []
+   },
+   "explanation": null,
+   "sourceRef": "CFA Institute, Quantitative Methods and Fixed Income readings; Bodie, Kane & Marcus, Investments",
+   "tags": [
+    "series-65"
+   ]
+  },
+  {
+   "prompt": "After-tax yield of a taxable bond",
+   "content": {
+    "kind": "short-answer",
+    "answer": "Taxable yield × (1 - marginal tax rate).",
+    "acceptableAnswers": []
+   },
+   "explanation": null,
+   "sourceRef": "CFA Institute, Quantitative Methods and Fixed Income readings; Bodie, Kane & Marcus, Investments",
+   "tags": [
+    "series-65"
+   ]
+  },
+  {
+   "prompt": "Rule of 72",
+   "content": {
+    "kind": "short-answer",
+    "answer": "Years to double ≈ 72 / annual percent return. At 6%: about 12 years.",
+    "acceptableAnswers": []
+   },
+   "explanation": null,
+   "sourceRef": "CFA Institute, Quantitative Methods and Fixed Income readings; Bodie, Kane & Marcus, Investments",
+   "tags": [
+    "series-65"
+   ]
+  },
+  {
+   "prompt": "Sharpe ratio",
+   "content": {
+    "kind": "short-answer",
+    "answer": "(Portfolio return - risk-free rate) / standard deviation of portfolio.",
+    "acceptableAnswers": []
+   },
+   "explanation": null,
+   "sourceRef": "CFA Institute, Quantitative Methods and Fixed Income readings; Bodie, Kane & Marcus, Investments",
+   "tags": [
+    "series-65"
+   ]
+  },
+  {
+   "prompt": "Treynor ratio",
+   "content": {
+    "kind": "short-answer",
+    "answer": "(Portfolio return - risk-free rate) / beta.",
+    "acceptableAnswers": []
+   },
+   "explanation": null,
+   "sourceRef": "CFA Institute, Quantitative Methods and Fixed Income readings; Bodie, Kane & Marcus, Investments",
+   "tags": [
+    "series-65"
+   ]
+  },
+  {
+   "prompt": "CAPM expected return",
+   "content": {
+    "kind": "short-answer",
+    "answer": "Rf + β (Rm - Rf). Rf 3%, β 1.2, Rm 8%: 9%.",
+    "acceptableAnswers": []
+   },
+   "explanation": null,
+   "sourceRef": "CFA Institute, Quantitative Methods and Fixed Income readings; Bodie, Kane & Marcus, Investments",
+   "tags": [
+    "series-65"
+   ]
+  },
+  {
+   "prompt": "Beta of the market",
+   "content": {
+    "kind": "short-answer",
+    "answer": "1.0",
+    "acceptableAnswers": []
+   },
+   "explanation": null,
+   "sourceRef": "CFA Institute, Quantitative Methods and Fixed Income readings; Bodie, Kane & Marcus, Investments",
+   "tags": [
+    "series-65"
+   ]
+  },
+  {
+   "prompt": "Weighted average portfolio return",
+   "content": {
+    "kind": "short-answer",
+    "answer": "Sum of (weight × return). 60% at 10% and 40% at 5% = 8%.",
+    "acceptableAnswers": []
+   },
+   "explanation": null,
+   "sourceRef": "CFA Institute, Quantitative Methods and Fixed Income readings; Bodie, Kane & Marcus, Investments",
+   "tags": [
+    "series-65"
+   ]
+  },
+  {
+   "prompt": "Arithmetic mean vs geometric mean return",
+   "content": {
+    "kind": "short-answer",
+    "answer": "Arithmetic is the simple average; geometric is the compound average. Geometric ≤ arithmetic, and is used for multi-period performance.",
+    "acceptableAnswers": []
+   },
+   "explanation": null,
+   "sourceRef": "CFA Institute, Quantitative Methods and Fixed Income readings; Bodie, Kane & Marcus, Investments",
+   "tags": [
+    "series-65"
+   ]
+  },
+  {
+   "prompt": "Coefficient of variation",
+   "content": {
+    "kind": "short-answer",
+    "answer": "Standard deviation / mean return; risk per unit of return.",
+    "acceptableAnswers": []
+   },
+   "explanation": null,
+   "sourceRef": "CFA Institute, Quantitative Methods and Fixed Income readings; Bodie, Kane & Marcus, Investments",
+   "tags": [
+    "series-65"
+   ]
+  },
+  {
+   "prompt": "Standard deviation of returns (concept)",
+   "content": {
+    "kind": "short-answer",
+    "answer": "The square root of variance; about 68% of outcomes lie within ±1 SD under a normal distribution.",
+    "acceptableAnswers": []
+   },
+   "explanation": null,
+   "sourceRef": "CFA Institute, Quantitative Methods and Fixed Income readings; Bodie, Kane & Marcus, Investments",
+   "tags": [
+    "series-65"
+   ]
+  },
+  {
+   "prompt": "Net asset value per share",
+   "content": {
+    "kind": "short-answer",
+    "answer": "(Assets - liabilities) / shares outstanding.",
+    "acceptableAnswers": []
+   },
+   "explanation": null,
+   "sourceRef": "CFA Institute, Quantitative Methods and Fixed Income readings; Bodie, Kane & Marcus, Investments",
+   "tags": [
+    "series-65"
+   ]
+  },
+  {
+   "prompt": "Mutual fund public offering price",
+   "content": {
+    "kind": "short-answer",
+    "answer": "NAV / (1 - sales charge %). NAV $20, 5% load: $21.05.",
+    "acceptableAnswers": []
+   },
+   "explanation": null,
+   "sourceRef": "CFA Institute, Quantitative Methods and Fixed Income readings; Bodie, Kane & Marcus, Investments",
+   "tags": [
+    "series-65"
+   ]
+  },
+  {
+   "prompt": "Expense ratio",
+   "content": {
+    "kind": "short-answer",
+    "answer": "Annual fund operating expenses / average net assets.",
+    "acceptableAnswers": []
+   },
+   "explanation": null,
+   "sourceRef": "CFA Institute, Quantitative Methods and Fixed Income readings; Bodie, Kane & Marcus, Investments",
+   "tags": [
+    "series-65"
+   ]
+  },
+  {
+   "prompt": "Dividend yield",
+   "content": {
+    "kind": "short-answer",
+    "answer": "Annual dividends per share / share price.",
+    "acceptableAnswers": []
+   },
+   "explanation": null,
+   "sourceRef": "CFA Institute, Quantitative Methods and Fixed Income readings; Bodie, Kane & Marcus, Investments",
+   "tags": [
+    "series-65"
+   ]
+  },
+  {
+   "prompt": "Price/earnings ratio",
+   "content": {
+    "kind": "short-answer",
+    "answer": "Price per share / earnings per share.",
+    "acceptableAnswers": []
+   },
+   "explanation": null,
+   "sourceRef": "CFA Institute, Quantitative Methods and Fixed Income readings; Bodie, Kane & Marcus, Investments",
+   "tags": [
+    "series-65"
+   ]
+  },
+  {
+   "prompt": "Earnings per share",
+   "content": {
+    "kind": "short-answer",
+    "answer": "(Net income - preferred dividends) / weighted average common shares.",
+    "acceptableAnswers": []
+   },
+   "explanation": null,
+   "sourceRef": "CFA Institute, Quantitative Methods and Fixed Income readings; Bodie, Kane & Marcus, Investments",
+   "tags": [
+    "series-65"
+   ]
+  },
+  {
+   "prompt": "Book value per share",
+   "content": {
+    "kind": "short-answer",
+    "answer": "(Total assets - total liabilities - preferred equity) / common shares.",
+    "acceptableAnswers": []
+   },
+   "explanation": null,
+   "sourceRef": "CFA Institute, Quantitative Methods and Fixed Income readings; Bodie, Kane & Marcus, Investments",
+   "tags": [
+    "series-65"
+   ]
+  },
+  {
+   "prompt": "Current ratio",
+   "content": {
+    "kind": "short-answer",
+    "answer": "Current assets / current liabilities.",
+    "acceptableAnswers": []
+   },
+   "explanation": null,
+   "sourceRef": "CFA Institute, Quantitative Methods and Fixed Income readings; Bodie, Kane & Marcus, Investments",
+   "tags": [
+    "series-65"
+   ]
+  },
+  {
+   "prompt": "Quick (acid-test) ratio",
+   "content": {
+    "kind": "short-answer",
+    "answer": "(Current assets - inventory) / current liabilities.",
+    "acceptableAnswers": []
+   },
+   "explanation": null,
+   "sourceRef": "CFA Institute, Quantitative Methods and Fixed Income readings; Bodie, Kane & Marcus, Investments",
+   "tags": [
+    "series-65"
+   ]
+  },
+  {
+   "prompt": "Debt-to-equity ratio",
+   "content": {
+    "kind": "short-answer",
+    "answer": "Total debt / shareholders' equity.",
+    "acceptableAnswers": []
+   },
+   "explanation": null,
+   "sourceRef": "CFA Institute, Quantitative Methods and Fixed Income readings; Bodie, Kane & Marcus, Investments",
+   "tags": [
+    "series-65"
+   ]
+  },
+  {
+   "prompt": "Return on equity",
+   "content": {
+    "kind": "short-answer",
+    "answer": "Net income / shareholders' equity.",
+    "acceptableAnswers": []
+   },
+   "explanation": null,
+   "sourceRef": "CFA Institute, Quantitative Methods and Fixed Income readings; Bodie, Kane & Marcus, Investments",
+   "tags": [
+    "series-65"
+   ]
+  },
+  {
+   "prompt": "Gross margin",
+   "content": {
+    "kind": "short-answer",
+    "answer": "(Revenue - cost of goods sold) / revenue.",
+    "acceptableAnswers": []
+   },
+   "explanation": null,
+   "sourceRef": "CFA Institute, Quantitative Methods and Fixed Income readings; Bodie, Kane & Marcus, Investments",
+   "tags": [
+    "series-65"
+   ]
+  },
+  {
+   "prompt": "Dollar-weighted vs time-weighted return",
+   "content": {
+    "kind": "short-answer",
+    "answer": "Dollar-weighted (IRR) reflects timing of flows; time-weighted removes the effect of flows and evaluates the manager.",
+    "acceptableAnswers": []
+   },
+   "explanation": null,
+   "sourceRef": "CFA Institute, Quantitative Methods and Fixed Income readings; Bodie, Kane & Marcus, Investments",
+   "tags": [
+    "series-65"
+   ]
+  },
+  {
+   "prompt": "Net present value",
+   "content": {
+    "kind": "short-answer",
+    "answer": "Sum of discounted cash flows minus initial investment; accept if NPV > 0.",
+    "acceptableAnswers": []
+   },
+   "explanation": null,
+   "sourceRef": "CFA Institute, Quantitative Methods and Fixed Income readings; Bodie, Kane & Marcus, Investments",
+   "tags": [
+    "series-65"
+   ]
+  },
+  {
+   "prompt": "Present value of a lump sum",
+   "content": {
+    "kind": "short-answer",
+    "answer": "FV / (1 + r)^n. $1,000 in 3 years at 5%: about $863.84.",
+    "acceptableAnswers": []
+   },
+   "explanation": null,
+   "sourceRef": "CFA Institute, Quantitative Methods and Fixed Income readings; Bodie, Kane & Marcus, Investments",
+   "tags": [
+    "series-65"
+   ]
+  },
+  {
+   "prompt": "Future value of a lump sum",
+   "content": {
+    "kind": "short-answer",
+    "answer": "PV × (1 + r)^n. $1,000 for 3 years at 5%: $1,157.63.",
+    "acceptableAnswers": []
+   },
+   "explanation": null,
+   "sourceRef": "CFA Institute, Quantitative Methods and Fixed Income readings; Bodie, Kane & Marcus, Investments",
+   "tags": [
+    "series-65"
+   ]
+  },
+  {
+   "prompt": "Long call breakeven",
+   "content": {
+    "kind": "short-answer",
+    "answer": "Strike + premium.",
+    "acceptableAnswers": []
+   },
+   "explanation": null,
+   "sourceRef": "CFA Institute, Quantitative Methods and Fixed Income readings; Bodie, Kane & Marcus, Investments",
+   "tags": [
+    "series-65"
+   ]
+  },
+  {
+   "prompt": "Long put breakeven",
+   "content": {
+    "kind": "short-answer",
+    "answer": "Strike - premium.",
+    "acceptableAnswers": []
+   },
+   "explanation": null,
+   "sourceRef": "CFA Institute, Quantitative Methods and Fixed Income readings; Bodie, Kane & Marcus, Investments",
+   "tags": [
+    "series-65"
+   ]
+  },
+  {
+   "prompt": "Intrinsic value of a call, and of a put",
+   "content": {
+    "kind": "short-answer",
+    "answer": "max(0, stock - strike); max(0, strike - stock).",
+    "acceptableAnswers": []
+   },
+   "explanation": null,
+   "sourceRef": "CFA Institute, Quantitative Methods and Fixed Income readings; Bodie, Kane & Marcus, Investments",
+   "tags": [
+    "series-65"
+   ]
+  },
+  {
+   "prompt": "Margin: initial margin on a long position",
+   "content": {
+    "kind": "short-answer",
+    "answer": "Under Regulation T, the investor deposits at least 50% of the purchase price.",
+    "acceptableAnswers": []
+   },
+   "explanation": null,
+   "sourceRef": "CFA Institute, Quantitative Methods and Fixed Income readings; Bodie, Kane & Marcus, Investments",
+   "tags": [
+    "series-65"
+   ]
+  },
+  {
+   "prompt": "Annual gift tax exclusion concept",
+   "content": {
+    "kind": "short-answer",
+    "answer": "Gifts up to the annual per-donee limit (indexed for inflation; $19,000 in 2025) do not use lifetime exemption.",
+    "acceptableAnswers": []
+   },
+   "explanation": null,
+   "sourceRef": "CFA Institute, Quantitative Methods and Fixed Income readings; Bodie, Kane & Marcus, Investments",
+   "tags": [
+    "series-65"
+   ]
+  },
+  {
+   "prompt": "Bond price at par",
+   "content": {
+    "kind": "short-answer",
+    "answer": "When coupon rate = yield, the bond trades at par (100).",
+    "acceptableAnswers": []
+   },
+   "explanation": null,
+   "sourceRef": "CFA Institute, Quantitative Methods and Fixed Income readings; Bodie, Kane & Marcus, Investments",
+   "tags": [
+    "series-65"
+   ]
+  },
+  {
+   "prompt": "Yield to maturity relation to coupon for discount bonds",
+   "content": {
+    "kind": "short-answer",
+    "answer": "YTM > current yield > coupon rate.",
+    "acceptableAnswers": []
+   },
+   "explanation": null,
+   "sourceRef": "CFA Institute, Quantitative Methods and Fixed Income readings; Bodie, Kane & Marcus, Investments",
+   "tags": [
+    "series-65"
+   ]
+  },
+  {
+   "prompt": "Premium bond yield relation",
+   "content": {
+    "kind": "short-answer",
+    "answer": "Coupon rate > current yield > YTM.",
+    "acceptableAnswers": []
+   },
+   "explanation": null,
+   "sourceRef": "CFA Institute, Quantitative Methods and Fixed Income readings; Bodie, Kane & Marcus, Investments",
+   "tags": [
+    "series-65"
+   ]
+  },
+  {
+   "prompt": "Approximate price change from duration",
+   "content": {
+    "kind": "short-answer",
+    "answer": "%ΔP ≈ -D × Δy. D = 7, yield +1% → price about -7%.",
+    "acceptableAnswers": []
+   },
+   "explanation": null,
+   "sourceRef": "CFA Institute, Quantitative Methods and Fixed Income readings; Bodie, Kane & Marcus, Investments",
+   "tags": [
+    "series-65"
+   ]
+  },
+  {
+   "prompt": "Inflation rate (CPI)",
+   "content": {
+    "kind": "short-answer",
+    "answer": "(CPI_end - CPI_start) / CPI_start.",
+    "acceptableAnswers": []
+   },
+   "explanation": null,
+   "sourceRef": "CFA Institute, Quantitative Methods and Fixed Income readings; Bodie, Kane & Marcus, Investments",
+   "tags": [
+    "series-65"
+   ]
+  }
+ ]
+}

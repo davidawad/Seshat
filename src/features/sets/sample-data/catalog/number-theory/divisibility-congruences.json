@@ -1,0 +1,466 @@
+{
+ "seshatExportVersion": 1,
+ "name": "Divisibility and Congruences",
+ "description": "Gcd, modular arithmetic and the classical theorems built on them.",
+ "tags": [
+  "number-theory",
+  "modular-arithmetic"
+ ],
+ "cards": [
+  {
+   "prompt": "Division algorithm",
+   "content": {
+    "kind": "short-answer",
+    "answer": "For integers a and b > 0 there are unique q, r with a = bq + r and 0 ≤ r < b.",
+    "acceptableAnswers": []
+   },
+   "explanation": null,
+   "sourceRef": "Niven, Zuckerman & Montgomery, An Introduction to the Theory of Numbers (Wiley)",
+   "tags": [
+    "number-theory"
+   ]
+  },
+  {
+   "prompt": "Bézout's identity",
+   "content": {
+    "kind": "short-answer",
+    "answer": "gcd(a,b) = ax + by for some integers x, y.",
+    "acceptableAnswers": []
+   },
+   "explanation": null,
+   "sourceRef": "Niven, Zuckerman & Montgomery, An Introduction to the Theory of Numbers (Wiley)",
+   "tags": [
+    "number-theory"
+   ]
+  },
+  {
+   "prompt": "Euclidean algorithm",
+   "content": {
+    "kind": "short-answer",
+    "answer": "Repeatedly replace (a,b) with (b, a mod b); the last nonzero remainder is gcd(a,b).",
+    "acceptableAnswers": []
+   },
+   "explanation": null,
+   "sourceRef": "Niven, Zuckerman & Montgomery, An Introduction to the Theory of Numbers (Wiley)",
+   "tags": [
+    "number-theory"
+   ]
+  },
+  {
+   "prompt": "gcd(a,b) · lcm(a,b)",
+   "content": {
+    "kind": "short-answer",
+    "answer": "a · b (for positive a, b)",
+    "acceptableAnswers": []
+   },
+   "explanation": null,
+   "sourceRef": "Niven, Zuckerman & Montgomery, An Introduction to the Theory of Numbers (Wiley)",
+   "tags": [
+    "number-theory"
+   ]
+  },
+  {
+   "prompt": "Euclid's lemma",
+   "content": {
+    "kind": "short-answer",
+    "answer": "If a prime p divides ab, then p divides a or p divides b.",
+    "acceptableAnswers": []
+   },
+   "explanation": null,
+   "sourceRef": "Niven, Zuckerman & Montgomery, An Introduction to the Theory of Numbers (Wiley)",
+   "tags": [
+    "number-theory"
+   ]
+  },
+  {
+   "prompt": "Fundamental theorem of arithmetic",
+   "content": {
+    "kind": "short-answer",
+    "answer": "Every integer > 1 factors into primes uniquely up to order.",
+    "acceptableAnswers": []
+   },
+   "explanation": null,
+   "sourceRef": "Niven, Zuckerman & Montgomery, An Introduction to the Theory of Numbers (Wiley)",
+   "tags": [
+    "number-theory"
+   ]
+  },
+  {
+   "prompt": "a ≡ b (mod n) means",
+   "content": {
+    "kind": "short-answer",
+    "answer": "n divides (a - b).",
+    "acceptableAnswers": []
+   },
+   "explanation": null,
+   "sourceRef": "Niven, Zuckerman & Montgomery, An Introduction to the Theory of Numbers (Wiley)",
+   "tags": [
+    "number-theory"
+   ]
+  },
+  {
+   "prompt": "Linear congruence ax ≡ b (mod n) has a solution iff",
+   "content": {
+    "kind": "short-answer",
+    "answer": "gcd(a,n) divides b.",
+    "acceptableAnswers": []
+   },
+   "explanation": null,
+   "sourceRef": "Niven, Zuckerman & Montgomery, An Introduction to the Theory of Numbers (Wiley)",
+   "tags": [
+    "number-theory"
+   ]
+  },
+  {
+   "prompt": "Inverse of a modulo n exists iff",
+   "content": {
+    "kind": "short-answer",
+    "answer": "gcd(a,n) = 1.",
+    "acceptableAnswers": []
+   },
+   "explanation": null,
+   "sourceRef": "Niven, Zuckerman & Montgomery, An Introduction to the Theory of Numbers (Wiley)",
+   "tags": [
+    "number-theory"
+   ]
+  },
+  {
+   "prompt": "Chinese remainder theorem",
+   "content": {
+    "kind": "short-answer",
+    "answer": "If the moduli n1..nk are pairwise coprime, the system x ≡ ai (mod ni) has a unique solution mod n1···nk.",
+    "acceptableAnswers": []
+   },
+   "explanation": null,
+   "sourceRef": "Niven, Zuckerman & Montgomery, An Introduction to the Theory of Numbers (Wiley)",
+   "tags": [
+    "number-theory"
+   ]
+  },
+  {
+   "prompt": "Fermat's little theorem",
+   "content": {
+    "kind": "short-answer",
+    "answer": "If p is prime and p ∤ a, then a^(p-1) ≡ 1 (mod p).",
+    "acceptableAnswers": []
+   },
+   "explanation": null,
+   "sourceRef": "Niven, Zuckerman & Montgomery, An Introduction to the Theory of Numbers (Wiley)",
+   "tags": [
+    "number-theory"
+   ]
+  },
+  {
+   "prompt": "Euler's theorem",
+   "content": {
+    "kind": "short-answer",
+    "answer": "If gcd(a,n) = 1, then a^φ(n) ≡ 1 (mod n).",
+    "acceptableAnswers": []
+   },
+   "explanation": null,
+   "sourceRef": "Niven, Zuckerman & Montgomery, An Introduction to the Theory of Numbers (Wiley)",
+   "tags": [
+    "number-theory"
+   ]
+  },
+  {
+   "prompt": "Euler's totient φ(n)",
+   "content": {
+    "kind": "short-answer",
+    "answer": "The count of integers in 1..n that are coprime to n.",
+    "acceptableAnswers": []
+   },
+   "explanation": null,
+   "sourceRef": "Niven, Zuckerman & Montgomery, An Introduction to the Theory of Numbers (Wiley)",
+   "tags": [
+    "number-theory"
+   ]
+  },
+  {
+   "prompt": "φ(p) for prime p",
+   "content": {
+    "kind": "short-answer",
+    "answer": "p - 1",
+    "acceptableAnswers": []
+   },
+   "explanation": null,
+   "sourceRef": "Niven, Zuckerman & Montgomery, An Introduction to the Theory of Numbers (Wiley)",
+   "tags": [
+    "number-theory"
+   ]
+  },
+  {
+   "prompt": "φ(p^k) for prime p",
+   "content": {
+    "kind": "short-answer",
+    "answer": "p^k - p^(k-1) = p^(k-1)(p - 1)",
+    "acceptableAnswers": []
+   },
+   "explanation": null,
+   "sourceRef": "Niven, Zuckerman & Montgomery, An Introduction to the Theory of Numbers (Wiley)",
+   "tags": [
+    "number-theory"
+   ]
+  },
+  {
+   "prompt": "φ(mn) when gcd(m,n) = 1",
+   "content": {
+    "kind": "short-answer",
+    "answer": "φ(m) φ(n)",
+    "acceptableAnswers": []
+   },
+   "explanation": null,
+   "sourceRef": "Niven, Zuckerman & Montgomery, An Introduction to the Theory of Numbers (Wiley)",
+   "tags": [
+    "number-theory"
+   ]
+  },
+  {
+   "prompt": "Wilson's theorem",
+   "content": {
+    "kind": "short-answer",
+    "answer": "An integer p > 1 is prime iff (p - 1)! ≡ -1 (mod p).",
+    "acceptableAnswers": []
+   },
+   "explanation": null,
+   "sourceRef": "Niven, Zuckerman & Montgomery, An Introduction to the Theory of Numbers (Wiley)",
+   "tags": [
+    "number-theory"
+   ]
+  },
+  {
+   "prompt": "Number of positive divisors of n = p1^a1 ··· pk^ak",
+   "content": {
+    "kind": "short-answer",
+    "answer": "(a1 + 1)(a2 + 1)···(ak + 1)",
+    "acceptableAnswers": []
+   },
+   "explanation": null,
+   "sourceRef": "Niven, Zuckerman & Montgomery, An Introduction to the Theory of Numbers (Wiley)",
+   "tags": [
+    "number-theory"
+   ]
+  },
+  {
+   "prompt": "Sum of divisors σ(p^a)",
+   "content": {
+    "kind": "short-answer",
+    "answer": "1 + p + ... + p^a = (p^(a+1) - 1)/(p - 1)",
+    "acceptableAnswers": []
+   },
+   "explanation": null,
+   "sourceRef": "Niven, Zuckerman & Montgomery, An Introduction to the Theory of Numbers (Wiley)",
+   "tags": [
+    "number-theory"
+   ]
+  },
+  {
+   "prompt": "Divisibility by 3 and by 9",
+   "content": {
+    "kind": "short-answer",
+    "answer": "The digit sum is divisible by 3 (or by 9).",
+    "acceptableAnswers": []
+   },
+   "explanation": null,
+   "sourceRef": "Niven, Zuckerman & Montgomery, An Introduction to the Theory of Numbers (Wiley)",
+   "tags": [
+    "number-theory"
+   ]
+  },
+  {
+   "prompt": "Divisibility by 11",
+   "content": {
+    "kind": "short-answer",
+    "answer": "The alternating sum of the digits is divisible by 11.",
+    "acceptableAnswers": []
+   },
+   "explanation": null,
+   "sourceRef": "Niven, Zuckerman & Montgomery, An Introduction to the Theory of Numbers (Wiley)",
+   "tags": [
+    "number-theory"
+   ]
+  },
+  {
+   "prompt": "Order of a modulo n",
+   "content": {
+    "kind": "short-answer",
+    "answer": "The least k > 0 with a^k ≡ 1 (mod n); it divides φ(n).",
+    "acceptableAnswers": []
+   },
+   "explanation": null,
+   "sourceRef": "Niven, Zuckerman & Montgomery, An Introduction to the Theory of Numbers (Wiley)",
+   "tags": [
+    "number-theory"
+   ]
+  },
+  {
+   "prompt": "Primitive root modulo n",
+   "content": {
+    "kind": "short-answer",
+    "answer": "An element whose order is φ(n); it generates all units mod n.",
+    "acceptableAnswers": []
+   },
+   "explanation": null,
+   "sourceRef": "Niven, Zuckerman & Montgomery, An Introduction to the Theory of Numbers (Wiley)",
+   "tags": [
+    "number-theory"
+   ]
+  },
+  {
+   "prompt": "Which moduli have primitive roots?",
+   "content": {
+    "kind": "short-answer",
+    "answer": "1, 2, 4, p^k, and 2p^k for odd primes p.",
+    "acceptableAnswers": []
+   },
+   "explanation": null,
+   "sourceRef": "Niven, Zuckerman & Montgomery, An Introduction to the Theory of Numbers (Wiley)",
+   "tags": [
+    "number-theory"
+   ]
+  },
+  {
+   "prompt": "Quadratic residue modulo p",
+   "content": {
+    "kind": "short-answer",
+    "answer": "An a not divisible by p for which x^2 ≡ a (mod p) has a solution.",
+    "acceptableAnswers": []
+   },
+   "explanation": null,
+   "sourceRef": "Niven, Zuckerman & Montgomery, An Introduction to the Theory of Numbers (Wiley)",
+   "tags": [
+    "number-theory"
+   ]
+  },
+  {
+   "prompt": "Euler's criterion for odd prime p",
+   "content": {
+    "kind": "short-answer",
+    "answer": "a is a quadratic residue mod p iff a^((p-1)/2) ≡ 1 (mod p).",
+    "acceptableAnswers": []
+   },
+   "explanation": null,
+   "sourceRef": "Niven, Zuckerman & Montgomery, An Introduction to the Theory of Numbers (Wiley)",
+   "tags": [
+    "number-theory"
+   ]
+  },
+  {
+   "prompt": "Quadratic reciprocity (odd primes p ≠ q)",
+   "content": {
+    "kind": "short-answer",
+    "answer": "(p/q)(q/p) = (-1)^((p-1)/2 · (q-1)/2)",
+    "acceptableAnswers": []
+   },
+   "explanation": null,
+   "sourceRef": "Niven, Zuckerman & Montgomery, An Introduction to the Theory of Numbers (Wiley)",
+   "tags": [
+    "number-theory"
+   ]
+  },
+  {
+   "prompt": "Which primes are sums of two squares (Fermat)?",
+   "content": {
+    "kind": "short-answer",
+    "answer": "2 and the primes p ≡ 1 (mod 4).",
+    "acceptableAnswers": []
+   },
+   "explanation": null,
+   "sourceRef": "Niven, Zuckerman & Montgomery, An Introduction to the Theory of Numbers (Wiley)",
+   "tags": [
+    "number-theory"
+   ]
+  },
+  {
+   "prompt": "Lagrange's four-square theorem",
+   "content": {
+    "kind": "short-answer",
+    "answer": "Every positive integer is a sum of four integer squares.",
+    "acceptableAnswers": []
+   },
+   "explanation": null,
+   "sourceRef": "Niven, Zuckerman & Montgomery, An Introduction to the Theory of Numbers (Wiley)",
+   "tags": [
+    "number-theory"
+   ]
+  },
+  {
+   "prompt": "Infinitely many primes: Euclid's idea",
+   "content": {
+    "kind": "short-answer",
+    "answer": "Given primes p1..pk, any prime factor of p1···pk + 1 is a new prime.",
+    "acceptableAnswers": []
+   },
+   "explanation": null,
+   "sourceRef": "Niven, Zuckerman & Montgomery, An Introduction to the Theory of Numbers (Wiley)",
+   "tags": [
+    "number-theory"
+   ]
+  },
+  {
+   "prompt": "Dirichlet's theorem on primes in arithmetic progressions",
+   "content": {
+    "kind": "short-answer",
+    "answer": "If gcd(a,d) = 1, then a, a+d, a+2d, ... contains infinitely many primes.",
+    "acceptableAnswers": []
+   },
+   "explanation": null,
+   "sourceRef": "Niven, Zuckerman & Montgomery, An Introduction to the Theory of Numbers (Wiley)",
+   "tags": [
+    "number-theory"
+   ]
+  },
+  {
+   "prompt": "Prime number theorem",
+   "content": {
+    "kind": "short-answer",
+    "answer": "The number of primes ≤ x is asymptotic to x / ln x.",
+    "acceptableAnswers": []
+   },
+   "explanation": null,
+   "sourceRef": "Niven, Zuckerman & Montgomery, An Introduction to the Theory of Numbers (Wiley)",
+   "tags": [
+    "number-theory"
+   ]
+  },
+  {
+   "prompt": "Bertrand's postulate",
+   "content": {
+    "kind": "short-answer",
+    "answer": "For every n > 1 there is a prime p with n < p < 2n.",
+    "acceptableAnswers": []
+   },
+   "explanation": null,
+   "sourceRef": "Niven, Zuckerman & Montgomery, An Introduction to the Theory of Numbers (Wiley)",
+   "tags": [
+    "number-theory"
+   ]
+  },
+  {
+   "prompt": "Pythagorean triples: primitive form",
+   "content": {
+    "kind": "short-answer",
+    "answer": "(m^2 - n^2, 2mn, m^2 + n^2) with m > n, coprime, opposite parity.",
+    "acceptableAnswers": []
+   },
+   "explanation": null,
+   "sourceRef": "Niven, Zuckerman & Montgomery, An Introduction to the Theory of Numbers (Wiley)",
+   "tags": [
+    "number-theory"
+   ]
+  },
+  {
+   "prompt": "Fermat's Last Theorem",
+   "content": {
+    "kind": "short-answer",
+    "answer": "x^n + y^n = z^n has no positive-integer solutions for n > 2 (proved by Wiles, 1995).",
+    "acceptableAnswers": []
+   },
+   "explanation": null,
+   "sourceRef": "Niven, Zuckerman & Montgomery, An Introduction to the Theory of Numbers (Wiley)",
+   "tags": [
+    "number-theory"
+   ]
+  }
+ ]
+}

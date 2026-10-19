@@ -1,0 +1,414 @@
+{
+ "seshatExportVersion": 1,
+ "name": "American History Timeline",
+ "description": "Key dates and events from colonization to the late 20th century.",
+ "tags": [
+  "history",
+  "united-states"
+ ],
+ "cards": [
+  {
+   "prompt": "Year of the Declaration of Independence",
+   "content": {
+    "kind": "short-answer",
+    "answer": "1776 (adopted July 4)",
+    "acceptableAnswers": []
+   },
+   "explanation": null,
+   "sourceRef": "Library of Congress; National Archives (archives.gov) founding documents",
+   "tags": [
+    "history"
+   ]
+  },
+  {
+   "prompt": "Year the Constitution was signed",
+   "content": {
+    "kind": "short-answer",
+    "answer": "1787 (Philadelphia Convention)",
+    "acceptableAnswers": []
+   },
+   "explanation": null,
+   "sourceRef": "Library of Congress; National Archives (archives.gov) founding documents",
+   "tags": [
+    "history"
+   ]
+  },
+  {
+   "prompt": "Year the Bill of Rights was ratified",
+   "content": {
+    "kind": "short-answer",
+    "answer": "1791 (the first ten amendments)",
+    "acceptableAnswers": []
+   },
+   "explanation": null,
+   "sourceRef": "Library of Congress; National Archives (archives.gov) founding documents",
+   "tags": [
+    "history"
+   ]
+  },
+  {
+   "prompt": "Louisiana Purchase",
+   "content": {
+    "kind": "short-answer",
+    "answer": "1803, from France under Jefferson; doubled the size of the US.",
+    "acceptableAnswers": []
+   },
+   "explanation": null,
+   "sourceRef": "Library of Congress; National Archives (archives.gov) founding documents",
+   "tags": [
+    "history"
+   ]
+  },
+  {
+   "prompt": "War of 1812 ended with",
+   "content": {
+    "kind": "short-answer",
+    "answer": "The Treaty of Ghent (1814).",
+    "acceptableAnswers": []
+   },
+   "explanation": null,
+   "sourceRef": "Library of Congress; National Archives (archives.gov) founding documents",
+   "tags": [
+    "history"
+   ]
+  },
+  {
+   "prompt": "Monroe Doctrine",
+   "content": {
+    "kind": "short-answer",
+    "answer": "1823: the US opposed new European colonization in the Americas.",
+    "acceptableAnswers": []
+   },
+   "explanation": null,
+   "sourceRef": "Library of Congress; National Archives (archives.gov) founding documents",
+   "tags": [
+    "history"
+   ]
+  },
+  {
+   "prompt": "Missouri Compromise",
+   "content": {
+    "kind": "short-answer",
+    "answer": "1820: admitted Missouri as slave and Maine as free; banned slavery north of 36°30'.",
+    "acceptableAnswers": []
+   },
+   "explanation": null,
+   "sourceRef": "Library of Congress; National Archives (archives.gov) founding documents",
+   "tags": [
+    "history"
+   ]
+  },
+  {
+   "prompt": "Trail of Tears",
+   "content": {
+    "kind": "short-answer",
+    "answer": "Forced removal of Cherokee and other nations from the Southeast, 1830s, after the Indian Removal Act of 1830.",
+    "acceptableAnswers": []
+   },
+   "explanation": null,
+   "sourceRef": "Library of Congress; National Archives (archives.gov) founding documents",
+   "tags": [
+    "history"
+   ]
+  },
+  {
+   "prompt": "Mexican–American War ended",
+   "content": {
+    "kind": "short-answer",
+    "answer": "Treaty of Guadalupe Hidalgo, 1848.",
+    "acceptableAnswers": []
+   },
+   "explanation": null,
+   "sourceRef": "Library of Congress; National Archives (archives.gov) founding documents",
+   "tags": [
+    "history"
+   ]
+  },
+  {
+   "prompt": "Civil War dates",
+   "content": {
+    "kind": "short-answer",
+    "answer": "1861-1865",
+    "acceptableAnswers": []
+   },
+   "explanation": null,
+   "sourceRef": "Library of Congress; National Archives (archives.gov) founding documents",
+   "tags": [
+    "history"
+   ]
+  },
+  {
+   "prompt": "Emancipation Proclamation",
+   "content": {
+    "kind": "short-answer",
+    "answer": "Issued by Lincoln, effective January 1, 1863; freed enslaved people in Confederate-held areas.",
+    "acceptableAnswers": []
+   },
+   "explanation": null,
+   "sourceRef": "Library of Congress; National Archives (archives.gov) founding documents",
+   "tags": [
+    "history"
+   ]
+  },
+  {
+   "prompt": "Gettysburg dates",
+   "content": {
+    "kind": "short-answer",
+    "answer": "July 1-3, 1863",
+    "acceptableAnswers": []
+   },
+   "explanation": null,
+   "sourceRef": "Library of Congress; National Archives (archives.gov) founding documents",
+   "tags": [
+    "history"
+   ]
+  },
+  {
+   "prompt": "Lee surrendered to Grant at",
+   "content": {
+    "kind": "short-answer",
+    "answer": "Appomattox Court House, April 9, 1865.",
+    "acceptableAnswers": []
+   },
+   "explanation": null,
+   "sourceRef": "Library of Congress; National Archives (archives.gov) founding documents",
+   "tags": [
+    "history"
+   ]
+  },
+  {
+   "prompt": "13th, 14th, 15th Amendments",
+   "content": {
+    "kind": "short-answer",
+    "answer": "Abolished slavery (1865); citizenship and equal protection (1868); voting rights regardless of race (1870).",
+    "acceptableAnswers": []
+   },
+   "explanation": null,
+   "sourceRef": "Library of Congress; National Archives (archives.gov) founding documents",
+   "tags": [
+    "history"
+   ]
+  },
+  {
+   "prompt": "Transcontinental Railroad completed",
+   "content": {
+    "kind": "short-answer",
+    "answer": "1869 (Promontory Summit, Utah)",
+    "acceptableAnswers": []
+   },
+   "explanation": null,
+   "sourceRef": "Library of Congress; National Archives (archives.gov) founding documents",
+   "tags": [
+    "history"
+   ]
+  },
+  {
+   "prompt": "Plessy v. Ferguson",
+   "content": {
+    "kind": "short-answer",
+    "answer": "1896: upheld \"separate but equal.\"",
+    "acceptableAnswers": []
+   },
+   "explanation": null,
+   "sourceRef": "Library of Congress; National Archives (archives.gov) founding documents",
+   "tags": [
+    "history"
+   ]
+  },
+  {
+   "prompt": "Spanish–American War",
+   "content": {
+    "kind": "short-answer",
+    "answer": "1898",
+    "acceptableAnswers": []
+   },
+   "explanation": null,
+   "sourceRef": "Library of Congress; National Archives (archives.gov) founding documents",
+   "tags": [
+    "history"
+   ]
+  },
+  {
+   "prompt": "19th Amendment ratified",
+   "content": {
+    "kind": "short-answer",
+    "answer": "1920 (women's suffrage)",
+    "acceptableAnswers": []
+   },
+   "explanation": null,
+   "sourceRef": "Library of Congress; National Archives (archives.gov) founding documents",
+   "tags": [
+    "history"
+   ]
+  },
+  {
+   "prompt": "Stock market crash",
+   "content": {
+    "kind": "short-answer",
+    "answer": "October 1929",
+    "acceptableAnswers": []
+   },
+   "explanation": null,
+   "sourceRef": "Library of Congress; National Archives (archives.gov) founding documents",
+   "tags": [
+    "history"
+   ]
+  },
+  {
+   "prompt": "New Deal",
+   "content": {
+    "kind": "short-answer",
+    "answer": "Franklin Roosevelt's programs of relief, recovery and reform in the 1930s.",
+    "acceptableAnswers": []
+   },
+   "explanation": null,
+   "sourceRef": "Library of Congress; National Archives (archives.gov) founding documents",
+   "tags": [
+    "history"
+   ]
+  },
+  {
+   "prompt": "Attack on Pearl Harbor",
+   "content": {
+    "kind": "short-answer",
+    "answer": "December 7, 1941",
+    "acceptableAnswers": []
+   },
+   "explanation": null,
+   "sourceRef": "Library of Congress; National Archives (archives.gov) founding documents",
+   "tags": [
+    "history"
+   ]
+  },
+  {
+   "prompt": "D-Day",
+   "content": {
+    "kind": "short-answer",
+    "answer": "June 6, 1944 (Normandy landings)",
+    "acceptableAnswers": []
+   },
+   "explanation": null,
+   "sourceRef": "Library of Congress; National Archives (archives.gov) founding documents",
+   "tags": [
+    "history"
+   ]
+  },
+  {
+   "prompt": "Atomic bombs dropped on Japan",
+   "content": {
+    "kind": "short-answer",
+    "answer": "Hiroshima, August 6, 1945; Nagasaki, August 9, 1945.",
+    "acceptableAnswers": []
+   },
+   "explanation": null,
+   "sourceRef": "Library of Congress; National Archives (archives.gov) founding documents",
+   "tags": [
+    "history"
+   ]
+  },
+  {
+   "prompt": "Brown v. Board of Education",
+   "content": {
+    "kind": "short-answer",
+    "answer": "1954: school segregation unconstitutional; overturned Plessy for education.",
+    "acceptableAnswers": []
+   },
+   "explanation": null,
+   "sourceRef": "Library of Congress; National Archives (archives.gov) founding documents",
+   "tags": [
+    "history"
+   ]
+  },
+  {
+   "prompt": "Civil Rights Act and Voting Rights Act",
+   "content": {
+    "kind": "short-answer",
+    "answer": "1964; 1965",
+    "acceptableAnswers": []
+   },
+   "explanation": null,
+   "sourceRef": "Library of Congress; National Archives (archives.gov) founding documents",
+   "tags": [
+    "history"
+   ]
+  },
+  {
+   "prompt": "Cuban Missile Crisis",
+   "content": {
+    "kind": "short-answer",
+    "answer": "October 1962",
+    "acceptableAnswers": []
+   },
+   "explanation": null,
+   "sourceRef": "Library of Congress; National Archives (archives.gov) founding documents",
+   "tags": [
+    "history"
+   ]
+  },
+  {
+   "prompt": "Moon landing (Apollo 11)",
+   "content": {
+    "kind": "short-answer",
+    "answer": "July 20, 1969",
+    "acceptableAnswers": []
+   },
+   "explanation": null,
+   "sourceRef": "Library of Congress; National Archives (archives.gov) founding documents",
+   "tags": [
+    "history"
+   ]
+  },
+  {
+   "prompt": "Watergate: Nixon resigned",
+   "content": {
+    "kind": "short-answer",
+    "answer": "August 9, 1974",
+    "acceptableAnswers": []
+   },
+   "explanation": null,
+   "sourceRef": "Library of Congress; National Archives (archives.gov) founding documents",
+   "tags": [
+    "history"
+   ]
+  },
+  {
+   "prompt": "End of the Cold War milestones",
+   "content": {
+    "kind": "short-answer",
+    "answer": "Berlin Wall fell in 1989; Soviet Union dissolved in 1991.",
+    "acceptableAnswers": []
+   },
+   "explanation": null,
+   "sourceRef": "Library of Congress; National Archives (archives.gov) founding documents",
+   "tags": [
+    "history"
+   ]
+  },
+  {
+   "prompt": "Marbury v. Madison",
+   "content": {
+    "kind": "short-answer",
+    "answer": "1803: established judicial review.",
+    "acceptableAnswers": []
+   },
+   "explanation": null,
+   "sourceRef": "Library of Congress; National Archives (archives.gov) founding documents",
+   "tags": [
+    "history"
+   ]
+  },
+  {
+   "prompt": "Federalist Papers authors",
+   "content": {
+    "kind": "short-answer",
+    "answer": "Hamilton, Madison, Jay (as Publius).",
+    "acceptableAnswers": []
+   },
+   "explanation": null,
+   "sourceRef": "Library of Congress; National Archives (archives.gov) founding documents",
+   "tags": [
+    "history"
+   ]
+  }
+ ]
+}

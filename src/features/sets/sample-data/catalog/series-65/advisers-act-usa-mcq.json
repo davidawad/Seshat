@@ -1,0 +1,498 @@
+{
+ "seshatExportVersion": 1,
+ "name": "IA Regulation: Advisers Act and Uniform Securities Act",
+ "description": "Original practice questions on adviser registration, disclosure, custody and prohibited conduct (authored from the statutes and rules, not a vendor bank).",
+ "tags": [
+  "series-65",
+  "regulation",
+  "mcq"
+ ],
+ "cards": [
+  {
+   "prompt": "Which federal statute is the primary law governing investment advisers?",
+   "content": {
+    "kind": "mcq",
+    "options": [
+     "Securities Act of 1933",
+     "Securities Exchange Act of 1934",
+     "Investment Advisers Act of 1940",
+     "Trust Indenture Act of 1939"
+    ],
+    "correctIndex": 2
+   },
+   "explanation": "The Investment Advisers Act of 1940 regulates advisers. The 1933 Act governs new issues; the 1934 Act governs secondary trading and created the SEC.",
+   "sourceRef": "Investment Advisers Act of 1940 (15 U.S.C. 80b); NASAA Uniform Securities Act",
+   "tags": [
+    "series-65"
+   ]
+  },
+  {
+   "prompt": "Under the Advisers Act, an investment adviser is generally a person who, for compensation and as part of a business, does what?",
+   "content": {
+    "kind": "mcq",
+    "options": [
+     "Executes securities trades for customers only",
+     "Advises others on the value of securities or advisability of investing in them",
+     "Underwrites new issues",
+     "Acts only as a custodian of client assets"
+    ],
+    "correctIndex": 1
+   },
+   "explanation": "Advisers Act section 202(a)(11) uses a three-part test: advice about securities, as a business, for compensation.",
+   "sourceRef": "Investment Advisers Act of 1940 (15 U.S.C. 80b); NASAA Uniform Securities Act",
+   "tags": [
+    "series-65"
+   ]
+  },
+  {
+   "prompt": "Which of the following is generally excluded from the definition of an investment adviser?",
+   "content": {
+    "kind": "mcq",
+    "options": [
+     "A financial planner who gives securities advice for a fee",
+     "A bank (as defined) acting in its ordinary banking role",
+     "An adviser to a hedge fund",
+     "A pension consultant paid for securities advice"
+    ],
+    "correctIndex": 1
+   },
+   "explanation": "Banks (and bank holding companies, with limited exceptions), lawyers, accountants, engineers and teachers whose advice is solely incidental, publishers of general bona fide circulation, and broker-dealers with no special compensation for advice are excluded.",
+   "sourceRef": "Investment Advisers Act of 1940 (15 U.S.C. 80b); NASAA Uniform Securities Act",
+   "tags": [
+    "series-65"
+   ]
+  },
+  {
+   "prompt": "An adviser with substantial assets under management is generally required to register with the SEC rather than a state when it manages at least about:",
+   "content": {
+    "kind": "mcq",
+    "options": [
+     "$25 million",
+     "$50 million",
+     "$100 million (with a buffer up to $110 million)",
+     "$1 billion"
+    ],
+    "correctIndex": 2
+   },
+   "explanation": "Dodd-Frank shifted smaller advisers to state registration. Advisers with $100 million or more of regulatory assets under management register with the SEC; a buffer lets advisers register at $110 million and withdraw below $90 million.",
+   "sourceRef": "Investment Advisers Act of 1940 (15 U.S.C. 80b); NASAA Uniform Securities Act",
+   "tags": [
+    "series-65"
+   ]
+  },
+  {
+   "prompt": "Which form do investment advisers use to register with the SEC and states?",
+   "content": {
+    "kind": "mcq",
+    "options": [
+     "Form U4",
+     "Form ADV",
+     "Form BD",
+     "Form 10-K"
+    ],
+    "correctIndex": 1
+   },
+   "explanation": "Form ADV (filed through IARD) registers advisers. Form U4 registers agents and IARs; Form BD registers broker-dealers.",
+   "sourceRef": "Investment Advisers Act of 1940 (15 U.S.C. 80b); NASAA Uniform Securities Act",
+   "tags": [
+    "series-65"
+   ]
+  },
+  {
+   "prompt": "Form ADV Part 2A is known as:",
+   "content": {
+    "kind": "mcq",
+    "options": [
+     "The firm brochure",
+     "The Form CRS",
+     "The IAR brochure supplement",
+     "The audit report"
+    ],
+    "correctIndex": 0
+   },
+   "explanation": "Part 2A is the plain-English firm brochure. Part 2B is the brochure supplement for supervised persons. Form CRS is Part 3, for retail clients.",
+   "sourceRef": "Investment Advisers Act of 1940 (15 U.S.C. 80b); NASAA Uniform Securities Act",
+   "tags": [
+    "series-65"
+   ]
+  },
+  {
+   "prompt": "Which document must an adviser deliver to a new retail client before or at the time of entering the advisory contract?",
+   "content": {
+    "kind": "mcq",
+    "options": [
+     "Only the contract",
+     "Form ADV Part 2A brochure",
+     "The adviser's tax returns",
+     "A performance report"
+    ],
+    "correctIndex": 1
+   },
+   "explanation": "Brochure delivery is required before or when the advisory contract is signed, plus the Part 2B supplement for the supervised persons advising the client.",
+   "sourceRef": "Investment Advisers Act of 1940 (15 U.S.C. 80b); NASAA Uniform Securities Act",
+   "tags": [
+    "series-65"
+   ]
+  },
+  {
+   "prompt": "After a client relationship begins, an adviser must annually:",
+   "content": {
+    "kind": "mcq",
+    "options": [
+     "Deliver an updated brochure or a summary of material changes within 120 days of fiscal year end",
+     "Re-register in all fifty states",
+     "File Form 10-K",
+     "Request a new client agreement"
+    ],
+    "correctIndex": 0
+   },
+   "explanation": "Advisers deliver the updated brochure or a summary of material changes within 120 days after their fiscal year ends, and amend ADV annually (within 90 days of fiscal year end).",
+   "sourceRef": "Investment Advisers Act of 1940 (15 U.S.C. 80b); NASAA Uniform Securities Act",
+   "tags": [
+    "series-65"
+   ]
+  },
+  {
+   "prompt": "An IAR is an individual who:",
+   "content": {
+    "kind": "mcq",
+    "options": [
+     "Manages the firm's back office only",
+     "Represents an investment adviser and gives advice or solicits advisory clients for a fee-paying firm",
+     "Works only for a custodian",
+     "Is a federally registered broker-dealer"
+    ],
+    "correctIndex": 1
+   },
+   "explanation": "IAR (investment adviser representative) includes persons who make recommendations, manage accounts, or solicit advisory business for a registered adviser.",
+   "sourceRef": "Investment Advisers Act of 1940 (15 U.S.C. 80b); NASAA Uniform Securities Act",
+   "tags": [
+    "series-65"
+   ]
+  },
+  {
+   "prompt": "Which exam commonly qualifies an individual to be an IAR under state law?",
+   "content": {
+    "kind": "mcq",
+    "options": [
+     "Series 7 alone",
+     "Series 65, or Series 66 together with Series 7",
+     "Series 6",
+     "Series 24 alone"
+    ],
+    "correctIndex": 1
+   },
+   "explanation": "The Series 65 satisfies the IAR qualification, as do the Series 66 plus Series 7 combination. Some designations (e.g., CFP, CFA, ChFC) can substitute for the exam in many states.",
+   "sourceRef": "Investment Advisers Act of 1940 (15 U.S.C. 80b); NASAA Uniform Securities Act",
+   "tags": [
+    "series-65"
+   ]
+  },
+  {
+   "prompt": "Which of the following designations is recognized by NASAA as a possible substitute for the Series 65 in many states?",
+   "content": {
+    "kind": "mcq",
+    "options": [
+     "CFA",
+     "Series 63",
+     "Series 3",
+     "FINRA Series 99"
+    ],
+    "correctIndex": 0
+   },
+   "explanation": "NASAA model rules recognize CFP, CFA, ChFC, PFS and CIC designations as alternatives to the Series 65 (state rules vary).",
+   "sourceRef": "Investment Advisers Act of 1940 (15 U.S.C. 80b); NASAA Uniform Securities Act",
+   "tags": [
+    "series-65"
+   ]
+  },
+  {
+   "prompt": "Under the Uniform Securities Act, an investment adviser must register in a state unless:",
+   "content": {
+    "kind": "mcq",
+    "options": [
+     "The adviser has a place of business there",
+     "It is SEC-registered or otherwise exempt or excluded",
+     "It advises more than one client",
+     "It charges a fee"
+    ],
+    "correctIndex": 1
+   },
+   "explanation": "Advisers registered with the SEC are federal covered advisers; states may require notice filings and fees but not registration. A state may still enforce antifraud provisions.",
+   "sourceRef": "Investment Advisers Act of 1940 (15 U.S.C. 80b); NASAA Uniform Securities Act",
+   "tags": [
+    "series-65"
+   ]
+  },
+  {
+   "prompt": "Under the NSMIA de minimis rule, an adviser without a place of business in a state may avoid registering there if it has no more than how many clients in that state in the preceding 12 months?",
+   "content": {
+    "kind": "mcq",
+    "options": [
+     "2",
+     "5",
+     "10",
+     "25"
+    ],
+    "correctIndex": 1
+   },
+   "explanation": "The de minimis exemption allows up to five clients in a 12-month period for advisers with no place of business in the state.",
+   "sourceRef": "Investment Advisers Act of 1940 (15 U.S.C. 80b); NASAA Uniform Securities Act",
+   "tags": [
+    "series-65"
+   ]
+  },
+  {
+   "prompt": "Which of the following is an exempt security under the Uniform Securities Act?",
+   "content": {
+    "kind": "mcq",
+    "options": [
+     "A corporate bond of a private issuer",
+     "A US Treasury bond",
+     "An unregistered limited partnership interest",
+     "A penny stock traded OTC"
+    ],
+    "correctIndex": 1
+   },
+   "explanation": "US government, state and municipal securities, and certain bank, insurance and public utility securities are exempt securities; exempt transactions are separate (e.g., isolated nonissuer trades, institutional purchasers).",
+   "sourceRef": "Investment Advisers Act of 1940 (15 U.S.C. 80b); NASAA Uniform Securities Act",
+   "tags": [
+    "series-65"
+   ]
+  },
+  {
+   "prompt": "Under the Uniform Securities Act private placement exemption, sales to no more than how many purchasers in the state within 12 months are exempt (excluding institutions)?",
+   "content": {
+    "kind": "mcq",
+    "options": [
+     "5",
+     "10",
+     "25",
+     "35"
+    ],
+    "correctIndex": 1
+   },
+   "explanation": "The USA nonpublic offering exemption allows sales to no more than 10 non-institutional purchasers in the state in any 12 consecutive months, with no general solicitation and certain conditions.",
+   "sourceRef": "Investment Advisers Act of 1940 (15 U.S.C. 80b); NASAA Uniform Securities Act",
+   "tags": [
+    "series-65"
+   ]
+  },
+  {
+   "prompt": "The SEC custody rule for advisers (Rule 206(4)-2) generally requires an adviser with custody to:",
+   "content": {
+    "kind": "mcq",
+    "options": [
+     "Hold securities itself in the adviser's name",
+     "Use a qualified custodian and have client assets verified (surprise examination) unless an exception applies",
+     "Never accept client funds",
+     "Have the client's accountant sign trades"
+    ],
+    "correctIndex": 1
+   },
+   "explanation": "Advisers with custody must keep assets with a qualified custodian (bank, broker-dealer, FCM, etc.), generally subject to an annual surprise examination by an independent public accountant and account statements at least quarterly.",
+   "sourceRef": "Investment Advisers Act of 1940 (15 U.S.C. 80b); NASAA Uniform Securities Act",
+   "tags": [
+    "series-65"
+   ]
+  },
+  {
+   "prompt": "Under SEC rule, an SEC-registered adviser must adopt and enforce which of the following?",
+   "content": {
+    "kind": "mcq",
+    "options": [
+     "A written code of ethics",
+     "A guarantee of performance",
+     "A marketing budget",
+     "A mandatory annual client survey"
+    ],
+    "correctIndex": 0
+   },
+   "explanation": "Rule 204A-1 requires a code of ethics (standards of conduct, personal trading reporting by access persons). Rule 206(4)-7 requires written compliance policies and a chief compliance officer.",
+   "sourceRef": "Investment Advisers Act of 1940 (15 U.S.C. 80b); NASAA Uniform Securities Act",
+   "tags": [
+    "series-65"
+   ]
+  },
+  {
+   "prompt": "A person who has access to nonpublic information about client trades or portfolio holdings is typically called an:",
+   "content": {
+    "kind": "mcq",
+    "options": [
+     "Accredited investor",
+     "Access person",
+     "Qualified client",
+     "Control person"
+    ],
+    "correctIndex": 1
+   },
+   "explanation": "Access persons must report holdings and transactions (initial, annual, and quarterly transactions) under the code of ethics rule.",
+   "sourceRef": "Investment Advisers Act of 1940 (15 U.S.C. 80b); NASAA Uniform Securities Act",
+   "tags": [
+    "series-65"
+   ]
+  },
+  {
+   "prompt": "Which of the following best describes soft dollars?",
+   "content": {
+    "kind": "mcq",
+    "options": [
+     "Tax credits for advisers",
+     "Research and brokerage services received by an adviser from a broker-dealer in exchange for client commission business",
+     "Performance fees paid to advisers",
+     "Client prepayments of fees"
+    ],
+    "correctIndex": 1
+   },
+   "explanation": "The Section 28(e) safe harbor allows an adviser to pay more than the lowest commission for brokerage and research services that benefit clients, if the commission is reasonable in relation to the value of the services and disclosed.",
+   "sourceRef": "Investment Advisers Act of 1940 (15 U.S.C. 80b); NASAA Uniform Securities Act",
+   "tags": [
+    "series-65"
+   ]
+  },
+  {
+   "prompt": "A performance (incentive) fee based on capital gains may generally be charged by an adviser only to:",
+   "content": {
+    "kind": "mcq",
+    "options": [
+     "Any client",
+     "Qualified clients meeting net worth or AUM thresholds, among other categories",
+     "Retail clients under $10,000",
+     "Only banks"
+    ],
+    "correctIndex": 1
+   },
+   "explanation": "Advisers Act section 205 bans performance fees except for qualified clients (Rule 205-3), plus certain others, e.g., registered investment companies and some business development companies.",
+   "sourceRef": "Investment Advisers Act of 1940 (15 U.S.C. 80b); NASAA Uniform Securities Act",
+   "tags": [
+    "series-65"
+   ]
+  },
+  {
+   "prompt": "Which type of advisory contract provision is prohibited under the Advisers Act?",
+   "content": {
+    "kind": "mcq",
+    "options": [
+     "A fee schedule",
+     "An assignment clause that allows the contract to be assigned without client consent",
+     "A hedge clause that waives rights the client has under federal securities law",
+     "Both B and C"
+    ],
+    "correctIndex": 3
+   },
+   "explanation": "Advisory contracts may not be assigned without client consent, and may not contain provisions waiving compliance with the Advisers Act or hedge clauses that mislead clients about their non-waivable legal rights.",
+   "sourceRef": "Investment Advisers Act of 1940 (15 U.S.C. 80b); NASAA Uniform Securities Act",
+   "tags": [
+    "series-65"
+   ]
+  },
+  {
+   "prompt": "Which situation involves cherry-picking?",
+   "content": {
+    "kind": "mcq",
+    "options": [
+     "Allocating profitable trades to a favored account after the trade and unprofitable trades to others",
+     "Averaging cost",
+     "Buying for all accounts pro rata",
+     "Dollar-cost averaging"
+    ],
+    "correctIndex": 0
+   },
+   "explanation": "Cherry-picking is the improper allocation of favorable trades to the adviser or favored accounts, a violation of fiduciary duty.",
+   "sourceRef": "Investment Advisers Act of 1940 (15 U.S.C. 80b); NASAA Uniform Securities Act",
+   "tags": [
+    "series-65"
+   ]
+  },
+  {
+   "prompt": "Scalping by an investment adviser is:",
+   "content": {
+    "kind": "mcq",
+    "options": [
+     "Buying a security for personal account before recommending it, then selling after price rises",
+     "Seeking out low-fee funds",
+     "Averaging commissions",
+     "Rebalancing a portfolio"
+    ],
+    "correctIndex": 0
+   },
+   "explanation": "Scalping and front-running both exploit knowledge of upcoming client recommendations or trades; both are fraudulent.",
+   "sourceRef": "Investment Advisers Act of 1940 (15 U.S.C. 80b); NASAA Uniform Securities Act",
+   "tags": [
+    "series-65"
+   ]
+  },
+  {
+   "prompt": "Under the Advisers Act, fraud provisions apply to:",
+   "content": {
+    "kind": "mcq",
+    "options": [
+     "Only SEC-registered advisers",
+     "Only state-registered advisers",
+     "Any adviser (the antifraud provisions apply whether or not registered)",
+     "Only advisers of mutual funds"
+    ],
+    "correctIndex": 2
+   },
+   "explanation": "Section 206 antifraud applies broadly to investment advisers, even those exempt from registration.",
+   "sourceRef": "Investment Advisers Act of 1940 (15 U.S.C. 80b); NASAA Uniform Securities Act",
+   "tags": [
+    "series-65"
+   ]
+  },
+  {
+   "prompt": "Which of the following is a violation of the SEC marketing rule (Rule 206(4)-1)?",
+   "content": {
+    "kind": "mcq",
+    "options": [
+     "Presenting gross performance without equally prominent net performance",
+     "Using a client testimonial with required disclosures",
+     "Presenting hypothetical performance with policies and disclosures",
+     "Advertising fees"
+    ],
+    "correctIndex": 0
+   },
+   "explanation": "Gross performance must be accompanied by net performance with at least equal prominence; testimonials and endorsements are permitted with disclosures and oversight, and hypothetical performance requires policies and relevant disclosures.",
+   "sourceRef": "Investment Advisers Act of 1940 (15 U.S.C. 80b); NASAA Uniform Securities Act",
+   "tags": [
+    "series-65"
+   ]
+  },
+  {
+   "prompt": "Under the Uniform Securities Act, the person who administers the act in a state is the:",
+   "content": {
+    "kind": "mcq",
+    "options": [
+     "SEC chair",
+     "State Securities Administrator",
+     "FINRA arbitrator",
+     "NASAA president"
+    ],
+    "correctIndex": 1
+   },
+   "explanation": "The Administrator (often the state securities commissioner or director) enforces the Act; NASAA coordinates state regulators but is not a regulator itself.",
+   "sourceRef": "Investment Advisers Act of 1940 (15 U.S.C. 80b); NASAA Uniform Securities Act",
+   "tags": [
+    "series-65"
+   ]
+  },
+  {
+   "prompt": "A state securities administrator can generally deny, suspend or revoke an adviser's registration if the adviser:",
+   "content": {
+    "kind": "mcq",
+    "options": [
+     "Has willfully violated the Act or been convicted of certain crimes",
+     "Has fewer than 5 clients",
+     "Charges a flat fee",
+     "Has moved offices"
+    ],
+    "correctIndex": 0
+   },
+   "explanation": "Grounds include willful violation of the act, fraud, felony or certain misdemeanor convictions involving securities, and insolvency, among others.",
+   "sourceRef": "Investment Advisers Act of 1940 (15 U.S.C. 80b); NASAA Uniform Securities Act",
+   "tags": [
+    "series-65"
+   ]
+  }
+ ]
+}

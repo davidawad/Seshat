@@ -1,0 +1,401 @@
+{
+ "seshatExportVersion": 1,
+ "name": "Algebra and Trigonometry Identities",
+ "description": "Identities and formulas used throughout precalculus and calculus.",
+ "tags": [
+  "math",
+  "precalculus"
+ ],
+ "cards": [
+  {
+   "prompt": "Pythagorean identity",
+   "content": {
+    "kind": "short-answer",
+    "answer": "sin^2 θ + cos^2 θ = 1",
+    "acceptableAnswers": []
+   },
+   "explanation": null,
+   "sourceRef": "Standard trigonometry and algebra references (e.g., Stewart, Precalculus)",
+   "tags": [
+    "math"
+   ]
+  },
+  {
+   "prompt": "tan^2 θ + 1 =",
+   "content": {
+    "kind": "short-answer",
+    "answer": "sec^2 θ",
+    "acceptableAnswers": []
+   },
+   "explanation": null,
+   "sourceRef": "Standard trigonometry and algebra references (e.g., Stewart, Precalculus)",
+   "tags": [
+    "math"
+   ]
+  },
+  {
+   "prompt": "sin 2θ",
+   "content": {
+    "kind": "short-answer",
+    "answer": "2 sin θ cos θ",
+    "acceptableAnswers": []
+   },
+   "explanation": null,
+   "sourceRef": "Standard trigonometry and algebra references (e.g., Stewart, Precalculus)",
+   "tags": [
+    "math"
+   ]
+  },
+  {
+   "prompt": "cos 2θ (three forms)",
+   "content": {
+    "kind": "short-answer",
+    "answer": "cos^2 θ - sin^2 θ = 1 - 2 sin^2 θ = 2 cos^2 θ - 1",
+    "acceptableAnswers": []
+   },
+   "explanation": null,
+   "sourceRef": "Standard trigonometry and algebra references (e.g., Stewart, Precalculus)",
+   "tags": [
+    "math"
+   ]
+  },
+  {
+   "prompt": "sin(a + b)",
+   "content": {
+    "kind": "short-answer",
+    "answer": "sin a cos b + cos a sin b",
+    "acceptableAnswers": []
+   },
+   "explanation": null,
+   "sourceRef": "Standard trigonometry and algebra references (e.g., Stewart, Precalculus)",
+   "tags": [
+    "math"
+   ]
+  },
+  {
+   "prompt": "cos(a + b)",
+   "content": {
+    "kind": "short-answer",
+    "answer": "cos a cos b - sin a sin b",
+    "acceptableAnswers": []
+   },
+   "explanation": null,
+   "sourceRef": "Standard trigonometry and algebra references (e.g., Stewart, Precalculus)",
+   "tags": [
+    "math"
+   ]
+  },
+  {
+   "prompt": "tan(a + b)",
+   "content": {
+    "kind": "short-answer",
+    "answer": "(tan a + tan b) / (1 - tan a tan b)",
+    "acceptableAnswers": []
+   },
+   "explanation": null,
+   "sourceRef": "Standard trigonometry and algebra references (e.g., Stewart, Precalculus)",
+   "tags": [
+    "math"
+   ]
+  },
+  {
+   "prompt": "sin^2 θ in terms of cos 2θ",
+   "content": {
+    "kind": "short-answer",
+    "answer": "(1 - cos 2θ)/2",
+    "acceptableAnswers": []
+   },
+   "explanation": null,
+   "sourceRef": "Standard trigonometry and algebra references (e.g., Stewart, Precalculus)",
+   "tags": [
+    "math"
+   ]
+  },
+  {
+   "prompt": "cos^2 θ in terms of cos 2θ",
+   "content": {
+    "kind": "short-answer",
+    "answer": "(1 + cos 2θ)/2",
+    "acceptableAnswers": []
+   },
+   "explanation": null,
+   "sourceRef": "Standard trigonometry and algebra references (e.g., Stewart, Precalculus)",
+   "tags": [
+    "math"
+   ]
+  },
+  {
+   "prompt": "Law of sines",
+   "content": {
+    "kind": "short-answer",
+    "answer": "a/sin A = b/sin B = c/sin C",
+    "acceptableAnswers": []
+   },
+   "explanation": null,
+   "sourceRef": "Standard trigonometry and algebra references (e.g., Stewart, Precalculus)",
+   "tags": [
+    "math"
+   ]
+  },
+  {
+   "prompt": "Law of cosines",
+   "content": {
+    "kind": "short-answer",
+    "answer": "c^2 = a^2 + b^2 - 2ab cos C",
+    "acceptableAnswers": []
+   },
+   "explanation": null,
+   "sourceRef": "Standard trigonometry and algebra references (e.g., Stewart, Precalculus)",
+   "tags": [
+    "math"
+   ]
+  },
+  {
+   "prompt": "Radians per 180 degrees",
+   "content": {
+    "kind": "short-answer",
+    "answer": "π radians",
+    "acceptableAnswers": []
+   },
+   "explanation": null,
+   "sourceRef": "Standard trigonometry and algebra references (e.g., Stewart, Precalculus)",
+   "tags": [
+    "math"
+   ]
+  },
+  {
+   "prompt": "sin(π/6), sin(π/4), sin(π/3)",
+   "content": {
+    "kind": "short-answer",
+    "answer": "1/2, √2/2, √3/2",
+    "acceptableAnswers": []
+   },
+   "explanation": null,
+   "sourceRef": "Standard trigonometry and algebra references (e.g., Stewart, Precalculus)",
+   "tags": [
+    "math"
+   ]
+  },
+  {
+   "prompt": "Quadratic formula for ax^2 + bx + c = 0",
+   "content": {
+    "kind": "short-answer",
+    "answer": "x = (-b ± sqrt(b^2 - 4ac)) / (2a)",
+    "acceptableAnswers": []
+   },
+   "explanation": null,
+   "sourceRef": "Standard trigonometry and algebra references (e.g., Stewart, Precalculus)",
+   "tags": [
+    "math"
+   ]
+  },
+  {
+   "prompt": "Discriminant sign and the roots of a real quadratic",
+   "content": {
+    "kind": "short-answer",
+    "answer": "b^2 - 4ac > 0: two real roots; = 0: one repeated root; < 0: two complex conjugate roots.",
+    "acceptableAnswers": []
+   },
+   "explanation": null,
+   "sourceRef": "Standard trigonometry and algebra references (e.g., Stewart, Precalculus)",
+   "tags": [
+    "math"
+   ]
+  },
+  {
+   "prompt": "Difference of squares",
+   "content": {
+    "kind": "short-answer",
+    "answer": "a^2 - b^2 = (a - b)(a + b)",
+    "acceptableAnswers": []
+   },
+   "explanation": null,
+   "sourceRef": "Standard trigonometry and algebra references (e.g., Stewart, Precalculus)",
+   "tags": [
+    "math"
+   ]
+  },
+  {
+   "prompt": "Binomial expansion of (a + b)^n",
+   "content": {
+    "kind": "short-answer",
+    "answer": "Σ C(n,k) a^(n-k) b^k",
+    "acceptableAnswers": []
+   },
+   "explanation": null,
+   "sourceRef": "Standard trigonometry and algebra references (e.g., Stewart, Precalculus)",
+   "tags": [
+    "math"
+   ]
+  },
+  {
+   "prompt": "log_b(xy)",
+   "content": {
+    "kind": "short-answer",
+    "answer": "log_b x + log_b y",
+    "acceptableAnswers": []
+   },
+   "explanation": null,
+   "sourceRef": "Standard trigonometry and algebra references (e.g., Stewart, Precalculus)",
+   "tags": [
+    "math"
+   ]
+  },
+  {
+   "prompt": "log_b(x^k)",
+   "content": {
+    "kind": "short-answer",
+    "answer": "k log_b x",
+    "acceptableAnswers": []
+   },
+   "explanation": null,
+   "sourceRef": "Standard trigonometry and algebra references (e.g., Stewart, Precalculus)",
+   "tags": [
+    "math"
+   ]
+  },
+  {
+   "prompt": "Change of base formula",
+   "content": {
+    "kind": "short-answer",
+    "answer": "log_b x = ln x / ln b",
+    "acceptableAnswers": []
+   },
+   "explanation": null,
+   "sourceRef": "Standard trigonometry and algebra references (e.g., Stewart, Precalculus)",
+   "tags": [
+    "math"
+   ]
+  },
+  {
+   "prompt": "Sum of a finite geometric series a + ar + ... + ar^(n-1)",
+   "content": {
+    "kind": "short-answer",
+    "answer": "a (1 - r^n) / (1 - r), r ≠ 1",
+    "acceptableAnswers": []
+   },
+   "explanation": null,
+   "sourceRef": "Standard trigonometry and algebra references (e.g., Stewart, Precalculus)",
+   "tags": [
+    "math"
+   ]
+  },
+  {
+   "prompt": "Sum of an infinite geometric series, |r| < 1",
+   "content": {
+    "kind": "short-answer",
+    "answer": "a / (1 - r)",
+    "acceptableAnswers": []
+   },
+   "explanation": null,
+   "sourceRef": "Standard trigonometry and algebra references (e.g., Stewart, Precalculus)",
+   "tags": [
+    "math"
+   ]
+  },
+  {
+   "prompt": "Sum of the first n positive integers",
+   "content": {
+    "kind": "short-answer",
+    "answer": "n(n + 1)/2",
+    "acceptableAnswers": []
+   },
+   "explanation": null,
+   "sourceRef": "Standard trigonometry and algebra references (e.g., Stewart, Precalculus)",
+   "tags": [
+    "math"
+   ]
+  },
+  {
+   "prompt": "Sum of the first n squares",
+   "content": {
+    "kind": "short-answer",
+    "answer": "n(n + 1)(2n + 1)/6",
+    "acceptableAnswers": []
+   },
+   "explanation": null,
+   "sourceRef": "Standard trigonometry and algebra references (e.g., Stewart, Precalculus)",
+   "tags": [
+    "math"
+   ]
+  },
+  {
+   "prompt": "Euler's formula",
+   "content": {
+    "kind": "short-answer",
+    "answer": "e^(iθ) = cos θ + i sin θ",
+    "acceptableAnswers": []
+   },
+   "explanation": null,
+   "sourceRef": "Standard trigonometry and algebra references (e.g., Stewart, Precalculus)",
+   "tags": [
+    "math"
+   ]
+  },
+  {
+   "prompt": "Euler's identity",
+   "content": {
+    "kind": "short-answer",
+    "answer": "e^(iπ) + 1 = 0",
+    "acceptableAnswers": []
+   },
+   "explanation": null,
+   "sourceRef": "Standard trigonometry and algebra references (e.g., Stewart, Precalculus)",
+   "tags": [
+    "math"
+   ]
+  },
+  {
+   "prompt": "Distance between (x1,y1) and (x2,y2)",
+   "content": {
+    "kind": "short-answer",
+    "answer": "sqrt((x2 - x1)^2 + (y2 - y1)^2)",
+    "acceptableAnswers": []
+   },
+   "explanation": null,
+   "sourceRef": "Standard trigonometry and algebra references (e.g., Stewart, Precalculus)",
+   "tags": [
+    "math"
+   ]
+  },
+  {
+   "prompt": "Area of a circle and circumference",
+   "content": {
+    "kind": "short-answer",
+    "answer": "Area π r^2; circumference 2π r.",
+    "acceptableAnswers": []
+   },
+   "explanation": null,
+   "sourceRef": "Standard trigonometry and algebra references (e.g., Stewart, Precalculus)",
+   "tags": [
+    "math"
+   ]
+  },
+  {
+   "prompt": "Volume of a sphere",
+   "content": {
+    "kind": "short-answer",
+    "answer": "(4/3) π r^3",
+    "acceptableAnswers": []
+   },
+   "explanation": null,
+   "sourceRef": "Standard trigonometry and algebra references (e.g., Stewart, Precalculus)",
+   "tags": [
+    "math"
+   ]
+  },
+  {
+   "prompt": "Equation of a circle with center (h,k), radius r",
+   "content": {
+    "kind": "short-answer",
+    "answer": "(x - h)^2 + (y - k)^2 = r^2",
+    "acceptableAnswers": []
+   },
+   "explanation": null,
+   "sourceRef": "Standard trigonometry and algebra references (e.g., Stewart, Precalculus)",
+   "tags": [
+    "math"
+   ]
+  }
+ ]
+}

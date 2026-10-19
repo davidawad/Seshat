@@ -1,0 +1,440 @@
+{
+ "seshatExportVersion": 1,
+ "name": "Cell Biology",
+ "description": "Organelles, membranes, the cell cycle and cellular energetics.",
+ "tags": [
+  "biology",
+  "cell-biology"
+ ],
+ "cards": [
+  {
+   "prompt": "Organelle where most ATP is made in eukaryotes",
+   "content": {
+    "kind": "short-answer",
+    "answer": "Mitochondria (oxidative phosphorylation).",
+    "acceptableAnswers": []
+   },
+   "explanation": null,
+   "sourceRef": "Alberts et al., Molecular Biology of the Cell (Norton)",
+   "tags": [
+    "biology"
+   ]
+  },
+  {
+   "prompt": "Site of protein synthesis",
+   "content": {
+    "kind": "short-answer",
+    "answer": "Ribosomes",
+    "acceptableAnswers": []
+   },
+   "explanation": null,
+   "sourceRef": "Alberts et al., Molecular Biology of the Cell (Norton)",
+   "tags": [
+    "biology"
+   ]
+  },
+  {
+   "prompt": "Rough ER function",
+   "content": {
+    "kind": "short-answer",
+    "answer": "Synthesis and folding of secretory and membrane proteins (studded with ribosomes).",
+    "acceptableAnswers": []
+   },
+   "explanation": null,
+   "sourceRef": "Alberts et al., Molecular Biology of the Cell (Norton)",
+   "tags": [
+    "biology"
+   ]
+  },
+  {
+   "prompt": "Smooth ER functions",
+   "content": {
+    "kind": "short-answer",
+    "answer": "Lipid synthesis, detoxification, calcium storage.",
+    "acceptableAnswers": []
+   },
+   "explanation": null,
+   "sourceRef": "Alberts et al., Molecular Biology of the Cell (Norton)",
+   "tags": [
+    "biology"
+   ]
+  },
+  {
+   "prompt": "Golgi apparatus function",
+   "content": {
+    "kind": "short-answer",
+    "answer": "Modifies, sorts and packages proteins and lipids for delivery.",
+    "acceptableAnswers": []
+   },
+   "explanation": null,
+   "sourceRef": "Alberts et al., Molecular Biology of the Cell (Norton)",
+   "tags": [
+    "biology"
+   ]
+  },
+  {
+   "prompt": "Lysosome function",
+   "content": {
+    "kind": "short-answer",
+    "answer": "Degrades macromolecules with acid hydrolases (pH about 4.5-5).",
+    "acceptableAnswers": []
+   },
+   "explanation": null,
+   "sourceRef": "Alberts et al., Molecular Biology of the Cell (Norton)",
+   "tags": [
+    "biology"
+   ]
+  },
+  {
+   "prompt": "Peroxisome function",
+   "content": {
+    "kind": "short-answer",
+    "answer": "Oxidative reactions, e.g., fatty-acid breakdown and hydrogen peroxide detoxification.",
+    "acceptableAnswers": []
+   },
+   "explanation": null,
+   "sourceRef": "Alberts et al., Molecular Biology of the Cell (Norton)",
+   "tags": [
+    "biology"
+   ]
+  },
+  {
+   "prompt": "Nuclear envelope",
+   "content": {
+    "kind": "short-answer",
+    "answer": "A double membrane with nuclear pores that controls traffic to and from the nucleus.",
+    "acceptableAnswers": []
+   },
+   "explanation": null,
+   "sourceRef": "Alberts et al., Molecular Biology of the Cell (Norton)",
+   "tags": [
+    "biology"
+   ]
+  },
+  {
+   "prompt": "Plasma membrane model",
+   "content": {
+    "kind": "short-answer",
+    "answer": "Fluid mosaic: a phospholipid bilayer with embedded and associated proteins.",
+    "acceptableAnswers": []
+   },
+   "explanation": null,
+   "sourceRef": "Alberts et al., Molecular Biology of the Cell (Norton)",
+   "tags": [
+    "biology"
+   ]
+  },
+  {
+   "prompt": "Simple diffusion vs facilitated diffusion",
+   "content": {
+    "kind": "short-answer",
+    "answer": "Both move solutes down their gradient; facilitated diffusion uses a channel or carrier protein.",
+    "acceptableAnswers": []
+   },
+   "explanation": null,
+   "sourceRef": "Alberts et al., Molecular Biology of the Cell (Norton)",
+   "tags": [
+    "biology"
+   ]
+  },
+  {
+   "prompt": "Active transport",
+   "content": {
+    "kind": "short-answer",
+    "answer": "Moves solutes against their gradient using energy (e.g., ATP).",
+    "acceptableAnswers": []
+   },
+   "explanation": null,
+   "sourceRef": "Alberts et al., Molecular Biology of the Cell (Norton)",
+   "tags": [
+    "biology"
+   ]
+  },
+  {
+   "prompt": "Na+/K+ ATPase stoichiometry",
+   "content": {
+    "kind": "short-answer",
+    "answer": "Pumps 3 Na+ out and 2 K+ in per ATP.",
+    "acceptableAnswers": []
+   },
+   "explanation": null,
+   "sourceRef": "Alberts et al., Molecular Biology of the Cell (Norton)",
+   "tags": [
+    "biology"
+   ]
+  },
+  {
+   "prompt": "Osmosis",
+   "content": {
+    "kind": "short-answer",
+    "answer": "Net movement of water across a semipermeable membrane toward higher solute concentration.",
+    "acceptableAnswers": []
+   },
+   "explanation": null,
+   "sourceRef": "Alberts et al., Molecular Biology of the Cell (Norton)",
+   "tags": [
+    "biology"
+   ]
+  },
+  {
+   "prompt": "Three cytoskeletal filament types",
+   "content": {
+    "kind": "short-answer",
+    "answer": "Actin filaments (microfilaments), intermediate filaments, microtubules.",
+    "acceptableAnswers": []
+   },
+   "explanation": null,
+   "sourceRef": "Alberts et al., Molecular Biology of the Cell (Norton)",
+   "tags": [
+    "biology"
+   ]
+  },
+  {
+   "prompt": "Microtubules are built from",
+   "content": {
+    "kind": "short-answer",
+    "answer": "Alpha/beta tubulin dimers.",
+    "acceptableAnswers": []
+   },
+   "explanation": null,
+   "sourceRef": "Alberts et al., Molecular Biology of the Cell (Norton)",
+   "tags": [
+    "biology"
+   ]
+  },
+  {
+   "prompt": "Phases of the cell cycle",
+   "content": {
+    "kind": "short-answer",
+    "answer": "G1, S, G2 (interphase), then M (mitosis) and cytokinesis.",
+    "acceptableAnswers": []
+   },
+   "explanation": null,
+   "sourceRef": "Alberts et al., Molecular Biology of the Cell (Norton)",
+   "tags": [
+    "biology"
+   ]
+  },
+  {
+   "prompt": "DNA replication occurs in",
+   "content": {
+    "kind": "short-answer",
+    "answer": "S phase",
+    "acceptableAnswers": []
+   },
+   "explanation": null,
+   "sourceRef": "Alberts et al., Molecular Biology of the Cell (Norton)",
+   "tags": [
+    "biology"
+   ]
+  },
+  {
+   "prompt": "Order of mitosis phases",
+   "content": {
+    "kind": "short-answer",
+    "answer": "Prophase, prometaphase, metaphase, anaphase, telophase.",
+    "acceptableAnswers": []
+   },
+   "explanation": null,
+   "sourceRef": "Alberts et al., Molecular Biology of the Cell (Norton)",
+   "tags": [
+    "biology"
+   ]
+  },
+  {
+   "prompt": "Metaphase",
+   "content": {
+    "kind": "short-answer",
+    "answer": "Chromosomes line up at the metaphase plate, attached to spindle microtubules.",
+    "acceptableAnswers": []
+   },
+   "explanation": null,
+   "sourceRef": "Alberts et al., Molecular Biology of the Cell (Norton)",
+   "tags": [
+    "biology"
+   ]
+  },
+  {
+   "prompt": "Anaphase",
+   "content": {
+    "kind": "short-answer",
+    "answer": "Sister chromatids separate and move to opposite poles.",
+    "acceptableAnswers": []
+   },
+   "explanation": null,
+   "sourceRef": "Alberts et al., Molecular Biology of the Cell (Norton)",
+   "tags": [
+    "biology"
+   ]
+  },
+  {
+   "prompt": "Meiosis vs mitosis: products",
+   "content": {
+    "kind": "short-answer",
+    "answer": "Meiosis gives four genetically distinct haploid cells; mitosis gives two identical diploid cells.",
+    "acceptableAnswers": []
+   },
+   "explanation": null,
+   "sourceRef": "Alberts et al., Molecular Biology of the Cell (Norton)",
+   "tags": [
+    "biology"
+   ]
+  },
+  {
+   "prompt": "Crossing over occurs during",
+   "content": {
+    "kind": "short-answer",
+    "answer": "Prophase I of meiosis.",
+    "acceptableAnswers": []
+   },
+   "explanation": null,
+   "sourceRef": "Alberts et al., Molecular Biology of the Cell (Norton)",
+   "tags": [
+    "biology"
+   ]
+  },
+  {
+   "prompt": "Cyclin-dependent kinases (CDKs)",
+   "content": {
+    "kind": "short-answer",
+    "answer": "Kinases activated by cyclins that drive progression through the cell cycle.",
+    "acceptableAnswers": []
+   },
+   "explanation": null,
+   "sourceRef": "Alberts et al., Molecular Biology of the Cell (Norton)",
+   "tags": [
+    "biology"
+   ]
+  },
+  {
+   "prompt": "p53 role",
+   "content": {
+    "kind": "short-answer",
+    "answer": "A tumor suppressor that triggers cell-cycle arrest, repair or apoptosis after DNA damage.",
+    "acceptableAnswers": []
+   },
+   "explanation": null,
+   "sourceRef": "Alberts et al., Molecular Biology of the Cell (Norton)",
+   "tags": [
+    "biology"
+   ]
+  },
+  {
+   "prompt": "Apoptosis",
+   "content": {
+    "kind": "short-answer",
+    "answer": "Programmed cell death carried out by caspases.",
+    "acceptableAnswers": []
+   },
+   "explanation": null,
+   "sourceRef": "Alberts et al., Molecular Biology of the Cell (Norton)",
+   "tags": [
+    "biology"
+   ]
+  },
+  {
+   "prompt": "Glycolysis location and net yield per glucose",
+   "content": {
+    "kind": "short-answer",
+    "answer": "Cytosol; net 2 ATP and 2 NADH, producing 2 pyruvate.",
+    "acceptableAnswers": []
+   },
+   "explanation": null,
+   "sourceRef": "Alberts et al., Molecular Biology of the Cell (Norton)",
+   "tags": [
+    "biology"
+   ]
+  },
+  {
+   "prompt": "Citric acid cycle location (eukaryotes)",
+   "content": {
+    "kind": "short-answer",
+    "answer": "Mitochondrial matrix.",
+    "acceptableAnswers": []
+   },
+   "explanation": null,
+   "sourceRef": "Alberts et al., Molecular Biology of the Cell (Norton)",
+   "tags": [
+    "biology"
+   ]
+  },
+  {
+   "prompt": "Electron transport chain location",
+   "content": {
+    "kind": "short-answer",
+    "answer": "Inner mitochondrial membrane.",
+    "acceptableAnswers": []
+   },
+   "explanation": null,
+   "sourceRef": "Alberts et al., Molecular Biology of the Cell (Norton)",
+   "tags": [
+    "biology"
+   ]
+  },
+  {
+   "prompt": "Final electron acceptor of aerobic respiration",
+   "content": {
+    "kind": "short-answer",
+    "answer": "Oxygen (reduced to water).",
+    "acceptableAnswers": []
+   },
+   "explanation": null,
+   "sourceRef": "Alberts et al., Molecular Biology of the Cell (Norton)",
+   "tags": [
+    "biology"
+   ]
+  },
+  {
+   "prompt": "Photosynthesis: light reactions location",
+   "content": {
+    "kind": "short-answer",
+    "answer": "Thylakoid membranes of chloroplasts.",
+    "acceptableAnswers": []
+   },
+   "explanation": null,
+   "sourceRef": "Alberts et al., Molecular Biology of the Cell (Norton)",
+   "tags": [
+    "biology"
+   ]
+  },
+  {
+   "prompt": "Calvin cycle location and key enzyme",
+   "content": {
+    "kind": "short-answer",
+    "answer": "Stroma; RuBisCO fixes CO2.",
+    "acceptableAnswers": []
+   },
+   "explanation": null,
+   "sourceRef": "Alberts et al., Molecular Biology of the Cell (Norton)",
+   "tags": [
+    "biology"
+   ]
+  },
+  {
+   "prompt": "Endosymbiotic theory",
+   "content": {
+    "kind": "short-answer",
+    "answer": "Mitochondria and chloroplasts descend from engulfed bacteria (Margulis).",
+    "acceptableAnswers": []
+   },
+   "explanation": null,
+   "sourceRef": "Alberts et al., Molecular Biology of the Cell (Norton)",
+   "tags": [
+    "biology"
+   ]
+  },
+  {
+   "prompt": "Prokaryote vs eukaryote cells",
+   "content": {
+    "kind": "short-answer",
+    "answer": "Prokaryotes lack a membrane-bound nucleus and organelles.",
+    "acceptableAnswers": []
+   },
+   "explanation": null,
+   "sourceRef": "Alberts et al., Molecular Biology of the Cell (Norton)",
+   "tags": [
+    "biology"
+   ]
+  }
+ ]
+}

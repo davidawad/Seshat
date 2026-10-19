@@ -1,0 +1,414 @@
+{
+ "seshatExportVersion": 1,
+ "name": "Drug Classes and Name Stems",
+ "description": "Drug-name stems mapped to class and mechanism (educational only, not clinical advice).",
+ "tags": [
+  "pharmacology",
+  "drug-classes"
+ ],
+ "cards": [
+  {
+   "prompt": "Stem \"-pril\" (e.g., lisinopril)",
+   "content": {
+    "kind": "short-answer",
+    "answer": "ACE inhibitor; side effects include cough and angioedema.",
+    "acceptableAnswers": []
+   },
+   "explanation": null,
+   "sourceRef": "Katzung, Basic & Clinical Pharmacology (McGraw-Hill); Goodman & Gilman's The Pharmacological Basis of Therapeutics; educational use only, not clinical advice",
+   "tags": [
+    "pharmacology"
+   ]
+  },
+  {
+   "prompt": "Stem \"-sartan\" (e.g., losartan)",
+   "content": {
+    "kind": "short-answer",
+    "answer": "Angiotensin II receptor blocker (ARB).",
+    "acceptableAnswers": []
+   },
+   "explanation": null,
+   "sourceRef": "Katzung, Basic & Clinical Pharmacology (McGraw-Hill); Goodman & Gilman's The Pharmacological Basis of Therapeutics; educational use only, not clinical advice",
+   "tags": [
+    "pharmacology"
+   ]
+  },
+  {
+   "prompt": "Stem \"-olol\" (e.g., metoprolol)",
+   "content": {
+    "kind": "short-answer",
+    "answer": "Beta blocker.",
+    "acceptableAnswers": []
+   },
+   "explanation": null,
+   "sourceRef": "Katzung, Basic & Clinical Pharmacology (McGraw-Hill); Goodman & Gilman's The Pharmacological Basis of Therapeutics; educational use only, not clinical advice",
+   "tags": [
+    "pharmacology"
+   ]
+  },
+  {
+   "prompt": "Stem \"-dipine\" (e.g., amlodipine)",
+   "content": {
+    "kind": "short-answer",
+    "answer": "Dihydropyridine calcium channel blocker.",
+    "acceptableAnswers": []
+   },
+   "explanation": null,
+   "sourceRef": "Katzung, Basic & Clinical Pharmacology (McGraw-Hill); Goodman & Gilman's The Pharmacological Basis of Therapeutics; educational use only, not clinical advice",
+   "tags": [
+    "pharmacology"
+   ]
+  },
+  {
+   "prompt": "Stem \"-statin\" (e.g., atorvastatin)",
+   "content": {
+    "kind": "short-answer",
+    "answer": "HMG-CoA reductase inhibitor (lipid lowering).",
+    "acceptableAnswers": []
+   },
+   "explanation": null,
+   "sourceRef": "Katzung, Basic & Clinical Pharmacology (McGraw-Hill); Goodman & Gilman's The Pharmacological Basis of Therapeutics; educational use only, not clinical advice",
+   "tags": [
+    "pharmacology"
+   ]
+  },
+  {
+   "prompt": "Stem \"-prazole\" (e.g., omeprazole)",
+   "content": {
+    "kind": "short-answer",
+    "answer": "Proton pump inhibitor.",
+    "acceptableAnswers": []
+   },
+   "explanation": null,
+   "sourceRef": "Katzung, Basic & Clinical Pharmacology (McGraw-Hill); Goodman & Gilman's The Pharmacological Basis of Therapeutics; educational use only, not clinical advice",
+   "tags": [
+    "pharmacology"
+   ]
+  },
+  {
+   "prompt": "Stem \"-tidine\" (e.g., famotidine)",
+   "content": {
+    "kind": "short-answer",
+    "answer": "H2 receptor antagonist.",
+    "acceptableAnswers": []
+   },
+   "explanation": null,
+   "sourceRef": "Katzung, Basic & Clinical Pharmacology (McGraw-Hill); Goodman & Gilman's The Pharmacological Basis of Therapeutics; educational use only, not clinical advice",
+   "tags": [
+    "pharmacology"
+   ]
+  },
+  {
+   "prompt": "Stem \"-cillin\" (e.g., amoxicillin)",
+   "content": {
+    "kind": "short-answer",
+    "answer": "Penicillin; beta-lactam inhibiting cell wall synthesis.",
+    "acceptableAnswers": []
+   },
+   "explanation": null,
+   "sourceRef": "Katzung, Basic & Clinical Pharmacology (McGraw-Hill); Goodman & Gilman's The Pharmacological Basis of Therapeutics; educational use only, not clinical advice",
+   "tags": [
+    "pharmacology"
+   ]
+  },
+  {
+   "prompt": "Stem \"-cef/-ceph\" (e.g., cephalexin)",
+   "content": {
+    "kind": "short-answer",
+    "answer": "Cephalosporin; beta-lactam.",
+    "acceptableAnswers": []
+   },
+   "explanation": null,
+   "sourceRef": "Katzung, Basic & Clinical Pharmacology (McGraw-Hill); Goodman & Gilman's The Pharmacological Basis of Therapeutics; educational use only, not clinical advice",
+   "tags": [
+    "pharmacology"
+   ]
+  },
+  {
+   "prompt": "Stem \"-floxacin\" (e.g., ciprofloxacin)",
+   "content": {
+    "kind": "short-answer",
+    "answer": "Fluoroquinolone; inhibits bacterial DNA gyrase/topoisomerase IV.",
+    "acceptableAnswers": []
+   },
+   "explanation": null,
+   "sourceRef": "Katzung, Basic & Clinical Pharmacology (McGraw-Hill); Goodman & Gilman's The Pharmacological Basis of Therapeutics; educational use only, not clinical advice",
+   "tags": [
+    "pharmacology"
+   ]
+  },
+  {
+   "prompt": "Stem \"-vir\" (e.g., acyclovir)",
+   "content": {
+    "kind": "short-answer",
+    "answer": "Antiviral.",
+    "acceptableAnswers": []
+   },
+   "explanation": null,
+   "sourceRef": "Katzung, Basic & Clinical Pharmacology (McGraw-Hill); Goodman & Gilman's The Pharmacological Basis of Therapeutics; educational use only, not clinical advice",
+   "tags": [
+    "pharmacology"
+   ]
+  },
+  {
+   "prompt": "Stem \"-gliptin\" (e.g., sitagliptin)",
+   "content": {
+    "kind": "short-answer",
+    "answer": "DPP-4 inhibitor (antidiabetic).",
+    "acceptableAnswers": []
+   },
+   "explanation": null,
+   "sourceRef": "Katzung, Basic & Clinical Pharmacology (McGraw-Hill); Goodman & Gilman's The Pharmacological Basis of Therapeutics; educational use only, not clinical advice",
+   "tags": [
+    "pharmacology"
+   ]
+  },
+  {
+   "prompt": "Stem \"-gliflozin\" (e.g., empagliflozin)",
+   "content": {
+    "kind": "short-answer",
+    "answer": "SGLT2 inhibitor.",
+    "acceptableAnswers": []
+   },
+   "explanation": null,
+   "sourceRef": "Katzung, Basic & Clinical Pharmacology (McGraw-Hill); Goodman & Gilman's The Pharmacological Basis of Therapeutics; educational use only, not clinical advice",
+   "tags": [
+    "pharmacology"
+   ]
+  },
+  {
+   "prompt": "Stem \"-glutide\" (e.g., semaglutide)",
+   "content": {
+    "kind": "short-answer",
+    "answer": "GLP-1 receptor agonist.",
+    "acceptableAnswers": []
+   },
+   "explanation": null,
+   "sourceRef": "Katzung, Basic & Clinical Pharmacology (McGraw-Hill); Goodman & Gilman's The Pharmacological Basis of Therapeutics; educational use only, not clinical advice",
+   "tags": [
+    "pharmacology"
+   ]
+  },
+  {
+   "prompt": "Stem \"-zepam / -zolam\" (e.g., diazepam)",
+   "content": {
+    "kind": "short-answer",
+    "answer": "Benzodiazepine; enhances GABA-A receptor chloride channel opening frequency.",
+    "acceptableAnswers": []
+   },
+   "explanation": null,
+   "sourceRef": "Katzung, Basic & Clinical Pharmacology (McGraw-Hill); Goodman & Gilman's The Pharmacological Basis of Therapeutics; educational use only, not clinical advice",
+   "tags": [
+    "pharmacology"
+   ]
+  },
+  {
+   "prompt": "Stem \"-triptan\" (e.g., sumatriptan)",
+   "content": {
+    "kind": "short-answer",
+    "answer": "5-HT1B/1D agonist for migraine.",
+    "acceptableAnswers": []
+   },
+   "explanation": null,
+   "sourceRef": "Katzung, Basic & Clinical Pharmacology (McGraw-Hill); Goodman & Gilman's The Pharmacological Basis of Therapeutics; educational use only, not clinical advice",
+   "tags": [
+    "pharmacology"
+   ]
+  },
+  {
+   "prompt": "Stem \"-setron\" (e.g., ondansetron)",
+   "content": {
+    "kind": "short-answer",
+    "answer": "5-HT3 antagonist (antiemetic).",
+    "acceptableAnswers": []
+   },
+   "explanation": null,
+   "sourceRef": "Katzung, Basic & Clinical Pharmacology (McGraw-Hill); Goodman & Gilman's The Pharmacological Basis of Therapeutics; educational use only, not clinical advice",
+   "tags": [
+    "pharmacology"
+   ]
+  },
+  {
+   "prompt": "Stem \"-caine\" (e.g., lidocaine)",
+   "content": {
+    "kind": "short-answer",
+    "answer": "Local anesthetic; blocks voltage-gated sodium channels.",
+    "acceptableAnswers": []
+   },
+   "explanation": null,
+   "sourceRef": "Katzung, Basic & Clinical Pharmacology (McGraw-Hill); Goodman & Gilman's The Pharmacological Basis of Therapeutics; educational use only, not clinical advice",
+   "tags": [
+    "pharmacology"
+   ]
+  },
+  {
+   "prompt": "Stem \"-terol\" (e.g., albuterol/salbutamol)",
+   "content": {
+    "kind": "short-answer",
+    "answer": "Beta-2 agonist bronchodilator.",
+    "acceptableAnswers": []
+   },
+   "explanation": null,
+   "sourceRef": "Katzung, Basic & Clinical Pharmacology (McGraw-Hill); Goodman & Gilman's The Pharmacological Basis of Therapeutics; educational use only, not clinical advice",
+   "tags": [
+    "pharmacology"
+   ]
+  },
+  {
+   "prompt": "Stem \"-mab\" (e.g., adalimumab)",
+   "content": {
+    "kind": "short-answer",
+    "answer": "Monoclonal antibody.",
+    "acceptableAnswers": []
+   },
+   "explanation": null,
+   "sourceRef": "Katzung, Basic & Clinical Pharmacology (McGraw-Hill); Goodman & Gilman's The Pharmacological Basis of Therapeutics; educational use only, not clinical advice",
+   "tags": [
+    "pharmacology"
+   ]
+  },
+  {
+   "prompt": "Stem \"-nib\" (e.g., imatinib)",
+   "content": {
+    "kind": "short-answer",
+    "answer": "Kinase inhibitor.",
+    "acceptableAnswers": []
+   },
+   "explanation": null,
+   "sourceRef": "Katzung, Basic & Clinical Pharmacology (McGraw-Hill); Goodman & Gilman's The Pharmacological Basis of Therapeutics; educational use only, not clinical advice",
+   "tags": [
+    "pharmacology"
+   ]
+  },
+  {
+   "prompt": "Stem \"-parin\" (e.g., heparin, enoxaparin)",
+   "content": {
+    "kind": "short-answer",
+    "answer": "Heparin-type anticoagulant; potentiates antithrombin.",
+    "acceptableAnswers": []
+   },
+   "explanation": null,
+   "sourceRef": "Katzung, Basic & Clinical Pharmacology (McGraw-Hill); Goodman & Gilman's The Pharmacological Basis of Therapeutics; educational use only, not clinical advice",
+   "tags": [
+    "pharmacology"
+   ]
+  },
+  {
+   "prompt": "Stem \"-xaban\" (e.g., rivaroxaban)",
+   "content": {
+    "kind": "short-answer",
+    "answer": "Direct factor Xa inhibitor.",
+    "acceptableAnswers": []
+   },
+   "explanation": null,
+   "sourceRef": "Katzung, Basic & Clinical Pharmacology (McGraw-Hill); Goodman & Gilman's The Pharmacological Basis of Therapeutics; educational use only, not clinical advice",
+   "tags": [
+    "pharmacology"
+   ]
+  },
+  {
+   "prompt": "Stem \"-oxetine\" (e.g., fluoxetine)",
+   "content": {
+    "kind": "short-answer",
+    "answer": "Selective serotonin reuptake inhibitor (SSRI).",
+    "acceptableAnswers": []
+   },
+   "explanation": null,
+   "sourceRef": "Katzung, Basic & Clinical Pharmacology (McGraw-Hill); Goodman & Gilman's The Pharmacological Basis of Therapeutics; educational use only, not clinical advice",
+   "tags": [
+    "pharmacology"
+   ]
+  },
+  {
+   "prompt": "Stem \"-thiazide\" (e.g., hydrochlorothiazide)",
+   "content": {
+    "kind": "short-answer",
+    "answer": "Thiazide diuretic acting on the distal convoluted tubule NaCl cotransporter.",
+    "acceptableAnswers": []
+   },
+   "explanation": null,
+   "sourceRef": "Katzung, Basic & Clinical Pharmacology (McGraw-Hill); Goodman & Gilman's The Pharmacological Basis of Therapeutics; educational use only, not clinical advice",
+   "tags": [
+    "pharmacology"
+   ]
+  },
+  {
+   "prompt": "Furosemide class and site of action",
+   "content": {
+    "kind": "short-answer",
+    "answer": "Loop diuretic; inhibits the Na-K-2Cl cotransporter in the thick ascending limb.",
+    "acceptableAnswers": []
+   },
+   "explanation": null,
+   "sourceRef": "Katzung, Basic & Clinical Pharmacology (McGraw-Hill); Goodman & Gilman's The Pharmacological Basis of Therapeutics; educational use only, not clinical advice",
+   "tags": [
+    "pharmacology"
+   ]
+  },
+  {
+   "prompt": "Spironolactone mechanism",
+   "content": {
+    "kind": "short-answer",
+    "answer": "Aldosterone receptor antagonist (potassium-sparing diuretic).",
+    "acceptableAnswers": []
+   },
+   "explanation": null,
+   "sourceRef": "Katzung, Basic & Clinical Pharmacology (McGraw-Hill); Goodman & Gilman's The Pharmacological Basis of Therapeutics; educational use only, not clinical advice",
+   "tags": [
+    "pharmacology"
+   ]
+  },
+  {
+   "prompt": "Stem \"-sone / -solone\" (e.g., prednisone)",
+   "content": {
+    "kind": "short-answer",
+    "answer": "Corticosteroid (glucocorticoid).",
+    "acceptableAnswers": []
+   },
+   "explanation": null,
+   "sourceRef": "Katzung, Basic & Clinical Pharmacology (McGraw-Hill); Goodman & Gilman's The Pharmacological Basis of Therapeutics; educational use only, not clinical advice",
+   "tags": [
+    "pharmacology"
+   ]
+  },
+  {
+   "prompt": "Stem \"-dronate\" (e.g., alendronate)",
+   "content": {
+    "kind": "short-answer",
+    "answer": "Bisphosphonate; inhibits osteoclast-mediated bone resorption.",
+    "acceptableAnswers": []
+   },
+   "explanation": null,
+   "sourceRef": "Katzung, Basic & Clinical Pharmacology (McGraw-Hill); Goodman & Gilman's The Pharmacological Basis of Therapeutics; educational use only, not clinical advice",
+   "tags": [
+    "pharmacology"
+   ]
+  },
+  {
+   "prompt": "Stem \"-afil\" (e.g., sildenafil)",
+   "content": {
+    "kind": "short-answer",
+    "answer": "PDE5 inhibitor.",
+    "acceptableAnswers": []
+   },
+   "explanation": null,
+   "sourceRef": "Katzung, Basic & Clinical Pharmacology (McGraw-Hill); Goodman & Gilman's The Pharmacological Basis of Therapeutics; educational use only, not clinical advice",
+   "tags": [
+    "pharmacology"
+   ]
+  },
+  {
+   "prompt": "Stem \"-coxib\" (e.g., celecoxib)",
+   "content": {
+    "kind": "short-answer",
+    "answer": "Selective COX-2 inhibitor (NSAID).",
+    "acceptableAnswers": []
+   },
+   "explanation": null,
+   "sourceRef": "Katzung, Basic & Clinical Pharmacology (McGraw-Hill); Goodman & Gilman's The Pharmacological Basis of Therapeutics; educational use only, not clinical advice",
+   "tags": [
+    "pharmacology"
+   ]
+  }
+ ]
+}

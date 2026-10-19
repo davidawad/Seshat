@@ -1,0 +1,440 @@
+{
+ "seshatExportVersion": 1,
+ "name": "Microeconomics and Macroeconomics",
+ "description": "Core economic principles, curves and policy concepts.",
+ "tags": [
+  "economics",
+  "principles"
+ ],
+ "cards": [
+  {
+   "prompt": "Law of demand",
+   "content": {
+    "kind": "short-answer",
+    "answer": "Other things equal, quantity demanded falls as price rises.",
+    "acceptableAnswers": []
+   },
+   "explanation": null,
+   "sourceRef": "Mankiw, Principles of Economics (Cengage); Mishkin, The Economics of Money, Banking and Financial Markets",
+   "tags": [
+    "economics"
+   ]
+  },
+  {
+   "prompt": "Law of supply",
+   "content": {
+    "kind": "short-answer",
+    "answer": "Other things equal, quantity supplied rises as price rises.",
+    "acceptableAnswers": []
+   },
+   "explanation": null,
+   "sourceRef": "Mankiw, Principles of Economics (Cengage); Mishkin, The Economics of Money, Banking and Financial Markets",
+   "tags": [
+    "economics"
+   ]
+  },
+  {
+   "prompt": "Market equilibrium",
+   "content": {
+    "kind": "short-answer",
+    "answer": "The price where quantity supplied equals quantity demanded.",
+    "acceptableAnswers": []
+   },
+   "explanation": null,
+   "sourceRef": "Mankiw, Principles of Economics (Cengage); Mishkin, The Economics of Money, Banking and Financial Markets",
+   "tags": [
+    "economics"
+   ]
+  },
+  {
+   "prompt": "Price elasticity of demand",
+   "content": {
+    "kind": "short-answer",
+    "answer": "% change in quantity demanded / % change in price.",
+    "acceptableAnswers": []
+   },
+   "explanation": null,
+   "sourceRef": "Mankiw, Principles of Economics (Cengage); Mishkin, The Economics of Money, Banking and Financial Markets",
+   "tags": [
+    "economics"
+   ]
+  },
+  {
+   "prompt": "Elastic vs inelastic demand",
+   "content": {
+    "kind": "short-answer",
+    "answer": "|elasticity| > 1 (elastic) vs < 1 (inelastic).",
+    "acceptableAnswers": []
+   },
+   "explanation": null,
+   "sourceRef": "Mankiw, Principles of Economics (Cengage); Mishkin, The Economics of Money, Banking and Financial Markets",
+   "tags": [
+    "economics"
+   ]
+  },
+  {
+   "prompt": "Cross-price elasticity: substitutes vs complements",
+   "content": {
+    "kind": "short-answer",
+    "answer": "Positive for substitutes; negative for complements.",
+    "acceptableAnswers": []
+   },
+   "explanation": null,
+   "sourceRef": "Mankiw, Principles of Economics (Cengage); Mishkin, The Economics of Money, Banking and Financial Markets",
+   "tags": [
+    "economics"
+   ]
+  },
+  {
+   "prompt": "Normal vs inferior good",
+   "content": {
+    "kind": "short-answer",
+    "answer": "Demand rises with income (normal); falls with income (inferior).",
+    "acceptableAnswers": []
+   },
+   "explanation": null,
+   "sourceRef": "Mankiw, Principles of Economics (Cengage); Mishkin, The Economics of Money, Banking and Financial Markets",
+   "tags": [
+    "economics"
+   ]
+  },
+  {
+   "prompt": "Opportunity cost",
+   "content": {
+    "kind": "short-answer",
+    "answer": "The value of the next best alternative forgone.",
+    "acceptableAnswers": []
+   },
+   "explanation": null,
+   "sourceRef": "Mankiw, Principles of Economics (Cengage); Mishkin, The Economics of Money, Banking and Financial Markets",
+   "tags": [
+    "economics"
+   ]
+  },
+  {
+   "prompt": "Comparative advantage",
+   "content": {
+    "kind": "short-answer",
+    "answer": "Producing a good at a lower opportunity cost than another producer.",
+    "acceptableAnswers": []
+   },
+   "explanation": null,
+   "sourceRef": "Mankiw, Principles of Economics (Cengage); Mishkin, The Economics of Money, Banking and Financial Markets",
+   "tags": [
+    "economics"
+   ]
+  },
+  {
+   "prompt": "Marginal cost = marginal revenue",
+   "content": {
+    "kind": "short-answer",
+    "answer": "The profit-maximizing output rule for a firm.",
+    "acceptableAnswers": []
+   },
+   "explanation": null,
+   "sourceRef": "Mankiw, Principles of Economics (Cengage); Mishkin, The Economics of Money, Banking and Financial Markets",
+   "tags": [
+    "economics"
+   ]
+  },
+  {
+   "prompt": "Perfect competition: long-run profit",
+   "content": {
+    "kind": "short-answer",
+    "answer": "Zero economic profit; price equals minimum average cost.",
+    "acceptableAnswers": []
+   },
+   "explanation": null,
+   "sourceRef": "Mankiw, Principles of Economics (Cengage); Mishkin, The Economics of Money, Banking and Financial Markets",
+   "tags": [
+    "economics"
+   ]
+  },
+  {
+   "prompt": "Monopoly pricing",
+   "content": {
+    "kind": "short-answer",
+    "answer": "Produces where MR = MC and charges the price on the demand curve at that quantity; price above MC.",
+    "acceptableAnswers": []
+   },
+   "explanation": null,
+   "sourceRef": "Mankiw, Principles of Economics (Cengage); Mishkin, The Economics of Money, Banking and Financial Markets",
+   "tags": [
+    "economics"
+   ]
+  },
+  {
+   "prompt": "Deadweight loss",
+   "content": {
+    "kind": "short-answer",
+    "answer": "Lost total surplus from market output below the efficient quantity (taxes, monopoly).",
+    "acceptableAnswers": []
+   },
+   "explanation": null,
+   "sourceRef": "Mankiw, Principles of Economics (Cengage); Mishkin, The Economics of Money, Banking and Financial Markets",
+   "tags": [
+    "economics"
+   ]
+  },
+  {
+   "prompt": "Externality",
+   "content": {
+    "kind": "short-answer",
+    "answer": "A cost or benefit to third parties not reflected in the market price.",
+    "acceptableAnswers": []
+   },
+   "explanation": null,
+   "sourceRef": "Mankiw, Principles of Economics (Cengage); Mishkin, The Economics of Money, Banking and Financial Markets",
+   "tags": [
+    "economics"
+   ]
+  },
+  {
+   "prompt": "Pigouvian tax",
+   "content": {
+    "kind": "short-answer",
+    "answer": "A tax equal to the marginal external cost, internalizing the externality.",
+    "acceptableAnswers": []
+   },
+   "explanation": null,
+   "sourceRef": "Mankiw, Principles of Economics (Cengage); Mishkin, The Economics of Money, Banking and Financial Markets",
+   "tags": [
+    "economics"
+   ]
+  },
+  {
+   "prompt": "Public good",
+   "content": {
+    "kind": "short-answer",
+    "answer": "Non-excludable and non-rival; markets tend to underprovide.",
+    "acceptableAnswers": []
+   },
+   "explanation": null,
+   "sourceRef": "Mankiw, Principles of Economics (Cengage); Mishkin, The Economics of Money, Banking and Financial Markets",
+   "tags": [
+    "economics"
+   ]
+  },
+  {
+   "prompt": "Nash equilibrium",
+   "content": {
+    "kind": "short-answer",
+    "answer": "Each player's strategy is a best response to the others'; no one gains by deviating alone.",
+    "acceptableAnswers": []
+   },
+   "explanation": null,
+   "sourceRef": "Mankiw, Principles of Economics (Cengage); Mishkin, The Economics of Money, Banking and Financial Markets",
+   "tags": [
+    "economics"
+   ]
+  },
+  {
+   "prompt": "GDP expenditure identity",
+   "content": {
+    "kind": "short-answer",
+    "answer": "Y = C + I + G + NX",
+    "acceptableAnswers": []
+   },
+   "explanation": null,
+   "sourceRef": "Mankiw, Principles of Economics (Cengage); Mishkin, The Economics of Money, Banking and Financial Markets",
+   "tags": [
+    "economics"
+   ]
+  },
+  {
+   "prompt": "Nominal vs real GDP",
+   "content": {
+    "kind": "short-answer",
+    "answer": "Nominal uses current prices; real adjusts for inflation using constant prices.",
+    "acceptableAnswers": []
+   },
+   "explanation": null,
+   "sourceRef": "Mankiw, Principles of Economics (Cengage); Mishkin, The Economics of Money, Banking and Financial Markets",
+   "tags": [
+    "economics"
+   ]
+  },
+  {
+   "prompt": "Unemployment rate",
+   "content": {
+    "kind": "short-answer",
+    "answer": "Unemployed / labor force.",
+    "acceptableAnswers": []
+   },
+   "explanation": null,
+   "sourceRef": "Mankiw, Principles of Economics (Cengage); Mishkin, The Economics of Money, Banking and Financial Markets",
+   "tags": [
+    "economics"
+   ]
+  },
+  {
+   "prompt": "Okun's law",
+   "content": {
+    "kind": "short-answer",
+    "answer": "A rough inverse relationship between unemployment and output gaps.",
+    "acceptableAnswers": []
+   },
+   "explanation": null,
+   "sourceRef": "Mankiw, Principles of Economics (Cengage); Mishkin, The Economics of Money, Banking and Financial Markets",
+   "tags": [
+    "economics"
+   ]
+  },
+  {
+   "prompt": "Inflation measures",
+   "content": {
+    "kind": "short-answer",
+    "answer": "CPI (consumer prices) and PCE (the Fed's preferred index).",
+    "acceptableAnswers": []
+   },
+   "explanation": null,
+   "sourceRef": "Mankiw, Principles of Economics (Cengage); Mishkin, The Economics of Money, Banking and Financial Markets",
+   "tags": [
+    "economics"
+   ]
+  },
+  {
+   "prompt": "Phillips curve (short-run)",
+   "content": {
+    "kind": "short-answer",
+    "answer": "Inverse relationship between unemployment and inflation.",
+    "acceptableAnswers": []
+   },
+   "explanation": null,
+   "sourceRef": "Mankiw, Principles of Economics (Cengage); Mishkin, The Economics of Money, Banking and Financial Markets",
+   "tags": [
+    "economics"
+   ]
+  },
+  {
+   "prompt": "Fed monetary policy tools",
+   "content": {
+    "kind": "short-answer",
+    "answer": "Open market operations, discount rate, reserve requirements, interest on reserve balances.",
+    "acceptableAnswers": []
+   },
+   "explanation": null,
+   "sourceRef": "Mankiw, Principles of Economics (Cengage); Mishkin, The Economics of Money, Banking and Financial Markets",
+   "tags": [
+    "economics"
+   ]
+  },
+  {
+   "prompt": "Money multiplier (simple)",
+   "content": {
+    "kind": "short-answer",
+    "answer": "1 / reserve ratio",
+    "acceptableAnswers": []
+   },
+   "explanation": null,
+   "sourceRef": "Mankiw, Principles of Economics (Cengage); Mishkin, The Economics of Money, Banking and Financial Markets",
+   "tags": [
+    "economics"
+   ]
+  },
+  {
+   "prompt": "Fisher equation",
+   "content": {
+    "kind": "short-answer",
+    "answer": "Nominal rate ≈ real rate + expected inflation.",
+    "acceptableAnswers": []
+   },
+   "explanation": null,
+   "sourceRef": "Mankiw, Principles of Economics (Cengage); Mishkin, The Economics of Money, Banking and Financial Markets",
+   "tags": [
+    "economics"
+   ]
+  },
+  {
+   "prompt": "Quantity theory of money",
+   "content": {
+    "kind": "short-answer",
+    "answer": "M V = P Y",
+    "acceptableAnswers": []
+   },
+   "explanation": null,
+   "sourceRef": "Mankiw, Principles of Economics (Cengage); Mishkin, The Economics of Money, Banking and Financial Markets",
+   "tags": [
+    "economics"
+   ]
+  },
+  {
+   "prompt": "Keynesian multiplier (simple)",
+   "content": {
+    "kind": "short-answer",
+    "answer": "1 / (1 - MPC)",
+    "acceptableAnswers": []
+   },
+   "explanation": null,
+   "sourceRef": "Mankiw, Principles of Economics (Cengage); Mishkin, The Economics of Money, Banking and Financial Markets",
+   "tags": [
+    "economics"
+   ]
+  },
+  {
+   "prompt": "Crowding out",
+   "content": {
+    "kind": "short-answer",
+    "answer": "Government borrowing raises interest rates and reduces private investment.",
+    "acceptableAnswers": []
+   },
+   "explanation": null,
+   "sourceRef": "Mankiw, Principles of Economics (Cengage); Mishkin, The Economics of Money, Banking and Financial Markets",
+   "tags": [
+    "economics"
+   ]
+  },
+  {
+   "prompt": "Purchasing power parity",
+   "content": {
+    "kind": "short-answer",
+    "answer": "Exchange rates adjust so identical goods cost the same across countries.",
+    "acceptableAnswers": []
+   },
+   "explanation": null,
+   "sourceRef": "Mankiw, Principles of Economics (Cengage); Mishkin, The Economics of Money, Banking and Financial Markets",
+   "tags": [
+    "economics"
+   ]
+  },
+  {
+   "prompt": "Balance of payments",
+   "content": {
+    "kind": "short-answer",
+    "answer": "Current account + capital/financial account (+ official reserves) record all international transactions.",
+    "acceptableAnswers": []
+   },
+   "explanation": null,
+   "sourceRef": "Mankiw, Principles of Economics (Cengage); Mishkin, The Economics of Money, Banking and Financial Markets",
+   "tags": [
+    "economics"
+   ]
+  },
+  {
+   "prompt": "Gini coefficient",
+   "content": {
+    "kind": "short-answer",
+    "answer": "A measure of income inequality from 0 (equal) to 1 (maximal inequality).",
+    "acceptableAnswers": []
+   },
+   "explanation": null,
+   "sourceRef": "Mankiw, Principles of Economics (Cengage); Mishkin, The Economics of Money, Banking and Financial Markets",
+   "tags": [
+    "economics"
+   ]
+  },
+  {
+   "prompt": "Rule of 70",
+   "content": {
+    "kind": "short-answer",
+    "answer": "Years to double ≈ 70 / growth rate (%).",
+    "acceptableAnswers": []
+   },
+   "explanation": null,
+   "sourceRef": "Mankiw, Principles of Economics (Cengage); Mishkin, The Economics of Money, Banking and Financial Markets",
+   "tags": [
+    "economics"
+   ]
+  }
+ ]
+}

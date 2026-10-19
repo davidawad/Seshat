@@ -1,0 +1,753 @@
+{
+ "seshatExportVersion": 1,
+ "name": "Series 65 Regulatory Key Terms",
+ "description": "Statutes, forms and defined terms from the federal and state securities laws.",
+ "tags": [
+  "series-65",
+  "regulation",
+  "terms"
+ ],
+ "cards": [
+  {
+   "prompt": "Securities Act of 1933",
+   "content": {
+    "kind": "short-answer",
+    "answer": "Regulates primary-market offerings: registration with the SEC and prospectus disclosure; \"truth in securities.\"",
+    "acceptableAnswers": []
+   },
+   "explanation": null,
+   "sourceRef": "Investment Advisers Act of 1940; Securities Act of 1933; Securities Exchange Act of 1934; Investment Company Act of 1940; NASAA Uniform Securities Act",
+   "tags": [
+    "series-65"
+   ]
+  },
+  {
+   "prompt": "Securities Exchange Act of 1934",
+   "content": {
+    "kind": "short-answer",
+    "answer": "Regulates secondary markets, broker-dealers and exchanges; created the SEC.",
+    "acceptableAnswers": []
+   },
+   "explanation": null,
+   "sourceRef": "Investment Advisers Act of 1940; Securities Act of 1933; Securities Exchange Act of 1934; Investment Company Act of 1940; NASAA Uniform Securities Act",
+   "tags": [
+    "series-65"
+   ]
+  },
+  {
+   "prompt": "Investment Company Act of 1940",
+   "content": {
+    "kind": "short-answer",
+    "answer": "Regulates investment companies (mutual funds, closed-end funds, UITs).",
+    "acceptableAnswers": []
+   },
+   "explanation": null,
+   "sourceRef": "Investment Advisers Act of 1940; Securities Act of 1933; Securities Exchange Act of 1934; Investment Company Act of 1940; NASAA Uniform Securities Act",
+   "tags": [
+    "series-65"
+   ]
+  },
+  {
+   "prompt": "Investment Advisers Act of 1940",
+   "content": {
+    "kind": "short-answer",
+    "answer": "Regulates investment advisers; anti-fraud, registration, fiduciary duty.",
+    "acceptableAnswers": []
+   },
+   "explanation": null,
+   "sourceRef": "Investment Advisers Act of 1940; Securities Act of 1933; Securities Exchange Act of 1934; Investment Company Act of 1940; NASAA Uniform Securities Act",
+   "tags": [
+    "series-65"
+   ]
+  },
+  {
+   "prompt": "Trust Indenture Act of 1939",
+   "content": {
+    "kind": "short-answer",
+    "answer": "Requires a trust indenture and trustee for most public corporate debt offerings.",
+    "acceptableAnswers": []
+   },
+   "explanation": null,
+   "sourceRef": "Investment Advisers Act of 1940; Securities Act of 1933; Securities Exchange Act of 1934; Investment Company Act of 1940; NASAA Uniform Securities Act",
+   "tags": [
+    "series-65"
+   ]
+  },
+  {
+   "prompt": "Securities Investor Protection Act of 1970",
+   "content": {
+    "kind": "short-answer",
+    "answer": "Created SIPC to protect customers if a broker-dealer fails.",
+    "acceptableAnswers": []
+   },
+   "explanation": null,
+   "sourceRef": "Investment Advisers Act of 1940; Securities Act of 1933; Securities Exchange Act of 1934; Investment Company Act of 1940; NASAA Uniform Securities Act",
+   "tags": [
+    "series-65"
+   ]
+  },
+  {
+   "prompt": "National Securities Markets Improvement Act (NSMIA) of 1996",
+   "content": {
+    "kind": "short-answer",
+    "answer": "Created \"federal covered\" securities and advisers, preempting state registration for many.",
+    "acceptableAnswers": []
+   },
+   "explanation": null,
+   "sourceRef": "Investment Advisers Act of 1940; Securities Act of 1933; Securities Exchange Act of 1934; Investment Company Act of 1940; NASAA Uniform Securities Act",
+   "tags": [
+    "series-65"
+   ]
+  },
+  {
+   "prompt": "Dodd-Frank Act (advisers)",
+   "content": {
+    "kind": "short-answer",
+    "answer": "Raised the SEC registration threshold to $100 million AUM and required registration of many hedge/private fund advisers.",
+    "acceptableAnswers": []
+   },
+   "explanation": null,
+   "sourceRef": "Investment Advisers Act of 1940; Securities Act of 1933; Securities Exchange Act of 1934; Investment Company Act of 1940; NASAA Uniform Securities Act",
+   "tags": [
+    "series-65"
+   ]
+  },
+  {
+   "prompt": "Sarbanes-Oxley Act of 2002",
+   "content": {
+    "kind": "short-answer",
+    "answer": "Corporate governance and accounting reform after Enron; created the PCAOB.",
+    "acceptableAnswers": []
+   },
+   "explanation": null,
+   "sourceRef": "Investment Advisers Act of 1940; Securities Act of 1933; Securities Exchange Act of 1934; Investment Company Act of 1940; NASAA Uniform Securities Act",
+   "tags": [
+    "series-65"
+   ]
+  },
+  {
+   "prompt": "Regulation D",
+   "content": {
+    "kind": "short-answer",
+    "answer": "SEC exemptions for private placements (Rules 504, 506(b), 506(c)).",
+    "acceptableAnswers": []
+   },
+   "explanation": null,
+   "sourceRef": "Investment Advisers Act of 1940; Securities Act of 1933; Securities Exchange Act of 1934; Investment Company Act of 1940; NASAA Uniform Securities Act",
+   "tags": [
+    "series-65"
+   ]
+  },
+  {
+   "prompt": "Accredited investor (individual)",
+   "content": {
+    "kind": "short-answer",
+    "answer": "Income over $200,000 ($300,000 joint) in each of the last 2 years, or net worth over $1 million excluding primary residence, or holder of Series 7, 65 or 82 licenses.",
+    "acceptableAnswers": []
+   },
+   "explanation": null,
+   "sourceRef": "Investment Advisers Act of 1940; Securities Act of 1933; Securities Exchange Act of 1934; Investment Company Act of 1940; NASAA Uniform Securities Act",
+   "tags": [
+    "series-65"
+   ]
+  },
+  {
+   "prompt": "Rule 144",
+   "content": {
+    "kind": "short-answer",
+    "answer": "Safe harbor for resale of restricted and control securities, with holding period and volume limits.",
+    "acceptableAnswers": []
+   },
+   "explanation": null,
+   "sourceRef": "Investment Advisers Act of 1940; Securities Act of 1933; Securities Exchange Act of 1934; Investment Company Act of 1940; NASAA Uniform Securities Act",
+   "tags": [
+    "series-65"
+   ]
+  },
+  {
+   "prompt": "Restricted securities",
+   "content": {
+    "kind": "short-answer",
+    "answer": "Acquired in unregistered private sales; generally held at least 6 months (reporting issuer) or 1 year before resale under Rule 144.",
+    "acceptableAnswers": []
+   },
+   "explanation": null,
+   "sourceRef": "Investment Advisers Act of 1940; Securities Act of 1933; Securities Exchange Act of 1934; Investment Company Act of 1940; NASAA Uniform Securities Act",
+   "tags": [
+    "series-65"
+   ]
+  },
+  {
+   "prompt": "Control person",
+   "content": {
+    "kind": "short-answer",
+    "answer": "An officer, director or 10% holder who can influence the issuer; must file Form 144 for sales.",
+    "acceptableAnswers": []
+   },
+   "explanation": null,
+   "sourceRef": "Investment Advisers Act of 1940; Securities Act of 1933; Securities Exchange Act of 1934; Investment Company Act of 1940; NASAA Uniform Securities Act",
+   "tags": [
+    "series-65"
+   ]
+  },
+  {
+   "prompt": "Insider trading",
+   "content": {
+    "kind": "short-answer",
+    "answer": "Trading on material nonpublic information in breach of a duty; violates Exchange Act section 10(b) and Rule 10b-5.",
+    "acceptableAnswers": []
+   },
+   "explanation": null,
+   "sourceRef": "Investment Advisers Act of 1940; Securities Act of 1933; Securities Exchange Act of 1934; Investment Company Act of 1940; NASAA Uniform Securities Act",
+   "tags": [
+    "series-65"
+   ]
+  },
+  {
+   "prompt": "Rule 10b-5",
+   "content": {
+    "kind": "short-answer",
+    "answer": "Antifraud rule: no misstatements, omissions, or deceptive acts in connection with the purchase or sale of securities.",
+    "acceptableAnswers": []
+   },
+   "explanation": null,
+   "sourceRef": "Investment Advisers Act of 1940; Securities Act of 1933; Securities Exchange Act of 1934; Investment Company Act of 1940; NASAA Uniform Securities Act",
+   "tags": [
+    "series-65"
+   ]
+  },
+  {
+   "prompt": "Federal covered adviser",
+   "content": {
+    "kind": "short-answer",
+    "answer": "An adviser registered with the SEC (so state registration is preempted; states may require notice filings and fees).",
+    "acceptableAnswers": []
+   },
+   "explanation": null,
+   "sourceRef": "Investment Advisers Act of 1940; Securities Act of 1933; Securities Exchange Act of 1934; Investment Company Act of 1940; NASAA Uniform Securities Act",
+   "tags": [
+    "series-65"
+   ]
+  },
+  {
+   "prompt": "Form ADV Part 1",
+   "content": {
+    "kind": "short-answer",
+    "answer": "Information about the adviser: ownership, clients, custody, disciplinary history (filed via IARD).",
+    "acceptableAnswers": []
+   },
+   "explanation": null,
+   "sourceRef": "Investment Advisers Act of 1940; Securities Act of 1933; Securities Exchange Act of 1934; Investment Company Act of 1940; NASAA Uniform Securities Act",
+   "tags": [
+    "series-65"
+   ]
+  },
+  {
+   "prompt": "Form ADV Part 2A",
+   "content": {
+    "kind": "short-answer",
+    "answer": "The firm brochure: services, fees, conflicts, discipline, in plain English.",
+    "acceptableAnswers": []
+   },
+   "explanation": null,
+   "sourceRef": "Investment Advisers Act of 1940; Securities Act of 1933; Securities Exchange Act of 1934; Investment Company Act of 1940; NASAA Uniform Securities Act",
+   "tags": [
+    "series-65"
+   ]
+  },
+  {
+   "prompt": "Form ADV Part 2B",
+   "content": {
+    "kind": "short-answer",
+    "answer": "Brochure supplement about individuals who give advice.",
+    "acceptableAnswers": []
+   },
+   "explanation": null,
+   "sourceRef": "Investment Advisers Act of 1940; Securities Act of 1933; Securities Exchange Act of 1934; Investment Company Act of 1940; NASAA Uniform Securities Act",
+   "tags": [
+    "series-65"
+   ]
+  },
+  {
+   "prompt": "Form ADV Part 3 (Form CRS)",
+   "content": {
+    "kind": "short-answer",
+    "answer": "Relationship summary for retail investors.",
+    "acceptableAnswers": []
+   },
+   "explanation": null,
+   "sourceRef": "Investment Advisers Act of 1940; Securities Act of 1933; Securities Exchange Act of 1934; Investment Company Act of 1940; NASAA Uniform Securities Act",
+   "tags": [
+    "series-65"
+   ]
+  },
+  {
+   "prompt": "Form U4",
+   "content": {
+    "kind": "short-answer",
+    "answer": "Uniform application for securities industry registration (agents and IARs).",
+    "acceptableAnswers": []
+   },
+   "explanation": null,
+   "sourceRef": "Investment Advisers Act of 1940; Securities Act of 1933; Securities Exchange Act of 1934; Investment Company Act of 1940; NASAA Uniform Securities Act",
+   "tags": [
+    "series-65"
+   ]
+  },
+  {
+   "prompt": "Form U5",
+   "content": {
+    "kind": "short-answer",
+    "answer": "Notice filed when a registered person terminates; must be filed within 30 days.",
+    "acceptableAnswers": []
+   },
+   "explanation": null,
+   "sourceRef": "Investment Advisers Act of 1940; Securities Act of 1933; Securities Exchange Act of 1934; Investment Company Act of 1940; NASAA Uniform Securities Act",
+   "tags": [
+    "series-65"
+   ]
+  },
+  {
+   "prompt": "IARD",
+   "content": {
+    "kind": "short-answer",
+    "answer": "Investment Adviser Registration Depository, the electronic filing system for advisers.",
+    "acceptableAnswers": []
+   },
+   "explanation": null,
+   "sourceRef": "Investment Advisers Act of 1940; Securities Act of 1933; Securities Exchange Act of 1934; Investment Company Act of 1940; NASAA Uniform Securities Act",
+   "tags": [
+    "series-65"
+   ]
+  },
+  {
+   "prompt": "Fiduciary",
+   "content": {
+    "kind": "short-answer",
+    "answer": "Someone who must act in the best interest of another, putting that person's interests first.",
+    "acceptableAnswers": []
+   },
+   "explanation": null,
+   "sourceRef": "Investment Advisers Act of 1940; Securities Act of 1933; Securities Exchange Act of 1934; Investment Company Act of 1940; NASAA Uniform Securities Act",
+   "tags": [
+    "series-65"
+   ]
+  },
+  {
+   "prompt": "Prudent man rule",
+   "content": {
+    "kind": "short-answer",
+    "answer": "A fiduciary must invest as a prudent person would, focusing on each investment individually (older standard).",
+    "acceptableAnswers": []
+   },
+   "explanation": null,
+   "sourceRef": "Investment Advisers Act of 1940; Securities Act of 1933; Securities Exchange Act of 1934; Investment Company Act of 1940; NASAA Uniform Securities Act",
+   "tags": [
+    "series-65"
+   ]
+  },
+  {
+   "prompt": "Prudent investor rule",
+   "content": {
+    "kind": "short-answer",
+    "answer": "Judges the portfolio as a whole, requires diversification, and allows reasonable delegation (Uniform Prudent Investor Act).",
+    "acceptableAnswers": []
+   },
+   "explanation": null,
+   "sourceRef": "Investment Advisers Act of 1940; Securities Act of 1933; Securities Exchange Act of 1934; Investment Company Act of 1940; NASAA Uniform Securities Act",
+   "tags": [
+    "series-65"
+   ]
+  },
+  {
+   "prompt": "Wrap fee program",
+   "content": {
+    "kind": "short-answer",
+    "answer": "A program charging a single fee covering advisory, execution and custody services; the sponsor delivers a wrap brochure.",
+    "acceptableAnswers": []
+   },
+   "explanation": null,
+   "sourceRef": "Investment Advisers Act of 1940; Securities Act of 1933; Securities Exchange Act of 1934; Investment Company Act of 1940; NASAA Uniform Securities Act",
+   "tags": [
+    "series-65"
+   ]
+  },
+  {
+   "prompt": "Qualified custodian",
+   "content": {
+    "kind": "short-answer",
+    "answer": "A bank, savings association, registered broker-dealer, futures commission merchant or certain foreign financial institution holding client assets.",
+    "acceptableAnswers": []
+   },
+   "explanation": null,
+   "sourceRef": "Investment Advisers Act of 1940; Securities Act of 1933; Securities Exchange Act of 1934; Investment Company Act of 1940; NASAA Uniform Securities Act",
+   "tags": [
+    "series-65"
+   ]
+  },
+  {
+   "prompt": "Qualified client",
+   "content": {
+    "kind": "short-answer",
+    "answer": "A client meeting Rule 205-3 thresholds, allowing performance fees (assets with the adviser or net worth).",
+    "acceptableAnswers": []
+   },
+   "explanation": null,
+   "sourceRef": "Investment Advisers Act of 1940; Securities Act of 1933; Securities Exchange Act of 1934; Investment Company Act of 1940; NASAA Uniform Securities Act",
+   "tags": [
+    "series-65"
+   ]
+  },
+  {
+   "prompt": "Qualified purchaser",
+   "content": {
+    "kind": "short-answer",
+    "answer": "Individual with at least $5 million in investments; relevant to Section 3(c)(7) private funds.",
+    "acceptableAnswers": []
+   },
+   "explanation": null,
+   "sourceRef": "Investment Advisers Act of 1940; Securities Act of 1933; Securities Exchange Act of 1934; Investment Company Act of 1940; NASAA Uniform Securities Act",
+   "tags": [
+    "series-65"
+   ]
+  },
+  {
+   "prompt": "Hedge clause",
+   "content": {
+    "kind": "short-answer",
+    "answer": "Language purporting to limit adviser liability; misleading if it waives non-waivable rights.",
+    "acceptableAnswers": []
+   },
+   "explanation": null,
+   "sourceRef": "Investment Advisers Act of 1940; Securities Act of 1933; Securities Exchange Act of 1934; Investment Company Act of 1940; NASAA Uniform Securities Act",
+   "tags": [
+    "series-65"
+   ]
+  },
+  {
+   "prompt": "Principal trade",
+   "content": {
+    "kind": "short-answer",
+    "answer": "Adviser sells from or buys for its own account with a client; requires written disclosure and consent before completion of the transaction.",
+    "acceptableAnswers": []
+   },
+   "explanation": null,
+   "sourceRef": "Investment Advisers Act of 1940; Securities Act of 1933; Securities Exchange Act of 1934; Investment Company Act of 1940; NASAA Uniform Securities Act",
+   "tags": [
+    "series-65"
+   ]
+  },
+  {
+   "prompt": "Agency cross transaction",
+   "content": {
+    "kind": "short-answer",
+    "answer": "Adviser (or affiliate) acts as broker for both sides; requires written consent and disclosure.",
+    "acceptableAnswers": []
+   },
+   "explanation": null,
+   "sourceRef": "Investment Advisers Act of 1940; Securities Act of 1933; Securities Exchange Act of 1934; Investment Company Act of 1940; NASAA Uniform Securities Act",
+   "tags": [
+    "series-65"
+   ]
+  },
+  {
+   "prompt": "Best execution",
+   "content": {
+    "kind": "short-answer",
+    "answer": "The duty to seek the most favorable terms reasonably available for client trades, considering price, costs and quality.",
+    "acceptableAnswers": []
+   },
+   "explanation": null,
+   "sourceRef": "Investment Advisers Act of 1940; Securities Act of 1933; Securities Exchange Act of 1934; Investment Company Act of 1940; NASAA Uniform Securities Act",
+   "tags": [
+    "series-65"
+   ]
+  },
+  {
+   "prompt": "Blue sky laws",
+   "content": {
+    "kind": "short-answer",
+    "answer": "State securities laws.",
+    "acceptableAnswers": []
+   },
+   "explanation": null,
+   "sourceRef": "Investment Advisers Act of 1940; Securities Act of 1933; Securities Exchange Act of 1934; Investment Company Act of 1940; NASAA Uniform Securities Act",
+   "tags": [
+    "series-65"
+   ]
+  },
+  {
+   "prompt": "NASAA",
+   "content": {
+    "kind": "short-answer",
+    "answer": "North American Securities Administrators Association; coordinates state securities regulators.",
+    "acceptableAnswers": []
+   },
+   "explanation": null,
+   "sourceRef": "Investment Advisers Act of 1940; Securities Act of 1933; Securities Exchange Act of 1934; Investment Company Act of 1940; NASAA Uniform Securities Act",
+   "tags": [
+    "series-65"
+   ]
+  },
+  {
+   "prompt": "FINRA",
+   "content": {
+    "kind": "short-answer",
+    "answer": "Self-regulatory organization overseeing broker-dealers and registered representatives.",
+    "acceptableAnswers": []
+   },
+   "explanation": null,
+   "sourceRef": "Investment Advisers Act of 1940; Securities Act of 1933; Securities Exchange Act of 1934; Investment Company Act of 1940; NASAA Uniform Securities Act",
+   "tags": [
+    "series-65"
+   ]
+  },
+  {
+   "prompt": "Series 66",
+   "content": {
+    "kind": "short-answer",
+    "answer": "NASAA exam combining the Series 63 and Series 65 topics; requires Series 7.",
+    "acceptableAnswers": []
+   },
+   "explanation": null,
+   "sourceRef": "Investment Advisers Act of 1940; Securities Act of 1933; Securities Exchange Act of 1934; Investment Company Act of 1940; NASAA Uniform Securities Act",
+   "tags": [
+    "series-65"
+   ]
+  },
+  {
+   "prompt": "Series 63",
+   "content": {
+    "kind": "short-answer",
+    "answer": "State law exam for securities agents (Uniform Securities Agent State Law Exam).",
+    "acceptableAnswers": []
+   },
+   "explanation": null,
+   "sourceRef": "Investment Advisers Act of 1940; Securities Act of 1933; Securities Exchange Act of 1934; Investment Company Act of 1940; NASAA Uniform Securities Act",
+   "tags": [
+    "series-65"
+   ]
+  },
+  {
+   "prompt": "Series 65",
+   "content": {
+    "kind": "short-answer",
+    "answer": "Uniform Investment Adviser Law Exam; qualifies IARs.",
+    "acceptableAnswers": []
+   },
+   "explanation": null,
+   "sourceRef": "Investment Advisers Act of 1940; Securities Act of 1933; Securities Exchange Act of 1934; Investment Company Act of 1940; NASAA Uniform Securities Act",
+   "tags": [
+    "series-65"
+   ]
+  },
+  {
+   "prompt": "Series 7",
+   "content": {
+    "kind": "short-answer",
+    "answer": "General Securities Representative exam administered by FINRA.",
+    "acceptableAnswers": []
+   },
+   "explanation": null,
+   "sourceRef": "Investment Advisers Act of 1940; Securities Act of 1933; Securities Exchange Act of 1934; Investment Company Act of 1940; NASAA Uniform Securities Act",
+   "tags": [
+    "series-65"
+   ]
+  },
+  {
+   "prompt": "Penny stock",
+   "content": {
+    "kind": "short-answer",
+    "answer": "Generally a stock trading below $5 per share that is not on a national exchange, with special rules.",
+    "acceptableAnswers": []
+   },
+   "explanation": null,
+   "sourceRef": "Investment Advisers Act of 1940; Securities Act of 1933; Securities Exchange Act of 1934; Investment Company Act of 1940; NASAA Uniform Securities Act",
+   "tags": [
+    "series-65"
+   ]
+  },
+  {
+   "prompt": "Tender offer",
+   "content": {
+    "kind": "short-answer",
+    "answer": "A public offer to buy shares from existing holders, often above market price, subject to the Williams Act.",
+    "acceptableAnswers": []
+   },
+   "explanation": null,
+   "sourceRef": "Investment Advisers Act of 1940; Securities Act of 1933; Securities Exchange Act of 1934; Investment Company Act of 1940; NASAA Uniform Securities Act",
+   "tags": [
+    "series-65"
+   ]
+  },
+  {
+   "prompt": "Proxy",
+   "content": {
+    "kind": "short-answer",
+    "answer": "Authorization for another to vote a shareholder's shares.",
+    "acceptableAnswers": []
+   },
+   "explanation": null,
+   "sourceRef": "Investment Advisers Act of 1940; Securities Act of 1933; Securities Exchange Act of 1934; Investment Company Act of 1940; NASAA Uniform Securities Act",
+   "tags": [
+    "series-65"
+   ]
+  },
+  {
+   "prompt": "Prospectus",
+   "content": {
+    "kind": "short-answer",
+    "answer": "Document disclosing material information about a new issue under the 1933 Act.",
+    "acceptableAnswers": []
+   },
+   "explanation": null,
+   "sourceRef": "Investment Advisers Act of 1940; Securities Act of 1933; Securities Exchange Act of 1934; Investment Company Act of 1940; NASAA Uniform Securities Act",
+   "tags": [
+    "series-65"
+   ]
+  },
+  {
+   "prompt": "Cooling-off period",
+   "content": {
+    "kind": "short-answer",
+    "answer": "Time between registration filing and effective date, during which only oral offers and tombstone ads are permitted.",
+    "acceptableAnswers": []
+   },
+   "explanation": null,
+   "sourceRef": "Investment Advisers Act of 1940; Securities Act of 1933; Securities Exchange Act of 1934; Investment Company Act of 1940; NASAA Uniform Securities Act",
+   "tags": [
+    "series-65"
+   ]
+  },
+  {
+   "prompt": "Tombstone ad",
+   "content": {
+    "kind": "short-answer",
+    "answer": "A limited announcement of an offering stating who is selling, price and how to get a prospectus.",
+    "acceptableAnswers": []
+   },
+   "explanation": null,
+   "sourceRef": "Investment Advisers Act of 1940; Securities Act of 1933; Securities Exchange Act of 1934; Investment Company Act of 1940; NASAA Uniform Securities Act",
+   "tags": [
+    "series-65"
+   ]
+  },
+  {
+   "prompt": "Blue-chip, growth, value stock",
+   "content": {
+    "kind": "short-answer",
+    "answer": "Large stable company; faster earnings growth; trading below perceived intrinsic value.",
+    "acceptableAnswers": []
+   },
+   "explanation": null,
+   "sourceRef": "Investment Advisers Act of 1940; Securities Act of 1933; Securities Exchange Act of 1934; Investment Company Act of 1940; NASAA Uniform Securities Act",
+   "tags": [
+    "series-65"
+   ]
+  },
+  {
+   "prompt": "American depositary receipt (ADR)",
+   "content": {
+    "kind": "short-answer",
+    "answer": "A US-traded certificate representing shares of a foreign company.",
+    "acceptableAnswers": []
+   },
+   "explanation": null,
+   "sourceRef": "Investment Advisers Act of 1940; Securities Act of 1933; Securities Exchange Act of 1934; Investment Company Act of 1940; NASAA Uniform Securities Act",
+   "tags": [
+    "series-65"
+   ]
+  },
+  {
+   "prompt": "Exchange-traded fund (ETF)",
+   "content": {
+    "kind": "short-answer",
+    "answer": "A pooled fund whose shares trade on an exchange and are created/redeemed in blocks by authorized participants.",
+    "acceptableAnswers": []
+   },
+   "explanation": null,
+   "sourceRef": "Investment Advisers Act of 1940; Securities Act of 1933; Securities Exchange Act of 1934; Investment Company Act of 1940; NASAA Uniform Securities Act",
+   "tags": [
+    "series-65"
+   ]
+  },
+  {
+   "prompt": "Unit investment trust (UIT)",
+   "content": {
+    "kind": "short-answer",
+    "answer": "A fixed, unmanaged portfolio with a termination date, sold as redeemable units.",
+    "acceptableAnswers": []
+   },
+   "explanation": null,
+   "sourceRef": "Investment Advisers Act of 1940; Securities Act of 1933; Securities Exchange Act of 1934; Investment Company Act of 1940; NASAA Uniform Securities Act",
+   "tags": [
+    "series-65"
+   ]
+  },
+  {
+   "prompt": "Closed-end fund",
+   "content": {
+    "kind": "short-answer",
+    "answer": "Issues a fixed number of shares that trade on an exchange at a premium or discount to NAV.",
+    "acceptableAnswers": []
+   },
+   "explanation": null,
+   "sourceRef": "Investment Advisers Act of 1940; Securities Act of 1933; Securities Exchange Act of 1934; Investment Company Act of 1940; NASAA Uniform Securities Act",
+   "tags": [
+    "series-65"
+   ]
+  },
+  {
+   "prompt": "Hedge fund",
+   "content": {
+    "kind": "short-answer",
+    "answer": "A private investment pool, typically for accredited investors/qualified purchasers, often using leverage and short selling.",
+    "acceptableAnswers": []
+   },
+   "explanation": null,
+   "sourceRef": "Investment Advisers Act of 1940; Securities Act of 1933; Securities Exchange Act of 1934; Investment Company Act of 1940; NASAA Uniform Securities Act",
+   "tags": [
+    "series-65"
+   ]
+  },
+  {
+   "prompt": "Annuity: accumulation vs annuitization",
+   "content": {
+    "kind": "short-answer",
+    "answer": "Tax-deferred growth phase, then payout phase converting to income.",
+    "acceptableAnswers": []
+   },
+   "explanation": null,
+   "sourceRef": "Investment Advisers Act of 1940; Securities Act of 1933; Securities Exchange Act of 1934; Investment Company Act of 1940; NASAA Uniform Securities Act",
+   "tags": [
+    "series-65"
+   ]
+  },
+  {
+   "prompt": "Variable annuity",
+   "content": {
+    "kind": "short-answer",
+    "answer": "Separate account investments with a minimum death benefit; requires a securities license to sell.",
+    "acceptableAnswers": []
+   },
+   "explanation": null,
+   "sourceRef": "Investment Advisers Act of 1940; Securities Act of 1933; Securities Exchange Act of 1934; Investment Company Act of 1940; NASAA Uniform Securities Act",
+   "tags": [
+    "series-65"
+   ]
+  },
+  {
+   "prompt": "Section 1035 exchange",
+   "content": {
+    "kind": "short-answer",
+    "answer": "Tax-free exchange of an insurance policy or annuity for a similar contract.",
+    "acceptableAnswers": []
+   },
+   "explanation": null,
+   "sourceRef": "Investment Advisers Act of 1940; Securities Act of 1933; Securities Exchange Act of 1934; Investment Company Act of 1940; NASAA Uniform Securities Act",
+   "tags": [
+    "series-65"
+   ]
+  }
+ ]
+}
