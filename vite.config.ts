@@ -59,11 +59,13 @@ export default defineConfig(({ command, isPreview }) => ({
     // other builds on the machine) the 5s default flaked on tests that pass
     // alone in a few hundred ms — a load artefact, not slow code.
     testTimeout: 20_000,
-    // Vitest's default exclude list skips .git but not .claude — a stray
-    // git worktree under .claude/worktrees/ (e.g. from Claude Code's
-    // EnterWorktree) duplicates every *.test.ts file into the run and
-    // breaks tests that assume single-instance globals like localStorage.
-    exclude: ['**/node_modules/**', '**/dist/**', '**/.claude/**'],
+    // Vitest's default exclude list skips .git but not .claude or .worktrees —
+    // a stray git worktree under .claude/worktrees/ or .worktrees/ (e.g. from
+    // Claude Code's EnterWorktree) duplicates every *.test.ts file into the run
+    // and breaks tests that assume single-instance globals like localStorage.
+    // It also made the pre-push hook fail from the primary checkout whenever
+    // any sibling worktree held a stale or in-progress copy of a test.
+    exclude: ['**/node_modules/**', '**/dist/**', '**/.claude/**', '**/.worktrees/**'],
     setupFiles: ['./src/test-setup.ts'],
     coverage: {
       provider: 'v8',
