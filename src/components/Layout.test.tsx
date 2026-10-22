@@ -134,3 +134,16 @@ describe('Layout backup nudge', () => {
     expect(fetchSpy).not.toHaveBeenCalled()
   })
 })
+
+describe('Layout footer', () => {
+  it('links to Thoth as a plain external link after License', () => {
+    mountLayout()
+    const link = screen.getByTestId(TESTIDS.footerThoth)
+    expect(link).toHaveTextContent('Thoth (read)')
+    expect(link).toHaveAttribute('href', 'https://davidawad.gitlab.io/thoth/')
+    expect(link).toHaveClass('app-footer-link')
+    expect(screen.getByTestId(TESTIDS.footerLicense).compareDocumentPosition(link)).toBe(
+      Node.DOCUMENT_POSITION_FOLLOWING,
+    )
+  })
+})
