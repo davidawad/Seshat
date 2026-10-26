@@ -202,11 +202,6 @@
   font-weight: 600;
 }
 
-.set-table .num {
-  text-align: end;
-  font-variant-numeric: tabular-nums;
-}
-
 .set-table-progress {
   display: flex;
   align-items: center;
