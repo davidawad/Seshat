@@ -255,18 +255,17 @@ export const LearnQuestion = ({ card, cards, stage, onDone }: LearnQuestionProps
         </>
       )}
       {step === 'reveal' && (
-        <div className="illuminated-panel">
-          <RevealPanel
-            card={card}
-            attempt={attemptFor(card, response)}
-            correct={correct}
-            onGrade={selfRating ? finish : () => finish(derivedGrade(correct))}
-            selfRatingEnabled={selfRating}
-            selfExplanation={null}
-            onSelfExplanationChange={() => undefined}
-          />
+        <RevealPanel
+          card={card}
+          attempt={attemptFor(card, response)}
+          correct={correct}
+          onGrade={selfRating ? finish : () => finish(derivedGrade(correct))}
+          selfRatingEnabled={selfRating}
+          selfExplanation={null}
+          onSelfExplanationChange={() => undefined}
+        >
           <p className="learn-next">{nextHint(stage, correct)}</p>
-        </div>
+        </RevealPanel>
       )}
     </div>
   )

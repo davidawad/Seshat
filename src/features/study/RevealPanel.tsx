@@ -1,4 +1,4 @@
-import { useCallback, useId, useRef, useState } from 'react'
+import { type ReactNode, useCallback, useId, useRef, useState } from 'react'
 import { CardImage } from '../../components/CardImage'
 import { Legible } from '../../components/Legible'
 import { TESTIDS } from '../../lib/testids'
@@ -38,10 +38,13 @@ interface RevealPanelProps {
   /** `null` when Settings.selfExplanationEnabled is off — hides the prompt entirely. */
   readonly selfExplanation: string | null
   readonly onSelfExplanationChange: (value: string) => void
+  /** Extra content that belongs on the same card, below the grade controls (Learn's "what happens next" hint). */
+  readonly children?: ReactNode
 }
 
 /**
- * Reveal step: immediate feedback, then either the learner's own Again/Hard/
+ * Reveal step, rendered AS the card (the `.illuminated-panel` itself): its border turns green or red
+ * so right/wrong reads at a glance, instead of a ring on an inner div. Immediate feedback, then either the learner's own Again/Hard/
  * Good/Easy rating (setting on; biased toward "Again" when the auto-grade came
  * back wrong, per standard Anki/FSRS UX) or a single Continue that submits the
  * grade derived from correctness (setting off, the default).
@@ -54,6 +57,7 @@ export const RevealPanel = ({
   selfRatingEnabled,
   selfExplanation,
   onSelfExplanationChange,
+  children,
 }: RevealPanelProps) => {
   const yourAnswer = attemptLabel(card.content, attempt)
   const correctAnswer = correctAnswerLabel(card.content, attempt)
@@ -84,7 +88,11 @@ export const RevealPanel = ({
   })
 
   return (
-    <div className={correct ? 'review-reveal is-correct' : 'review-reveal is-incorrect'}>
+    <Legible
+      className={
+        correct ? 'illuminated-panel review-reveal is-correct' : 'illuminated-panel review-reveal is-incorrect'
+      }
+    >
       <p
         role="status"
         className={correct ? 'review-result is-correct' : 'review-result is-incorrect'}
@@ -147,6 +155,7 @@ export const RevealPanel = ({
           </div>
         </fieldset>
       )}
-    </div>
+      {children}
+    </Legible>
   )
 }

@@ -132,17 +132,15 @@ export const ReviewSession = ({ card, position, total, onAdvance }: ReviewSessio
       )}
 
       {step === 'reveal' && (
-        <div className="illuminated-panel">
-          <RevealPanel
-            card={card}
-            attempt={attempt}
-            correct={correct}
-            onGrade={handleGrade}
-            selfRatingEnabled={selfRatingPromptEnabled}
-            selfExplanation={selfExplanation}
-            onSelfExplanationChange={setSelfExplanation}
-          />
-        </div>
+        <RevealPanel
+          card={card}
+          attempt={attempt}
+          correct={correct}
+          onGrade={handleGrade}
+          selfRatingEnabled={selfRatingPromptEnabled}
+          selfExplanation={selfExplanation}
+          onSelfExplanationChange={setSelfExplanation}
+        />
       )}
     </div>
   )

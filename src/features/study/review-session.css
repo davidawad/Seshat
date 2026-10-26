@@ -154,27 +154,26 @@
   transition: width 0.25s ease;
 }
 
-/* Grading just happened — a colored frame on the whole reveal panel (not
-   just the "Correct"/"Incorrect" text) so right/wrong reads at a glance,
-   plus a quick entrance so it registers as a fresh event rather than a
-   silent content swap. `[data-reduced-motion]`/`prefers-reduced-motion`
-   (typography.css) collapse the animation duration to ~0 for anyone who's
+/* Grading just happened — the CARD's own border (the `.illuminated-panel` itself, not a ring on an
+   inner div) turns green/red so right/wrong reads at a glance, plus a quick entrance so it
+   registers as a fresh event rather than a silent content swap. The border grows 1px -> 3px, so
+   the padding shrinks by the same 2px to keep the content from shifting. `[data-reduced-motion]`/
+   `prefers-reduced-motion` (typography.css) collapse the animation duration to ~0 for anyone who's
    opted out — no separate handling needed here. */
-.review-reveal {
-  border-radius: var(--radius-page);
+.illuminated-panel.review-reveal {
   animation: review-reveal-in 0.3s cubic-bezier(0.34, 1.35, 0.64, 1);
+  border-width: 3px;
+  padding: calc(1.75rem - 2px);
 }
 
-.review-reveal.is-correct {
-  box-shadow:
-    0 0 0 3px var(--color-success),
-    0 0 1.5rem color-mix(in srgb, var(--color-success) 40%, transparent);
+.illuminated-panel.review-reveal.is-correct {
+  border-color: var(--color-success);
+  box-shadow: 0 0 1.5rem color-mix(in srgb, var(--color-success) 40%, transparent);
 }
 
-.review-reveal.is-incorrect {
-  box-shadow:
-    0 0 0 3px var(--color-error),
-    0 0 1.5rem color-mix(in srgb, var(--color-error) 40%, transparent);
+.illuminated-panel.review-reveal.is-incorrect {
+  border-color: var(--color-error);
+  box-shadow: 0 0 1.5rem color-mix(in srgb, var(--color-error) 40%, transparent);
 }
 
 @keyframes review-reveal-in {
