@@ -44,6 +44,15 @@ describe.each(paletteSchema.options)('palette %s', (name) => {
     it('keeps button text readable on the accent', () => {
       expect(ratio(t['--color-accent-contrast'], t['--color-accent'])).toBeGreaterThanOrEqual(TEXT_CONTRAST_MIN)
     })
+
+    // `.study-mcq-option.is-selected` (review-session.css): an accent fill with on-accent text, sitting
+    // on the card (--color-surface-highlight) among unpicked options (--color-bg-elevated).
+    it('makes a picked study option clear: readable text, and a fill distinct from the card and the unpicked options', () => {
+      const fill = t['--color-accent']
+      expect(ratio(t['--color-accent-contrast'], fill)).toBeGreaterThanOrEqual(TEXT_CONTRAST_MIN)
+      expect(ratio(fill, t['--color-surface-highlight'])).toBeGreaterThanOrEqual(NON_TEXT_CONTRAST_MIN)
+      expect(ratio(fill, t['--color-bg-elevated'])).toBeGreaterThanOrEqual(NON_TEXT_CONTRAST_MIN)
+    })
   })
 })
 
