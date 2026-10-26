@@ -20,23 +20,30 @@ const daysUntil = (isoDate: string): number => {
   return Math.round((goal.getTime() - today.getTime()) / MS_PER_DAY)
 }
 
+const GOAL_DATE_HELP = `Optional. When set, Seshat never schedules a card's next review past this date, and gradually raises the retention target as it nears (see research/learning-science/cepeda-2008.md).`
+
 const GoalDateField = ({ set }: { readonly set: StudySet }) => {
   const inputId = useId()
+  const helpId = useId()
   const { updateSet } = useSeshatStore()
   const days = set.goalDate === null ? null : daysUntil(set.goalDate)
 
   return (
-    <div className="set-goal-date">
-      <label htmlFor={inputId}>Goal date (exam, review deadline)</label>
+    <div className="set-details-field set-goal-date" title={GOAL_DATE_HELP}>
+      <label htmlFor={inputId}>Goal date</label>
       <input
         id={inputId}
         type="date"
         data-testid={TESTIDS.editGoalDate}
+        aria-describedby={helpId}
         value={set.goalDate ?? ''}
         onChange={(event) => updateSet(set.id, { goalDate: event.target.value.length > 0 ? event.target.value : null })}
       />
+      <span id={helpId} className="sr-only">
+        {GOAL_DATE_HELP}
+      </span>
       {set.goalDate !== null && (
-        <p role="status">
+        <p role="status" className="field-hint">
           {days === null
             ? null
             : days > 0
@@ -46,10 +53,6 @@ const GoalDateField = ({ set }: { readonly set: StudySet }) => {
                 : 'Goal date has passed — scheduling back to your normal retention target.'}
         </p>
       )}
-      <p className="field-hint">
-        Optional. When set, Seshat never schedules a card's next review past this date, and gradually raises the
-        retention target as it nears — see <code>research/learning-science/cepeda-2008.md</code>.
-      </p>
     </div>
   )
 }
@@ -111,6 +114,7 @@ const SetDetailsFields = ({ set }: { readonly set: StudySet }) => {
             onBlur={() => updateSet(set.id, { tags: parseTagsInput(tagsText) })}
           />
         </div>
+        <GoalDateField set={set} />
       </div>
       <div className="set-details-field">
         <label htmlFor={descriptionId}>Description</label>
@@ -174,13 +178,19 @@ export const SetEditPage = () => {
 
   return (
     <section aria-labelledby="set-edit-heading" data-testid={TESTIDS.editPage}>
-      <p>
-        <Link to={`/sets/${setId}`}>Back to {set.name}</Link>
-      </p>
-      <h1 id="set-edit-heading">Edit set</h1>
+      {/* Sticky while the cards scroll beneath it. Every field saves on blur, so Save just leaves
+          the page (the click blurs the focused field first). */}
+      <div className="page-bar page-bar-sticky">
+        <p>
+          <Link to={`/sets/${setId}`}>Back to {set.name}</Link>
+        </p>
+        <h1 id="set-edit-heading">Edit set</h1>
+        <Link to={`/sets/${setId}`} className="page-bar-action" data-testid={TESTIDS.editSave}>
+          Save
+        </Link>
+      </div>
 
       <SetDetailsFields set={set} />
-      <GoalDateField set={set} />
 
       <h2>Cards ({cards.length})</h2>
       <ul className="card-list" data-testid={TESTIDS.editCardList}>

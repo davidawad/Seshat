@@ -176,6 +176,7 @@ export const TESTIDS = {
   editTags: 'edit-tags',
   editDescription: 'edit-description',
   editGoalDate: 'edit-goal-date',
+  editSave: 'edit-save',
   editCardList: 'edit-card-list',
   editAddTerm: 'edit-add-term',
   editAddDefinition: 'edit-add-definition',
