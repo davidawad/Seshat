@@ -31,6 +31,13 @@ describe('ShortcutsModal', () => {
 })
 
 describe('ShortcutsModal navigation presets', () => {
+  it('documents Space as the Continue shortcut for Study and Learn', () => {
+    render(<ShortcutsModal open onClose={() => undefined} titleId="shortcuts-title" />)
+    const region = screen.getByRole('region', { name: KEYBINDING_SCOPE_LABELS.studyContinue })
+    expect(within(region).getByText('Press Continue', { exact: false })).toBeInTheDocument()
+    expect(region).toHaveTextContent('Space')
+  })
+
   it('remaps the four nav keys when a preset is chosen, and back again', () => {
     render(<ShortcutsModal open onClose={() => undefined} titleId="shortcuts-title" />)
     const navigation = () => screen.getByRole('region', { name: KEYBINDING_SCOPE_LABELS.navigation })

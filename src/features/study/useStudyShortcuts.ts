@@ -29,15 +29,52 @@ interface StudyShortcutsOptions {
   readonly selfRatingEnabled: boolean
   readonly onConfidence: (rating: ConfidenceRating) => void
   readonly onGrade: (grade: Grade) => void
+  /** Present exactly while a Continue button is shown and enabled; the `studyContinue.next` key (Space) calls it. */
+  readonly onContinue?: (() => void) | undefined
+}
+
+/** Controls that already act on Space (or take typed text) themselves: the shortcut must not double-fire. */
+const handlesSpaceItself = (target: EventTarget | null): boolean =>
+  target instanceof HTMLElement &&
+  (target instanceof HTMLInputElement ||
+    target instanceof HTMLTextAreaElement ||
+    target instanceof HTMLSelectElement ||
+    target instanceof HTMLButtonElement ||
+    target instanceof HTMLAnchorElement ||
+    target.isContentEditable ||
+    target.getAttribute('role') === 'button' ||
+    target.getAttribute('role') === 'radio')
+
+/** `studyContinue.next` (Space by default) presses Continue while `onContinue` is defined. */
+const useContinueShortcut = (onContinue: (() => void) | undefined): void => {
+  const { key: keyFor } = useKeybindings()
+  useEffect(() => {
+    if (onContinue === undefined) return
+    const handler = (event: KeyboardEvent) => {
+      if (event.repeat || handlesSpaceItself(event.target)) return
+      if (!matchesBinding(keyFor('studyContinue.next'), event)) return
+      event.preventDefault()
+      onContinue()
+    }
+    window.addEventListener('keydown', handler)
+    return () => window.removeEventListener('keydown', handler)
+  }, [onContinue, keyFor])
 }
 
 /**
  * Remappable keyboard shortcuts for the visible Study steps (confidence, then
- * the self-rating grades) — skipped while a text input is focused so digits
+ * the self-rating grades, and Space for Continue) — skipped while a text input is focused so digits
  * keep typing into short-answer/cloze fields.
  */
-export const useStudyShortcuts = ({ step, selfRatingEnabled, onConfidence, onGrade }: StudyShortcutsOptions) => {
+export const useStudyShortcuts = ({
+  step,
+  selfRatingEnabled,
+  onConfidence,
+  onGrade,
+  onContinue,
+}: StudyShortcutsOptions) => {
   const { key: keyFor } = useKeybindings()
+  useContinueShortcut(onContinue)
   useEffect(() => {
     const handler = (event: KeyboardEvent) => {
       if (event.repeat) return

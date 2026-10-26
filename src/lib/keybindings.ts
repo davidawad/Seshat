@@ -22,6 +22,7 @@ export type KeybindingScope =
   | 'studyAnswer'
   | 'studyConfidence'
   | 'studyReveal'
+  | 'studyContinue'
   | 'learn'
   | 'match'
   | 'test'
@@ -39,6 +40,7 @@ export const KEYBINDING_SCOPE_LABELS: Record<KeybindingScope, string> = {
   studyAnswer: 'Study — answering (multiple choice)',
   studyConfidence: 'Study — confidence step',
   studyReveal: 'Study — grading step',
+  studyContinue: 'Study and Learn — Continue button',
   learn: 'Learn — answering (multiple choice)',
   match: 'Match',
   test: 'Test',
@@ -110,6 +112,10 @@ export const KEYBINDING_REGISTRY: readonly KeybindingAction[] = [
   { id: 'studyReveal.hard', defaultKey: '2', label: 'Grade: Hard', scope: 'studyReveal' },
   { id: 'studyReveal.good', defaultKey: '3', label: 'Grade: Good', scope: 'studyReveal' },
   { id: 'studyReveal.easy', defaultKey: '4', label: 'Grade: Easy', scope: 'studyReveal' },
+  // Presses the Continue button (Study answer step for typed cards, Study/Learn reveal step) whenever it
+  // is shown. Its own scope: Space is also 'flashcards.flip', and the two pages are never open together.
+  // Never fires from a text field or a focused button (those use Space natively).
+  { id: 'studyContinue.next', defaultKey: 'Space', label: 'Press Continue', scope: 'studyContinue' },
 
   // Learn (features/learn/LearnSession.tsx) — pick a multiple-choice option, or admit you don't know.
   // Typed questions are plain text fields, so these only act on the multiple-choice stage.

@@ -1,10 +1,18 @@
-import { useCallback, useEffect, useRef, useState } from 'react'
+import { useCallback, useEffect, useMemo, useRef, useState } from 'react'
 import { useSeshatStore } from '../../lib/store'
 import { TESTIDS } from '../../lib/testids'
 import type { ConfidenceRating, Grade, StudyCard } from '../../types'
 import { CardInput } from './CardInput'
 import { ConfidencePrompt } from './ConfidencePrompt'
-import { type Attempt, type StudyStep, initialAttempt, isAttemptComplete, isCorrect, stepAfterAnswer } from './grading'
+import {
+  type Attempt,
+  type StudyStep,
+  derivedGrade,
+  initialAttempt,
+  isAttemptComplete,
+  isCorrect,
+  stepAfterAnswer,
+} from './grading'
 import { RevealPanel } from './RevealPanel'
 import { useStudyShortcuts } from './useStudyShortcuts'
 import './review-session.css'
@@ -88,11 +96,19 @@ export const ReviewSession = ({ card, position, total, onAdvance }: ReviewSessio
     [card.id, confidence, correct, onAdvance, recordReview, selfExplanation],
   )
 
+  // Space presses Continue exactly when a Continue button is on screen and enabled.
+  const continueAction = useMemo(() => {
+    if (step === 'answer' && card.content.kind !== 'mcq' && complete) return handleAnswerContinue
+    if (step === 'reveal' && !selfRatingPromptEnabled) return () => handleGrade(derivedGrade(correct))
+    return undefined
+  }, [step, card.content.kind, complete, handleAnswerContinue, selfRatingPromptEnabled, handleGrade, correct])
+
   useStudyShortcuts({
     step,
     selfRatingEnabled: selfRatingPromptEnabled,
     onConfidence: handleConfidence,
     onGrade: handleGrade,
+    onContinue: continueAction,
   })
 
   return (

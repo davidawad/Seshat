@@ -224,7 +224,17 @@ export const LearnQuestion = ({ card, cards, stage, onDone }: LearnQuestionProps
     [confidence, correct, onDone],
   )
   const selfRating = stage === 'typed' && selfRatingPromptEnabled
-  useStudyShortcuts({ step, selfRatingEnabled: selfRating, onConfidence: chooseConfidence, onGrade: finish })
+  const continueAction = useMemo(
+    () => (step === 'reveal' && !selfRating ? () => finish(derivedGrade(correct)) : undefined),
+    [step, selfRating, finish, correct],
+  )
+  useStudyShortcuts({
+    step,
+    selfRatingEnabled: selfRating,
+    onConfidence: chooseConfidence,
+    onGrade: finish,
+    onContinue: continueAction,
+  })
 
   return (
     <div className="learn-question">
