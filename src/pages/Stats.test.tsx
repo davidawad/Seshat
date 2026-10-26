@@ -1,4 +1,5 @@
-import { cleanup, render, screen } from '@testing-library/react'
+import { cleanup, render, screen, within } from '@testing-library/react'
+import userEvent from '@testing-library/user-event'
 import { MemoryRouter } from 'react-router-dom'
 import { afterEach, beforeEach, describe, expect, it } from 'vitest'
 import { saveState } from '../lib/storage'
@@ -90,5 +91,24 @@ describe('StatsPage first week', () => {
     expect(section.textContent).toMatch(/Time to first graded card5 minutes/)
     expect(section.textContent).toMatch(/Reviews so far42/)
     expect(section.textContent).toMatch(/Days studied3/)
+  })
+})
+
+describe('StatsPage calibration table sorting', () => {
+  it('sorts by Reviews with aria-sort on the header', async () => {
+    const user = userEvent.setup()
+    renderWithLog([entry('sure'), entry('sure'), entry('guessed')])
+    const table = screen.getByTestId(TESTIDS.statsCalibrationTable)
+    const header = within(table).getByRole('columnheader', { name: /Reviews/ })
+    expect(header).toHaveAttribute('aria-sort', 'none')
+    const labels = () =>
+      within(table)
+        .getAllByRole('rowheader')
+        .map((r) => r.textContent)
+    await user.click(within(header).getByRole('button'))
+    expect(header).toHaveAttribute('aria-sort', 'ascending')
+    expect(labels()).toEqual(['Unsure', 'Guessed', 'Sure'])
+    await user.click(within(header).getByRole('button'))
+    expect(labels()[0]).toBe('Sure')
   })
 })

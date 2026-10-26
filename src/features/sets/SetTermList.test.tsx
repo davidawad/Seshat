@@ -1,5 +1,6 @@
-import { cleanup, render, screen } from '@testing-library/react'
-import { afterEach, describe, expect, it } from 'vitest'
+import { act, cleanup, fireEvent, render, screen, within } from '@testing-library/react'
+import userEvent from '@testing-library/user-event'
+import { afterEach, describe, expect, it, vi } from 'vitest'
 import { createInitialScheduling } from '../../lib/fsrs'
 import { MediaStoreProvider, createMemoryMediaStore } from '../../lib/media'
 import { TESTIDS } from '../../lib/testids'
@@ -157,5 +158,50 @@ describe('SetTermList', () => {
     // The definition column carries the asked label; the thumbnail itself never spells it out.
     expect(container.querySelector('.set-term-back')).toHaveTextContent('Atrium')
     expect(thumb).not.toHaveTextContent('Atrium')
+  })
+})
+
+describe('SetTermList sort and filter', () => {
+  const cards = [
+    shortAnswerCard('c1', 'Zebra', 'Striped horse'),
+    shortAnswerCard('c2', 'apple', 'Red fruit'),
+    shortAnswerCard('c3', 'Mango', 'Tropical fruit'),
+  ]
+  const terms = () =>
+    within(screen.getByTestId(TESTIDS.setTermList))
+      .getAllByRole('row')
+      .slice(1)
+      .map((r) => within(r).getAllByRole('cell')[0]!.textContent)
+
+  it('sorts by term via aria-sort headers: ascending, descending, unsorted', async () => {
+    const user = userEvent.setup()
+    render(<SetTermList cards={cards} />)
+    const header = screen.getByRole('columnheader', { name: /Term/ })
+    expect(header).toHaveAttribute('aria-sort', 'none')
+    await user.click(within(header).getByRole('button'))
+    expect(terms()).toEqual(['apple', 'Mango', 'Zebra'])
+    expect(header).toHaveAttribute('aria-sort', 'ascending')
+    await user.click(within(header).getByRole('button'))
+    expect(terms()).toEqual(['Zebra', 'Mango', 'apple'])
+    await user.click(within(header).getByRole('button'))
+    expect(terms()).toEqual(['Zebra', 'apple', 'Mango'])
+  })
+
+  it('filters on term or definition text only after the 150ms debounce', () => {
+    vi.useFakeTimers()
+    render(<SetTermList cards={cards} />)
+    const box = screen.getByRole('searchbox', { name: /filter cards/i })
+    fireEvent.change(box, { target: { value: 'FRUIT' } })
+    expect(terms()).toHaveLength(3)
+    act(() => {
+      vi.advanceTimersByTime(150)
+    })
+    expect(terms()).toEqual(['apple', 'Mango'])
+    fireEvent.change(box, { target: { value: 'zzz' } })
+    act(() => {
+      vi.advanceTimersByTime(150)
+    })
+    expect(screen.getByText('No cards match "zzz".')).toBeInTheDocument()
+    vi.useRealTimers()
   })
 })

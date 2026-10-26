@@ -1,7 +1,7 @@
-import { cleanup, render, screen, waitFor, within } from '@testing-library/react'
+import { act, cleanup, fireEvent, render, screen, waitFor, within } from '@testing-library/react'
 import userEvent from '@testing-library/user-event'
 import { MemoryRouter } from 'react-router-dom'
-import { afterEach, beforeEach, describe, expect, it } from 'vitest'
+import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest'
 import { createInitialScheduling } from '../../lib/fsrs'
 import { clearMirrors } from '../../lib/persistence'
 import { STORAGE_KEY, saveState } from '../../lib/storage'
@@ -174,14 +174,39 @@ describe('SetsBrowser contents', () => {
     const search = screen.getByRole('searchbox', { name: 'Search sets' })
 
     await user.type(search, 'bio')
-    expect(screen.getAllByTestId(TESTIDS.setsBrowserCard)).toHaveLength(1)
+    await waitFor(() => expect(screen.getAllByTestId(TESTIDS.setsBrowserCard)).toHaveLength(1))
 
     await user.click(screen.getByRole('radio', { name: 'Table view' }))
     expect(screen.getAllByTestId(TESTIDS.setsBrowserRow)).toHaveLength(1)
+    // One search box only: the table has no filter of its own.
+    expect(screen.getAllByRole('searchbox')).toHaveLength(1)
 
     await user.clear(search)
     await user.type(search, 'zzz')
-    expect(screen.getByText('No sets match "zzz".')).toBeInTheDocument()
+    expect(await screen.findByText('No sets match "zzz".')).toBeInTheDocument()
     expect(screen.queryByTestId(TESTIDS.setsBrowserTable)).not.toBeInTheDocument()
+  })
+})
+
+describe('SetsBrowser search debounce', () => {
+  afterEach(() => {
+    vi.useRealTimers()
+  })
+
+  it('applies the search 150ms after typing stops', () => {
+    seedMany()
+    vi.useFakeTimers()
+    renderBrowser()
+    const count = () => screen.getAllByTestId(TESTIDS.setsBrowserCard).length
+    const total = count()
+    fireEvent.change(screen.getByRole('searchbox', { name: 'Search sets' }), { target: { value: 'bio' } })
+    act(() => {
+      vi.advanceTimersByTime(149)
+    })
+    expect(count()).toBe(total)
+    act(() => {
+      vi.advanceTimersByTime(1)
+    })
+    expect(count()).toBe(1)
   })
 })
