@@ -99,6 +99,30 @@ const checkAccessibility = async (page, setId) => {
   }
 }
 
+// seshat-brc: the app is exactly one viewport tall on desktop; only .app-main scrolls (edit/create and long pages).
+const checkFitsViewport = async (page, setId) => {
+  for (const [width, height] of [
+    [1280, 720],
+    [1280, 869],
+  ]) {
+    await page.setViewportSize({ width, height })
+    for (const path of [`/sets/${setId}/study`, `/sets/${setId}/learn`, '/sets', '/stats', `/sets/${setId}/edit`]) {
+      await page.goto(`${BASE}${path}`)
+      await page.waitForSelector('main h1')
+      const { scrollHeight, innerHeight } = await page.evaluate(() => ({
+        scrollHeight: document.documentElement.scrollHeight,
+        innerHeight: window.innerHeight,
+      }))
+      check(
+        `fit ${width}x${height} ${path.replace(setId, ':id')}`,
+        scrollHeight <= innerHeight,
+        `scrollHeight ${scrollHeight} <= innerHeight ${innerHeight}`,
+      )
+    }
+  }
+  await page.setViewportSize({ width: 1280, height: 900 })
+}
+
 const checkRouteFocus = async (page) => {
   // Focus moves to the h1 on client-side route change.
   await page.goto(`${BASE}/`)
@@ -267,6 +291,7 @@ const main = async () => {
   await page.reload()
 
   await checkAccessibility(page, setId)
+  await checkFitsViewport(page, setId)
   await checkRouteFocus(page)
   await checkKeyboardFlashcards(page, setId)
   await checkKeyboardStudy(page, setId)

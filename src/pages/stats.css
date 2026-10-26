@@ -1,0 +1,45 @@
+/* Stats (seshat-brc): the headline numbers sit side by side as small tiles, not a stacked definition
+   list, so the page fits one desktop viewport without scrolling. */
+.stats-summary {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.75rem;
+  margin: 0 0 1rem;
+}
+
+.stats-metric {
+  flex: 1 1 10rem;
+  padding: 0.6rem 0.9rem;
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-sm);
+  background: var(--color-bg-elevated);
+}
+
+.stats-metric dt {
+  font-size: 0.8rem;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: var(--color-fg-muted);
+}
+
+.stats-metric dd {
+  margin: 0.15rem 0 0;
+  font-family: var(--font-display);
+  font-size: 1.35rem;
+  font-weight: 600;
+}
+
+@media (min-width: 641px) {
+  .fit-page > h1,
+  .fit-page > section > h2 {
+    margin-block: 0 0.5rem;
+  }
+
+  .fit-page > section p {
+    margin-block: 0 0.5rem;
+  }
+
+  .fit-page > h2 {
+    margin-block: 0.5rem 0.25rem;
+  }
+}

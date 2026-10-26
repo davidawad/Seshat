@@ -457,9 +457,10 @@ body.has-install-prompt .app-main {
     padding-bottom: calc(4.5rem + env(safe-area-inset-bottom, 0));
   }
 
-  /* Sit just above the fixed tab bar rather than behind it. */
+  /* On a phone the footer is ordinary content at the end of the page (scrolling is fine there): a
+     pinned three-row footer ate a fifth of the screen and covered the study options (seshat-brc). */
   .app-footer {
-    bottom: calc(4.5rem + env(safe-area-inset-bottom, 0));
+    position: static;
   }
 
   .modal {
@@ -478,6 +479,71 @@ body.has-install-prompt .app-main {
   .modal-body {
     max-height: calc(100dvh - 4.5rem);
   }
+}
+
+/*
+ * Fit-to-viewport shell (seshat-brc), desktop only. The app is exactly one viewport tall: the header
+ * and footer are fixed rows, and `.app-main` is the only scroll container, so the document itself
+ * never scrolls. Pages that can fit (study, learn) add `.fit-page` and size themselves to the
+ * remaining height; the set create/edit page and any long page scroll inside `.app-main`. Phones keep
+ * normal document scrolling (the fixed tab bar and soft keyboards make a fixed-height shell worse).
+ */
+@media (min-width: 641px) {
+  .app-shell {
+    height: 100dvh;
+    min-height: 0;
+  }
+
+  .app-header {
+    padding-block: 0.6rem;
+  }
+
+  .app-footer {
+    padding-block: 0.6rem;
+  }
+
+  .app-main {
+    flex: 1 1 0;
+    min-height: 0;
+    overflow-y: auto;
+    /* Containing block for absolutely positioned descendants (visually hidden text), so they
+       scroll inside the shell instead of stretching the document. */
+    position: relative;
+    padding-block: 1rem;
+  }
+
+  .app-main > .fit-page {
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    min-height: 0;
+  }
+
+  .backup-nudge,
+  .save-error-banner {
+    margin-block: 0.35rem;
+    padding-block: 0.4rem;
+  }
+}
+
+/* Compact page title row: back link, heading and (on study) the progress bar share one line. */
+.page-bar {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.25rem 1rem;
+  margin: 0 0 0.75rem;
+  min-width: 0;
+}
+
+.page-bar > p,
+.page-bar > h1 {
+  margin: 0;
+}
+
+.page-bar > h1 {
+  font-size: 1.15rem;
+  min-width: 0;
 }
 
 /* Persistent banner while the last save failed (components/SaveErrorBanner.tsx). */

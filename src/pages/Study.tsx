@@ -1,4 +1,4 @@
-import { useEffect, useMemo, useRef, useState } from 'react'
+import { type ReactNode, useEffect, useMemo, useRef, useState } from 'react'
 import { Link, useParams } from 'react-router-dom'
 import { z } from 'zod'
 import { ReviewSession } from '../features/study/ReviewSession'
@@ -133,9 +133,11 @@ const persistStudyProgress = (setId: SetId, session: StudySessionState): void =>
 
 interface StudyQueueProps {
   readonly setId: SetId
+  /** Back link and heading: one compact row with the progress bar during a session, a bar of their own otherwise. */
+  readonly header: ReactNode
 }
 
-const StudyQueue = ({ setId }: StudyQueueProps) => {
+const StudyQueue = ({ setId, header }: StudyQueueProps) => {
   const { state } = useSeshatStore()
   // The coach explains the loop once; grading a card (doing what it teaches) retires it for good.
   const coach = useCardTip('study-coach')
@@ -179,15 +181,23 @@ const StudyQueue = ({ setId }: StudyQueueProps) => {
   if (dueIds.length === 0) {
     const later = cardsInScope.length
     return (
-      <p role="status" data-testid={TESTIDS.studyEmpty}>
-        Nothing due right now — {later} card{later === 1 ? '' : 's'} scheduled for later.
-      </p>
+      <>
+        <div className="page-bar">{header}</div>
+        <p role="status" data-testid={TESTIDS.studyEmpty}>
+          Nothing due right now — {later} card{later === 1 ? '' : 's'} scheduled for later.
+        </p>
+      </>
     )
   }
 
   const currentId = dueIds[position]
   if (currentId === undefined) {
-    return <SessionSummary stats={stats} elapsedMs={performance.now() - sessionStart.current} />
+    return (
+      <>
+        <div className="page-bar">{header}</div>
+        <SessionSummary stats={stats} elapsedMs={performance.now() - sessionStart.current} />
+      </>
+    )
   }
 
   const card = state.cards.find((candidate) => candidate.id === currentId)
@@ -208,6 +218,7 @@ const StudyQueue = ({ setId }: StudyQueueProps) => {
         card={card}
         position={position}
         total={dueIds.length}
+        lead={header}
         onAdvance={(grade, correct) => handleAdvance(grade, correct, currentId)}
       />
     </>
@@ -246,13 +257,20 @@ export const StudyPage = () => {
   }
 
   return (
-    <section aria-labelledby="study-heading" data-testid={TESTIDS.studyPage}>
-      <p>
-        <Link to={`/sets/${setId}`}>Back to {set.name}</Link>
-      </p>
-      <h1 id="study-heading">Study: {set.name}</h1>
+    <section aria-labelledby="study-heading" data-testid={TESTIDS.studyPage} className="fit-page">
       {/* Remounts the queue whenever the set changes, resetting session state cleanly. */}
-      <StudyQueue key={setId} setId={setId} />
+      <StudyQueue
+        key={setId}
+        setId={setId}
+        header={
+          <>
+            <p>
+              <Link to={`/sets/${setId}`}>Back to {set.name}</Link>
+            </p>
+            <h1 id="study-heading">Study: {set.name}</h1>
+          </>
+        }
+      />
     </section>
   )
 }

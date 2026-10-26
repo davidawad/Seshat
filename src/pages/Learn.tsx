@@ -60,11 +60,18 @@ export const LearnPage = () => {
   const note = imageCardsNote(imageCardCount(setCards))
 
   return (
-    <section aria-labelledby="learn-heading" data-testid={TESTIDS.learnPage}>
-      <p>
-        <Link to={`/sets/${setId}`}>Back to {set.name}</Link>
-      </p>
-      <h1 id="learn-heading">Learn: {set.name}</h1>
+    <section aria-labelledby="learn-heading" data-testid={TESTIDS.learnPage} className="fit-page">
+      <div className="page-bar">
+        <p>
+          <Link to={`/sets/${setId}`}>Back to {set.name}</Link>
+        </p>
+        <h1 id="learn-heading">Learn: {set.name}</h1>
+        {setCards.length > 0 && cards.length > 0 && (
+          <p className="learn-intro">
+            Short rounds: multiple choice first, then type it from memory. Misses come back soon.
+          </p>
+        )}
+      </div>
       {note !== null && <p>{note}</p>}
       {setCards.length === 0 ? (
         <p data-testid={TESTIDS.learnEmpty}>This set has no cards yet. Add some from the set page first.</p>
@@ -74,9 +81,6 @@ export const LearnPage = () => {
         </p>
       ) : (
         <>
-          <p className="learn-intro">
-            Short rounds: multiple choice first, then type it from memory. Misses come back soon.
-          </p>
           <LearnSession setId={setId} cards={cards} />
           <Research />
         </>

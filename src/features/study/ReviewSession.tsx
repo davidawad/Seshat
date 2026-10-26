@@ -1,4 +1,4 @@
-import { useCallback, useEffect, useMemo, useRef, useState } from 'react'
+import { type ReactNode, useCallback, useEffect, useMemo, useRef, useState } from 'react'
 import { useSeshatStore } from '../../lib/store'
 import { TESTIDS } from '../../lib/testids'
 import type { ConfidenceRating, Grade, StudyCard } from '../../types'
@@ -21,6 +21,8 @@ interface ReviewSessionProps {
   readonly card: StudyCard
   readonly position: number
   readonly total: number
+  /** Page title content (back link, heading) shown on the same compact row as the progress bar. */
+  readonly lead?: ReactNode
   readonly onAdvance: (grade: Grade, correct: boolean) => void
 }
 
@@ -33,7 +35,7 @@ interface ReviewSessionProps {
  * this ordering matters (retrieval practice + calibration are the two
  * evidence-backed levers this app leans on).
  */
-export const ReviewSession = ({ card, position, total, onAdvance }: ReviewSessionProps) => {
+export const ReviewSession = ({ card, position, total, lead, onAdvance }: ReviewSessionProps) => {
   const {
     recordReview,
     state: {
@@ -114,6 +116,7 @@ export const ReviewSession = ({ card, position, total, onAdvance }: ReviewSessio
   return (
     <div className="review-session">
       <div className="review-progress" data-testid={TESTIDS.studyProgress}>
+        {lead}
         <p className="review-progress-label">
           Card {position + 1} of {total}
         </p>

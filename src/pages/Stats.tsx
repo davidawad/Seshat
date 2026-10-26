@@ -10,6 +10,7 @@ import { formatDuration, timeToFirstGradedMs } from '../lib/activation'
 import { useSeshatStore } from '../lib/store'
 import { TESTIDS } from '../lib/testids'
 import type { Activation, ConfidenceRating } from '../types'
+import './stats.css'
 
 const CONFIDENCE_LABELS: Record<ConfidenceRating, string> = {
   guessed: 'Guessed',
@@ -54,7 +55,7 @@ export const StatsPage = () => {
   const hasConfidence = useMemo(() => hasConfidenceData(state.reviewLog), [state.reviewLog])
 
   return (
-    <section aria-labelledby="stats-heading" data-testid={TESTIDS.statsPage}>
+    <section aria-labelledby="stats-heading" data-testid={TESTIDS.statsPage} className="fit-page">
       <h1 id="stats-heading">Stats</h1>
 
       <dl className="stats-summary" data-testid={TESTIDS.statsSummary}>

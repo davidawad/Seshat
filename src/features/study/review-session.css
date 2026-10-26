@@ -177,9 +177,20 @@
 
 .review-progress {
   display: flex;
-  flex-direction: column;
-  gap: 0.35rem;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.25rem 1rem;
   margin-bottom: 0.75rem;
+}
+
+.review-progress > p,
+.review-progress > h1 {
+  margin: 0;
+}
+
+.review-progress > h1 {
+  font-size: 1.15rem;
+  min-width: 0;
 }
 
 .review-progress-label {
@@ -188,13 +199,15 @@
   text-transform: uppercase;
   color: var(--color-fg-muted);
   margin: 0;
+  white-space: nowrap;
 }
 
 .review-progress-track {
+  flex: 1 1 8rem;
   appearance: none;
   -webkit-appearance: none;
   -moz-appearance: none;
-  width: 100%;
+  min-width: 6rem;
   height: 6px;
   border: none;
   border-radius: 999px;
@@ -312,4 +325,35 @@
   max-height: 20rem;
   width: auto;
   margin-block: 0.5rem;
+}
+
+/* Fit-to-viewport (seshat-brc), desktop: the session fills the page's remaining height and the card
+   panel gives up height (down to a floor) before anything scrolls; the options and the Continue/grade
+   row keep their size. */
+@media (min-width: 641px) {
+  .fit-page > .review-session {
+    flex: 1 1 0;
+    min-height: 0;
+    gap: 0.75rem;
+  }
+
+  .review-session > form,
+  .review-session > div:not(.review-progress) {
+    flex: 1 1 0;
+    min-height: 0;
+    gap: 0.75rem;
+  }
+
+  .illuminated-panel.study-panel {
+    flex: 1 1 auto;
+    min-height: 8rem;
+  }
+
+  .study-continue {
+    margin-top: 0;
+  }
+
+  .study-card {
+    gap: 1rem;
+  }
 }

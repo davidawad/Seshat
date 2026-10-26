@@ -109,7 +109,7 @@
 
 .learn-research {
   max-width: 40rem;
-  margin: 2rem 0 0;
+  margin: 0.75rem 0 0;
   color: var(--color-fg-muted);
 }
 
@@ -118,6 +118,27 @@
 }
 
 .learn-intro {
+  flex: 1 1 18rem;
   max-width: 40rem;
+  font-size: 0.9rem;
   color: var(--color-fg-muted);
+}
+
+/* Fit-to-viewport (seshat-brc): the session takes the remaining height; the question panel shrinks first. */
+@media (min-width: 641px) {
+  .fit-page > .learn-session {
+    flex: 1 1 0;
+    min-height: 0;
+    gap: 0.75rem;
+  }
+
+  .learn-question {
+    flex: 1 1 0;
+    min-height: 0;
+    gap: 0.75rem;
+  }
+
+  .learn-question > .illuminated-panel {
+    flex: 1 1 auto;
+  }
 }
