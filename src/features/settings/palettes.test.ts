@@ -53,6 +53,16 @@ describe.each(paletteSchema.options)('palette %s', (name) => {
       expect(ratio(fill, t['--color-surface-highlight'])).toBeGreaterThanOrEqual(NON_TEXT_CONTRAST_MIN)
       expect(ratio(fill, t['--color-bg-elevated'])).toBeGreaterThanOrEqual(NON_TEXT_CONTRAST_MIN)
     })
+
+    // `.study-mcq-option:hover` (review-session.css, desktop pointers only): an accent border and ring
+    // on --color-bg-elevated-2, text unchanged.
+    it('makes a hovered study option clear: readable text, and an accent line distinct from its surround', () => {
+      const surface = t['--color-bg-elevated-2']
+      expect(ratio(t['--color-fg'], surface)).toBeGreaterThanOrEqual(TEXT_CONTRAST_MIN)
+      expect(ratio(t['--color-accent'], surface)).toBeGreaterThanOrEqual(NON_TEXT_CONTRAST_MIN)
+      expect(ratio(t['--color-accent'], bg)).toBeGreaterThanOrEqual(NON_TEXT_CONTRAST_MIN)
+      expect(ratio(t['--color-accent'], t['--color-surface-highlight'])).toBeGreaterThanOrEqual(NON_TEXT_CONTRAST_MIN)
+    })
   })
 })
 

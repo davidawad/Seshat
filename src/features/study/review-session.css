@@ -148,6 +148,18 @@
   font-weight: 700;
 }
 
+/* Mouse and trackpad only (a touch tap would leave the hover stuck): an accent border doubled by a
+   1px ring (a 2px outline-weight line, no layout shift) on the second elevated surface, with the
+   normal --color-fg text. palettes.test.ts holds the accent line to 3:1 against that surface, the
+   page and the card, and the text to 4.5:1, on every palette and mode. */
+@media (hover: hover) {
+  .study-mcq-option:hover:not(:disabled, .is-selected) {
+    border-color: var(--color-accent);
+    background: var(--color-bg-elevated-2);
+    box-shadow: 0 0 0 1px var(--color-accent);
+  }
+}
+
 .study-mcq-option:active:not(:disabled) {
   border-color: var(--color-accent);
   background: var(--color-accent);
