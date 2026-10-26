@@ -119,9 +119,11 @@ export const ReviewSession = ({ card, position, total, onAdvance }: ReviewSessio
           <CardInput card={card} attempt={attempt} onChange={setAttempt} onCommit={submitAnswer} disabled={false} />
           {/* A multiple-choice pick submits itself, so only the typed kinds need a Continue. */}
           {card.content.kind !== 'mcq' && (
-            <button type="submit" disabled={!complete} data-testid={TESTIDS.studyContinue}>
-              Continue
-            </button>
+            <div className="study-continue">
+              <button type="submit" disabled={!complete} data-testid={TESTIDS.studyContinue}>
+                Continue
+              </button>
+            </div>
           )}
         </form>
       )}

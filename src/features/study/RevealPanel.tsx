@@ -43,7 +43,7 @@ interface RevealPanelProps {
 }
 
 /**
- * Reveal step, rendered AS the card (the `.illuminated-panel` itself): its border turns green or red
+ * Reveal step: the card plus, BELOW it (outside the panel, so it stays put), Continue. The card is rendered AS the panel (the `.illuminated-panel` itself): its border turns green or red
  * so right/wrong reads at a glance, instead of a ring on an inner div. Immediate feedback, then either the learner's own Again/Hard/
  * Good/Easy rating (setting on; biased toward "Again" when the auto-grade came
  * back wrong, per standard Anki/FSRS UX) or a single Continue that submits the
@@ -88,76 +88,80 @@ export const RevealPanel = ({
   })
 
   return (
-    <Legible
-      className={
-        correct
-          ? 'illuminated-panel study-panel review-reveal is-correct'
-          : 'illuminated-panel study-panel review-reveal is-incorrect'
-      }
-    >
-      <p
-        role="status"
-        className={correct ? 'review-result is-correct' : 'review-result is-incorrect'}
-        data-testid={TESTIDS.studyResult}
+    <>
+      <Legible
+        className={
+          correct
+            ? 'illuminated-panel study-panel review-reveal is-correct'
+            : 'illuminated-panel study-panel review-reveal is-incorrect'
+        }
       >
-        {correct ? 'Correct' : 'Incorrect'}
-      </p>
-      <Legible>
-        {card.content.kind === 'image-occlusion' && attempt.kind === 'image-occlusion' && (
-          <ImageOcclusionReveal prompt={card.prompt} content={card.content} targetRegionId={attempt.targetRegionId} />
+        <p
+          role="status"
+          className={correct ? 'review-result is-correct' : 'review-result is-incorrect'}
+          data-testid={TESTIDS.studyResult}
+        >
+          {correct ? 'Correct' : 'Incorrect'}
+        </p>
+        <Legible>
+          {card.content.kind === 'image-occlusion' && attempt.kind === 'image-occlusion' && (
+            <ImageOcclusionReveal prompt={card.prompt} content={card.content} targetRegionId={attempt.targetRegionId} />
+          )}
+          {!correct && yourAnswer !== '' && <p className="review-your-answer">Your answer: {yourAnswer}</p>}
+          <p className="review-correct-answer">Correct answer: {correctAnswer}</p>
+          {card.content.kind === 'short-answer' && (
+            <CardImage image={card.content.answerImage} alt="" className="review-answer-image" />
+          )}
+          {card.explanation !== null && <p className="review-explanation">{card.explanation}</p>}
+          {card.sourceRef !== null && <p className="review-source">Source: {card.sourceRef}</p>}
+          {selfExplanation !== null && (
+            <div className="review-self-explanation">
+              <label htmlFor={selfExplanationId}>Why is that the correct answer? (optional)</label>
+              <textarea
+                id={selfExplanationId}
+                data-testid={TESTIDS.studySelfExplanation}
+                value={selfExplanation}
+                onChange={(event) => onSelfExplanationChange(event.target.value)}
+                rows={2}
+              />
+            </div>
+          )}
+        </Legible>
+        {selfRatingEnabled && (
+          <fieldset className="review-grade">
+            <legend>How well did you recall this?</legend>
+            <div ref={gradeRef} className="grade-options">
+              {GRADE_VALUES.map((option) => (
+                <button
+                  key={option.value}
+                  type="button"
+                  autoFocus={option.value === suggestedGrade}
+                  data-testid={GRADE_TESTIDS[option.value]}
+                  className={option.value === suggestedGrade ? 'grade-button is-suggested' : 'grade-button'}
+                  onClick={() => onGrade(option.value)}
+                  onFocus={() => setGradeIndex(GRADE_VALUES.indexOf(option))}
+                  {...{ [NAV_OPTION_ATTRIBUTE]: '' }}
+                >
+                  {option.label} <span className="grade-key">({keyFor(option.actionId)})</span>
+                </button>
+              ))}
+            </div>
+          </fieldset>
         )}
-        {!correct && yourAnswer !== '' && <p className="review-your-answer">Your answer: {yourAnswer}</p>}
-        <p className="review-correct-answer">Correct answer: {correctAnswer}</p>
-        {card.content.kind === 'short-answer' && (
-          <CardImage image={card.content.answerImage} alt="" className="review-answer-image" />
-        )}
-        {card.explanation !== null && <p className="review-explanation">{card.explanation}</p>}
-        {card.sourceRef !== null && <p className="review-source">Source: {card.sourceRef}</p>}
-        {selfExplanation !== null && (
-          <div className="review-self-explanation">
-            <label htmlFor={selfExplanationId}>Why is that the correct answer? (optional)</label>
-            <textarea
-              id={selfExplanationId}
-              data-testid={TESTIDS.studySelfExplanation}
-              value={selfExplanation}
-              onChange={(event) => onSelfExplanationChange(event.target.value)}
-              rows={2}
-            />
-          </div>
-        )}
+        {children}
       </Legible>
       {!selfRatingEnabled && (
-        <button
-          type="button"
-          autoFocus
-          data-testid={TESTIDS.studyContinue}
-          onClick={() => onGrade(derivedGrade(correct))}
-        >
-          Continue
-        </button>
+        <div className="study-continue">
+          <button
+            type="button"
+            autoFocus
+            data-testid={TESTIDS.studyContinue}
+            onClick={() => onGrade(derivedGrade(correct))}
+          >
+            Continue
+          </button>
+        </div>
       )}
-      {selfRatingEnabled && (
-        <fieldset className="review-grade">
-          <legend>How well did you recall this?</legend>
-          <div ref={gradeRef} className="grade-options">
-            {GRADE_VALUES.map((option) => (
-              <button
-                key={option.value}
-                type="button"
-                autoFocus={option.value === suggestedGrade}
-                data-testid={GRADE_TESTIDS[option.value]}
-                className={option.value === suggestedGrade ? 'grade-button is-suggested' : 'grade-button'}
-                onClick={() => onGrade(option.value)}
-                onFocus={() => setGradeIndex(GRADE_VALUES.indexOf(option))}
-                {...{ [NAV_OPTION_ATTRIBUTE]: '' }}
-              >
-                {option.label} <span className="grade-key">({keyFor(option.actionId)})</span>
-              </button>
-            ))}
-          </div>
-        </fieldset>
-      )}
-      {children}
-    </Legible>
+    </>
   )
 }

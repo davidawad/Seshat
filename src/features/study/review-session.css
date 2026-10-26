@@ -69,6 +69,15 @@
   margin-bottom: auto;
 }
 
+/* Continue lives BELOW the card, outside the panel, in the same slot on the answer and reveal steps:
+   the card has one fixed 5:3 size, so the button never moves between steps or with the text length. */
+.study-continue {
+  display: flex;
+  justify-content: center;
+  max-width: 52rem;
+  margin: 1rem auto 0;
+}
+
 .study-card {
   display: flex;
   flex-direction: column;
