@@ -42,6 +42,33 @@
   width: 100%;
 }
 
+/* One stable card size for every study step and every card kind (answer, confidence, reveal; Study
+   and Learn): the 5:3 index card the flashcards use (`.flip-card-face`), at the session's full
+   measure, so the panel no longer jumps between steps or with how much text a card has. Taller
+   content scrolls inside the card (min/max-height bound the ratio) instead of growing the card;
+   shorter content is centered in it. */
+.illuminated-panel.study-panel {
+  box-sizing: border-box;
+  width: 100%;
+  max-width: 52rem;
+  margin-inline: auto;
+  aspect-ratio: 5 / 3;
+  min-height: 14rem;
+  max-height: max(14rem, 75dvh);
+  overflow-y: auto;
+  display: flex;
+  flex-direction: column;
+}
+
+/* Auto margins (not `justify-content: center`) so overflowing content scrolls from its top. */
+.study-panel > :first-child {
+  margin-top: auto;
+}
+
+.study-panel > :last-child {
+  margin-bottom: auto;
+}
+
 .study-card {
   display: flex;
   flex-direction: column;

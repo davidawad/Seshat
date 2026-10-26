@@ -227,7 +227,7 @@ export const LearnQuestion = ({ card, cards, stage, onDone }: LearnQuestionProps
         {STAGE_LABEL[stage]}
       </p>
       {step === 'answer' && (
-        <Legible className="illuminated-panel">
+        <Legible className="illuminated-panel study-panel">
           {options !== null ? (
             <Choice front={face.front} image={face.image} options={options.options} active onPick={pickOption} />
           ) : (
@@ -248,7 +248,7 @@ export const LearnQuestion = ({ card, cards, stage, onDone }: LearnQuestionProps
       )}
       {step === 'confidence' && (
         <>
-          <Legible className="illuminated-panel">
+          <Legible className="illuminated-panel study-panel">
             <p className="study-prompt">{face.front}</p>
           </Legible>
           <ConfidencePrompt onSelect={chooseConfidence} />

@@ -90,7 +90,9 @@ export const RevealPanel = ({
   return (
     <Legible
       className={
-        correct ? 'illuminated-panel review-reveal is-correct' : 'illuminated-panel review-reveal is-incorrect'
+        correct
+          ? 'illuminated-panel study-panel review-reveal is-correct'
+          : 'illuminated-panel study-panel review-reveal is-incorrect'
       }
     >
       <p

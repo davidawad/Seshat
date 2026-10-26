@@ -113,7 +113,7 @@ export const ReviewSession = ({ card, position, total, onAdvance }: ReviewSessio
             handleAnswerContinue()
           }}
         >
-          <Legible className="illuminated-panel">
+          <Legible className="illuminated-panel study-panel">
             <CardInput card={card} attempt={attempt} onChange={setAttempt} disabled={false} />
           </Legible>
           <button type="submit" disabled={!complete} data-testid={TESTIDS.studyContinue}>
@@ -124,7 +124,7 @@ export const ReviewSession = ({ card, position, total, onAdvance }: ReviewSessio
 
       {step === 'confidence' && (
         <div>
-          <Legible className="illuminated-panel">
+          <Legible className="illuminated-panel study-panel">
             <CardInput card={card} attempt={attempt} onChange={setAttempt} disabled />
           </Legible>
           <ConfidencePrompt onSelect={handleConfidence} />
