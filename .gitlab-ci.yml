@@ -22,7 +22,8 @@ before_script:
   # here is not fatal: the release notes page then says its history is incomplete.
   - git fetch --tags --force || true
   - if [ "$(git rev-parse --is-shallow-repository)" = "true" ]; then git fetch --unshallow --tags || true; fi
-  - corepack enable
+  # Shell-executor runners (nix node) cannot write the corepack shims; pnpm is already on PATH there.
+  - corepack enable || true
   - pnpm config set store-dir .pnpm-store
   - pnpm install --frozen-lockfile
 
