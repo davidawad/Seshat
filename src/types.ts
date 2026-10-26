@@ -265,6 +265,9 @@ export const settingsSchema = z.object({
   // Again/Hard/Good/Easy; off: grade is derived from correctness.
   confidencePromptEnabled: z.boolean().default(false),
   selfRatingPromptEnabled: z.boolean().default(false),
+  // Multiple-choice cards: off (default) shows the options at once, below the card. On: the card shows
+  // only the prompt until the learner presses "Show options" (recall before recognition).
+  mcqShowOptionsOnRequest: z.boolean().default(false),
   // Gates the whole Games section (Match + newer arcade-style modes) as one
   // experimental cohort — see features/games/. Defaults on so existing
   // Match users see no regression; the toggle exists for people who'd
@@ -313,6 +316,7 @@ export const DEFAULT_SETTINGS: Settings = {
   selfExplanationEnabled: false,
   confidencePromptEnabled: false,
   selfRatingPromptEnabled: false,
+  mcqShowOptionsOnRequest: false,
   experimentalGamesEnabled: true,
   flashcardsTrackProgress: true,
   flashcardsFront: 'term',

@@ -15,6 +15,7 @@ import {
   type Settings,
   type Typeface,
 } from '../../types'
+import { McqShowOptionsField } from './McqShowOptionsField'
 import { PaletteField } from './PaletteField'
 import { RestorePreviousField } from './RestorePreviousField'
 import { StorageField } from './StorageField'
@@ -411,6 +412,7 @@ export const SettingsForm = () => {
         <RetentionField {...fieldProps} />
         <ConfidencePromptField {...fieldProps} />
         <SelfRatingPromptField {...fieldProps} />
+        <McqShowOptionsField {...fieldProps} />
         <SelfExplanationField {...fieldProps} />
         <ExperimentalGamesField {...fieldProps} />
         <CardTipsField {...fieldProps} />

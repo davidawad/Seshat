@@ -11,6 +11,7 @@ import { NAV_OPTION_ATTRIBUTE, useOptionNavigation } from '../../lib/useOptionNa
 import type { ConfidenceRating, Grade, StudyCard } from '../../types'
 import { cardFrontBack } from '../study/card-summary'
 import { ConfidencePrompt } from '../study/ConfidencePrompt'
+import { OptionGrid } from '../study/OptionGrid'
 import { derivedGrade, type StudyStep } from '../study/grading'
 import { RevealPanel } from '../study/RevealPanel'
 import { useStudyShortcuts } from '../study/useStudyShortcuts'
@@ -61,7 +62,7 @@ interface ChoiceProps {
   readonly onPick: (option: string) => void
 }
 
-/** Recognition stage: the prompt and up to four options; picking one commits it at once. */
+/** Recognition stage: the prompt card, then up to four options OUTSIDE it; picking one commits it at once. */
 const Choice = ({ front, image, options, active, onPick }: ChoiceProps) => {
   const promptId = useId()
   const promptRef = useRef<HTMLParagraphElement>(null)
@@ -86,23 +87,27 @@ const Choice = ({ front, image, options, active, onPick }: ChoiceProps) => {
     count: options.length,
     index: highlight,
     onIndexChange: setHighlight,
-    orientation: 'vertical',
+    orientation: 'grid',
     enabled: active,
     containerRef: optionsRef,
   })
 
   return (
-    <div className="study-card">
-      <p ref={promptRef} tabIndex={-1} id={promptId} className="study-prompt" data-testid={TESTIDS.learnPrompt}>
-        {front}
-      </p>
-      <CardImage image={image} alt="" className="study-prompt-image" />
-      <div
-        ref={optionsRef}
+    <>
+      <Legible className="illuminated-panel study-panel">
+        <div className="study-card">
+          <p ref={promptRef} tabIndex={-1} id={promptId} className="study-prompt" data-testid={TESTIDS.learnPrompt}>
+            {front}
+          </p>
+          <CardImage image={image} alt="" className="study-prompt-image" />
+        </div>
+      </Legible>
+      <OptionGrid
+        labels={options}
+        containerRef={optionsRef}
         role="group"
-        aria-labelledby={promptId}
-        className="study-mcq-options"
-        data-testid={TESTIDS.learnOptions}
+        ariaLabelledBy={promptId}
+        testId={TESTIDS.learnOptions}
       >
         {options.map((option, index) => (
           <button
@@ -118,9 +123,9 @@ const Choice = ({ front, image, options, active, onPick }: ChoiceProps) => {
             {index < MAX_SHORTCUT_OPTIONS && <span className="grade-key"> ({keyFor(`learn.option${index + 1}`)})</span>}
           </button>
         ))}
-      </div>
+      </OptionGrid>
       <OptionAnnouncer index={highlight} labels={options} />
-    </div>
+    </>
   )
 }
 
@@ -226,24 +231,19 @@ export const LearnQuestion = ({ card, cards, stage, onDone }: LearnQuestionProps
       <p className="learn-stage" data-testid={TESTIDS.learnStage}>
         {STAGE_LABEL[stage]}
       </p>
-      {step === 'answer' && (
+      {step === 'answer' && options !== null && (
+        <>
+          <Choice front={face.front} image={face.image} options={options.options} active onPick={pickOption} />
+          <div className="learn-actions">
+            <button type="button" data-testid={TESTIDS.learnDontKnow} onClick={dontKnow}>
+              I don&apos;t know
+            </button>
+          </div>
+        </>
+      )}
+      {step === 'answer' && options === null && (
         <Legible className="illuminated-panel study-panel">
-          {options !== null ? (
-            <Choice front={face.front} image={face.image} options={options.options} active onPick={pickOption} />
-          ) : (
-            <Typed
-              front={face.front}
-              image={face.image}
-              onSubmit={(text) => resolve(text, isTypedCorrect(card, text))}
-            />
-          )}
-          {options !== null && (
-            <div className="learn-actions">
-              <button type="button" data-testid={TESTIDS.learnDontKnow} onClick={dontKnow}>
-                I don&apos;t know
-              </button>
-            </div>
-          )}
+          <Typed front={face.front} image={face.image} onSubmit={(text) => resolve(text, isTypedCorrect(card, text))} />
         </Legible>
       )}
       {step === 'confidence' && (

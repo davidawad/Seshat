@@ -99,17 +99,31 @@
   gap: 0.35rem;
 }
 
-/* One full-width, tappable row per option rather than default inline
-   button flow — options are meant to be scanned and picked one at a
-   time, not crammed edge to edge. Buttons already meet the >=44px
-   touch-target floor via typography.css's coarse-pointer rule. */
+/* The options sit OUTSIDE the card, as a grid of tappable buttons (OptionGrid.tsx sets
+   --option-columns to min(options, 4) and data-length to 'short' when every option is a few
+   characters, like numbers):
+     - wide screens: one horizontal row of up to four (more options wrap in rows of four);
+     - phones: two columns when the options are short, one per row when they are long.
+   useOptionNavigation runs with orientation 'grid' and measures these tracks, so the arrow keys
+   follow whatever is drawn. Buttons already meet the >=44px touch-target floor via
+   typography.css's coarse-pointer rule. */
 .study-mcq-options {
-  display: flex;
-  flex-direction: column;
-  gap: 0.5rem;
+  display: grid;
+  grid-template-columns: repeat(var(--option-columns, 4), minmax(0, 1fr));
+  gap: 0.75rem;
   width: 100%;
-  max-width: 40rem;
+  max-width: 52rem;
   margin-inline: auto;
+}
+
+@media (max-width: 40rem) {
+  .study-mcq-options {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .study-mcq-options[data-length='short'] {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
 }
 
 .study-mcq-option {

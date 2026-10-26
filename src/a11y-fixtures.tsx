@@ -83,6 +83,8 @@ export const seed = () => {
       // The a11y study flow walks every optional step.
       confidencePromptEnabled: true,
       selfRatingPromptEnabled: true,
+      // ...including the opt-in "Show options" button.
+      mcqShowOptionsOnRequest: true,
     },
   })
 }

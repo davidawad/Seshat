@@ -1,9 +1,12 @@
+import { useState } from 'react'
 import { CardImage } from '../../components/CardImage'
+import { Legible } from '../../components/Legible'
+import { useSeshatStore } from '../../lib/store'
 import type { StudyCard } from '../../types'
 import { ClozeCard } from './ClozeCard'
 import type { Attempt } from './grading'
 import { ImageOcclusionCard } from './ImageOcclusionCard'
-import { McqCard } from './McqCard'
+import { McqCard, McqOptions } from './McqCard'
 import { ShortAnswerCard } from './ShortAnswerCard'
 
 interface CardInputProps {
@@ -13,16 +16,48 @@ interface CardInputProps {
   readonly disabled: boolean
 }
 
-/** The card's prompt image (if any) above the content-kind-specific input. */
-export const CardInput = (props: CardInputProps) => (
-  <>
-    <CardImage image={props.card.promptImage} alt="" className="study-prompt-image" />
-    <KindInput {...props} />
-  </>
-)
+interface CardContentProps extends CardInputProps {
+  readonly mcqOptionsShown: boolean
+  readonly onShowMcqOptions: () => void
+}
+
+/**
+ * One study card: the `.illuminated-panel` card (prompt image + the content-kind-specific input)
+ * and, for a multiple-choice card, its options OUTSIDE the card, directly below it. The options
+ * show at once unless Settings.mcqShowOptionsOnRequest is on, in which case the card carries a
+ * "Show options" button until the learner presses it (or has already picked an option).
+ */
+export const CardInput = (props: CardInputProps) => {
+  const {
+    state: {
+      settings: { mcqShowOptionsOnRequest },
+    },
+  } = useSeshatStore()
+  const [requested, setRequested] = useState(false)
+  const { card, attempt } = props
+  const picked = attempt.kind === 'mcq' && attempt.selectedIndex !== null
+  const optionsShown = !mcqShowOptionsOnRequest || requested || picked
+  return (
+    <>
+      <Legible className="illuminated-panel study-panel">
+        <CardImage image={card.promptImage} alt="" className="study-prompt-image" />
+        <KindInput {...props} mcqOptionsShown={optionsShown} onShowMcqOptions={() => setRequested(true)} />
+      </Legible>
+      {card.content.kind === 'mcq' && optionsShown && (
+        <McqOptions
+          content={card.content}
+          value={attempt.kind === 'mcq' ? attempt.selectedIndex : null}
+          onChange={(selectedIndex) => props.onChange({ kind: 'mcq', selectedIndex })}
+          disabled={props.disabled}
+          focusFirst={requested && !picked}
+        />
+      )}
+    </>
+  )
+}
 
 /** Dispatches to the content-kind-specific card component, keeping `attempt` in sync with `card.content`. */
-const KindInput = ({ card, attempt, onChange, disabled }: CardInputProps) => {
+const KindInput = ({ card, attempt, onChange, disabled, mcqOptionsShown, onShowMcqOptions }: CardContentProps) => {
   switch (card.content.kind) {
     case 'short-answer':
       return (
@@ -47,9 +82,8 @@ const KindInput = ({ card, attempt, onChange, disabled }: CardInputProps) => {
       return (
         <McqCard
           prompt={card.prompt}
-          content={card.content}
-          value={attempt.kind === 'mcq' ? attempt.selectedIndex : null}
-          onChange={(selectedIndex) => onChange({ kind: 'mcq', selectedIndex })}
+          optionsShown={mcqOptionsShown}
+          onShowOptions={onShowMcqOptions}
           disabled={disabled}
         />
       )

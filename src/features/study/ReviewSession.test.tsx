@@ -343,11 +343,12 @@ const mcqCard = () =>
     content: { kind: 'mcq', options: ['Alpha', 'Beta', 'Gamma', 'Delta'], correctIndex: 1 },
   })
 
-const startMcq = async (user: ReturnType<typeof userEvent.setup>) => {
+/** Options are visible at once by default; `onRequest` turns on the "Show options" setting and presses it. */
+const startMcq = async (user: ReturnType<typeof userEvent.setup>, onRequest = false) => {
   const card = mcqCard()
-  seedStore(card)
+  seedStore(card, { mcqShowOptionsOnRequest: onRequest })
   const onAdvance = renderSession(card)
-  await user.click(screen.getByRole('button', { name: /show options/i }))
+  if (onRequest) await user.click(screen.getByRole('button', { name: /show options/i }))
   return onAdvance
 }
 
@@ -400,17 +401,21 @@ describe('ReviewSession arrow-style option navigation', () => {
     expect(screen.queryByText(/how confident are you/i)).not.toBeInTheDocument()
   })
 
-  it('MCQ: ignores left/right and follows a WASD remap via setBinding', async () => {
+  it('MCQ: arrows follow the grid layout (left/right too) and a WASD remap via setBinding', async () => {
     const user = userEvent.setup()
     remapAction('nav.up', 'W')
     remapAction('nav.down', 'S')
+    remapAction('nav.left', 'A')
+    remapAction('nav.right', 'D')
     await startMcq(user)
 
-    await user.keyboard('{ArrowLeft}')
-    expect(screen.queryByRole('radio', { checked: true })).toBeNull()
     await user.keyboard('{ArrowDown}') // old default no longer bound
     expect(screen.queryByRole('radio', { checked: true })).toBeNull()
-    await user.keyboard('s')
+    await user.keyboard('d')
+    expect(screen.getByRole('radio', { name: 'Alpha' })).toHaveAttribute('aria-checked', 'true')
+    await user.keyboard('d')
+    expect(screen.getByRole('radio', { name: 'Beta' })).toHaveAttribute('aria-checked', 'true')
+    await user.keyboard('a')
     expect(screen.getByRole('radio', { name: 'Alpha' })).toHaveAttribute('aria-checked', 'true')
     await user.keyboard('w')
     expect(screen.getByRole('radio', { name: 'Delta' })).toHaveAttribute('aria-checked', 'true')

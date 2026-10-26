@@ -1,5 +1,4 @@
 import { useCallback, useEffect, useRef, useState } from 'react'
-import { Legible } from '../../components/Legible'
 import { useSeshatStore } from '../../lib/store'
 import { TESTIDS } from '../../lib/testids'
 import type { ConfidenceRating, Grade, StudyCard } from '../../types'
@@ -113,9 +112,7 @@ export const ReviewSession = ({ card, position, total, onAdvance }: ReviewSessio
             handleAnswerContinue()
           }}
         >
-          <Legible className="illuminated-panel study-panel">
-            <CardInput card={card} attempt={attempt} onChange={setAttempt} disabled={false} />
-          </Legible>
+          <CardInput card={card} attempt={attempt} onChange={setAttempt} disabled={false} />
           <button type="submit" disabled={!complete} data-testid={TESTIDS.studyContinue}>
             Continue
           </button>
@@ -124,9 +121,7 @@ export const ReviewSession = ({ card, position, total, onAdvance }: ReviewSessio
 
       {step === 'confidence' && (
         <div>
-          <Legible className="illuminated-panel study-panel">
-            <CardInput card={card} attempt={attempt} onChange={setAttempt} disabled />
-          </Legible>
+          <CardInput card={card} attempt={attempt} onChange={setAttempt} disabled />
           <ConfidencePrompt onSelect={handleConfidence} />
         </div>
       )}
