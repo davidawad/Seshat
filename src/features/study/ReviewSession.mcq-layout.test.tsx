@@ -110,4 +110,33 @@ describe('ReviewSession multiple-choice layout (options outside the card)', () =
     expect(screen.getAllByRole('radio')).toHaveLength(4)
     expect(screen.getByRole('radio', { name: 'Alpha' })).toHaveFocus()
   })
+
+  it('clicking an option submits it at once: no Continue button, the pick shown pressed', async () => {
+    const user = userEvent.setup()
+    seedStore(mcqCard(), { confidencePromptEnabled: true })
+    renderSession(mcqCard())
+    expect(screen.queryByRole('button', { name: /continue/i })).not.toBeInTheDocument()
+    await user.click(screen.getByRole('radio', { name: 'Gamma' }))
+    expect(screen.getByText(/how confident are you/i)).toBeInTheDocument()
+    expect(screen.getByRole('radio', { name: 'Gamma' })).toHaveAttribute('aria-checked', 'true')
+  })
+
+  it('a digit key picks and submits that option at once; the option carries no check-mark glyph', async () => {
+    const user = userEvent.setup()
+    seedStore(mcqCard(), { confidencePromptEnabled: true })
+    renderSession(mcqCard())
+    await user.keyboard('3')
+    expect(screen.getByText(/how confident are you/i)).toBeInTheDocument()
+    expect(screen.getByRole('radio', { name: 'Gamma' }).textContent).toBe('Gamma')
+  })
+
+  it('with confidence off a pick goes straight to the reveal, graded by correctness', async () => {
+    const user = userEvent.setup()
+    seedStore(mcqCard(), { confidencePromptEnabled: false, selfRatingPromptEnabled: false })
+    const onAdvance = renderSession(mcqCard())
+    await user.keyboard('2')
+    expect(screen.getByTestId('study-result')).toHaveTextContent('Correct')
+    await user.click(screen.getByRole('button', { name: /continue/i }))
+    expect(onAdvance).toHaveBeenCalledWith('good', true)
+  })
 })

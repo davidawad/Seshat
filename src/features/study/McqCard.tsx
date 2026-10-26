@@ -1,4 +1,4 @@
-import { useEffect, useRef } from 'react'
+import { useCallback, useEffect, useRef, useState } from 'react'
 import { TESTIDS } from '../../lib/testids'
 import { OptionAnnouncer } from '../../lib/OptionAnnouncer'
 import { NAV_OPTION_ATTRIBUTE, useOptionNavigation } from '../../lib/useOptionNavigation'
@@ -42,7 +42,8 @@ export const McqCard = ({ prompt, optionsShown, onShowOptions, disabled }: McqCa
 interface McqOptionsProps {
   readonly content: McqContent
   readonly value: number | null
-  readonly onChange: (index: number) => void
+  /** The learner picked option `index` (click or digit key): the answer is submitted at once. */
+  readonly onPick: (index: number) => void
   readonly disabled: boolean
   /** Move focus onto the first option on mount (the learner just pressed "Show options"). */
   readonly focusFirst: boolean
@@ -50,33 +51,32 @@ interface McqOptionsProps {
 
 /**
  * The OPTIONS half: a radio group laid out by `OptionGrid` (a row of four on desktop; two columns
- * of short options or one per row of long ones on a phone). Arrow-style keys (the remappable
- * `nav.*` set) move the SAME selection the digit keys and clicks set, over the grid as it is
- * actually drawn ('grid' orientation measures the live column count); Enter on an option submits
- * the surrounding form once that option is already the selected one.
+ * of short options or one per row of long ones on a phone). Picking an option, by click, Enter or
+ * Space on the focused option, or its digit key (`studyAnswer.mcqOption1-4`), submits it at once:
+ * there is no select-then-Continue step. Arrow-style keys (the remappable `nav.*` set) only move
+ * focus over the grid as it is actually drawn ('grid' orientation measures the live column count).
+ * `value` is the submitted option, shown pressed (solid accent) once the step has moved on.
  */
-export const McqOptions = ({ content, value, onChange, disabled, focusFirst }: McqOptionsProps) => {
+export const McqOptions = ({ content, value, onPick, disabled, focusFirst }: McqOptionsProps) => {
   const optionsRef = useRef<HTMLDivElement>(null)
+  const [highlight, setHighlight] = useState<number | null>(null)
 
   useEffect(() => {
     if (focusFirst) optionsRef.current?.querySelector<HTMLElement>(`[${NAV_OPTION_ATTRIBUTE}]`)?.focus()
   }, [focusFirst])
 
-  // Digit keys also move real focus to the chosen option, so a following
-  // Enter acts on the option that is actually selected.
-  useNumberedShortcut(
-    'studyAnswer.mcqOption',
-    Math.min(content.options.length, MAX_SHORTCUT_OPTIONS),
-    !disabled,
-    (index) => {
-      onChange(index)
-      optionsRef.current?.querySelectorAll<HTMLElement>(`[${NAV_OPTION_ATTRIBUTE}]`)[index]?.focus()
+  const pick = useCallback(
+    (index: number) => {
+      if (!disabled) onPick(index)
     },
+    [disabled, onPick],
   )
+
+  useNumberedShortcut('studyAnswer.mcqOption', Math.min(content.options.length, MAX_SHORTCUT_OPTIONS), !disabled, pick)
   useOptionNavigation({
     count: content.options.length,
-    index: value,
-    onIndexChange: onChange,
+    index: highlight,
+    onIndexChange: setHighlight,
     orientation: 'grid',
     enabled: !disabled,
     containerRef: optionsRef,
@@ -98,12 +98,8 @@ export const McqOptions = ({ content, value, onChange, disabled, focusFirst }: M
             role="radio"
             aria-checked={value === index}
             className={value === index ? 'study-mcq-option is-selected' : 'study-mcq-option'}
-            onClick={() => onChange(index)}
-            onKeyDown={(event) => {
-              if (event.key !== 'Enter' || event.repeat || value !== index) return
-              event.preventDefault()
-              event.currentTarget.form?.requestSubmit()
-            }}
+            onClick={() => pick(index)}
+            onFocus={() => setHighlight(index)}
             disabled={disabled}
             {...{ [NAV_OPTION_ATTRIBUTE]: '' }}
           >
@@ -111,7 +107,7 @@ export const McqOptions = ({ content, value, onChange, disabled, focusFirst }: M
           </button>
         ))}
       </OptionGrid>
-      <OptionAnnouncer index={value} labels={content.options} />
+      <OptionAnnouncer index={highlight} labels={content.options} />
     </>
   )
 }

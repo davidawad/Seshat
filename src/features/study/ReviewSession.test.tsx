@@ -371,34 +371,24 @@ describe('ReviewSession arrow-style option navigation', () => {
     resetAllKeybindings()
   })
 
-  it('MCQ: nav.down/nav.up move the selected option (wrapping) and Enter submits; numbers still work', async () => {
+  it('MCQ: arrow keys only move focus (wrapping), nothing is submitted; Enter on the focused option picks it', async () => {
     const user = userEvent.setup()
     await startMcq(user)
     const option = (name: string) => screen.getByRole('radio', { name })
 
     await user.keyboard('{ArrowDown}')
-    expect(option('Alpha')).toHaveAttribute('aria-checked', 'true')
     expect(option('Alpha')).toHaveFocus()
     await user.keyboard('{ArrowDown}')
-    expect(option('Beta')).toHaveAttribute('aria-checked', 'true')
+    expect(option('Beta')).toHaveFocus()
     await user.keyboard('{ArrowUp}{ArrowUp}')
-    expect(option('Delta')).toHaveAttribute('aria-checked', 'true')
+    expect(option('Delta')).toHaveFocus()
     expect(screen.getByRole('status')).toHaveTextContent('Option 4 of 4: Delta')
-
-    await user.keyboard('3')
-    expect(option('Gamma')).toHaveAttribute('aria-checked', 'true')
+    expect(screen.queryByRole('radio', { checked: true })).toBeNull()
+    expect(screen.queryByText(/how confident are you/i)).not.toBeInTheDocument()
 
     await user.keyboard('{Enter}')
     expect(screen.getByText(/how confident are you/i)).toBeInTheDocument()
-  })
-
-  it('MCQ: Enter on a focused but unselected option selects it instead of submitting', async () => {
-    const user = userEvent.setup()
-    await startMcq(user)
-    screen.getByRole('radio', { name: 'Gamma' }).focus()
-    await user.keyboard('{Enter}')
-    expect(screen.getByRole('radio', { name: 'Gamma' })).toHaveAttribute('aria-checked', 'true')
-    expect(screen.queryByText(/how confident are you/i)).not.toBeInTheDocument()
+    expect(option('Delta')).toHaveAttribute('aria-checked', 'true')
   })
 
   it('MCQ: arrows follow the grid layout (left/right too) and a WASD remap via setBinding', async () => {
@@ -410,15 +400,15 @@ describe('ReviewSession arrow-style option navigation', () => {
     await startMcq(user)
 
     await user.keyboard('{ArrowDown}') // old default no longer bound
-    expect(screen.queryByRole('radio', { checked: true })).toBeNull()
+    expect(document.body).toHaveFocus()
     await user.keyboard('d')
-    expect(screen.getByRole('radio', { name: 'Alpha' })).toHaveAttribute('aria-checked', 'true')
+    expect(screen.getByRole('radio', { name: 'Alpha' })).toHaveFocus()
     await user.keyboard('d')
-    expect(screen.getByRole('radio', { name: 'Beta' })).toHaveAttribute('aria-checked', 'true')
+    expect(screen.getByRole('radio', { name: 'Beta' })).toHaveFocus()
     await user.keyboard('a')
-    expect(screen.getByRole('radio', { name: 'Alpha' })).toHaveAttribute('aria-checked', 'true')
+    expect(screen.getByRole('radio', { name: 'Alpha' })).toHaveFocus()
     await user.keyboard('w')
-    expect(screen.getByRole('radio', { name: 'Delta' })).toHaveAttribute('aria-checked', 'true')
+    expect(screen.getByRole('radio', { name: 'Delta' })).toHaveFocus()
   })
 
   it('confidence step: left/right move focus, Enter commits', async () => {

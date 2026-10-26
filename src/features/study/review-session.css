@@ -139,7 +139,8 @@
    (palettes.test.ts holds that pair to 4.5:1 and the fill to 3:1 against both the card and the
    unpicked options on every palette and mode). A fill plus a leading check mark reads as
    "chosen" without relying on hue alone; accent TEXT on the elevated surface (the old look) was
-   dimmer than the unpicked options. */
+   dimmer than the unpicked options. A pick submits at once, so this is the pressed look of the
+   option just chosen (no check mark: it read as a checkbox). */
 .study-mcq-option.is-selected {
   border-color: var(--color-accent);
   background: var(--color-accent);
@@ -147,8 +148,10 @@
   font-weight: 700;
 }
 
-.study-mcq-option.is-selected::before {
-  content: '\2713\00a0' / '';
+.study-mcq-option:active:not(:disabled) {
+  border-color: var(--color-accent);
+  background: var(--color-accent);
+  color: var(--color-accent-contrast);
 }
 
 .review-progress {

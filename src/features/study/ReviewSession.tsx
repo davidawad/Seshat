@@ -53,16 +53,20 @@ export const ReviewSession = ({ card, position, total, onAdvance }: ReviewSessio
 
   const complete = isAttemptComplete(card.content, attempt)
 
-  const handleAnswerContinue = useCallback(() => {
-    if (!complete) return
-    const next = stepAfterAnswer(confidencePromptEnabled)
-    if (next !== 'confidence') {
-      // No confidence step: nothing is recorded for it, and correctness is computed now.
-      setConfidence(null)
-      setCorrect(isCorrect(card.content, attempt))
-    }
-    setStep(next)
-  }, [attempt, card.content, complete, confidencePromptEnabled])
+  const submitAnswer = useCallback(
+    (answered: Attempt) => {
+      if (!isAttemptComplete(card.content, answered)) return
+      const next = stepAfterAnswer(confidencePromptEnabled)
+      if (next !== 'confidence') {
+        // No confidence step: nothing is recorded for it, and correctness is computed now.
+        setConfidence(null)
+        setCorrect(isCorrect(card.content, answered))
+      }
+      setStep(next)
+    },
+    [card.content, confidencePromptEnabled],
+  )
+  const handleAnswerContinue = useCallback(() => submitAnswer(attempt), [attempt, submitAnswer])
 
   const handleConfidence = useCallback(
     (rating: ConfidenceRating) => {
@@ -112,10 +116,13 @@ export const ReviewSession = ({ card, position, total, onAdvance }: ReviewSessio
             handleAnswerContinue()
           }}
         >
-          <CardInput card={card} attempt={attempt} onChange={setAttempt} disabled={false} />
-          <button type="submit" disabled={!complete} data-testid={TESTIDS.studyContinue}>
-            Continue
-          </button>
+          <CardInput card={card} attempt={attempt} onChange={setAttempt} onCommit={submitAnswer} disabled={false} />
+          {/* A multiple-choice pick submits itself, so only the typed kinds need a Continue. */}
+          {card.content.kind !== 'mcq' && (
+            <button type="submit" disabled={!complete} data-testid={TESTIDS.studyContinue}>
+              Continue
+            </button>
+          )}
         </form>
       )}
 

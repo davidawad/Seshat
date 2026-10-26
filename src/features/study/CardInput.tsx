@@ -14,6 +14,8 @@ interface CardInputProps {
   readonly attempt: Attempt
   readonly onChange: (attempt: Attempt) => void
   readonly disabled: boolean
+  /** A multiple-choice option was picked: the answer is complete and submitted at once (no Continue). */
+  readonly onCommit?: (attempt: Attempt) => void
 }
 
 interface CardContentProps extends CardInputProps {
@@ -47,7 +49,11 @@ export const CardInput = (props: CardInputProps) => {
         <McqOptions
           content={card.content}
           value={attempt.kind === 'mcq' ? attempt.selectedIndex : null}
-          onChange={(selectedIndex) => props.onChange({ kind: 'mcq', selectedIndex })}
+          onPick={(selectedIndex) => {
+            const picked: Attempt = { kind: 'mcq', selectedIndex }
+            props.onChange(picked)
+            props.onCommit?.(picked)
+          }}
           disabled={props.disabled}
           focusFirst={requested && !picked}
         />

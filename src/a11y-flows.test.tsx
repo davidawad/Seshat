@@ -90,7 +90,6 @@ describe('accessibility tree: flows', () => {
     }
     await user.click(screen.getByTestId(TESTIDS.studyShowOptions))
     await user.click(screen.getByRole('radio', { name: 'Rome' }))
-    await user.click(screen.getByTestId(TESTIDS.studyContinue))
     await user.click(screen.getByTestId(TESTIDS.studyConfidenceSure))
     await user.click(screen.getByTestId(TESTIDS.studyGradeGood))
     await user.type(screen.getByTestId(TESTIDS.studyAnswerInput), 'Berlin')
