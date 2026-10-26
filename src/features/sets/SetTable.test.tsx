@@ -1,10 +1,9 @@
-import { act, cleanup, fireEvent, render, screen, within } from '@testing-library/react'
+import { cleanup, render, screen, within } from '@testing-library/react'
 import userEvent from '@testing-library/user-event'
 import { MemoryRouter } from 'react-router-dom'
-import { afterEach, describe, expect, it, vi } from 'vitest'
+import { afterEach, describe, expect, it } from 'vitest'
 import { TESTIDS } from '../../lib/testids'
 import { setIdSchema } from '../../types'
-import { rowMatchesFilter } from './set-table-filter'
 import { SetTable, type SetTableRow } from './SetTable'
 
 const stamp = '2026-01-01T00:00:00.000Z'
@@ -48,17 +47,9 @@ const names = () =>
 
 const header = (name: string) => screen.getByRole('columnheader', { name: new RegExp(name) })
 const sortButton = (name: string) => within(header(name)).getByRole('button')
-const filterBox = () => screen.getByRole('searchbox', { name: /filter/i })
-
-const typeFilter = (value: string) => fireEvent.change(filterBox(), { target: { value } })
-const advance = (ms: number) =>
-  act(() => {
-    vi.advanceTimersByTime(ms)
-  })
 
 afterEach(() => {
   cleanup()
-  vi.useRealTimers()
 })
 
 describe('SetTable structure', () => {
@@ -148,22 +139,12 @@ describe('SetTable sorting affordances', () => {
     await user.click(sortButton('Cards'))
     expect(indicator()).toHaveTextContent('▼')
   })
-
-  it('keeps the sort when the filter changes', async () => {
-    const user = userEvent.setup()
-    renderTable()
-    await user.click(sortButton('Set'))
-    await user.type(filterBox(), 'anatomy')
-    await vi.waitFor(() => expect(names()).toEqual(['Bones', 'Cranial nerves']))
-    expect(header('Set')).toHaveAttribute('aria-sort', 'ascending')
-  })
 })
 
 describe('SetTable keyboard', () => {
   it('is operable from the keyboard with Enter and Space', async () => {
     const user = userEvent.setup()
     renderTable()
-    await user.tab()
     await user.tab()
     expect(sortButton('Set')).toHaveFocus()
     await user.keyboard('{Enter}')
@@ -174,61 +155,9 @@ describe('SetTable keyboard', () => {
   })
 })
 
-describe('SetTable filtering', () => {
-  it('filters by tag and by name only after the 150ms debounce', () => {
-    vi.useFakeTimers()
+describe('SetTable filter', () => {
+  it('has no filter box of its own; the page-level search is the only one', () => {
     renderTable()
-
-    typeFilter('fruit')
-    expect(names()).toHaveLength(3)
-    advance(149)
-    expect(names()).toHaveLength(3)
-    advance(1)
-    expect(names()).toEqual(['apples'])
-
-    typeFilter('CRAN')
-    advance(150)
-    expect(names()).toEqual(['Cranial nerves'])
-  })
-
-  it('applies only the last keystroke of a burst', () => {
-    vi.useFakeTimers()
-    renderTable()
-    for (const value of ['a', 'an', 'ana']) {
-      typeFilter(value)
-      advance(100)
-      expect(names()).toHaveLength(3)
-    }
-    advance(50)
-    expect(names()).toEqual(['Bones', 'Cranial nerves'])
-  })
-
-  it('restores all rows when cleared and shows an empty state on no match', () => {
-    vi.useFakeTimers()
-    renderTable()
-    typeFilter('zzz')
-    advance(150)
-    expect(screen.queryAllByTestId(TESTIDS.setsBrowserRow)).toHaveLength(0)
-    expect(screen.getByText('No sets match "zzz".')).toBeInTheDocument()
-    expect(screen.getByTestId(TESTIDS.setsBrowserNewSet)).toBeInTheDocument()
-
-    typeFilter('')
-    advance(150)
-    expect(names()).toHaveLength(3)
-  })
-})
-
-describe('rowMatchesFilter', () => {
-  const bones = ROWS[0]!
-  it.each([
-    ['', true],
-    ['   ', true],
-    ['bon', true],
-    ['BONES', true],
-    ['  anat ', true],
-    ['neuro', false],
-    ['10', false],
-  ])('filter %j', (filter, expected) => {
-    expect(rowMatchesFilter(bones, filter)).toBe(expected)
+    expect(screen.queryByRole('searchbox')).not.toBeInTheDocument()
   })
 })

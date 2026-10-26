@@ -1,6 +1,7 @@
 import { useId, useState } from 'react'
 import { Link, useNavigate } from 'react-router-dom'
 import { useSeshatStore } from '../../lib/store'
+import { useDebouncedValue } from '../../lib/use-debounced-value'
 import { TESTIDS } from '../../lib/testids'
 import type { ExportedSet, StudySet } from '../../types'
 import { setMatchesQuery } from './filters'
@@ -16,6 +17,9 @@ interface SetsBrowserProps {
   /** The page heading: "Your sets" on Home, "Sets" on /sets. The only thing the two pages differ by. */
   readonly title: string
 }
+
+/** How long typing must pause before the search is applied. */
+const SEARCH_DEBOUNCE_MS = 150
 
 interface BrowserRow {
   readonly set: StudySet
@@ -54,11 +58,12 @@ export const SetsBrowser = ({ title }: SetsBrowserProps) => {
   const navigate = useNavigate()
   const headingId = useId()
   const [query, setQuery] = useState('')
+  const search = useDebouncedValue(query, SEARCH_DEBOUNCE_MS)
   const now = new Date()
 
   const rows: BrowserRow[] = state.sets
     .map((set) => ({ set, cards: state.cards.filter((card) => card.setId === set.id) }))
-    .filter(({ set, cards }) => setMatchesQuery(set, cards, query))
+    .filter(({ set, cards }) => setMatchesQuery(set, cards, search))
     .map(({ set, cards }) => ({ set, mastery: summarizeMastery(cards, now) }))
 
   const handleLoadStarter = (exported: ExportedSet) => {
@@ -83,7 +88,7 @@ export const SetsBrowser = ({ title }: SetsBrowserProps) => {
       {!hasSets ? (
         <FirstRunHero onLoad={handleLoadStarter} />
       ) : rows.length === 0 ? (
-        <p>No sets match &quot;{query}&quot;.</p>
+        <p>No sets match &quot;{search}&quot;.</p>
       ) : view === 'table' ? (
         <SetTable rows={rows} />
       ) : (
