@@ -26,6 +26,17 @@ describe('fit-to-viewport shell', () => {
     expect(rules).toMatch(/min-height:\s*8rem\s*;/)
   })
 
+  it('fits the set detail page: fit-page, side-by-side body, bounded term scroll (seshat-lse)', () => {
+    const detail = readFileSync('src/features/sets/SetDetail.tsx', 'utf8')
+    expect(detail).toMatch(/className="set-detail fit-page"/)
+    const sets = readFileSync('src/features/sets/sets.css', 'utf8')
+    const block = /seshat-lse[\s\S]*$/.exec(sets)?.[0] ?? ''
+    expect(/\.set-detail-body \{([^}]*)\}/.exec(block)?.[1] ?? '').toMatch(/grid-template-columns:/)
+    const scroll = /\.set-detail-terms \.set-term-scroll \{([^}]*)\}/.exec(block)?.[1] ?? ''
+    expect(scroll).toMatch(/flex:\s*1 1 0\s*;/)
+    expect(scroll).toMatch(/min-height:\s*0\s*;/)
+  })
+
   it('does not pin the footer on phones', () => {
     expect(/\.app-footer \{\s*position:\s*static;/.test(css)).toBe(true)
   })

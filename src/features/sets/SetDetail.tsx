@@ -66,6 +66,9 @@ interface SetDetailHeaderProps {
 const SetDetailHeader = ({ setId, name, description, tags, exportDisabled, onExport }: SetDetailHeaderProps) => (
   <div className="set-detail-header">
     <div>
+      <p className="set-detail-back">
+        <Link to="/sets">Back to sets</Link>
+      </p>
       <h1 id="set-detail-heading">{name}</h1>
       {description.length > 0 && <p>{description}</p>}
       {tags.length > 0 && (
@@ -188,11 +191,7 @@ export const SetDetailPage = () => {
   }
 
   return (
-    <section aria-labelledby="set-detail-heading" className="set-detail" data-testid={TESTIDS.setPage}>
-      <p>
-        <Link to="/sets">Back to sets</Link>
-      </p>
-
+    <section aria-labelledby="set-detail-heading" className="set-detail fit-page" data-testid={TESTIDS.setPage}>
       <SetDetailHeader
         setId={setId}
         name={set.name}
@@ -250,10 +249,13 @@ export const SetDetailPage = () => {
             </details>
           )}
 
-          <SetPreviewCard cards={cards} />
-
-          <h2 className="set-term-list-heading">Terms in this set</h2>
-          <SetTermList cards={cards} />
+          <div className="set-detail-body">
+            <SetPreviewCard cards={cards} />
+            <div className="set-detail-terms">
+              <h2 className="set-term-list-heading">Terms in this set</h2>
+              <SetTermList cards={cards} />
+            </div>
+          </div>
         </>
       )}
     </section>

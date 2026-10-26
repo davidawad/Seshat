@@ -403,3 +403,151 @@
     width: 40%;
   }
 }
+
+/*
+ * Set detail fits one desktop viewport (seshat-lse): a compact header, the mode row, then the card
+ * preview beside the term table. The page never scrolls; if the terms outgrow the space, only
+ * `.set-term-scroll` does (sticky header row). Phones keep the stacked, document-scrolling layout.
+ */
+@media (min-width: 641px) {
+  .set-detail > * {
+    flex: none;
+  }
+
+  .set-detail-header {
+    align-items: center;
+  }
+
+  .set-detail-header > :first-child {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: baseline;
+    gap: 0.1rem 1rem;
+  }
+
+  .set-detail-header h1 {
+    margin: 0;
+    font-size: 1.35rem;
+  }
+
+  .set-detail-header p,
+  .set-detail-header .tag-chips {
+    margin: 0;
+  }
+
+  .set-detail-header > :first-child > p:not(.set-detail-back) {
+    flex: 1 1 12rem;
+    min-width: 0;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    color: var(--color-fg-muted);
+  }
+
+  .set-detail .set-mastery-summary {
+    margin-block: 0.15rem 0;
+  }
+
+  .set-detail .mode-nav {
+    display: flex;
+    flex-wrap: nowrap;
+    align-items: stretch;
+    gap: 0.6rem;
+    margin-block: 0.6rem;
+  }
+
+  .set-detail .mode-start {
+    flex: none;
+    display: flex;
+    align-items: center;
+    padding: 0.5rem 1.4rem;
+    font-size: 1rem;
+  }
+
+  .set-detail .mode-start-hint {
+    display: none;
+  }
+
+  .set-detail .mode-secondary {
+    display: flex;
+    flex: 1 1 auto;
+    gap: 0.6rem;
+    max-width: none;
+  }
+
+  .set-detail .mode-secondary .mode-button {
+    flex: 1 1 0;
+    min-width: 0;
+    padding: 0.4rem 0.8rem;
+  }
+
+  .set-detail .mode-more {
+    margin: 0 0 0.5rem;
+    max-width: none;
+  }
+
+  .set-detail .mode-more summary {
+    margin-bottom: 0.25rem;
+  }
+
+  .set-detail-body {
+    flex: 1 1 0;
+    min-height: 0;
+    display: grid;
+    grid-template-columns: minmax(0, 20rem) minmax(0, 1fr);
+    grid-template-rows: minmax(0, 1fr);
+    gap: 1.25rem;
+    align-items: start;
+  }
+
+  /* The preview keeps its 5:3 card; long text scrolls inside the face instead of growing the page. */
+  .set-detail-body .flip-card-scene .flip-card-face {
+    max-height: 12rem;
+    overflow-y: auto;
+    font-size: 1rem;
+  }
+
+  .set-detail-body > .set-preview {
+    margin-inline: 0;
+  }
+
+  .set-detail-body .set-preview button {
+    margin-top: 0.75rem;
+  }
+
+  .set-detail-terms {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    min-height: 0;
+  }
+
+  .set-detail-terms .set-term-list-heading {
+    margin-block: 0 0.4rem;
+  }
+
+  .set-detail-terms .data-table-filter {
+    margin-block-end: 0.5rem;
+  }
+
+  .set-detail-terms .set-term-scroll {
+    flex: 1 1 0;
+    min-height: 0;
+    max-height: none;
+  }
+
+  .set-detail-terms .set-term-table thead th,
+  .set-detail-terms .set-term-table td {
+    padding-block: 0.4rem;
+  }
+}
+
+.set-detail-back {
+  margin: 0 0 0.25rem;
+}
+
+@media (min-width: 641px) {
+  .set-detail-back {
+    margin: 0;
+  }
+}

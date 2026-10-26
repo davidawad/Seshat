@@ -100,24 +100,48 @@ const checkAccessibility = async (page, setId) => {
 }
 
 // seshat-brc: the app is exactly one viewport tall on desktop; only .app-main scrolls (edit/create and long pages).
-const checkFitsViewport = async (page, setId) => {
+const checkFitsViewport = async (page, setId, bigSetId) => {
   for (const [width, height] of [
     [1280, 720],
     [1280, 869],
   ]) {
     await page.setViewportSize({ width, height })
-    for (const path of [`/sets/${setId}/study`, `/sets/${setId}/learn`, '/sets', '/stats', `/sets/${setId}/edit`]) {
+    // seshat-lse: the set detail page (12 cards) also must not scroll inside .app-main.
+    const noInnerScroll = new Set([`/sets/${bigSetId}`, `/sets/${setId}`])
+    for (const path of [
+      `/sets/${setId}/study`,
+      `/sets/${setId}/learn`,
+      '/sets',
+      '/stats',
+      `/sets/${setId}/edit`,
+      `/sets/${setId}`,
+      `/sets/${bigSetId}`,
+    ]) {
       await page.goto(`${BASE}${path}`)
       await page.waitForSelector('main h1')
-      const { scrollHeight, innerHeight } = await page.evaluate(() => ({
-        scrollHeight: document.documentElement.scrollHeight,
-        innerHeight: window.innerHeight,
-      }))
+      await settle(page)
+      const { scrollHeight, innerHeight, mainScroll, mainClient } = await page.evaluate(() => {
+        const main = document.querySelector('.app-main')
+        return {
+          scrollHeight: document.documentElement.scrollHeight,
+          innerHeight: window.innerHeight,
+          mainScroll: main.scrollHeight,
+          mainClient: main.clientHeight,
+        }
+      })
+      const label = path.replace(bigSetId, ':big').replace(setId, ':id')
       check(
-        `fit ${width}x${height} ${path.replace(setId, ':id')}`,
+        `fit ${width}x${height} ${label}`,
         scrollHeight <= innerHeight,
         `scrollHeight ${scrollHeight} <= innerHeight ${innerHeight}`,
       )
+      if (noInnerScroll.has(path)) {
+        check(
+          `fit ${width}x${height} ${label} .app-main`,
+          mainScroll <= mainClient,
+          `.app-main scrollHeight ${mainScroll} <= clientHeight ${mainClient}`,
+        )
+      }
     }
   }
   await page.setViewportSize({ width: 1280, height: 900 })
@@ -288,10 +312,22 @@ const main = async () => {
   )
   check('seed', seeded.ok === true, `window.seshat.importSimpleJson ok (${JSON.stringify(seeded).slice(0, 90)})`)
   const setId = seeded.value?.id
+  const bigSeeded = await page.evaluate(() =>
+    window.seshat.importSimpleJson(
+      JSON.stringify(
+        Array.from({ length: 12 }, (_, i) => ({
+          term: `Term number ${i + 1}`,
+          definition: `A reasonably long definition for term ${i + 1} that may wrap onto a second line`,
+        })),
+      ),
+      'E2E Twelve Terms',
+    ),
+  )
+  const bigSetId = bigSeeded.value?.id
   await page.reload()
 
   await checkAccessibility(page, setId)
-  await checkFitsViewport(page, setId)
+  await checkFitsViewport(page, setId, bigSetId)
   await checkRouteFocus(page)
   await checkKeyboardFlashcards(page, setId)
   await checkKeyboardStudy(page, setId)
