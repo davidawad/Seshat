@@ -81,7 +81,7 @@ describe('ReviewSession study-flag combinations', () => {
     await answer(user, 'Paris')
     expect(screen.queryByText(/how confident are you/i)).not.toBeInTheDocument()
     expect(screen.getByText('Correct')).toBeInTheDocument()
-    expect(screen.getByText(/correct answer: paris/i)).toBeInTheDocument()
+    expect(screen.queryByText(/correct answer/i)).not.toBeInTheDocument()
     expect(screen.getByText('Because geography.')).toBeInTheDocument()
     expect(screen.queryByRole('button', { name: /^again/i })).not.toBeInTheDocument()
     expect(screen.getByRole('button', { name: /continue/i })).toHaveFocus()

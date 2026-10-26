@@ -108,7 +108,7 @@ export const RevealPanel = ({
             <ImageOcclusionReveal prompt={card.prompt} content={card.content} targetRegionId={attempt.targetRegionId} />
           )}
           {!correct && yourAnswer !== '' && <p className="review-your-answer">Your answer: {yourAnswer}</p>}
-          <p className="review-correct-answer">Correct answer: {correctAnswer}</p>
+          {!correct && <p className="review-correct-answer">{correctAnswer}</p>}
           {card.content.kind === 'short-answer' && (
             <CardImage image={card.content.answerImage} alt="" className="review-answer-image" />
           )}

@@ -150,7 +150,7 @@ describe('ReviewSession answer -> confidence -> reveal flow', () => {
     await user.click(screen.getByRole('button', { name: 'Sure' }))
 
     expect(screen.getByRole('status', { name: '' })).toHaveTextContent('Correct')
-    expect(screen.getByText('Correct answer: Paris')).toBeInTheDocument()
+    expect(screen.queryByText(/correct answer/i)).not.toBeInTheDocument()
     expect(screen.getByRole('button', { name: /again/i })).toBeInTheDocument()
     expect(screen.getByRole('button', { name: /^hard/i })).toBeInTheDocument()
     expect(screen.getByRole('button', { name: /^good/i })).toBeInTheDocument()
@@ -169,7 +169,7 @@ describe('ReviewSession answer -> confidence -> reveal flow', () => {
 
     expect(screen.getByText('Incorrect')).toBeInTheDocument()
     expect(screen.getByText('Your answer: London')).toBeInTheDocument()
-    expect(screen.getByText('Correct answer: Paris')).toBeInTheDocument()
+    expect(screen.getByText('Paris')).toBeInTheDocument()
   })
 
   it('grading calls onAdvance with the chosen grade and the auto-graded correctness', async () => {

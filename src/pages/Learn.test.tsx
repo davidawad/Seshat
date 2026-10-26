@@ -103,7 +103,7 @@ describe('LearnPage', () => {
     const wrong = screen.getAllByTestId(TESTIDS.learnOption).find((option) => !isRight.test(option.textContent))
     await user.click(wrong!)
     expect(screen.getByTestId(TESTIDS.studyResult)).toHaveTextContent('Incorrect')
-    expect(screen.getByText(`Correct answer: Answer ${n}`)).toBeInTheDocument()
+    expect(screen.getByText(`Answer ${n}`, { selector: '.review-correct-answer' })).toBeInTheDocument()
     expect(screen.getByTestId(TESTIDS.studyContinue)).toHaveFocus()
     await user.keyboard('{Enter}')
     expect(reviewLog()).toHaveLength(1)
