@@ -255,7 +255,8 @@ body.has-install-prompt .app-main {
    table) — scrolls horizontally instead of blowing out the page width on
    narrow viewports. */
 .table-scroll {
-  overflow-x: auto;
+  overflow: auto;
+  max-block-size: calc(100dvh - 16rem);
 }
 
 .table-scroll table {

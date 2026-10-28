@@ -1,0 +1,38 @@
+.breadcrumbs {
+  margin: 0 0 0.25rem;
+  font-size: 0.9rem;
+}
+
+.breadcrumbs ol {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.25rem;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.breadcrumbs li + li::before {
+  content: '/';
+  margin-inline-end: 0.25rem;
+  color: var(--color-fg-muted);
+}
+
+.breadcrumbs a {
+  text-decoration: none;
+}
+
+.breadcrumbs a:hover,
+.breadcrumbs a:focus-visible {
+  font-weight: 700;
+}
+
+/* Reserve the bold width so hovering does not nudge the crumbs beside it. */
+.breadcrumbs a::after {
+  content: attr(data-label);
+  display: block;
+  height: 0;
+  overflow: hidden;
+  visibility: hidden;
+  font-weight: 700;
+}

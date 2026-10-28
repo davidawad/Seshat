@@ -9,6 +9,8 @@ import {
   type Activation,
   type AppState,
   type CardId,
+  type Folder,
+  type FolderId,
   type FirstSetSource,
   type SetId,
   type Settings,
@@ -40,6 +42,16 @@ export type Action =
   | { readonly type: 'add-set'; readonly set: StudySet }
   | { readonly type: 'update-set'; readonly id: SetId; readonly patch: Partial<NewSetInput>; readonly now: string }
   | { readonly type: 'delete-set'; readonly id: SetId }
+  | { readonly type: 'add-folder'; readonly folder: Folder }
+  | { readonly type: 'rename-folder'; readonly id: FolderId; readonly name: string; readonly now: string }
+  | { readonly type: 'delete-folder'; readonly id: FolderId }
+  | {
+      readonly type: 'set-folder-membership'
+      readonly folderId: FolderId
+      readonly setId: SetId
+      readonly member: boolean
+      readonly now: string
+    }
   | { readonly type: 'add-card'; readonly card: StudyCard }
   | { readonly type: 'update-card'; readonly id: CardId; readonly patch: Partial<NewCardInput>; readonly now: string }
   | { readonly type: 'delete-card'; readonly id: CardId }
@@ -86,8 +98,41 @@ const core = (state: AppState, action: Action): AppState => {
       return {
         ...state,
         sets: state.sets.filter((set) => set.id !== action.id),
+        folders: state.folders.map((folder) =>
+          folder.setIds.includes(action.id)
+            ? { ...folder, setIds: folder.setIds.filter((id) => id !== action.id) }
+            : folder,
+        ),
         cards: state.cards.filter((card) => card.setId !== action.id),
         reviewLog: state.reviewLog.filter((entry) => entry.setId !== action.id),
+      }
+    case 'add-folder':
+      return { ...state, folders: [...state.folders, action.folder] }
+    case 'rename-folder':
+      return {
+        ...state,
+        folders: state.folders.map((folder) =>
+          folder.id === action.id ? { ...folder, name: action.name, updatedAt: action.now } : folder,
+        ),
+      }
+    case 'delete-folder':
+      return { ...state, folders: state.folders.filter((folder) => folder.id !== action.id) }
+    case 'set-folder-membership':
+      return {
+        ...state,
+        folders: state.folders.map((folder) =>
+          folder.id !== action.folderId
+            ? folder
+            : {
+                ...folder,
+                updatedAt: action.now,
+                setIds: action.member
+                  ? folder.setIds.includes(action.setId)
+                    ? folder.setIds
+                    : [...folder.setIds, action.setId]
+                  : folder.setIds.filter((id) => id !== action.setId),
+              },
+        ),
       }
     case 'add-card':
       return { ...state, cards: [...state.cards, action.card] }

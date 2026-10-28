@@ -31,9 +31,13 @@ export const calibrationBuckets = (reviewLog: readonly ReviewLogEntry[]): Calibr
     }
   })
 
-/** How many cards are due right now, across the given scope. */
+/** Studied-before cards due right now. Never-studied cards are due by construction, so they count as new, not backlog. */
 export const dueBacklogCount = (cards: readonly StudyCard[], now: Date): number =>
-  cards.filter((card) => isDue(card.scheduling, now)).length
+  cards.filter((card) => card.scheduling.state !== 'New' && isDue(card.scheduling, now)).length
+
+/** Cards never studied yet. */
+export const newCardCount = (cards: readonly StudyCard[]): number =>
+  cards.filter((card) => card.scheduling.state === 'New').length
 
 /** How many reviews were logged since local midnight. */
 export const reviewedTodayCount = (reviewLog: readonly ReviewLogEntry[], now: Date): number => {

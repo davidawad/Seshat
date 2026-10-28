@@ -179,6 +179,24 @@ export const studySetSchema = z.object({
 export type StudySet = z.infer<typeof studySetSchema>
 
 // ---------------------------------------------------------------------------
+// Folder — a named group of related sets (a set can sit in several folders, like Quizlet).
+// Additive to the app state: `folders` defaults to [] so data saved before folders existed parses.
+// ---------------------------------------------------------------------------
+
+export const folderIdSchema = z.uuid().brand('FolderId')
+export type FolderId = z.infer<typeof folderIdSchema>
+
+export const folderSchema = z.object({
+  id: folderIdSchema,
+  name: z.string().min(1),
+  setIds: z.array(setIdSchema),
+  createdAt: z.iso.datetime(),
+  updatedAt: z.iso.datetime(),
+})
+
+export type Folder = z.infer<typeof folderSchema>
+
+// ---------------------------------------------------------------------------
 // Review log — one entry per answered card, the raw material for the
 // calibration dashboard (confidence vs. actual correctness).
 // ---------------------------------------------------------------------------
@@ -389,6 +407,7 @@ export const createEmptyActivation = (): Activation => activationSchema.parse({}
 
 const appStateFields = {
   sets: z.array(studySetSchema),
+  folders: z.array(folderSchema).default([]),
   cards: z.array(studyCardSchema),
   reviewLog: z.array(reviewLogEntrySchema),
   settings: settingsSchema,
@@ -405,6 +424,7 @@ export type AppState = z.infer<typeof appStateSchema>
 export const createEmptyAppState = (): AppState => ({
   version: APP_STATE_VERSION,
   sets: [],
+  folders: [],
   cards: [],
   reviewLog: [],
   settings: DEFAULT_SETTINGS,

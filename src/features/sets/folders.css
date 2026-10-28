@@ -1,0 +1,101 @@
+/* Folders: the strip on the sets page, a folder's own page, and the per-set folder menu. */
+.folders-section {
+  margin-block: 1rem;
+}
+
+.folder-grid {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.75rem;
+  margin: 0 0 0.75rem;
+  padding: 0;
+  list-style: none;
+}
+
+.folder-card {
+  display: flex;
+  flex-direction: column;
+  gap: 0.15rem;
+  min-inline-size: 9rem;
+  padding: 0.6rem 0.9rem;
+  color: inherit;
+  text-decoration: none;
+  background: var(--color-bg-elevated);
+  border: 1px solid var(--color-border-strong);
+  border-radius: var(--radius-sm);
+}
+
+.folder-card:hover,
+.folder-card:focus-visible {
+  border-color: var(--color-accent);
+}
+
+.folder-card-name {
+  font-weight: 600;
+}
+
+.folder-card-count {
+  font-size: 0.85rem;
+  color: var(--color-fg-muted);
+}
+
+.folder-new,
+.folder-tools {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.5rem 0.75rem;
+}
+
+/* Add-a-set bar: label, select and button share one height, font and rhythm. */
+.folder-add {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.5rem 0.75rem;
+  margin-block: 1rem 1.5rem;
+}
+
+.folder-add label {
+  font-family: var(--font-ui);
+  font-size: 0.8rem;
+  font-weight: 600;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: var(--color-fg-muted);
+}
+
+.folder-add select,
+.folder-add-button {
+  box-sizing: border-box;
+  block-size: 2.5rem;
+  margin: 0;
+  padding-inline: 0.85rem;
+  font: inherit;
+  font-family: var(--font-ui);
+  font-size: 0.95rem;
+  border-radius: var(--radius-sm);
+}
+
+.folder-add select {
+  min-inline-size: 16rem;
+  max-inline-size: 100%;
+}
+
+.folder-add-button {
+  color: var(--color-accent-contrast);
+  background: var(--color-accent);
+  border: 1px solid var(--color-accent);
+  cursor: pointer;
+}
+
+.folder-add-button:disabled {
+  color: var(--color-fg-muted);
+  background: transparent;
+  border-color: var(--color-border-strong);
+  cursor: not-allowed;
+}
+
+.folder-tools {
+  margin-block: 1rem 0;
+}

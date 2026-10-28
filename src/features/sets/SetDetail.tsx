@@ -1,6 +1,7 @@
 import { useMemo, useRef, useState } from 'react'
 import { Link, useNavigate, useParams } from 'react-router-dom'
-import { DownloadIcon, EditIcon } from '../../components/icons'
+import { Breadcrumbs } from '../../components/Breadcrumbs'
+import { DownloadIcon, EditIcon, StatsIcon } from '../../components/icons'
 import { useMediaStore } from '../../lib/media/MediaStoreProvider'
 import { toJsonBlobWithMedia } from '../../lib/media/export'
 import { collectMediaRefs } from '../../lib/media/refs'
@@ -11,6 +12,7 @@ import { useNumberedShortcut } from '../../lib/useNumberedShortcut'
 import { NAV_OPTION_ATTRIBUTE, useOptionNavigation } from '../../lib/useOptionNavigation'
 import { type AppState, type SetId, type StudyCard, setIdSchema } from '../../types'
 import { downloadBlob, downloadJson, slugify } from './download'
+import { type FolderTrailState, useSetCrumbs } from './folder-trail'
 import { SetMasterySummary } from './SetMasterySummary'
 import './sets.css'
 import { toSimpleJson } from './simple-json'
@@ -59,16 +61,14 @@ interface SetDetailHeaderProps {
   readonly description: string
   readonly tags: readonly string[]
   readonly exportDisabled: boolean
+  readonly trail: FolderTrailState | undefined
   readonly onExport: () => void
 }
 
 /** Title, description, tags, and the edit/export actions — split out of `SetDetailPage` to keep that component's size/complexity in check. */
-const SetDetailHeader = ({ setId, name, description, tags, exportDisabled, onExport }: SetDetailHeaderProps) => (
+const SetDetailHeader = ({ setId, name, description, tags, exportDisabled, trail, onExport }: SetDetailHeaderProps) => (
   <div className="set-detail-header">
     <div>
-      <p className="set-detail-back">
-        <Link to="/sets">Back to sets</Link>
-      </p>
       <h1 id="set-detail-heading">{name}</h1>
       {description.length > 0 && <p>{description}</p>}
       {tags.length > 0 && (
@@ -80,6 +80,15 @@ const SetDetailHeader = ({ setId, name, description, tags, exportDisabled, onExp
       )}
     </div>
     <div className="set-detail-actions">
+      <Link
+        to={`/sets/${setId}/stats`}
+        state={trail}
+        className="icon-button"
+        aria-label={`Stats for ${name}`}
+        data-testid={TESTIDS.setStatsLink}
+      >
+        <StatsIcon />
+      </Link>
       <Link
         to={`/sets/${setId}/edit`}
         className="icon-button"
@@ -118,6 +127,7 @@ export const SetDetailPage = () => {
   const parsedId = setIdSchema.safeParse(id ?? '')
   const setId = parsedId.success ? parsedId.data : null
   const { set, cards } = resolveSetContext(state, setId)
+  const { crumbs, trail } = useSetCrumbs(setId)
   const showGames = state.settings.experimentalGamesEnabled
   // Number keys reach every mode (Games last); arrow keys only walk the three links that are always visible.
   const modes = useMemo(() => (showGames ? [...NAV_MODES, GAMES_MODE] : NAV_MODES), [showGames])
@@ -191,13 +201,15 @@ export const SetDetailPage = () => {
   }
 
   return (
-    <section aria-labelledby="set-detail-heading" className="set-detail fit-page" data-testid={TESTIDS.setPage}>
+    <section aria-labelledby="set-detail-heading" className="set-detail" data-testid={TESTIDS.setPage}>
+      <Breadcrumbs crumbs={crumbs} />
       <SetDetailHeader
         setId={setId}
         name={set.name}
         description={set.description}
         tags={set.tags}
         exportDisabled={cards.length === 0}
+        trail={trail}
         onExport={() => {
           void handleExport()
         }}

@@ -1,5 +1,5 @@
 import { z } from 'zod'
-import { reviewLogEntrySchema, studyCardSchema, studySetSchema } from '../types'
+import { folderSchema, reviewLogEntrySchema, studyCardSchema, studySetSchema } from '../types'
 import { mediaMapSchema } from './media/types'
 
 /**
@@ -27,6 +27,8 @@ export const backupSchema = z.strictObject({
   settings: z.record(z.string(), z.unknown()),
   keybindings: z.record(z.string(), z.string()),
   sets: z.array(studySetSchema),
+  // Added after v2 shipped; optional so older v2 files still import (no version bump needed).
+  folders: z.array(folderSchema).default([]),
   cards: z.array(studyCardSchema),
   reviewLog: z.array(reviewLogEntrySchema),
   media: mediaMapSchema.default({}),

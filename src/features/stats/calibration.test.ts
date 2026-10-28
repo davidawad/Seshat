@@ -1,7 +1,7 @@
 import { describe, expect, it } from 'vitest'
 import { createInitialScheduling } from '../../lib/fsrs'
 import type { CardId, SetId, ReviewLogEntry, StudyCard } from '../../types'
-import { calibrationBuckets, dueBacklogCount, retentionEstimate, reviewedTodayCount } from './calibration'
+import { calibrationBuckets, dueBacklogCount, newCardCount, retentionEstimate, reviewedTodayCount } from './calibration'
 
 const now = new Date('2026-01-10T12:00:00.000Z')
 
@@ -56,9 +56,20 @@ describe('calibrationBuckets', () => {
 })
 
 describe('dueBacklogCount', () => {
-  it('counts only due cards', () => {
-    const cards = [makeCard(-1000), makeCard(1000)]
+  const studied = (dueOffsetMs: number): StudyCard => {
+    const card = makeCard(dueOffsetMs)
+    return { ...card, scheduling: { ...card.scheduling, state: 'Review' } }
+  }
+
+  it('counts only studied cards that are due', () => {
+    const cards = [studied(-1000), studied(1000)]
     expect(dueBacklogCount(cards, now)).toBe(1)
+  })
+
+  it('leaves never-studied cards out of the backlog and counts them as new', () => {
+    const cards = [makeCard(-1000), studied(-1000)]
+    expect(dueBacklogCount(cards, now)).toBe(1)
+    expect(newCardCount(cards)).toBe(1)
   })
 })
 

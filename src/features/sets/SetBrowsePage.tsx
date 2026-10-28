@@ -3,6 +3,7 @@ import { Link, useSearchParams } from 'react-router-dom'
 import { Legible } from '../../components/Legible'
 import { useSeshatStore } from '../../lib/store'
 import { TESTIDS } from '../../lib/testids'
+import type { FolderId, SetId } from '../../types'
 import type { CatalogEntry } from './catalog'
 import { useCatalog } from './useCatalog'
 import './browse.css'
@@ -17,8 +18,9 @@ const cardsLabel = (count: number): string => `${count} ${count === 1 ? 'card' :
  */
 export const SetBrowsePage = () => {
   const catalog = useCatalog()
-  const { state, importSet, prepareSetImport } = useSeshatStore()
+  const { state, importSet, prepareSetImport, addFolder, setFolderMembership } = useSeshatStore()
   const [params, setParams] = useSearchParams()
+  const [folderId, setFolderId] = useState<FolderId | null>(null)
   const [failed, setFailed] = useState<Readonly<Record<string, string>>>({})
   const headingId = useId()
   const category = params.get('category') ?? ''
@@ -35,7 +37,31 @@ export const SetBrowsePage = () => {
     importSet(prepared.value, 'sample')
   }
 
-  const select = (slug: string) => setParams(slug === '' ? {} : { category: slug }, { replace: true })
+  const select = (slug: string) => {
+    setFolderId(null)
+    setParams(slug === '' ? {} : { category: slug }, { replace: true })
+  }
+
+  /** Adds every set in the category not yet owned, then files all of them in a folder named after the category. */
+  const addCategoryAsFolder = async (entries: readonly CatalogEntry[], label: string) => {
+    const ids: SetId[] = []
+    for (const entry of entries) {
+      const existing = owned.get(nameKey(entry.name))
+      if (existing !== undefined) {
+        ids.push(existing)
+        continue
+      }
+      const prepared = await prepareSetImport(entry.set)
+      if (!prepared.ok) {
+        setFailed((current) => ({ ...current, [entry.id]: prepared.error }))
+        continue
+      }
+      ids.push(importSet(prepared.value, 'sample').id)
+    }
+    const folder = state.folders.find((candidate) => nameKey(candidate.name) === nameKey(label)) ?? addFolder(label)
+    for (const id of ids) setFolderMembership(folder.id, id, true)
+    setFolderId(folder.id)
+  }
 
   const visible = catalog === null ? [] : catalog.entries.filter((e) => category === '' || e.category === category)
 
@@ -77,6 +103,29 @@ export const SetBrowsePage = () => {
                 ))}
               </ul>
             </div>
+          )}
+
+          {category !== '' && visible.length > 0 && (
+            <p className="browse-folder-action">
+              <button
+                type="button"
+                className="browse-card-action"
+                data-testid={TESTIDS.browseAddFolder}
+                onClick={() =>
+                  void addCategoryAsFolder(
+                    visible,
+                    catalog.categories.find((c) => c.slug === category)?.label ?? category,
+                  )
+                }
+              >
+                Add all {visible.length} as a folder
+              </button>{' '}
+              {folderId !== null && (
+                <Link to={`/sets/folders/${folderId}`} data-testid={TESTIDS.browseOpenFolder}>
+                  Open folder
+                </Link>
+              )}
+            </p>
           )}
 
           {visible.length === 0 ? (

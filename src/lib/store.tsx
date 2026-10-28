@@ -1,7 +1,7 @@
 import { createContext, useCallback, useContext, useEffect, useMemo, useReducer, useRef, useState } from 'react'
 import type { ReactNode } from 'react'
 import { createInitialScheduling, scheduleReview } from './fsrs'
-import { newCardId, newSetId } from './id'
+import { newCardId, newFolderId, newSetId } from './id'
 import { type Backup, type ImportMode, type ImportReport, applyBackup, createBackup, parseBackup } from './backup'
 import { loadKeybindingOverrides, saveKeybindingOverrides } from './keybindingStorage'
 import { processImage } from './media/image-pipeline'
@@ -16,6 +16,8 @@ import {
   type ExportedCard,
   type ExportedSet,
   type FirstSetSource,
+  type Folder,
+  type FolderId,
   type Grade,
   type SetId,
   type Result,
@@ -34,6 +36,11 @@ interface SeshatStore {
   readonly addSet: (input: NewSetInput) => StudySet
   readonly updateSet: (id: SetId, patch: Partial<NewSetInput>) => void
   readonly deleteSet: (id: SetId) => void
+  readonly addFolder: (name: string) => Folder
+  readonly renameFolder: (id: FolderId, name: string) => void
+  readonly deleteFolder: (id: FolderId) => void
+  /** Puts a set into (`member` true) or takes it out of a folder; a set may be in many folders. */
+  readonly setFolderMembership: (folderId: FolderId, setId: SetId, member: boolean) => void
   readonly addCard: (setId: SetId, input: NewCardInput) => StudyCard
   readonly updateCard: (id: CardId, patch: Partial<NewCardInput>) => void
   readonly deleteCard: (id: CardId) => void
@@ -123,6 +130,25 @@ export const SeshatProvider = ({ children }: { readonly children: ReactNode }) =
 
   const deleteSet = useCallback((id: SetId) => {
     dispatch({ type: 'delete-set', id })
+  }, [])
+
+  const addFolder = useCallback((name: string): Folder => {
+    const now = new Date().toISOString()
+    const folder: Folder = { id: newFolderId(), name: name.trim(), setIds: [], createdAt: now, updatedAt: now }
+    dispatch({ type: 'add-folder', folder })
+    return folder
+  }, [])
+
+  const renameFolder = useCallback((id: FolderId, name: string) => {
+    dispatch({ type: 'rename-folder', id, name: name.trim(), now: new Date().toISOString() })
+  }, [])
+
+  const deleteFolder = useCallback((id: FolderId) => {
+    dispatch({ type: 'delete-folder', id })
+  }, [])
+
+  const setFolderMembership = useCallback((folderId: FolderId, setId: SetId, member: boolean) => {
+    dispatch({ type: 'set-folder-membership', folderId, setId, member, now: new Date().toISOString() })
   }, [])
 
   const addCard = useCallback((setId: SetId, input: NewCardInput): StudyCard => {
@@ -291,6 +317,10 @@ export const SeshatProvider = ({ children }: { readonly children: ReactNode }) =
       addSet,
       updateSet,
       deleteSet,
+      addFolder,
+      renameFolder,
+      deleteFolder,
+      setFolderMembership,
       addCard,
       updateCard,
       deleteCard,
@@ -314,6 +344,10 @@ export const SeshatProvider = ({ children }: { readonly children: ReactNode }) =
       addSet,
       updateSet,
       deleteSet,
+      addFolder,
+      renameFolder,
+      deleteFolder,
+      setFolderMembership,
       addCard,
       updateCard,
       deleteCard,

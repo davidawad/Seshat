@@ -4,6 +4,8 @@ import { FlashcardsPage } from './Flashcards'
 import { StudyPage } from './Study'
 import { SetsBrowser } from '../features/sets/SetsBrowser'
 import { SetDetailPage } from '../features/sets/SetDetail'
+import { FolderPage } from '../features/sets/FolderPage'
+import { SetStatsPage } from '../features/stats/SetStatsPage'
 
 // Editors, importers and the test mode load on demand so their CSS/JS stay out of the entry bundle.
 const SetEditPage = lazy(async () => ({ default: (await import('../features/sets/SetEdit')).SetEditPage }))
@@ -32,8 +34,10 @@ export const SetsPage = () => (
       <Route path="new" element={<SetCreatePage />} />
       <Route path="import" element={<SetImportPage />} />
       <Route path="browse" element={<SetBrowsePage />} />
+      <Route path="folders/:id" element={<FolderPage />} />
       <Route path=":id" element={<SetDetailPage />} />
       <Route path=":id/edit" element={<SetEditPage />} />
+      <Route path=":id/stats" element={<SetStatsPage />} />
       <Route path=":id/study" element={<StudyPage />} />
       <Route path=":id/flashcards" element={<FlashcardsPage />} />
       <Route path=":id/test" element={<TestPage />} />

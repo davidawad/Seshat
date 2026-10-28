@@ -1,4 +1,19 @@
 /* Shared by every DataTable: sortable header buttons and the optional filter box. */
+
+/* Sticky column headers. Every DataTable sits in a bounded scroll wrapper (.table-scroll,
+   .set-table-wrap, .set-term-scroll): sticky pins to the nearest scrolling ancestor. */
+.data-table {
+  border-collapse: separate;
+  border-spacing: 0;
+}
+
+.data-table thead th {
+  position: sticky;
+  inset-block-start: 0;
+  z-index: 1;
+  background-color: var(--color-bg-elevated);
+  box-shadow: 0 1px 0 var(--color-border-strong);
+}
 .data-table .num {
   text-align: end;
   font-variant-numeric: tabular-nums;
@@ -49,4 +64,23 @@
 
 .data-table-sort-indicator:not([data-direction='none']) {
   opacity: 1;
+}
+
+/* A quiet per-row action (e.g. Remove): text button that turns accent on hover. */
+.data-table-action {
+  padding: 0.2rem 0.6rem;
+  font: inherit;
+  font-family: var(--font-ui);
+  font-size: 0.8rem;
+  color: var(--color-fg-muted);
+  background: none;
+  border: 1px solid var(--color-border-strong);
+  border-radius: var(--radius-sm);
+  cursor: pointer;
+}
+
+.data-table-action:hover,
+.data-table-action:focus-visible {
+  color: var(--color-accent);
+  border-color: var(--color-accent);
 }

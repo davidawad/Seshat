@@ -46,4 +46,5 @@ pages:
     paths:
       - dist
   rules:
+    # Pushes to master, and a manual "Run pipeline" on master (`just redeploy`): both set CI_COMMIT_BRANCH.
     - if: $CI_COMMIT_BRANCH == $CI_DEFAULT_BRANCH

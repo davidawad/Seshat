@@ -61,6 +61,7 @@ export interface Backup {
   readonly settings: Settings
   readonly keybindings: KeybindingOverrides
   readonly sets: AppState['sets']
+  readonly folders: AppState['folders']
   readonly cards: AppState['cards']
   readonly reviewLog: AppState['reviewLog']
   /** mediaId -> image bytes for every image the cards reference. `{}` for a text-only backup. */
@@ -75,6 +76,7 @@ export const createBackup = (state: AppState, keybindings: KeybindingOverrides, 
   settings: state.settings,
   keybindings,
   sets: state.sets,
+  folders: state.folders,
   cards: state.cards,
   reviewLog: state.reviewLog,
   media: {},
@@ -152,7 +154,11 @@ const integrityError = (backup: Backup): string | null => {
   if (mediaProblem !== null) return mediaProblem
   if (duplicates(backup.sets.map((set) => set.id))) return 'This backup contains duplicate set ids.'
   if (duplicates(backup.cards.map((card) => card.id))) return 'This backup contains duplicate card ids.'
+  if (duplicates(backup.folders.map((folder) => folder.id))) return 'This backup contains duplicate folder ids.'
   const setIds = new Set<string>(backup.sets.map((set) => set.id))
+  if (backup.folders.some((folder) => folder.setIds.some((id) => !setIds.has(id)))) {
+    return 'This backup has folders that list sets it does not contain.'
+  }
   if (backup.cards.some((card) => !setIds.has(card.setId))) return 'This backup has cards that belong to no set.'
   const cardIds = new Set<string>(backup.cards.map((card) => card.id))
   if (backup.reviewLog.some((entry) => !cardIds.has(entry.cardId) || !setIds.has(entry.setId))) {
@@ -242,6 +248,7 @@ export const applyBackup = (current: AppState, backup: Backup, mode: ImportMode)
       state: {
         version: APP_STATE_VERSION,
         sets: backup.sets,
+        folders: backup.folders,
         cards: backup.cards,
         reviewLog: backup.reviewLog,
         settings: backup.settings,
@@ -269,11 +276,18 @@ export const applyBackup = (current: AppState, backup: Backup, mode: ImportMode)
   const newCards = backup.cards.filter((card) => !haveCard.has(card.id))
   const addedCardIds = new Set<string>(newCards.map((card) => card.id))
   const newReviews = backup.reviewLog.filter((entry) => addedCardIds.has(entry.cardId))
+  // Folders merge like sets: only unseen ids are added, each kept to the sets that exist after the merge.
+  const haveFolder = new Set<string>(current.folders.map((folder) => folder.id))
+  const knownSets = new Set<string>([...haveSet, ...newSets.map((set) => set.id)])
+  const newFolders = backup.folders
+    .filter((folder) => !haveFolder.has(folder.id))
+    .map((folder) => ({ ...folder, setIds: folder.setIds.filter((id) => knownSets.has(id)) }))
 
   return {
     state: {
       ...current,
       sets: [...current.sets, ...newSets],
+      folders: [...current.folders, ...newFolders],
       cards: [...current.cards, ...newCards],
       reviewLog: [...current.reviewLog, ...newReviews],
     },

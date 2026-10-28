@@ -170,7 +170,8 @@
 /* Table view */
 .set-table-wrap {
   margin-top: 1.5rem;
-  overflow-x: auto;
+  overflow: auto;
+  max-block-size: calc(100dvh - 14rem);
 }
 
 .set-table {

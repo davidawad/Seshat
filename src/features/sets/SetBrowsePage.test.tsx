@@ -76,6 +76,19 @@ describe('SetBrowsePage', () => {
     expect(screen.getByRole('button', { name: /^Law/ }).getAttribute('aria-pressed')).toBe('true')
   })
 
+  it('adds a whole category as a folder, reusing sets already owned', async () => {
+    const user = userEvent.setup()
+    renderAt('/sets/browse?category=law')
+    await user.click(screen.getByTestId(TESTIDS.browseAdd))
+    await user.click(screen.getByTestId(TESTIDS.browseAddFolder))
+    expect(await screen.findByTestId(TESTIDS.browseOpenFolder)).toBeTruthy()
+    const saved = JSON.parse(window.localStorage.getItem('seshat:app-state:v2') ?? '{}')
+    expect(saved.sets).toHaveLength(1)
+    expect(saved.folders).toHaveLength(1)
+    expect(saved.folders[0].name).toBe('Law')
+    expect(saved.folders[0].setIds).toEqual([saved.sets[0].id])
+  })
+
   it('adds a set once, then shows Added and Open instead of a second Add', async () => {
     const user = userEvent.setup()
     renderAt('/sets/browse?category=law')

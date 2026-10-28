@@ -55,3 +55,21 @@ e2e:
 # violation, 3 if only wedges happened. Why and how: e2e/bombadil/run.sh and the header of spec.ts.
 bombadil limit="4m" runs="5":
     e2e/bombadil/run.sh "{{limit}}" "{{runs}}"
+
+# Manual deploy to GitLab Pages (https://davidawad.gitlab.io/seshat). Runs the same gate CI runs, then
+# pushes master to the `gitlab` remote; that push starts the pipeline whose `pages` job publishes dist/.
+# Refuses off master or with uncommitted tracked changes. See docs/deploying.md.
+deploy:
+    #!/usr/bin/env bash
+    set -euo pipefail
+    [ "$(git branch --show-current)" = master ] || { echo "deploy runs from master (on $(git branch --show-current))"; exit 1; }
+    [ -z "$(git status --porcelain --untracked-files=no)" ] || { echo "commit or stash tracked changes first"; exit 1; }
+    pnpm install --frozen-lockfile
+    pnpm run ci
+    git push gitlab master
+    glab ci status --repo davidawad/seshat --branch master || true
+
+# Redeploy what is already on master without pushing: starts a fresh pipeline for master (the
+# "Run pipeline" button in GitLab). The `pages` job runs on the default branch, so this republishes it.
+redeploy:
+    glab ci run --repo davidawad/seshat --branch master

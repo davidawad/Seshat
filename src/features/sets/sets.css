@@ -405,9 +405,8 @@
 }
 
 /*
- * Set detail fits one desktop viewport (seshat-lse): a compact header, the mode row, then the card
- * preview beside the term table. The page never scrolls; if the terms outgrow the space, only
- * `.set-term-scroll` does (sticky header row). Phones keep the stacked, document-scrolling layout.
+ * Set detail on desktop: a compact header, the mode row, the card preview, then the term table
+ * below it (its own scroll area with a sticky header row once it outgrows `.set-term-scroll`).
  */
 @media (min-width: 641px) {
   .set-detail > * {
@@ -435,7 +434,7 @@
     margin: 0;
   }
 
-  .set-detail-header > :first-child > p:not(.set-detail-back) {
+  .set-detail-header > :first-child > p {
     flex: 1 1 12rem;
     min-width: 0;
     overflow: hidden;
@@ -490,36 +489,9 @@
     margin-bottom: 0.25rem;
   }
 
-  .set-detail-body {
-    flex: 1 1 0;
-    min-height: 0;
-    display: grid;
-    grid-template-columns: minmax(0, 20rem) minmax(0, 1fr);
-    grid-template-rows: minmax(0, 1fr);
-    gap: 1.25rem;
-    align-items: start;
-  }
-
-  /* The preview keeps its 5:3 card; long text scrolls inside the face instead of growing the page. */
-  .set-detail-body .flip-card-scene .flip-card-face {
-    max-height: 12rem;
-    overflow-y: auto;
-    font-size: 1rem;
-  }
-
-  .set-detail-body > .set-preview {
-    margin-inline: 0;
-  }
-
-  .set-detail-body .set-preview button {
-    margin-top: 0.75rem;
-  }
-
+  /* Card preview on top (base .set-preview sizing, centered), the term table below it. */
   .set-detail-terms {
-    display: flex;
-    flex-direction: column;
-    height: 100%;
-    min-height: 0;
+    margin-top: 1.25rem;
   }
 
   .set-detail-terms .set-term-list-heading {
@@ -530,24 +502,8 @@
     margin-block-end: 0.5rem;
   }
 
-  .set-detail-terms .set-term-scroll {
-    flex: 1 1 0;
-    min-height: 0;
-    max-height: none;
-  }
-
   .set-detail-terms .set-term-table thead th,
   .set-detail-terms .set-term-table td {
     padding-block: 0.4rem;
-  }
-}
-
-.set-detail-back {
-  margin: 0 0 0.25rem;
-}
-
-@media (min-width: 641px) {
-  .set-detail-back {
-    margin: 0;
   }
 }
