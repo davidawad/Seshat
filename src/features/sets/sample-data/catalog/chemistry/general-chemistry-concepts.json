@@ -27,33 +27,33 @@
       "tags": ["chemistry"]
     },
     {
-      "prompt": "VSEPR geometry of CH4",
+      "prompt": "VSEPR geometry of $\\mathrm{CH_4}$",
       "content": {
         "kind": "short-answer",
-        "answer": "Tetrahedral, bond angle about 109.5°.",
-        "acceptableAnswers": []
+        "answer": "Tetrahedral, bond angle about $109.5^\\circ$.",
+        "acceptableAnswers": ["Tetrahedral, bond angle about 109.5°."]
       },
       "explanation": null,
       "sourceRef": "Zumdahl, Chemistry (Cengage); Atkins, Physical Chemistry (Oxford)",
       "tags": ["chemistry"]
     },
     {
-      "prompt": "VSEPR geometry of H2O",
+      "prompt": "VSEPR geometry of $\\mathrm{H_2O}$",
       "content": {
         "kind": "short-answer",
-        "answer": "Bent, bond angle about 104.5°.",
-        "acceptableAnswers": []
+        "answer": "Bent, bond angle about $104.5^\\circ$.",
+        "acceptableAnswers": ["Bent, bond angle about 104.5°."]
       },
       "explanation": null,
       "sourceRef": "Zumdahl, Chemistry (Cengage); Atkins, Physical Chemistry (Oxford)",
       "tags": ["chemistry"]
     },
     {
-      "prompt": "VSEPR geometry of CO2",
+      "prompt": "VSEPR geometry of $\\mathrm{CO_2}$",
       "content": {
         "kind": "short-answer",
-        "answer": "Linear, 180°.",
-        "acceptableAnswers": []
+        "answer": "Linear, $180^\\circ$.",
+        "acceptableAnswers": ["Linear, 180°."]
       },
       "explanation": null,
       "sourceRef": "Zumdahl, Chemistry (Cengage); Atkins, Physical Chemistry (Oxford)",
@@ -96,8 +96,8 @@
       "prompt": "Percent yield",
       "content": {
         "kind": "short-answer",
-        "answer": "(Actual yield / theoretical yield) × 100",
-        "acceptableAnswers": []
+        "answer": "$\\frac{\\text{actual yield}}{\\text{theoretical yield}} \\times 100$",
+        "acceptableAnswers": ["(Actual yield / theoretical yield) × 100"]
       },
       "explanation": null,
       "sourceRef": "Zumdahl, Chemistry (Cengage); Atkins, Physical Chemistry (Oxford)",
@@ -107,8 +107,8 @@
       "prompt": "Ideal gas law",
       "content": {
         "kind": "short-answer",
-        "answer": "PV = nRT; R = 0.08206 L·atm/(mol·K)",
-        "acceptableAnswers": []
+        "answer": "$PV = nRT$; $R = 0.08206\\ \\mathrm{L \\cdot atm/(mol \\cdot K)}$",
+        "acceptableAnswers": ["PV = nRT; R = 0.08206 L·atm/(mol·K)"]
       },
       "explanation": null,
       "sourceRef": "Zumdahl, Chemistry (Cengage); Atkins, Physical Chemistry (Oxford)",
@@ -129,8 +129,8 @@
       "prompt": "Boyle's law",
       "content": {
         "kind": "short-answer",
-        "answer": "At constant T, P V is constant (P1 V1 = P2 V2).",
-        "acceptableAnswers": []
+        "answer": "At constant $T$, $PV$ is constant ($P_1 V_1 = P_2 V_2$).",
+        "acceptableAnswers": ["At constant T, P V is constant (P1 V1 = P2 V2)."]
       },
       "explanation": null,
       "sourceRef": "Zumdahl, Chemistry (Cengage); Atkins, Physical Chemistry (Oxford)",
@@ -140,8 +140,8 @@
       "prompt": "Charles's law",
       "content": {
         "kind": "short-answer",
-        "answer": "At constant P, V/T is constant (T in kelvin).",
-        "acceptableAnswers": []
+        "answer": "At constant $P$, $V/T$ is constant ($T$ in kelvin).",
+        "acceptableAnswers": ["At constant P, V/T is constant (T in kelvin)."]
       },
       "explanation": null,
       "sourceRef": "Zumdahl, Chemistry (Cengage); Atkins, Physical Chemistry (Oxford)",
@@ -170,11 +170,11 @@
       "tags": ["chemistry"]
     },
     {
-      "prompt": "Equilibrium constant Kc for aA + bB ⇌ cC + dD",
+      "prompt": "Equilibrium constant $K_c$ for $aA + bB \\rightleftharpoons cC + dD$",
       "content": {
         "kind": "short-answer",
-        "answer": "Kc = [C]^c [D]^d / ([A]^a [B]^b)",
-        "acceptableAnswers": []
+        "answer": "$K_c = \\frac{[C]^c [D]^d}{[A]^a [B]^b}$",
+        "acceptableAnswers": ["Kc = [C]^c [D]^d / ([A]^a [B]^b)"]
       },
       "explanation": null,
       "sourceRef": "Zumdahl, Chemistry (Cengage); Atkins, Physical Chemistry (Oxford)",
@@ -184,8 +184,8 @@
       "prompt": "pH definition",
       "content": {
         "kind": "short-answer",
-        "answer": "pH = -log10 [H+]",
-        "acceptableAnswers": []
+        "answer": "$\\mathrm{pH} = -\\log_{10} [\\mathrm{H^+}]$",
+        "acceptableAnswers": ["pH = -log10 [H+]"]
       },
       "explanation": null,
       "sourceRef": "Zumdahl, Chemistry (Cengage); Atkins, Physical Chemistry (Oxford)",
@@ -195,8 +195,8 @@
       "prompt": "Water autoionization constant at 25 °C",
       "content": {
         "kind": "short-answer",
-        "answer": "Kw = [H+][OH-] = 1.0 × 10^-14; pH + pOH = 14.",
-        "acceptableAnswers": []
+        "answer": "$K_w = [\\mathrm{H^+}][\\mathrm{OH^-}] = 1.0 \\times 10^{-14}$; $\\mathrm{pH} + \\mathrm{pOH} = 14$.",
+        "acceptableAnswers": ["Kw = [H+][OH-] = 1.0 × 10^-14; pH + pOH = 14."]
       },
       "explanation": null,
       "sourceRef": "Zumdahl, Chemistry (Cengage); Atkins, Physical Chemistry (Oxford)",
@@ -217,8 +217,8 @@
       "prompt": "Henderson–Hasselbalch equation",
       "content": {
         "kind": "short-answer",
-        "answer": "pH = pKa + log([A-]/[HA])",
-        "acceptableAnswers": []
+        "answer": "$\\mathrm{pH} = \\mathrm{p}K_a + \\log\\frac{[\\mathrm{A^-}]}{[\\mathrm{HA}]}$",
+        "acceptableAnswers": ["pH = pKa + log([A-]/[HA])"]
       },
       "explanation": null,
       "sourceRef": "Zumdahl, Chemistry (Cengage); Atkins, Physical Chemistry (Oxford)",
@@ -250,8 +250,8 @@
       "prompt": "Enthalpy change sign for an exothermic reaction",
       "content": {
         "kind": "short-answer",
-        "answer": "Negative (ΔH < 0).",
-        "acceptableAnswers": []
+        "answer": "Negative ($\\Delta H < 0$).",
+        "acceptableAnswers": ["Negative (ΔH < 0)."]
       },
       "explanation": null,
       "sourceRef": "Zumdahl, Chemistry (Cengage); Atkins, Physical Chemistry (Oxford)",
@@ -261,19 +261,19 @@
       "prompt": "Gibbs free energy and spontaneity",
       "content": {
         "kind": "short-answer",
-        "answer": "ΔG = ΔH - TΔS; a reaction is spontaneous at constant T and P when ΔG < 0.",
-        "acceptableAnswers": []
+        "answer": "$\\Delta G = \\Delta H - T\\Delta S$; a reaction is spontaneous at constant $T$ and $P$ when $\\Delta G < 0$.",
+        "acceptableAnswers": ["ΔG = ΔH - TΔS; a reaction is spontaneous at constant T and P when ΔG < 0."]
       },
       "explanation": null,
       "sourceRef": "Zumdahl, Chemistry (Cengage); Atkins, Physical Chemistry (Oxford)",
       "tags": ["chemistry"]
     },
     {
-      "prompt": "Relation of ΔG° to K",
+      "prompt": "Relation of $\\Delta G^\\circ$ to $K$",
       "content": {
         "kind": "short-answer",
-        "answer": "ΔG° = -RT ln K",
-        "acceptableAnswers": []
+        "answer": "$\\Delta G^\\circ = -RT \\ln K$",
+        "acceptableAnswers": ["ΔG° = -RT ln K"]
       },
       "explanation": null,
       "sourceRef": "Zumdahl, Chemistry (Cengage); Atkins, Physical Chemistry (Oxford)",
@@ -283,8 +283,8 @@
       "prompt": "Rate law (general form)",
       "content": {
         "kind": "short-answer",
-        "answer": "rate = k [A]^m [B]^n, with orders found experimentally.",
-        "acceptableAnswers": []
+        "answer": "$\\text{rate} = k[A]^m [B]^n$, with orders found experimentally.",
+        "acceptableAnswers": ["rate = k [A]^m [B]^n, with orders found experimentally."]
       },
       "explanation": null,
       "sourceRef": "Zumdahl, Chemistry (Cengage); Atkins, Physical Chemistry (Oxford)",
@@ -294,8 +294,8 @@
       "prompt": "Half-life of a first-order reaction",
       "content": {
         "kind": "short-answer",
-        "answer": "t½ = 0.693 / k",
-        "acceptableAnswers": []
+        "answer": "$t_{1/2} = \\frac{0.693}{k}$",
+        "acceptableAnswers": ["t½ = 0.693 / k"]
       },
       "explanation": null,
       "sourceRef": "Zumdahl, Chemistry (Cengage); Atkins, Physical Chemistry (Oxford)",
@@ -305,8 +305,8 @@
       "prompt": "Activation energy and rate: Arrhenius equation",
       "content": {
         "kind": "short-answer",
-        "answer": "k = A e^(-Ea/RT)",
-        "acceptableAnswers": []
+        "answer": "$k = A e^{-E_a/RT}$",
+        "acceptableAnswers": ["k = A e^(-Ea/RT)"]
       },
       "explanation": null,
       "sourceRef": "Zumdahl, Chemistry (Cengage); Atkins, Physical Chemistry (Oxford)",
@@ -338,8 +338,8 @@
       "prompt": "Nernst equation at 25 °C",
       "content": {
         "kind": "short-answer",
-        "answer": "E = E° - (0.0592/n) log Q",
-        "acceptableAnswers": []
+        "answer": "$E = E^\\circ - \\frac{0.0592}{n} \\log Q$",
+        "acceptableAnswers": ["E = E° - (0.0592/n) log Q"]
       },
       "explanation": null,
       "sourceRef": "Zumdahl, Chemistry (Cengage); Atkins, Physical Chemistry (Oxford)",

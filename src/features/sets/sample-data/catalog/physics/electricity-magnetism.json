@@ -8,19 +8,19 @@
       "prompt": "Coulomb's law",
       "content": {
         "kind": "short-answer",
-        "answer": "F = k q1 q2 / r^2, with k = 1/(4π ε0) ≈ 8.99 × 10^9 N·m^2/C^2",
-        "acceptableAnswers": []
+        "answer": "$F = \\frac{k q_1 q_2}{r^2}$, with $k = \\frac{1}{4\\pi\\epsilon_0} \\approx 8.99 \\times 10^9\\,\\mathrm{N{\\cdot}m^2/C^2}$",
+        "acceptableAnswers": ["F = k q1 q2 / r^2, with k = 1/(4π ε0) ≈ 8.99 × 10^9 N·m^2/C^2"]
       },
       "explanation": null,
       "sourceRef": "Griffiths, Introduction to Electrodynamics (Cambridge); Halliday, Resnick & Walker",
       "tags": ["physics"]
     },
     {
-      "prompt": "Elementary charge e",
+      "prompt": "Elementary charge $e$",
       "content": {
         "kind": "short-answer",
-        "answer": "1.602176634 × 10^-19 C (exact in SI)",
-        "acceptableAnswers": []
+        "answer": "$1.602176634 \\times 10^{-19}\\,\\mathrm{C}$ (exact in SI)",
+        "acceptableAnswers": ["1.602176634 × 10^-19 C (exact in SI)"]
       },
       "explanation": null,
       "sourceRef": "Griffiths, Introduction to Electrodynamics (Cambridge); Halliday, Resnick & Walker",
@@ -30,8 +30,8 @@
       "prompt": "Electric field of a point charge",
       "content": {
         "kind": "short-answer",
-        "answer": "E = k q / r^2, directed away from a positive charge.",
-        "acceptableAnswers": []
+        "answer": "$E = \\frac{kq}{r^2}$, directed away from a positive charge.",
+        "acceptableAnswers": ["E = k q / r^2, directed away from a positive charge."]
       },
       "explanation": null,
       "sourceRef": "Griffiths, Introduction to Electrodynamics (Cambridge); Halliday, Resnick & Walker",
@@ -41,8 +41,8 @@
       "prompt": "Gauss's law (integral form)",
       "content": {
         "kind": "short-answer",
-        "answer": "∮ E · dA = Q_enclosed / ε0",
-        "acceptableAnswers": []
+        "answer": "$\\oint \\vec{E} \\cdot d\\vec{A} = \\frac{Q_{enc}}{\\epsilon_0}$",
+        "acceptableAnswers": ["∮ E · dA = Q_enclosed / ε0"]
       },
       "explanation": null,
       "sourceRef": "Griffiths, Introduction to Electrodynamics (Cambridge); Halliday, Resnick & Walker",
@@ -52,8 +52,8 @@
       "prompt": "Electric potential of a point charge",
       "content": {
         "kind": "short-answer",
-        "answer": "V = k q / r",
-        "acceptableAnswers": []
+        "answer": "$V = \\frac{kq}{r}$",
+        "acceptableAnswers": ["V = k q / r"]
       },
       "explanation": null,
       "sourceRef": "Griffiths, Introduction to Electrodynamics (Cambridge); Halliday, Resnick & Walker",
@@ -63,8 +63,8 @@
       "prompt": "Relation of E to V",
       "content": {
         "kind": "short-answer",
-        "answer": "E = -∇V",
-        "acceptableAnswers": []
+        "answer": "$\\vec{E} = -\\nabla V$",
+        "acceptableAnswers": ["E = -∇V"]
       },
       "explanation": null,
       "sourceRef": "Griffiths, Introduction to Electrodynamics (Cambridge); Halliday, Resnick & Walker",
@@ -74,8 +74,8 @@
       "prompt": "Capacitance definition",
       "content": {
         "kind": "short-answer",
-        "answer": "C = Q / V",
-        "acceptableAnswers": []
+        "answer": "$C = \\frac{Q}{V}$",
+        "acceptableAnswers": ["C = Q / V"]
       },
       "explanation": null,
       "sourceRef": "Griffiths, Introduction to Electrodynamics (Cambridge); Halliday, Resnick & Walker",
@@ -85,8 +85,8 @@
       "prompt": "Energy stored in a capacitor",
       "content": {
         "kind": "short-answer",
-        "answer": "U = (1/2) C V^2",
-        "acceptableAnswers": []
+        "answer": "$U = \\frac{1}{2}CV^2$",
+        "acceptableAnswers": ["U = (1/2) C V^2"]
       },
       "explanation": null,
       "sourceRef": "Griffiths, Introduction to Electrodynamics (Cambridge); Halliday, Resnick & Walker",
@@ -96,8 +96,8 @@
       "prompt": "Parallel-plate capacitor",
       "content": {
         "kind": "short-answer",
-        "answer": "C = ε0 A / d",
-        "acceptableAnswers": []
+        "answer": "$C = \\frac{\\epsilon_0 A}{d}$",
+        "acceptableAnswers": ["C = ε0 A / d"]
       },
       "explanation": null,
       "sourceRef": "Griffiths, Introduction to Electrodynamics (Cambridge); Halliday, Resnick & Walker",
@@ -107,8 +107,8 @@
       "prompt": "Capacitors in parallel and in series",
       "content": {
         "kind": "short-answer",
-        "answer": "Parallel: C = ΣCi; series: 1/C = Σ1/Ci.",
-        "acceptableAnswers": []
+        "answer": "Parallel: $C = \\sum C_i$; series: $\\frac{1}{C} = \\sum \\frac{1}{C_i}$.",
+        "acceptableAnswers": ["Parallel: C = ΣCi; series: 1/C = Σ1/Ci."]
       },
       "explanation": null,
       "sourceRef": "Griffiths, Introduction to Electrodynamics (Cambridge); Halliday, Resnick & Walker",
@@ -118,8 +118,8 @@
       "prompt": "Ohm's law",
       "content": {
         "kind": "short-answer",
-        "answer": "V = I R",
-        "acceptableAnswers": []
+        "answer": "$V = IR$",
+        "acceptableAnswers": ["V = I R"]
       },
       "explanation": null,
       "sourceRef": "Griffiths, Introduction to Electrodynamics (Cambridge); Halliday, Resnick & Walker",
@@ -129,8 +129,8 @@
       "prompt": "Resistors in series and in parallel",
       "content": {
         "kind": "short-answer",
-        "answer": "Series: R = ΣRi; parallel: 1/R = Σ1/Ri.",
-        "acceptableAnswers": []
+        "answer": "Series: $R = \\sum R_i$; parallel: $\\frac{1}{R} = \\sum \\frac{1}{R_i}$.",
+        "acceptableAnswers": ["Series: R = ΣRi; parallel: 1/R = Σ1/Ri."]
       },
       "explanation": null,
       "sourceRef": "Griffiths, Introduction to Electrodynamics (Cambridge); Halliday, Resnick & Walker",
@@ -140,8 +140,8 @@
       "prompt": "Electric power",
       "content": {
         "kind": "short-answer",
-        "answer": "P = I V = I^2 R = V^2 / R",
-        "acceptableAnswers": []
+        "answer": "$P = IV = I^2 R = \\frac{V^2}{R}$",
+        "acceptableAnswers": ["P = I V = I^2 R = V^2 / R"]
       },
       "explanation": null,
       "sourceRef": "Griffiths, Introduction to Electrodynamics (Cambridge); Halliday, Resnick & Walker",
@@ -173,8 +173,8 @@
       "prompt": "RC circuit time constant",
       "content": {
         "kind": "short-answer",
-        "answer": "τ = R C",
-        "acceptableAnswers": []
+        "answer": "$\\tau = RC$",
+        "acceptableAnswers": ["τ = R C"]
       },
       "explanation": null,
       "sourceRef": "Griffiths, Introduction to Electrodynamics (Cambridge); Halliday, Resnick & Walker",
@@ -184,19 +184,19 @@
       "prompt": "Magnetic force on a moving charge (Lorentz force)",
       "content": {
         "kind": "short-answer",
-        "answer": "F = q (E + v × B)",
-        "acceptableAnswers": []
+        "answer": "$\\vec{F} = q(\\vec{E} + \\vec{v} \\times \\vec{B})$",
+        "acceptableAnswers": ["F = q (E + v × B)"]
       },
       "explanation": null,
       "sourceRef": "Griffiths, Introduction to Electrodynamics (Cambridge); Halliday, Resnick & Walker",
       "tags": ["physics"]
     },
     {
-      "prompt": "Radius of a charged particle circling in a uniform B",
+      "prompt": "Radius of a charged particle circling in a uniform $B$",
       "content": {
         "kind": "short-answer",
-        "answer": "r = m v / (q B)",
-        "acceptableAnswers": []
+        "answer": "$r = \\frac{mv}{qB}$",
+        "acceptableAnswers": ["r = m v / (q B)"]
       },
       "explanation": null,
       "sourceRef": "Griffiths, Introduction to Electrodynamics (Cambridge); Halliday, Resnick & Walker",
@@ -206,8 +206,8 @@
       "prompt": "Force on a current-carrying wire",
       "content": {
         "kind": "short-answer",
-        "answer": "F = I L × B",
-        "acceptableAnswers": []
+        "answer": "$\\vec{F} = I\\vec{L} \\times \\vec{B}$",
+        "acceptableAnswers": ["F = I L × B"]
       },
       "explanation": null,
       "sourceRef": "Griffiths, Introduction to Electrodynamics (Cambridge); Halliday, Resnick & Walker",
@@ -217,8 +217,8 @@
       "prompt": "Biot–Savart law (field of a current element)",
       "content": {
         "kind": "short-answer",
-        "answer": "dB = (μ0 / 4π) I dl × r̂ / r^2",
-        "acceptableAnswers": []
+        "answer": "$d\\vec{B} = \\frac{\\mu_0}{4\\pi}\\frac{I\\,d\\vec{l} \\times \\hat{r}}{r^2}$",
+        "acceptableAnswers": ["dB = (μ0 / 4π) I dl × r̂ / r^2"]
       },
       "explanation": null,
       "sourceRef": "Griffiths, Introduction to Electrodynamics (Cambridge); Halliday, Resnick & Walker",
@@ -228,8 +228,8 @@
       "prompt": "Ampère's law (static)",
       "content": {
         "kind": "short-answer",
-        "answer": "∮ B · dl = μ0 I_enclosed",
-        "acceptableAnswers": []
+        "answer": "$\\oint \\vec{B} \\cdot d\\vec{l} = \\mu_0 I_{enc}$",
+        "acceptableAnswers": ["∮ B · dl = μ0 I_enclosed"]
       },
       "explanation": null,
       "sourceRef": "Griffiths, Introduction to Electrodynamics (Cambridge); Halliday, Resnick & Walker",
@@ -239,8 +239,8 @@
       "prompt": "Magnetic field of a long straight wire",
       "content": {
         "kind": "short-answer",
-        "answer": "B = μ0 I / (2π r)",
-        "acceptableAnswers": []
+        "answer": "$B = \\frac{\\mu_0 I}{2\\pi r}$",
+        "acceptableAnswers": ["B = μ0 I / (2π r)"]
       },
       "explanation": null,
       "sourceRef": "Griffiths, Introduction to Electrodynamics (Cambridge); Halliday, Resnick & Walker",
@@ -250,8 +250,8 @@
       "prompt": "Gauss's law for magnetism",
       "content": {
         "kind": "short-answer",
-        "answer": "∮ B · dA = 0 (no magnetic monopoles)",
-        "acceptableAnswers": []
+        "answer": "$\\oint \\vec{B} \\cdot d\\vec{A} = 0$ (no magnetic monopoles)",
+        "acceptableAnswers": ["∮ B · dA = 0 (no magnetic monopoles)"]
       },
       "explanation": null,
       "sourceRef": "Griffiths, Introduction to Electrodynamics (Cambridge); Halliday, Resnick & Walker",
@@ -261,8 +261,8 @@
       "prompt": "Faraday's law of induction",
       "content": {
         "kind": "short-answer",
-        "answer": "EMF = -dΦ_B / dt",
-        "acceptableAnswers": []
+        "answer": "$\\mathcal{E} = -\\frac{d\\Phi_B}{dt}$",
+        "acceptableAnswers": ["EMF = -dΦ_B / dt"]
       },
       "explanation": null,
       "sourceRef": "Griffiths, Introduction to Electrodynamics (Cambridge); Halliday, Resnick & Walker",
@@ -294,8 +294,8 @@
       "prompt": "Maxwell's addition to Ampère's law",
       "content": {
         "kind": "short-answer",
-        "answer": "The displacement-current term μ0 ε0 dΦ_E/dt.",
-        "acceptableAnswers": []
+        "answer": "The displacement-current term $\\mu_0 \\epsilon_0 \\frac{d\\Phi_E}{dt}$.",
+        "acceptableAnswers": ["The displacement-current term μ0 ε0 dΦ_E/dt."]
       },
       "explanation": null,
       "sourceRef": "Griffiths, Introduction to Electrodynamics (Cambridge); Halliday, Resnick & Walker",
@@ -305,8 +305,8 @@
       "prompt": "Speed of light in terms of constants",
       "content": {
         "kind": "short-answer",
-        "answer": "c = 1/sqrt(μ0 ε0)",
-        "acceptableAnswers": []
+        "answer": "$c = \\frac{1}{\\sqrt{\\mu_0 \\epsilon_0}}$",
+        "acceptableAnswers": ["c = 1/sqrt(μ0 ε0)"]
       },
       "explanation": null,
       "sourceRef": "Griffiths, Introduction to Electrodynamics (Cambridge); Halliday, Resnick & Walker",
@@ -316,8 +316,8 @@
       "prompt": "Speed of light in vacuum",
       "content": {
         "kind": "short-answer",
-        "answer": "299 792 458 m/s (exact)",
-        "acceptableAnswers": []
+        "answer": "$299\\,792\\,458\\,\\mathrm{m/s}$ (exact)",
+        "acceptableAnswers": ["299 792 458 m/s (exact)"]
       },
       "explanation": null,
       "sourceRef": "Griffiths, Introduction to Electrodynamics (Cambridge); Halliday, Resnick & Walker",
@@ -327,8 +327,8 @@
       "prompt": "Inductor energy",
       "content": {
         "kind": "short-answer",
-        "answer": "U = (1/2) L I^2",
-        "acceptableAnswers": []
+        "answer": "$U = \\frac{1}{2}LI^2$",
+        "acceptableAnswers": ["U = (1/2) L I^2"]
       },
       "explanation": null,
       "sourceRef": "Griffiths, Introduction to Electrodynamics (Cambridge); Halliday, Resnick & Walker",
@@ -338,8 +338,8 @@
       "prompt": "Inductor voltage",
       "content": {
         "kind": "short-answer",
-        "answer": "V = L dI/dt",
-        "acceptableAnswers": []
+        "answer": "$V = L\\frac{dI}{dt}$",
+        "acceptableAnswers": ["V = L dI/dt"]
       },
       "explanation": null,
       "sourceRef": "Griffiths, Introduction to Electrodynamics (Cambridge); Halliday, Resnick & Walker",
@@ -349,8 +349,8 @@
       "prompt": "Poynting vector",
       "content": {
         "kind": "short-answer",
-        "answer": "S = (1/μ0) E × B, the energy flux of an electromagnetic wave.",
-        "acceptableAnswers": []
+        "answer": "$\\vec{S} = \\frac{1}{\\mu_0}\\vec{E} \\times \\vec{B}$, the energy flux of an electromagnetic wave.",
+        "acceptableAnswers": ["S = (1/μ0) E × B, the energy flux of an electromagnetic wave."]
       },
       "explanation": null,
       "sourceRef": "Griffiths, Introduction to Electrodynamics (Cambridge); Halliday, Resnick & Walker",

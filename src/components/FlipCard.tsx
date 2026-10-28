@@ -5,6 +5,7 @@ import type { CardFrontBack } from '../features/study/card-summary'
 import { CardImage } from './CardImage'
 import { DiagramView } from './DiagramView'
 import './flip-card.css'
+import { MathText } from './MathText'
 
 interface FlipCardProps {
   readonly front: string
@@ -66,7 +67,9 @@ interface FlipCardProps {
             className="flip-card-diagram"
           />
         )}
-        <p>{front}</p>
+        <p>
+          <MathText text={front} />
+        </p>
         {tip}
       </div>
       <div className="legible illuminated-panel flip-card-face flip-card-back" aria-hidden={!flipped}>
@@ -89,7 +92,9 @@ interface FlipCardProps {
             className="flip-card-diagram"
           />
         )}
-        <p>{back}</p>
+        <p>
+          <MathText text={back} />
+        </p>
         {tip}
       </div>
     </div>

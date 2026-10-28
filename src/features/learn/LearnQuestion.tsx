@@ -17,6 +17,7 @@ import { RevealPanel } from '../study/RevealPanel'
 import { useStudyShortcuts } from '../study/useStudyShortcuts'
 import { buildMultipleChoice } from '../test-mode/generate-test'
 import { type Stage, attemptFor, isTypedCorrect } from './learn-session'
+import { MathText } from '../../components/MathText'
 
 /** How many leading options get a digit key — see `learn.option1-4` in lib/keybindings.ts. */
 const MAX_SHORTCUT_OPTIONS = 4
@@ -97,7 +98,7 @@ const Choice = ({ front, image, options, active, onPick }: ChoiceProps) => {
       <Legible className="illuminated-panel study-panel">
         <div className="study-card">
           <p ref={promptRef} tabIndex={-1} id={promptId} className="study-prompt" data-testid={TESTIDS.learnPrompt}>
-            {front}
+            <MathText text={front} />
           </p>
           <CardImage image={image} alt="" className="study-prompt-image" />
         </div>
@@ -119,7 +120,7 @@ const Choice = ({ front, image, options, active, onPick }: ChoiceProps) => {
             onFocus={() => setHighlight(index)}
             {...{ [NAV_OPTION_ATTRIBUTE]: '' }}
           >
-            {option}
+            <MathText text={option} />
             {index < MAX_SHORTCUT_OPTIONS && <span className="grade-key"> ({keyFor(`learn.option${index + 1}`)})</span>}
           </button>
         ))}
@@ -149,7 +150,7 @@ const Typed = ({ front, image, onSubmit }: TypedProps) => {
       }}
     >
       <p id={promptId} className="study-prompt" data-testid={TESTIDS.learnPrompt}>
-        {front}
+        <MathText text={front} />
       </p>
       <CardImage image={image} alt="" className="study-prompt-image" />
       <div className="study-field">

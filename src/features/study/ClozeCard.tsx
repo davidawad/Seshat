@@ -2,6 +2,7 @@ import { TESTIDS } from '../../lib/testids'
 import { useId } from 'react'
 import type { ClozeContent } from '../../types'
 import { parseCloze } from './cloze'
+import { MathText } from '../../components/MathText'
 
 interface ClozeCardProps {
   readonly prompt: string
@@ -17,12 +18,18 @@ export const ClozeCard = ({ prompt, content, value, onChange, disabled }: ClozeC
 
   return (
     <div className="study-card">
-      {prompt.trim() !== '' && <p className="study-prompt">{prompt}</p>}
+      {prompt.trim() !== '' && (
+        <p className="study-prompt">
+          <MathText text={prompt} />
+        </p>
+      )}
       {parsed === null ? (
-        <p className="study-cloze-text">{content.text}</p>
+        <p className="study-cloze-text">
+          <MathText text={content.text} />
+        </p>
       ) : (
         <p className="study-cloze-text">
-          {parsed.before}
+          <MathText text={parsed.before} />
           <label className="study-cloze-label" htmlFor={inputId}>
             <span className="sr-only">Missing word</span>
             <input
@@ -38,7 +45,7 @@ export const ClozeCard = ({ prompt, content, value, onChange, disabled }: ClozeC
               size={Math.max(parsed.answer.length, 6)}
             />
           </label>
-          {parsed.after}
+          <MathText text={parsed.after} />
         </p>
       )}
     </div>

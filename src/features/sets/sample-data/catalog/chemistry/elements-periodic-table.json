@@ -327,8 +327,8 @@
       "prompt": "Avogadro's number",
       "content": {
         "kind": "short-answer",
-        "answer": "6.022 × 10^23 per mole",
-        "acceptableAnswers": []
+        "answer": "$6.022 \\times 10^{23}$ per mole",
+        "acceptableAnswers": ["6.022 × 10^23 per mole"]
       },
       "explanation": null,
       "sourceRef": "Zumdahl, Chemistry (Cengage); IUPAC periodic table",
@@ -338,8 +338,8 @@
       "prompt": "Electron configuration of neon",
       "content": {
         "kind": "short-answer",
-        "answer": "1s2 2s2 2p6",
-        "acceptableAnswers": []
+        "answer": "$1s^2\\,2s^2\\,2p^6$",
+        "acceptableAnswers": ["1s2 2s2 2p6"]
       },
       "explanation": null,
       "sourceRef": "Zumdahl, Chemistry (Cengage); IUPAC periodic table",

@@ -8,8 +8,8 @@
       "prompt": "Division algorithm",
       "content": {
         "kind": "short-answer",
-        "answer": "For integers a and b > 0 there are unique q, r with a = bq + r and 0 ≤ r < b.",
-        "acceptableAnswers": []
+        "answer": "For integers $a$ and $b > 0$ there are unique $q, r$ with $a = bq + r$ and $0 \\le r < b$.",
+        "acceptableAnswers": ["For integers a and b > 0 there are unique q, r with a = bq + r and 0 ≤ r < b."]
       },
       "explanation": null,
       "sourceRef": "Niven, Zuckerman & Montgomery, An Introduction to the Theory of Numbers (Wiley)",
@@ -19,8 +19,8 @@
       "prompt": "Bézout's identity",
       "content": {
         "kind": "short-answer",
-        "answer": "gcd(a,b) = ax + by for some integers x, y.",
-        "acceptableAnswers": []
+        "answer": "$\\gcd(a,b) = ax + by$ for some integers $x, y$.",
+        "acceptableAnswers": ["gcd(a,b) = ax + by for some integers x, y."]
       },
       "explanation": null,
       "sourceRef": "Niven, Zuckerman & Montgomery, An Introduction to the Theory of Numbers (Wiley)",
@@ -30,19 +30,19 @@
       "prompt": "Euclidean algorithm",
       "content": {
         "kind": "short-answer",
-        "answer": "Repeatedly replace (a,b) with (b, a mod b); the last nonzero remainder is gcd(a,b).",
-        "acceptableAnswers": []
+        "answer": "Repeatedly replace $(a,b)$ with $(b, a \\bmod b)$; the last nonzero remainder is $\\gcd(a,b)$.",
+        "acceptableAnswers": ["Repeatedly replace (a,b) with (b, a mod b); the last nonzero remainder is gcd(a,b)."]
       },
       "explanation": null,
       "sourceRef": "Niven, Zuckerman & Montgomery, An Introduction to the Theory of Numbers (Wiley)",
       "tags": ["number-theory"]
     },
     {
-      "prompt": "gcd(a,b) · lcm(a,b)",
+      "prompt": "$\\gcd(a,b) \\cdot \\operatorname{lcm}(a,b)$",
       "content": {
         "kind": "short-answer",
-        "answer": "a · b (for positive a, b)",
-        "acceptableAnswers": []
+        "answer": "$a \\cdot b$ (for positive $a, b$)",
+        "acceptableAnswers": ["a · b (for positive a, b)"]
       },
       "explanation": null,
       "sourceRef": "Niven, Zuckerman & Montgomery, An Introduction to the Theory of Numbers (Wiley)",
@@ -52,8 +52,8 @@
       "prompt": "Euclid's lemma",
       "content": {
         "kind": "short-answer",
-        "answer": "If a prime p divides ab, then p divides a or p divides b.",
-        "acceptableAnswers": []
+        "answer": "If a prime $p$ divides $ab$, then $p$ divides $a$ or $p$ divides $b$.",
+        "acceptableAnswers": ["If a prime p divides ab, then p divides a or p divides b."]
       },
       "explanation": null,
       "sourceRef": "Niven, Zuckerman & Montgomery, An Introduction to the Theory of Numbers (Wiley)",
@@ -63,41 +63,41 @@
       "prompt": "Fundamental theorem of arithmetic",
       "content": {
         "kind": "short-answer",
-        "answer": "Every integer > 1 factors into primes uniquely up to order.",
-        "acceptableAnswers": []
+        "answer": "Every integer $> 1$ factors into primes uniquely up to order.",
+        "acceptableAnswers": ["Every integer > 1 factors into primes uniquely up to order."]
       },
       "explanation": null,
       "sourceRef": "Niven, Zuckerman & Montgomery, An Introduction to the Theory of Numbers (Wiley)",
       "tags": ["number-theory"]
     },
     {
-      "prompt": "a ≡ b (mod n) means",
+      "prompt": "$a \\equiv b \\pmod{n}$ means",
       "content": {
         "kind": "short-answer",
-        "answer": "n divides (a - b).",
-        "acceptableAnswers": []
+        "answer": "$n$ divides $(a - b)$.",
+        "acceptableAnswers": ["n divides (a - b)."]
       },
       "explanation": null,
       "sourceRef": "Niven, Zuckerman & Montgomery, An Introduction to the Theory of Numbers (Wiley)",
       "tags": ["number-theory"]
     },
     {
-      "prompt": "Linear congruence ax ≡ b (mod n) has a solution iff",
+      "prompt": "Linear congruence $ax \\equiv b \\pmod{n}$ has a solution iff",
       "content": {
         "kind": "short-answer",
-        "answer": "gcd(a,n) divides b.",
-        "acceptableAnswers": []
+        "answer": "$\\gcd(a,n)$ divides $b$.",
+        "acceptableAnswers": ["gcd(a,n) divides b."]
       },
       "explanation": null,
       "sourceRef": "Niven, Zuckerman & Montgomery, An Introduction to the Theory of Numbers (Wiley)",
       "tags": ["number-theory"]
     },
     {
-      "prompt": "Inverse of a modulo n exists iff",
+      "prompt": "Inverse of $a$ modulo $n$ exists iff",
       "content": {
         "kind": "short-answer",
-        "answer": "gcd(a,n) = 1.",
-        "acceptableAnswers": []
+        "answer": "$\\gcd(a,n) = 1$.",
+        "acceptableAnswers": ["gcd(a,n) = 1."]
       },
       "explanation": null,
       "sourceRef": "Niven, Zuckerman & Montgomery, An Introduction to the Theory of Numbers (Wiley)",
@@ -107,8 +107,10 @@
       "prompt": "Chinese remainder theorem",
       "content": {
         "kind": "short-answer",
-        "answer": "If the moduli n1..nk are pairwise coprime, the system x ≡ ai (mod ni) has a unique solution mod n1···nk.",
-        "acceptableAnswers": []
+        "answer": "If the moduli $n_1, \\ldots, n_k$ are pairwise coprime, the system $x \\equiv a_i \\pmod{n_i}$ has a unique solution mod $n_1 \\cdots n_k$.",
+        "acceptableAnswers": [
+          "If the moduli n1..nk are pairwise coprime, the system x ≡ ai (mod ni) has a unique solution mod n1···nk."
+        ]
       },
       "explanation": null,
       "sourceRef": "Niven, Zuckerman & Montgomery, An Introduction to the Theory of Numbers (Wiley)",
@@ -118,8 +120,8 @@
       "prompt": "Fermat's little theorem",
       "content": {
         "kind": "short-answer",
-        "answer": "If p is prime and p ∤ a, then a^(p-1) ≡ 1 (mod p).",
-        "acceptableAnswers": []
+        "answer": "If $p$ is prime and $p \\nmid a$, then $a^{p-1} \\equiv 1 \\pmod{p}$.",
+        "acceptableAnswers": ["If p is prime and p ∤ a, then a^(p-1) ≡ 1 (mod p)."]
       },
       "explanation": null,
       "sourceRef": "Niven, Zuckerman & Montgomery, An Introduction to the Theory of Numbers (Wiley)",
@@ -129,52 +131,52 @@
       "prompt": "Euler's theorem",
       "content": {
         "kind": "short-answer",
-        "answer": "If gcd(a,n) = 1, then a^φ(n) ≡ 1 (mod n).",
-        "acceptableAnswers": []
+        "answer": "If $\\gcd(a,n) = 1$, then $a^{\\varphi(n)} \\equiv 1 \\pmod{n}$.",
+        "acceptableAnswers": ["If gcd(a,n) = 1, then a^φ(n) ≡ 1 (mod n)."]
       },
       "explanation": null,
       "sourceRef": "Niven, Zuckerman & Montgomery, An Introduction to the Theory of Numbers (Wiley)",
       "tags": ["number-theory"]
     },
     {
-      "prompt": "Euler's totient φ(n)",
+      "prompt": "Euler's totient $\\varphi(n)$",
       "content": {
         "kind": "short-answer",
-        "answer": "The count of integers in 1..n that are coprime to n.",
-        "acceptableAnswers": []
+        "answer": "The count of integers in $\\{1, \\ldots, n\\}$ that are coprime to $n$.",
+        "acceptableAnswers": ["The count of integers in 1..n that are coprime to n."]
       },
       "explanation": null,
       "sourceRef": "Niven, Zuckerman & Montgomery, An Introduction to the Theory of Numbers (Wiley)",
       "tags": ["number-theory"]
     },
     {
-      "prompt": "φ(p) for prime p",
+      "prompt": "$\\varphi(p)$ for prime $p$",
       "content": {
         "kind": "short-answer",
-        "answer": "p - 1",
-        "acceptableAnswers": []
+        "answer": "$p - 1$",
+        "acceptableAnswers": ["p - 1"]
       },
       "explanation": null,
       "sourceRef": "Niven, Zuckerman & Montgomery, An Introduction to the Theory of Numbers (Wiley)",
       "tags": ["number-theory"]
     },
     {
-      "prompt": "φ(p^k) for prime p",
+      "prompt": "$\\varphi(p^k)$ for prime $p$",
       "content": {
         "kind": "short-answer",
-        "answer": "p^k - p^(k-1) = p^(k-1)(p - 1)",
-        "acceptableAnswers": []
+        "answer": "$p^k - p^{k-1} = p^{k-1}(p - 1)$",
+        "acceptableAnswers": ["p^k - p^(k-1) = p^(k-1)(p - 1)"]
       },
       "explanation": null,
       "sourceRef": "Niven, Zuckerman & Montgomery, An Introduction to the Theory of Numbers (Wiley)",
       "tags": ["number-theory"]
     },
     {
-      "prompt": "φ(mn) when gcd(m,n) = 1",
+      "prompt": "$\\varphi(mn)$ when $\\gcd(m,n) = 1$",
       "content": {
         "kind": "short-answer",
-        "answer": "φ(m) φ(n)",
-        "acceptableAnswers": []
+        "answer": "$\\varphi(m)\\,\\varphi(n)$",
+        "acceptableAnswers": ["φ(m) φ(n)"]
       },
       "explanation": null,
       "sourceRef": "Niven, Zuckerman & Montgomery, An Introduction to the Theory of Numbers (Wiley)",
@@ -184,30 +186,30 @@
       "prompt": "Wilson's theorem",
       "content": {
         "kind": "short-answer",
-        "answer": "An integer p > 1 is prime iff (p - 1)! ≡ -1 (mod p).",
-        "acceptableAnswers": []
+        "answer": "An integer $p > 1$ is prime iff $(p - 1)! \\equiv -1 \\pmod{p}$.",
+        "acceptableAnswers": ["An integer p > 1 is prime iff (p - 1)! ≡ -1 (mod p)."]
       },
       "explanation": null,
       "sourceRef": "Niven, Zuckerman & Montgomery, An Introduction to the Theory of Numbers (Wiley)",
       "tags": ["number-theory"]
     },
     {
-      "prompt": "Number of positive divisors of n = p1^a1 ··· pk^ak",
+      "prompt": "Number of positive divisors of $n = p_1^{a_1} \\cdots p_k^{a_k}$",
       "content": {
         "kind": "short-answer",
-        "answer": "(a1 + 1)(a2 + 1)···(ak + 1)",
-        "acceptableAnswers": []
+        "answer": "$(a_1 + 1)(a_2 + 1) \\cdots (a_k + 1)$",
+        "acceptableAnswers": ["(a1 + 1)(a2 + 1)···(ak + 1)"]
       },
       "explanation": null,
       "sourceRef": "Niven, Zuckerman & Montgomery, An Introduction to the Theory of Numbers (Wiley)",
       "tags": ["number-theory"]
     },
     {
-      "prompt": "Sum of divisors σ(p^a)",
+      "prompt": "Sum of divisors $\\sigma(p^a)$",
       "content": {
         "kind": "short-answer",
-        "answer": "1 + p + ... + p^a = (p^(a+1) - 1)/(p - 1)",
-        "acceptableAnswers": []
+        "answer": "$1 + p + \\cdots + p^a = \\frac{p^{a+1} - 1}{p - 1}$",
+        "acceptableAnswers": ["1 + p + ... + p^a = (p^(a+1) - 1)/(p - 1)"]
       },
       "explanation": null,
       "sourceRef": "Niven, Zuckerman & Montgomery, An Introduction to the Theory of Numbers (Wiley)",
@@ -236,22 +238,22 @@
       "tags": ["number-theory"]
     },
     {
-      "prompt": "Order of a modulo n",
+      "prompt": "Order of $a$ modulo $n$",
       "content": {
         "kind": "short-answer",
-        "answer": "The least k > 0 with a^k ≡ 1 (mod n); it divides φ(n).",
-        "acceptableAnswers": []
+        "answer": "The least $k > 0$ with $a^k \\equiv 1 \\pmod{n}$; it divides $\\varphi(n)$.",
+        "acceptableAnswers": ["The least k > 0 with a^k ≡ 1 (mod n); it divides φ(n)."]
       },
       "explanation": null,
       "sourceRef": "Niven, Zuckerman & Montgomery, An Introduction to the Theory of Numbers (Wiley)",
       "tags": ["number-theory"]
     },
     {
-      "prompt": "Primitive root modulo n",
+      "prompt": "Primitive root modulo $n$",
       "content": {
         "kind": "short-answer",
-        "answer": "An element whose order is φ(n); it generates all units mod n.",
-        "acceptableAnswers": []
+        "answer": "An element whose order is $\\varphi(n)$; it generates all units mod $n$.",
+        "acceptableAnswers": ["An element whose order is φ(n); it generates all units mod n."]
       },
       "explanation": null,
       "sourceRef": "Niven, Zuckerman & Montgomery, An Introduction to the Theory of Numbers (Wiley)",
@@ -261,41 +263,41 @@
       "prompt": "Which moduli have primitive roots?",
       "content": {
         "kind": "short-answer",
-        "answer": "1, 2, 4, p^k, and 2p^k for odd primes p.",
-        "acceptableAnswers": []
+        "answer": "1, 2, 4, $p^k$, and $2p^k$ for odd primes $p$.",
+        "acceptableAnswers": ["1, 2, 4, p^k, and 2p^k for odd primes p."]
       },
       "explanation": null,
       "sourceRef": "Niven, Zuckerman & Montgomery, An Introduction to the Theory of Numbers (Wiley)",
       "tags": ["number-theory"]
     },
     {
-      "prompt": "Quadratic residue modulo p",
+      "prompt": "Quadratic residue modulo $p$",
       "content": {
         "kind": "short-answer",
-        "answer": "An a not divisible by p for which x^2 ≡ a (mod p) has a solution.",
-        "acceptableAnswers": []
+        "answer": "An $a$ not divisible by $p$ for which $x^2 \\equiv a \\pmod{p}$ has a solution.",
+        "acceptableAnswers": ["An a not divisible by p for which x^2 ≡ a (mod p) has a solution."]
       },
       "explanation": null,
       "sourceRef": "Niven, Zuckerman & Montgomery, An Introduction to the Theory of Numbers (Wiley)",
       "tags": ["number-theory"]
     },
     {
-      "prompt": "Euler's criterion for odd prime p",
+      "prompt": "Euler's criterion for odd prime $p$",
       "content": {
         "kind": "short-answer",
-        "answer": "a is a quadratic residue mod p iff a^((p-1)/2) ≡ 1 (mod p).",
-        "acceptableAnswers": []
+        "answer": "$a$ is a quadratic residue mod $p$ iff $a^{(p-1)/2} \\equiv 1 \\pmod{p}$.",
+        "acceptableAnswers": ["a is a quadratic residue mod p iff a^((p-1)/2) ≡ 1 (mod p)."]
       },
       "explanation": null,
       "sourceRef": "Niven, Zuckerman & Montgomery, An Introduction to the Theory of Numbers (Wiley)",
       "tags": ["number-theory"]
     },
     {
-      "prompt": "Quadratic reciprocity (odd primes p ≠ q)",
+      "prompt": "Quadratic reciprocity (odd primes $p \\ne q$)",
       "content": {
         "kind": "short-answer",
-        "answer": "(p/q)(q/p) = (-1)^((p-1)/2 · (q-1)/2)",
-        "acceptableAnswers": []
+        "answer": "$\\left(\\frac{p}{q}\\right)\\left(\\frac{q}{p}\\right) = (-1)^{\\frac{p-1}{2} \\cdot \\frac{q-1}{2}}$",
+        "acceptableAnswers": ["(p/q)(q/p) = (-1)^((p-1)/2 · (q-1)/2)"]
       },
       "explanation": null,
       "sourceRef": "Niven, Zuckerman & Montgomery, An Introduction to the Theory of Numbers (Wiley)",
@@ -305,8 +307,8 @@
       "prompt": "Which primes are sums of two squares (Fermat)?",
       "content": {
         "kind": "short-answer",
-        "answer": "2 and the primes p ≡ 1 (mod 4).",
-        "acceptableAnswers": []
+        "answer": "2 and the primes $p \\equiv 1 \\pmod{4}$.",
+        "acceptableAnswers": ["2 and the primes p ≡ 1 (mod 4)."]
       },
       "explanation": null,
       "sourceRef": "Niven, Zuckerman & Montgomery, An Introduction to the Theory of Numbers (Wiley)",
@@ -327,8 +329,8 @@
       "prompt": "Infinitely many primes: Euclid's idea",
       "content": {
         "kind": "short-answer",
-        "answer": "Given primes p1..pk, any prime factor of p1···pk + 1 is a new prime.",
-        "acceptableAnswers": []
+        "answer": "Given primes $p_1, \\ldots, p_k$, any prime factor of $p_1 \\cdots p_k + 1$ is a new prime.",
+        "acceptableAnswers": ["Given primes p1..pk, any prime factor of p1···pk + 1 is a new prime."]
       },
       "explanation": null,
       "sourceRef": "Niven, Zuckerman & Montgomery, An Introduction to the Theory of Numbers (Wiley)",
@@ -338,8 +340,8 @@
       "prompt": "Dirichlet's theorem on primes in arithmetic progressions",
       "content": {
         "kind": "short-answer",
-        "answer": "If gcd(a,d) = 1, then a, a+d, a+2d, ... contains infinitely many primes.",
-        "acceptableAnswers": []
+        "answer": "If $\\gcd(a,d) = 1$, then $a, a+d, a+2d, \\ldots$ contains infinitely many primes.",
+        "acceptableAnswers": ["If gcd(a,d) = 1, then a, a+d, a+2d, ... contains infinitely many primes."]
       },
       "explanation": null,
       "sourceRef": "Niven, Zuckerman & Montgomery, An Introduction to the Theory of Numbers (Wiley)",
@@ -349,8 +351,8 @@
       "prompt": "Prime number theorem",
       "content": {
         "kind": "short-answer",
-        "answer": "The number of primes ≤ x is asymptotic to x / ln x.",
-        "acceptableAnswers": []
+        "answer": "The number of primes $\\le x$ is asymptotic to $\\frac{x}{\\ln x}$.",
+        "acceptableAnswers": ["The number of primes ≤ x is asymptotic to x / ln x."]
       },
       "explanation": null,
       "sourceRef": "Niven, Zuckerman & Montgomery, An Introduction to the Theory of Numbers (Wiley)",
@@ -360,8 +362,8 @@
       "prompt": "Bertrand's postulate",
       "content": {
         "kind": "short-answer",
-        "answer": "For every n > 1 there is a prime p with n < p < 2n.",
-        "acceptableAnswers": []
+        "answer": "For every $n > 1$ there is a prime $p$ with $n < p < 2n$.",
+        "acceptableAnswers": ["For every n > 1 there is a prime p with n < p < 2n."]
       },
       "explanation": null,
       "sourceRef": "Niven, Zuckerman & Montgomery, An Introduction to the Theory of Numbers (Wiley)",
@@ -371,8 +373,8 @@
       "prompt": "Pythagorean triples: primitive form",
       "content": {
         "kind": "short-answer",
-        "answer": "(m^2 - n^2, 2mn, m^2 + n^2) with m > n, coprime, opposite parity.",
-        "acceptableAnswers": []
+        "answer": "$(m^2 - n^2, 2mn, m^2 + n^2)$ with $m > n$, coprime, opposite parity.",
+        "acceptableAnswers": ["(m^2 - n^2, 2mn, m^2 + n^2) with m > n, coprime, opposite parity."]
       },
       "explanation": null,
       "sourceRef": "Niven, Zuckerman & Montgomery, An Introduction to the Theory of Numbers (Wiley)",
@@ -382,8 +384,8 @@
       "prompt": "Fermat's Last Theorem",
       "content": {
         "kind": "short-answer",
-        "answer": "x^n + y^n = z^n has no positive-integer solutions for n > 2 (proved by Wiles, 1995).",
-        "acceptableAnswers": []
+        "answer": "$x^n + y^n = z^n$ has no positive-integer solutions for $n > 2$ (proved by Wiles, 1995).",
+        "acceptableAnswers": ["x^n + y^n = z^n has no positive-integer solutions for n > 2 (proved by Wiles, 1995)."]
       },
       "explanation": null,
       "sourceRef": "Niven, Zuckerman & Montgomery, An Introduction to the Theory of Numbers (Wiley)",

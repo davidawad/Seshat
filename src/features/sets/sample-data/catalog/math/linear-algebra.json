@@ -5,11 +5,11 @@
   "tags": ["math", "linear-algebra"],
   "cards": [
     {
-      "prompt": "Linear independence of vectors v1..vk",
+      "prompt": "Linear independence of vectors $v_1, \\ldots, v_k$",
       "content": {
         "kind": "short-answer",
-        "answer": "c1v1 + ... + ckvk = 0 only when all ci = 0.",
-        "acceptableAnswers": []
+        "answer": "$c_1 v_1 + \\cdots + c_k v_k = 0$ only when all $c_i = 0$.",
+        "acceptableAnswers": ["c1v1 + ... + ckvk = 0 only when all ci = 0."]
       },
       "explanation": null,
       "sourceRef": "Strang, Introduction to Linear Algebra (Wellesley-Cambridge)",
@@ -38,11 +38,11 @@
       "tags": ["math"]
     },
     {
-      "prompt": "Rank-nullity theorem for an m×n matrix A",
+      "prompt": "Rank-nullity theorem for an $m \\times n$ matrix $A$",
       "content": {
         "kind": "short-answer",
-        "answer": "rank(A) + nullity(A) = n (the number of columns).",
-        "acceptableAnswers": []
+        "answer": "$\\operatorname{rank}(A) + \\operatorname{nullity}(A) = n$ (the number of columns).",
+        "acceptableAnswers": ["rank(A) + nullity(A) = n (the number of columns)."]
       },
       "explanation": null,
       "sourceRef": "Strang, Introduction to Linear Algebra (Wellesley-Cambridge)",
@@ -60,33 +60,33 @@
       "tags": ["math"]
     },
     {
-      "prompt": "Null space of A",
+      "prompt": "Null space of $A$",
       "content": {
         "kind": "short-answer",
-        "answer": "The set of all x with Ax = 0.",
-        "acceptableAnswers": []
+        "answer": "The set of all $x$ with $Ax = 0$.",
+        "acceptableAnswers": ["The set of all x with Ax = 0."]
       },
       "explanation": null,
       "sourceRef": "Strang, Introduction to Linear Algebra (Wellesley-Cambridge)",
       "tags": ["math"]
     },
     {
-      "prompt": "det(AB)",
+      "prompt": "$\\det(AB)$",
       "content": {
         "kind": "short-answer",
-        "answer": "det(A) · det(B)",
-        "acceptableAnswers": []
+        "answer": "$\\det(A) \\cdot \\det(B)$",
+        "acceptableAnswers": ["det(A) · det(B)"]
       },
       "explanation": null,
       "sourceRef": "Strang, Introduction to Linear Algebra (Wellesley-Cambridge)",
       "tags": ["math"]
     },
     {
-      "prompt": "det(A^T)",
+      "prompt": "$\\det(A^T)$",
       "content": {
         "kind": "short-answer",
-        "answer": "det(A)",
-        "acceptableAnswers": []
+        "answer": "$\\det(A)$",
+        "acceptableAnswers": ["det(A)"]
       },
       "explanation": null,
       "sourceRef": "Strang, Introduction to Linear Algebra (Wellesley-Cambridge)",
@@ -96,15 +96,15 @@
       "prompt": "A square matrix is invertible if and only if",
       "content": {
         "kind": "short-answer",
-        "answer": "det(A) ≠ 0 (equivalently, it has full rank).",
-        "acceptableAnswers": []
+        "answer": "$\\det(A) \\ne 0$ (equivalently, it has full rank).",
+        "acceptableAnswers": ["det(A) ≠ 0 (equivalently, it has full rank)."]
       },
       "explanation": null,
       "sourceRef": "Strang, Introduction to Linear Algebra (Wellesley-Cambridge)",
       "tags": ["math"]
     },
     {
-      "prompt": "det of a triangular matrix",
+      "prompt": "$\\det$ of a triangular matrix",
       "content": {
         "kind": "short-answer",
         "answer": "The product of its diagonal entries.",
@@ -115,33 +115,33 @@
       "tags": ["math"]
     },
     {
-      "prompt": "(AB)^-1",
+      "prompt": "$(AB)^{-1}$",
       "content": {
         "kind": "short-answer",
-        "answer": "B^-1 A^-1",
-        "acceptableAnswers": []
+        "answer": "$B^{-1} A^{-1}$",
+        "acceptableAnswers": ["B^-1 A^-1"]
       },
       "explanation": null,
       "sourceRef": "Strang, Introduction to Linear Algebra (Wellesley-Cambridge)",
       "tags": ["math"]
     },
     {
-      "prompt": "(AB)^T",
+      "prompt": "$(AB)^T$",
       "content": {
         "kind": "short-answer",
-        "answer": "B^T A^T",
-        "acceptableAnswers": []
+        "answer": "$B^T A^T$",
+        "acceptableAnswers": ["B^T A^T"]
       },
       "explanation": null,
       "sourceRef": "Strang, Introduction to Linear Algebra (Wellesley-Cambridge)",
       "tags": ["math"]
     },
     {
-      "prompt": "Eigenvector v and eigenvalue λ of A",
+      "prompt": "Eigenvector $v$ and eigenvalue $\\lambda$ of $A$",
       "content": {
         "kind": "short-answer",
-        "answer": "Av = λv with v ≠ 0.",
-        "acceptableAnswers": []
+        "answer": "$Av = \\lambda v$ with $v \\ne 0$.",
+        "acceptableAnswers": ["Av = λv with v ≠ 0."]
       },
       "explanation": null,
       "sourceRef": "Strang, Introduction to Linear Algebra (Wellesley-Cambridge)",
@@ -151,30 +151,30 @@
       "prompt": "Characteristic equation for eigenvalues",
       "content": {
         "kind": "short-answer",
-        "answer": "det(A - λI) = 0",
-        "acceptableAnswers": []
+        "answer": "$\\det(A - \\lambda I) = 0$",
+        "acceptableAnswers": ["det(A - λI) = 0"]
       },
       "explanation": null,
       "sourceRef": "Strang, Introduction to Linear Algebra (Wellesley-Cambridge)",
       "tags": ["math"]
     },
     {
-      "prompt": "Sum of the eigenvalues of A (with multiplicity)",
+      "prompt": "Sum of the eigenvalues of $A$ (with multiplicity)",
       "content": {
         "kind": "short-answer",
-        "answer": "trace(A)",
-        "acceptableAnswers": []
+        "answer": "$\\operatorname{trace}(A)$",
+        "acceptableAnswers": ["trace(A)"]
       },
       "explanation": null,
       "sourceRef": "Strang, Introduction to Linear Algebra (Wellesley-Cambridge)",
       "tags": ["math"]
     },
     {
-      "prompt": "Product of the eigenvalues of A (with multiplicity)",
+      "prompt": "Product of the eigenvalues of $A$ (with multiplicity)",
       "content": {
         "kind": "short-answer",
-        "answer": "det(A)",
-        "acceptableAnswers": []
+        "answer": "$\\det(A)$",
+        "acceptableAnswers": ["det(A)"]
       },
       "explanation": null,
       "sourceRef": "Strang, Introduction to Linear Algebra (Wellesley-Cambridge)",
@@ -195,19 +195,19 @@
       "prompt": "Spectral theorem for real symmetric matrices",
       "content": {
         "kind": "short-answer",
-        "answer": "They have real eigenvalues and an orthonormal basis of eigenvectors: A = QΛQ^T.",
-        "acceptableAnswers": []
+        "answer": "They have real eigenvalues and an orthonormal basis of eigenvectors: $A = Q \\Lambda Q^T$.",
+        "acceptableAnswers": ["They have real eigenvalues and an orthonormal basis of eigenvectors: A = QΛQ^T."]
       },
       "explanation": null,
       "sourceRef": "Strang, Introduction to Linear Algebra (Wellesley-Cambridge)",
       "tags": ["math"]
     },
     {
-      "prompt": "Orthogonal matrix Q",
+      "prompt": "Orthogonal matrix $Q$",
       "content": {
         "kind": "short-answer",
-        "answer": "Q^T Q = I, so Q^-1 = Q^T; its columns are orthonormal.",
-        "acceptableAnswers": []
+        "answer": "$Q^T Q = I$, so $Q^{-1} = Q^T$; its columns are orthonormal.",
+        "acceptableAnswers": ["Q^T Q = I, so Q^-1 = Q^T; its columns are orthonormal."]
       },
       "explanation": null,
       "sourceRef": "Strang, Introduction to Linear Algebra (Wellesley-Cambridge)",
@@ -217,8 +217,8 @@
       "prompt": "Dot product and angle",
       "content": {
         "kind": "short-answer",
-        "answer": "u · v = |u||v| cos θ",
-        "acceptableAnswers": []
+        "answer": "$u \\cdot v = \\|u\\|\\|v\\| \\cos\\theta$",
+        "acceptableAnswers": ["u · v = |u||v| cos θ"]
       },
       "explanation": null,
       "sourceRef": "Strang, Introduction to Linear Algebra (Wellesley-Cambridge)",
@@ -228,30 +228,30 @@
       "prompt": "Cauchy–Schwarz inequality",
       "content": {
         "kind": "short-answer",
-        "answer": "|u · v| ≤ |u||v|",
-        "acceptableAnswers": []
+        "answer": "$|u \\cdot v| \\le \\|u\\|\\|v\\|$",
+        "acceptableAnswers": ["|u · v| ≤ |u||v|"]
       },
       "explanation": null,
       "sourceRef": "Strang, Introduction to Linear Algebra (Wellesley-Cambridge)",
       "tags": ["math"]
     },
     {
-      "prompt": "Projection of b onto the line through a",
+      "prompt": "Projection of $b$ onto the line through $a$",
       "content": {
         "kind": "short-answer",
-        "answer": "(a·b / a·a) a",
-        "acceptableAnswers": []
+        "answer": "$\\frac{a \\cdot b}{a \\cdot a}\\, a$",
+        "acceptableAnswers": ["(a·b / a·a) a"]
       },
       "explanation": null,
       "sourceRef": "Strang, Introduction to Linear Algebra (Wellesley-Cambridge)",
       "tags": ["math"]
     },
     {
-      "prompt": "Least-squares solution of Ax = b",
+      "prompt": "Least-squares solution of $Ax = b$",
       "content": {
         "kind": "short-answer",
-        "answer": "Solve the normal equations A^T A x̂ = A^T b.",
-        "acceptableAnswers": []
+        "answer": "Solve the normal equations $A^T A \\hat{x} = A^T b$.",
+        "acceptableAnswers": ["Solve the normal equations A^T A x̂ = A^T b."]
       },
       "explanation": null,
       "sourceRef": "Strang, Introduction to Linear Algebra (Wellesley-Cambridge)",
@@ -272,8 +272,8 @@
       "prompt": "Positive definite symmetric matrix",
       "content": {
         "kind": "short-answer",
-        "answer": "x^T A x > 0 for every x ≠ 0 (equivalently all eigenvalues > 0).",
-        "acceptableAnswers": []
+        "answer": "$x^T A x > 0$ for every $x \\ne 0$ (equivalently all eigenvalues $> 0$).",
+        "acceptableAnswers": ["x^T A x > 0 for every x ≠ 0 (equivalently all eigenvalues > 0)."]
       },
       "explanation": null,
       "sourceRef": "Strang, Introduction to Linear Algebra (Wellesley-Cambridge)",
@@ -283,8 +283,8 @@
       "prompt": "Singular value decomposition",
       "content": {
         "kind": "short-answer",
-        "answer": "A = UΣV^T, with U and V orthogonal and Σ diagonal with non-negative singular values.",
-        "acceptableAnswers": []
+        "answer": "$A = U \\Sigma V^T$, with $U$ and $V$ orthogonal and $\\Sigma$ diagonal with non-negative singular values.",
+        "acceptableAnswers": ["A = UΣV^T, with U and V orthogonal and Σ diagonal with non-negative singular values."]
       },
       "explanation": null,
       "sourceRef": "Strang, Introduction to Linear Algebra (Wellesley-Cambridge)",
@@ -294,8 +294,8 @@
       "prompt": "Diagonalizable matrix",
       "content": {
         "kind": "short-answer",
-        "answer": "A = PDP^-1, which holds when A has n linearly independent eigenvectors.",
-        "acceptableAnswers": []
+        "answer": "$A = P D P^{-1}$, which holds when $A$ has $n$ linearly independent eigenvectors.",
+        "acceptableAnswers": ["A = PDP^-1, which holds when A has n linearly independent eigenvectors."]
       },
       "explanation": null,
       "sourceRef": "Strang, Introduction to Linear Algebra (Wellesley-Cambridge)",
@@ -305,30 +305,30 @@
       "prompt": "Cramer's rule",
       "content": {
         "kind": "short-answer",
-        "answer": "xi = det(Ai) / det(A), where Ai is A with column i replaced by b.",
-        "acceptableAnswers": []
+        "answer": "$x_i = \\frac{\\det(A_i)}{\\det(A)}$, where $A_i$ is $A$ with column $i$ replaced by $b$.",
+        "acceptableAnswers": ["xi = det(Ai) / det(A), where Ai is A with column i replaced by b."]
       },
       "explanation": null,
       "sourceRef": "Strang, Introduction to Linear Algebra (Wellesley-Cambridge)",
       "tags": ["math"]
     },
     {
-      "prompt": "Linear transformation T",
+      "prompt": "Linear transformation $T$",
       "content": {
         "kind": "short-answer",
-        "answer": "T(u + v) = T(u) + T(v) and T(cu) = cT(u).",
-        "acceptableAnswers": []
+        "answer": "$T(u + v) = T(u) + T(v)$ and $T(cu) = cT(u)$.",
+        "acceptableAnswers": ["T(u + v) = T(u) + T(v) and T(cu) = cT(u)."]
       },
       "explanation": null,
       "sourceRef": "Strang, Introduction to Linear Algebra (Wellesley-Cambridge)",
       "tags": ["math"]
     },
     {
-      "prompt": "Solutions of Ax = b exist for every b if and only if",
+      "prompt": "Solutions of $Ax = b$ exist for every $b$ if and only if",
       "content": {
         "kind": "short-answer",
-        "answer": "The columns of A span R^m (rank = m).",
-        "acceptableAnswers": []
+        "answer": "The columns of $A$ span $\\mathbb{R}^m$ (rank $= m$).",
+        "acceptableAnswers": ["The columns of A span R^m (rank = m)."]
       },
       "explanation": null,
       "sourceRef": "Strang, Introduction to Linear Algebra (Wellesley-Cambridge)",

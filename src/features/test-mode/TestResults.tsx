@@ -4,6 +4,7 @@ import { useFocusWhen } from '../../lib/routeFocus'
 import { TESTIDS } from '../../lib/testids'
 import type { TestQuestion } from './generate-test'
 import { type TestAnswer, answerLabel, correctAnswerLabel, gradeAnswer } from './grade-test'
+import { MathText } from '../../components/MathText'
 
 interface TestResultsProps {
   readonly questions: readonly TestQuestion[]
@@ -56,7 +57,7 @@ export const TestResults = ({ questions, answers, onRetryMissed }: TestResultsPr
             </p>
             <Legible>
               <p className="test-question-prompt">
-                {index + 1}. {question.front}
+                {index + 1}. <MathText text={question.front} />
               </p>
               <p className="test-your-answer">
                 Your answer: {answer === undefined || answerLabel(answer) === '' ? '(blank)' : answerLabel(answer)}

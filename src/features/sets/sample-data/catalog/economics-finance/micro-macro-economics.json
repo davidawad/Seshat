@@ -41,8 +41,8 @@
       "prompt": "Price elasticity of demand",
       "content": {
         "kind": "short-answer",
-        "answer": "% change in quantity demanded / % change in price.",
-        "acceptableAnswers": []
+        "answer": "$\\frac{\\%\\ \\text{change in quantity demanded}}{\\%\\ \\text{change in price}}$.",
+        "acceptableAnswers": ["% change in quantity demanded / % change in price."]
       },
       "explanation": null,
       "sourceRef": "Mankiw, Principles of Economics (Cengage); Mishkin, The Economics of Money, Banking and Financial Markets",
@@ -52,8 +52,8 @@
       "prompt": "Elastic vs inelastic demand",
       "content": {
         "kind": "short-answer",
-        "answer": "|elasticity| > 1 (elastic) vs < 1 (inelastic).",
-        "acceptableAnswers": []
+        "answer": "$|\\text{elasticity}| > 1$ (elastic) vs $< 1$ (inelastic).",
+        "acceptableAnswers": ["|elasticity| > 1 (elastic) vs < 1 (inelastic)."]
       },
       "explanation": null,
       "sourceRef": "Mankiw, Principles of Economics (Cengage); Mishkin, The Economics of Money, Banking and Financial Markets",
@@ -129,8 +129,10 @@
       "prompt": "Monopoly pricing",
       "content": {
         "kind": "short-answer",
-        "answer": "Produces where MR = MC and charges the price on the demand curve at that quantity; price above MC.",
-        "acceptableAnswers": []
+        "answer": "Produces where $MR = MC$ and charges the price on the demand curve at that quantity; price above $MC$.",
+        "acceptableAnswers": [
+          "Produces where MR = MC and charges the price on the demand curve at that quantity; price above MC."
+        ]
       },
       "explanation": null,
       "sourceRef": "Mankiw, Principles of Economics (Cengage); Mishkin, The Economics of Money, Banking and Financial Markets",
@@ -195,8 +197,8 @@
       "prompt": "GDP expenditure identity",
       "content": {
         "kind": "short-answer",
-        "answer": "Y = C + I + G + NX",
-        "acceptableAnswers": []
+        "answer": "$Y = C + I + G + NX$",
+        "acceptableAnswers": ["Y = C + I + G + NX"]
       },
       "explanation": null,
       "sourceRef": "Mankiw, Principles of Economics (Cengage); Mishkin, The Economics of Money, Banking and Financial Markets",
@@ -217,8 +219,8 @@
       "prompt": "Unemployment rate",
       "content": {
         "kind": "short-answer",
-        "answer": "Unemployed / labor force.",
-        "acceptableAnswers": []
+        "answer": "$\\frac{\\text{unemployed}}{\\text{labor force}}$.",
+        "acceptableAnswers": ["Unemployed / labor force."]
       },
       "explanation": null,
       "sourceRef": "Mankiw, Principles of Economics (Cengage); Mishkin, The Economics of Money, Banking and Financial Markets",
@@ -272,8 +274,8 @@
       "prompt": "Money multiplier (simple)",
       "content": {
         "kind": "short-answer",
-        "answer": "1 / reserve ratio",
-        "acceptableAnswers": []
+        "answer": "$\\frac{1}{\\text{reserve ratio}}$",
+        "acceptableAnswers": ["1 / reserve ratio"]
       },
       "explanation": null,
       "sourceRef": "Mankiw, Principles of Economics (Cengage); Mishkin, The Economics of Money, Banking and Financial Markets",
@@ -283,8 +285,8 @@
       "prompt": "Fisher equation",
       "content": {
         "kind": "short-answer",
-        "answer": "Nominal rate ≈ real rate + expected inflation.",
-        "acceptableAnswers": []
+        "answer": "Nominal rate $\\approx$ real rate + expected inflation.",
+        "acceptableAnswers": ["Nominal rate ≈ real rate + expected inflation."]
       },
       "explanation": null,
       "sourceRef": "Mankiw, Principles of Economics (Cengage); Mishkin, The Economics of Money, Banking and Financial Markets",
@@ -294,8 +296,8 @@
       "prompt": "Quantity theory of money",
       "content": {
         "kind": "short-answer",
-        "answer": "M V = P Y",
-        "acceptableAnswers": []
+        "answer": "$MV = PY$",
+        "acceptableAnswers": ["M V = P Y"]
       },
       "explanation": null,
       "sourceRef": "Mankiw, Principles of Economics (Cengage); Mishkin, The Economics of Money, Banking and Financial Markets",
@@ -305,8 +307,8 @@
       "prompt": "Keynesian multiplier (simple)",
       "content": {
         "kind": "short-answer",
-        "answer": "1 / (1 - MPC)",
-        "acceptableAnswers": []
+        "answer": "$\\frac{1}{1 - MPC}$",
+        "acceptableAnswers": ["1 / (1 - MPC)"]
       },
       "explanation": null,
       "sourceRef": "Mankiw, Principles of Economics (Cengage); Mishkin, The Economics of Money, Banking and Financial Markets",
@@ -360,8 +362,8 @@
       "prompt": "Rule of 70",
       "content": {
         "kind": "short-answer",
-        "answer": "Years to double ≈ 70 / growth rate (%).",
-        "acceptableAnswers": []
+        "answer": "Years to double $\\approx \\frac{70}{\\text{growth rate (\\%)}}$.",
+        "acceptableAnswers": ["Years to double ≈ 70 / growth rate (%)."]
       },
       "explanation": null,
       "sourceRef": "Mankiw, Principles of Economics (Cengage); Mishkin, The Economics of Money, Banking and Financial Markets",

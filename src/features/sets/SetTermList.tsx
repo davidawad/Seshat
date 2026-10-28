@@ -8,6 +8,7 @@ import { useDebouncedValue } from '../../lib/use-debounced-value'
 import type { StudyCard } from '../../types'
 import { DiagramView } from '../../components/DiagramView'
 import { cardFrontBack } from '../study/card-summary'
+import { MathText } from '../../components/MathText'
 
 /** How long typing must pause before the card filter is applied. */
 const FILTER_DEBOUNCE_MS = 150
@@ -37,7 +38,7 @@ const termColumn = helper.accessor((row) => row.front, {
   cell: ({ row: { original } }) => (
     <>
       <Legible as="span" measure={false}>
-        {original.front}
+        <MathText text={original.front} />
       </Legible>
       {original.termImage && (
         <span data-testid={TESTIDS.setTermImage}>
@@ -56,7 +57,7 @@ const definitionColumn = helper.accessor((row) => row.back, {
   cell: ({ row: { original } }) => (
     <>
       <Legible as="span" measure={false}>
-        {original.back}
+        <MathText text={original.back} />
       </Legible>
       {original.definitionImage && (
         <span data-testid={TESTIDS.setDefinitionImage}>

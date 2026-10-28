@@ -2,6 +2,7 @@ import { CardImage } from '../../components/CardImage'
 import { useId } from 'react'
 import { Legible } from '../../components/Legible'
 import type { MultipleChoiceQuestion } from './generate-test'
+import { MathText } from '../../components/MathText'
 
 interface MultipleChoiceQuestionFieldProps {
   readonly question: MultipleChoiceQuestion
@@ -22,14 +23,14 @@ export const MultipleChoiceQuestionField = ({ question, index, value, onChange }
     // accessible name/group relationship a <legend> would give.
     <Legible as="div" className="test-mc" role="group" aria-labelledby={promptId}>
       <p id={promptId} className="test-question-prompt">
-        {index + 1}. {question.front}
+        {index + 1}. <MathText text={question.front} />
       </p>
       <CardImage image={question.image} alt="" />
       <div className="test-mc-options">
         {question.options.map((option) => (
           <label key={option}>
             <input type="radio" name={groupName} checked={value === option} onChange={() => onChange(option)} />
-            {option}
+            <MathText text={option} />
           </label>
         ))}
       </div>

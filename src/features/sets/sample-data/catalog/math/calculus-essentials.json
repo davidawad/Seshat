@@ -5,198 +5,198 @@
   "tags": ["math", "calculus"],
   "cards": [
     {
-      "prompt": "Derivative of x^n",
+      "prompt": "Derivative of $x^n$",
       "content": {
         "kind": "short-answer",
-        "answer": "n x^(n-1)",
-        "acceptableAnswers": []
+        "answer": "$n x^{n-1}$",
+        "acceptableAnswers": ["n x^(n-1)"]
       },
       "explanation": null,
       "sourceRef": "Stewart, Calculus (Cengage)",
       "tags": ["math"]
     },
     {
-      "prompt": "Derivative of e^x",
+      "prompt": "Derivative of $e^x$",
       "content": {
         "kind": "short-answer",
-        "answer": "e^x",
-        "acceptableAnswers": []
+        "answer": "$e^x$",
+        "acceptableAnswers": ["e^x"]
       },
       "explanation": null,
       "sourceRef": "Stewart, Calculus (Cengage)",
       "tags": ["math"]
     },
     {
-      "prompt": "Derivative of ln x (x > 0)",
+      "prompt": "Derivative of $\\ln x$ ($x > 0$)",
       "content": {
         "kind": "short-answer",
-        "answer": "1/x",
-        "acceptableAnswers": []
+        "answer": "$\\frac{1}{x}$",
+        "acceptableAnswers": ["1/x"]
       },
       "explanation": null,
       "sourceRef": "Stewart, Calculus (Cengage)",
       "tags": ["math"]
     },
     {
-      "prompt": "Derivative of sin x",
+      "prompt": "Derivative of $\\sin x$",
       "content": {
         "kind": "short-answer",
-        "answer": "cos x",
-        "acceptableAnswers": []
+        "answer": "$\\cos x$",
+        "acceptableAnswers": ["cos x"]
       },
       "explanation": null,
       "sourceRef": "Stewart, Calculus (Cengage)",
       "tags": ["math"]
     },
     {
-      "prompt": "Derivative of cos x",
+      "prompt": "Derivative of $\\cos x$",
       "content": {
         "kind": "short-answer",
-        "answer": "-sin x",
-        "acceptableAnswers": []
+        "answer": "$-\\sin x$",
+        "acceptableAnswers": ["-sin x"]
       },
       "explanation": null,
       "sourceRef": "Stewart, Calculus (Cengage)",
       "tags": ["math"]
     },
     {
-      "prompt": "Derivative of tan x",
+      "prompt": "Derivative of $\\tan x$",
       "content": {
         "kind": "short-answer",
-        "answer": "sec^2 x",
-        "acceptableAnswers": []
+        "answer": "$\\sec^2 x$",
+        "acceptableAnswers": ["sec^2 x"]
       },
       "explanation": null,
       "sourceRef": "Stewart, Calculus (Cengage)",
       "tags": ["math"]
     },
     {
-      "prompt": "Derivative of a^x (a > 0)",
+      "prompt": "Derivative of $a^x$ ($a > 0$)",
       "content": {
         "kind": "short-answer",
-        "answer": "a^x ln a",
-        "acceptableAnswers": []
+        "answer": "$a^x \\ln a$",
+        "acceptableAnswers": ["a^x ln a"]
       },
       "explanation": null,
       "sourceRef": "Stewart, Calculus (Cengage)",
       "tags": ["math"]
     },
     {
-      "prompt": "Product rule: d/dx [f g]",
+      "prompt": "Product rule: $\\frac{d}{dx}[fg]$",
       "content": {
         "kind": "short-answer",
-        "answer": "f' g + f g'",
-        "acceptableAnswers": []
+        "answer": "$f'g + fg'$",
+        "acceptableAnswers": ["f' g + f g'"]
       },
       "explanation": null,
       "sourceRef": "Stewart, Calculus (Cengage)",
       "tags": ["math"]
     },
     {
-      "prompt": "Quotient rule: d/dx [f / g]",
+      "prompt": "Quotient rule: $\\frac{d}{dx}\\left[\\frac{f}{g}\\right]$",
       "content": {
         "kind": "short-answer",
-        "answer": "(f' g - f g') / g^2",
-        "acceptableAnswers": []
+        "answer": "$\\frac{f'g - fg'}{g^2}$",
+        "acceptableAnswers": ["(f' g - f g') / g^2"]
       },
       "explanation": null,
       "sourceRef": "Stewart, Calculus (Cengage)",
       "tags": ["math"]
     },
     {
-      "prompt": "Chain rule: d/dx f(g(x))",
+      "prompt": "Chain rule: $\\frac{d}{dx}f(g(x))$",
       "content": {
         "kind": "short-answer",
-        "answer": "f'(g(x)) · g'(x)",
-        "acceptableAnswers": []
+        "answer": "$f'(g(x)) \\cdot g'(x)$",
+        "acceptableAnswers": ["f'(g(x)) · g'(x)"]
       },
       "explanation": null,
       "sourceRef": "Stewart, Calculus (Cengage)",
       "tags": ["math"]
     },
     {
-      "prompt": "Derivative of arctan x",
+      "prompt": "Derivative of $\\arctan x$",
       "content": {
         "kind": "short-answer",
-        "answer": "1/(1 + x^2)",
-        "acceptableAnswers": []
+        "answer": "$\\frac{1}{1 + x^2}$",
+        "acceptableAnswers": ["1/(1 + x^2)"]
       },
       "explanation": null,
       "sourceRef": "Stewart, Calculus (Cengage)",
       "tags": ["math"]
     },
     {
-      "prompt": "Derivative of arcsin x",
+      "prompt": "Derivative of $\\arcsin x$",
       "content": {
         "kind": "short-answer",
-        "answer": "1/sqrt(1 - x^2)",
-        "acceptableAnswers": []
+        "answer": "$\\frac{1}{\\sqrt{1 - x^2}}$",
+        "acceptableAnswers": ["1/sqrt(1 - x^2)"]
       },
       "explanation": null,
       "sourceRef": "Stewart, Calculus (Cengage)",
       "tags": ["math"]
     },
     {
-      "prompt": "Integral of x^n dx (n ≠ -1)",
+      "prompt": "Integral of $x^n\\,dx$ ($n \\ne -1$)",
       "content": {
         "kind": "short-answer",
-        "answer": "x^(n+1)/(n+1) + C",
-        "acceptableAnswers": []
+        "answer": "$\\frac{x^{n+1}}{n+1} + C$",
+        "acceptableAnswers": ["x^(n+1)/(n+1) + C"]
       },
       "explanation": null,
       "sourceRef": "Stewart, Calculus (Cengage)",
       "tags": ["math"]
     },
     {
-      "prompt": "Integral of 1/x dx",
+      "prompt": "Integral of $\\frac{1}{x}\\,dx$",
       "content": {
         "kind": "short-answer",
-        "answer": "ln|x| + C",
-        "acceptableAnswers": []
+        "answer": "$\\ln|x| + C$",
+        "acceptableAnswers": ["ln|x| + C"]
       },
       "explanation": null,
       "sourceRef": "Stewart, Calculus (Cengage)",
       "tags": ["math"]
     },
     {
-      "prompt": "Integral of e^x dx",
+      "prompt": "Integral of $e^x\\,dx$",
       "content": {
         "kind": "short-answer",
-        "answer": "e^x + C",
-        "acceptableAnswers": []
+        "answer": "$e^x + C$",
+        "acceptableAnswers": ["e^x + C"]
       },
       "explanation": null,
       "sourceRef": "Stewart, Calculus (Cengage)",
       "tags": ["math"]
     },
     {
-      "prompt": "Integral of sin x dx",
+      "prompt": "Integral of $\\sin x\\,dx$",
       "content": {
         "kind": "short-answer",
-        "answer": "-cos x + C",
-        "acceptableAnswers": []
+        "answer": "$-\\cos x + C$",
+        "acceptableAnswers": ["-cos x + C"]
       },
       "explanation": null,
       "sourceRef": "Stewart, Calculus (Cengage)",
       "tags": ["math"]
     },
     {
-      "prompt": "Integral of cos x dx",
+      "prompt": "Integral of $\\cos x\\,dx$",
       "content": {
         "kind": "short-answer",
-        "answer": "sin x + C",
-        "acceptableAnswers": []
+        "answer": "$\\sin x + C$",
+        "acceptableAnswers": ["sin x + C"]
       },
       "explanation": null,
       "sourceRef": "Stewart, Calculus (Cengage)",
       "tags": ["math"]
     },
     {
-      "prompt": "Integral of sec^2 x dx",
+      "prompt": "Integral of $\\sec^2 x\\,dx$",
       "content": {
         "kind": "short-answer",
-        "answer": "tan x + C",
-        "acceptableAnswers": []
+        "answer": "$\\tan x + C$",
+        "acceptableAnswers": ["tan x + C"]
       },
       "explanation": null,
       "sourceRef": "Stewart, Calculus (Cengage)",
@@ -206,8 +206,8 @@
       "prompt": "Fundamental Theorem of Calculus, part 1",
       "content": {
         "kind": "short-answer",
-        "answer": "If F(x) = ∫ from a to x of f(t) dt with f continuous, then F'(x) = f(x).",
-        "acceptableAnswers": []
+        "answer": "If $F(x) = \\int_a^x f(t)\\,dt$ with $f$ continuous, then $F'(x) = f(x)$.",
+        "acceptableAnswers": ["If F(x) = ∫ from a to x of f(t) dt with f continuous, then F'(x) = f(x)."]
       },
       "explanation": null,
       "sourceRef": "Stewart, Calculus (Cengage)",
@@ -217,8 +217,8 @@
       "prompt": "Fundamental Theorem of Calculus, part 2",
       "content": {
         "kind": "short-answer",
-        "answer": "∫ from a to b of f(x) dx = F(b) - F(a), where F' = f.",
-        "acceptableAnswers": []
+        "answer": "$\\int_a^b f(x)\\,dx = F(b) - F(a)$, where $F' = f$.",
+        "acceptableAnswers": ["∫ from a to b of f(x) dx = F(b) - F(a), where F' = f."]
       },
       "explanation": null,
       "sourceRef": "Stewart, Calculus (Cengage)",
@@ -228,15 +228,15 @@
       "prompt": "Integration by parts formula",
       "content": {
         "kind": "short-answer",
-        "answer": "∫ u dv = u v - ∫ v du",
-        "acceptableAnswers": []
+        "answer": "$\\int u\\,dv = uv - \\int v\\,du$",
+        "acceptableAnswers": ["∫ u dv = u v - ∫ v du"]
       },
       "explanation": null,
       "sourceRef": "Stewart, Calculus (Cengage)",
       "tags": ["math"]
     },
     {
-      "prompt": "Limit of sin x / x as x → 0",
+      "prompt": "Limit of $\\frac{\\sin x}{x}$ as $x \\to 0$",
       "content": {
         "kind": "short-answer",
         "answer": "1",
@@ -247,11 +247,11 @@
       "tags": ["math"]
     },
     {
-      "prompt": "Limit of (1 + 1/n)^n as n → ∞",
+      "prompt": "Limit of $\\left(1 + \\frac{1}{n}\\right)^n$ as $n \\to \\infty$",
       "content": {
         "kind": "short-answer",
-        "answer": "e",
-        "acceptableAnswers": []
+        "answer": "$e$",
+        "acceptableAnswers": ["e"]
       },
       "explanation": null,
       "sourceRef": "Stewart, Calculus (Cengage)",
@@ -261,8 +261,8 @@
       "prompt": "L'Hôpital's rule",
       "content": {
         "kind": "short-answer",
-        "answer": "If f/g gives 0/0 or ∞/∞ at a point, lim f/g = lim f'/g' (when the latter exists).",
-        "acceptableAnswers": []
+        "answer": "If $f/g$ gives $0/0$ or $\\infty/\\infty$ at a point, $\\lim f/g = \\lim f'/g'$ (when the latter exists).",
+        "acceptableAnswers": ["If f/g gives 0/0 or ∞/∞ at a point, lim f/g = lim f'/g' (when the latter exists)."]
       },
       "explanation": null,
       "sourceRef": "Stewart, Calculus (Cengage)",
@@ -272,8 +272,10 @@
       "prompt": "Mean Value Theorem",
       "content": {
         "kind": "short-answer",
-        "answer": "If f is continuous on [a,b] and differentiable on (a,b), some c in (a,b) has f'(c) = (f(b) - f(a))/(b - a).",
-        "acceptableAnswers": []
+        "answer": "If $f$ is continuous on $[a,b]$ and differentiable on $(a,b)$, some $c$ in $(a,b)$ has $f'(c) = \\frac{f(b) - f(a)}{b - a}$.",
+        "acceptableAnswers": [
+          "If f is continuous on [a,b] and differentiable on (a,b), some c in (a,b) has f'(c) = (f(b) - f(a))/(b - a)."
+        ]
       },
       "explanation": null,
       "sourceRef": "Stewart, Calculus (Cengage)",
@@ -283,19 +285,19 @@
       "prompt": "Intermediate Value Theorem",
       "content": {
         "kind": "short-answer",
-        "answer": "A continuous f on [a,b] takes every value between f(a) and f(b).",
-        "acceptableAnswers": []
+        "answer": "A continuous $f$ on $[a,b]$ takes every value between $f(a)$ and $f(b)$.",
+        "acceptableAnswers": ["A continuous f on [a,b] takes every value between f(a) and f(b)."]
       },
       "explanation": null,
       "sourceRef": "Stewart, Calculus (Cengage)",
       "tags": ["math"]
     },
     {
-      "prompt": "Second derivative test at a critical point c",
+      "prompt": "Second derivative test at a critical point $c$",
       "content": {
         "kind": "short-answer",
-        "answer": "f''(c) > 0: local minimum; f''(c) < 0: local maximum; f''(c) = 0: inconclusive.",
-        "acceptableAnswers": []
+        "answer": "$f''(c) > 0$: local minimum; $f''(c) < 0$: local maximum; $f''(c) = 0$: inconclusive.",
+        "acceptableAnswers": ["f''(c) > 0: local minimum; f''(c) < 0: local maximum; f''(c) = 0: inconclusive."]
       },
       "explanation": null,
       "sourceRef": "Stewart, Calculus (Cengage)",
@@ -305,96 +307,98 @@
       "prompt": "Definition of the derivative as a limit",
       "content": {
         "kind": "short-answer",
-        "answer": "f'(x) = lim h→0 [f(x + h) - f(x)] / h",
-        "acceptableAnswers": []
+        "answer": "$f'(x) = \\lim_{h \\to 0} \\frac{f(x + h) - f(x)}{h}$",
+        "acceptableAnswers": ["f'(x) = lim h→0 [f(x + h) - f(x)] / h"]
       },
       "explanation": null,
       "sourceRef": "Stewart, Calculus (Cengage)",
       "tags": ["math"]
     },
     {
-      "prompt": "Maclaurin series of e^x",
+      "prompt": "Maclaurin series of $e^x$",
       "content": {
         "kind": "short-answer",
-        "answer": "Sum over n ≥ 0 of x^n / n!",
-        "acceptableAnswers": []
+        "answer": "Sum over $n \\ge 0$ of $\\frac{x^n}{n!}$",
+        "acceptableAnswers": ["Sum over n ≥ 0 of x^n / n!"]
       },
       "explanation": null,
       "sourceRef": "Stewart, Calculus (Cengage)",
       "tags": ["math"]
     },
     {
-      "prompt": "Maclaurin series of sin x",
+      "prompt": "Maclaurin series of $\\sin x$",
       "content": {
         "kind": "short-answer",
-        "answer": "x - x^3/3! + x^5/5! - ... (odd powers, alternating signs)",
-        "acceptableAnswers": []
+        "answer": "$x - \\frac{x^3}{3!} + \\frac{x^5}{5!} - \\cdots$ (odd powers, alternating signs)",
+        "acceptableAnswers": ["x - x^3/3! + x^5/5! - ... (odd powers, alternating signs)"]
       },
       "explanation": null,
       "sourceRef": "Stewart, Calculus (Cengage)",
       "tags": ["math"]
     },
     {
-      "prompt": "Maclaurin series of 1/(1 - x), |x| < 1",
+      "prompt": "Maclaurin series of $\\frac{1}{1 - x}$, $|x| < 1$",
       "content": {
         "kind": "short-answer",
-        "answer": "1 + x + x^2 + x^3 + ... (geometric series)",
-        "acceptableAnswers": []
+        "answer": "$1 + x + x^2 + x^3 + \\cdots$ (geometric series)",
+        "acceptableAnswers": ["1 + x + x^2 + x^3 + ... (geometric series)"]
       },
       "explanation": null,
       "sourceRef": "Stewart, Calculus (Cengage)",
       "tags": ["math"]
     },
     {
-      "prompt": "Ratio test for the series Σ a_n",
+      "prompt": "Ratio test for the series $\\sum a_n$",
       "content": {
         "kind": "short-answer",
-        "answer": "Let L = lim |a_(n+1)/a_n|. L < 1: converges absolutely; L > 1: diverges; L = 1: inconclusive.",
-        "acceptableAnswers": []
+        "answer": "Let $L = \\lim \\left|\\frac{a_{n+1}}{a_n}\\right|$. $L < 1$: converges absolutely; $L > 1$: diverges; $L = 1$: inconclusive.",
+        "acceptableAnswers": [
+          "Let L = lim |a_(n+1)/a_n|. L < 1: converges absolutely; L > 1: diverges; L = 1: inconclusive."
+        ]
       },
       "explanation": null,
       "sourceRef": "Stewart, Calculus (Cengage)",
       "tags": ["math"]
     },
     {
-      "prompt": "Does the harmonic series Σ 1/n converge?",
+      "prompt": "Does the harmonic series $\\sum \\frac{1}{n}$ converge?",
       "content": {
         "kind": "short-answer",
-        "answer": "No, it diverges (the p-series test with p = 1).",
-        "acceptableAnswers": []
+        "answer": "No, it diverges (the $p$-series test with $p = 1$).",
+        "acceptableAnswers": ["No, it diverges (the p-series test with p = 1)."]
       },
       "explanation": null,
       "sourceRef": "Stewart, Calculus (Cengage)",
       "tags": ["math"]
     },
     {
-      "prompt": "p-series Σ 1/n^p converges when",
+      "prompt": "$p$-series $\\sum \\frac{1}{n^p}$ converges when",
       "content": {
         "kind": "short-answer",
-        "answer": "p > 1",
-        "acceptableAnswers": []
+        "answer": "$p > 1$",
+        "acceptableAnswers": ["p > 1"]
       },
       "explanation": null,
       "sourceRef": "Stewart, Calculus (Cengage)",
       "tags": ["math"]
     },
     {
-      "prompt": "Volume of a solid of revolution about the x-axis (disk method)",
+      "prompt": "Volume of a solid of revolution about the $x$-axis (disk method)",
       "content": {
         "kind": "short-answer",
-        "answer": "V = π ∫ from a to b of [f(x)]^2 dx",
-        "acceptableAnswers": []
+        "answer": "$V = \\pi \\int_a^b [f(x)]^2\\,dx$",
+        "acceptableAnswers": ["V = π ∫ from a to b of [f(x)]^2 dx"]
       },
       "explanation": null,
       "sourceRef": "Stewart, Calculus (Cengage)",
       "tags": ["math"]
     },
     {
-      "prompt": "Arc length of y = f(x) from a to b",
+      "prompt": "Arc length of $y = f(x)$ from $a$ to $b$",
       "content": {
         "kind": "short-answer",
-        "answer": "∫ from a to b of sqrt(1 + [f'(x)]^2) dx",
-        "acceptableAnswers": []
+        "answer": "$\\int_a^b \\sqrt{1 + [f'(x)]^2}\\,dx$",
+        "acceptableAnswers": ["∫ from a to b of sqrt(1 + [f'(x)]^2) dx"]
       },
       "explanation": null,
       "sourceRef": "Stewart, Calculus (Cengage)",

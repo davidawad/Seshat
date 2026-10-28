@@ -22,7 +22,7 @@
         "options": ["5.00%", "5.26%", "4.75%", "5.50%"],
         "correctIndex": 1
       },
-      "explanation": "Current yield = annual interest / price = $50 / $950 = 5.26%.",
+      "explanation": "Current yield = $\\frac{\\text{annual interest}}{\\text{price}} = \\frac{\\$50}{\\$950} = 5.26\\%$.",
       "sourceRef": "CFA Institute, Investments curriculum; Bodie, Kane & Marcus, Investments (McGraw-Hill); NASAA Series 65 content outline",
       "tags": ["series-65"]
     },
@@ -38,7 +38,7 @@
         ],
         "correctIndex": 2
       },
-      "explanation": "At a discount, YTM > current yield > coupon rate. At a premium, YTM < current yield < coupon rate.",
+      "explanation": "At a discount, $\\text{YTM} > \\text{current yield} > \\text{coupon rate}$. At a premium, $\\text{YTM} < \\text{current yield} < \\text{coupon rate}$.",
       "sourceRef": "CFA Institute, Investments curriculum; Bodie, Kane & Marcus, Investments (McGraw-Hill); NASAA Series 65 content outline",
       "tags": ["series-65"]
     },
@@ -114,7 +114,7 @@
         "options": ["5.2%", "5.7%", "6.0%", "2.8%"],
         "correctIndex": 1
       },
-      "explanation": "Taxable-equivalent yield = tax-free yield / (1 - tax rate) = 4% / 0.70 = 5.71%.",
+      "explanation": "Taxable-equivalent yield = $\\frac{\\text{tax-free yield}}{1 - \\text{tax rate}} = \\frac{4\\%}{0.70} = 5.71\\%$.",
       "sourceRef": "CFA Institute, Investments curriculum; Bodie, Kane & Marcus, Investments (McGraw-Hill); NASAA Series 65 content outline",
       "tags": ["series-65"]
     },
@@ -200,7 +200,7 @@
         ],
         "correctIndex": 0
       },
-      "explanation": "GDP = C + I + G + (X - M).",
+      "explanation": "$\\text{GDP} = C + I + G + (X - M)$.",
       "sourceRef": "CFA Institute, Investments curriculum; Bodie, Kane & Marcus, Investments (McGraw-Hill); NASAA Series 65 content outline",
       "tags": ["series-65"]
     },
@@ -249,7 +249,7 @@
         "options": ["6.7%", "10%", "15%", "1.5%"],
         "correctIndex": 2
       },
-      "explanation": "Expected move = beta × market move = 1.5 × 10% = 15%.",
+      "explanation": "Expected move = beta $\\times$ market move = $1.5 \\times 10\\% = 15\\%$.",
       "sourceRef": "CFA Institute, Investments curriculum; Bodie, Kane & Marcus, Investments (McGraw-Hill); NASAA Series 65 content outline",
       "tags": ["series-65"]
     },
@@ -257,10 +257,15 @@
       "prompt": "Under CAPM, the expected return equals:",
       "content": {
         "kind": "mcq",
-        "options": ["Rf + beta × (Rm - Rf)", "Rf + beta × Rm", "Rm - Rf", "beta × Rf"],
+        "options": [
+          "$R_f + \\beta \\times (R_m - R_f)$",
+          "$R_f + \\beta \\times R_m$",
+          "$R_m - R_f$",
+          "$\\beta \\times R_f$"
+        ],
         "correctIndex": 0
       },
-      "explanation": "CAPM: E(R) = Rf + β(E(Rm) - Rf). With Rf 3%, beta 1.2 and market return 8%: 3 + 1.2×5 = 9%.",
+      "explanation": "CAPM: $E(R) = R_f + \\beta(E(R_m) - R_f)$. With $R_f$ 3%, $\\beta$ 1.2 and market return 8%: $3 + 1.2 \\times 5 = 9\\%$.",
       "sourceRef": "CFA Institute, Investments curriculum; Bodie, Kane & Marcus, Investments (McGraw-Hill); NASAA Series 65 content outline",
       "tags": ["series-65"]
     },
@@ -276,7 +281,7 @@
         ],
         "correctIndex": 1
       },
-      "explanation": "Sharpe = (Rp - Rf) / σp. Treynor uses beta instead of standard deviation.",
+      "explanation": "Sharpe = $\\frac{R_p - R_f}{\\sigma_p}$. Treynor uses beta instead of standard deviation.",
       "sourceRef": "CFA Institute, Investments curriculum; Bodie, Kane & Marcus, Investments (McGraw-Hill); NASAA Series 65 content outline",
       "tags": ["series-65"]
     },
@@ -287,7 +292,7 @@
         "options": ["Standard deviation", "Beta", "Variance", "Alpha"],
         "correctIndex": 1
       },
-      "explanation": "Treynor = (Rp - Rf) / β.",
+      "explanation": "Treynor = $\\frac{R_p - R_f}{\\beta}$.",
       "sourceRef": "CFA Institute, Investments curriculum; Bodie, Kane & Marcus, Investments (McGraw-Hill); NASAA Series 65 content outline",
       "tags": ["series-65"]
     },
@@ -357,7 +362,7 @@
         "options": ["$47", "$50", "$53", "$3"],
         "correctIndex": 2
       },
-      "explanation": "Long call breakeven = strike + premium = $53. Maximum loss is the premium.",
+      "explanation": "Long call breakeven = strike + premium = \\$53. Maximum loss is the premium.",
       "sourceRef": "CFA Institute, Investments curriculum; Bodie, Kane & Marcus, Investments (McGraw-Hill); NASAA Series 65 content outline",
       "tags": ["series-65"]
     },

@@ -7,6 +7,7 @@ import { TESTIDS } from '../../lib/testids'
 import type { StudyCard } from '../../types'
 import { CardForm } from './CardForm'
 import { CardImageSlot } from './CardImageSlot'
+import { MathText } from '../../components/MathText'
 
 const contentSummary = (card: StudyCard): { readonly label: string; readonly detail: string } => {
   switch (card.content.kind) {
@@ -145,14 +146,17 @@ export const CardListItem = ({ card }: CardListItemProps) => {
   return (
     <li className="card-list-item">
       <Legible as="p" measure={false}>
-        <strong>{card.prompt}</strong> <span className="card-kind-badge">({summary.label})</span>
+        <strong>
+          <MathText text={card.prompt} />
+        </strong>{' '}
+        <span className="card-kind-badge">({summary.label})</span>
       </Legible>
       <Legible as="p" measure={false}>
-        {summary.detail}
+        <MathText text={summary.detail} />
       </Legible>
       {card.explanation !== null && (
         <Legible as="p" measure={false}>
-          {card.explanation}
+          <MathText text={card.explanation} />
         </Legible>
       )}
       {card.tags.length > 0 && (

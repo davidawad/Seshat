@@ -8,6 +8,7 @@ import type { CardId, SetId } from '../../types'
 import { formatElapsed, getBestTimeMs, recordCompletionTime } from './bestTime'
 import './match.css'
 import { type MatchPair, type MatchTile, DEFAULT_PAIR_CAP, availablePairCaps, createRound } from './round'
+import { MathText } from '../../components/MathText'
 
 /** How many leading tiles get a digit-key shortcut — see `match.selectTile1-9` in lib/keybindings.ts. */
 const MAX_SHORTCUT_TILES = 9
@@ -55,7 +56,7 @@ const TileButton = ({ tile, isSelected, isMatched, isMiss, onSelect, onFocusTile
       {...{ [NAV_OPTION_ATTRIBUTE]: '' }}
     >
       <Legible as="span" measure={false} className="match-tile-text">
-        {tile.text}
+        <MathText text={tile.text} />
       </Legible>
       {isMatched && <span className="visually-hidden"> (matched)</span>}
     </button>

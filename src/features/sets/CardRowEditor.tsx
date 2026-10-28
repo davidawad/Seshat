@@ -1,5 +1,7 @@
 import { type KeyboardEvent, type RefObject, useEffect, useId, useLayoutEffect, useRef } from 'react'
+import { MathText } from '../../components/MathText'
 import { DeleteIcon } from '../../components/icons'
+import { hasMath } from '../../lib/math/split'
 import { TESTIDS } from '../../lib/testids'
 import { CardImageSlot } from './CardImageSlot'
 import type { DraftRow, DraftRowPatch } from './set-draft'
@@ -39,6 +41,19 @@ const CardField = ({
 }: FieldProps) => {
   const id = useId()
   useAutoGrow(textareaRef, value)
+
+  // Wraps the selection (or the caret) in $...$ and leaves the caret inside, ready to type TeX.
+  const insertFormula = () => {
+    const element = textareaRef.current
+    const start = element?.selectionStart ?? value.length
+    const end = element?.selectionEnd ?? start
+    onChange(`${value.slice(0, start)}$${value.slice(start, end)}$${value.slice(end)}`)
+    requestAnimationFrame(() => {
+      element?.focus()
+      element?.setSelectionRange(start + 1, end + 1)
+    })
+  }
+
   return (
     <div className="card-editor-field">
       <textarea
@@ -52,9 +67,25 @@ const CardField = ({
         onChange={(event) => onChange(event.target.value)}
         onKeyDown={onKeyDown}
       />
-      <label htmlFor={id} className="card-editor-caption">
-        {label} <span className="sr-only">for card {cardNumber}</span>
-      </label>
+      {hasMath(value) && (
+        <p className="card-editor-math-preview" aria-label={`${label} preview`}>
+          <MathText text={value} />
+        </p>
+      )}
+      <div className="card-editor-caption-row">
+        <label htmlFor={id} className="card-editor-caption">
+          {label} <span className="sr-only">for card {cardNumber}</span>
+        </label>
+        <button
+          type="button"
+          className="card-editor-latex"
+          onClick={insertFormula}
+          aria-label={`Insert a LaTeX formula in the ${label.toLowerCase()} for card ${cardNumber}`}
+          title="Insert a LaTeX formula: $x^2$ inline, $$...$$ for display"
+        >
+          ∑ LaTeX
+        </button>
+      </div>
     </div>
   )
 }

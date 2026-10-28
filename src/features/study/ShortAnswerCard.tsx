@@ -1,5 +1,6 @@
 import { useId } from 'react'
 import { TESTIDS } from '../../lib/testids'
+import { MathText } from '../../components/MathText'
 
 interface ShortAnswerCardProps {
   readonly prompt: string
@@ -14,7 +15,7 @@ export const ShortAnswerCard = ({ prompt, value, onChange, disabled }: ShortAnsw
   return (
     <div className="study-card">
       <p id={promptId} className="study-prompt">
-        {prompt}
+        <MathText text={prompt} />
       </p>
       <div className="study-field">
         <label htmlFor={inputId}>Your answer</label>

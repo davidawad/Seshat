@@ -9,6 +9,7 @@ import { getBestScore, recordScore } from './bestScore'
 import './blocks.css'
 import { GRID_COLUMNS, canPlace, createEmptyGrid, isGridFull, placePiece, pointsForPlacement } from './grid'
 import { type BlocksQuestion, buildQuestions } from './round'
+import { MathText } from '../../../components/MathText'
 
 /** How long feedback about a wrong answer or a placement stays on screen before the next turn starts. */
 const ADVANCE_DWELL_MS = 900
@@ -94,7 +95,9 @@ const BlocksQuestionView = ({ question, onAnswer }: BlocksQuestionViewProps) => 
   return (
     <>
       <Legible as="fieldset" className="blocks-question">
-        <legend className="blocks-prompt">{question.prompt}</legend>
+        <legend className="blocks-prompt">
+          <MathText text={question.prompt} />
+        </legend>
         <div ref={optionsRef} className="blocks-options">
           {question.options.map((option, index) => (
             <button
@@ -106,7 +109,7 @@ const BlocksQuestionView = ({ question, onAnswer }: BlocksQuestionViewProps) => 
               onFocus={() => setHighlight(index)}
               {...{ [NAV_OPTION_ATTRIBUTE]: '' }}
             >
-              {option}
+              <MathText text={option} />
             </button>
           ))}
         </div>

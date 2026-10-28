@@ -1,0 +1,23 @@
+/* Typeset formulas (MathJax SVG): inherit the surrounding text colour and size. */
+.math {
+  display: inline-block;
+  max-inline-size: 100%;
+  overflow-x: auto;
+  overflow-y: hidden;
+  vertical-align: middle;
+}
+
+.math svg {
+  max-inline-size: none;
+}
+
+.math-display {
+  display: block;
+  margin-block: 0.5rem;
+  text-align: center;
+}
+
+.math-source {
+  font-family: var(--font-mono, monospace);
+  font-size: 0.9em;
+}

@@ -294,8 +294,8 @@
       "prompt": "Hardy–Weinberg equations",
       "content": {
         "kind": "short-answer",
-        "answer": "p + q = 1 and p^2 + 2pq + q^2 = 1.",
-        "acceptableAnswers": []
+        "answer": "$p + q = 1$ and $p^2 + 2pq + q^2 = 1$.",
+        "acceptableAnswers": ["p + q = 1 and p^2 + 2pq + q^2 = 1."]
       },
       "explanation": null,
       "sourceRef": "Campbell Biology (Pearson); Griffiths et al., Introduction to Genetic Analysis",

@@ -10,6 +10,9 @@
     "@fontsource/ibm-plex-mono",
     "@fontsource/inter",
     "@fontsource/newsreader",
-    "@fontsource/source-serif-4"
+    "@fontsource/source-serif-4",
+    // MathJax's glyph tables are loaded on demand through `import.meta.glob` in
+    // src/lib/math/render.ts, a path string rather than an import specifier.
+    "@mathjax/mathjax-newcm-font"
   ]
 }

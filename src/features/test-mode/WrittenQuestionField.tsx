@@ -3,6 +3,7 @@ import { useId } from 'react'
 import { TESTIDS } from '../../lib/testids'
 import { Legible } from '../../components/Legible'
 import type { WrittenQuestion } from './generate-test'
+import { MathText } from '../../components/MathText'
 
 interface WrittenQuestionFieldProps {
   readonly question: WrittenQuestion
@@ -18,7 +19,7 @@ export const WrittenQuestionField = ({ question, index, value, onChange }: Writt
   return (
     <Legible>
       <p id={promptId} className="test-question-prompt">
-        {index + 1}. {question.front}
+        {index + 1}. <MathText text={question.front} />
       </p>
       <CardImage image={question.image} alt="" />
       <label htmlFor={inputId}>Your answer</label>

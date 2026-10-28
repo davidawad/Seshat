@@ -8,8 +8,10 @@
       "prompt": "Current yield",
       "content": {
         "kind": "short-answer",
-        "answer": "Annual coupon / current price. A $1,000, 6% bond priced at $900 yields $60/$900 = 6.67%.",
-        "acceptableAnswers": []
+        "answer": "$\\frac{\\text{annual coupon}}{\\text{current price}}$. A \\$1,000, 6% bond priced at \\$900 yields $\\frac{\\$60}{\\$900} = 6.67\\%$.",
+        "acceptableAnswers": [
+          "Annual coupon / current price. A $1,000, 6% bond priced at $900 yields $60/$900 = 6.67%."
+        ]
       },
       "explanation": null,
       "sourceRef": "CFA Institute, Quantitative Methods and Fixed Income readings; Bodie, Kane & Marcus, Investments",
@@ -19,8 +21,8 @@
       "prompt": "Total return",
       "content": {
         "kind": "short-answer",
-        "answer": "(Income + price change) / beginning price.",
-        "acceptableAnswers": []
+        "answer": "$\\frac{\\text{income} + \\text{price change}}{\\text{beginning price}}$.",
+        "acceptableAnswers": ["(Income + price change) / beginning price."]
       },
       "explanation": null,
       "sourceRef": "CFA Institute, Quantitative Methods and Fixed Income readings; Bodie, Kane & Marcus, Investments",
@@ -30,8 +32,8 @@
       "prompt": "Real return (approx.)",
       "content": {
         "kind": "short-answer",
-        "answer": "Nominal return - inflation. 8% nominal with 3% inflation is about 5% real.",
-        "acceptableAnswers": []
+        "answer": "$\\text{nominal return} - \\text{inflation}$. 8% nominal with 3% inflation is about 5% real.",
+        "acceptableAnswers": ["Nominal return - inflation. 8% nominal with 3% inflation is about 5% real."]
       },
       "explanation": null,
       "sourceRef": "CFA Institute, Quantitative Methods and Fixed Income readings; Bodie, Kane & Marcus, Investments",
@@ -41,8 +43,8 @@
       "prompt": "Exact real return",
       "content": {
         "kind": "short-answer",
-        "answer": "(1 + nominal) / (1 + inflation) - 1",
-        "acceptableAnswers": []
+        "answer": "$\\frac{1 + \\text{nominal}}{1 + \\text{inflation}} - 1$",
+        "acceptableAnswers": ["(1 + nominal) / (1 + inflation) - 1"]
       },
       "explanation": null,
       "sourceRef": "CFA Institute, Quantitative Methods and Fixed Income readings; Bodie, Kane & Marcus, Investments",
@@ -52,8 +54,8 @@
       "prompt": "Taxable-equivalent yield",
       "content": {
         "kind": "short-answer",
-        "answer": "Tax-free yield / (1 - marginal tax rate). 3% at 25% is 4%.",
-        "acceptableAnswers": []
+        "answer": "$\\frac{\\text{tax-free yield}}{1 - \\text{marginal tax rate}}$. 3% at 25% is 4%.",
+        "acceptableAnswers": ["Tax-free yield / (1 - marginal tax rate). 3% at 25% is 4%."]
       },
       "explanation": null,
       "sourceRef": "CFA Institute, Quantitative Methods and Fixed Income readings; Bodie, Kane & Marcus, Investments",
@@ -63,8 +65,8 @@
       "prompt": "After-tax yield of a taxable bond",
       "content": {
         "kind": "short-answer",
-        "answer": "Taxable yield × (1 - marginal tax rate).",
-        "acceptableAnswers": []
+        "answer": "$\\text{taxable yield} \\times (1 - \\text{marginal tax rate})$.",
+        "acceptableAnswers": ["Taxable yield × (1 - marginal tax rate)."]
       },
       "explanation": null,
       "sourceRef": "CFA Institute, Quantitative Methods and Fixed Income readings; Bodie, Kane & Marcus, Investments",
@@ -74,8 +76,8 @@
       "prompt": "Rule of 72",
       "content": {
         "kind": "short-answer",
-        "answer": "Years to double ≈ 72 / annual percent return. At 6%: about 12 years.",
-        "acceptableAnswers": []
+        "answer": "Years to double $\\approx \\frac{72}{\\text{annual percent return}}$. At 6%: about 12 years.",
+        "acceptableAnswers": ["Years to double ≈ 72 / annual percent return. At 6%: about 12 years."]
       },
       "explanation": null,
       "sourceRef": "CFA Institute, Quantitative Methods and Fixed Income readings; Bodie, Kane & Marcus, Investments",
@@ -85,8 +87,8 @@
       "prompt": "Sharpe ratio",
       "content": {
         "kind": "short-answer",
-        "answer": "(Portfolio return - risk-free rate) / standard deviation of portfolio.",
-        "acceptableAnswers": []
+        "answer": "$\\frac{\\text{portfolio return} - \\text{risk-free rate}}{\\text{standard deviation of portfolio}}$.",
+        "acceptableAnswers": ["(Portfolio return - risk-free rate) / standard deviation of portfolio."]
       },
       "explanation": null,
       "sourceRef": "CFA Institute, Quantitative Methods and Fixed Income readings; Bodie, Kane & Marcus, Investments",
@@ -96,8 +98,8 @@
       "prompt": "Treynor ratio",
       "content": {
         "kind": "short-answer",
-        "answer": "(Portfolio return - risk-free rate) / beta.",
-        "acceptableAnswers": []
+        "answer": "$\\frac{\\text{portfolio return} - \\text{risk-free rate}}{\\beta}$.",
+        "acceptableAnswers": ["(Portfolio return - risk-free rate) / beta."]
       },
       "explanation": null,
       "sourceRef": "CFA Institute, Quantitative Methods and Fixed Income readings; Bodie, Kane & Marcus, Investments",
@@ -107,8 +109,11 @@
       "prompt": "CAPM expected return",
       "content": {
         "kind": "short-answer",
-        "answer": "Rf + β (Rm - Rf). Rf 3%, β 1.2, Rm 8%: 9%.",
-        "acceptableAnswers": []
+        "answer": "$R_f + \\beta (R_m - R_f)$. $R_f$ 3%, $\\beta$ 1.2, $R_m$ 8%: 9%.",
+        "acceptableAnswers": [
+          "Rf + beta (Rm - Rf). Rf 3%, beta 1.2, Rm 8%: 9%.",
+          "Rf + β (Rm - Rf). Rf 3%, β 1.2, Rm 8%: 9%."
+        ]
       },
       "explanation": null,
       "sourceRef": "CFA Institute, Quantitative Methods and Fixed Income readings; Bodie, Kane & Marcus, Investments",
@@ -129,8 +134,8 @@
       "prompt": "Weighted average portfolio return",
       "content": {
         "kind": "short-answer",
-        "answer": "Sum of (weight × return). 60% at 10% and 40% at 5% = 8%.",
-        "acceptableAnswers": []
+        "answer": "Sum of (weight $\\times$ return). 60% at 10% and 40% at 5% = 8%.",
+        "acceptableAnswers": ["Sum of (weight × return). 60% at 10% and 40% at 5% = 8%."]
       },
       "explanation": null,
       "sourceRef": "CFA Institute, Quantitative Methods and Fixed Income readings; Bodie, Kane & Marcus, Investments",
@@ -140,8 +145,10 @@
       "prompt": "Arithmetic mean vs geometric mean return",
       "content": {
         "kind": "short-answer",
-        "answer": "Arithmetic is the simple average; geometric is the compound average. Geometric ≤ arithmetic, and is used for multi-period performance.",
-        "acceptableAnswers": []
+        "answer": "Arithmetic is the simple average; geometric is the compound average. Geometric $\\le$ arithmetic, and is used for multi-period performance.",
+        "acceptableAnswers": [
+          "Arithmetic is the simple average; geometric is the compound average. Geometric ≤ arithmetic, and is used for multi-period performance."
+        ]
       },
       "explanation": null,
       "sourceRef": "CFA Institute, Quantitative Methods and Fixed Income readings; Bodie, Kane & Marcus, Investments",
@@ -151,8 +158,8 @@
       "prompt": "Coefficient of variation",
       "content": {
         "kind": "short-answer",
-        "answer": "Standard deviation / mean return; risk per unit of return.",
-        "acceptableAnswers": []
+        "answer": "$\\frac{\\text{standard deviation}}{\\text{mean return}}$; risk per unit of return.",
+        "acceptableAnswers": ["Standard deviation / mean return; risk per unit of return."]
       },
       "explanation": null,
       "sourceRef": "CFA Institute, Quantitative Methods and Fixed Income readings; Bodie, Kane & Marcus, Investments",
@@ -173,8 +180,8 @@
       "prompt": "Net asset value per share",
       "content": {
         "kind": "short-answer",
-        "answer": "(Assets - liabilities) / shares outstanding.",
-        "acceptableAnswers": []
+        "answer": "$\\frac{\\text{assets} - \\text{liabilities}}{\\text{shares outstanding}}$.",
+        "acceptableAnswers": ["(Assets - liabilities) / shares outstanding."]
       },
       "explanation": null,
       "sourceRef": "CFA Institute, Quantitative Methods and Fixed Income readings; Bodie, Kane & Marcus, Investments",
@@ -184,8 +191,8 @@
       "prompt": "Mutual fund public offering price",
       "content": {
         "kind": "short-answer",
-        "answer": "NAV / (1 - sales charge %). NAV $20, 5% load: $21.05.",
-        "acceptableAnswers": []
+        "answer": "$\\frac{\\text{NAV}}{1 - \\text{sales charge \\%}}$. NAV \\$20, 5% load: \\$21.05.",
+        "acceptableAnswers": ["NAV / (1 - sales charge %). NAV $20, 5% load: $21.05."]
       },
       "explanation": null,
       "sourceRef": "CFA Institute, Quantitative Methods and Fixed Income readings; Bodie, Kane & Marcus, Investments",
@@ -195,8 +202,8 @@
       "prompt": "Expense ratio",
       "content": {
         "kind": "short-answer",
-        "answer": "Annual fund operating expenses / average net assets.",
-        "acceptableAnswers": []
+        "answer": "$\\frac{\\text{annual fund operating expenses}}{\\text{average net assets}}$.",
+        "acceptableAnswers": ["Annual fund operating expenses / average net assets."]
       },
       "explanation": null,
       "sourceRef": "CFA Institute, Quantitative Methods and Fixed Income readings; Bodie, Kane & Marcus, Investments",
@@ -206,8 +213,8 @@
       "prompt": "Dividend yield",
       "content": {
         "kind": "short-answer",
-        "answer": "Annual dividends per share / share price.",
-        "acceptableAnswers": []
+        "answer": "$\\frac{\\text{annual dividends per share}}{\\text{share price}}$.",
+        "acceptableAnswers": ["Annual dividends per share / share price."]
       },
       "explanation": null,
       "sourceRef": "CFA Institute, Quantitative Methods and Fixed Income readings; Bodie, Kane & Marcus, Investments",
@@ -217,8 +224,8 @@
       "prompt": "Price/earnings ratio",
       "content": {
         "kind": "short-answer",
-        "answer": "Price per share / earnings per share.",
-        "acceptableAnswers": []
+        "answer": "$\\frac{\\text{price per share}}{\\text{earnings per share}}$.",
+        "acceptableAnswers": ["Price per share / earnings per share."]
       },
       "explanation": null,
       "sourceRef": "CFA Institute, Quantitative Methods and Fixed Income readings; Bodie, Kane & Marcus, Investments",
@@ -228,8 +235,8 @@
       "prompt": "Earnings per share",
       "content": {
         "kind": "short-answer",
-        "answer": "(Net income - preferred dividends) / weighted average common shares.",
-        "acceptableAnswers": []
+        "answer": "$\\frac{\\text{net income} - \\text{preferred dividends}}{\\text{weighted average common shares}}$.",
+        "acceptableAnswers": ["(Net income - preferred dividends) / weighted average common shares."]
       },
       "explanation": null,
       "sourceRef": "CFA Institute, Quantitative Methods and Fixed Income readings; Bodie, Kane & Marcus, Investments",
@@ -239,8 +246,8 @@
       "prompt": "Book value per share",
       "content": {
         "kind": "short-answer",
-        "answer": "(Total assets - total liabilities - preferred equity) / common shares.",
-        "acceptableAnswers": []
+        "answer": "$\\frac{\\text{total assets} - \\text{total liabilities} - \\text{preferred equity}}{\\text{common shares}}$.",
+        "acceptableAnswers": ["(Total assets - total liabilities - preferred equity) / common shares."]
       },
       "explanation": null,
       "sourceRef": "CFA Institute, Quantitative Methods and Fixed Income readings; Bodie, Kane & Marcus, Investments",
@@ -250,8 +257,8 @@
       "prompt": "Current ratio",
       "content": {
         "kind": "short-answer",
-        "answer": "Current assets / current liabilities.",
-        "acceptableAnswers": []
+        "answer": "$\\frac{\\text{current assets}}{\\text{current liabilities}}$.",
+        "acceptableAnswers": ["Current assets / current liabilities."]
       },
       "explanation": null,
       "sourceRef": "CFA Institute, Quantitative Methods and Fixed Income readings; Bodie, Kane & Marcus, Investments",
@@ -261,8 +268,8 @@
       "prompt": "Quick (acid-test) ratio",
       "content": {
         "kind": "short-answer",
-        "answer": "(Current assets - inventory) / current liabilities.",
-        "acceptableAnswers": []
+        "answer": "$\\frac{\\text{current assets} - \\text{inventory}}{\\text{current liabilities}}$.",
+        "acceptableAnswers": ["(Current assets - inventory) / current liabilities."]
       },
       "explanation": null,
       "sourceRef": "CFA Institute, Quantitative Methods and Fixed Income readings; Bodie, Kane & Marcus, Investments",
@@ -272,8 +279,8 @@
       "prompt": "Debt-to-equity ratio",
       "content": {
         "kind": "short-answer",
-        "answer": "Total debt / shareholders' equity.",
-        "acceptableAnswers": []
+        "answer": "$\\frac{\\text{total debt}}{\\text{shareholders' equity}}$.",
+        "acceptableAnswers": ["Total debt / shareholders' equity."]
       },
       "explanation": null,
       "sourceRef": "CFA Institute, Quantitative Methods and Fixed Income readings; Bodie, Kane & Marcus, Investments",
@@ -283,8 +290,8 @@
       "prompt": "Return on equity",
       "content": {
         "kind": "short-answer",
-        "answer": "Net income / shareholders' equity.",
-        "acceptableAnswers": []
+        "answer": "$\\frac{\\text{net income}}{\\text{shareholders' equity}}$.",
+        "acceptableAnswers": ["Net income / shareholders' equity."]
       },
       "explanation": null,
       "sourceRef": "CFA Institute, Quantitative Methods and Fixed Income readings; Bodie, Kane & Marcus, Investments",
@@ -294,8 +301,8 @@
       "prompt": "Gross margin",
       "content": {
         "kind": "short-answer",
-        "answer": "(Revenue - cost of goods sold) / revenue.",
-        "acceptableAnswers": []
+        "answer": "$\\frac{\\text{revenue} - \\text{cost of goods sold}}{\\text{revenue}}$.",
+        "acceptableAnswers": ["(Revenue - cost of goods sold) / revenue."]
       },
       "explanation": null,
       "sourceRef": "CFA Institute, Quantitative Methods and Fixed Income readings; Bodie, Kane & Marcus, Investments",
@@ -316,8 +323,8 @@
       "prompt": "Net present value",
       "content": {
         "kind": "short-answer",
-        "answer": "Sum of discounted cash flows minus initial investment; accept if NPV > 0.",
-        "acceptableAnswers": []
+        "answer": "Sum of discounted cash flows minus initial investment; accept if $\\text{NPV} > 0$.",
+        "acceptableAnswers": ["Sum of discounted cash flows minus initial investment; accept if NPV > 0."]
       },
       "explanation": null,
       "sourceRef": "CFA Institute, Quantitative Methods and Fixed Income readings; Bodie, Kane & Marcus, Investments",
@@ -327,8 +334,8 @@
       "prompt": "Present value of a lump sum",
       "content": {
         "kind": "short-answer",
-        "answer": "FV / (1 + r)^n. $1,000 in 3 years at 5%: about $863.84.",
-        "acceptableAnswers": []
+        "answer": "$\\frac{FV}{(1 + r)^n}$. \\$1,000 in 3 years at 5%: about \\$863.84.",
+        "acceptableAnswers": ["FV / (1 + r)^n. $1,000 in 3 years at 5%: about $863.84."]
       },
       "explanation": null,
       "sourceRef": "CFA Institute, Quantitative Methods and Fixed Income readings; Bodie, Kane & Marcus, Investments",
@@ -338,8 +345,11 @@
       "prompt": "Future value of a lump sum",
       "content": {
         "kind": "short-answer",
-        "answer": "PV × (1 + r)^n. $1,000 for 3 years at 5%: $1,157.63.",
-        "acceptableAnswers": []
+        "answer": "$PV \\times (1 + r)^n$. \\$1,000 for 3 years at 5%: \\$1,157.63.",
+        "acceptableAnswers": [
+          "PV x (1 + r)^n. $1,000 for 3 years at 5%: $1,157.63.",
+          "PV × (1 + r)^n. $1,000 for 3 years at 5%: $1,157.63."
+        ]
       },
       "explanation": null,
       "sourceRef": "CFA Institute, Quantitative Methods and Fixed Income readings; Bodie, Kane & Marcus, Investments",
@@ -349,8 +359,8 @@
       "prompt": "Long call breakeven",
       "content": {
         "kind": "short-answer",
-        "answer": "Strike + premium.",
-        "acceptableAnswers": []
+        "answer": "$\\text{strike} + \\text{premium}$.",
+        "acceptableAnswers": ["Strike + premium."]
       },
       "explanation": null,
       "sourceRef": "CFA Institute, Quantitative Methods and Fixed Income readings; Bodie, Kane & Marcus, Investments",
@@ -360,8 +370,8 @@
       "prompt": "Long put breakeven",
       "content": {
         "kind": "short-answer",
-        "answer": "Strike - premium.",
-        "acceptableAnswers": []
+        "answer": "$\\text{strike} - \\text{premium}$.",
+        "acceptableAnswers": ["Strike - premium."]
       },
       "explanation": null,
       "sourceRef": "CFA Institute, Quantitative Methods and Fixed Income readings; Bodie, Kane & Marcus, Investments",
@@ -371,8 +381,8 @@
       "prompt": "Intrinsic value of a call, and of a put",
       "content": {
         "kind": "short-answer",
-        "answer": "max(0, stock - strike); max(0, strike - stock).",
-        "acceptableAnswers": []
+        "answer": "$\\max(0, S - K)$; $\\max(0, K - S)$ (stock price $S$, strike $K$).",
+        "acceptableAnswers": ["max(0, stock - strike); max(0, strike - stock)."]
       },
       "explanation": null,
       "sourceRef": "CFA Institute, Quantitative Methods and Fixed Income readings; Bodie, Kane & Marcus, Investments",
@@ -415,8 +425,8 @@
       "prompt": "Yield to maturity relation to coupon for discount bonds",
       "content": {
         "kind": "short-answer",
-        "answer": "YTM > current yield > coupon rate.",
-        "acceptableAnswers": []
+        "answer": "$\\text{YTM} > \\text{current yield} > \\text{coupon rate}$.",
+        "acceptableAnswers": ["YTM > current yield > coupon rate."]
       },
       "explanation": null,
       "sourceRef": "CFA Institute, Quantitative Methods and Fixed Income readings; Bodie, Kane & Marcus, Investments",
@@ -426,8 +436,8 @@
       "prompt": "Premium bond yield relation",
       "content": {
         "kind": "short-answer",
-        "answer": "Coupon rate > current yield > YTM.",
-        "acceptableAnswers": []
+        "answer": "$\\text{coupon rate} > \\text{current yield} > \\text{YTM}$.",
+        "acceptableAnswers": ["Coupon rate > current yield > YTM."]
       },
       "explanation": null,
       "sourceRef": "CFA Institute, Quantitative Methods and Fixed Income readings; Bodie, Kane & Marcus, Investments",
@@ -437,8 +447,8 @@
       "prompt": "Approximate price change from duration",
       "content": {
         "kind": "short-answer",
-        "answer": "%ΔP ≈ -D × Δy. D = 7, yield +1% → price about -7%.",
-        "acceptableAnswers": []
+        "answer": "$\\%\\Delta P \\approx -D \\times \\Delta y$. $D = 7$, yield +1% → price about -7%.",
+        "acceptableAnswers": ["%ΔP ≈ -D × Δy. D = 7, yield +1% → price about -7%."]
       },
       "explanation": null,
       "sourceRef": "CFA Institute, Quantitative Methods and Fixed Income readings; Bodie, Kane & Marcus, Investments",
@@ -448,8 +458,8 @@
       "prompt": "Inflation rate (CPI)",
       "content": {
         "kind": "short-answer",
-        "answer": "(CPI_end - CPI_start) / CPI_start.",
-        "acceptableAnswers": []
+        "answer": "$\\frac{\\text{CPI}_{\\text{end}} - \\text{CPI}_{\\text{start}}}{\\text{CPI}_{\\text{start}}}$.",
+        "acceptableAnswers": ["(CPI_end - CPI_start) / CPI_start."]
       },
       "explanation": null,
       "sourceRef": "CFA Institute, Quantitative Methods and Fixed Income readings; Bodie, Kane & Marcus, Investments",

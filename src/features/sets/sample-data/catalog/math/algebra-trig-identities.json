@@ -8,96 +8,96 @@
       "prompt": "Pythagorean identity",
       "content": {
         "kind": "short-answer",
-        "answer": "sin^2 θ + cos^2 θ = 1",
-        "acceptableAnswers": []
+        "answer": "$\\sin^2\\theta + \\cos^2\\theta = 1$",
+        "acceptableAnswers": ["sin^2 θ + cos^2 θ = 1"]
       },
       "explanation": null,
       "sourceRef": "Standard trigonometry and algebra references (e.g., Stewart, Precalculus)",
       "tags": ["math"]
     },
     {
-      "prompt": "tan^2 θ + 1 =",
+      "prompt": "$\\tan^2\\theta + 1 =$",
       "content": {
         "kind": "short-answer",
-        "answer": "sec^2 θ",
-        "acceptableAnswers": []
+        "answer": "$\\sec^2\\theta$",
+        "acceptableAnswers": ["sec^2 θ"]
       },
       "explanation": null,
       "sourceRef": "Standard trigonometry and algebra references (e.g., Stewart, Precalculus)",
       "tags": ["math"]
     },
     {
-      "prompt": "sin 2θ",
+      "prompt": "$\\sin 2\\theta$",
       "content": {
         "kind": "short-answer",
-        "answer": "2 sin θ cos θ",
-        "acceptableAnswers": []
+        "answer": "$2\\sin\\theta\\cos\\theta$",
+        "acceptableAnswers": ["2 sin θ cos θ"]
       },
       "explanation": null,
       "sourceRef": "Standard trigonometry and algebra references (e.g., Stewart, Precalculus)",
       "tags": ["math"]
     },
     {
-      "prompt": "cos 2θ (three forms)",
+      "prompt": "$\\cos 2\\theta$ (three forms)",
       "content": {
         "kind": "short-answer",
-        "answer": "cos^2 θ - sin^2 θ = 1 - 2 sin^2 θ = 2 cos^2 θ - 1",
-        "acceptableAnswers": []
+        "answer": "$\\cos^2\\theta - \\sin^2\\theta = 1 - 2\\sin^2\\theta = 2\\cos^2\\theta - 1$",
+        "acceptableAnswers": ["cos^2 θ - sin^2 θ = 1 - 2 sin^2 θ = 2 cos^2 θ - 1"]
       },
       "explanation": null,
       "sourceRef": "Standard trigonometry and algebra references (e.g., Stewart, Precalculus)",
       "tags": ["math"]
     },
     {
-      "prompt": "sin(a + b)",
+      "prompt": "$\\sin(a + b)$",
       "content": {
         "kind": "short-answer",
-        "answer": "sin a cos b + cos a sin b",
-        "acceptableAnswers": []
+        "answer": "$\\sin a\\cos b + \\cos a\\sin b$",
+        "acceptableAnswers": ["sin a cos b + cos a sin b"]
       },
       "explanation": null,
       "sourceRef": "Standard trigonometry and algebra references (e.g., Stewart, Precalculus)",
       "tags": ["math"]
     },
     {
-      "prompt": "cos(a + b)",
+      "prompt": "$\\cos(a + b)$",
       "content": {
         "kind": "short-answer",
-        "answer": "cos a cos b - sin a sin b",
-        "acceptableAnswers": []
+        "answer": "$\\cos a\\cos b - \\sin a\\sin b$",
+        "acceptableAnswers": ["cos a cos b - sin a sin b"]
       },
       "explanation": null,
       "sourceRef": "Standard trigonometry and algebra references (e.g., Stewart, Precalculus)",
       "tags": ["math"]
     },
     {
-      "prompt": "tan(a + b)",
+      "prompt": "$\\tan(a + b)$",
       "content": {
         "kind": "short-answer",
-        "answer": "(tan a + tan b) / (1 - tan a tan b)",
-        "acceptableAnswers": []
+        "answer": "$\\frac{\\tan a + \\tan b}{1 - \\tan a\\tan b}$",
+        "acceptableAnswers": ["(tan a + tan b) / (1 - tan a tan b)"]
       },
       "explanation": null,
       "sourceRef": "Standard trigonometry and algebra references (e.g., Stewart, Precalculus)",
       "tags": ["math"]
     },
     {
-      "prompt": "sin^2 θ in terms of cos 2θ",
+      "prompt": "$\\sin^2\\theta$ in terms of $\\cos 2\\theta$",
       "content": {
         "kind": "short-answer",
-        "answer": "(1 - cos 2θ)/2",
-        "acceptableAnswers": []
+        "answer": "$\\frac{1 - \\cos 2\\theta}{2}$",
+        "acceptableAnswers": ["(1 - cos 2θ)/2"]
       },
       "explanation": null,
       "sourceRef": "Standard trigonometry and algebra references (e.g., Stewart, Precalculus)",
       "tags": ["math"]
     },
     {
-      "prompt": "cos^2 θ in terms of cos 2θ",
+      "prompt": "$\\cos^2\\theta$ in terms of $\\cos 2\\theta$",
       "content": {
         "kind": "short-answer",
-        "answer": "(1 + cos 2θ)/2",
-        "acceptableAnswers": []
+        "answer": "$\\frac{1 + \\cos 2\\theta}{2}$",
+        "acceptableAnswers": ["(1 + cos 2θ)/2"]
       },
       "explanation": null,
       "sourceRef": "Standard trigonometry and algebra references (e.g., Stewart, Precalculus)",
@@ -107,8 +107,8 @@
       "prompt": "Law of sines",
       "content": {
         "kind": "short-answer",
-        "answer": "a/sin A = b/sin B = c/sin C",
-        "acceptableAnswers": []
+        "answer": "$\\frac{a}{\\sin A} = \\frac{b}{\\sin B} = \\frac{c}{\\sin C}$",
+        "acceptableAnswers": ["a/sin A = b/sin B = c/sin C"]
       },
       "explanation": null,
       "sourceRef": "Standard trigonometry and algebra references (e.g., Stewart, Precalculus)",
@@ -118,8 +118,8 @@
       "prompt": "Law of cosines",
       "content": {
         "kind": "short-answer",
-        "answer": "c^2 = a^2 + b^2 - 2ab cos C",
-        "acceptableAnswers": []
+        "answer": "$c^2 = a^2 + b^2 - 2ab\\cos C$",
+        "acceptableAnswers": ["c^2 = a^2 + b^2 - 2ab cos C"]
       },
       "explanation": null,
       "sourceRef": "Standard trigonometry and algebra references (e.g., Stewart, Precalculus)",
@@ -129,30 +129,30 @@
       "prompt": "Radians per 180 degrees",
       "content": {
         "kind": "short-answer",
-        "answer": "π radians",
-        "acceptableAnswers": []
+        "answer": "$\\pi$ radians",
+        "acceptableAnswers": ["π radians"]
       },
       "explanation": null,
       "sourceRef": "Standard trigonometry and algebra references (e.g., Stewart, Precalculus)",
       "tags": ["math"]
     },
     {
-      "prompt": "sin(π/6), sin(π/4), sin(π/3)",
+      "prompt": "$\\sin(\\pi/6)$, $\\sin(\\pi/4)$, $\\sin(\\pi/3)$",
       "content": {
         "kind": "short-answer",
-        "answer": "1/2, √2/2, √3/2",
-        "acceptableAnswers": []
+        "answer": "$\\frac{1}{2}, \\frac{\\sqrt{2}}{2}, \\frac{\\sqrt{3}}{2}$",
+        "acceptableAnswers": ["1/2, √2/2, √3/2"]
       },
       "explanation": null,
       "sourceRef": "Standard trigonometry and algebra references (e.g., Stewart, Precalculus)",
       "tags": ["math"]
     },
     {
-      "prompt": "Quadratic formula for ax^2 + bx + c = 0",
+      "prompt": "Quadratic formula for $ax^2 + bx + c = 0$",
       "content": {
         "kind": "short-answer",
-        "answer": "x = (-b ± sqrt(b^2 - 4ac)) / (2a)",
-        "acceptableAnswers": []
+        "answer": "$x = \\frac{-b \\pm \\sqrt{b^2 - 4ac}}{2a}$",
+        "acceptableAnswers": ["x = (-b ± sqrt(b^2 - 4ac)) / (2a)"]
       },
       "explanation": null,
       "sourceRef": "Standard trigonometry and algebra references (e.g., Stewart, Precalculus)",
@@ -162,8 +162,10 @@
       "prompt": "Discriminant sign and the roots of a real quadratic",
       "content": {
         "kind": "short-answer",
-        "answer": "b^2 - 4ac > 0: two real roots; = 0: one repeated root; < 0: two complex conjugate roots.",
-        "acceptableAnswers": []
+        "answer": "$b^2 - 4ac > 0$: two real roots; $= 0$: one repeated root; $< 0$: two complex conjugate roots.",
+        "acceptableAnswers": [
+          "b^2 - 4ac > 0: two real roots; = 0: one repeated root; < 0: two complex conjugate roots."
+        ]
       },
       "explanation": null,
       "sourceRef": "Standard trigonometry and algebra references (e.g., Stewart, Precalculus)",
@@ -173,41 +175,41 @@
       "prompt": "Difference of squares",
       "content": {
         "kind": "short-answer",
-        "answer": "a^2 - b^2 = (a - b)(a + b)",
-        "acceptableAnswers": []
+        "answer": "$a^2 - b^2 = (a - b)(a + b)$",
+        "acceptableAnswers": ["a^2 - b^2 = (a - b)(a + b)"]
       },
       "explanation": null,
       "sourceRef": "Standard trigonometry and algebra references (e.g., Stewart, Precalculus)",
       "tags": ["math"]
     },
     {
-      "prompt": "Binomial expansion of (a + b)^n",
+      "prompt": "Binomial expansion of $(a + b)^n$",
       "content": {
         "kind": "short-answer",
-        "answer": "Σ C(n,k) a^(n-k) b^k",
-        "acceptableAnswers": []
+        "answer": "$\\sum_{k=0}^{n} \\binom{n}{k} a^{n-k} b^k$",
+        "acceptableAnswers": ["Σ C(n,k) a^(n-k) b^k"]
       },
       "explanation": null,
       "sourceRef": "Standard trigonometry and algebra references (e.g., Stewart, Precalculus)",
       "tags": ["math"]
     },
     {
-      "prompt": "log_b(xy)",
+      "prompt": "$\\log_b(xy)$",
       "content": {
         "kind": "short-answer",
-        "answer": "log_b x + log_b y",
-        "acceptableAnswers": []
+        "answer": "$\\log_b x + \\log_b y$",
+        "acceptableAnswers": ["log_b x + log_b y"]
       },
       "explanation": null,
       "sourceRef": "Standard trigonometry and algebra references (e.g., Stewart, Precalculus)",
       "tags": ["math"]
     },
     {
-      "prompt": "log_b(x^k)",
+      "prompt": "$\\log_b(x^k)$",
       "content": {
         "kind": "short-answer",
-        "answer": "k log_b x",
-        "acceptableAnswers": []
+        "answer": "$k\\log_b x$",
+        "acceptableAnswers": ["k log_b x"]
       },
       "explanation": null,
       "sourceRef": "Standard trigonometry and algebra references (e.g., Stewart, Precalculus)",
@@ -217,52 +219,52 @@
       "prompt": "Change of base formula",
       "content": {
         "kind": "short-answer",
-        "answer": "log_b x = ln x / ln b",
-        "acceptableAnswers": []
+        "answer": "$\\log_b x = \\frac{\\ln x}{\\ln b}$",
+        "acceptableAnswers": ["log_b x = ln x / ln b"]
       },
       "explanation": null,
       "sourceRef": "Standard trigonometry and algebra references (e.g., Stewart, Precalculus)",
       "tags": ["math"]
     },
     {
-      "prompt": "Sum of a finite geometric series a + ar + ... + ar^(n-1)",
+      "prompt": "Sum of a finite geometric series $a + ar + \\cdots + ar^{n-1}$",
       "content": {
         "kind": "short-answer",
-        "answer": "a (1 - r^n) / (1 - r), r ≠ 1",
-        "acceptableAnswers": []
+        "answer": "$\\frac{a(1 - r^n)}{1 - r}$, $r \\ne 1$",
+        "acceptableAnswers": ["a (1 - r^n) / (1 - r), r ≠ 1"]
       },
       "explanation": null,
       "sourceRef": "Standard trigonometry and algebra references (e.g., Stewart, Precalculus)",
       "tags": ["math"]
     },
     {
-      "prompt": "Sum of an infinite geometric series, |r| < 1",
+      "prompt": "Sum of an infinite geometric series, $|r| < 1$",
       "content": {
         "kind": "short-answer",
-        "answer": "a / (1 - r)",
-        "acceptableAnswers": []
+        "answer": "$\\frac{a}{1 - r}$",
+        "acceptableAnswers": ["a / (1 - r)"]
       },
       "explanation": null,
       "sourceRef": "Standard trigonometry and algebra references (e.g., Stewart, Precalculus)",
       "tags": ["math"]
     },
     {
-      "prompt": "Sum of the first n positive integers",
+      "prompt": "Sum of the first $n$ positive integers",
       "content": {
         "kind": "short-answer",
-        "answer": "n(n + 1)/2",
-        "acceptableAnswers": []
+        "answer": "$\\frac{n(n + 1)}{2}$",
+        "acceptableAnswers": ["n(n + 1)/2"]
       },
       "explanation": null,
       "sourceRef": "Standard trigonometry and algebra references (e.g., Stewart, Precalculus)",
       "tags": ["math"]
     },
     {
-      "prompt": "Sum of the first n squares",
+      "prompt": "Sum of the first $n$ squares",
       "content": {
         "kind": "short-answer",
-        "answer": "n(n + 1)(2n + 1)/6",
-        "acceptableAnswers": []
+        "answer": "$\\frac{n(n + 1)(2n + 1)}{6}$",
+        "acceptableAnswers": ["n(n + 1)(2n + 1)/6"]
       },
       "explanation": null,
       "sourceRef": "Standard trigonometry and algebra references (e.g., Stewart, Precalculus)",
@@ -272,8 +274,8 @@
       "prompt": "Euler's formula",
       "content": {
         "kind": "short-answer",
-        "answer": "e^(iθ) = cos θ + i sin θ",
-        "acceptableAnswers": []
+        "answer": "$e^{i\\theta} = \\cos\\theta + i\\sin\\theta$",
+        "acceptableAnswers": ["e^(iθ) = cos θ + i sin θ"]
       },
       "explanation": null,
       "sourceRef": "Standard trigonometry and algebra references (e.g., Stewart, Precalculus)",
@@ -283,19 +285,19 @@
       "prompt": "Euler's identity",
       "content": {
         "kind": "short-answer",
-        "answer": "e^(iπ) + 1 = 0",
-        "acceptableAnswers": []
+        "answer": "$e^{i\\pi} + 1 = 0$",
+        "acceptableAnswers": ["e^(iπ) + 1 = 0"]
       },
       "explanation": null,
       "sourceRef": "Standard trigonometry and algebra references (e.g., Stewart, Precalculus)",
       "tags": ["math"]
     },
     {
-      "prompt": "Distance between (x1,y1) and (x2,y2)",
+      "prompt": "Distance between $(x_1,y_1)$ and $(x_2,y_2)$",
       "content": {
         "kind": "short-answer",
-        "answer": "sqrt((x2 - x1)^2 + (y2 - y1)^2)",
-        "acceptableAnswers": []
+        "answer": "$\\sqrt{(x_2 - x_1)^2 + (y_2 - y_1)^2}$",
+        "acceptableAnswers": ["sqrt((x2 - x1)^2 + (y2 - y1)^2)"]
       },
       "explanation": null,
       "sourceRef": "Standard trigonometry and algebra references (e.g., Stewart, Precalculus)",
@@ -305,8 +307,8 @@
       "prompt": "Area of a circle and circumference",
       "content": {
         "kind": "short-answer",
-        "answer": "Area π r^2; circumference 2π r.",
-        "acceptableAnswers": []
+        "answer": "Area $\\pi r^2$; circumference $2\\pi r$.",
+        "acceptableAnswers": ["Area π r^2; circumference 2π r."]
       },
       "explanation": null,
       "sourceRef": "Standard trigonometry and algebra references (e.g., Stewart, Precalculus)",
@@ -316,19 +318,19 @@
       "prompt": "Volume of a sphere",
       "content": {
         "kind": "short-answer",
-        "answer": "(4/3) π r^3",
-        "acceptableAnswers": []
+        "answer": "$\\frac{4}{3}\\pi r^3$",
+        "acceptableAnswers": ["(4/3) π r^3"]
       },
       "explanation": null,
       "sourceRef": "Standard trigonometry and algebra references (e.g., Stewart, Precalculus)",
       "tags": ["math"]
     },
     {
-      "prompt": "Equation of a circle with center (h,k), radius r",
+      "prompt": "Equation of a circle with center $(h,k)$, radius $r$",
       "content": {
         "kind": "short-answer",
-        "answer": "(x - h)^2 + (y - k)^2 = r^2",
-        "acceptableAnswers": []
+        "answer": "$(x - h)^2 + (y - k)^2 = r^2$",
+        "acceptableAnswers": ["(x - h)^2 + (y - k)^2 = r^2"]
       },
       "explanation": null,
       "sourceRef": "Standard trigonometry and algebra references (e.g., Stewart, Precalculus)",

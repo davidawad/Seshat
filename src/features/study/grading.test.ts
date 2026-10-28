@@ -53,6 +53,11 @@ describe('normalizeAnswer', () => {
     expect(normalizeAnswer('  Mitochondria  ')).toBe('mitochondria')
   })
 
+  it('ignores LaTeX dollar delimiters', () => {
+    expect(normalizeAnswer('$x^2$')).toBe('x^2')
+    expect(normalizeAnswer('costs $5 and $10')).toBe('costs $5 and $10')
+  })
+
   it('collapses internal whitespace', () => {
     expect(normalizeAnswer('the   powerhouse')).toBe('the powerhouse')
   })

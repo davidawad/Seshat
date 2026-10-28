@@ -222,6 +222,24 @@ export const DocsPage = () => (
       </p>
     </section>
 
+    <section aria-labelledby="docs-math-heading">
+      <h2 id="docs-math-heading">Math and LaTeX</h2>
+      <p>
+        Any card text (terms, definitions, explanations, multiple-choice options) can contain LaTeX, typeset by{' '}
+        <a href="https://www.mathjax.org">MathJax</a> bundled with the app, so it works offline and sends nothing
+        anywhere. Write <code>{'$x^2$'}</code> or <code>{'\\(x^2\\)'}</code> for inline math and{' '}
+        <code>{'$$\\int_0^1 x\\,dx$$'}</code> or <code>{'\\[ ... \\]'}</code> for a displayed formula. A price like $5
+        stays text (a <code>$</code> followed by a space or a digit is not math); write <code>{'\\$'}</code> for a
+        literal dollar sign next to a formula. The card editor has an <q>&sum; LaTeX</q> button that inserts the
+        delimiters and shows a preview while you type.
+      </p>
+      <p>
+        Answers are typed on a keyboard, so for a short-answer card whose answer is a formula, list a typeable form
+        (such as <code>1/x</code>) in <code>acceptableAnswers</code>; the app also ignores the <code>$</code> signs when
+        comparing what you typed.
+      </p>
+    </section>
+
     <section aria-labelledby="docs-license-heading">
       <h2 id="docs-license-heading">Open source</h2>
       <p>

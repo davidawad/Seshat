@@ -9,6 +9,7 @@ import { getBestScore, recordScore } from './bestScore'
 import './blast.css'
 import { motionAttr, rockClassName, useBump, useEnter, useFieldMotion } from './blast-motion'
 import { type BlastPair, type BlastQuestion, START_LIVES, buildRound } from './round'
+import { MathText } from '../../../components/MathText'
 
 /**
  * How long each asteroid stays on screen before it "hits" (a miss/timeout),
@@ -81,7 +82,7 @@ const BlastAsteroidField = ({
       <div className="blast-prompt">
         <p className="blast-prompt-label">Blast the rock that matches:</p>
         <Legible as="p" className="blast-prompt-text">
-          {question.prompt}
+          <MathText text={question.prompt} />
         </Legible>
       </div>
 
@@ -111,7 +112,7 @@ const BlastAsteroidField = ({
                 {...{ [NAV_OPTION_ATTRIBUTE]: '' }}
               >
                 <Legible as="span" measure={false} className="blast-asteroid-text">
-                  {option}
+                  <MathText text={option} />
                 </Legible>
               </button>
             </div>

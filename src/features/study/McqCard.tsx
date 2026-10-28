@@ -5,6 +5,7 @@ import { NAV_OPTION_ATTRIBUTE, useOptionNavigation } from '../../lib/useOptionNa
 import { useNumberedShortcut } from '../../lib/useNumberedShortcut'
 import type { McqContent } from '../../types'
 import { OptionGrid } from './OptionGrid'
+import { MathText } from '../../components/MathText'
 
 /** How many leading options get a digit-key shortcut — see `studyAnswer.mcqOption1-4` in lib/keybindings.ts. */
 const MAX_SHORTCUT_OPTIONS = 4
@@ -24,7 +25,9 @@ interface McqCardProps {
  */
 export const McqCard = ({ prompt, optionsShown, onShowOptions, disabled }: McqCardProps) => (
   <div className="study-card">
-    <p className="study-prompt">{prompt}</p>
+    <p className="study-prompt">
+      <MathText text={prompt} />
+    </p>
     {!optionsShown && (
       <button
         type="button"
@@ -103,7 +106,7 @@ export const McqOptions = ({ content, value, onPick, disabled, focusFirst }: Mcq
             disabled={disabled}
             {...{ [NAV_OPTION_ATTRIBUTE]: '' }}
           >
-            {option}
+            <MathText text={option} />
           </button>
         ))}
       </OptionGrid>

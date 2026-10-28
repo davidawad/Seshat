@@ -2,6 +2,7 @@ import { CardImage } from '../../components/CardImage'
 import { useId } from 'react'
 import { Legible } from '../../components/Legible'
 import type { TrueFalseQuestion } from './generate-test'
+import { MathText } from '../../components/MathText'
 
 interface TrueFalseQuestionFieldProps {
   readonly question: TrueFalseQuestion
@@ -19,10 +20,12 @@ export const TrueFalseQuestionField = ({ question, index, value, onChange }: Tru
     // aria-labelledby rather than a real <fieldset>/<legend>.
     <Legible as="div" className="test-truefalse" role="group" aria-labelledby={promptId}>
       <p id={promptId} className="test-question-prompt">
-        {index + 1}. {question.front}
+        {index + 1}. <MathText text={question.front} />
       </p>
       <CardImage image={question.image} alt="" />
-      <p className="test-truefalse-claim">{question.claimedAnswer}</p>
+      <p className="test-truefalse-claim">
+        <MathText text={question.claimedAnswer} />
+      </p>
       <div className="test-truefalse-options">
         <label>
           <input type="radio" name={groupName} checked={value === true} onChange={() => onChange(true)} />

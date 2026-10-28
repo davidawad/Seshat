@@ -8,8 +8,8 @@
       "prompt": "Binary search time complexity",
       "content": {
         "kind": "short-answer",
-        "answer": "O(log n) on a sorted array.",
-        "acceptableAnswers": []
+        "answer": "$O(\\log n)$ on a sorted array.",
+        "acceptableAnswers": ["O(log n) on a sorted array."]
       },
       "explanation": null,
       "sourceRef": "Cormen, Leiserson, Rivest & Stein, Introduction to Algorithms (MIT Press)",
@@ -19,8 +19,8 @@
       "prompt": "Merge sort time complexity",
       "content": {
         "kind": "short-answer",
-        "answer": "O(n log n) in every case; stable; O(n) extra space.",
-        "acceptableAnswers": []
+        "answer": "$O(n \\log n)$ in every case; stable; $O(n)$ extra space.",
+        "acceptableAnswers": ["O(n log n) in every case; stable; O(n) extra space."]
       },
       "explanation": null,
       "sourceRef": "Cormen, Leiserson, Rivest & Stein, Introduction to Algorithms (MIT Press)",
@@ -30,8 +30,8 @@
       "prompt": "Quicksort time complexity",
       "content": {
         "kind": "short-answer",
-        "answer": "O(n log n) average; O(n^2) worst case.",
-        "acceptableAnswers": []
+        "answer": "$O(n \\log n)$ average; $O(n^2)$ worst case.",
+        "acceptableAnswers": ["O(n log n) average; O(n^2) worst case."]
       },
       "explanation": null,
       "sourceRef": "Cormen, Leiserson, Rivest & Stein, Introduction to Algorithms (MIT Press)",
@@ -41,8 +41,8 @@
       "prompt": "Heapsort time complexity",
       "content": {
         "kind": "short-answer",
-        "answer": "O(n log n) worst case; in-place; not stable.",
-        "acceptableAnswers": []
+        "answer": "$O(n \\log n)$ worst case; in-place; not stable.",
+        "acceptableAnswers": ["O(n log n) worst case; in-place; not stable."]
       },
       "explanation": null,
       "sourceRef": "Cormen, Leiserson, Rivest & Stein, Introduction to Algorithms (MIT Press)",
@@ -52,8 +52,8 @@
       "prompt": "Lower bound for comparison sorting",
       "content": {
         "kind": "short-answer",
-        "answer": "Ω(n log n)",
-        "acceptableAnswers": []
+        "answer": "$\\Omega(n \\log n)$",
+        "acceptableAnswers": ["Omega(n log n)", "Ω(n log n)"]
       },
       "explanation": null,
       "sourceRef": "Cormen, Leiserson, Rivest & Stein, Introduction to Algorithms (MIT Press)",
@@ -63,8 +63,8 @@
       "prompt": "Insertion sort time complexity",
       "content": {
         "kind": "short-answer",
-        "answer": "O(n^2) worst case; O(n) on nearly sorted input.",
-        "acceptableAnswers": []
+        "answer": "$O(n^2)$ worst case; $O(n)$ on nearly sorted input.",
+        "acceptableAnswers": ["O(n^2) worst case; O(n) on nearly sorted input."]
       },
       "explanation": null,
       "sourceRef": "Cormen, Leiserson, Rivest & Stein, Introduction to Algorithms (MIT Press)",
@@ -74,8 +74,8 @@
       "prompt": "Counting sort time complexity",
       "content": {
         "kind": "short-answer",
-        "answer": "O(n + k) for keys in range 0..k.",
-        "acceptableAnswers": []
+        "answer": "$O(n + k)$ for keys in range $0..k$.",
+        "acceptableAnswers": ["O(n + k) for keys in range 0..k."]
       },
       "explanation": null,
       "sourceRef": "Cormen, Leiserson, Rivest & Stein, Introduction to Algorithms (MIT Press)",
@@ -85,8 +85,8 @@
       "prompt": "Hash table lookup (average / worst)",
       "content": {
         "kind": "short-answer",
-        "answer": "O(1) average; O(n) worst case.",
-        "acceptableAnswers": []
+        "answer": "$O(1)$ average; $O(n)$ worst case.",
+        "acceptableAnswers": ["O(1) average; O(n) worst case."]
       },
       "explanation": null,
       "sourceRef": "Cormen, Leiserson, Rivest & Stein, Introduction to Algorithms (MIT Press)",
@@ -96,8 +96,8 @@
       "prompt": "Binary search tree operations (balanced / degenerate)",
       "content": {
         "kind": "short-answer",
-        "answer": "O(log n) balanced; O(n) when degenerate.",
-        "acceptableAnswers": []
+        "answer": "$O(\\log n)$ balanced; $O(n)$ when degenerate.",
+        "acceptableAnswers": ["O(log n) balanced; O(n) when degenerate."]
       },
       "explanation": null,
       "sourceRef": "Cormen, Leiserson, Rivest & Stein, Introduction to Algorithms (MIT Press)",
@@ -107,8 +107,8 @@
       "prompt": "AVL and red-black trees",
       "content": {
         "kind": "short-answer",
-        "answer": "Self-balancing BSTs guaranteeing O(log n) search, insert and delete.",
-        "acceptableAnswers": []
+        "answer": "Self-balancing BSTs guaranteeing $O(\\log n)$ search, insert and delete.",
+        "acceptableAnswers": ["Self-balancing BSTs guaranteeing O(log n) search, insert and delete."]
       },
       "explanation": null,
       "sourceRef": "Cormen, Leiserson, Rivest & Stein, Introduction to Algorithms (MIT Press)",
@@ -118,8 +118,8 @@
       "prompt": "Binary heap: insert and extract-min",
       "content": {
         "kind": "short-answer",
-        "answer": "O(log n) each; find-min O(1).",
-        "acceptableAnswers": []
+        "answer": "$O(\\log n)$ each; find-min $O(1)$.",
+        "acceptableAnswers": ["O(log n) each; find-min O(1)."]
       },
       "explanation": null,
       "sourceRef": "Cormen, Leiserson, Rivest & Stein, Introduction to Algorithms (MIT Press)",
@@ -129,8 +129,8 @@
       "prompt": "Building a binary heap from n items",
       "content": {
         "kind": "short-answer",
-        "answer": "O(n) (using bottom-up heapify).",
-        "acceptableAnswers": []
+        "answer": "$O(n)$ (using bottom-up heapify).",
+        "acceptableAnswers": ["O(n) (using bottom-up heapify)."]
       },
       "explanation": null,
       "sourceRef": "Cormen, Leiserson, Rivest & Stein, Introduction to Algorithms (MIT Press)",
@@ -140,8 +140,10 @@
       "prompt": "Breadth-first search",
       "content": {
         "kind": "short-answer",
-        "answer": "Explores level by level using a queue; finds shortest paths in unweighted graphs; O(V + E).",
-        "acceptableAnswers": []
+        "answer": "Explores level by level using a queue; finds shortest paths in unweighted graphs; $O(V + E)$.",
+        "acceptableAnswers": [
+          "Explores level by level using a queue; finds shortest paths in unweighted graphs; O(V + E)."
+        ]
       },
       "explanation": null,
       "sourceRef": "Cormen, Leiserson, Rivest & Stein, Introduction to Algorithms (MIT Press)",
@@ -151,8 +153,10 @@
       "prompt": "Depth-first search",
       "content": {
         "kind": "short-answer",
-        "answer": "Explores deeply using a stack or recursion; O(V + E); used for topological sort and cycle detection.",
-        "acceptableAnswers": []
+        "answer": "Explores deeply using a stack or recursion; $O(V + E)$; used for topological sort and cycle detection.",
+        "acceptableAnswers": [
+          "Explores deeply using a stack or recursion; O(V + E); used for topological sort and cycle detection."
+        ]
       },
       "explanation": null,
       "sourceRef": "Cormen, Leiserson, Rivest & Stein, Introduction to Algorithms (MIT Press)",
@@ -162,8 +166,10 @@
       "prompt": "Dijkstra's algorithm",
       "content": {
         "kind": "short-answer",
-        "answer": "Single-source shortest paths for non-negative edge weights; O((V + E) log V) with a binary heap.",
-        "acceptableAnswers": []
+        "answer": "Single-source shortest paths for non-negative edge weights; $O((V + E) \\log V)$ with a binary heap.",
+        "acceptableAnswers": [
+          "Single-source shortest paths for non-negative edge weights; O((V + E) log V) with a binary heap."
+        ]
       },
       "explanation": null,
       "sourceRef": "Cormen, Leiserson, Rivest & Stein, Introduction to Algorithms (MIT Press)",
@@ -173,8 +179,10 @@
       "prompt": "Bellman–Ford algorithm",
       "content": {
         "kind": "short-answer",
-        "answer": "Single-source shortest paths allowing negative edges and detecting negative cycles; O(VE).",
-        "acceptableAnswers": []
+        "answer": "Single-source shortest paths allowing negative edges and detecting negative cycles; $O(VE)$.",
+        "acceptableAnswers": [
+          "Single-source shortest paths allowing negative edges and detecting negative cycles; O(VE)."
+        ]
       },
       "explanation": null,
       "sourceRef": "Cormen, Leiserson, Rivest & Stein, Introduction to Algorithms (MIT Press)",
@@ -184,8 +192,8 @@
       "prompt": "Floyd–Warshall",
       "content": {
         "kind": "short-answer",
-        "answer": "All-pairs shortest paths in O(V^3).",
-        "acceptableAnswers": []
+        "answer": "All-pairs shortest paths in $O(V^3)$.",
+        "acceptableAnswers": ["All-pairs shortest paths in O(V^3)."]
       },
       "explanation": null,
       "sourceRef": "Cormen, Leiserson, Rivest & Stein, Introduction to Algorithms (MIT Press)",
@@ -294,8 +302,8 @@
       "prompt": "Linked list: insert at head / index access",
       "content": {
         "kind": "short-answer",
-        "answer": "O(1) / O(n).",
-        "acceptableAnswers": []
+        "answer": "$O(1)$ / $O(n)$.",
+        "acceptableAnswers": ["O(1) / O(n)."]
       },
       "explanation": null,
       "sourceRef": "Cormen, Leiserson, Rivest & Stein, Introduction to Algorithms (MIT Press)",
@@ -305,8 +313,8 @@
       "prompt": "Dynamic array amortized append cost",
       "content": {
         "kind": "short-answer",
-        "answer": "O(1) amortized.",
-        "acceptableAnswers": []
+        "answer": "$O(1)$ amortized.",
+        "acceptableAnswers": ["O(1) amortized."]
       },
       "explanation": null,
       "sourceRef": "Cormen, Leiserson, Rivest & Stein, Introduction to Algorithms (MIT Press)",
@@ -316,8 +324,8 @@
       "prompt": "Trie lookup time for a string of length m",
       "content": {
         "kind": "short-answer",
-        "answer": "O(m)",
-        "acceptableAnswers": []
+        "answer": "$O(m)$",
+        "acceptableAnswers": ["O(m)"]
       },
       "explanation": null,
       "sourceRef": "Cormen, Leiserson, Rivest & Stein, Introduction to Algorithms (MIT Press)",
@@ -338,8 +346,8 @@
       "prompt": "Master theorem use",
       "content": {
         "kind": "short-answer",
-        "answer": "Solves recurrences of the form T(n) = a T(n/b) + f(n).",
-        "acceptableAnswers": []
+        "answer": "Solves recurrences of the form $T(n) = a\\,T(n/b) + f(n)$.",
+        "acceptableAnswers": ["Solves recurrences of the form T(n) = a T(n/b) + f(n)."]
       },
       "explanation": null,
       "sourceRef": "Cormen, Leiserson, Rivest & Stein, Introduction to Algorithms (MIT Press)",

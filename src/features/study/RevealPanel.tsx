@@ -7,6 +7,7 @@ import { NAV_OPTION_ATTRIBUTE, useOptionNavigation } from '../../lib/useOptionNa
 import type { Grade, StudyCard } from '../../types'
 import { type Attempt, GRADE_ORDER, attemptLabel, correctAnswerLabel, derivedGrade } from './grading'
 import { ImageOcclusionReveal } from './ImageOcclusionReveal'
+import { MathText } from '../../components/MathText'
 
 const GRADE_LABELS: Record<Grade, string> = { again: 'Again', hard: 'Hard', good: 'Good', easy: 'Easy' }
 
@@ -108,11 +109,19 @@ export const RevealPanel = ({
             <ImageOcclusionReveal prompt={card.prompt} content={card.content} targetRegionId={attempt.targetRegionId} />
           )}
           {!correct && yourAnswer !== '' && <p className="review-your-answer">Your answer: {yourAnswer}</p>}
-          {!correct && <p className="review-correct-answer">{correctAnswer}</p>}
+          {!correct && (
+            <p className="review-correct-answer">
+              <MathText text={correctAnswer} />
+            </p>
+          )}
           {card.content.kind === 'short-answer' && (
             <CardImage image={card.content.answerImage} alt="" className="review-answer-image" />
           )}
-          {card.explanation !== null && <p className="review-explanation">{card.explanation}</p>}
+          {card.explanation !== null && (
+            <p className="review-explanation">
+              <MathText text={card.explanation} />
+            </p>
+          )}
           {card.sourceRef !== null && <p className="review-source">Source: {card.sourceRef}</p>}
           {selfExplanation !== null && (
             <div className="review-self-explanation">

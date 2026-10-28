@@ -1,4 +1,5 @@
 import type { CardContent, Grade, ImageOcclusionContent, OcclusionRegion } from '../../types'
+import { stripMathDelimiters } from '../../lib/math/split'
 import { clozeAnswer } from './cloze'
 
 /** Canonical order of the FSRS self-rating grades, also used for the 1-4 keyboard shortcuts. */
@@ -59,11 +60,11 @@ export const initialAttempt = (content: CardContent): Attempt => {
 }
 
 /**
- * Normalizes free-text answers for comparison: trim, lowercase, collapse
- * internal whitespace, and strip trailing punctuation.
+ * Normalizes free-text answers for comparison: drop LaTeX `$` delimiters (so a stored `$x^2$` matches a
+ * typed `x^2`), trim, lowercase, collapse internal whitespace, and strip trailing punctuation.
  */
 export const normalizeAnswer = (input: string): string =>
-  input
+  stripMathDelimiters(input)
     .trim()
     .toLowerCase()
     .replace(/\s+/g, ' ')

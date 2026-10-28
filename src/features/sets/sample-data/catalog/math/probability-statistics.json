@@ -5,22 +5,22 @@
   "tags": ["math", "statistics"],
   "cards": [
     {
-      "prompt": "P(A ∪ B)",
+      "prompt": "$P(A \\cup B)$",
       "content": {
         "kind": "short-answer",
-        "answer": "P(A) + P(B) - P(A ∩ B)",
-        "acceptableAnswers": []
+        "answer": "$P(A) + P(B) - P(A \\cap B)$",
+        "acceptableAnswers": ["P(A) + P(B) - P(A ∩ B)"]
       },
       "explanation": null,
       "sourceRef": "Ross, A First Course in Probability (Pearson)",
       "tags": ["math"]
     },
     {
-      "prompt": "Conditional probability P(A|B)",
+      "prompt": "Conditional probability $P(A \\mid B)$",
       "content": {
         "kind": "short-answer",
-        "answer": "P(A ∩ B) / P(B), for P(B) > 0",
-        "acceptableAnswers": []
+        "answer": "$\\frac{P(A \\cap B)}{P(B)}$, for $P(B) > 0$",
+        "acceptableAnswers": ["P(A ∩ B) / P(B), for P(B) > 0"]
       },
       "explanation": null,
       "sourceRef": "Ross, A First Course in Probability (Pearson)",
@@ -30,19 +30,19 @@
       "prompt": "Bayes' theorem",
       "content": {
         "kind": "short-answer",
-        "answer": "P(A|B) = P(B|A) P(A) / P(B)",
-        "acceptableAnswers": []
+        "answer": "$P(A \\mid B) = \\frac{P(B \\mid A)\\, P(A)}{P(B)}$",
+        "acceptableAnswers": ["P(A|B) = P(B|A) P(A) / P(B)"]
       },
       "explanation": null,
       "sourceRef": "Ross, A First Course in Probability (Pearson)",
       "tags": ["math"]
     },
     {
-      "prompt": "Independent events A and B",
+      "prompt": "Independent events $A$ and $B$",
       "content": {
         "kind": "short-answer",
-        "answer": "P(A ∩ B) = P(A) P(B)",
-        "acceptableAnswers": []
+        "answer": "$P(A \\cap B) = P(A)\\,P(B)$",
+        "acceptableAnswers": ["P(A ∩ B) = P(A) P(B)"]
       },
       "explanation": null,
       "sourceRef": "Ross, A First Course in Probability (Pearson)",
@@ -52,8 +52,8 @@
       "prompt": "Law of total probability",
       "content": {
         "kind": "short-answer",
-        "answer": "P(B) = Σ P(B|Ai) P(Ai) over a partition {Ai}.",
-        "acceptableAnswers": []
+        "answer": "$P(B) = \\sum_i P(B \\mid A_i)\\, P(A_i)$ over a partition $\\{A_i\\}$.",
+        "acceptableAnswers": ["P(B) = Σ P(B|Ai) P(Ai) over a partition {Ai}."]
       },
       "explanation": null,
       "sourceRef": "Ross, A First Course in Probability (Pearson)",
@@ -63,8 +63,8 @@
       "prompt": "Number of ways to choose k of n items (order ignored)",
       "content": {
         "kind": "short-answer",
-        "answer": "n! / (k!(n - k)!)",
-        "acceptableAnswers": []
+        "answer": "$\\frac{n!}{k!\\,(n - k)!}$",
+        "acceptableAnswers": ["n! / (k!(n - k)!)"]
       },
       "explanation": null,
       "sourceRef": "Ross, A First Course in Probability (Pearson)",
@@ -74,19 +74,19 @@
       "prompt": "Number of ordered arrangements of k from n items",
       "content": {
         "kind": "short-answer",
-        "answer": "n! / (n - k)!",
-        "acceptableAnswers": []
+        "answer": "$\\frac{n!}{(n - k)!}$",
+        "acceptableAnswers": ["n! / (n - k)!"]
       },
       "explanation": null,
       "sourceRef": "Ross, A First Course in Probability (Pearson)",
       "tags": ["math"]
     },
     {
-      "prompt": "Expected value of a discrete X",
+      "prompt": "Expected value of a discrete $X$",
       "content": {
         "kind": "short-answer",
-        "answer": "E[X] = Σ x P(X = x)",
-        "acceptableAnswers": []
+        "answer": "$E[X] = \\sum_x x\\, P(X = x)$",
+        "acceptableAnswers": ["E[X] = Σ x P(X = x)"]
       },
       "explanation": null,
       "sourceRef": "Ross, A First Course in Probability (Pearson)",
@@ -96,19 +96,19 @@
       "prompt": "Variance in terms of expectations",
       "content": {
         "kind": "short-answer",
-        "answer": "Var(X) = E[X^2] - (E[X])^2",
-        "acceptableAnswers": []
+        "answer": "$\\operatorname{Var}(X) = E[X^2] - (E[X])^2$",
+        "acceptableAnswers": ["Var(X) = E[X^2] - (E[X])^2"]
       },
       "explanation": null,
       "sourceRef": "Ross, A First Course in Probability (Pearson)",
       "tags": ["math"]
     },
     {
-      "prompt": "Var(aX + b)",
+      "prompt": "$\\operatorname{Var}(aX + b)$",
       "content": {
         "kind": "short-answer",
-        "answer": "a^2 Var(X)",
-        "acceptableAnswers": []
+        "answer": "$a^2 \\operatorname{Var}(X)$",
+        "acceptableAnswers": ["a^2 Var(X)"]
       },
       "explanation": null,
       "sourceRef": "Ross, A First Course in Probability (Pearson)",
@@ -118,85 +118,85 @@
       "prompt": "Linearity of expectation",
       "content": {
         "kind": "short-answer",
-        "answer": "E[X + Y] = E[X] + E[Y], always (independence not required).",
-        "acceptableAnswers": []
+        "answer": "$E[X + Y] = E[X] + E[Y]$, always (independence not required).",
+        "acceptableAnswers": ["E[X + Y] = E[X] + E[Y], always (independence not required)."]
       },
       "explanation": null,
       "sourceRef": "Ross, A First Course in Probability (Pearson)",
       "tags": ["math"]
     },
     {
-      "prompt": "Var(X + Y) for independent X, Y",
+      "prompt": "$\\operatorname{Var}(X + Y)$ for independent $X, Y$",
       "content": {
         "kind": "short-answer",
-        "answer": "Var(X) + Var(Y)",
-        "acceptableAnswers": []
+        "answer": "$\\operatorname{Var}(X) + \\operatorname{Var}(Y)$",
+        "acceptableAnswers": ["Var(X) + Var(Y)"]
       },
       "explanation": null,
       "sourceRef": "Ross, A First Course in Probability (Pearson)",
       "tags": ["math"]
     },
     {
-      "prompt": "Binomial(n, p): mean and variance",
+      "prompt": "Binomial$(n, p)$: mean and variance",
       "content": {
         "kind": "short-answer",
-        "answer": "Mean np; variance np(1 - p).",
-        "acceptableAnswers": []
+        "answer": "Mean $np$; variance $np(1 - p)$.",
+        "acceptableAnswers": ["Mean np; variance np(1 - p)."]
       },
       "explanation": null,
       "sourceRef": "Ross, A First Course in Probability (Pearson)",
       "tags": ["math"]
     },
     {
-      "prompt": "Binomial(n, p): P(X = k)",
+      "prompt": "Binomial$(n, p)$: $P(X = k)$",
       "content": {
         "kind": "short-answer",
-        "answer": "C(n,k) p^k (1 - p)^(n - k)",
-        "acceptableAnswers": []
+        "answer": "$\\binom{n}{k} p^k (1 - p)^{n - k}$",
+        "acceptableAnswers": ["C(n,k) p^k (1 - p)^(n - k)"]
       },
       "explanation": null,
       "sourceRef": "Ross, A First Course in Probability (Pearson)",
       "tags": ["math"]
     },
     {
-      "prompt": "Poisson(λ): mean and variance",
+      "prompt": "Poisson$(\\lambda)$: mean and variance",
       "content": {
         "kind": "short-answer",
-        "answer": "Both equal λ.",
-        "acceptableAnswers": []
+        "answer": "Both equal $\\lambda$.",
+        "acceptableAnswers": ["Both equal λ."]
       },
       "explanation": null,
       "sourceRef": "Ross, A First Course in Probability (Pearson)",
       "tags": ["math"]
     },
     {
-      "prompt": "Geometric(p), trials until first success: mean",
+      "prompt": "Geometric$(p)$, trials until first success: mean",
       "content": {
         "kind": "short-answer",
-        "answer": "1/p",
-        "acceptableAnswers": []
+        "answer": "$\\frac{1}{p}$",
+        "acceptableAnswers": ["1/p"]
       },
       "explanation": null,
       "sourceRef": "Ross, A First Course in Probability (Pearson)",
       "tags": ["math"]
     },
     {
-      "prompt": "Uniform on [a, b]: mean and variance",
+      "prompt": "Uniform on $[a, b]$: mean and variance",
       "content": {
         "kind": "short-answer",
-        "answer": "Mean (a + b)/2; variance (b - a)^2 / 12.",
-        "acceptableAnswers": []
+        "answer": "Mean $\\frac{a + b}{2}$; variance $\\frac{(b - a)^2}{12}$.",
+        "acceptableAnswers": ["Mean (a + b)/2; variance (b - a)^2 / 12."]
       },
       "explanation": null,
       "sourceRef": "Ross, A First Course in Probability (Pearson)",
       "tags": ["math"]
     },
     {
-      "prompt": "Exponential(λ): mean and variance",
+      "prompt": "Exponential$(\\lambda)$: mean and variance",
       "content": {
         "kind": "short-answer",
-        "answer": "Mean 1/λ; variance 1/λ^2.",
-        "acceptableAnswers": []
+        "answer": "Mean $\\frac{1}{\\lambda}$; variance $\\frac{1}{\\lambda^2}$.",
+        "acceptableAnswers": ["Mean 1/λ; variance 1/λ^2."]
       },
       "explanation": null,
       "sourceRef": "Ross, A First Course in Probability (Pearson)",
@@ -225,11 +225,11 @@
       "tags": ["math"]
     },
     {
-      "prompt": "z-score of x",
+      "prompt": "$z$-score of $x$",
       "content": {
         "kind": "short-answer",
-        "answer": "(x - μ) / σ",
-        "acceptableAnswers": []
+        "answer": "$\\frac{x - \\mu}{\\sigma}$",
+        "acceptableAnswers": ["(x - μ) / σ"]
       },
       "explanation": null,
       "sourceRef": "Ross, A First Course in Probability (Pearson)",
@@ -239,8 +239,10 @@
       "prompt": "Central Limit Theorem",
       "content": {
         "kind": "short-answer",
-        "answer": "The standardized mean of n i.i.d. variables with finite variance tends to N(0,1) as n → ∞.",
-        "acceptableAnswers": []
+        "answer": "The standardized mean of $n$ i.i.d. variables with finite variance tends to $N(0,1)$ as $n \\to \\infty$.",
+        "acceptableAnswers": [
+          "The standardized mean of n i.i.d. variables with finite variance tends to N(0,1) as n → ∞."
+        ]
       },
       "explanation": null,
       "sourceRef": "Ross, A First Course in Probability (Pearson)",
@@ -250,8 +252,8 @@
       "prompt": "Law of large numbers",
       "content": {
         "kind": "short-answer",
-        "answer": "The sample mean converges to the true mean as n grows.",
-        "acceptableAnswers": []
+        "answer": "The sample mean converges to the true mean as $n$ grows.",
+        "acceptableAnswers": ["The sample mean converges to the true mean as n grows."]
       },
       "explanation": null,
       "sourceRef": "Ross, A First Course in Probability (Pearson)",
@@ -261,8 +263,8 @@
       "prompt": "Standard error of the sample mean",
       "content": {
         "kind": "short-answer",
-        "answer": "σ / sqrt(n)",
-        "acceptableAnswers": []
+        "answer": "$\\frac{\\sigma}{\\sqrt{n}}$",
+        "acceptableAnswers": ["σ / sqrt(n)"]
       },
       "explanation": null,
       "sourceRef": "Ross, A First Course in Probability (Pearson)",
@@ -272,8 +274,8 @@
       "prompt": "Unbiased sample variance",
       "content": {
         "kind": "short-answer",
-        "answer": "s^2 = Σ(xi - x̄)^2 / (n - 1)",
-        "acceptableAnswers": []
+        "answer": "$s^2 = \\frac{\\sum (x_i - \\bar{x})^2}{n - 1}$",
+        "acceptableAnswers": ["s^2 = Σ(xi - x̄)^2 / (n - 1)"]
       },
       "explanation": null,
       "sourceRef": "Ross, A First Course in Probability (Pearson)",
@@ -283,8 +285,8 @@
       "prompt": "Correlation coefficient range",
       "content": {
         "kind": "short-answer",
-        "answer": "-1 to 1; it measures linear association only.",
-        "acceptableAnswers": []
+        "answer": "$-1$ to $1$; it measures linear association only.",
+        "acceptableAnswers": ["-1 to 1; it measures linear association only."]
       },
       "explanation": null,
       "sourceRef": "Ross, A First Course in Probability (Pearson)",
@@ -305,8 +307,8 @@
       "prompt": "Type I error",
       "content": {
         "kind": "short-answer",
-        "answer": "Rejecting a true null hypothesis (probability α).",
-        "acceptableAnswers": []
+        "answer": "Rejecting a true null hypothesis (probability $\\alpha$).",
+        "acceptableAnswers": ["Rejecting a true null hypothesis (probability α)."]
       },
       "explanation": null,
       "sourceRef": "Ross, A First Course in Probability (Pearson)",
@@ -316,8 +318,8 @@
       "prompt": "Type II error",
       "content": {
         "kind": "short-answer",
-        "answer": "Failing to reject a false null hypothesis (probability β).",
-        "acceptableAnswers": []
+        "answer": "Failing to reject a false null hypothesis (probability $\\beta$).",
+        "acceptableAnswers": ["Failing to reject a false null hypothesis (probability β)."]
       },
       "explanation": null,
       "sourceRef": "Ross, A First Course in Probability (Pearson)",
@@ -327,19 +329,19 @@
       "prompt": "Covariance",
       "content": {
         "kind": "short-answer",
-        "answer": "Cov(X,Y) = E[XY] - E[X]E[Y]",
-        "acceptableAnswers": []
+        "answer": "$\\operatorname{Cov}(X,Y) = E[XY] - E[X]E[Y]$",
+        "acceptableAnswers": ["Cov(X,Y) = E[XY] - E[X]E[Y]"]
       },
       "explanation": null,
       "sourceRef": "Ross, A First Course in Probability (Pearson)",
       "tags": ["math"]
     },
     {
-      "prompt": "Markov's inequality (X ≥ 0, a > 0)",
+      "prompt": "Markov's inequality ($X \\ge 0$, $a > 0$)",
       "content": {
         "kind": "short-answer",
-        "answer": "P(X ≥ a) ≤ E[X] / a",
-        "acceptableAnswers": []
+        "answer": "$P(X \\ge a) \\le \\frac{E[X]}{a}$",
+        "acceptableAnswers": ["P(X ≥ a) ≤ E[X] / a"]
       },
       "explanation": null,
       "sourceRef": "Ross, A First Course in Probability (Pearson)",
@@ -349,8 +351,8 @@
       "prompt": "Chebyshev's inequality",
       "content": {
         "kind": "short-answer",
-        "answer": "P(|X - μ| ≥ kσ) ≤ 1/k^2",
-        "acceptableAnswers": []
+        "answer": "$P(|X - \\mu| \\ge k\\sigma) \\le \\frac{1}{k^2}$",
+        "acceptableAnswers": ["P(|X - μ| ≥ kσ) ≤ 1/k^2"]
       },
       "explanation": null,
       "sourceRef": "Ross, A First Course in Probability (Pearson)",

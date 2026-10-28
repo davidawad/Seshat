@@ -8,8 +8,8 @@
       "prompt": "Present value of a single future cash flow",
       "content": {
         "kind": "short-answer",
-        "answer": "PV = FV / (1 + r)^n",
-        "acceptableAnswers": []
+        "answer": "$PV = \\frac{FV}{(1 + r)^n}$",
+        "acceptableAnswers": ["PV = FV / (1 + r)^n"]
       },
       "explanation": null,
       "sourceRef": "Brealey, Myers & Allen, Principles of Corporate Finance (McGraw-Hill); Graham & Dodd, Security Analysis",
@@ -19,8 +19,8 @@
       "prompt": "Future value with compounding",
       "content": {
         "kind": "short-answer",
-        "answer": "FV = PV (1 + r)^n",
-        "acceptableAnswers": []
+        "answer": "$FV = PV(1 + r)^n$",
+        "acceptableAnswers": ["FV = PV (1 + r)^n"]
       },
       "explanation": null,
       "sourceRef": "Brealey, Myers & Allen, Principles of Corporate Finance (McGraw-Hill); Graham & Dodd, Security Analysis",
@@ -30,8 +30,8 @@
       "prompt": "Present value of a perpetuity",
       "content": {
         "kind": "short-answer",
-        "answer": "PV = C / r",
-        "acceptableAnswers": []
+        "answer": "$PV = \\frac{C}{r}$",
+        "acceptableAnswers": ["PV = C / r"]
       },
       "explanation": null,
       "sourceRef": "Brealey, Myers & Allen, Principles of Corporate Finance (McGraw-Hill); Graham & Dodd, Security Analysis",
@@ -41,8 +41,8 @@
       "prompt": "Present value of a growing perpetuity",
       "content": {
         "kind": "short-answer",
-        "answer": "PV = C1 / (r - g)",
-        "acceptableAnswers": []
+        "answer": "$PV = \\frac{C_1}{r - g}$",
+        "acceptableAnswers": ["PV = C1 / (r - g)"]
       },
       "explanation": null,
       "sourceRef": "Brealey, Myers & Allen, Principles of Corporate Finance (McGraw-Hill); Graham & Dodd, Security Analysis",
@@ -52,8 +52,8 @@
       "prompt": "Present value of an ordinary annuity",
       "content": {
         "kind": "short-answer",
-        "answer": "PV = C [1 - (1 + r)^-n] / r",
-        "acceptableAnswers": []
+        "answer": "$PV = C \\cdot \\frac{1 - (1 + r)^{-n}}{r}$",
+        "acceptableAnswers": ["PV = C [1 - (1 + r)^-n] / r"]
       },
       "explanation": null,
       "sourceRef": "Brealey, Myers & Allen, Principles of Corporate Finance (McGraw-Hill); Graham & Dodd, Security Analysis",
@@ -63,8 +63,8 @@
       "prompt": "Net present value rule",
       "content": {
         "kind": "short-answer",
-        "answer": "Accept projects with NPV > 0.",
-        "acceptableAnswers": []
+        "answer": "Accept projects with $\\text{NPV} > 0$.",
+        "acceptableAnswers": ["Accept projects with NPV > 0."]
       },
       "explanation": null,
       "sourceRef": "Brealey, Myers & Allen, Principles of Corporate Finance (McGraw-Hill); Graham & Dodd, Security Analysis",
@@ -96,8 +96,8 @@
       "prompt": "Effective annual rate from nominal rate r compounded m times",
       "content": {
         "kind": "short-answer",
-        "answer": "(1 + r/m)^m - 1",
-        "acceptableAnswers": []
+        "answer": "$\\left(1 + \\frac{r}{m}\\right)^m - 1$",
+        "acceptableAnswers": ["(1 + r/m)^m - 1"]
       },
       "explanation": null,
       "sourceRef": "Brealey, Myers & Allen, Principles of Corporate Finance (McGraw-Hill); Graham & Dodd, Security Analysis",
@@ -107,8 +107,8 @@
       "prompt": "WACC",
       "content": {
         "kind": "short-answer",
-        "answer": "E/V × Re + D/V × Rd × (1 - Tc)",
-        "acceptableAnswers": []
+        "answer": "$\\frac{E}{V} \\times R_e + \\frac{D}{V} \\times R_d \\times (1 - T_c)$",
+        "acceptableAnswers": ["E/V × Re + D/V × Rd × (1 - Tc)"]
       },
       "explanation": null,
       "sourceRef": "Brealey, Myers & Allen, Principles of Corporate Finance (McGraw-Hill); Graham & Dodd, Security Analysis",
@@ -118,8 +118,8 @@
       "prompt": "Gordon growth model",
       "content": {
         "kind": "short-answer",
-        "answer": "P0 = D1 / (r - g)",
-        "acceptableAnswers": []
+        "answer": "$P_0 = \\frac{D_1}{r - g}$",
+        "acceptableAnswers": ["P0 = D1 / (r - g)"]
       },
       "explanation": null,
       "sourceRef": "Brealey, Myers & Allen, Principles of Corporate Finance (McGraw-Hill); Graham & Dodd, Security Analysis",
@@ -195,8 +195,8 @@
       "prompt": "P/E ratio",
       "content": {
         "kind": "short-answer",
-        "answer": "Price per share / earnings per share.",
-        "acceptableAnswers": []
+        "answer": "$\\frac{\\text{price per share}}{\\text{earnings per share}}$.",
+        "acceptableAnswers": ["Price per share / earnings per share."]
       },
       "explanation": null,
       "sourceRef": "Brealey, Myers & Allen, Principles of Corporate Finance (McGraw-Hill); Graham & Dodd, Security Analysis",
@@ -239,8 +239,8 @@
       "prompt": "DuPont identity",
       "content": {
         "kind": "short-answer",
-        "answer": "ROE = net margin × asset turnover × equity multiplier.",
-        "acceptableAnswers": []
+        "answer": "$\\text{ROE} = \\text{net margin} \\times \\text{asset turnover} \\times \\text{equity multiplier}$.",
+        "acceptableAnswers": ["ROE = net margin × asset turnover × equity multiplier."]
       },
       "explanation": null,
       "sourceRef": "Brealey, Myers & Allen, Principles of Corporate Finance (McGraw-Hill); Graham & Dodd, Security Analysis",
@@ -261,8 +261,8 @@
       "prompt": "Accounting identity",
       "content": {
         "kind": "short-answer",
-        "answer": "Assets = liabilities + equity",
-        "acceptableAnswers": []
+        "answer": "$\\text{Assets} = \\text{liabilities} + \\text{equity}$",
+        "acceptableAnswers": ["Assets = liabilities + equity"]
       },
       "explanation": null,
       "sourceRef": "Brealey, Myers & Allen, Principles of Corporate Finance (McGraw-Hill); Graham & Dodd, Security Analysis",
@@ -283,8 +283,8 @@
       "prompt": "Working capital",
       "content": {
         "kind": "short-answer",
-        "answer": "Current assets - current liabilities.",
-        "acceptableAnswers": []
+        "answer": "$\\text{Current assets} - \\text{current liabilities}$.",
+        "acceptableAnswers": ["Current assets - current liabilities."]
       },
       "explanation": null,
       "sourceRef": "Brealey, Myers & Allen, Principles of Corporate Finance (McGraw-Hill); Graham & Dodd, Security Analysis",
@@ -294,8 +294,8 @@
       "prompt": "Weighted average cost of debt: after-tax",
       "content": {
         "kind": "short-answer",
-        "answer": "Rd × (1 - tax rate)",
-        "acceptableAnswers": []
+        "answer": "$R_d \\times (1 - \\text{tax rate})$",
+        "acceptableAnswers": ["Rd × (1 - tax rate)"]
       },
       "explanation": null,
       "sourceRef": "Brealey, Myers & Allen, Principles of Corporate Finance (McGraw-Hill); Graham & Dodd, Security Analysis",
@@ -316,8 +316,8 @@
       "prompt": "Put–call parity (European, no dividends)",
       "content": {
         "kind": "short-answer",
-        "answer": "C - P = S - K e^(-rT)",
-        "acceptableAnswers": []
+        "answer": "$C - P = S - K e^{-rT}$",
+        "acceptableAnswers": ["C - P = S - K e^(-rT)"]
       },
       "explanation": null,
       "sourceRef": "Brealey, Myers & Allen, Principles of Corporate Finance (McGraw-Hill); Graham & Dodd, Security Analysis",
@@ -327,8 +327,8 @@
       "prompt": "Capital asset pricing model",
       "content": {
         "kind": "short-answer",
-        "answer": "E(R) = Rf + β (E(Rm) - Rf)",
-        "acceptableAnswers": []
+        "answer": "$E(R) = R_f + \\beta (E(R_m) - R_f)$",
+        "acceptableAnswers": ["E(R) = Rf + β (E(Rm) - Rf)"]
       },
       "explanation": null,
       "sourceRef": "Brealey, Myers & Allen, Principles of Corporate Finance (McGraw-Hill); Graham & Dodd, Security Analysis",
