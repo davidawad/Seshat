@@ -52,6 +52,12 @@ export const SetsIcon = () => (
   </svg>
 )
 
+export const FolderIcon = () => (
+  <svg {...commonProps}>
+    <path d="M3 6.5A1.5 1.5 0 0 1 4.5 5h3.2l1.6 1.8h6.2A1.5 1.5 0 0 1 17 8.3v6.2a1.5 1.5 0 0 1-1.5 1.5h-11A1.5 1.5 0 0 1 3 14.5z" />
+  </svg>
+)
+
 export const StatsIcon = () => (
   <svg {...commonProps}>
     <path d="M4 17V10M10 17V3M16 17v-6" />

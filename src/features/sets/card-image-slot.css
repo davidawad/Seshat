@@ -1,16 +1,5 @@
 /* Image slots on term / definition rows (editor). Tokens only, no raw colors. */
 
-.card-row:has(.card-row-images) {
-  flex-wrap: wrap;
-}
-
-.card-row-images {
-  flex: 1 0 100%;
-  display: flex;
-  gap: 0.75rem;
-  flex-wrap: wrap;
-}
-
 .image-slot {
   display: flex;
   align-items: center;

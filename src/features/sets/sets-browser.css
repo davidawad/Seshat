@@ -1,6 +1,6 @@
 .home-set-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(16rem, 1fr));
+  grid-template-columns: repeat(auto-fill, minmax(17rem, 1fr));
   gap: 1rem;
   margin: 1.5rem 0 0;
   padding: 0;
@@ -11,46 +11,78 @@
   position: relative;
   display: flex;
   flex-direction: column;
-  gap: 0.6rem;
+  gap: 0.55rem;
   height: 100%;
-  padding: 1rem 1.1rem;
+  padding: 0.9rem 1rem;
   background: var(--color-bg-elevated);
   border: 1px solid var(--color-border-strong);
   border-radius: var(--radius-page);
+  transition: border-color 0.12s ease;
+}
+
+.set-progress-card:hover,
+.set-progress-card:focus-within {
+  border-color: var(--color-accent);
+}
+
+.set-progress-card-head {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 0.6rem;
 }
 
 .set-progress-card-main {
+  min-width: 0;
   color: inherit;
   text-decoration: none;
 }
 
-.set-progress-card-main:hover .set-progress-card-name {
+.set-progress-card-main:hover .set-progress-card-name,
+.set-progress-card-main:focus-visible .set-progress-card-name {
   color: var(--color-accent);
 }
 
 .set-progress-card-name {
   margin: 0;
-  font-size: 1.15rem;
+  font-family: var(--font-chrome);
+  font-size: 1.2rem;
+  line-height: 1.25;
+}
+
+.set-due-pill {
+  flex: none;
+  padding: 0.1rem 0.55rem;
+  font-family: var(--font-ui);
+  font-size: 0.74rem;
+  color: var(--color-accent-contrast);
+  background: var(--color-accent);
+  border-radius: 999px;
 }
 
 .set-progress-card-description {
-  margin: 0.25rem 0 0;
+  display: -webkit-box;
+  margin: 0;
+  overflow: hidden;
   color: var(--color-fg-muted);
   font-size: 0.9rem;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 2;
+  line-clamp: 2;
 }
 
 .set-progress {
   display: flex;
   align-items: center;
-  gap: 0.75rem;
+  gap: 0.6rem;
   margin-top: auto;
 }
 
 .set-progress-bar {
   flex: 1;
-  block-size: 0.5rem;
+  block-size: 0.35rem;
   overflow: hidden;
-  background: var(--color-border-strong);
+  background: var(--color-border);
   border-radius: 999px;
 }
 
@@ -61,22 +93,40 @@
 }
 
 .set-progress-count {
+  min-inline-size: 2.5ch;
   font-family: var(--font-ui);
-  font-size: 0.9rem;
+  font-size: 0.78rem;
   font-variant-numeric: tabular-nums;
+  text-align: end;
+  color: var(--color-fg-muted);
 }
 
 .set-progress-card-meta {
   margin: 0;
+  font-family: var(--font-ui);
+  font-size: 0.74rem;
   color: var(--color-fg-muted);
-  font-size: 0.85rem;
+}
+
+.set-progress-card-actions {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding-block-start: 0.55rem;
+  border-block-start: 1px solid var(--color-border);
+}
+
+.set-progress-card-actions .set-progress-card-study {
+  margin-inline-end: auto;
 }
 
 .set-progress-card-study {
-  padding: 0.4rem 0.9rem;
+  padding: 0.3rem 0.85rem;
   border-radius: var(--radius-sm);
   text-decoration: none;
-  font-weight: 500;
+  font-family: var(--font-ui);
+  font-size: 0.85rem;
+  font-weight: 600;
   background: var(--color-accent);
   color: var(--color-accent-contrast);
 }
@@ -257,10 +307,6 @@
   display: flex;
   align-items: center;
   gap: 0.6rem;
-}
-
-.set-progress-card-actions {
-  justify-content: space-between;
 }
 
 .set-progress-card .tag-chips,

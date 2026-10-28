@@ -11,7 +11,7 @@ import { useKeybindings } from '../lib/useKeybindings'
 import { useWebMcp } from '../lib/useWebMcp'
 import { BackupNudge } from './BackupNudge'
 import { Footer } from './Footer'
-import { SetsIcon, StatsIcon } from './icons'
+import { FolderIcon, SetsIcon, StatsIcon } from './icons'
 import { Modal } from './Modal'
 import { SaveErrorBanner } from './SaveErrorBanner'
 import { ShortcutsModal } from './ShortcutsModal'
@@ -28,6 +28,7 @@ const CommandPalette = lazy(() =>
 // billing in the primary nav or the thumb-reachable mobile tab bar.
 const NAV_ITEMS = [
   { to: '/sets', label: 'Sets', end: false, icon: SetsIcon, testId: TESTIDS.navSets },
+  { to: '/folders', label: 'Folders', end: false, icon: FolderIcon, testId: TESTIDS.navFolders },
   { to: '/stats', label: 'Stats', end: false, icon: StatsIcon, testId: TESTIDS.navStats },
 ] as const
 

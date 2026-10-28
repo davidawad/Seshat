@@ -12,6 +12,7 @@ const AttributionsPage = lazyPage(() => import('./pages/Attributions'), 'Attribu
 const DocsPage = lazyPage(() => import('./pages/Docs'), 'DocsPage')
 const LicensePage = lazyPage(() => import('./pages/License'), 'LicensePage')
 const ReleaseNotesPage = lazyPage(() => import('./pages/ReleaseNotes'), 'ReleaseNotesPage')
+const FoldersPage = lazyPage(() => import('./features/sets/FoldersPage'), 'FoldersPage')
 const StatsPage = lazyPage(() => import('./pages/Stats'), 'StatsPage')
 
 // Settings lives as a modal (opened from the footer, see components/Layout.tsx)
@@ -24,6 +25,7 @@ export const App = () => (
       <Route element={<Layout />}>
         <Route index element={<HomePage />} />
         <Route path="sets/*" element={<SetsPage />} />
+        <Route path="folders" element={<FoldersPage />} />
         <Route path="stats" element={<StatsPage />} />
         <Route path="about" element={<AboutPage />} />
         <Route path="docs" element={<DocsPage />} />

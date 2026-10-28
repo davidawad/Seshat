@@ -1,0 +1,108 @@
+/* One editable card: a panel with the term over the definition on the left and a quiet actions column on the
+   right. The inputs read as wells set into the panel; captions say which is which. Tokens only. */
+.card-panel {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto;
+  gap: 0.6rem 1.25rem;
+  padding: 0.9rem 1rem;
+  background: var(--color-bg-elevated);
+  border: 1px solid var(--color-border-strong);
+  border-radius: var(--radius-page);
+  margin-block-end: 0.5rem;
+}
+
+.card-panel-field {
+  grid-column: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+  min-width: 0;
+}
+
+.card-panel-caption {
+  font-family: var(--font-ui);
+  font-size: 0.68rem;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--color-fg-muted);
+}
+
+.card-panel .card-row-input {
+  flex: none;
+  box-sizing: border-box;
+  inline-size: 100%;
+  block-size: 2.25rem;
+  margin: 0;
+  padding: 0 0.75rem;
+  background: var(--color-bg);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-sm);
+}
+
+.card-panel .card-row-input:hover {
+  border-color: var(--color-border-strong);
+}
+
+.card-panel-side {
+  grid-column: 2;
+  grid-row: 1 / span 2;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: 0.75rem;
+}
+
+.card-panel-images {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: 0.1rem;
+}
+
+/* The image buttons are secondary: text links with a plus, not bordered pills. */
+.card-panel-images .image-slot {
+  padding: 0;
+}
+
+.card-panel-images .pill-button {
+  padding: 0.2rem 0;
+  font-family: var(--font-ui);
+  font-size: 0.74rem;
+  color: var(--color-fg-muted);
+  background: none;
+  border: 0;
+  cursor: pointer;
+  white-space: nowrap;
+}
+
+.card-panel-images .pill-button::before {
+  content: '+ ';
+}
+
+.card-panel-images .pill-button:hover,
+.card-panel-images .pill-button:focus-visible {
+  color: var(--color-accent);
+  text-decoration: underline;
+}
+
+/* Phones: one column, actions in a row under the inputs. */
+@media (max-width: 640px) {
+  .card-panel {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .card-panel-side {
+    grid-column: 1;
+    grid-row: auto;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+  }
+
+  .card-panel-images {
+    flex-direction: row;
+    gap: 1rem;
+  }
+}

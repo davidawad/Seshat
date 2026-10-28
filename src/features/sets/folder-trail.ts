@@ -27,5 +27,11 @@ export const useSetCrumbs = (setId: SetId | null): { crumbs: Crumb[]; trail: Fol
   const sets: Crumb = { label: 'Sets', to: '/sets' }
   return folder === undefined
     ? { crumbs: [sets], trail: undefined }
-    : { crumbs: [sets, { label: folder.name, to: `/sets/folders/${folder.id}` }], trail: folderTrail(folder.id) }
+    : {
+        crumbs: [
+          { label: 'Folders', to: '/folders' },
+          { label: folder.name, to: `/sets/folders/${folder.id}` },
+        ],
+        trail: folderTrail(folder.id),
+      }
 }

@@ -9,7 +9,6 @@ import { folderTrail } from './folder-trail'
 import { setMatchesQuery } from './filters'
 import { type SetMastery, summarizeMastery } from './set-summary'
 import { SetProgressCard } from './SetProgressCard'
-import { FoldersSection } from './FoldersSection'
 import { FirstRunHero } from './FirstRunHero'
 import { SetsHeader } from './SetsBrowserHeader'
 import { SetTable } from './SetTable'
@@ -127,7 +126,7 @@ export const SetsBrowser = ({ title, folder, children }: SetsBrowserProps) => {
 
   return (
     <section aria-labelledby={headingId} data-testid={TESTIDS.setsBrowser}>
-      {folder !== undefined && <Breadcrumbs crumbs={[{ label: 'Sets', to: '/sets' }]} />}
+      {folder !== undefined && <Breadcrumbs crumbs={[{ label: 'Folders', to: '/folders' }]} />}
       <SetsHeader
         headingId={headingId}
         title={title}
@@ -147,7 +146,6 @@ export const SetsBrowser = ({ title, folder, children }: SetsBrowserProps) => {
         onRemove={onRemove}
         onLoadStarter={handleLoadStarter}
       />
-      {folder === undefined && hasSets && <FoldersSection />}
       {children}
     </section>
   )

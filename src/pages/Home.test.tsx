@@ -60,19 +60,24 @@ const structure = (container: HTMLElement) => {
   }
 }
 
-describe('Home and Sets pages', () => {
-  for (const [label, withSets] of [
-    ['empty', false],
-    ['with sets', true],
-  ] as const) {
-    it(`render the same structure apart from the heading (${label})`, () => {
-      if (withSets) seed()
-      const home = structure(renderAt('/').container)
-      cleanup()
-      const sets = structure(renderAt('/sets').container)
-      expect(home.title).toBe('Your sets')
-      expect(sets.title).toBe('Sets')
-      expect(home.html).toBe(sets.html)
-    })
-  }
+describe('Home page', () => {
+  it('is the first-run welcome, identical to the Sets page apart from the heading, with no sets', () => {
+    const home = structure(renderAt('/').container)
+    cleanup()
+    const sets = structure(renderAt('/sets').container)
+    expect(home.title).toBe('Your sets')
+    expect(sets.title).toBe('Sets')
+    expect(home.html).toBe(sets.html)
+  })
+
+  it('becomes a Today dashboard once there are sets: up next, the three numbers, and the sets list', () => {
+    seed()
+    const { container } = renderAt('/')
+    expect(container.querySelector('h1')?.textContent).toBe('Today')
+    expect(container.querySelector('[data-testid="dash-next"]')).not.toBeNull()
+    const labels = [...container.querySelectorAll('.dash-tiles dt')].map((dt) => dt.textContent)
+    expect(labels).toEqual(['Due now', 'New cards', 'Reviewed today'])
+    expect(container.querySelectorAll('[data-testid="sets-browser-card"]')).toHaveLength(1)
+    expect(container.querySelector('a[href="/sets"]')?.textContent).toMatch(/All sets \(1\)/)
+  })
 })

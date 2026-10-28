@@ -9,8 +9,8 @@ import { TESTIDS } from '../../lib/testids'
 import { createEmptyAppState, type ExportedSet, type FolderId } from '../../types'
 import { SetStatsPage } from '../stats/SetStatsPage'
 import { FolderPage } from './FolderPage'
+import { FoldersPage } from './FoldersPage'
 import { SetDetailPage } from './SetDetail'
-import { SetsBrowser } from './SetsBrowser'
 
 afterEach(() => cleanup())
 beforeEach(() => window.localStorage.clear())
@@ -118,16 +118,18 @@ describe('folder and per-set pages', () => {
     return { state, setA: state.sets[0]!, folder: state.folders[0]! }
   }
 
-  it('creates a folder from the sets page', async () => {
+  it('creates a folder from the Folders page and lists it with its counts', async () => {
     const user = userEvent.setup()
     const { result } = renderHook(() => useSeshatStore(), { wrapper: wrapperAt('/') })
     act(() => void result.current.importSet(makeSet('Alpha', 1)))
     cleanup()
-    render(<SetsBrowser title="Sets" />, { wrapper: wrapperAt('/sets') })
+    render(<FoldersPage />, { wrapper: wrapperAt('/folders') })
+    expect(screen.getByText(/No folders yet/)).toBeInTheDocument()
     await user.type(screen.getByTestId(TESTIDS.folderNewInput), 'Biology')
-    await user.click(screen.getByRole('button', { name: 'New folder' }))
-    expect(screen.getByTestId(TESTIDS.folderCard)).toHaveTextContent('Biology')
-    expect(screen.getByTestId(TESTIDS.folderCard)).toHaveTextContent('0 sets')
+    await user.click(screen.getByRole('button', { name: 'Create folder' }))
+    const card = screen.getByTestId(TESTIDS.folderCard)
+    expect(card).toHaveTextContent('Biology')
+    expect(card).toHaveTextContent('0 sets')
   })
 
   it('shows stats for only the sets in the folder', () => {

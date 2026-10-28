@@ -1,0 +1,187 @@
+/* Landing page for returning learners: one "up next" panel, three numbers, then sets and folders.
+   Same panel language as the card editor, set cards and folders page. Tokens only. */
+.dash-date {
+  margin: 0 0 0.15rem;
+  font-family: var(--font-ui);
+  font-size: 0.8rem;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--color-accent);
+}
+
+.dash h1 {
+  margin-block: 0 1.25rem;
+}
+
+.dash-top {
+  display: grid;
+  grid-template-columns: minmax(0, 2fr) minmax(14rem, 1fr);
+  gap: 1rem;
+  margin-block-end: 2rem;
+}
+
+.dash-panel {
+  margin: 0;
+  background: var(--color-bg-elevated);
+  border: 1px solid var(--color-border-strong);
+  border-radius: var(--radius-page);
+}
+
+.dash-caption {
+  font-family: var(--font-ui);
+  font-size: 0.68rem;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--color-fg-muted);
+}
+
+.dash-next {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  padding: 1.25rem 1.4rem;
+}
+
+.dash-next-name {
+  margin: 0;
+  font-family: var(--font-chrome);
+  font-size: clamp(1.5rem, 3vw, 2.1rem);
+  font-weight: 600;
+  line-height: 1.15;
+  color: inherit;
+  text-decoration: none;
+}
+
+a.dash-next-name:hover,
+a.dash-next-name:focus-visible {
+  color: var(--color-accent);
+}
+
+.dash-next-meta {
+  margin: 0;
+  font-family: var(--font-ui);
+  font-size: 0.85rem;
+  color: var(--color-fg-muted);
+}
+
+.dash-bar {
+  block-size: 0.35rem;
+  overflow: hidden;
+  background: var(--color-border);
+  border-radius: 999px;
+}
+
+.dash-bar > span {
+  display: block;
+  block-size: 100%;
+  background: var(--color-accent);
+}
+
+.dash-next-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.6rem;
+  margin-block-start: 0.5rem;
+}
+
+.dash-button {
+  display: inline-flex;
+  align-items: center;
+  block-size: 2.5rem;
+  padding-inline: 1.25rem;
+  font-family: var(--font-ui);
+  font-size: 0.9rem;
+  font-weight: 600;
+  color: var(--color-fg);
+  text-decoration: none;
+  background: transparent;
+  border: 1px solid var(--color-border-strong);
+  border-radius: var(--radius-sm);
+}
+
+.dash-button:hover,
+.dash-button:focus-visible {
+  color: var(--color-accent);
+  border-color: var(--color-accent);
+}
+
+.dash-button.is-primary {
+  color: var(--color-accent-contrast);
+  background: var(--color-accent);
+  border-color: var(--color-accent);
+}
+
+.dash-button.is-primary:hover,
+.dash-button.is-primary:focus-visible {
+  color: var(--color-accent-contrast);
+  filter: brightness(1.08);
+}
+
+.dash-tiles {
+  display: flex;
+  flex-direction: column;
+  padding: 0.4rem 1.2rem;
+}
+
+.dash-tiles > div {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 1rem;
+  padding-block: 0.8rem;
+}
+
+.dash-tiles > div + div {
+  border-block-start: 1px solid var(--color-border);
+}
+
+.dash-tiles dt {
+  font-family: var(--font-ui);
+  font-size: 0.68rem;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--color-fg-muted);
+}
+
+.dash-tiles dd {
+  margin: 0;
+  font-family: var(--font-chrome);
+  font-size: 1.9rem;
+  font-weight: 600;
+  font-variant-numeric: tabular-nums;
+}
+
+.dash-section-head {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 1rem;
+  margin-block: 0 0.75rem;
+}
+
+.dash-section-head h2 {
+  margin: 0;
+}
+
+.dash-section-head a {
+  font-family: var(--font-ui);
+  font-size: 0.85rem;
+  text-decoration: none;
+}
+
+.dash-section-head a:hover,
+.dash-section-head a:focus-visible {
+  text-decoration: underline;
+}
+
+.dash-grid {
+  margin-block: 0 2rem;
+}
+
+@media (max-width: 760px) {
+  .dash-top {
+    grid-template-columns: minmax(0, 1fr);
+  }
+}

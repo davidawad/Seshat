@@ -22,15 +22,18 @@ export const SetProgressCard = ({ set, mastery, linkState, onRemove }: SetProgre
 
   return (
     <article className="set-progress-card" aria-label={set.name} data-testid={TESTIDS.setsBrowserCard}>
-      <Link
-        to={`/sets/${set.id}`}
-        state={linkState}
-        className="set-progress-card-main"
-        data-testid={TESTIDS.setsBrowserSetLink}
-      >
-        <h2 className="set-progress-card-name">{set.name}</h2>
-        {set.description.length > 0 && <p className="set-progress-card-description">{set.description}</p>}
-      </Link>
+      <div className="set-progress-card-head">
+        <Link
+          to={`/sets/${set.id}`}
+          state={linkState}
+          className="set-progress-card-main"
+          data-testid={TESTIDS.setsBrowserSetLink}
+        >
+          <h2 className="set-progress-card-name">{set.name}</h2>
+        </Link>
+        {due > 0 && <span className="set-due-pill">{due} due</span>}
+      </div>
+      {set.description.length > 0 && <p className="set-progress-card-description">{set.description}</p>}
       <SetTags tags={set.tags} />
       <div className="set-progress">
         <div
@@ -43,12 +46,12 @@ export const SetProgressCard = ({ set, mastery, linkState, onRemove }: SetProgre
         >
           <span className="set-progress-fill" style={{ inlineSize: `${percent}%` }} />
         </div>
-        <span className="set-progress-count">
-          {memorized}/{total}
-        </span>
+        <span className="set-progress-count">{percent}%</span>
       </div>
       <p className="set-progress-card-meta">
-        {total} card{total === 1 ? '' : 's'} · {nextUp === 0 ? 'nothing due' : `${due} due · ${newCount} new`}
+        {total} card{total === 1 ? '' : 's'}
+        {newCount > 0 ? ` · ${newCount} new` : ''}
+        {nextUp === 0 ? ' · nothing due' : ''}
       </p>
       <div className="set-progress-card-actions">
         <Link

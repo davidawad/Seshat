@@ -7,6 +7,7 @@ import { TESTIDS } from '../../lib/testids'
 import type { StudyCard } from '../../types'
 import { CardForm } from './CardForm'
 import { CardImageSlot } from './CardImageSlot'
+import './card-panel.css'
 import { MathText } from '../../components/MathText'
 
 const contentSummary = (card: StudyCard): { readonly label: string; readonly detail: string } => {
@@ -92,51 +93,57 @@ export const CardListItem = ({ card }: CardListItemProps) => {
     }
 
     return (
-      <li className="card-row">
-        <label htmlFor={termId} className="sr-only">
-          Term
-        </label>
-        <input
-          id={termId}
-          type="text"
-          className="card-row-input legible"
-          value={term}
-          onChange={(event) => setTerm(event.target.value)}
-          onBlur={saveTerm}
-        />
-        <label htmlFor={definitionId} className="sr-only">
-          Definition of {card.prompt}
-        </label>
-        <input
-          id={definitionId}
-          type="text"
-          className="card-row-input legible"
-          value={definition}
-          onChange={(event) => setDefinition(event.target.value)}
-          onBlur={saveDefinition}
-        />
-        <button
-          type="button"
-          className="icon-button"
-          onClick={handleDelete}
-          aria-label={`Delete card: ${card.prompt}`}
-          data-testid={TESTIDS.editCardDelete}
-        >
-          <DeleteIcon />
-        </button>
-        <div className="card-row-images">
-          <CardImageSlot
-            label="term image"
-            context={`"${card.prompt}"`}
-            value={card.promptImage}
-            onChange={(promptImage) => updateCard(card.id, { promptImage })}
+      <li className="card-panel">
+        <div className="card-panel-field">
+          <label htmlFor={termId} className="card-panel-caption">
+            Term
+          </label>
+          <input
+            id={termId}
+            type="text"
+            className="card-row-input legible"
+            value={term}
+            onChange={(event) => setTerm(event.target.value)}
+            onBlur={saveTerm}
           />
-          <CardImageSlot
-            label="definition image"
-            context={`"${card.prompt}"`}
-            value={content.answerImage}
-            onChange={(answerImage) => updateCard(card.id, { content: { ...content, answerImage } })}
+        </div>
+        <div className="card-panel-field">
+          <label htmlFor={definitionId} className="card-panel-caption">
+            Definition<span className="sr-only"> of {card.prompt}</span>
+          </label>
+          <input
+            id={definitionId}
+            type="text"
+            className="card-row-input legible"
+            value={definition}
+            onChange={(event) => setDefinition(event.target.value)}
+            onBlur={saveDefinition}
           />
+        </div>
+        <div className="card-panel-side">
+          <button
+            type="button"
+            className="icon-button"
+            onClick={handleDelete}
+            aria-label={`Delete card: ${card.prompt}`}
+            data-testid={TESTIDS.editCardDelete}
+          >
+            <DeleteIcon />
+          </button>
+          <div className="card-panel-images">
+            <CardImageSlot
+              label="term image"
+              context={`"${card.prompt}"`}
+              value={card.promptImage}
+              onChange={(promptImage) => updateCard(card.id, { promptImage })}
+            />
+            <CardImageSlot
+              label="definition image"
+              context={`"${card.prompt}"`}
+              value={content.answerImage}
+              onChange={(answerImage) => updateCard(card.id, { content: { ...content, answerImage } })}
+            />
+          </div>
         </div>
         {confirmDialog}
       </li>
