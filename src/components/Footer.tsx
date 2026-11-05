@@ -6,7 +6,7 @@ interface FooterProps {
   readonly onOpenShortcuts: () => void
 }
 
-/** The app-wide footer: a copyright notice on the left, reference/config links (About, Agents, Docs, Attributions, License) plus the Keyboard shortcuts and Settings buttons, styled as plain text links grouped on the right. */
+/** The app-wide footer: a copyright notice on the left, reference/config links (About, Agents, Docs, Attributions, License, Thoth) plus the Keyboard shortcuts and Settings buttons, styled as plain text links grouped on the right. */
 export const Footer = ({ onOpenSettings, onOpenShortcuts }: FooterProps) => (
   <footer className="app-footer">
     <span className="app-footer-copyright">
@@ -33,6 +33,9 @@ export const Footer = ({ onOpenSettings, onOpenShortcuts }: FooterProps) => (
       <Link to="/licensing" className="app-footer-link" data-testid={TESTIDS.footerLicense}>
         License
       </Link>
+      <a href="https://davidawad.gitlab.io/thoth/" className="app-footer-link" data-testid={TESTIDS.footerThoth}>
+        Thoth (read)
+      </a>
       <button
         type="button"
         className="app-footer-settings"
