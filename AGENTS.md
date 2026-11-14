@@ -163,7 +163,7 @@ br close <id>           # Complete work
 
 - Use `br` for all task tracking; do not create markdown TODO lists.
 - Run `br robot-docs guide` when br workflow context is needed — there is no automatic session-start hook (removed along with bd's, since br has no native-hook integration of its own).
-- **bd's `bd remember` persistent-memory feature has NO br equivalent** — do not assume memories work; use MEMORY.md-style files instead if you need durable notes.
+- **bd's persistent-memory feature (`remember`) has NO br equivalent** — do not assume memories work; use MEMORY.md-style files instead if you need durable notes.
 
 ## Agent Context Profiles
 

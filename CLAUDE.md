@@ -28,7 +28,7 @@ br close <id>         # Complete work
 - `br` never runs git itself (unlike bd's Dolt-backed auto-push) — `.beads/issues.jsonl`
   stays gitignored here; there is no cross-machine sync mechanism for this
   repo's tracker today.
-- **bd's `bd remember` persistent-memory feature has NO br equivalent** — do
+- **bd's persistent-memory feature (`remember`) has NO br equivalent** — do
   not assume memories work; use MEMORY.md-style files instead if you need
   durable notes.
 
